@@ -1,37 +1,13 @@
 MODELS
   resources         *
   users             *
-  locations         *
-  companies         *
-  projects          *
-  workpackages      *
-  workroles
-  workapplications
-  works
-  submittals        *
-  drawings          *
-  specifications    *
-  addenda
-  certifications
-  reviews
+  studies
+  files
+
 
 
 VIEWS
   resource            ## Included for word searches
   resources           ## Included for word searches
-  user                ## Profile
-  users               ## Search
-  location            ## Show google map, etc
-  locations           ## Search
-  company             ## Profile
-  companies           ## Search
-  project             ## Info page
-  projects            ## Search
-  workpackage         ## Info page
-  workpackages        ## Search
-  workapplication     ## Info page
-  workapplications    ## List and Search, PM can review applications
-  work                ## Info page, includes daily report
-  works               ## Searchable, used for accounting, payrole, etc
-  certification       ## Info page
-  certifications      ## Search
+  study
+  studies

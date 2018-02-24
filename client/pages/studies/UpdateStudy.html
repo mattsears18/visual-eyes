@@ -1,0 +1,20 @@
+<template name="UpdateStudy">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Edit Study <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Studies" doc=study id="updateStudyForm"
+        type="update" class="update-study-form"}}
+
+      <!-- {{> quickForm collection="Studies" doc=study id="updateStudyForm"
+        type="method" meteormethod="studies.update" class="update-study-form"}} -->
+
+      {{#if study.hasPermission 'destroy'}}
+        {{> quickRemoveButton collection="Studies" _id=study._id
+          onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
+          id="destroyStudyform" class="btn btn-danger"}}
+      {{/if}}
+    </div>
+  </div>
+</template>

@@ -1,0 +1,11 @@
+////////////////////////////////////////////////////////////////////////////////
+// Datafiles Publications
+////////////////////////////////////////////////////////////////////////////////
+Meteor.publish('datafiles.all', function() {
+  return Datafiles.find({});
+});
+
+Meteor.publish('datafiles.single', function(id) {
+  check(id, String);
+  return Datafiles.find({_id: id});
+});

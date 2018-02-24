@@ -1,0 +1,16 @@
+<template name="Study">
+  {{#if $.Session.get 'updateStudy'}}
+    {{> UpdateStudy study=study}}
+  {{/if}}
+  <h3>{{study.name}}
+    {{#if study.hasPermission 'update'}}
+      {{#unless $.Session.get 'updateStudy'}}
+        &nbsp;<a href="#" class="update-study"><i class="fa fa-pencil"></i></a>
+      {{/unless}}
+    {{/if}}
+  </h3>
+  <div>{{json study}}</div>
+
+  <h4>Files</h4>
+  <div>{{json study.datafile}}</div>
+</template>

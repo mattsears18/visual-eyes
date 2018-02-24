@@ -53,7 +53,10 @@ alanning:roles
 mdg:validated-method
 dburles:google-maps
 aldeed:geocoder
-aldeed:autoform-select2
-natestrauser:select2
 momentjs:moment
 lbee:moment-helpers
+
+cfs:standard-packages
+cfs:filesystem
+yogiben:autoform-file
+aldeed:simple-schema

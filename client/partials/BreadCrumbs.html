@@ -16,7 +16,18 @@
           {{/if}}
         {{/if}}
 
-        
+        {{#if isActivePath regex='studies'}}
+          {{#if isActiveRoute 'studies'}}
+            <li class="active">Studies</li>
+          {{else}}
+            {{#if isActiveRoute 'study'}}
+              <li><a href="/studies">Studies</a></li>
+              <li class="active">{{study.name}}</li>
+            {{/if}}
+          {{/if}}
+        {{/if}}
+
+
 
       {{/if}}
     </ol>

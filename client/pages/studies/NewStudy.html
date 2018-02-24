@@ -1,0 +1,11 @@
+<template name="NewStudy">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">New Study <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Studies" id="insertStudyForm" type="insert"
+        class="insert-study-form"}}
+    </div>
+  </div>
+</template>

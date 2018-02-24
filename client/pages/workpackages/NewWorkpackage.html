@@ -1,0 +1,20 @@
+<template name="NewWorkpackage">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">New Workpackage <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{# autoForm collection="Workpackages" id="insertWorkpackageForm" type="insert"
+        class="insert-workpackage-form"}}
+
+        {{> afQuickField name='name'}}
+        {{> afQuickField name='desc'}}
+        {{> afQuickField name='dateStart'}}
+        {{> afQuickField name='projectId' value=projectId}}
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+      {{/autoForm}}
+    </div>
+  </div>
+</template>

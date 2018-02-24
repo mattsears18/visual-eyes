@@ -1,0 +1,19 @@
+<template name="NewSubmittal">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">New Submittal <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{# autoForm collection="Submittals" id="insertSubmittalForm" type="insert"
+        class="insert-submittal-form"}}
+
+        {{> afQuickField name='name'}}
+        {{> afQuickField name='desc'}}
+        {{> afQuickField name='projectId' value=projectId}}
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+      {{/autoForm}}
+    </div>
+  </div>
+</template>

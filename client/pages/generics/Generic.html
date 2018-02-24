@@ -1,0 +1,13 @@
+<template name="Generic">
+  {{#if $.Session.get 'updateGeneric'}}
+    {{> UpdateGeneric generic=generic}}
+  {{/if}}
+  <h3>{{generic.name}}
+    {{#if generic.hasPermission 'update'}}
+      {{#unless $.Session.get 'updateGeneric'}}
+        &nbsp;<a href="#" class="update-generic"><i class="fa fa-pencil"></i></a>
+      {{/unless}}
+    {{/if}}
+  </h3>
+  <div>{{json generic}}</div>
+</template>

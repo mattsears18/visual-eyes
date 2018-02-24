@@ -1,0 +1,11 @@
+////////////////////////////////////////////////////////////////////////////////
+// Companies Publications
+////////////////////////////////////////////////////////////////////////////////
+Meteor.publish('companies.all', function() {
+  return Companies.find({});
+});
+
+Meteor.publish('companies.single', function(id) {
+  check(id, String);
+  return Companies.find({_id: id});
+});

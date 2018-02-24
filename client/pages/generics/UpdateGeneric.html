@@ -1,0 +1,20 @@
+<template name="UpdateGeneric">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Edit Generic <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Generics" doc=generic id="updateGenericForm"
+        type="update" class="update-generic-form"}}
+
+      <!-- {{> quickForm collection="Generics" doc=generic id="updateGenericForm"
+        type="method" meteormethod="generics.update" class="update-generic-form"}} -->
+
+      {{#if generic.hasPermission 'destroy'}}
+        {{> quickRemoveButton collection="Generics" _id=generic._id
+          onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
+          id="destroyGenericform" class="btn btn-danger"}}
+      {{/if}}
+    </div>
+  </div>
+</template>

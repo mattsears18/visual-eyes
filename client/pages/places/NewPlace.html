@@ -1,0 +1,11 @@
+<template name="NewPlace">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">New Place <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Places" id="insertPlaceForm" type="insert"
+        class="insert-place-form"}}
+    </div>
+  </div>
+</template>

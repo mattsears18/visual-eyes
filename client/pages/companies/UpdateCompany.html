@@ -1,0 +1,20 @@
+<template name="UpdateCompany">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Edit Company <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Companies" doc=company id="updateCompanyForm"
+        type="update" class="update-company-form"}}
+
+      <!-- {{> quickForm collection="Companies" doc=company id="updateCompanyForm"
+        type="method" meteormethod="companies.update" class="update-company-form"}} -->
+
+      {{#if company.hasPermission 'destroy'}}
+        {{> quickRemoveButton collection="Companies" _id=company._id
+          onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
+          id="destroyCompanyform" class="btn btn-danger"}}
+      {{/if}}
+    </div>
+  </div>
+</template>

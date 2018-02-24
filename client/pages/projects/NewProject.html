@@ -1,0 +1,11 @@
+<template name="NewProject">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">New Project <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Projects" id="insertProjectForm" type="insert"
+        class="insert-project-form"}}
+    </div>
+  </div>
+</template>

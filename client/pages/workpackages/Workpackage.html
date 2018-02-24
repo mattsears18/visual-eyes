@@ -1,0 +1,19 @@
+<template name="Workpackage">
+  {{#if $.Session.get 'updateWorkpackage'}}
+    {{> UpdateWorkpackage workpackage=workpackage}}
+  {{/if}}
+  <h3>{{workpackage.name}}
+    {{#if workpackage.hasPermission 'update'}}
+      {{#unless $.Session.get 'updateWorkpackage'}}
+        &nbsp;<a href="#" class="update-workpackage"><i class="fa fa-pencil"></i></a>
+      {{/unless}}
+    {{/if}}
+  </h3>
+  <div><strong>Period: </strong>{{moFormat workpackage.dateStart 'MM/DD/YY'}} - {{moFormat workpackage.dateFinish 'MM/DD/YY'}}</div>
+  <div>{{workpackage.desc}}</div>
+  <div class="m-t-20">{{json workpackage}}</div>
+
+  <h4>Associated Submittals</h4>
+  <h4>Associated Drawings</h4>
+  <h4>Associated Specifications</h4>
+</template>

@@ -1,0 +1,25 @@
+<template name="Place">
+  {{#if $.Session.get 'updatePlace'}}
+    {{> UpdatePlace place=place}}
+  {{/if}}
+  <h3>{{place.name}}
+    {{#if place.hasPermission 'update'}}
+      {{#unless $.Session.get 'updatePlace'}}
+        &nbsp;<a href="#" class="update-place"><i class="fa fa-pencil"></i></a>
+      {{/unless}}
+    {{/if}}
+  </h3>
+  <!-- <div>{{json place}}</div> -->
+  {{#if place.owner}}
+    <div><strong>Owner: </strong><a href="/companies/{{place.ownerId}}">{{place.owner.name}}</a></div>
+  {{/if}}
+  <div>
+    {{#if place.street}}{{place.street}}{{#if place.street2}}, {{place.street2}}{{/if}}{{/if}}
+  </div>
+  <div>
+    {{#if place.city}}{{place.city}}{{/if}}{{#if place.state}}, {{place.state}}{{/if}}{{#if place.zip}} {{place.zip}}{{/if}}
+  </div>
+  <div class="m-t-20">
+    {{> GoogleMap mapOptions=mapOptions}}
+  </div>
+</template>

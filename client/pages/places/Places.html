@@ -1,0 +1,17 @@
+<template name="Places">
+  {{#if $.Session.get 'newPlace'}}
+    {{> NewPlace}}
+  {{/if}}
+  <h3>Places
+    {{#if isInRole 'create' 'places'}}
+      {{#unless $.Session.get 'newPlace'}}
+        &nbsp;<a class="new-place"><i class="fa fa-plus"></i></a>
+      {{/unless}}
+    {{/if}}
+  </h3>
+  <ul>
+    {{#each places}}
+      <li><a href="/places/{{_id}}">{{name}} ({{address}})</a></li>
+    {{/each}}
+  </ul>
+</template>

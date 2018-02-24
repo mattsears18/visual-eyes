@@ -1,0 +1,17 @@
+<template name="Submittals">
+  {{#if $.Session.get 'newSubmittal'}}
+    {{> NewSubmittal}}
+  {{/if}}
+  <h3>Submittals
+    {{#if isInRole 'create' 'submittals'}}
+      {{#unless $.Session.get 'newSubmittal'}}
+        &nbsp;<a class="new-submittal"><i class="fa fa-plus"></i></a>
+      {{/unless}}
+    {{/if}}
+  </h3>
+  <ul>
+    {{#each submittals}}
+      <li><a href="/submittals/{{_id}}">{{name}}</a></li>
+    {{/each}}
+  </ul>
+</template>

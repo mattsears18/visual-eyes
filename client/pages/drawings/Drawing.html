@@ -1,0 +1,14 @@
+<template name="Drawing">
+  {{#if $.Session.get 'updateDrawing'}}
+    {{> UpdateDrawing drawing=drawing}}
+  {{/if}}
+  <h3>{{drawing.name}}
+    {{#if drawing.hasPermission 'update'}}
+      {{#unless $.Session.get 'updateDrawing'}}
+        &nbsp;<a href="#" class="update-drawing"><i class="fa fa-pencil"></i></a>
+      {{/unless}}
+    {{/if}}
+  </h3>
+  <div>{{drawing.desc}}</div>
+  <div class="m-t-20">{{json drawing}}</div>
+</template>

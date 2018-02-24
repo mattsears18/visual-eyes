@@ -1,0 +1,20 @@
+<template name="UpdateSubmittal">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Edit Submittal <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Submittals" doc=submittal id="updateSubmittalForm"
+        type="update" class="update-submittal-form"}}
+
+      <!-- {{> quickForm collection="Submittals" doc=submittal id="updateSubmittalForm"
+        type="method" meteormethod="submittals.update" class="update-submittal-form"}} -->
+
+      {{#if submittal.hasPermission 'destroy'}}
+        {{> quickRemoveButton collection="Submittals" _id=submittal._id
+          onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
+          id="destroySubmittalform" class="btn btn-danger"}}
+      {{/if}}
+    </div>
+  </div>
+</template>

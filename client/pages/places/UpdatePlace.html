@@ -1,0 +1,20 @@
+<template name="UpdatePlace">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Edit Place <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Places" doc=place id="updatePlaceForm"
+        type="update" class="update-place-form"}}
+
+      <!-- {{> quickForm collection="Places" doc=place id="updatePlaceForm"
+        type="method" meteormethod="places.update" class="update-place-form"}} -->
+
+      {{#if place.hasPermission 'destroy'}}
+        {{> quickRemoveButton collection="Places" _id=place._id
+          onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
+          id="destroyPlaceform" class="btn btn-danger"}}
+      {{/if}}
+    </div>
+  </div>
+</template>

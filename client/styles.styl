@@ -1,0 +1,102 @@
+normalize-css()
+
+// Material Shadows
+shadow-level(l = 1)
+    if l == -1
+        box-shadow: inset -2px 7px 9px -7px rgba(0,0,0,0.7);
+    if l == 0
+        box-shadow: none;
+    if l == 1
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    if l == 2
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    if l == 3
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    if l == 4
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    if l == 5
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+
+// Common Transition
+trans($sec = 0.3s)
+    transition: all $sec ease
+// Grid
+$xsmall = 340px
+$small = 500px
+$med = 700px
+$large = 960px
+$wide = 1200px
+
+// Colors
+black = #222
+grey = #D8D8D8
+light-grey = #EEE
+purp = #524763
+dark-purp = #373142
+red = #E54B4B
+teal = #82D8D8
+dark-teal = #66A6A6
+green = #73a433
+blue = #235cb3
+bright-blue = #0082C8
+dark-blue = #103361
+maroon = #6A2140
+light-red = #CA5765
+pink = #CF256D
+orange = #E8846B
+
+.m-t-15
+    margin-top 15px
+
+.m-t-20
+    margin-top 20px
+
+.m-b-20
+    margin-bottom 20px
+
+z = {
+    neg: -7,
+    lowest: 1,
+    low: 4,
+    mid: 5,
+    video: 6,
+    header: 7,
+    nav: 8,
+    mini: 9,
+    modal: 10,
+    highest: 11
+}
+
+social = {
+    twitter: #00aced,
+    facebook: #3b5998,
+    google: #dd4b39,
+    youtube: #bb0000
+}
+
+.footer
+    left 0
+    width 100%
+    fixed bottom
+    padding 5px
+    text-align center
+    a
+        color #999
+
+.nav-login
+    margin-top 15px
+    margin-bottom 15px
+    padding-left 15px
+    color #555555
+    a
+        color #555555
+
+body
+    margin-bottom 100px
+
+.breadcrumb
+    margin-top 70px
+
+.map-container
+    width: 100%
+    height: 500px

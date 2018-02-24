@@ -1,0 +1,14 @@
+<template name="Submittal">
+  {{#if $.Session.get 'updateSubmittal'}}
+    {{> UpdateSubmittal submittal=submittal}}
+  {{/if}}
+  <h3>{{submittal.name}}
+    {{#if submittal.hasPermission 'update'}}
+      {{#unless $.Session.get 'updateSubmittal'}}
+        &nbsp;<a href="#" class="update-submittal"><i class="fa fa-pencil"></i></a>
+      {{/unless}}
+    {{/if}}
+  </h3>
+  <div>{{submittal.desc}}</div>
+  <div class="m-t-20">{{json submittal}}</div>
+</template>

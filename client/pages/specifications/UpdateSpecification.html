@@ -1,0 +1,20 @@
+<template name="UpdateSpecification">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Edit Specification <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Specifications" doc=specification id="updateSpecificationForm"
+        type="update" class="update-specification-form"}}
+
+      <!-- {{> quickForm collection="Specifications" doc=specification id="updateSpecificationForm"
+        type="method" meteormethod="specifications.update" class="update-specification-form"}} -->
+
+      {{#if specification.hasPermission 'destroy'}}
+        {{> quickRemoveButton collection="Specifications" _id=specification._id
+          onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
+          id="destroySpecificationform" class="btn btn-danger"}}
+      {{/if}}
+    </div>
+  </div>
+</template>

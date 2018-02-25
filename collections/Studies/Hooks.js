@@ -20,6 +20,6 @@ Studies.after.insert(function (userId, doc) {
         // success!
         console.log('success');
       }
-    });  
+    });
   }
 });

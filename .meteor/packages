@@ -56,7 +56,7 @@ aldeed:geocoder
 momentjs:moment
 lbee:moment-helpers
 
-cfs:standard-packages
-cfs:filesystem
-yogiben:autoform-file
 aldeed:simple-schema
+ostrio:autoform-files
+ostrio:files
+dburles:mongo-collection-instances

@@ -3,7 +3,7 @@ Template.Study.onCreated(function() {
   self.autorun(function() {
     var studyId = FlowRouter.getParam('studyId');
     self.subscribe('studies.single', studyId);
-    self.subscribe('datafiles.all');
+    self.subscribe('files.datafiles.all');
   });
 });
 

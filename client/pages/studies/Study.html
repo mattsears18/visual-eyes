@@ -11,9 +11,10 @@
   </h3>
   <div>{{json study}}</div>
 
-  <h4>Files</h4>
-  <div>{{json study.datafile}}</div>
-  <div>
-    <!-- <a href="{{study.datafiles.link}}">{{study.datafile.original.name}}</a> -->
-  </div>
+  <h4>Eye Tracking Data Files</h4>
+  <ul>
+    {{#each datafiles}}
+      <li>{{name}}</li>
+    {{/each}}
+  </ul>
 </template>

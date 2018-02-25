@@ -1,7 +1,8 @@
 Template.NewStudy.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    self.subscribe('datafiles.all');
+    // self.subscribe('files.datafiles.all');
+    Meteor.subscribe('files.datafiles.all');
   });
 });
 

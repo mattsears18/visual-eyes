@@ -39,28 +39,19 @@ Schemas.Study = new SimpleSchema({
     },
     optional: true,
   },
-  // datafileIds: {
-  //   type: Array,
-  //   label: 'Choose file' // <- Optional
-  // },
-  // "datafileIds.$": {
-  //   type: String,
-  //   autoform: {
-  //     afFieldInput: {
-  //       type: 'fileUpload',
-  //       collection: 'Datafiles'
-  //     }
-  //   }
-  // },
-    datafileId: {
-      type: String,
-      autoform: {
-        afFieldInput: {
-          type: 'fileUpload',
-          collection: 'Datafiles',
-        }
+  datafiles: {
+    type: Array,
+    label: 'Eye Tracking Data .txt Files' // <- Optional
+  },
+  "datafiles.$": {
+    type: String,
+    autoform: {
+      afFieldInput: {
+        type: 'fileUpload',
+        collection: 'Datafiles'
       }
-    },
+    }
+  },
   aois: {
     type: String,
     label: 'Areas of Interest',

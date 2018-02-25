@@ -12,11 +12,4 @@ Studies.helpers({
     }
     return false;
   },
-  datafile() {
-    datafileId = this.datafileId;
-
-    if(datafileId) {
-      return Datafiles.findOne({_id: datafileId});
-    }
-  },
 });

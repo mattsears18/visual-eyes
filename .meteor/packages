@@ -60,3 +60,4 @@ aldeed:simple-schema
 ostrio:autoform-files
 ostrio:files
 dburles:mongo-collection-instances
+http

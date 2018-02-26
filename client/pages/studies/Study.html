@@ -9,12 +9,13 @@
       {{/unless}}
     {{/if}}
   </h3>
-  <div>{{json study}}</div>
+  <div>{{study.desc}}</div>
 
   <h4>Eye Tracking Data Files</h4>
   <ul>
-    {{#each datafiles}}
-      <li>{{name}}</li>
+    {{#each datafile in datafiles}}
+      <li><a href="{{fileURL datafile}}?download=true" target="_top">{{datafile.name}}</a></li>
+      <!-- <ul><li>{{datafile.content}}</li></ul> -->
     {{/each}}
   </ul>
 </template>

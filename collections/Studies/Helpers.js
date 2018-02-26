@@ -12,4 +12,7 @@ Studies.helpers({
     }
     return false;
   },
+  // datafiles() {
+  //   return Datafiles.find({_id: {$in: this.datafiles}});
+  // },
 });

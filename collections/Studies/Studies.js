@@ -39,11 +39,11 @@ Schemas.Study = new SimpleSchema({
     },
     optional: true,
   },
-  datafiles: {
+  datafileIds: {
     type: Array,
     label: 'Eye Tracking Data .txt Files' // <- Optional
   },
-  "datafiles.$": {
+  "datafileIds.$": {
     type: String,
     autoform: {
       afFieldInput: {
@@ -51,13 +51,6 @@ Schemas.Study = new SimpleSchema({
         collection: 'Datafiles'
       }
     }
-  },
-  aois: {
-    type: String,
-    label: 'Areas of Interest',
-    defaultValue: function() {
-      return 'Spool 1, Spool 2, Spool 3, Spool 4, Spool 5, Spool 6, Spool 7, Spool 8, Spool 9, Spool 10';
-    },
   },
   periods: {
     type: String,
@@ -73,7 +66,7 @@ Schemas.Study = new SimpleSchema({
       return '5000';
     },
   },
-  viewingMinTime: {
+  minViewingTime: {
     type: String,
     label: 'Minimum Viewing Time',
     defaultValue: function() {

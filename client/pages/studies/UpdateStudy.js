@@ -1,3 +1,10 @@
+Template.UpdateStudy.onCreated(function() {
+  var self = this;
+  self.autorun(function() {
+    self.subscribe('files.datafiles.all');
+  });
+});
+
 Template.UpdateStudy.events({
   'click .fa-close': function() {
     Session.set('updateStudy', false);

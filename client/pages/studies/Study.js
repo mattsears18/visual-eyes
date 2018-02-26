@@ -11,9 +11,6 @@ Template.Study.helpers({
   study: () => {
     return Studies.findOne();
   },
-  datafiles: () => {
-    return Datafiles.find({});
-  },
 });
 
 Template.Study.events({

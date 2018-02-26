@@ -1,8 +1,31 @@
 MODELS
-  resources         *
+  generics          *
   users             *
-  studies
-  files
+  studies           *
+    name            *
+    desc            *
+    aois
+    participants
+    periods         *
+    viewingGap      *
+    minViewingTime  *
+
+  datafiles         *
+    name
+  aois
+    name
+    image             ## pdf file
+  viewings
+    aoiId
+    datafileId
+    period
+    number
+    recordingtime
+    timeofday
+    category
+    index
+    x
+    y
 
 
 

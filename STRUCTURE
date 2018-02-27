@@ -5,28 +5,28 @@ MODELS
     name            *
     desc            *
     aois
-    participants
     periods         *
     viewingGap      *
     minViewingTime  *
-
   datafiles         *
     name
   aois
     name
     image             ## pdf file
-  viewings
+  recordings
+    viewingId
     aoiId
     datafileId
-    period
-    number
     recordingtime
     timeofday
     category
     index
     x
     y
-
+  viewings
+    period
+    number
+    recordingIds
 
 
 VIEWS

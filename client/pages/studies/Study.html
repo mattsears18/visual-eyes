@@ -11,11 +11,24 @@
   </h3>
   <div>{{study.desc}}</div>
 
-  <h4>Eye Tracking Data Files</h4>
+  <h4>Eye Tracking Data Files
+    {{#if study.allDatafilesProcessed}}
+      <span class="label label-success">All Processed</span>
+    {{else}}
+      <span class="label label-default">{{study.percentRecordingsProcessed}}% Processed</span>
+    {{/if}}
+  </h4>
   <ul>
     {{#each datafile in study.datafiles}}
       <li>
         <a href="{{fileURL datafile}}?download=true" target="_top">{{datafile.name}}</a>
+        {{#if datafile.recordingsProcessed}}
+          {{#if datafile.processed}}
+            ({{formatNumber datafile.recordingsProcessed}} recordings)
+          {{else}}
+            ({{formatNumber datafile.recordingsProcessed}} of {{formatNumber datafile.recordings}} recordings processed)
+          {{/if}}
+        {{/if}}
         {{#if datafile.processed}}<span class="label label-success">Processed</span>{{/if}}
       </li>
       {{#if datafile.processed}}
@@ -23,4 +36,7 @@
       {{/if}}
     {{/each}}
   </ul>
+
+  <h4>Areas of Interest</h4>
+  <h4>Viewings</h4>
 </template>

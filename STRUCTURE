@@ -10,9 +10,11 @@ MODELS
     minViewingTime  *
   datafiles         *
     name
+    studyId
   aois
     name
     image             ## pdf file
+    studyId
   recordings
     viewingId
     aoiId

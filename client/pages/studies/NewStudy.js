@@ -16,6 +16,10 @@ AutoForm.hooks({
   insertStudyForm: {
     onSuccess: function(formType, result) {
       FlowRouter.go('/studies/' + result);
+
+      Meteor.call('studies.processDatafiles', {
+        studyId: FlowRouter.getParam('studyId'),
+      });
     },
   }
 });

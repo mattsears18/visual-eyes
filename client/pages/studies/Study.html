@@ -12,10 +12,12 @@
   <div>{{study.desc}}</div>
 
   <h4>Eye Tracking Data Files
-    {{#if study.allDatafilesProcessed}}
-      <span class="label label-success">All Processed</span>
-    {{else}}
-      <span class="label label-default">{{study.percentRecordingsProcessed}}% Processed</span>
+    {{#if study.datafiles.count}}
+      {{#if study.allDatafilesProcessed}}
+        <span class="label label-success">All Processed</span>
+      {{else}}
+        <span class="label label-default">{{study.percentRecordingsProcessed}}% Processed</span>
+      {{/if}}
     {{/if}}
   </h4>
   <ul>

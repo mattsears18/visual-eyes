@@ -27,6 +27,17 @@
           {{/if}}
         {{/if}}
 
+        {{#if isActivePath regex='aois'}}
+          {{#if isActiveRoute 'aois'}}
+            <li class="active">AOIs</li>
+          {{else}}
+            {{#if isActiveRoute 'aoi'}}
+              <li><a href="/aois">AOIs</a></li>
+              <li class="active">{{aoi.name}}</li>
+            {{/if}}
+          {{/if}}
+        {{/if}}
+
 
 
       {{/if}}

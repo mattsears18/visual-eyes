@@ -1,0 +1,20 @@
+<template name="UpdateAoi">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Edit Aoi <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Aois" doc=aoi id="updateAoiForm"
+        type="update" class="update-aoi-form"}}
+
+      <!-- {{> quickForm collection="Aois" doc=aoi id="updateAoiForm"
+        type="method" meteormethod="aois.update" class="update-aoi-form"}} -->
+
+      {{#if aoi.hasPermission 'destroy'}}
+        {{> quickRemoveButton collection="Aois" _id=aoi._id
+          onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
+          id="destroyAoiform" class="btn btn-danger"}}
+      {{/if}}
+    </div>
+  </div>
+</template>

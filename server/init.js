@@ -1,3 +1,2 @@
 Meteor.startup(() => {
-
 });

@@ -1,0 +1,8 @@
+{
+  "s3": {
+    "key": "AKIAJEDESCDXUZ7SAJ3Q",
+    "secret": "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",
+    "bucket": "eyetracking2",
+    "region": "us-west-1"
+  }
+}

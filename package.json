@@ -6,7 +6,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.39",
+    "aws-sdk": "^2.205.0",
     "bcrypt": "^1.0.3",
+    "fs": "0.0.1-security",
+    "fs-extra": "^5.0.0",
     "jquery": "^2.2.4",
     "luxon": "^0.5.2",
     "meteor-node-stubs": "^0.3.2",

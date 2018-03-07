@@ -7,12 +7,12 @@ Aois = new Mongo.Collection('aois');
 Aois.allow({
   insert: function(userId, doc) {
     return true;
-    if(!Roles.userIsInRole(userId, 'create', 'aois')) {
-      throw new Meteor.Error('aois.create.unauthorized',
-        'You do not have permission to create aois.');
-    } else {
-      return true;
-    }
+    // if(!Roles.userIsInRole(userId, 'create', 'aois')) {
+    //   throw new Meteor.Error('aois.create.unauthorized',
+    //     'You do not have permission to create aois.');
+    // } else {
+    //   return true;
+    // }
   },
   update: function(userId, doc) {
     return true;
@@ -38,6 +38,10 @@ Schemas.Aoi = new SimpleSchema({
       rows: 8
     },
     optional: true,
+  },
+  studyId: {
+    type: String,
+    label: 'Study',
   },
 }, {tracker: Tracker});
 

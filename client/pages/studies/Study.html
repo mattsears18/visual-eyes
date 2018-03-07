@@ -12,7 +12,7 @@
   <div>{{study.desc}}</div>
 
   <h4>Eye Tracking Data Files
-    {{#if study.datafiles.count}}
+    {{#if datafiles.count}}
       {{#if study.allDatafilesProcessed}}
         <span class="label label-success">All Processed</span>
       {{else}}
@@ -21,9 +21,14 @@
     {{/if}}
   </h4>
   <ul>
-    {{#each datafile in study.datafiles}}
+    {{#each datafile in datafiles}}
       <li>
+        {{#if datafile.preprocessing}}<span class="label label-default">Pre-processing</span>{{/if}}
+        {{#if datafile.processing}}<span class="label label-default">Processing</span>{{/if}}
+        {{#if datafile.processed}}<span class="label label-success">Processed</span>{{/if}}
+
         <a href="{{fileURL datafile}}?download=true" target="_top">{{datafile.name}}</a>
+
         {{#if datafile.recordingsProcessed}}
           {{#if datafile.processed}}
             ({{formatNumber datafile.recordingsProcessed}} recordings)
@@ -31,14 +36,19 @@
             ({{formatNumber datafile.recordingsProcessed}} of {{formatNumber datafile.recordings}} recordings processed)
           {{/if}}
         {{/if}}
-        {{#if datafile.processed}}<span class="label label-success">Processed</span>{{/if}}
       </li>
-      {{#if datafile.processed}}
-        <!-- <ul><li>{{datafile.content}}</li></ul> -->
-      {{/if}}
     {{/each}}
   </ul>
 
   <h4>Areas of Interest</h4>
+  <ul>
+    {{#each aoi in aois}}
+      <li>
+        <a href="/aois/{{aoi._id}}">{{aoi.name}}</a>
+      </li>
+    {{/each}}
+  </ul>
+
+
   <h4>Viewings</h4>
 </template>

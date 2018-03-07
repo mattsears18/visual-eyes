@@ -107,9 +107,6 @@ ordered-dict@1.1.0
 ostrio:autoform-files@2.0.4
 ostrio:cookies@2.2.4
 ostrio:files@1.9.7
-peerlibrary:assert@0.2.5
-peerlibrary:blocking@0.5.2
-peerlibrary:fs@0.1.7
 practicalmeteor:faker@3.0.1_1
 promise@0.10.2
 raix:eventemitter@0.1.3

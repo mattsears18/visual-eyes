@@ -27,17 +27,45 @@ Recordings.allow({
 });
 
 Schemas.Recording = new SimpleSchema({
-  name: {
+  datafileId: {
     type: String,
-    label: 'Name',
+    label: 'datafileId',
   },
-  desc: {
+  recordingTime: {
     type: String,
-    label: 'Description',
-    autoform: {
-      rows: 8
-    },
-    optional: true,
+    label: 'Recording Time',
+  },
+  timeOfDay: {
+    type: String,
+    label: 'Time of Day',
+  },
+  category: {
+    type: String,
+    label: 'Category',
+  },
+  index: {
+    type: String,
+    label: 'Index',
+  },
+  x: {
+    type: String,
+    label: 'X',
+  },
+  y: {
+    type: String,
+    label: 'Y',
+  },
+  aoiName: {
+    type: String,
+    label: 'aoiName',
+  },
+  aoiId: {
+    type: String,
+    label: 'aoiId',
+  },
+  studyId: {
+    type: String,
+    label: 'studyId',
   },
 }, {tracker: Tracker});
 

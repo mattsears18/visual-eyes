@@ -2,7 +2,7 @@
   {{#if $.Session.get 'updateRecording'}}
     {{> UpdateRecording recording=recording}}
   {{/if}}
-  <h3>{{recording.name}}
+  <h3>{{recording._id}}
     {{#if recording.hasPermission 'update'}}
       {{#unless $.Session.get 'updateRecording'}}
         &nbsp;<a href="#" class="update-recording"><i class="fa fa-pencil"></i></a>

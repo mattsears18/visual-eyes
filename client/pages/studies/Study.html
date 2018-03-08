@@ -13,6 +13,7 @@
 
   <h4>Eye Tracking Data Files
     {{#if datafiles.count}}
+      ({{datafiles.count}})
       {{#if study.allDatafilesProcessed}}
         <span class="label label-success">All Processed</span>
       {{else}}
@@ -40,11 +41,20 @@
     {{/each}}
   </ul>
 
-  <h4>Areas of Interest</h4>
+  <h4>Areas of Interest {{#if aois.count}}({{aois.count}}){{/if}}</h4>
   <ul>
     {{#each aoi in aois}}
       <li>
         <a href="/studies/{{study._id}}/aois/{{aoi._id}}">{{aoi.name}}</a>
+      </li>
+    {{/each}}
+  </ul>
+
+  <h4>Recordings {{#if recordings.count}}({{recordings.count}}){{/if}}</h4>
+  <ul>
+    {{#each recording in recordings}}
+      <li>
+        <a href="/studies/{{study._id}}/recordings/{{recording._id}}">{{recording._id}}</a>
       </li>
     {{/each}}
   </ul>

@@ -5,6 +5,7 @@ Template.Study.onCreated(function() {
     self.subscribe('studies.single', studyId);
     self.subscribe('files.datafiles.byStudyId', studyId);
     self.subscribe('aois.byStudyId', studyId);
+    self.subscribe('recordings.byStudyId', studyId);
   });
 });
 
@@ -17,6 +18,9 @@ Template.Study.helpers({
   },
   aois: () => {
     return Aois.find({}, {sort: {name: 1}});
+  },
+  recordings: () => {
+    return Recordings.find({}, {sort: {aoiName: 1}});
   },
 });
 

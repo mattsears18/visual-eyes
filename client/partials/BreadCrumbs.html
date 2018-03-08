@@ -38,6 +38,17 @@
           {{/if}}
         {{/if}}
 
+        {{#if isActivePath regex='recordings'}}
+          {{#if isActiveRoute 'recordings'}}
+            <li class="active">Recordings</li>
+          {{else}}
+            {{#if isActiveRoute 'recording'}}
+              <li><a href="/recordings">Recordings</a></li>
+              <li class="active">{{recording.name}}</li>
+            {{/if}}
+          {{/if}}
+        {{/if}}
+
 
 
       {{/if}}

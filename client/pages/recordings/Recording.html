@@ -1,0 +1,13 @@
+<template name="Recording">
+  {{#if $.Session.get 'updateRecording'}}
+    {{> UpdateRecording recording=recording}}
+  {{/if}}
+  <h3>{{recording.name}}
+    {{#if recording.hasPermission 'update'}}
+      {{#unless $.Session.get 'updateRecording'}}
+        &nbsp;<a href="#" class="update-recording"><i class="fa fa-pencil"></i></a>
+      {{/unless}}
+    {{/if}}
+  </h3>
+  <div>{{json recording}}</div>
+</template>

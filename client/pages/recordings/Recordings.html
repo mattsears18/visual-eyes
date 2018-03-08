@@ -1,0 +1,17 @@
+<template name="Recordings">
+  {{#if $.Session.get 'newRecording'}}
+    {{> NewRecording}}
+  {{/if}}
+  <h3>Recordings
+    {{#if isInRole 'create' 'recordings'}}
+      {{#unless $.Session.get 'newRecording'}}
+        &nbsp;<a class="new-recording"><i class="fa fa-plus"></i></a>
+      {{/unless}}
+    {{/if}}
+  </h3>
+  <ul>
+    {{#each recordings}}
+      <li><a href="/recordings/{{_id}}">{{name}}</a></li>
+    {{/each}}
+  </ul>
+</template>

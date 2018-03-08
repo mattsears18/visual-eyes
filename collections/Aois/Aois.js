@@ -42,6 +42,22 @@ Schemas.Aoi = new SimpleSchema({
   studyId: {
     type: String,
     label: 'Study',
+    autoform: {
+      afFieldInput: {
+        type: 'hidden',
+      }
+    }
+  },
+  datafileIds: {
+    type: Array,
+  },
+  "datafileIds.$": {
+    type: String,
+    autoform: {
+      afFieldInput: {
+        type: 'hidden',
+      }
+    },
   },
 }, {tracker: Tracker});
 

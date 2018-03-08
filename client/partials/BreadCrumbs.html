@@ -28,28 +28,30 @@
         {{/if}}
 
         {{#if isActivePath regex='aois'}}
+          <li><a href="/studies">Studies</a></li>
+          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
           {{#if isActiveRoute 'aois'}}
             <li class="active">AOIs</li>
           {{else}}
             {{#if isActiveRoute 'aoi'}}
-              <li><a href="/aois">AOIs</a></li>
+              <li><a href="/studies/{{study._id}}/aois">AOIs</a></li>
               <li class="active">{{aoi.name}}</li>
             {{/if}}
           {{/if}}
         {{/if}}
 
         {{#if isActivePath regex='recordings'}}
+          <li><a href="/studies">Studies</a></li>
+          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
           {{#if isActiveRoute 'recordings'}}
             <li class="active">Recordings</li>
           {{else}}
             {{#if isActiveRoute 'recording'}}
-              <li><a href="/recordings">Recordings</a></li>
+              <li><a href="/studies/{{study._id}}/recordings">Recordings</a></li>
               <li class="active">{{recording.name}}</li>
             {{/if}}
           {{/if}}
         {{/if}}
-
-
 
       {{/if}}
     </ol>

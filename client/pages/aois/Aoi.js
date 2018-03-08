@@ -3,10 +3,22 @@ Template.Aoi.onCreated(function() {
   self.autorun(function() {
     var aoiId = FlowRouter.getParam('aoiId');
     self.subscribe('aois.single', aoiId);
+
+    var studyId = FlowRouter.getParam('studyId');
+    self.subscribe('studies.single', studyId);
   });
 });
 
 Template.Aoi.helpers({
+  aoi: () => {
+    return Aois.findOne();
+  },
+  study: () => {
+    return Studies.findOne();
+  },
+});
+
+Template.BreadCrumbs.helpers({
   aoi: () => {
     return Aois.findOne();
   },

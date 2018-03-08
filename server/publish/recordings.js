@@ -9,3 +9,8 @@ Meteor.publish('recordings.single', function(id) {
   check(id, String);
   return Recordings.find({_id: id});
 });
+
+Meteor.publish('recordings.byStudyId', (studyId) => {
+  check(studyId, String);
+  return Recordings.find({ studyId: studyId });
+});

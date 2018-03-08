@@ -20,6 +20,12 @@ Template.Study.helpers({
   },
 });
 
+Template.BreadCrumbs.helpers({
+  study: () => {
+    return Studies.findOne();
+  },
+});
+
 Template.Study.events({
   'click .update-study': function() {
     Session.set('updateStudy', true);

@@ -3,10 +3,22 @@ Template.Recording.onCreated(function() {
   self.autorun(function() {
     var recordingId = FlowRouter.getParam('recordingId');
     self.subscribe('recordings.single', recordingId);
+
+    var studyId = FlowRouter.getParam('studyId');
+    self.subscribe('studies.single', studyId);
   });
 });
 
 Template.Recording.helpers({
+  recording: () => {
+    return Recordings.findOne();
+  },
+  study: () => {
+    return Studies.findOne();
+  },
+});
+
+Template.BreadCrumbs.helpers({
   recording: () => {
     return Recordings.findOne();
   },

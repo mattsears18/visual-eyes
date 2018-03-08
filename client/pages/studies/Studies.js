@@ -9,12 +9,6 @@ Template.Studies.helpers({
   studies: () => { return Studies.find(); },
 });
 
-Template.BreadCrumbs.helpers({
-  study: () => {
-    return Studies.findOne();
-  },
-});
-
 Template.Studies.events({
   'click .new-study': function() {
     Session.set('newStudy', true);

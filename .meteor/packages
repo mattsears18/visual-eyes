@@ -27,7 +27,7 @@ fastclick
 dburles:collection-helpers
 raix:handlebar-helpers
 simple:json-routes
-aldeed:autoform
+aldeed:autoform@6.3.0
 accounts-ui
 accounts-password
 matb33:bootstrap-glyphicons

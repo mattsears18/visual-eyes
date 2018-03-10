@@ -72,7 +72,27 @@ Schemas.Study = new SimpleSchema({
     defaultValue: function() {
       return '10000';
     },
-  }
+  },
+  removeDuplicateIndices: {
+    type: Boolean,
+    label: 'Remove Duplicate Indices',
+    defaultValue: true,
+    autoform: {
+      afFieldInput: {
+        type: 'boolean-checkbox',
+      }
+    }
+  },
+  recordVisualIntakesOnly: {
+    type: Boolean,
+    label: 'Record Visual Intakes Only',
+    defaultValue: true,
+    autoform: {
+      afFieldInput: {
+        type: 'boolean-checkbox',
+      }
+    }
+  },
 }, {tracker: Tracker});
 
 Studies.attachSchema(Schemas.Study);

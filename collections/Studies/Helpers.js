@@ -13,12 +13,15 @@ Studies.helpers({
     return false;
   },
   datafiles() {
-    return Datafiles.find({_id: {$in: this.datafileIds}}, {sort: {name: 1}});
+    return Datafiles.find({studyId: this._id});
+  },
+  aois() {
+    return Aois.find({studyId: this._id});
   },
   allDatafilesProcessed() {
     processed = true;
 
-    datafiles = Datafiles.find({_id: {$in: this.datafileIds}});
+    datafiles = Datafiles.find({studyId: this._id});
 
     datafiles.forEach(function(datafile) {
       if(datafile.processed != true) {
@@ -31,7 +34,7 @@ Studies.helpers({
   totalRecordings() {
     recordings = 0;
 
-    datafiles = Datafiles.find({_id: {$in: this.datafileIds}});
+    datafiles = Datafiles.find({studyId: this._id});
 
     datafiles.forEach(function(datafile) {
       if(datafile.recordings) {
@@ -44,7 +47,7 @@ Studies.helpers({
   totalRecordingsProcessed() {
     recordings = 0;
 
-    datafiles = Datafiles.find({_id: {$in: this.datafileIds}});
+    datafiles = Datafiles.find({studyId: this._id});
 
     datafiles.forEach(function(datafile) {
       if(datafile.recordingsProcessed) {

@@ -41,7 +41,7 @@ Schemas.Study = new SimpleSchema({
   },
   datafileIds: {
     type: Array,
-    label: 'Eye Tracking Data .txt Files' // <- Optional
+    label: 'Eye Tracking Data .txt Files'
   },
   "datafileIds.$": {
     type: String,

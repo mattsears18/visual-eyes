@@ -2,7 +2,8 @@
   "name": "eyetracker",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor run",
+    "test-watch": "TEST_WATCH=1 meteor test --driver-package meteortesting:mocha --port 3100"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.39",

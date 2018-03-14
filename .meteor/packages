@@ -62,3 +62,6 @@ ostrio:files
 dburles:mongo-collection-instances
 http
 harrison:papa-parse
+practicalmeteor:mocha
+meteortesting:mocha
+practicalmeteor:chai

@@ -1,0 +1,1307 @@
+[
+ {
+   "RecordingTime [ms]": 514.5,
+   "Time of Day [h:m:s:ms]": "23:03:54:678",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "938",
+   "Point of Regard Binocular X [px]": 369,
+   "Point of Regard Binocular Y [px]": 128.9,
+   "AOI Name Binocular": "Spool 3"
+ },
+ {
+   "RecordingTime [ms]": 713.6,
+   "Time of Day [h:m:s:ms]": "23:03:54:878",
+   "Category Binocular": "Saccade",
+   "Index Binocular": "1",
+   "Point of Regard Binocular X [px]": 331,
+   "Point of Regard Binocular Y [px]": 128.9,
+   "AOI Name Binocular": "Spool 3"
+ },
+ {
+   "RecordingTime [ms]": 729.7,
+   "Time of Day [h:m:s:ms]": "23:03:54:894",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 746.5,
+   "Time of Day [h:m:s:ms]": "23:03:54:911",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 763.3,
+   "Time of Day [h:m:s:ms]": "23:03:54:927",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 779.5,
+   "Time of Day [h:m:s:ms]": "23:03:54:944",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 796.6,
+   "Time of Day [h:m:s:ms]": "23:03:54:961",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "939",
+   "Point of Regard Binocular X [px]": 454,
+   "Point of Regard Binocular Y [px]": 124,
+   "AOI Name Binocular": "Spool 3"
+ },
+ {
+   "RecordingTime [ms]": 962.6,
+   "Time of Day [h:m:s:ms]": "23:03:55:127",
+   "Category Binocular": "Saccade",
+   "Index Binocular": "2",
+   "Point of Regard Binocular X [px]": 241,
+   "Point of Regard Binocular Y [px]": 244,
+   "AOI Name Binocular": "Spool 3"
+ },
+ {
+   "RecordingTime [ms]": 978.9,
+   "Time of Day [h:m:s:ms]": "23:03:55:143",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 995.4,
+   "Time of Day [h:m:s:ms]": "23:03:55:159",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 1012,
+   "Time of Day [h:m:s:ms]": "23:03:55:176",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 1028.6,
+   "Time of Day [h:m:s:ms]": "23:03:55:193",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "940",
+   "Point of Regard Binocular X [px]": 764.1,
+   "Point of Regard Binocular Y [px]": 865,
+   "AOI Name Binocular": "Spool 3"
+ },
+ {
+   "RecordingTime [ms]": 1443.5,
+   "Time of Day [h:m:s:ms]": "23:03:55:608",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "940",
+   "Point of Regard Binocular X [px]": 145,
+   "Point of Regard Binocular Y [px]": 313,
+   "AOI Name Binocular": "Spool 3"
+ },
+ {
+   "RecordingTime [ms]": 1460.6,
+   "Time of Day [h:m:s:ms]": "23:03:55:625",
+   "Category Binocular": "Saccade",
+   "Index Binocular": "3",
+   "Point of Regard Binocular X [px]": 675,
+   "Point of Regard Binocular Y [px]": 89,
+   "AOI Name Binocular": "Spool 3"
+ },
+ {
+   "RecordingTime [ms]": 196770.7,
+   "Time of Day [h:m:s:ms]": "23:07:16:287",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "2233",
+   "Point of Regard Binocular X [px]": 241,
+   "Point of Regard Binocular Y [px]": 612.1,
+   "AOI Name Binocular": "Spool 4"
+ },
+ {
+   "RecordingTime [ms]": 196837.4,
+   "Time of Day [h:m:s:ms]": "23:07:16:353",
+   "Category Binocular": "Saccade",
+   "Index Binocular": "237",
+   "Point of Regard Binocular X [px]": 286.3,
+   "Point of Regard Binocular Y [px]": 612.1,
+   "AOI Name Binocular": "Spool 4"
+ },
+ {
+   "RecordingTime [ms]": 1095.6,
+   "Time of Day [h:m:s:ms]": "23:03:49:782",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "533",
+   "Point of Regard Binocular X [px]": 796,
+   "Point of Regard Binocular Y [px]": 293.7,
+   "AOI Name Binocular": "Spool 2"
+ },
+ {
+   "RecordingTime [ms]": 1112.6,
+   "Time of Day [h:m:s:ms]": "23:03:49:799",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "533",
+   "Point of Regard Binocular X [px]": 574.5,
+   "Point of Regard Binocular Y [px]": 463,
+   "AOI Name Binocular": "Spool 2"
+ },
+ {
+   "RecordingTime [ms]": 5841.9,
+   "Time of Day [h:m:s:ms]": "23:03:54:528",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "544",
+   "Point of Regard Binocular X [px]": 327.4,
+   "Point of Regard Binocular Y [px]": 2,
+   "AOI Name Binocular": "Spool 2"
+ },
+ {
+   "RecordingTime [ms]": 5858.4,
+   "Time of Day [h:m:s:ms]": "23:03:54:544",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "544",
+   "Point of Regard Binocular X [px]": 968,
+   "Point of Regard Binocular Y [px]": 455,
+   "AOI Name Binocular": "Spool 2"
+ },
+ {
+   "RecordingTime [ms]": 5874.9,
+   "Time of Day [h:m:s:ms]": "23:03:54:561",
+   "Category Binocular": "Saccade",
+   "Index Binocular": "14",
+   "Point of Regard Binocular X [px]": 142,
+   "Point of Regard Binocular Y [px]": 644,
+   "AOI Name Binocular": "Spool 2"
+ },
+ {
+   "RecordingTime [ms]": 73783.1,
+   "Time of Day [h:m:s:ms]": "23:05:18:813",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "2438",
+   "Point of Regard Binocular X [px]": 354,
+   "Point of Regard Binocular Y [px]": 173.2,
+   "AOI Name Binocular": "Spool 5"
+ },
+ {
+   "RecordingTime [ms]": 74778.8,
+   "Time of Day [h:m:s:ms]": "23:05:19:809",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "2442",
+   "Point of Regard Binocular X [px]": 439.1,
+   "Point of Regard Binocular Y [px]": 281.1,
+   "AOI Name Binocular": "Spool 5"
+ },
+ {
+   "RecordingTime [ms]": 6090.4,
+   "Time of Day [h:m:s:ms]": "23:04:16:354",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "2635",
+   "Point of Regard Binocular X [px]": 245,
+   "Point of Regard Binocular Y [px]": 418.3,
+   "AOI Name Binocular": "Spool 6"
+ },
+ {
+   "RecordingTime [ms]": 6107,
+   "Time of Day [h:m:s:ms]": "23:04:16:371",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "2635",
+   "Point of Regard Binocular X [px]": 524.6,
+   "Point of Regard Binocular Y [px]": 241,
+   "AOI Name Binocular": "Spool 6"
+ },
+ {
+   "RecordingTime [ms]": 8994.7,
+   "Time of Day [h:m:s:ms]": "23:04:19:259",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "2647",
+   "Point of Regard Binocular X [px]": 443,
+   "Point of Regard Binocular Y [px]": 139.4,
+   "AOI Name Binocular": "Spool 6"
+ },
+ {
+   "RecordingTime [ms]": 21524,
+   "Time of Day [h:m:s:ms]": "23:04:31:788",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 21540.5,
+   "Time of Day [h:m:s:ms]": "23:04:31:805",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 21556.9,
+   "Time of Day [h:m:s:ms]": "23:04:31:821",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 21955.4,
+   "Time of Day [h:m:s:ms]": "23:04:32:219",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 21971.8,
+   "Time of Day [h:m:s:ms]": "23:04:32:236",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 24926.8,
+   "Time of Day [h:m:s:ms]": "23:04:40:558",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3026",
+   "Point of Regard Binocular X [px]": 314,
+   "Point of Regard Binocular Y [px]": 403.4,
+   "AOI Name Binocular": "Spool 7"
+ },
+ {
+   "RecordingTime [ms]": 24942.7,
+   "Time of Day [h:m:s:ms]": "23:04:40:574",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3026",
+   "Point of Regard Binocular X [px]": 91.5,
+   "Point of Regard Binocular Y [px]": 134,
+   "AOI Name Binocular": "Spool 7"
+ },
+ {
+   "RecordingTime [ms]": 27282.4,
+   "Time of Day [h:m:s:ms]": "23:04:42:913",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 27299.8,
+   "Time of Day [h:m:s:ms]": "23:04:42:931",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 27315.8,
+   "Time of Day [h:m:s:ms]": "23:04:42:947",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3034",
+   "Point of Regard Binocular X [px]": 692,
+   "Point of Regard Binocular Y [px]": 303.9,
+   "AOI Name Binocular": "Spool 7"
+ },
+ {
+   "RecordingTime [ms]": 2754.6,
+   "Time of Day [h:m:s:ms]": "23:03:45:786",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "244",
+   "Point of Regard Binocular X [px]": 314,
+   "Point of Regard Binocular Y [px]": 270.6,
+   "AOI Name Binocular": "Spool 1"
+ },
+ {
+   "RecordingTime [ms]": 2771,
+   "Time of Day [h:m:s:ms]": "23:03:45:802",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "244",
+   "Point of Regard Binocular X [px]": 668.9,
+   "Point of Regard Binocular Y [px]": 865,
+   "AOI Name Binocular": "Spool 1"
+ },
+ {
+   "RecordingTime [ms]": 2788,
+   "Time of Day [h:m:s:ms]": "23:03:45:819",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "244",
+   "Point of Regard Binocular X [px]": 234,
+   "Point of Regard Binocular Y [px]": 270.6,
+   "AOI Name Binocular": "Spool 1"
+ },
+ {
+   "RecordingTime [ms]": 5476,
+   "Time of Day [h:m:s:ms]": "23:03:48:507",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 5492.6,
+   "Time of Day [h:m:s:ms]": "23:03:48:524",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 5509.2,
+   "Time of Day [h:m:s:ms]": "23:03:48:540",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 5525.8,
+   "Time of Day [h:m:s:ms]": "23:03:48:557",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 5542.6,
+   "Time of Day [h:m:s:ms]": "23:03:48:574",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 5558.7,
+   "Time of Day [h:m:s:ms]": "23:03:48:590",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 5575.5,
+   "Time of Day [h:m:s:ms]": "23:03:48:607",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 5592.3,
+   "Time of Day [h:m:s:ms]": "23:03:48:623",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 5608.8,
+   "Time of Day [h:m:s:ms]": "23:03:48:640",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 5625.7,
+   "Time of Day [h:m:s:ms]": "23:03:48:657",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 5641.9,
+   "Time of Day [h:m:s:ms]": "23:03:48:673",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 5658.5,
+   "Time of Day [h:m:s:ms]": "23:03:48:690",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 16694.5,
+   "Time of Day [h:m:s:ms]": "23:03:59:725",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "278",
+   "Point of Regard Binocular X [px]": 865,
+   "Point of Regard Binocular Y [px]": 423,
+   "AOI Name Binocular": "Spool 1"
+ },
+ {
+   "RecordingTime [ms]": 16711,
+   "Time of Day [h:m:s:ms]": "23:03:59:742",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "278",
+   "Point of Regard Binocular X [px]": 422,
+   "Point of Regard Binocular Y [px]": 131,
+   "AOI Name Binocular": "Spool 1"
+ },
+ {
+   "RecordingTime [ms]": 16727.6,
+   "Time of Day [h:m:s:ms]": "23:03:59:759",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "278",
+   "Point of Regard Binocular X [px]": 245,
+   "Point of Regard Binocular Y [px]": 976,
+   "AOI Name Binocular": "Spool 1"
+ },
+ {
+   "RecordingTime [ms]": 16744.4,
+   "Time of Day [h:m:s:ms]": "23:03:59:775",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "278",
+   "Point of Regard Binocular X [px]": 564,
+   "Point of Regard Binocular Y [px]": 353,
+   "AOI Name Binocular": "Spool 1"
+ },
+ {
+   "RecordingTime [ms]": 16761.1,
+   "Time of Day [h:m:s:ms]": "23:03:59:792",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "278",
+   "Point of Regard Binocular X [px]": 333,
+   "Point of Regard Binocular Y [px]": 976,
+   "AOI Name Binocular": "Spool 1"
+ },
+ {
+   "RecordingTime [ms]": 16777.3,
+   "Time of Day [h:m:s:ms]": "23:03:59:808",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "278",
+   "Point of Regard Binocular X [px]": 865,
+   "Point of Regard Binocular Y [px]": 531,
+   "AOI Name Binocular": "Spool 1"
+ },
+ {
+   "RecordingTime [ms]": 16794.3,
+   "Time of Day [h:m:s:ms]": "23:03:59:825",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "278",
+   "Point of Regard Binocular X [px]": 657,
+   "Point of Regard Binocular Y [px]": 123,
+   "AOI Name Binocular": "Spool 1"
+ },
+ {
+   "RecordingTime [ms]": 16810.6,
+   "Time of Day [h:m:s:ms]": "23:03:59:842",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "278",
+   "Point of Regard Binocular X [px]": 464,
+   "Point of Regard Binocular Y [px]": 312,
+   "AOI Name Binocular": "Spool 1"
+ },
+ {
+   "RecordingTime [ms]": 16081.5,
+   "Time of Day [h:m:s:ms]": "23:04:37:044",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3523",
+   "Point of Regard Binocular X [px]": 620,
+   "Point of Regard Binocular Y [px]": 684,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 16097.6,
+   "Time of Day [h:m:s:ms]": "23:04:37:061",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3523",
+   "Point of Regard Binocular X [px]": 245,
+   "Point of Regard Binocular Y [px]": 854,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 16114.3,
+   "Time of Day [h:m:s:ms]": "23:04:37:077",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3523",
+   "Point of Regard Binocular X [px]": 353,
+   "Point of Regard Binocular Y [px]": 242,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 16130.7,
+   "Time of Day [h:m:s:ms]": "23:04:37:094",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3523",
+   "Point of Regard Binocular X [px]": 311,
+   "Point of Regard Binocular Y [px]": 56,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 16147.4,
+   "Time of Day [h:m:s:ms]": "23:04:37:110",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3523",
+   "Point of Regard Binocular X [px]": 324,
+   "Point of Regard Binocular Y [px]": 664,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 16164.4,
+   "Time of Day [h:m:s:ms]": "23:04:37:127",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3523",
+   "Point of Regard Binocular X [px]": 978,
+   "Point of Regard Binocular Y [px]": 754,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 16180.6,
+   "Time of Day [h:m:s:ms]": "23:04:37:144",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3523",
+   "Point of Regard Binocular X [px]": 356,
+   "Point of Regard Binocular Y [px]": 423,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 16197.2,
+   "Time of Day [h:m:s:ms]": "23:04:37:160",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3523",
+   "Point of Regard Binocular X [px]": 466,
+   "Point of Regard Binocular Y [px]": 867,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 16213.8,
+   "Time of Day [h:m:s:ms]": "23:04:37:177",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3523",
+   "Point of Regard Binocular X [px]": 245,
+   "Point of Regard Binocular Y [px]": 245,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 16230.1,
+   "Time of Day [h:m:s:ms]": "23:04:37:193",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3523",
+   "Point of Regard Binocular X [px]": 645,
+   "Point of Regard Binocular Y [px]": 245,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 21922.8,
+   "Time of Day [h:m:s:ms]": "23:04:42:886",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 21939.1,
+   "Time of Day [h:m:s:ms]": "23:04:42:902",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 21955.9,
+   "Time of Day [h:m:s:ms]": "23:04:42:919",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 31664.1,
+   "Time of Day [h:m:s:ms]": "23:04:52:627",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 31680.5,
+   "Time of Day [h:m:s:ms]": "23:04:52:643",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 62614.2,
+   "Time of Day [h:m:s:ms]": "23:05:23:577",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3651",
+   "Point of Regard Binocular X [px]": 864,
+   "Point of Regard Binocular Y [px]": 98,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 62630.9,
+   "Time of Day [h:m:s:ms]": "23:05:23:594",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3651",
+   "Point of Regard Binocular X [px]": 352,
+   "Point of Regard Binocular Y [px]": 564,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 62647.3,
+   "Time of Day [h:m:s:ms]": "23:05:23:610",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3651",
+   "Point of Regard Binocular X [px]": 342,
+   "Point of Regard Binocular Y [px]": 453,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 62663.9,
+   "Time of Day [h:m:s:ms]": "23:05:23:627",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3651",
+   "Point of Regard Binocular X [px]": 123,
+   "Point of Regard Binocular Y [px]": 132,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 62680.6,
+   "Time of Day [h:m:s:ms]": "23:05:23:644",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3651",
+   "Point of Regard Binocular X [px]": 876,
+   "Point of Regard Binocular Y [px]": 123,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 62697.2,
+   "Time of Day [h:m:s:ms]": "23:05:23:660",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3651",
+   "Point of Regard Binocular X [px]": 453,
+   "Point of Regard Binocular Y [px]": 756,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 62714.4,
+   "Time of Day [h:m:s:ms]": "23:05:23:677",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3651",
+   "Point of Regard Binocular X [px]": 231,
+   "Point of Regard Binocular Y [px]": 857,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 62730.4,
+   "Time of Day [h:m:s:ms]": "23:05:23:693",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3651",
+   "Point of Regard Binocular X [px]": 256,
+   "Point of Regard Binocular Y [px]": 354,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 62746.9,
+   "Time of Day [h:m:s:ms]": "23:05:23:710",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3651",
+   "Point of Regard Binocular X [px]": 234,
+   "Point of Regard Binocular Y [px]": 875,
+   "AOI Name Binocular": "Spool 8"
+ },
+ {
+   "RecordingTime [ms]": 29871.7,
+   "Time of Day [h:m:s:ms]": "23:05:01:302",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "4262",
+   "Point of Regard Binocular X [px]": 543,
+   "Point of Regard Binocular Y [px]": 452,
+   "AOI Name Binocular": "Spool 10"
+ },
+ {
+   "RecordingTime [ms]": 29888.3,
+   "Time of Day [h:m:s:ms]": "23:05:01:318",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "4262",
+   "Point of Regard Binocular X [px]": 890,
+   "Point of Regard Binocular Y [px]": 546,
+   "AOI Name Binocular": "Spool 10"
+ },
+ {
+   "RecordingTime [ms]": 29905,
+   "Time of Day [h:m:s:ms]": "23:05:01:335",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "4262",
+   "Point of Regard Binocular X [px]": 433,
+   "Point of Regard Binocular Y [px]": 875,
+   "AOI Name Binocular": "Spool 10"
+ },
+ {
+   "RecordingTime [ms]": 29921.5,
+   "Time of Day [h:m:s:ms]": "23:05:01:352",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "4262",
+   "Point of Regard Binocular X [px]": 278,
+   "Point of Regard Binocular Y [px]": 356,
+   "AOI Name Binocular": "Spool 10"
+ },
+ {
+   "RecordingTime [ms]": 29938,
+   "Time of Day [h:m:s:ms]": "23:05:01:368",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "4262",
+   "Point of Regard Binocular X [px]": 25,
+   "Point of Regard Binocular Y [px]": 432,
+   "AOI Name Binocular": "Spool 10"
+ },
+ {
+   "RecordingTime [ms]": 29954.5,
+   "Time of Day [h:m:s:ms]": "23:05:01:385",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "4262",
+   "Point of Regard Binocular X [px]": 564,
+   "Point of Regard Binocular Y [px]": 456,
+   "AOI Name Binocular": "Spool 10"
+ },
+ {
+   "RecordingTime [ms]": 29971.2,
+   "Time of Day [h:m:s:ms]": "23:05:01:401",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "4262",
+   "Point of Regard Binocular X [px]": 978,
+   "Point of Regard Binocular Y [px]": 890,
+   "AOI Name Binocular": "Spool 10"
+ },
+ {
+   "RecordingTime [ms]": 29987.9,
+   "Time of Day [h:m:s:ms]": "23:05:01:418",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "4262",
+   "Point of Regard Binocular X [px]": 356,
+   "Point of Regard Binocular Y [px]": 987,
+   "AOI Name Binocular": "Spool 10"
+ },
+ {
+   "RecordingTime [ms]": 30004.5,
+   "Time of Day [h:m:s:ms]": "23:05:01:434",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "4262",
+   "Point of Regard Binocular X [px]": 453,
+   "Point of Regard Binocular Y [px]": 244,
+   "AOI Name Binocular": "Spool 10"
+ },
+ {
+   "RecordingTime [ms]": 33389.7,
+   "Time of Day [h:m:s:ms]": "23:05:04:820",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 33406.7,
+   "Time of Day [h:m:s:ms]": "23:05:04:837",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 33423.1,
+   "Time of Day [h:m:s:ms]": "23:05:04:853",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 33439.5,
+   "Time of Day [h:m:s:ms]": "23:05:04:870",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 33456.2,
+   "Time of Day [h:m:s:ms]": "23:05:04:886",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 33472.9,
+   "Time of Day [h:m:s:ms]": "23:05:04:903",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 33489.6,
+   "Time of Day [h:m:s:ms]": "23:05:04:920",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 33505.9,
+   "Time of Day [h:m:s:ms]": "23:05:04:936",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 33522.7,
+   "Time of Day [h:m:s:ms]": "23:05:04:953",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 33539.2,
+   "Time of Day [h:m:s:ms]": "23:05:04:969",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 33555.8,
+   "Time of Day [h:m:s:ms]": "23:05:04:986",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 978.9,
+   "Time of Day [h:m:s:ms]": "23:03:55:143",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 995.4,
+   "Time of Day [h:m:s:ms]": "23:03:55:159",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 1012,
+   "Time of Day [h:m:s:ms]": "23:03:55:176",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 1028.6,
+   "Time of Day [h:m:s:ms]": "23:03:55:193",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "940",
+   "Point of Regard Binocular X [px]": 764.1,
+   "Point of Regard Binocular Y [px]": 865,
+   "AOI Name Binocular": "Spool 3"
+ },
+ {
+   "RecordingTime [ms]": 1443.5,
+   "Time of Day [h:m:s:ms]": "23:03:55:608",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "940",
+   "Point of Regard Binocular X [px]": 145,
+   "Point of Regard Binocular Y [px]": 313,
+   "AOI Name Binocular": "Spool 3"
+ },
+ {
+   "RecordingTime [ms]": 1460.6,
+   "Time of Day [h:m:s:ms]": "23:03:55:625",
+   "Category Binocular": "Saccade",
+   "Index Binocular": "3",
+   "Point of Regard Binocular X [px]": 675,
+   "Point of Regard Binocular Y [px]": 89,
+   "AOI Name Binocular": "Spool 3"
+ },
+ {
+   "RecordingTime [ms]": 196770.7,
+   "Time of Day [h:m:s:ms]": "23:07:16:287",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "2233",
+   "Point of Regard Binocular X [px]": 241,
+   "Point of Regard Binocular Y [px]": 612.1,
+   "AOI Name Binocular": "Spool 4"
+ },
+ {
+   "RecordingTime [ms]": 196837.4,
+   "Time of Day [h:m:s:ms]": "23:07:16:353",
+   "Category Binocular": "Saccade",
+   "Index Binocular": "237",
+   "Point of Regard Binocular X [px]": 286.3,
+   "Point of Regard Binocular Y [px]": 612.1,
+   "AOI Name Binocular": "Spool 4"
+ },
+ {
+   "RecordingTime [ms]": 1095.6,
+   "Time of Day [h:m:s:ms]": "23:03:49:782",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "533",
+   "Point of Regard Binocular X [px]": 796,
+   "Point of Regard Binocular Y [px]": 293.7,
+   "AOI Name Binocular": "Spool 2"
+ },
+ {
+   "RecordingTime [ms]": 1112.6,
+   "Time of Day [h:m:s:ms]": "23:03:49:799",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "533",
+   "Point of Regard Binocular X [px]": 574.5,
+   "Point of Regard Binocular Y [px]": 463,
+   "AOI Name Binocular": "Spool 2"
+ },
+ {
+   "RecordingTime [ms]": 5841.9,
+   "Time of Day [h:m:s:ms]": "23:03:54:528",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "544",
+   "Point of Regard Binocular X [px]": 327.4,
+   "Point of Regard Binocular Y [px]": 2,
+   "AOI Name Binocular": "Spool 2"
+ },
+ {
+   "RecordingTime [ms]": 5858.4,
+   "Time of Day [h:m:s:ms]": "23:03:54:544",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "544",
+   "Point of Regard Binocular X [px]": 968,
+   "Point of Regard Binocular Y [px]": 455,
+   "AOI Name Binocular": "Spool 2"
+ },
+ {
+   "RecordingTime [ms]": 5874.9,
+   "Time of Day [h:m:s:ms]": "23:03:54:561",
+   "Category Binocular": "Saccade",
+   "Index Binocular": "14",
+   "Point of Regard Binocular X [px]": 142,
+   "Point of Regard Binocular Y [px]": 644,
+   "AOI Name Binocular": "Spool 2"
+ },
+ {
+   "RecordingTime [ms]": 73783.1,
+   "Time of Day [h:m:s:ms]": "23:05:18:813",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "2438",
+   "Point of Regard Binocular X [px]": 354,
+   "Point of Regard Binocular Y [px]": 173.2,
+   "AOI Name Binocular": "Spool 5"
+ },
+ {
+   "RecordingTime [ms]": 74778.8,
+   "Time of Day [h:m:s:ms]": "23:05:19:809",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "2442",
+   "Point of Regard Binocular X [px]": 439.1,
+   "Point of Regard Binocular Y [px]": 281.1,
+   "AOI Name Binocular": "Spool 5"
+ },
+ {
+   "RecordingTime [ms]": 6090.4,
+   "Time of Day [h:m:s:ms]": "23:04:16:354",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "2635",
+   "Point of Regard Binocular X [px]": 245,
+   "Point of Regard Binocular Y [px]": 418.3,
+   "AOI Name Binocular": "Spool 6"
+ },
+ {
+   "RecordingTime [ms]": 6107,
+   "Time of Day [h:m:s:ms]": "23:04:16:371",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "2635",
+   "Point of Regard Binocular X [px]": 524.6,
+   "Point of Regard Binocular Y [px]": 241,
+   "AOI Name Binocular": "Spool 6"
+ },
+ {
+   "RecordingTime [ms]": 8994.7,
+   "Time of Day [h:m:s:ms]": "23:04:19:259",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "2647",
+   "Point of Regard Binocular X [px]": 443,
+   "Point of Regard Binocular Y [px]": 139.4,
+   "AOI Name Binocular": "Spool 6"
+ },
+ {
+   "RecordingTime [ms]": 29954.5,
+   "Time of Day [h:m:s:ms]": "23:05:01:385",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "4262",
+   "Point of Regard Binocular X [px]": 564,
+   "Point of Regard Binocular Y [px]": 456,
+   "AOI Name Binocular": "Spool 10"
+ },
+ {
+   "RecordingTime [ms]": 5858.4,
+   "Time of Day [h:m:s:ms]": "23:03:54:544",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "544",
+   "Point of Regard Binocular X [px]": 968,
+   "Point of Regard Binocular Y [px]": 455,
+   "AOI Name Binocular": "Spool 2"
+ },
+ {
+   "RecordingTime [ms]": 5874.9,
+   "Time of Day [h:m:s:ms]": "23:03:54:561",
+   "Category Binocular": "Saccade",
+   "Index Binocular": "14",
+   "Point of Regard Binocular X [px]": 142,
+   "Point of Regard Binocular Y [px]": 644,
+   "AOI Name Binocular": "Spool 2"
+ },
+ {
+   "RecordingTime [ms]": 73783.1,
+   "Time of Day [h:m:s:ms]": "23:05:18:813",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "2438",
+   "Point of Regard Binocular X [px]": 354,
+   "Point of Regard Binocular Y [px]": 173.2,
+   "AOI Name Binocular": "Spool 5"
+ },
+ {
+   "RecordingTime [ms]": 74778.8,
+   "Time of Day [h:m:s:ms]": "23:05:19:809",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "2442",
+   "Point of Regard Binocular X [px]": 439.1,
+   "Point of Regard Binocular Y [px]": 281.1,
+   "AOI Name Binocular": "Spool 5"
+ },
+ {
+   "RecordingTime [ms]": 6090.4,
+   "Time of Day [h:m:s:ms]": "23:04:16:354",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "2635",
+   "Point of Regard Binocular X [px]": 245,
+   "Point of Regard Binocular Y [px]": 418.3,
+   "AOI Name Binocular": "Spool 6"
+ },
+ {
+   "RecordingTime [ms]": 6107,
+   "Time of Day [h:m:s:ms]": "23:04:16:371",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "2635",
+   "Point of Regard Binocular X [px]": 524.6,
+   "Point of Regard Binocular Y [px]": 241,
+   "AOI Name Binocular": "Spool 6"
+ },
+ {
+   "RecordingTime [ms]": 8994.7,
+   "Time of Day [h:m:s:ms]": "23:04:19:259",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "2647",
+   "Point of Regard Binocular X [px]": 443,
+   "Point of Regard Binocular Y [px]": 139.4,
+   "AOI Name Binocular": "Spool 6"
+ },
+ {
+   "RecordingTime [ms]": 21524,
+   "Time of Day [h:m:s:ms]": "23:04:31:788",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 21540.5,
+   "Time of Day [h:m:s:ms]": "23:04:31:805",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 21556.9,
+   "Time of Day [h:m:s:ms]": "23:04:31:821",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "White Space"
+ },
+ {
+   "RecordingTime [ms]": 21955.4,
+   "Time of Day [h:m:s:ms]": "23:04:32:219",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 21971.8,
+   "Time of Day [h:m:s:ms]": "23:04:32:236",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 24926.8,
+   "Time of Day [h:m:s:ms]": "23:04:40:558",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3026",
+   "Point of Regard Binocular X [px]": 314,
+   "Point of Regard Binocular Y [px]": 403.4,
+   "AOI Name Binocular": "Spool 7"
+ },
+ {
+   "RecordingTime [ms]": 24942.7,
+   "Time of Day [h:m:s:ms]": "23:04:40:574",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3026",
+   "Point of Regard Binocular X [px]": 91.5,
+   "Point of Regard Binocular Y [px]": 134,
+   "AOI Name Binocular": "Spool 7"
+ },
+ {
+   "RecordingTime [ms]": 27282.4,
+   "Time of Day [h:m:s:ms]": "23:04:42:913",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 27299.8,
+   "Time of Day [h:m:s:ms]": "23:04:42:931",
+   "Category Binocular": "-",
+   "Index Binocular": "-",
+   "Point of Regard Binocular X [px]": 0,
+   "Point of Regard Binocular Y [px]": 0,
+   "AOI Name Binocular": "-"
+ },
+ {
+   "RecordingTime [ms]": 27315.8,
+   "Time of Day [h:m:s:ms]": "23:04:42:947",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "3034",
+   "Point of Regard Binocular X [px]": 692,
+   "Point of Regard Binocular Y [px]": 303.9,
+   "AOI Name Binocular": "Spool 7"
+ },
+ {
+   "RecordingTime [ms]": 2754.6,
+   "Time of Day [h:m:s:ms]": "23:03:45:786",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "244",
+   "Point of Regard Binocular X [px]": 314,
+   "Point of Regard Binocular Y [px]": 270.6,
+   "AOI Name Binocular": "Spool 1"
+ },
+ {
+   "RecordingTime [ms]": 2771,
+   "Time of Day [h:m:s:ms]": "23:03:45:802",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "244",
+   "Point of Regard Binocular X [px]": 668.9,
+   "Point of Regard Binocular Y [px]": 865,
+   "AOI Name Binocular": "Spool 1"
+ },
+ {
+   "RecordingTime [ms]": 2788,
+   "Time of Day [h:m:s:ms]": "23:03:45:819",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "244",
+   "Point of Regard Binocular X [px]": 234,
+   "Point of Regard Binocular Y [px]": 270.6,
+   "AOI Name Binocular": "Spool 1"
+ },
+ {
+   "RecordingTime [ms]": 29971.2,
+   "Time of Day [h:m:s:ms]": "23:05:01:401",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "4262",
+   "Point of Regard Binocular X [px]": 978,
+   "Point of Regard Binocular Y [px]": 890,
+   "AOI Name Binocular": "Spool 10"
+ },
+ {
+   "RecordingTime [ms]": 29987.9,
+   "Time of Day [h:m:s:ms]": "23:05:01:418",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "4262",
+   "Point of Regard Binocular X [px]": 356,
+   "Point of Regard Binocular Y [px]": 987,
+   "AOI Name Binocular": "Spool 10"
+ },
+ {
+   "RecordingTime [ms]": 30004.5,
+   "Time of Day [h:m:s:ms]": "23:05:01:434",
+   "Category Binocular": "Visual Intake",
+   "Index Binocular": "4262",
+   "Point of Regard Binocular X [px]": 453,
+   "Point of Regard Binocular Y [px]": 244,
+   "AOI Name Binocular": "Spool 10"
+ }
+]

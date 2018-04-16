@@ -1,17 +1,6 @@
 <template name="Recordings">
-  {{#if $.Session.get 'newRecording'}}
-    {{> NewRecording}}
-  {{/if}}
-  <h3>Recordings
-    {{#if isInRole 'create' 'recordings'}}
-      {{#unless $.Session.get 'newRecording'}}
-        &nbsp;<a class="new-recording"><i class="fa fa-plus"></i></a>
-      {{/unless}}
-    {{/if}}
-  </h3>
-  <ul>
-    {{#each recordings}}
-      <li><a href="/studies/{{study._id}}/recordings/{{_id}}">{{_id}}</a></li>
-    {{/each}}
-  </ul>
+  <h3>Recordings</h3>
+
+  {{> tabular table=TabularTables.RecordingsByStudyId selector=selector class="table table-striped table-bordered"}}
+
 </template>

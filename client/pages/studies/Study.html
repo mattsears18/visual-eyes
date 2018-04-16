@@ -8,6 +8,7 @@
         &nbsp;<a href="#" class="update-study"><i class="fa fa-pencil"></i></a>
       {{/unless}}
     {{/if}}
+    <a href="/studies/{{study._id}}/recordings" class="btn btn-primary pull-right">View Recordings</a>
   </h3>
   <div>{{study.desc}}</div>
 
@@ -49,16 +50,6 @@
       </li>
     {{/each}}
   </ul>
-
-  <h4>Recordings {{#if recordings.count}}({{recordings.count}}){{/if}}</h4>
-  <ul>
-    {{#each recording in recordings}}
-      <li>
-        <a href="/studies/{{study._id}}/recordings/{{recording._id}}">{{recording._id}}</a>
-      </li>
-    {{/each}}
-  </ul>
-
 
   <h4>Viewings</h4>
 </template>

@@ -12,4 +12,10 @@ Recordings.helpers({
     }
     return false;
   },
+  datafile() {
+    return Datafiles.findOne(this.datafileId);
+  },
+  study() {
+    return Studies.find({_id: this.studyId});
+  },
 });

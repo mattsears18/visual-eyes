@@ -7,3 +7,7 @@ Studies.before.insert(function (userId, doc) {
     'destroy':  [userId],
   }
 });
+
+Studies.after.remove(function(userId, study) {
+  Datafiles.remove({ studyId: study._id });
+});

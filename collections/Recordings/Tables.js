@@ -17,8 +17,9 @@ new Tabular.Table({
     {
       data: {
         _: 'datafileName()',
-        // sort: 'datafileName()',
+        // order: 'datafileName()',
       },
+      // data: 'datafileName()',
       title: 'Data File',
       render: function(data, type, row, meta) {
         if(data) {

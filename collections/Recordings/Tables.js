@@ -10,15 +10,19 @@ new Tabular.Table({
     '_id',
     'studyId',
     'datafileId',
+    'datafile',
     'aoiId',
   ],
   columns: [
     {
-      data: 'datafile()',
+      data: {
+        _: 'datafileName()',
+        // sort: 'datafileName()',
+      },
       title: 'Data File',
       render: function(data, type, row, meta) {
         if(data) {
-          return `<a href="${data.link()}?download=true" target="_top">${data.name}</a>`;
+          return `<a href="${row.datafile().link()}?download=true" target="_top">${data}</a>`;
         }
       }
     },

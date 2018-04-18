@@ -15,6 +15,9 @@ Recordings.helpers({
   datafile() {
     return Datafiles.findOne(this.datafileId);
   },
+  datafileName() {
+    return this.datafile().name;
+  },
   study() {
     return Studies.find({_id: this.studyId});
   },

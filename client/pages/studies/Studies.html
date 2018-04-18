@@ -1,7 +1,4 @@
 <template name="Studies">
-  {{#if $.Session.get 'newStudy'}}
-    {{> NewStudy}}
-  {{/if}}
   <h3>Studies
     {{#if isInRole 'create' 'studies'}}
       {{#unless $.Session.get 'newStudy'}}
@@ -9,6 +6,10 @@
       {{/unless}}
     {{/if}}
   </h3>
+  {{#if $.Session.get 'newStudy'}}
+    {{> NewStudy}}
+  {{/if}}
+  
   <ul>
     {{#each studies}}
       <li><a href="/studies/{{_id}}">{{name}}</a></li>

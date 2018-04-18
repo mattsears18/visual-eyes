@@ -38,9 +38,13 @@ Template.BreadCrumbs.helpers({
 Template.Study.events({
   'click .update-study': function() {
     Session.set('updateStudy', true);
+  },
+  'click .new-analysis': function() {
+    Session.set('newAnalysis', true);
   }
 });
 
 Template.Study.destroyed = function(){
   Session.set('updateStudy', false);
+  Session.set('newAnalysis', false);
 }

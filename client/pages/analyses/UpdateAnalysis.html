@@ -1,0 +1,20 @@
+<template name="UpdateAnalysis">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Edit Analysis <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Analyses" doc=analysis id="updateAnalysisForm"
+        type="update" class="update-analysis-form"}}
+
+      <!-- {{> quickForm collection="Analyses" doc=analysis id="updateAnalysisForm"
+        type="method" meteormethod="analyses.update" class="update-analysis-form"}} -->
+
+      {{#if analysis.hasPermission 'destroy'}}
+        {{> quickRemoveButton collection="Analyses" _id=analysis._id
+          onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
+          id="destroyAnalysisform" class="btn btn-danger"}}
+      {{/if}}
+    </div>
+  </div>
+</template>

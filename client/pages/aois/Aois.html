@@ -1,7 +1,4 @@
 <template name="Aois">
-  {{#if $.Session.get 'newAoi'}}
-    {{> NewAoi}}
-  {{/if}}
   <h3>Aois
     {{#if isInRole 'create' 'aois'}}
       {{#unless $.Session.get 'newAoi'}}
@@ -9,6 +6,10 @@
       {{/unless}}
     {{/if}}
   </h3>
+  {{#if $.Session.get 'newAoi'}}
+    {{> NewAoi}}
+  {{/if}}
+  
   <ul>
     {{#each aois}}
       <li><a href="/studies/{{study._id}}/aois/{{_id}}">{{name}}</a></li>

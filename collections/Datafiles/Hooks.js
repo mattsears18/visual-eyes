@@ -1,4 +1,11 @@
 Datafiles.collection.after.remove(function (userId, datafile) {
+  // Update Study.datafileIds
+  Studies.update(
+    {_id: datafile.studyId},
+    {$pull: {datafileIds: datafile._id}},
+    {multi: true}
+  );
+  
   Recordings.remove({ datafileId: datafile._id });
 
   // Update AOI.datafileIds

@@ -1,7 +1,4 @@
 <template name="Generics">
-  {{#if $.Session.get 'newGeneric'}}
-    {{> NewGeneric}}
-  {{/if}}
   <h3>Generics
     {{#if isInRole 'create' 'generics'}}
       {{#unless $.Session.get 'newGeneric'}}
@@ -9,6 +6,10 @@
       {{/unless}}
     {{/if}}
   </h3>
+  {{#if $.Session.get 'newGeneric'}}
+    {{> NewGeneric}}
+  {{/if}}
+  
   <ul>
     {{#each generics}}
       <li><a href="/generics/{{_id}}">{{name}}</a></li>

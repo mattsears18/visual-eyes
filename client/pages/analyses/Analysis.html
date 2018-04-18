@@ -1,0 +1,13 @@
+<template name="Analysis">
+  {{#if $.Session.get 'updateAnalysis'}}
+    {{> UpdateAnalysis analysis=analysis}}
+  {{/if}}
+  <h3>{{analysis.name}}
+    {{#if analysis.hasPermission 'update'}}
+      {{#unless $.Session.get 'updateAnalysis'}}
+        &nbsp;<a href="#" class="update-analysis"><i class="fa fa-pencil"></i></a>
+      {{/unless}}
+    {{/if}}
+  </h3>
+  <div>{{json analysis}}</div>
+</template>

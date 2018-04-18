@@ -1,0 +1,11 @@
+<template name="NewAnalysis">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">New Analysis <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Analyses" id="insertAnalysisForm" type="insert"
+        class="insert-analysis-form"}}
+    </div>
+  </div>
+</template>

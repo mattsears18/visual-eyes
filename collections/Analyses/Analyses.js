@@ -39,6 +39,27 @@ Schemas.Analysis = new SimpleSchema({
     },
     optional: true,
   },
+  period: {
+    type: Number,
+    label: 'Period (ms)',
+    defaultValue: function() {
+      return '5000';
+    },
+  },
+  viewingGap: {
+    type: Number,
+    label: 'Viewing Gap (ms)',
+    defaultValue: function() {
+      return '5000';
+    },
+  },
+  minViewingTime: {
+    type: Number,
+    label: 'Minimum Viewing Time (ms)',
+    defaultValue: function() {
+      return '10000';
+    },
+  },
 }, {tracker: Tracker});
 
 Analyses.attachSchema(Schemas.Analysis);

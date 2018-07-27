@@ -44,26 +44,50 @@ Studies.helpers({
 
     return recordings;
   },
-  totalRecordingsProcessed() {
-    recordings = 0;
+  //These are garbage functions - recordings aren't created until they're "processed" so all recordings are always 100% processed
+  // totalRecordingsProcessed() {
+  //   recordings = 0;
+  //
+  //   datafiles = Datafiles.find({studyId: this._id});
+  //
+  //   datafiles.forEach(function(datafile) {
+  //     if(datafile.recordingsProcessed) {
+  //       recordings += datafile.recordingsProcessed;
+  //     }
+  //   });
+  //
+  //   return recordings;
+  // },
+  // percentRecordingsProcessed() {
+  //   percent = 0;
+  //
+  //   if(this.totalRecordingsProcessed() && this.totalRecordings()) {
+  //     percent = (this.totalRecordingsProcessed() / this.totalRecordings() * 100);
+  //   }
+  //
+  //   return Math.round(percent * 100) / 100 //round to 2 decimal places
+  // },
 
-    datafiles = Datafiles.find({studyId: this._id});
-
-    datafiles.forEach(function(datafile) {
+  totalDatafiles() {
+    return this.datafiles().count();
+  },
+  totalDatafilesProcessed() {
+    processed = 0;
+    this.datafiles().forEach(function(datafile) {
       if(datafile.recordingsProcessed) {
-        recordings += datafile.recordingsProcessed;
+        processed += 1;
       }
     });
 
-    return recordings;
+    return processed;
   },
-  percentRecordingsProcessed() {
+  percentDatafilesProcessed() {
     percent = 0;
 
-    if(this.totalRecordingsProcessed() && this.totalRecordings()) {
-      percent = (this.totalRecordingsProcessed() / this.totalRecordings() * 100);
+    if(this.totalDatafiles && this.totalDatafilesProcessed) {
+      percent = (this.totalDatafilesProcessed() / this.totalDatafiles() * 100);
     }
 
     return Math.round(percent * 100) / 100 //round to 2 decimal places
-  },
+  }
 });

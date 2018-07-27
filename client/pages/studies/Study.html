@@ -18,7 +18,7 @@
       {{#if study.allDatafilesProcessed}}
         <span class="label label-success">All Processed</span>
       {{else}}
-        <span class="label label-default">{{study.percentRecordingsProcessed}}% Processed</span>
+        <span class="label label-default">{{study.percentDatafilesProcessed}}% of Datafiles Processed</span>
       {{/if}}
     {{/if}}
   </h4>
@@ -50,7 +50,7 @@
       </li>
     {{/each}}
   </ul>
-  
+
   <h4>Analyses
     {{#if study.hasPermission 'createAnalyses'}}
       {{#unless $.Session.get 'newAnalysis'}}

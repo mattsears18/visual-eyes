@@ -6,7 +6,7 @@
     "test-watch": "TEST_WATCH=1 meteor test --driver-package meteortesting:mocha --port 3100"
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0-beta.39",
+    "@babel/runtime": "^7.0.0-beta.54",
     "aws-sdk": "^2.205.0",
     "bcrypt": "^1.0.3",
     "datatables-buttons": "^1.0.3",
@@ -19,7 +19,7 @@
     "faker": "^4.1.0",
     "jquery": "^1.12.4",
     "luxon": "^0.5.2",
-    "meteor-node-stubs": "^0.3.2",
+    "meteor-node-stubs": "^0.4.1",
     "select2": "^4.0.6-rc.1",
     "select2-bootstrap-theme": "0.1.0-beta.10",
     "simpl-schema": "^1.4.2",

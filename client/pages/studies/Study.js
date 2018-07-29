@@ -3,7 +3,6 @@ import dataTablesBootstrap from 'datatables.net-bs';
 import 'datatables.net-bs/css/dataTables.bootstrap.css';
 dataTablesBootstrap(window, $);
 
-
 Template.Study.onCreated(function() {
   var self = this;
   self.autorun(function() {
@@ -11,6 +10,7 @@ Template.Study.onCreated(function() {
     self.subscribe('studies.single', studyId);
     self.subscribe('files.datafiles.byStudyId', studyId);
     self.subscribe('aois.byStudyId', studyId);
+    self.subscribe('analyses.byStudyId', studyId);
   });
 });
 
@@ -23,6 +23,9 @@ Template.Study.helpers({
   },
   aois: () => {
     return Aois.find({}, {sort: {name: 1}});
+  },
+  analyses: () => {
+    return Analyses.find({}, {sort: {createdAt: -1}});
   },
   recordings: () => {
     return Recordings.find({}, {sort: {aoiName: 1}});

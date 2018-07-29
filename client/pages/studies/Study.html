@@ -2,45 +2,48 @@
   {{#if $.Session.get 'updateStudy'}}
     {{> UpdateStudy study=study}}
   {{/if}}
-  <h3>{{study.name}}
-    {{#if study.hasPermission 'update'}}
-      {{#unless $.Session.get 'updateStudy'}}
+
+  <h3>
+    {{#unless $.Session.get 'updateStudy'}}
+      {{study.name}}
+      {{#if study.hasPermission 'update'}}
         &nbsp;<a href="#" class="update-study"><i class="fa fa-pencil"></i></a>
-      {{/unless}}
-    {{/if}}
+      {{/if}}
+    {{/unless}}
     <a href="/studies/{{study._id}}/recordings" class="btn btn-primary pull-right"><i class="fa fa-list m-r-10"></i>View Recordings</a>
   </h3>
-  <div>{{study.desc}}</div>
 
-  <h4>Eye Tracking Data Files
-    {{#if datafiles.count}}
-      ({{datafiles.count}})
-      {{#if study.allDatafilesProcessed}}
-        <span class="label label-success">All Processed</span>
-      {{else}}
-        <span class="label label-default">{{study.percentDatafilesProcessed}}% of Datafiles Processed</span>
-      {{/if}}
-    {{/if}}
-  </h4>
-  <ul>
-    {{#each datafile in datafiles}}
-      <li>
-        {{#if datafile.preprocessing}}<span class="label label-default">Pre-processing</span>{{/if}}
-        {{#if datafile.processing}}<span class="label label-default">Processing</span>{{/if}}
-        {{#if datafile.processed}}<span class="label label-success">Processed</span>{{/if}}
+  {{#unless $.Session.get 'updateStudy'}}
+    <div>{{study.desc}}</div>
 
-        <a href="{{fileURL datafile}}?download=true" target="_top">{{datafile.name}}</a>
-
-        {{#if datafile.recordingsProcessed}}
-          {{#if datafile.processed}}
-            ({{formatNumber datafile.recordingsProcessed}} recordings)
-          {{else}}
-            ({{formatNumber datafile.recordingsProcessed}} of {{formatNumber datafile.recordings}} recordings processed)
-          {{/if}}
+    <h4>Eye Tracking Data Files
+      {{#if datafiles.count}}
+        ({{datafiles.count}})
+        {{#if study.allDatafilesProcessed}}
+          <span class="label label-success">All Processed</span>
         {{/if}}
-      </li>
-    {{/each}}
-  </ul>
+      {{/if}}
+    </h4>
+    <ul>
+      {{#each datafile in datafiles}}
+        <li>
+          {{#if datafile.preprocessing}}<span class="label label-default">Pre-processing</span>{{/if}}
+          {{#if datafile.processing}}<span class="label label-default">Processing</span>{{/if}}
+          {{#if datafile.processed}}<span class="label label-success">Processed</span>{{/if}}
+
+          <a href="{{fileURL datafile}}?download=true" target="_top">{{datafile.name}}</a>
+
+          {{#if datafile.recordingsProcessed}}
+            {{#if datafile.processed}}
+              ({{formatNumber datafile.recordingsProcessed}} recordings)
+            {{else}}
+              ({{formatNumber datafile.recordingsProcessed}} of {{formatNumber datafile.recordings}} recordings processed)
+            {{/if}}
+          {{/if}}
+        </li>
+      {{/each}}
+    </ul>
+  {{/unless}}
 
   <h4>Areas of Interest {{#if aois.count}}({{aois.count}}){{/if}}</h4>
   <ul>
@@ -51,7 +54,7 @@
     {{/each}}
   </ul>
 
-  <h4>Analyses
+  <h4>Analyses {{#if analyses.count}}({{analyses.count}}){{/if}}
     {{#if study.hasPermission 'createAnalyses'}}
       {{#unless $.Session.get 'newAnalysis'}}
         &nbsp;<a class="new-analysis"><i class="fa fa-plus"></i></a>
@@ -61,4 +64,12 @@
   {{#if $.Session.get 'newAnalysis'}}
     {{> NewAnalysis}}
   {{/if}}
+
+  <ul>
+    {{#each analysis in analyses}}
+      <li>
+        <a href="/studies/{{study._id}}/analyses/{{analysis._id}}">{{analysis.name}}</a> {{analysis.createdAt}}
+      </li>
+    {{/each}}
+  </ul>
 </template>

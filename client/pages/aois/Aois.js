@@ -20,9 +20,6 @@ Template.BreadCrumbs.helpers({
   aoi: () => {
     return Aois.findOne();
   },
-  study: () => {
-    return Studies.findOne();
-  },
 });
 
 Template.Aois.events({

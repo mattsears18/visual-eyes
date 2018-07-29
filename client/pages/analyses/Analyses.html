@@ -9,10 +9,10 @@
   {{#if $.Session.get 'newAnalysis'}}
     {{> NewAnalysis}}
   {{/if}}
-  
+
   <ul>
     {{#each analyses}}
-      <li><a href="/analyses/{{_id}}">{{name}}</a></li>
+      <li><a href="/studies/{{study._id}}/analyses/{{_id}}">{{name}}</a></li>
     {{/each}}
   </ul>
 </template>

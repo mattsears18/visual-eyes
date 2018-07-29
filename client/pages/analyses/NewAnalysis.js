@@ -7,7 +7,12 @@ Template.NewAnalysis.events({
 AutoForm.hooks({
   insertAnalysisForm: {
     onSuccess: function(formType, result) {
-      FlowRouter.go('/analyses/' + result);
+      studyId = FlowRouter.getParam('studyId');
+      FlowRouter.go('/studies/' + studyId + '/analyses/' + result);
+
+      Meteor.call('analyses.run', {
+        analysisId: FlowRouter.getParam('analysisId'),
+      });
     },
   }
 });

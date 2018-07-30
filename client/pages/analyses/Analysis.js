@@ -6,6 +6,7 @@ Template.Analysis.onCreated(function() {
 
     var analysisId = FlowRouter.getParam('analysisId');
     self.subscribe('analyses.single', analysisId);
+    self.subscribe('viewings.byAnalysisId', analysisId);
   });
 });
 
@@ -18,6 +19,12 @@ Template.BreadCrumbs.helpers({
 Template.Analysis.helpers({
   analysis: () => {
     return Analyses.findOne();
+  },
+  viewings: () => {
+    return Viewings.find();
+  },
+  study: () => {
+    return Studies.findOne();
   },
 });
 

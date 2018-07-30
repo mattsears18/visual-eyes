@@ -5,7 +5,7 @@ Datafiles.collection.after.remove(function (userId, datafile) {
     {$pull: {datafileIds: datafile._id}},
     {multi: true}
   );
-  
+
   Recordings.remove({ datafileId: datafile._id });
 
   // Update AOI.datafileIds

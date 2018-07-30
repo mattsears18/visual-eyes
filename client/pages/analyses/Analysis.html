@@ -10,4 +10,14 @@
     {{/if}}
   </h3>
   <div>{{json analysis}}</div>
+
+  <h4>Viewings {{#if viewings.count}}({{viewings.count}}){{/if}}</h4>
+
+  <ul>
+    {{#each viewing in viewings}}
+      <li>
+        {{viewing._id}}
+      </li>
+    {{/each}}
+  </ul>
 </template>

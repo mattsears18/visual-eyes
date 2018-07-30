@@ -7,6 +7,10 @@ Template.Study.onCreated(function() {
   var self = this;
   self.autorun(function() {
     var studyId = FlowRouter.getParam('studyId');
+
+    study = Studies.findOne(studyId);
+    if(!study) { FlowRouter.go('/studies'); }
+
     self.subscribe('studies.single', studyId);
     self.subscribe('files.datafiles.byStudyId', studyId);
     self.subscribe('aois.byStudyId', studyId);

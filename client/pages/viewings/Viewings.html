@@ -1,0 +1,18 @@
+<template name="Viewings">
+  <h3>Viewings
+    {{#if isInRole 'create' 'viewings'}}
+      {{#unless $.Session.get 'newViewing'}}
+        &nbsp;<a class="new-viewing"><i class="fa fa-plus"></i></a>
+      {{/unless}}
+    {{/if}}
+  </h3>
+  {{#if $.Session.get 'newViewing'}}
+    {{> NewViewing}}
+  {{/if}}
+  
+  <ul>
+    {{#each viewings}}
+      <li><a href="/viewings/{{_id}}">{{name}}</a></li>
+    {{/each}}
+  </ul>
+</template>

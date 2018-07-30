@@ -1,11 +1,11 @@
 Template.Aoi.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    var aoiId = FlowRouter.getParam('aoiId');
-    self.subscribe('aois.single', aoiId);
-
     var studyId = FlowRouter.getParam('studyId');
     self.subscribe('studies.single', studyId);
+
+    var aoiId = FlowRouter.getParam('aoiId');
+    self.subscribe('aois.single', aoiId);
   });
 });
 

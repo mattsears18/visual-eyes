@@ -1,0 +1,13 @@
+<template name="Viewing">
+  {{#if $.Session.get 'updateViewing'}}
+    {{> UpdateViewing viewing=viewing}}
+  {{/if}}
+  <h3>{{viewing.name}}
+    {{#if viewing.hasPermission 'update'}}
+      {{#unless $.Session.get 'updateViewing'}}
+        &nbsp;<a href="#" class="update-viewing"><i class="fa fa-pencil"></i></a>
+      {{/unless}}
+    {{/if}}
+  </h3>
+  <div>{{json viewing}}</div>
+</template>

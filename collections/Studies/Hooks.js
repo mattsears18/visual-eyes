@@ -11,4 +11,5 @@ Studies.before.insert(function (userId, doc) {
 
 Studies.after.remove(function(userId, study) {
   Datafiles.remove({ studyId: study._id });
+  Analyses.remove({ studyId: study._id });
 });

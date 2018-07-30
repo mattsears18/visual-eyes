@@ -59,6 +59,36 @@ Schemas.Aoi = new SimpleSchema({
       }
     },
   },
+  recordingTimeMin: {
+    type: Number,
+    label: 'Minimum Recording Time',
+    autoform: {
+      afFieldInput: {
+        type: 'hidden',
+      }
+    },
+    optional: true,
+  },
+  recordingTimeMax: {
+    type: Number,
+    label: 'Maximum Recording Time',
+    autoform: {
+      afFieldInput: {
+        type: 'hidden',
+      }
+    },
+    optional: true,
+  },
+  recordingTimeTotal: {
+    type: Number,
+    label: 'Total Recording Time',
+    autoform: {
+      afFieldInput: {
+        type: 'hidden',
+      }
+    },
+    optional: true,
+  },
 }, {tracker: Tracker});
 
 Aois.attachSchema(Schemas.Aoi);

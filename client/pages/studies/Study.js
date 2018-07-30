@@ -23,16 +23,16 @@ Template.Study.helpers({
     return Studies.findOne();
   },
   datafiles: () => {
-    return Datafiles.find();
+    return Datafiles.find({}, { sort: { name: 1 }});
   },
   aois: () => {
-    return Aois.find({}, {sort: {name: 1}});
+    return Aois.find({}, { sort: { name: 1 }});
   },
   analyses: () => {
-    return Analyses.find({}, {sort: {createdAt: -1}});
+    return Analyses.find({}, { sort: { createdAt: -1 }});
   },
   recordings: () => {
-    return Recordings.find({}, {sort: {aoiName: 1}});
+    return Recordings.find({}, { sort: { aoiName: 1 }});
   },
 });
 

@@ -13,3 +13,9 @@ Template.registerHelper(
     return number.toLocaleString('en');
   },
 );
+
+Template.registerHelper(
+  'millisecondsToHMSMS', (ms) => {
+    return moment.utc(ms).format("HH:mm:ss.SSS");
+  }
+)

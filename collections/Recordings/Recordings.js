@@ -32,7 +32,7 @@ Schemas.Recording = new SimpleSchema({
     label: 'datafileId',
   },
   recordingTime: {
-    type: String,
+    type: Number,
     label: 'Recording Time',
   },
   timeOfDay: {

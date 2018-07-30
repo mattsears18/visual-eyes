@@ -15,7 +15,8 @@ AutoForm.hooks({
 Template.UpdateAnalysis.helpers({
   deleteOnSuccess: function() {
     return function() {
-      FlowRouter.go('/analyses');
+      var studyId = FlowRouter.getParam('studyId');
+      FlowRouter.go('/studies/' + studyId);
     }
   },
   deleteBeforeRemove: function() {

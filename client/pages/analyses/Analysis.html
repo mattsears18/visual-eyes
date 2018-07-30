@@ -9,7 +9,12 @@
       {{/unless}}
     {{/if}}
   </h3>
-  <div>{{json analysis}}</div>
+
+  <div>{{analysis.desc}}</div>
+
+  <div><strong>Period (ms):</strong> {{formatNumber analysis.period}}</div>
+  <div><strong>Viewing Gap (ms):</strong> {{formatNumber analysis.viewingGap}}</div>
+  <div><strong>Minimum Viewing Time (ms):</strong> {{formatNumber analysis.minViewingTime}}</div>
 
   <h4>Viewings {{#if viewings.count}}({{viewings.count}}){{/if}}</h4>
 

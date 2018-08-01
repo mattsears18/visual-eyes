@@ -15,7 +15,9 @@ AutoForm.hooks({
 Template.UpdateAoi.helpers({
   deleteOnSuccess: function() {
     return function() {
-      FlowRouter.go('/aois');
+      var studyId = FlowRouter.getParam('studyId');
+      console.log("fuck you");
+      FlowRouter.go('/studies/' + studyId);
     }
   },
   deleteBeforeRemove: function() {

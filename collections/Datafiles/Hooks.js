@@ -17,4 +17,7 @@ Datafiles.collection.after.remove(function (userId, datafile) {
 
   // Delete any AOIs that no longer have datafileIds
   Aois.remove({ datafileIds: {$eq: []} });
+
+  // Delete any Viewings that no longer have datafileIds
+  Viewings.remove({ datafileId: datafile._id });
 });

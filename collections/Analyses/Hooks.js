@@ -7,3 +7,7 @@ Analyses.before.insert(function (userId, doc) {
     'destroy':  [userId],
   }
 });
+
+Analyses.after.remove(function(userId, analysis) {
+  Viewings.remove({ analysisId: analysis.id });
+});

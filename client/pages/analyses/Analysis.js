@@ -7,6 +7,8 @@ Template.Analysis.onCreated(function() {
     var analysisId = FlowRouter.getParam('analysisId');
     self.subscribe('analyses.single', analysisId);
     self.subscribe('viewings.byAnalysisId', analysisId);
+    self.subscribe('files.datafiles.byStudyId', studyId);
+    self.subscribe('aois.byStudyId', studyId);
   });
 });
 

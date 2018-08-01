@@ -33,9 +33,22 @@ Schemas.Viewing = new SimpleSchema({
   datafileId: {
     type: String,
   },
+  aoiId: {
+    type: String,
+  },
   number: {
     type: Number,
     label: 'Number',
+  },
+  viewingsComplete: {
+    type: String,
+    label: 'Viewings Complete',
+    autoform: {
+      afFieldInput: {
+        type: 'hidden',
+      }
+    },
+    optional: true,
   },
 }, {tracker: Tracker});
 

@@ -12,4 +12,10 @@ Viewings.helpers({
     }
     return false;
   },
+  datafile() {
+    return Datafiles.findOne(this.datafileId);
+  },
+  aoi() {
+    return Aois.findOne(this.aoiId);
+  },
 });

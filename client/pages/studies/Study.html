@@ -14,7 +14,7 @@
   </h3>
 
   {{#unless $.Session.get 'updateStudy'}}
-    <div>{{study.desc}}</div>
+    <p>{{study.desc}}</p>
 
     <h4>Eye Tracking Data Files
       {{#if datafiles.count}}
@@ -35,7 +35,8 @@
 
           {{#if datafile.recordingsProcessed}}
             {{#if datafile.processed}}
-              ({{formatNumber datafile.recordingsProcessed}} recordings) ({{millisecondsToHMSMS datafile.recordingTimeTotal}})
+              ({{formatNumber datafile.recordingsProcessed}} recordings)
+              <!-- ({{millisecondsToHMSMS datafile.recordingTimeTotal}}) -->
             {{else}}
               ({{formatNumber datafile.recordingsProcessed}} of {{formatNumber datafile.recordings}} recordings processed)
             {{/if}}

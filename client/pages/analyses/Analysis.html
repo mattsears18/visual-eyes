@@ -10,7 +10,7 @@
     {{/if}}
   </h3>
 
-  <div>{{analysis.desc}}</div>
+  <p>{{analysis.desc}}</p>
 
   <div><strong>Period (ms):</strong> {{formatNumber analysis.period}}</div>
   <div><strong>Viewing Gap (ms):</strong> {{formatNumber analysis.viewingGap}}</div>
@@ -21,7 +21,7 @@
   <ul>
     {{#each viewing in viewings}}
       <li>
-        {{viewing._id}}
+        <a href="/studies/{{study._id}}/viewings/{{viewing._id}}">{{viewing.datafile.name}} {{viewing.aoi.name}} #{{viewing.number}}</a>
       </li>
     {{/each}}
   </ul>

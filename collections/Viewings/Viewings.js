@@ -40,6 +40,17 @@ Schemas.Viewing = new SimpleSchema({
     type: Number,
     label: 'Number',
   },
+  recordingIds: {
+    type: Array,
+  },
+  "recordingIds.$": {
+    type: String,
+    autoform: {
+      afFieldInput: {
+        type: 'hidden',
+      }
+    },
+  },
   viewingsComplete: {
     type: String,
     label: 'Viewings Complete',

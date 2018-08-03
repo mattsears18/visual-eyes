@@ -8,10 +8,11 @@ new Tabular.Table({
   extraFields: [
     '_id',
     'studyId',
-    // 'datafileId',
+    'datafileId',
     // 'datafile',
     'aoiId',
-    'aoi',
+    // 'aoi',
+    'studyId',
   ],
   columns: [
     {
@@ -33,11 +34,19 @@ new Tabular.Table({
       title: 'AOI Name',
       render: function(data, type, row, meta) {
         if(data) {
-          return `<a href="/studies/${row.studyId}/aois/${row.aoiId}">${data}</a>`;
+          return `<a href="/studies/${row.studyId()}/aois/${row.aoiId}">${data}</a>`;
         }
       }
     },
-    {data: 'number', title: 'Viewing Number'},
+    {
+      data: 'number',
+      title: 'Viewing Number',
+      render: function(data, type, row, meta) {
+        if(data) {
+          return `<a href="/studies/${row.studyId()}/viewings/${row._id}">${data}</a>`;
+        }
+      },
+    },
   ],
   // order: [[ 0, 'asc' ], [ 1, 'asc' ], [ 2, 'asc' ]]
 });

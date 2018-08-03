@@ -14,3 +14,9 @@ Meteor.publish('aois.byStudyId', (studyId) => {
   check(studyId, String);
   return Aois.find({ studyId: studyId });
 });
+
+Meteor.publish('aois.byViewingId', function(viewingId) {
+  check(viewingId, String);
+  viewing = Viewings.findOne({_id: viewingId});
+  return Aois.find({_id: viewing.aoiId});
+});

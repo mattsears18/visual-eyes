@@ -2,12 +2,25 @@
   {{#if $.Session.get 'updateViewing'}}
     {{> UpdateViewing viewing=viewing}}
   {{/if}}
-  <h3>{{viewing.name}}
-    {{#if viewing.hasPermission 'update'}}
-      {{#unless $.Session.get 'updateViewing'}}
-        &nbsp;<a href="#" class="update-viewing"><i class="fa fa-pencil"></i></a>
-      {{/unless}}
-    {{/if}}
-  </h3>
-  <div>{{json viewing}}</div>
+  <h3>Viewing #{{viewing.number}}</h3>
+  <p>
+    <div>
+      <strong>Datafile:</strong>
+      <a href="">{{viewing.datafileName}}</a>
+    </div>
+    <div>
+      <strong>Area of Interest:</strong>
+      <a href="/studies/{{viewing.studyId}}/aois/{{viewing.aoi._id}}">{{viewing.aoiName}}</a>
+    </div>
+    <div>
+      <strong>Period (ms):</strong>
+      {{#if viewing.analysis}}
+        {{formatNumber viewing.analysis.period}}
+      {{/if}}
+    </div>
+  </p>
+
+  <h4>Recordings {{#if recordings.count}}({{recordings.count}}){{/if}}</h4>
+
+  {{> tabular table=TabularTables.RecordingsByViewing selector=selector class="table table-striped table-bordered"}}
 </template>

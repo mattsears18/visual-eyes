@@ -5,6 +5,9 @@ Template.Analysis.onCreated(function() {
     self.subscribe('studies.single', studyId);
 
     var analysisId = FlowRouter.getParam('analysisId');
+    analysis = Analyses.findOne(analysisId);
+    if(!analysis) { FlowRouter.go('/studies/' + studyId); }
+
     self.subscribe('analyses.single', analysisId);
     self.subscribe('viewings.byAnalysisId', analysisId);
     self.subscribe('files.datafiles.byStudyId', studyId);
@@ -19,6 +22,9 @@ Template.BreadCrumbs.helpers({
 });
 
 Template.Analysis.helpers({
+  selector() {
+    return {analysisId: FlowRouter.getParam('analysisId')};
+  },
   analysis: () => {
     return Analyses.findOne();
   },

@@ -16,12 +16,24 @@ Viewings.helpers({
     return Datafiles.findOne(this.datafileId);
   },
   datafileName() {
-    return this.datafile().name;
+    if(this.datafile()) {
+      return this.datafile().name;
+    }
   },
   aoi() {
     return Aois.findOne(this.aoiId);
   },
   aoiName() {
-    return this.aoi().name;
+    if(this.aoi()) {
+      return this.aoi().name;
+    }
+  },
+  studyId() {
+    if(this.aoi()) {
+      return this.aoi().studyId;
+    }
+  },
+  analysis() {
+    return Analyses.findOne(this.analysisId);
   },
 });

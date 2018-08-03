@@ -1,10 +1,9 @@
-import Recordings from './Recordings';
+import Recordings from '../Recordings';
 import Tabular from 'meteor/aldeed:tabular';
-import Studies from '../Studies/Studies';
-
+import Studies from '../../Studies/Studies';
 
 new Tabular.Table({
-  name: 'RecordingsByStudyId',
+  name: 'RecordingsByStudy',
   collection: Recordings,
   extraFields: [
     '_id',

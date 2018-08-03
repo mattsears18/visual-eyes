@@ -4,8 +4,20 @@
       <h3 class="panel-title">New Analysis <i class="fa fa-close pull-right"></i></h3>
     </div>
     <div class="panel-body">
-      {{> quickForm collection="Analyses" id="insertAnalysisForm" type="insert"
+      {{#autoForm collection="Analyses" id="insertAnalysisForm" type="insert"
         class="insert-analysis-form"}}
+        {{> afQuickField name="name"}}
+        {{> afQuickField name="desc"}}
+        {{> afQuickField name="analysisTypes"}}
+        {{> afQuickField name="period"}}
+        {{> afQuickField name="viewingGap"}}
+        {{> afQuickField name="minViewingTime"}}
+        {{> afQuickField name="studyId"}}
+        {{> afQuickField name="aoiIds" options=aoiOptions}}
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      {{/autoForm}}
     </div>
   </div>
 </template>

@@ -20,3 +20,9 @@ Meteor.publish('aois.byViewingId', function(viewingId) {
   viewing = Viewings.findOne({_id: viewingId});
   return Aois.find({_id: viewing.aoiId});
 });
+
+Meteor.publish('aois.byAnalysisId', function(analysisId) {
+  check(analysisId, String);
+  analysis = Analyses.findOne({_id: analysisId});
+  return Aois.find({ _id: { $in: analysis.aoiIds }}, { sort: { name: 1 }});
+});

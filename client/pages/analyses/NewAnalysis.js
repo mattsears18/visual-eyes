@@ -14,5 +14,18 @@ AutoForm.hooks({
         analysisId: FlowRouter.getParam('analysisId'),
       });
     },
+    onError: function(formType, error) {
+      console.log(error);
+    },
+  }
+});
+
+Template.NewAnalysis.helpers({
+  aoiOptions: function () {
+    studyId = FlowRouter.getParam('studyId');
+    aois = Aois.find({ studyId: studyId }).fetch();
+    return aois.map(function(aoi) {
+      return {label: aoi.name, value: aoi._id, checked: 'checked'};
+    });
   }
 });

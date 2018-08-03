@@ -12,4 +12,7 @@ Analyses.helpers({
     }
     return false;
   },
+  aois() {
+    return Aois.find({ _id: { $in: this.analysisIds }});
+  },
 });

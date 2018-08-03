@@ -15,6 +15,11 @@
   <div><strong>Period (ms):</strong> {{formatNumber analysis.period}}</div>
   <div><strong>Viewing Gap (ms):</strong> {{formatNumber analysis.viewingGap}}</div>
   <div><strong>Minimum Viewing Time (ms):</strong> {{formatNumber analysis.minViewingTime}}</div>
+  <div><strong>Areas of Interest:</strong>
+    {{#each aoi in aois}}
+      <a href="/studies/{{study._id}}/aois/{{aoi._id}}">{{aoi.name}}</a>
+    {{/each}}
+  </div>
 
   <h4>Viewings {{#if viewings.count}}({{viewings.count}}){{/if}}</h4>
 

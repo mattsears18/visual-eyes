@@ -2,6 +2,8 @@ import SimpleSchema from 'simpl-schema';
 
 SimpleSchema.extendOptions(['autoform']);
 
+// SimpleSchema.debug = true;
+
 Analyses = new Mongo.Collection('analyses');
 
 Analyses.allow({
@@ -75,6 +77,14 @@ Schemas.Analysis = new SimpleSchema({
       return '10000';
     },
   },
+  aoiIds: {
+    type: Array,
+    label: 'Areas of Interest',
+    autoform: {
+      type: 'select-checkbox',
+    },
+  },
+  'aoiIds.$': String,
   studyId: {
     type: String,
     label: 'Study',

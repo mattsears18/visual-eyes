@@ -4,6 +4,7 @@ Template.Analyses.onCreated(function() {
     var studyId = FlowRouter.getParam('studyId');
     self.subscribe('studies.single', studyId);
     self.subscribe('analyses.byStudyId', studyId);
+    self.subscribe('aois.byStudyId', studyId);
   });
 });
 

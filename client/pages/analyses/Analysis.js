@@ -6,12 +6,12 @@ Template.Analysis.onCreated(function() {
 
     var analysisId = FlowRouter.getParam('analysisId');
     analysis = Analyses.findOne(analysisId);
-    if(!analysis) { FlowRouter.go('/studies/' + studyId); }
+    // if(!analysis) { FlowRouter.go('/studies/' + studyId); }
 
     self.subscribe('analyses.single', analysisId);
     self.subscribe('viewings.byAnalysisId', analysisId);
     self.subscribe('files.datafiles.byStudyId', studyId);
-    self.subscribe('aois.byStudyId', studyId);
+    self.subscribe('aois.byAnalysisId', analysisId);
   });
 });
 
@@ -34,6 +34,9 @@ Template.Analysis.helpers({
   study: () => {
     return Studies.findOne();
   },
+  aois: () => {
+    return Aois.find();
+  }
 });
 
 Template.Analysis.events({

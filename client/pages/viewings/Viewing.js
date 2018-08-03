@@ -10,22 +10,26 @@ Template.Viewing.onCreated(function() {
     self.subscribe('files.datafiles.byViewingId', viewingId);
     self.subscribe('aois.byViewingId', viewingId);
     self.subscribe('analyses.byViewingId', viewingId);
+    self.subscribe('recordings.byViewingId', viewingId);
   });
 });
 
 Template.Viewing.helpers({
-  viewing: () => {
-    return Viewings.findOne();
-  },
-  datafile: () => {
-    return Datafiles.findOne();
-  },
   selector: () => {
     var viewingId = FlowRouter.getParam('viewingId');
     viewing = Viewings.findOne(viewingId);
     if(viewing) {
       return { _id: { $in: viewing.recordingIds }};
     }
+  },
+  viewing: () => {
+    return Viewings.findOne();
+  },
+  datafile: () => {
+    return Datafiles.findOne();
+  },
+  recordings: () => {
+    return Recordings.find();
   },
 });
 

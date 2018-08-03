@@ -69,13 +69,7 @@
         {{#if isActivePath regex='viewings'}}
           <li><a href="/studies">Studies</a></li>
           <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          {{#if isActiveRoute 'viewings'}}
-            <li class="active">Viewings</li>
-          {{else}}
-            {{#if isActiveRoute 'viewing'}}
-              <li><a href="/studies/{{study._id}}/viewings">Viewings</a></li>
-            {{/if}}
-          {{/if}}
+          <li class="active">Viewings</li>
         {{/if}}
 
       {{/if}}

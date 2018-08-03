@@ -15,7 +15,13 @@ Viewings.helpers({
   datafile() {
     return Datafiles.findOne(this.datafileId);
   },
+  datafileName() {
+    return this.datafile().name;
+  },
   aoi() {
     return Aois.findOne(this.aoiId);
+  },
+  aoiName() {
+    return this.aoi().name;
   },
 });

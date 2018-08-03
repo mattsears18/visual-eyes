@@ -18,11 +18,6 @@
 
   <h4>Viewings {{#if viewings.count}}({{viewings.count}}){{/if}}</h4>
 
-  <ul>
-    {{#each viewing in viewings}}
-      <li>
-        <a href="/studies/{{study._id}}/viewings/{{viewing._id}}">{{viewing.datafile.name}} {{viewing.aoi.name}} #{{viewing.number}}</a>
-      </li>
-    {{/each}}
-  </ul>
+  {{> tabular table=TabularTables.ViewingsByAnalysisId selector=selector class="table table-striped table-bordered"}}
+
 </template>

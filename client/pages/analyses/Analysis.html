@@ -12,9 +12,18 @@
 
   <p>{{analysis.desc}}</p>
 
+  {{#if analysis.period}}
   <div><strong>Period (ms):</strong> {{formatNumber analysis.period}}</div>
+  {{/if}}
+  
+  {{#if analysis.viewingGap}}
   <div><strong>Viewing Gap (ms):</strong> {{formatNumber analysis.viewingGap}}</div>
-  <div><strong>Minimum Viewing Time (ms):</strong> {{formatNumber analysis.minViewingTime}}</div>
+  {{/if}}
+
+  {{#if analysis.minViewingTime}}
+    <div><strong>Minimum Viewing Time (ms):</strong> {{formatNumber analysis.minViewingTime}}</div>
+  {{/if}}
+
   <div><strong>Areas of Interest:</strong>
     {{#each aoi in aois}}
       <a href="/studies/{{study._id}}/aois/{{aoi._id}}">{{aoi.name}}</a>

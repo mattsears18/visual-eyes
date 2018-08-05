@@ -27,17 +27,16 @@
           {{/if}}
         {{/if}}
 
-        {{#if isActivePath regex='aois'}}
+        {{#if isActiveRoute 'aois'}}
           <li><a href="/studies">Studies</a></li>
           <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          {{#if isActiveRoute 'aois'}}
-            <li class="active">AOIs</li>
-          {{else}}
-            {{#if isActiveRoute 'aoi'}}
-              <li><a href="/studies/{{study._id}}/aois">AOIs</a></li>
-              <li class="active">{{aoi.name}}</li>
-            {{/if}}
-          {{/if}}
+          <li class="active">AOIs</li>
+        {{/if}}
+        {{#if isActiveRoute 'aoi'}}
+          <li><a href="/studies">Studies</a></li>
+          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
+          <li><a href="/studies/{{study._id}}/aois">AOIs</a></li>
+          <li class="active">{{aoi.name}}</li>
         {{/if}}
 
         {{#if isActivePath regex='recordings'}}
@@ -62,6 +61,12 @@
             {{#if isActiveRoute 'analysis'}}
               <li><a href="/studies/{{study._id}}/analyses">Analyses</a></li>
               <li class="active">{{analysis.name}}</li>
+            {{else}}
+              {{#if isActiveRoute 'analysisAoi'}}
+                <li><a href="/studies/{{study._id}}/analyses">Analyses</a></li>
+                <li><a href="/studies/{{study._id}}/analyses/{{analysis._id}}">{{analysis.name}}</a></li>
+                <li class="active">{{aoi.name}}</li>
+              {{/if}}
             {{/if}}
           {{/if}}
         {{/if}}

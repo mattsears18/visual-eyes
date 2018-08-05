@@ -1,0 +1,57 @@
+<template name="AnalysisAoi">
+  <h3>{{aoi.name}}</h3>
+
+  <table class="table table-striped table-bordered no-footer">
+    <tbody>
+      <tr>
+        <th>Analysis</th>
+        <td><a href="/studies/{{study._id}}/analyses/{{analysis._id}}">{{analysis.name}}</a></td>
+      </tr>
+      <tr>
+        <th>Viewing Durations (ms)</th>
+        <td>
+          {{#each duration in durations}}
+            {{formatNumber duration}}
+          {{/each}}
+        </td>
+      </tr>
+      <tr>
+        <th>Minimum Viewing Duration (ms)</th>
+        <td>
+          {{#if durationMin}}
+            {{formatNumber durationMin}}
+          {{/if}}
+        </td>
+      </tr>
+      <tr>
+        <th>Maximum Viewing Duration (ms)</th>
+        <td>
+          {{#if durationMax}}
+            {{formatNumber durationMax}}
+          {{/if}}
+        </td>
+      </tr>
+      <tr>
+        <th>Mean Viewing Duration (ms)</th>
+        <td>
+          {{#if durationMean}}
+            {{formatNumber durationMean}}
+          {{/if}}
+        </td>
+      </tr>
+      <tr>
+        <th>Median Viewing Duration (ms)</th>
+        <td>
+          {{#if durationMedian}}
+            {{formatNumber durationMedian}}
+          {{/if}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>Viewings {{#if viewings.count}}({{viewings.count}}){{/if}}</h4>
+
+  {{> tabular table=TabularTables.ViewingsByAnalysisIdAoiId selector=selector class="table table-striped table-bordered"}}
+
+</template>

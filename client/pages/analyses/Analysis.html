@@ -15,7 +15,7 @@
   {{#if analysis.period}}
   <div><strong>Period (ms):</strong> {{formatNumber analysis.period}}</div>
   {{/if}}
-  
+
   {{#if analysis.viewingGap}}
   <div><strong>Viewing Gap (ms):</strong> {{formatNumber analysis.viewingGap}}</div>
   {{/if}}
@@ -24,9 +24,15 @@
     <div><strong>Minimum Viewing Time (ms):</strong> {{formatNumber analysis.minViewingTime}}</div>
   {{/if}}
 
+  <div><strong>Datafiles:</strong>
+    {{#each datafile in datafiles}}
+      <a href="/studies/{{study._id}}/analyses/{{analysis._id}}/datafiles/{{datafile._id}}">{{datafile.name}}</a>
+    {{/each}}
+  </div>
+
   <div><strong>Areas of Interest:</strong>
     {{#each aoi in aois}}
-      <a href="/studies/{{study._id}}/aois/{{aoi._id}}">{{aoi.name}}</a>
+      <a href="/studies/{{study._id}}/analyses/{{analysis._id}}/aois/{{aoi._id}}">{{aoi.name}}</a>
     {{/each}}
   </div>
 

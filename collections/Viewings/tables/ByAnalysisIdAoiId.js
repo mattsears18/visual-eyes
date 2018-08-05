@@ -1,9 +1,9 @@
-import Viewings from './Viewings';
+import Viewings from '../Viewings';
 import Tabular from 'meteor/aldeed:tabular';
-import Studies from '../Studies/Studies';
+import Studies from '../../Studies/Studies';
 
 new Tabular.Table({
-  name: 'ViewingsByAnalysisId',
+  name: 'ViewingsByAnalysisIdAoiId',
   collection: Viewings,
   extraFields: [
     '_id',
@@ -24,17 +24,6 @@ new Tabular.Table({
       render: function(data, type, row, meta) {
         if(data) {
           return `<a href="${row.datafile().link()}?download=true" target="_top">${data}</a>`;
-        }
-      }
-    },
-    {
-      data: {
-        _: 'aoiName()',
-      },
-      title: 'AOI Name',
-      render: function(data, type, row, meta) {
-        if(data) {
-          return `<a href="/studies/${row.studyId()}/aois/${row.aoiId}">${data}</a>`;
         }
       }
     },

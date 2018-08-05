@@ -36,7 +36,11 @@ Template.Analysis.helpers({
   },
   aois: () => {
     return Aois.find();
-  }
+  },
+  datafiles: () => {
+    return Datafiles.find();
+  },
+
 });
 
 Template.Analysis.events({

@@ -44,27 +44,20 @@ Template.AnalysisAoi.helpers({
   viewings: () => {
     return Viewings.find();
   },
-  durationMin: () => {
-    return Math.min(...getDurations());
-  },
-  durationMax: () => {
-    return Math.max(...getDurations());
-  },
-  durationMean: () => {
-    return jStat.mean(getDurations());
-  },
-  durationRange: () => {
-    return jStat.range(getDurations());
-  },
-  durationMedian: () => {
-    return jStat.median(getDurations());
-  },
-  durations: () => {
-    return getDurations();
-  },
-  viewingCounts: () => {
-    return getViewingCounts();
-  },
+
+  durations: () => {            return getDurations(); },
+  durationMin: () => {          return Math.min(...getDurations()); },
+  durationMax: () => {          return Math.max(...getDurations()); },
+  durationRange: () => {        return jStat.range(getDurations()); },
+  durationMean: () => {         return jStat.mean(getDurations()); },
+  durationMedian: () => {       return jStat.median(getDurations()); },
+
+  viewingCounts: () => {        return getViewingCounts(); },
+  viewingCountsMin: () => {     return Math.min(...getViewingCounts()); },
+  viewingCountsMax: () => {     return Math.max(...getViewingCounts()); },
+  viewingCountsRange: () => {   return jStat.range(getViewingCounts()); },
+  viewingCountsMean: () => {    return jStat.mean(getViewingCounts()); },
+  viewingCountsMedian: () => {  return jStat.median(getViewingCounts()); },
 });
 
 Template.Analysis.events({
@@ -88,10 +81,8 @@ function getViewingCounts() {
   groups = _.groupBy(viewings, 'datafileId');
 
   counts = [];
-
-  for(group in groups) {
-    counts.push(groups[group].length);
-  }
+  for(group in groups) { counts.push(groups[group].length); }
+  counts = counts.sort(helpers.sortNumber);
 
   return counts;
 }

@@ -21,3 +21,8 @@ Datafiles.collection.after.remove(function (userId, datafile) {
   // Delete any Viewings that no longer have datafileIds
   Viewings.remove({ datafileId: datafile._id });
 });
+
+Datafiles.collection.after.insert(function(userId, datafile) {
+  console.log('insert datafile');
+  console.log('datafile._id: ' + datafile._id);
+});

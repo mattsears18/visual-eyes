@@ -16,7 +16,6 @@ Template.UpdateAoi.helpers({
   deleteOnSuccess: function() {
     return function() {
       var studyId = FlowRouter.getParam('studyId');
-      console.log("fuck you");
       FlowRouter.go('/studies/' + studyId);
     }
   },

@@ -8,43 +8,114 @@
         <td><a href="/studies/{{study._id}}/analyses/{{analysis._id}}">{{analysis.name}}</a></td>
       </tr>
       <tr>
-        <th>Viewing Durations (ms)</th>
+        <th>Viewing Durations (HH:MM:SS.MS) [ms]</th>
         <td>
-          {{#each duration in durations}}
-            {{formatNumber duration}}
-          {{/each}}
+          <tr>
+            <td>
+              {{#each duration in durations}}
+                {{formatNumber duration}}
+              {{/each}}
+              </td>
+            </tr>
+            <tr>
+              <th>Minimum</th>
+              <td>
+                {{#if durationMin}}
+                  {{millisecondsToHMSMS durationMin}}
+                  [{{formatNumber durationMin}}]
+                {{/if}}
+              </td>
+            </tr>
+            <tr>
+              <th>Maximum</th>
+              <td>
+                {{#if durationMax}}
+                  {{millisecondsToHMSMS durationMax}}
+                  [{{formatNumber durationMax}}]
+                {{/if}}
+              </td>
+            </tr>
+            <tr>
+              <th>Range</th>
+              <td>
+                {{#if durationRange}}
+                  {{millisecondsToHMSMS durationRange}}
+                  [{{formatNumber durationRange}}]
+                {{/if}}
+              </td>
+            </tr>
+            <tr>
+              <th>Mean</th>
+              <td>
+                {{#if durationMean}}
+                  {{millisecondsToHMSMS durationMean}}
+                  [{{formatNumber durationMean}}]
+                {{/if}}
+              </td>
+            </tr>
+            <tr>
+              <th>Median</th>
+              <td>
+                {{#if durationMedian}}
+                  {{millisecondsToHMSMS durationMedian}}
+                  [{{formatNumber durationMedian}}]
+                {{/if}}
+              </td>
+            </tr>
         </td>
       </tr>
+
       <tr>
-        <th>Minimum Viewing Duration (ms)</th>
+        <th># of Viewings per Datafile</th>
         <td>
-          {{#if durationMin}}
-            {{formatNumber durationMin}}
-          {{/if}}
-        </td>
-      </tr>
-      <tr>
-        <th>Maximum Viewing Duration (ms)</th>
-        <td>
-          {{#if durationMax}}
-            {{formatNumber durationMax}}
-          {{/if}}
-        </td>
-      </tr>
-      <tr>
-        <th>Mean Viewing Duration (ms)</th>
-        <td>
-          {{#if durationMean}}
-            {{formatNumber durationMean}}
-          {{/if}}
-        </td>
-      </tr>
-      <tr>
-        <th>Median Viewing Duration (ms)</th>
-        <td>
-          {{#if durationMedian}}
-            {{formatNumber durationMedian}}
-          {{/if}}
+          <tr>
+            <td>
+              {{#each count in viewingCounts}}
+                {{formatNumber count}}
+              {{/each}}
+              </td>
+            </tr>
+            <tr>
+              <th>Minimum</th>
+              <td>
+                {{#if durationMin}}
+                  {{formatNumber durationMin}}
+                {{/if}}
+              </td>
+            </tr>
+            <tr>
+              <th>Maximum</th>
+              <td>
+                {{#if durationMax}}
+                  {{formatNumber durationMax}}
+                {{/if}}
+              </td>
+            </tr>
+            <tr>
+              <th>Range</th>
+              <td>
+                {{#if durationRange}}
+                  {{millisecondsToHMSMS durationRange}}
+                  [{{formatNumber durationRange}}]
+                {{/if}}
+              </td>
+            </tr>
+            <tr>
+              <th>Mean</th>
+              <td>
+                {{#if durationMean}}
+                  {{formatNumber durationMean}}
+                {{/if}}
+              </td>
+            </tr>
+            <tr>
+              <th>Median</th>
+              <td>
+                {{#if durationMedian}}
+                  {{formatNumber durationMedian}}
+                {{/if}}
+              </td>
+            </tr>
         </td>
       </tr>
     </tbody>

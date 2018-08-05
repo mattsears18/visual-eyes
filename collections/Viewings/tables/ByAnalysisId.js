@@ -19,7 +19,6 @@ new Tabular.Table({
     {
       data: {
         _: 'datafileName()',
-        // order: 'datafileName()',
       },
       title: 'Data File',
       render: function(data, type, row, meta) {
@@ -35,7 +34,6 @@ new Tabular.Table({
       title: 'AOI Name',
       render: function(data, type, row, meta) {
         if(data) {
-          console.log(row);
           return `<a href="/studies/${row.studyId()}/analyses/${row.analysisId}/aois/${row.aoiId}">${data}</a>`;
         }
       }

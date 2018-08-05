@@ -53,11 +53,17 @@ Template.AnalysisAoi.helpers({
   durationMean: () => {
     return jStat.mean(getDurations());
   },
+  durationRange: () => {
+    return jStat.range(getDurations());
+  },
   durationMedian: () => {
     return jStat.median(getDurations());
   },
   durations: () => {
     return getDurations();
+  },
+  viewingCounts: () => {
+    return getViewingCounts();
   },
 });
 
@@ -72,7 +78,20 @@ Template.Analysis.destroyed = function(){
 }
 
 function getDurations() {
-  return Viewings.find().fetch().map(function(viewing) {
+  return Viewings.find({}, { sort: { duration: 1 }}).fetch().map(function(viewing) {
     return viewing.duration;
   });
+}
+
+function getViewingCounts() {
+  viewings = Viewings.find({}, { sort: { duration: 1 }}).fetch();
+  groups = _.groupBy(viewings, 'datafileId');
+
+  counts = [];
+
+  for(group in groups) {
+    counts.push(groups[group].length);
+  }
+
+  return counts;
 }

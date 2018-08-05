@@ -19,7 +19,22 @@
       {{/if}}
     </div>
     <div>
-      <strong>Duration: </strong>
+      <strong>Minimum Recording Time (ms): </strong>
+      {{#if viewing.duration}}
+        {{formatNumber viewing.minRecordingTime}}
+      {{/if}}
+    </div>
+    <div>
+      <strong>Maximum Recording Time (ms): </strong>
+      {{#if viewing.duration}}
+        {{formatNumber viewing.maxRecordingTime}}
+      {{/if}}
+    </div>
+    <div>
+      <strong>Duration (HH:MM:SS.MS): </strong>
+      {{#if viewing.duration}}
+        {{millisecondsToHMSMS viewing.duration}}
+      {{/if}}
     </div>
   </p>
 

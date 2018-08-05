@@ -51,6 +51,36 @@ Schemas.Viewing = new SimpleSchema({
       }
     },
   },
+  minRecordingTime: {
+    type: Number,
+    label: 'Minimum Recording Time',
+    optional: true,
+    autoform: {
+      afFieldInput: {
+        type: 'hidden',
+      }
+    },
+  },
+  maxRecordingTime: {
+    type: Number,
+    label: 'Maximum Recording Time',
+    optional: true,
+    autoform: {
+      afFieldInput: {
+        type: 'hidden',
+      }
+    },
+  },
+  duration: {
+    type: Number,
+    label: 'Duration',
+    optional: true,
+    autoform: {
+      afFieldInput: {
+        type: 'hidden',
+      }
+    },
+  },
   viewingsComplete: {
     type: String,
     label: 'Viewings Complete',

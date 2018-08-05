@@ -47,6 +47,15 @@ new Tabular.Table({
         }
       },
     },
+    {
+      data: 'duration',
+      title: 'Duration',
+      render: function(data, type, row, meta) {
+        if(data) {
+          return `<a href="/studies/${row.studyId()}/viewings/${row._id}">${helpers.millisecondsToHMSMS(data)}</a>`;
+        }
+      },
+    },
   ],
   // order: [[ 0, 'asc' ], [ 1, 'asc' ], [ 2, 'asc' ]]
 });

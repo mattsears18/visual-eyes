@@ -12,7 +12,8 @@
 
       {{#if analysis.hasPermission 'destroy'}}
         {{> quickRemoveButton collection="Analyses" _id=analysis._id
-          onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
+          onSuccess=deleteOnSuccess onError=deleteOnSuccess
+          beforeRemove=deleteBeforeRemove
           id="destroyAnalysisform" class="btn btn-danger"}}
       {{/if}}
     </div>

@@ -7,7 +7,8 @@ Meteor.publish('files.datafiles.all', () => {
 
 Meteor.publish('files.datafiles.byStudyId', (studyId) => {
   check(studyId, String);
-  return Datafiles.find({ studyId: studyId }).cursor;
+  study = Studies.findOne(studyId);
+  return Datafiles.find({ _id: { $in: study.datafileIds }}).cursor;
 });
 
 Meteor.publish('files.datafiles.byRecordingId', function(recordingId) {

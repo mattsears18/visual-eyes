@@ -1,3 +1,5 @@
+import Jobs from '../Jobs/Jobs';
+
 Datafiles.collection.after.remove(function (userId, datafile) {
   // Update Study.datafileIds
   Studies.update(
@@ -20,4 +22,11 @@ Datafiles.collection.after.remove(function (userId, datafile) {
 
   // Delete any Viewings that no longer have datafileIds
   Viewings.remove({ datafileId: datafile._id });
+});
+
+
+Datafiles.collection.after.insert(function (userId, datafile) {
+  var job = new Job(Jobs, 'datafiles.process',
+    { datafileId: datafile._id, }
+  ).priority('normal').save();
 });

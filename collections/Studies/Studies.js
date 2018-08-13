@@ -93,6 +93,20 @@ Schemas.Study = new SimpleSchema({
       }
     }
   },
+  datafilesProcessing: {
+    type: Boolean,
+    optional: true,
+    autoform: {
+      type: 'hidden',
+    },
+  },
+  datafilesProcessed: {
+    type: Boolean,
+    optional: true,
+    autoform: {
+      type: 'hidden',
+    }
+  },
 }, {tracker: Tracker});
 
 Studies.attachSchema(Schemas.Study);

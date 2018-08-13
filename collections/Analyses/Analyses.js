@@ -103,6 +103,14 @@ Schemas.Analysis = new SimpleSchema({
   		type: "hidden"
   	},
   },
+  processing: {
+    type: Boolean,
+    optional: true,
+  },
+  processed: {
+    type: Boolean,
+    optional: true,
+  },
 }, {tracker: Tracker});
 
 Analyses.attachSchema(Schemas.Analysis);

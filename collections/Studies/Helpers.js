@@ -18,19 +18,19 @@ Studies.helpers({
   aois() {
     return Aois.find({studyId: this._id});
   },
-  // allDatafilesProcessed() {
-  //   processed = true;
-  //
-  //   datafiles = Datafiles.find({studyId: this._id});
-  //
-  //   datafiles.forEach(function(datafile) {
-  //     if(datafile.processed != true) {
-  //       processed = false;
-  //     }
-  //   });
-  //
-  //   return processed;
-  // },
+  allDatafilesProcessed() {
+    processed = true;
+
+    datafiles = Datafiles.find({studyId: this._id});
+
+    datafiles.forEach(function(datafile) {
+      if(datafile.processed != true) {
+        processed = false;
+      }
+    });
+
+    return processed;
+  },
   // totalRecordings() {
   //   recordings = 0;
   //

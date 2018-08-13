@@ -1,4 +1,4 @@
-import Jobs from '../Jobs/Jobs';
+import Datafiles from './Datafiles';
 
 Datafiles.collection.after.remove(function (userId, datafile) {
   // Update Study.datafileIds
@@ -25,16 +25,9 @@ Datafiles.collection.after.remove(function (userId, datafile) {
 });
 
 Datafiles.collection.after.insert(function(userId, datafile) {
-  var job = new Job(Jobs, 'datafiles.process',
-    { datafileId: datafile._id, }
-  );
-
-  job.priority('normal')
-    .retry({
-      retries: Jobs.forever,   // Retry 5 times,
-      wait: 5*1000,  // waiting 5 seconds between attempts
-      backoff: 'constant'  // wait constant amount of time between each retry
-    })
-    // .delay(10000)
-    .save();
+  if(Meteor.isServer) {
+    Meteor.call('datafiles.makeDatafileJob', {
+      datafileId: datafile._id,
+    });
+  }
 });

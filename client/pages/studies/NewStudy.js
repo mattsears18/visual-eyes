@@ -1,8 +1,8 @@
 Template.NewStudy.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    // self.subscribe('files.datafiles.all');
-    Meteor.subscribe('files.datafiles.all');
+    // self.subscribe('datafiles.all');
+    Meteor.subscribe('datafiles.all');
   });
 });
 
@@ -14,12 +14,8 @@ Template.NewStudy.events({
 
 AutoForm.hooks({
   insertStudyForm: {
-    onSuccess: function(formType, result) {
-      FlowRouter.go('/studies/' + result);
-
-      Meteor.call('studies.processDatafiles', {
-        studyId: FlowRouter.getParam('studyId'),
-      });
+    onSuccess: function(formType, studyId) {
+      FlowRouter.go('/studies/' + studyId);
     },
   }
 });

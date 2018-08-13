@@ -1,7 +1,7 @@
 Template.UpdateStudy.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    self.subscribe('files.datafiles.all');
+    self.subscribe('datafiles.all');
   });
 });
 
@@ -15,10 +15,6 @@ AutoForm.hooks({
   updateStudyForm: {
     onSuccess: function(formType, result) {
       Session.set('updateStudy', false);
-
-      Meteor.call('studies.processDatafiles', {
-        studyId: FlowRouter.getParam('studyId')
-      });
     },
   }
 });

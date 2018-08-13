@@ -7,7 +7,7 @@ Template.Viewing.onCreated(function() {
     var viewingId = FlowRouter.getParam('viewingId');
 
     self.subscribe('viewings.single', viewingId);
-    self.subscribe('files.datafiles.byViewingId', viewingId);
+    self.subscribe('datafiles.byViewingId', viewingId);
     self.subscribe('aois.byViewingId', viewingId);
     self.subscribe('analyses.byViewingId', viewingId);
     self.subscribe('recordings.byViewingId', viewingId);

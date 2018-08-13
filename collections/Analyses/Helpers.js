@@ -15,4 +15,7 @@ Analyses.helpers({
   aois() {
     return Aois.find({ _id: { $in: this.analysisIds }});
   },
+  datafiles() {
+    return Datafiles.collection.find({ _id: { $in: this.datafileIds }});
+  },
 });

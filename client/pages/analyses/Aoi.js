@@ -15,7 +15,7 @@ Template.AnalysisAoi.onCreated(function() {
     self.subscribe('analyses.single', analysisId);
     self.subscribe('aois.single', aoiId);
     self.subscribe('viewings.byAnalysisIdAoiId', analysisId, aoiId);
-    self.subscribe('files.datafiles.byStudyId', studyId);
+    self.subscribe('datafiles.byStudyId', studyId);
   });
 });
 

@@ -61,10 +61,10 @@ lbee:moment-helpers
 aldeed:simple-schema
 dburles:mongo-collection-instances
 http@1.4.1
-harrison:papa-parse
 practicalmeteor:mocha
 meteortesting:mocha
 practicalmeteor:chai
 xolvio:cleaner
 underscore@1.0.10
 aldeed:autoform-select2
+vsivsi:job-collection

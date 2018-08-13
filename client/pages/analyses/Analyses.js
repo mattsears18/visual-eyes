@@ -5,6 +5,7 @@ Template.Analyses.onCreated(function() {
     self.subscribe('studies.single', studyId);
     self.subscribe('analyses.byStudyId', studyId);
     self.subscribe('aois.byStudyId', studyId);
+    self.subscribe('datafiles.byStudyId', studyId);
   });
 });
 

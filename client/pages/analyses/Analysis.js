@@ -10,7 +10,7 @@ Template.Analysis.onCreated(function() {
 
     self.subscribe('analyses.single', analysisId);
     self.subscribe('viewings.byAnalysisId', analysisId);
-    self.subscribe('files.datafiles.byStudyId', studyId);
+    self.subscribe('datafiles.byAnalysisId', analysisId);
     self.subscribe('aois.byAnalysisId', analysisId);
   });
 });

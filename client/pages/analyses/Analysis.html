@@ -2,7 +2,7 @@
   {{#if $.Session.get 'updateAnalysis'}}
     {{> UpdateAnalysis analysis=analysis}}
   {{/if}}
-  <h3>{{analysis.name}}
+  <h3 class="m-t-0">{{analysis.name}}
     {{#if analysis.hasPermission 'update'}}
       {{#unless $.Session.get 'updateAnalysis'}}
         &nbsp;<a href="#" class="update-analysis"><i class="fa fa-pencil"></i></a>
@@ -24,16 +24,31 @@
     <div><strong>Minimum Viewing Time (ms):</strong> {{formatNumber analysis.minViewingTime}}</div>
   {{/if}}
 
-  <div><strong>Datafiles:</strong>
-    {{#each datafile in datafiles}}
-      <a href="/studies/{{study._id}}/analyses/{{analysis._id}}/datafiles/{{datafile._id}}">{{datafile.name}}</a>
-    {{/each}}
+  <h4>Datafiles {{#if datafiles.count}}({{datafiles.count}}){{/if}}</h4>
+  <div class="well well-sm">
+    <p>
+      {{#each datafile in datafiles}}
+        <a href="/studies/{{study._id}}/analyses/{{analysis._id}}/datafiles/{{datafile._id}}" class="label label-primary">{{datafile.name}}</a>
+      {{/each}}
+    </p>
+    <div>
+      <strong>Summary Statistics</strong>
+      <p>table with duration and # of viewings statistics...</p>
+    </div>
   </div>
 
-  <div><strong>Areas of Interest:</strong>
-    {{#each aoi in aois}}
-      <a href="/studies/{{study._id}}/analyses/{{analysis._id}}/aois/{{aoi._id}}">{{aoi.name}}</a>
-    {{/each}}
+  <h4>Areas of Interest {{#if aois.count}}({{aois.count}}){{/if}}</h4>
+  <div class="well well-sm">
+    <p>
+      {{#each aoi in aois}}
+        <a href="/studies/{{study._id}}/analyses/{{analysis._id}}/aois/{{aoi._id}}" class="label label-primary">{{aoi.name}}</a>
+      {{/each}}
+    </p>
+
+    <div>
+      <strong>Summary Statistics</strong>
+      <p>table with duration and # of viewings statistics...</p>
+    </div>
   </div>
 
   <h4>Viewings {{#if viewings.count}}({{viewings.count}}){{/if}}</h4>

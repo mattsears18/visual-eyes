@@ -2,7 +2,7 @@
   {{#if $.Session.get 'updateAoi'}}
     {{> UpdateAoi aoi=aoi}}
   {{/if}}
-  <h3>{{aoi.name}}
+  <h3 class="m-t-0">{{aoi.name}}
     {{#if aoi.hasPermission 'update'}}
       {{#unless $.Session.get 'updateAoi'}}
         &nbsp;<a href="#" class="update-aoi"><i class="fa fa-pencil"></i></a>

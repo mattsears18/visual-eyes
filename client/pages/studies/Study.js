@@ -12,7 +12,7 @@ Template.Study.onCreated(function() {
     // if(!study) { FlowRouter.go('/studies'); }
 
     self.subscribe('studies.single', studyId);
-    self.subscribe('files.datafiles.byStudyId', studyId);
+    self.subscribe('datafiles.byStudyId', studyId);
     self.subscribe('aois.byStudyId', studyId);
     self.subscribe('analyses.byStudyId', studyId);
   });

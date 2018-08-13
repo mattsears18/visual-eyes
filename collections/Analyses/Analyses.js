@@ -77,9 +77,17 @@ Schemas.Analysis = new SimpleSchema({
       return '10000';
     },
   },
+  datafileIds: {
+    type: Array,
+    label: 'Datafiles to Include',
+    autoform: {
+      type: 'select-checkbox',
+    },
+  },
+  'datafileIds.$': String,
   aoiIds: {
     type: Array,
-    label: 'Areas of Interest',
+    label: 'Areas of Interest to Include',
     autoform: {
       type: 'select-checkbox',
     },

@@ -9,8 +9,6 @@ Aois.before.insert(function (userId, doc) {
 });
 
 Aois.after.remove(function(userId, aoi) {
-  // console.log('remove');
-  // console.log(aoi._id);
   Recordings.remove({ aoiId: aoi._id });
   Viewings.remove({ aoiId: aoi._id });
   //TODO update datafile recording count

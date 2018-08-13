@@ -3,7 +3,7 @@ Template.Recording.onCreated(function() {
   self.autorun(function() {
     var recordingId = FlowRouter.getParam('recordingId');
     self.subscribe('recordings.single', recordingId);
-    self.subscribe('files.datafiles.byRecordingId', recordingId);
+    self.subscribe('datafiles.byRecordingId', recordingId);
 
     var studyId = FlowRouter.getParam('studyId');
     self.subscribe('studies.single', studyId);

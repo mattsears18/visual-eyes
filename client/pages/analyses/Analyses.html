@@ -1,5 +1,5 @@
 <template name="Analyses">
-  <h3>Analyses
+  <h3 class="m-t-0">Analyses
     {{#if study.hasPermission 'createAnalyses'}}
       {{#unless $.Session.get 'newAnalysis'}}
         &nbsp;<a class="new-analysis"><i class="fa fa-plus"></i></a>

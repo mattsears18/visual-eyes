@@ -9,10 +9,6 @@ AutoForm.hooks({
     onSuccess: function(formType, result) {
       studyId = FlowRouter.getParam('studyId');
       FlowRouter.go('/studies/' + studyId + '/analyses/' + result);
-
-      Meteor.call('analyses.run', {
-        analysisId: FlowRouter.getParam('analysisId'),
-      });
     },
     onError: function(formType, error) {
       console.log(error);
@@ -25,7 +21,14 @@ Template.NewAnalysis.helpers({
     studyId = FlowRouter.getParam('studyId');
     aois = Aois.find({ studyId: studyId }).fetch();
     return aois.map(function(aoi) {
-      return {label: aoi.name, value: aoi._id, checked: 'checked'};
+      return { label: aoi.name, value: aoi._id, checked: 'checked' };
+    });
+  },
+  datafileOptions: function () {
+    studyId = FlowRouter.getParam('studyId');
+    datafiles = Datafiles.find({ studyId: studyId }).fetch();
+    return datafiles.map(function(datafile) {
+      return { label: datafile.name, value: datafile._id, checked: 'checked' };
     });
   }
 });

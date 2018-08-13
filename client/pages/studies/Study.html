@@ -3,7 +3,7 @@
     {{> UpdateStudy study=study}}
   {{/if}}
 
-  <h3>
+  <h3 class="m-t-0">
     {{#unless $.Session.get 'updateStudy'}}
       {{study.name}}
       {{#if study.hasPermission 'update'}}
@@ -36,9 +36,12 @@
           {{#if datafile.recordingsProcessed}}
             {{#if datafile.processed}}
               ({{formatNumber datafile.recordingsProcessed}} recordings)
-              <!-- ({{millisecondsToHMSMS datafile.recordingTimeTotal}}) -->
             {{else}}
               ({{formatNumber datafile.recordingsProcessed}} of {{formatNumber datafile.recordings}} recordings processed)
+            {{/if}}
+          {{else}}
+            {{#if datafile.recordings}}
+              (0 of {{formatNumber datafile.recordings}} recordings processed)
             {{/if}}
           {{/if}}
         </li>

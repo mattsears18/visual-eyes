@@ -52,6 +52,27 @@ Schemas.Study = new SimpleSchema({
       }
     }
   },
+  // periods: {
+  //   type: String,
+  //   label: 'Periods (ms)',
+  //   defaultValue: function() {
+  //     return '3000, 5000, 10000';
+  //   },
+  // },
+  // viewingGap: {
+  //   type: Number,
+  //   label: 'Viewing Gap (ms)',
+  //   defaultValue: function() {
+  //     return '5000';
+  //   },
+  // },
+  // minViewingTime: {
+  //   type: String,
+  //   label: 'Minimum Viewing Time (ms)',
+  //   defaultValue: function() {
+  //     return '10000';
+  //   },
+  // },
   removeDuplicateIndices: {
     type: Boolean,
     label: 'Remove Duplicate Indices',

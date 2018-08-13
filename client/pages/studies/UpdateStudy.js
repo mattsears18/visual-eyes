@@ -1,5 +1,3 @@
-import Jobs from '../../../collections/Jobs/Jobs';
-
 Template.UpdateStudy.onCreated(function() {
   var self = this;
   self.autorun(function() {
@@ -15,15 +13,12 @@ Template.UpdateStudy.events({
 
 AutoForm.hooks({
   updateStudyForm: {
-    onSuccess: function(formType, studyId) {
+    onSuccess: function(formType, result) {
       Session.set('updateStudy', false);
 
-      // var job = new Job(Jobs, 'studies.processDatafiles',
-      //   { studyId: study._id, }
-      // );
-      //
-      // job.priority('normal')
-      //   .save();               // Commit it to the server
+      Meteor.call('studies.processDatafiles', {
+        studyId: FlowRouter.getParam('studyId')
+      });
     },
   }
 });

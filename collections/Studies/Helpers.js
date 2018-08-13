@@ -13,37 +13,37 @@ Studies.helpers({
     return false;
   },
   datafiles() {
-    return Datafiles.find({ _id: { $in: this.datafileIds }});
+    return Datafiles.find({studyId: this._id});
   },
   aois() {
     return Aois.find({studyId: this._id});
   },
-  // allDatafilesProcessed() {
-  //   processed = true;
-  //
-  //   datafiles = Datafiles.find({studyId: this._id});
-  //
-  //   datafiles.forEach(function(datafile) {
-  //     if(datafile.processed != true) {
-  //       processed = false;
-  //     }
-  //   });
-  //
-  //   return processed;
-  // },
-  // totalRecordings() {
-  //   recordings = 0;
-  //
-  //   datafiles = Datafiles.find({studyId: this._id});
-  //
-  //   datafiles.forEach(function(datafile) {
-  //     if(datafile.recordings) {
-  //       recordings += datafile.recordings;
-  //     }
-  //   });
-  //
-  //   return recordings;
-  // },
+  allDatafilesProcessed() {
+    processed = true;
+
+    datafiles = Datafiles.find({studyId: this._id});
+
+    datafiles.forEach(function(datafile) {
+      if(datafile.processed != true) {
+        processed = false;
+      }
+    });
+
+    return processed;
+  },
+  totalRecordings() {
+    recordings = 0;
+
+    datafiles = Datafiles.find({studyId: this._id});
+
+    datafiles.forEach(function(datafile) {
+      if(datafile.recordings) {
+        recordings += datafile.recordings;
+      }
+    });
+
+    return recordings;
+  },
   //These are garbage functions - recordings aren't created until they're "processed" so all recordings are always 100% processed
   // totalRecordingsProcessed() {
   //   recordings = 0;

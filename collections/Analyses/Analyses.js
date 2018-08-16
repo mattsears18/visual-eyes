@@ -100,16 +100,22 @@ Schemas.Analysis = new SimpleSchema({
   		value: function() {
   			return FlowRouter.getParam('studyId');
   		},
-  		type: "hidden"
+  		type: 'hidden'
   	},
   },
   processing: {
     type: Boolean,
     optional: true,
+    autoform: {
+      type: 'hidden',
+    },
   },
   processed: {
     type: Boolean,
     optional: true,
+    autoform: {
+      type: 'hidden',
+    },
   },
 }, {tracker: Tracker});
 

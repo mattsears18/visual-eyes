@@ -1,58 +1,58 @@
 <template name="Analysis">
   {{#if $.Session.get 'updateAnalysis'}}
     {{> UpdateAnalysis analysis=analysis}}
-  {{/if}}
-  <h3 class="m-t-0">{{analysis.name}}
-    {{#if analysis.hasPermission 'update'}}
-      {{#unless $.Session.get 'updateAnalysis'}}
-        &nbsp;<a href="#" class="update-analysis"><i class="fa fa-pencil"></i></a>
-      {{/unless}}
+  {{else}}
+    <h3 class="m-t-0">{{analysis.name}}
+      {{#if analysis.hasPermission 'update'}}
+        {{#unless $.Session.get 'updateAnalysis'}}
+          &nbsp;<a href="#" class="update-analysis"><i class="fa fa-pencil"></i></a>
+        {{/unless}}
+      {{/if}}
+    </h3>
+
+    <p>{{analysis.desc}}</p>
+
+    {{#if analysis.period}}
+    <div><strong>Period (ms):</strong> {{formatNumber analysis.period}}</div>
     {{/if}}
-  </h3>
 
-  <p>{{analysis.desc}}</p>
+    {{#if analysis.viewingGap}}
+    <div><strong>Viewing Gap (ms):</strong> {{formatNumber analysis.viewingGap}}</div>
+    {{/if}}
 
-  {{#if analysis.period}}
-  <div><strong>Period (ms):</strong> {{formatNumber analysis.period}}</div>
-  {{/if}}
+    {{#if analysis.minViewingTime}}
+      <div><strong>Minimum Viewing Time (ms):</strong> {{formatNumber analysis.minViewingTime}}</div>
+    {{/if}}
 
-  {{#if analysis.viewingGap}}
-  <div><strong>Viewing Gap (ms):</strong> {{formatNumber analysis.viewingGap}}</div>
-  {{/if}}
-
-  {{#if analysis.minViewingTime}}
-    <div><strong>Minimum Viewing Time (ms):</strong> {{formatNumber analysis.minViewingTime}}</div>
-  {{/if}}
-
-  <h4>Datafiles {{#if datafiles.count}}({{datafiles.count}}){{/if}}</h4>
-  <div class="well well-sm">
-    <p>
-      {{#each datafile in datafiles}}
-        <a href="/studies/{{study._id}}/analyses/{{analysis._id}}/datafiles/{{datafile._id}}" class="label label-primary">{{datafile.name}}</a>
-      {{/each}}
-    </p>
-    <div>
-      <strong>Summary Statistics</strong>
-      <p>table with duration and # of viewings statistics...</p>
+    <h4>Datafiles {{#if datafiles.count}}({{datafiles.count}}){{/if}}</h4>
+    <div class="well well-sm">
+      <p>
+        {{#each datafile in datafiles}}
+          <a href="/studies/{{study._id}}/analyses/{{analysis._id}}/datafiles/{{datafile._id}}" class="label label-primary">{{datafile.name}}</a>
+        {{/each}}
+      </p>
+      <div>
+        <strong>Summary Statistics</strong>
+        <p>table with duration and # of viewings statistics...</p>
+      </div>
     </div>
-  </div>
 
-  <h4>Areas of Interest {{#if aois.count}}({{aois.count}}){{/if}}</h4>
-  <div class="well well-sm">
-    <p>
-      {{#each aoi in aois}}
-        <a href="/studies/{{study._id}}/analyses/{{analysis._id}}/aois/{{aoi._id}}" class="label label-primary">{{aoi.name}}</a>
-      {{/each}}
-    </p>
+    <h4>Areas of Interest {{#if aois.count}}({{aois.count}}){{/if}}</h4>
+    <div class="well well-sm">
+      <p>
+        {{#each aoi in aois}}
+          <a href="/studies/{{study._id}}/analyses/{{analysis._id}}/aois/{{aoi._id}}" class="label label-primary">{{aoi.name}}</a>
+        {{/each}}
+      </p>
 
-    <div>
-      <strong>Summary Statistics</strong>
-      <p>table with duration and # of viewings statistics...</p>
+      <div>
+        <strong>Summary Statistics</strong>
+        <p>table with duration and # of viewings statistics...</p>
+      </div>
     </div>
-  </div>
 
-  <h4>Viewings {{#if viewings.count}}({{viewings.count}}){{/if}}</h4>
+    <h4>Viewings {{#if viewings.count}}({{viewings.count}}){{/if}}</h4>
 
-  {{> tabular table=TabularTables.ViewingsByAnalysisId selector=selector class="table table-striped table-bordered"}}
-
+    {{> tabular table=TabularTables.ViewingsByAnalysisId selector=selector class="table table-striped table-bordered"}}
+  {{/if}}
 </template>

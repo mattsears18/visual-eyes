@@ -19,14 +19,13 @@
     <h4>Eye Tracking Data Files
       {{#if datafiles.count}}
         ({{datafiles.count}})
-        {{#if study.datafilesProcessed}}
+
+        {{#if study.allDatafilesProcessed}}
           <span class="label label-success">All Processed</span>
         {{else}}
-          {{#if study.datafilesProcessing}}
-            <span class="label label-default">Datafiles Processing
-              <i class="fa fa-spinner fa-pulse fa-fw"></i>
-            </span>
-          {{/if}}
+          <span class="label label-default">Datafiles Processing
+            <i class="fa fa-spinner fa-pulse fa-fw"></i>
+          </span>
         {{/if}}
       {{/if}}
     </h4>
@@ -81,11 +80,7 @@
   </ul>
 
   <h4>Analyses {{#if analyses.count}}({{analyses.count}}){{/if}}
-    {{#if study.datafilesProcessing}}
-      <!-- <span class="label label-default">Datafiles Processing
-        <i class="fa fa-spinner fa-pulse fa-fw"></i>
-      </span> -->
-    {{else}}
+    {{#if study.allDatafilesProcessed}}
       {{#if study.hasPermission 'createAnalyses'}}
         {{#unless $.Session.get 'newAnalysis'}}
           &nbsp;<a class="new-analysis"><i class="fa fa-plus"></i></a>

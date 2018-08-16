@@ -6,8 +6,7 @@ Template.Aoi.onCreated(function() {
 
     var aoiId = FlowRouter.getParam('aoiId');
     aoi = Aois.findOne(aoiId);
-    if(!aoi) { FlowRouter.go('/studies/' + studyId); }
-    
+
     self.subscribe('aois.single', aoiId);
   });
 });

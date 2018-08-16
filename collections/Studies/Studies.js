@@ -46,41 +46,16 @@ Schemas.Study = new SimpleSchema({
   "datafileIds.$": {
     type: String,
     autoform: {
-      afFieldInput: {
-        type: 'fileUpload',
-        collection: 'Datafiles'
-      }
+      type: 'fileUpload',
+      collection: 'Datafiles'
     }
   },
-  // periods: {
-  //   type: String,
-  //   label: 'Periods (ms)',
-  //   defaultValue: function() {
-  //     return '3000, 5000, 10000';
-  //   },
-  // },
-  // viewingGap: {
-  //   type: Number,
-  //   label: 'Viewing Gap (ms)',
-  //   defaultValue: function() {
-  //     return '5000';
-  //   },
-  // },
-  // minViewingTime: {
-  //   type: String,
-  //   label: 'Minimum Viewing Time (ms)',
-  //   defaultValue: function() {
-  //     return '10000';
-  //   },
-  // },
   removeDuplicateIndices: {
     type: Boolean,
     label: 'Remove Duplicate Indices',
     defaultValue: true,
     autoform: {
-      afFieldInput: {
-        type: 'boolean-checkbox',
-      }
+      type: 'boolean-checkbox',
     }
   },
   recordVisualIntakesOnly: {
@@ -88,9 +63,7 @@ Schemas.Study = new SimpleSchema({
     label: 'Record Visual Intakes Only',
     defaultValue: true,
     autoform: {
-      afFieldInput: {
-        type: 'boolean-checkbox',
-      }
+      type: 'boolean-checkbox',
     }
   },
   datafilesProcessing: {
@@ -102,13 +75,6 @@ Schemas.Study = new SimpleSchema({
   },
   datafilesProcessed: {
     type: Boolean,
-    optional: true,
-    autoform: {
-      type: 'hidden',
-    }
-  },
-  datafilesProcessedLastUpdated: {
-    type: Date,
     optional: true,
     autoform: {
       type: 'hidden',

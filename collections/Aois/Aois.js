@@ -41,31 +41,24 @@ Schemas.Aoi = new SimpleSchema({
   },
   studyId: {
     type: String,
-    label: 'Study',
     autoform: {
-      afFieldInput: {
-        type: 'hidden',
-      }
+      type: 'hidden',
     }
   },
   datafileIds: {
     type: Array,
+    autoform: {
+      type: 'hidden',
+    },
   },
   "datafileIds.$": {
     type: String,
-    autoform: {
-      afFieldInput: {
-        type: 'hidden',
-      }
-    },
   },
   recordingTimeMin: {
     type: Number,
     label: 'Minimum Recording Time',
     autoform: {
-      afFieldInput: {
-        type: 'hidden',
-      }
+      type: 'hidden',
     },
     optional: true,
   },
@@ -73,9 +66,7 @@ Schemas.Aoi = new SimpleSchema({
     type: Number,
     label: 'Maximum Recording Time',
     autoform: {
-      afFieldInput: {
-        type: 'hidden',
-      }
+      type: 'hidden',
     },
     optional: true,
   },
@@ -83,9 +74,7 @@ Schemas.Aoi = new SimpleSchema({
     type: Number,
     label: 'Total Recording Time',
     autoform: {
-      afFieldInput: {
-        type: 'hidden',
-      }
+      type: 'hidden',
     },
     optional: true,
   },

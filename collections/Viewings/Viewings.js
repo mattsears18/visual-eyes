@@ -46,9 +46,7 @@ Schemas.Viewing = new SimpleSchema({
   "recordingIds.$": {
     type: String,
     autoform: {
-      afFieldInput: {
-        type: 'hidden',
-      }
+      type: 'hidden',
     },
   },
   minRecordingTime: {
@@ -56,9 +54,7 @@ Schemas.Viewing = new SimpleSchema({
     label: 'Minimum Recording Time',
     optional: true,
     autoform: {
-      afFieldInput: {
-        type: 'hidden',
-      }
+      type: 'hidden',
     },
   },
   maxRecordingTime: {
@@ -66,9 +62,7 @@ Schemas.Viewing = new SimpleSchema({
     label: 'Maximum Recording Time',
     optional: true,
     autoform: {
-      afFieldInput: {
-        type: 'hidden',
-      }
+      type: 'hidden',
     },
   },
   duration: {
@@ -76,18 +70,14 @@ Schemas.Viewing = new SimpleSchema({
     label: 'Duration',
     optional: true,
     autoform: {
-      afFieldInput: {
-        type: 'hidden',
-      }
+      type: 'hidden',
     },
   },
   viewingsComplete: {
     type: String,
     label: 'Viewings Complete',
     autoform: {
-      afFieldInput: {
-        type: 'hidden',
-      }
+      type: 'hidden',
     },
     optional: true,
   },

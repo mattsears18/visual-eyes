@@ -107,6 +107,13 @@ Schemas.Study = new SimpleSchema({
       type: 'hidden',
     }
   },
+  datafilesProcessedLastUpdated: {
+    type: Date,
+    optional: true,
+    autoform: {
+      type: 'hidden',
+    }
+  },
 }, {tracker: Tracker});
 
 Studies.attachSchema(Schemas.Study);

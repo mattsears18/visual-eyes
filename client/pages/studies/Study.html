@@ -81,10 +81,16 @@
   </ul>
 
   <h4>Analyses {{#if analyses.count}}({{analyses.count}}){{/if}}
-    {{#if study.hasPermission 'createAnalyses'}}
-      {{#unless $.Session.get 'newAnalysis'}}
-        &nbsp;<a class="new-analysis"><i class="fa fa-plus"></i></a>
-      {{/unless}}
+    {{#if study.datafilesProcessing}}
+      <!-- <span class="label label-default">Datafiles Processing
+        <i class="fa fa-spinner fa-pulse fa-fw"></i>
+      </span> -->
+    {{else}}
+      {{#if study.hasPermission 'createAnalyses'}}
+        {{#unless $.Session.get 'newAnalysis'}}
+          &nbsp;<a class="new-analysis"><i class="fa fa-plus"></i></a>
+        {{/unless}}
+      {{/if}}
     {{/if}}
   </h4>
   {{#if $.Session.get 'newAnalysis'}}

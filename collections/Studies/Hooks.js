@@ -1,5 +1,4 @@
 import Studies from './Studies';
-import Jobs from '../Jobs/Jobs';
 
 Studies.before.insert(function (userId, doc) {
   doc.createdAt = new Date;
@@ -27,6 +26,5 @@ Studies.after.remove(function(userId, study) {
     Datafiles.remove({ _id: { $in: study.datafileIds }});
     Analyses.remove({ studyId: study._id });
     Aois.remove({ studyId: study._id });
-    Jobs.remove({ studyId: study._id });
   }
 });

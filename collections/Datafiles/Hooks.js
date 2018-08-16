@@ -1,4 +1,5 @@
 import Datafiles from './Datafiles';
+import Jobs from '../Jobs/Jobs';
 
 Datafiles.collection.before.insert(function (userId, doc) {
   doc.processed = false;
@@ -25,9 +26,11 @@ Datafiles.collection.after.remove(function (userId, datafile) {
 
     // Delete any AOIs that no longer have datafileIds
     Aois.remove({ datafileIds: {$eq: []} });
-    
+
     // Delete any Viewings that no longer have datafileIds
     Viewings.remove({ datafileId: datafile._id });
+
+    Jobs.remove({ data: { datafileId: datafile._id }});
   }
 });
 

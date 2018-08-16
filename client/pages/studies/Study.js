@@ -9,12 +9,12 @@ Template.Study.onCreated(function() {
     var studyId = FlowRouter.getParam('studyId');
 
     study = Studies.findOne(studyId);
-    // if(!study) { FlowRouter.go('/studies'); }
-
-    self.subscribe('studies.single', studyId);
-    self.subscribe('datafiles.byStudyId', studyId);
-    self.subscribe('aois.byStudyId', studyId);
-    self.subscribe('analyses.byStudyId', studyId);
+    if(study) {
+      self.subscribe('studies.single', studyId);
+      self.subscribe('datafiles.byStudyId', studyId);
+      self.subscribe('aois.byStudyId', studyId);
+      self.subscribe('analyses.byStudyId', studyId);
+    }
   });
 });
 

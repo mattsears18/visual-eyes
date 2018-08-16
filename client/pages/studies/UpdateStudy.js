@@ -25,8 +25,8 @@ Template.UpdateStudy.helpers({
     return function (collection, id) {
       var doc = collection.findOne(id);
       if (confirm('Really delete "' + doc.name + '"?')) {
-        this.remove();
         FlowRouter.go('/studies');
+        this.remove();
       }
     };
   },

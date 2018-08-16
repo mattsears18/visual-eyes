@@ -23,6 +23,7 @@ Template.UpdateGeneric.helpers({
     return function (collection, id) {
       var doc = collection.findOne(id);
       if (confirm('Really delete "' + doc.name + '"?')) {
+        FlowRouter.go('/' + collection._name);
         this.remove();
       }
     };

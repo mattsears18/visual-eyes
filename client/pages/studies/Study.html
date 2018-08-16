@@ -4,12 +4,19 @@
   {{/if}}
 
   <h3 class="m-t-0">
+    {{study.name}}
+
     {{#unless $.Session.get 'updateStudy'}}
-      {{study.name}}
       {{#if study.hasPermission 'update'}}
-        &nbsp;<a href="#" class="update-study"><i class="fa fa-pencil"></i></a>
+        {{#if study.allDatafilesProcessed}}
+          &nbsp;<a href="#" class="update-study"><i class="fa fa-pencil"></i></a>
+        {{else}}
+          &nbsp;<i class="fa fa-pencil text-muted"></i>
+        {{/if}}
+
       {{/if}}
     {{/unless}}
+
     <a href="/studies/{{study._id}}/recordings" class="btn btn-primary pull-right"><i class="fa fa-list m-r-10"></i>View Recordings</a>
   </h3>
 
@@ -74,18 +81,20 @@
     {{#each aoi in aois}}
       <li>
         <a href="/studies/{{study._id}}/aois/{{aoi._id}}">{{aoi.name}}</a>
-        <!-- ({{millisecondsToHMSMS aoi.recordingTimeTotal}}) -->
       </li>
     {{/each}}
   </ul>
 
   <h4>Analyses {{#if analyses.count}}({{analyses.count}}){{/if}}
-    {{#if study.allDatafilesProcessed}}
-      {{#if study.hasPermission 'createAnalyses'}}
-        {{#unless $.Session.get 'newAnalysis'}}
+
+    {{#if study.hasPermission 'createAnalyses'}}
+      {{#unless $.Session.get 'newAnalysis'}}
+        {{#if study.allDatafilesProcessed}}
           &nbsp;<a class="new-analysis"><i class="fa fa-plus"></i></a>
-        {{/unless}}
-      {{/if}}
+        {{else}}
+          &nbsp;<i class="fa fa-plus text-muted"></i>
+        {{/if}}
+      {{/unless}}
     {{/if}}
   </h4>
   {{#if $.Session.get 'newAnalysis'}}

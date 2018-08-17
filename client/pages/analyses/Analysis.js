@@ -1,3 +1,5 @@
+import Jobs from '../../../collections/Jobs/Jobs';
+
 Template.Analysis.onCreated(function() {
   var self = this;
   self.autorun(function() {
@@ -12,6 +14,7 @@ Template.Analysis.onCreated(function() {
     self.subscribe('viewings.byAnalysisId', analysisId);
     self.subscribe('datafiles.byAnalysisId', analysisId);
     self.subscribe('aois.byAnalysisId', analysisId);
+    self.subscribe('jobs.analyses.makeViewings.byAnalysisId', analysisId);
   });
 });
 
@@ -23,7 +26,7 @@ Template.BreadCrumbs.helpers({
 
 Template.Analysis.helpers({
   selector() {
-    return {analysisId: FlowRouter.getParam('analysisId')};
+    return { analysisId: FlowRouter.getParam('analysisId') };
   },
   analysis: () => {
     return Analyses.findOne();
@@ -40,7 +43,12 @@ Template.Analysis.helpers({
   datafiles: () => {
     return Datafiles.find();
   },
-
+  makeViewingsJobsProgress: () => {
+    return getViewingsJobsProgress();
+  },
+  makeViewingsJobsComplete: () => {
+    return getViewingsJobsProgress() == 100;
+  },
 });
 
 Template.Analysis.events({
@@ -51,4 +59,17 @@ Template.Analysis.events({
 
 Template.Analysis.destroyed = function(){
   Session.set('updateAnalysis', false);
+}
+
+function getViewingsJobsProgress() {
+  progress = 0;
+
+  jobsCount = Jobs.find().count();
+  jobsCompletedCount = Jobs.find({ status: 'completed' }).count();
+
+  if(jobsCount && jobsCompletedCount) {
+    progress = helpers.formatNumber(jobsCompletedCount / jobsCount * 100);
+  }
+
+  return progress;
 }

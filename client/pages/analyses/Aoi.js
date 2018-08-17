@@ -45,19 +45,36 @@ Template.AnalysisAoi.helpers({
     return Viewings.find();
   },
 
-  durations: () => {            return getDurations(); },
-  durationMin: () => {          return Math.min(...getDurations()); },
-  durationMax: () => {          return Math.max(...getDurations()); },
-  durationRange: () => {        return jStat.range(getDurations()); },
-  durationMean: () => {         return jStat.mean(getDurations()); },
-  durationMedian: () => {       return jStat.median(getDurations()); },
+  durations: () => {              return getDurations(); },
+  durationMin: () => {            return Math.min(...getDurations()); },
+  durationMax: () => {            return Math.max(...getDurations()); },
+  durationRange: () => {          return jStat.range(getDurations()); },
+  durationMean: () => {           return jStat.mean(getDurations()); },
+  durationMedian: () => {         return jStat.median(getDurations()); },
+  durationSkewness: () => {       return jStat.skewness(getDurations()); },
+  durationKurtosis: () => {       return jStat.kurtosis(getDurations()); },
 
-  viewingCounts: () => {        return getViewingCounts(); },
-  viewingCountsMin: () => {     return Math.min(...getViewingCounts()); },
-  viewingCountsMax: () => {     return Math.max(...getViewingCounts()); },
-  viewingCountsRange: () => {   return jStat.range(getViewingCounts()); },
-  viewingCountsMean: () => {    return jStat.mean(getViewingCounts()); },
-  viewingCountsMedian: () => {  return jStat.median(getViewingCounts()); },
+  viewingCounts: () => {          return getViewingCounts(); },
+  viewingCountsMin: () => {       return Math.min(...getViewingCounts()); },
+  viewingCountsMax: () => {       return Math.max(...getViewingCounts()); },
+  viewingCountsRange: () => {     return jStat.range(getViewingCounts()); },
+  viewingCountsMean: () => {      return jStat.mean(getViewingCounts()); },
+  viewingCountsMedian: () => {    return jStat.median(getViewingCounts()); },
+  viewingCountsSkewness: () => {  return jStat.skewness(getViewingCounts()); },
+  viewingCountsKurtosis: () => {  return jStat.kurtosis(getViewingCounts()); },
+
+  viewingCountsData: () => {
+    return [{
+      x: getViewingCounts(),
+      type: 'histogram',
+      autobinx: false,
+      xbins: {
+        start: 0.5,
+        end: Math.max(...getViewingCounts()),
+        size: 1
+      },
+    }];
+  },
 });
 
 Template.Analysis.events({

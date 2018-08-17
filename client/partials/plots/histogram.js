@@ -34,8 +34,6 @@ Template.PlotHistogram.onRendered(function() {
       }
     }
 
-    console.log(layout);
-
-    Plotly.newPlot('Plot-' + name, data, layout, {displayModeBar: false});
+    Plotly.newPlot('Plot-' + name, data, layout);
   });
 });

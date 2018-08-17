@@ -24,38 +24,244 @@
       <div><strong>Minimum Viewing Time (ms):</strong> {{formatNumber analysis.minViewingTime}}</div>
     {{/if}}
 
-    <h4>Datafiles {{#if datafiles.count}}({{datafiles.count}}){{/if}}</h4>
-    <h4>
-      {{#each datafile in datafiles}}
-        <button class="label selector datafile {{#if showDatafileIds.includes datafile._id}}label-primary{{else}}label-default{{/if}}" data-id="{{datafile._id}}">{{datafile.name}}</button>
-      {{/each}}
-    </h4>
-    {{json showDatafileIds}}
+    <div class="selector-set">
+      <h4>
+        Datafiles {{#if datafiles.count}}({{datafiles.count}}){{/if}}
+        <button class="label label-primary toggle-all selector datafile">Show All</button>
+      </h4>
+      <h4>
+        <div class="well well-sm">
+          {{#each datafile in datafiles}}
+            <button class="label selector datafile label-primary" data-id="{{datafile._id}}">{{datafile.name}}</button>
+          {{/each}}
+        </div>
+      </h4>
+    </div>
+    <!-- {{json showDatafileIds}} -->
 
-    <h4>Areas of Interest {{#if aois.count}}({{aois.count}}){{/if}}</h4>
-    <h4>
-      {{#each aoi in aois}}
-        <button class="label selector aoi {{#if showAoiIds.includes aoi._id}}label-primary{{else}}label-default{{/if}}" data-id="{{aoi._id}}">{{aoi.name}}</button>
-      {{/each}}
-    </h4>
-    {{json showAoiIds}}
-
-    <h4>
-      Viewings {{#if viewings.count}}({{viewings.count}}){{/if}}
-
-      {{#unless makeViewingsJobsComplete}}
-        <span class="label label-default">Creating Viewings
-          {{makeViewingsJobsProgress}}%
-          <i class="fa fa-spinner fa-pulse fa-fw"></i>
-        </span>
-      {{/unless}}
-    </h4>
-
-    {{#each viewing in viewings}}
-      {{json viewing}}
-    {{/each}}
+    <div class="selector-set">
+      <h4>
+        Areas of Interest {{#if aois.count}}({{aois.count}}){{/if}}
+        <button class="label label-primary toggle-all selector aoi">Show All</button>
+      </h4>
+      <h4>
+        <div class="well well-sm">
+          {{#each aoi in aois}}
+            <button class="label selector aoi label-primary" data-id="{{aoi._id}}">{{aoi.name}}</button>
+          {{/each}}
+        </div>
+      </h4>
+    </div>
+    <!-- {{json showAoiIds}} -->
 
 
-    {{> tabular table=TabularTables.ViewingsByAnalysisId selector=selector class="table table-striped table-bordered"}}
+
+
+
+
+
+
+
+    {{#if viewings.count}}
+      <table class="table table-striped table-bordered no-footer">
+        <tbody>
+          <tr>
+            <th>Viewing Durations (ms)</th>
+            <td>
+              <!-- <tr>
+                <td class="p-b-10">
+                  {{#each duration in durations}}
+                    {{formatNumber duration}}
+                  {{/each}}
+                </td>
+              </tr> -->
+              {{> PlotHistogram x=durations name="Viewing-Durations"}}
+              <tr>
+                <tr>
+                  <th>n:&nbsp;</th>
+                  <td>
+                    {{#if durations}}
+                      {{formatNumber durations.length}}
+                    {{/if}}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Minimum:&nbsp;</th>
+                  <td>
+                    {{#if durationMin}}
+                      {{millisecondsToHMSMS durationMin}}
+                      [{{formatNumber durationMin}}]
+                    {{/if}}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Maximum:&nbsp;</th>
+                  <td>
+                    {{#if durationMax}}
+                      {{millisecondsToHMSMS durationMax}}
+                      [{{formatNumber durationMax}}]
+                    {{/if}}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Range:&nbsp;</th>
+                  <td>
+                    {{#if durationRange}}
+                      {{millisecondsToHMSMS durationRange}}
+                      [{{formatNumber durationRange}}]
+                    {{/if}}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Mean:&nbsp;</th>
+                  <td>
+                    {{#if durationMean}}
+                      {{millisecondsToHMSMS durationMean}}
+                      [{{formatNumber durationMean}}]
+                    {{/if}}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Median:&nbsp;</th>
+                  <td>
+                    {{#if durationMedian}}
+                      {{millisecondsToHMSMS durationMedian}}
+                      [{{formatNumber durationMedian}}]
+                    {{/if}}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Skewness:&nbsp;</th>
+                  <td>
+                    {{#if durationSkewness}}
+                      {{formatNumber durationSkewness}}
+                    {{/if}}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Kurtosis:&nbsp;</th>
+                  <td>
+                    {{#if durationKurtosis}}
+                      {{formatNumber durationKurtosis}}
+                    {{/if}}
+                  </td>
+                </tr>
+              </tr>
+            </td>
+          </tr>
+
+
+
+          <tr>
+            <th># of Viewings per Datafile per Area of Interest</th>
+            <td>
+              <!-- <tr>
+                <td class="p-b-10">
+                  {{#each count in viewingCounts}}
+                    {{formatNumber count}}
+                  {{/each}}
+                </td>
+              </tr> -->
+
+              {{> PlotHistogram data=viewingCountsData name="Viewing-Counts"}}
+
+              <tr>
+                <th>n:&nbsp;</th>
+                <td>
+                  {{#if viewingCounts}}
+                    {{formatNumber viewingCounts.length}}
+                  {{/if}}
+                </td>
+              </tr>
+              <tr>
+                <th>Minimum:&nbsp;</th>
+                <td>
+                  {{#if viewingCountsMin}}
+                    {{formatNumber viewingCountsMin}}
+                  {{/if}}
+                </td>
+              </tr>
+              <tr>
+                <th>Maximum:&nbsp;</th>
+                <td>
+                  {{#if viewingCountsMax}}
+                    {{formatNumber viewingCountsMax}}
+                  {{/if}}
+                </td>
+              </tr>
+              <tr>
+                <th>Range:&nbsp;</th>
+                <td>
+                  {{#if viewingCountsRange}}
+                    {{formatNumber viewingCountsRange}}
+                  {{/if}}
+                </td>
+              </tr>
+              <tr>
+                <th>Mean:&nbsp;</th>
+                <td>
+                  {{#if viewingCountsMean}}
+                    {{formatNumber viewingCountsMean}}
+                  {{/if}}
+                </td>
+              </tr>
+              <tr>
+                <th>Median:&nbsp;</th>
+                <td>
+                  {{#if viewingCountsMedian}}
+                    {{formatNumber viewingCountsMedian}}
+                  {{/if}}
+                </td>
+              </tr>
+              <tr>
+                <th>Skewness:&nbsp;</th>
+                <td>
+                  {{#if viewingCountsSkewness}}
+                    {{formatNumber viewingCountsSkewness}}
+                  {{/if}}
+                </td>
+              </tr>
+              <tr>
+                <th>Kurtosis:&nbsp;</th>
+                <td>
+                  {{#if viewingCountsKurtosis}}
+                    {{formatNumber viewingCountsKurtosis}}
+                  {{/if}}
+                </td>
+              </tr>
+            </td>
+          </tr>
+
+
+
+        </tbody>
+      </table>
+    {{/if}}
+
+
+
+
+
+
+
+
+    {{#if viewings.count}}
+      <h4>
+        Viewings ({{viewings.count}})
+
+        {{#unless makeViewingsJobsComplete}}
+          <span class="label label-default">Creating Viewings
+            {{makeViewingsJobsProgress}}%
+            <i class="fa fa-spinner fa-pulse fa-fw"></i>
+          </span>
+        {{/unless}}
+      </h4>
+
+      <!-- {{#each viewing in viewings}}
+        {{json viewing}}
+      {{/each}} -->
+
+      {{> tabular table=TabularTables.ViewingsByAnalysisId selector=selector class="table table-striped table-bordered"}}
+    {{/if}}
   {{/if}}
 </template>

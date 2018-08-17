@@ -2,19 +2,34 @@ import Jobs from '../../../collections/Jobs/Jobs';
 
 Template.Analysis.onCreated(function() {
   var self = this;
+
+  self.selector = new ReactiveDict();
+
+  self.selector.set( 'datafileIds', [] );
+  self.selector.set( 'aoiIds', [] );
+
   self.autorun(function() {
     var studyId = FlowRouter.getParam('studyId');
     self.subscribe('studies.single', studyId);
 
     var analysisId = FlowRouter.getParam('analysisId');
     analysis = Analyses.findOne(analysisId);
-    // if(!analysis) { FlowRouter.go('/studies/' + studyId); }
 
     self.subscribe('analyses.single', analysisId);
     self.subscribe('viewings.byAnalysisId', analysisId);
     self.subscribe('datafiles.byAnalysisId', analysisId);
     self.subscribe('aois.byAnalysisId', analysisId);
     self.subscribe('jobs.analyses.makeViewings.byAnalysisId', analysisId);
+
+    if(self.subscriptionsReady()) {
+      datafilesArr = Datafiles.find({}).fetch();
+      datafileIds = datafilesArr.map(function(datafile) { return datafile._id; });
+      self.selector.set( 'datafileIds', datafileIds );
+
+      aoisArr = Aois.find({}).fetch();
+      aoiIds = aoisArr.map(function(aoi) { return aoi._id; });
+      self.selector.set( 'aoiIds', aoiIds );
+    }
   });
 });
 
@@ -25,14 +40,20 @@ Template.BreadCrumbs.helpers({
 });
 
 Template.Analysis.helpers({
-  selector() {
-    return { analysisId: FlowRouter.getParam('analysisId') };
-  },
   analysis: () => {
     return Analyses.findOne();
   },
   viewings: () => {
-    return Viewings.find();
+    template = Template.instance();
+    datafileIds = template.selector.get('datafileIds');
+    aoiIds = template.selector.get('aoiIds');
+
+    selector = {
+      datafileId: { $in: datafileIds },
+      aoiId:      { $in: aoiIds },
+    };
+
+    return Viewings.find(selector);
   },
   study: () => {
     return Studies.findOne();
@@ -42,6 +63,12 @@ Template.Analysis.helpers({
   },
   datafiles: () => {
     return Datafiles.find();
+  },
+  showDatafileIds: function() {
+    return Template.instance().selector.get('datafileIds');
+  },
+  showAoiIds: function() {
+    return Template.instance().selector.get('aoiIds');
   },
   makeViewingsJobsProgress: () => {
     return getViewingsJobsProgress();
@@ -54,7 +81,22 @@ Template.Analysis.helpers({
 Template.Analysis.events({
   'click .update-analysis': function() {
     Session.set('updateAnalysis', true);
-  }
+  },
+  'click .selector': function(e, template) {
+    $target = $(e.target);
+    id = $target.data('id');
+
+    if($target.hasClass('datafile')) {
+      collectionIds = 'datafileIds';
+    } else if ($target.hasClass('aoi')) {
+      collectionIds = 'aoiIds';
+    }
+
+    ids = template.selector.get( collectionIds );
+    template.selector.set( collectionIds,
+      helpers.toggleInArray(ids, id)
+    );
+  },
 });
 
 Template.Analysis.destroyed = function(){

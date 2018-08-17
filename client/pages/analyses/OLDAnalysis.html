@@ -1,4 +1,4 @@
-<template name="Analysis">
+<!-- <template name="Analysis">
   {{#if $.Session.get 'updateAnalysis'}}
     {{> UpdateAnalysis analysis=analysis}}
   {{else}}
@@ -25,20 +25,31 @@
     {{/if}}
 
     <h4>Datafiles {{#if datafiles.count}}({{datafiles.count}}){{/if}}</h4>
-    <h4>
-      {{#each datafile in datafiles}}
-        <button class="label selector datafile {{#if showDatafileIds.includes datafile._id}}label-primary{{else}}label-default{{/if}}" data-id="{{datafile._id}}">{{datafile.name}}</button>
-      {{/each}}
-    </h4>
-    {{json showDatafileIds}}
+    <div class="well well-sm">
+      <p>
+        {{#each datafile in datafiles}}
+          <a href="/studies/{{study._id}}/analyses/{{analysis._id}}/datafiles/{{datafile._id}}" class="label label-primary">{{datafile.name}}</a>
+        {{/each}}
+      </p>
+      <div>
+        <strong>Summary Statistics</strong>
+        <p>table with duration and # of viewings statistics...</p>
+      </div>
+    </div>
 
     <h4>Areas of Interest {{#if aois.count}}({{aois.count}}){{/if}}</h4>
-    <h4>
-      {{#each aoi in aois}}
-        <button class="label selector aoi {{#if showAoiIds.includes aoi._id}}label-primary{{else}}label-default{{/if}}" data-id="{{aoi._id}}">{{aoi.name}}</button>
-      {{/each}}
-    </h4>
-    {{json showAoiIds}}
+    <div class="well well-sm">
+      <p>
+        {{#each aoi in aois}}
+          <a href="/studies/{{study._id}}/analyses/{{analysis._id}}/aois/{{aoi._id}}" class="label label-primary">{{aoi.name}}</a>
+        {{/each}}
+      </p>
+
+      <div>
+        <strong>Summary Statistics</strong>
+        <p>table with duration and # of viewings statistics...</p>
+      </div>
+    </div>
 
     <h4>
       Viewings {{#if viewings.count}}({{viewings.count}}){{/if}}
@@ -51,11 +62,6 @@
       {{/unless}}
     </h4>
 
-    {{#each viewing in viewings}}
-      {{json viewing}}
-    {{/each}}
-
-
     {{> tabular table=TabularTables.ViewingsByAnalysisId selector=selector class="table table-striped table-bordered"}}
   {{/if}}
-</template>
+</template> -->

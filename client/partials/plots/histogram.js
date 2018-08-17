@@ -3,20 +3,23 @@ Template.PlotHistogram.onRendered(function() {
   self.autorun(function() {
     name = Template.currentData().name;
     data = Template.currentData().data;
+    layout = Template.currentData().layout;
 
-    var layout = {
-      //TODO improve responsiveness (doesn't look the best on mobile)
-      // autosize: false,
-      // width: 600,
-      height: 300,
-      margin: {
-        l: 30,
-        r: 10,
-        b: 30,
-        t: 10,
-      },
-      bargap: 0.06,
-    };
+    if(!layout) {
+      layout = {
+        //TODO improve responsiveness (doesn't look the best on mobile)
+        // autosize: false,
+        // width: 600,
+        height: 400,
+        margin: {
+          l: 30,
+          r: 10,
+          b: 30,
+          t: 10,
+        },
+        bargap: 0.06,
+      };
+    }
 
     if(!data) {
       x = Template.currentData().x;
@@ -27,10 +30,10 @@ Template.PlotHistogram.onRendered(function() {
           type: 'histogram',
         }];
 
-        layout.xaxis = {
-          rangemode: 'tozero',
-          autorange: true,
-        }
+        // layout.xaxis = {
+        //   rangemode: 'tozero',
+        //   autorange: true,
+        // }
       }
     }
 

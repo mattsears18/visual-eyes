@@ -86,6 +86,27 @@ Template.Analysis.helpers({
   durationSkewness: () => {       return jStat.skewness(getDurations()); },
   durationKurtosis: () => {       return jStat.kurtosis(getDurations()); },
 
+  durationsLayout: () => {
+    return {
+      title: 'Viewing Durations',
+      xaxis: {
+        title: 'Duration (ms)',
+        rangemode: 'tozero',
+        autorange: true,
+      },
+      yaxis: {
+        title: 'Frequency',
+      },
+      margin: {
+        l: 60,
+        r: 10,
+        b: 70,
+        t: 50,
+      },
+      bargap: 0.06,
+    };
+  },
+
   viewingCounts: () => {          return getViewingCounts(); },
   viewingCountsMin: () => {       return Math.min(...getViewingCounts()); },
   viewingCountsMax: () => {       return Math.max(...getViewingCounts()); },
@@ -106,6 +127,25 @@ Template.Analysis.helpers({
         size: 1
       },
     }];
+  },
+
+  viewingCountsLayout: () => {
+    return {
+      title: 'Viewing Counts',
+      xaxis: {
+        title: '# of Viewings per Datafile per Area of Interest',
+      },
+      yaxis: {
+        title: 'Frequency',
+      },
+      margin: {
+        l: 60,
+        r: 10,
+        b: 70,
+        t: 50,
+      },
+      bargap: 0.06,
+    };
   },
 });
 

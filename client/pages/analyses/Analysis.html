@@ -63,179 +63,159 @@
 
 
     {{#if viewings.count}}
-      <table class="table table-striped table-bordered no-footer">
-        <tbody>
-          <tr>
-            <th>Viewing Durations (ms)</th>
-            <td>
-              <!-- <tr>
-                <td class="p-b-10">
-                  {{#each duration in durations}}
-                    {{formatNumber duration}}
-                  {{/each}}
-                </td>
-              </tr> -->
-              {{> PlotHistogram x=durations name="Viewing-Durations"}}
-              <tr>
-                <tr>
-                  <th>n:&nbsp;</th>
-                  <td>
-                    {{#if durations}}
-                      {{formatNumber durations.length}}
-                    {{/if}}
-                  </td>
-                </tr>
-                <tr>
-                  <th>Minimum:&nbsp;</th>
-                  <td>
-                    {{#if durationMin}}
-                      {{millisecondsToHMSMS durationMin}}
-                      [{{formatNumber durationMin}}]
-                    {{/if}}
-                  </td>
-                </tr>
-                <tr>
-                  <th>Maximum:&nbsp;</th>
-                  <td>
-                    {{#if durationMax}}
-                      {{millisecondsToHMSMS durationMax}}
-                      [{{formatNumber durationMax}}]
-                    {{/if}}
-                  </td>
-                </tr>
-                <tr>
-                  <th>Range:&nbsp;</th>
-                  <td>
-                    {{#if durationRange}}
-                      {{millisecondsToHMSMS durationRange}}
-                      [{{formatNumber durationRange}}]
-                    {{/if}}
-                  </td>
-                </tr>
-                <tr>
-                  <th>Mean:&nbsp;</th>
-                  <td>
-                    {{#if durationMean}}
-                      {{millisecondsToHMSMS durationMean}}
-                      [{{formatNumber durationMean}}]
-                    {{/if}}
-                  </td>
-                </tr>
-                <tr>
-                  <th>Median:&nbsp;</th>
-                  <td>
-                    {{#if durationMedian}}
-                      {{millisecondsToHMSMS durationMedian}}
-                      [{{formatNumber durationMedian}}]
-                    {{/if}}
-                  </td>
-                </tr>
-                <tr>
-                  <th>Skewness:&nbsp;</th>
-                  <td>
-                    {{#if durationSkewness}}
-                      {{formatNumber durationSkewness}}
-                    {{/if}}
-                  </td>
-                </tr>
-                <tr>
-                  <th>Kurtosis:&nbsp;</th>
-                  <td>
-                    {{#if durationKurtosis}}
-                      {{formatNumber durationKurtosis}}
-                    {{/if}}
-                  </td>
-                </tr>
-              </tr>
-            </td>
-          </tr>
-
-
-
-          <tr>
-            <th># of Viewings per Datafile per Area of Interest</th>
-            <td>
-              <!-- <tr>
-                <td class="p-b-10">
-                  {{#each count in viewingCounts}}
-                    {{formatNumber count}}
-                  {{/each}}
-                </td>
-              </tr> -->
-
-              {{> PlotHistogram data=viewingCountsData name="Viewing-Counts"}}
-
+      <div class="well">
+        {{> PlotHistogram x=durations layout=durationsLayout name="Viewing-Durations"}}
+        <table class="m-t-20">
+          <tbody>
+            <tr>
               <tr>
                 <th>n:&nbsp;</th>
                 <td>
-                  {{#if viewingCounts}}
-                    {{formatNumber viewingCounts.length}}
+                  {{#if durations}}
+                    {{formatNumber durations.length}}
                   {{/if}}
                 </td>
               </tr>
               <tr>
                 <th>Minimum:&nbsp;</th>
                 <td>
-                  {{#if viewingCountsMin}}
-                    {{formatNumber viewingCountsMin}}
+                  {{#if durationMin}}
+                    {{millisecondsToHMSMS durationMin}}
+                    [{{formatNumber durationMin}}]
                   {{/if}}
                 </td>
               </tr>
               <tr>
                 <th>Maximum:&nbsp;</th>
                 <td>
-                  {{#if viewingCountsMax}}
-                    {{formatNumber viewingCountsMax}}
+                  {{#if durationMax}}
+                    {{millisecondsToHMSMS durationMax}}
+                    [{{formatNumber durationMax}}]
                   {{/if}}
                 </td>
               </tr>
               <tr>
                 <th>Range:&nbsp;</th>
                 <td>
-                  {{#if viewingCountsRange}}
-                    {{formatNumber viewingCountsRange}}
+                  {{#if durationRange}}
+                    {{millisecondsToHMSMS durationRange}}
+                    [{{formatNumber durationRange}}]
                   {{/if}}
                 </td>
               </tr>
               <tr>
                 <th>Mean:&nbsp;</th>
                 <td>
-                  {{#if viewingCountsMean}}
-                    {{formatNumber viewingCountsMean}}
+                  {{#if durationMean}}
+                    {{millisecondsToHMSMS durationMean}}
+                    [{{formatNumber durationMean}}]
                   {{/if}}
                 </td>
               </tr>
               <tr>
                 <th>Median:&nbsp;</th>
                 <td>
-                  {{#if viewingCountsMedian}}
-                    {{formatNumber viewingCountsMedian}}
+                  {{#if durationMedian}}
+                    {{millisecondsToHMSMS durationMedian}}
+                    [{{formatNumber durationMedian}}]
                   {{/if}}
                 </td>
               </tr>
               <tr>
                 <th>Skewness:&nbsp;</th>
                 <td>
-                  {{#if viewingCountsSkewness}}
-                    {{formatNumber viewingCountsSkewness}}
+                  {{#if durationSkewness}}
+                    {{formatNumber durationSkewness}}
                   {{/if}}
                 </td>
               </tr>
               <tr>
                 <th>Kurtosis:&nbsp;</th>
                 <td>
-                  {{#if viewingCountsKurtosis}}
-                    {{formatNumber viewingCountsKurtosis}}
+                  {{#if durationKurtosis}}
+                    {{formatNumber durationKurtosis}}
                   {{/if}}
                 </td>
               </tr>
-            </td>
-          </tr>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
 
 
-        </tbody>
-      </table>
+      <div class="well">
+        {{> PlotHistogram data=viewingCountsData layout=viewingCountsLayout name="Viewing-Counts"}}
+
+        <table class="m-t-20">
+          <tbody>
+            <tr>
+              <th>n:&nbsp;</th>
+              <td>
+                {{#if viewingCounts}}
+                  {{formatNumber viewingCounts.length}}
+                {{/if}}
+              </td>
+            </tr>
+            <tr>
+              <th>Minimum:&nbsp;</th>
+              <td>
+                {{#if viewingCountsMin}}
+                  {{formatNumber viewingCountsMin}}
+                {{/if}}
+              </td>
+            </tr>
+            <tr>
+              <th>Maximum:&nbsp;</th>
+              <td>
+                {{#if viewingCountsMax}}
+                  {{formatNumber viewingCountsMax}}
+                {{/if}}
+              </td>
+            </tr>
+            <tr>
+              <th>Range:&nbsp;</th>
+              <td>
+                {{#if viewingCountsRange}}
+                  {{formatNumber viewingCountsRange}}
+                {{/if}}
+              </td>
+            </tr>
+            <tr>
+              <th>Mean:&nbsp;</th>
+              <td>
+                {{#if viewingCountsMean}}
+                  {{formatNumber viewingCountsMean}}
+                {{/if}}
+              </td>
+            </tr>
+            <tr>
+              <th>Median:&nbsp;</th>
+              <td>
+                {{#if viewingCountsMedian}}
+                  {{formatNumber viewingCountsMedian}}
+                {{/if}}
+              </td>
+            </tr>
+            <tr>
+              <th>Skewness:&nbsp;</th>
+              <td>
+                {{#if viewingCountsSkewness}}
+                  {{formatNumber viewingCountsSkewness}}
+                {{/if}}
+              </td>
+            </tr>
+            <tr>
+              <th>Kurtosis:&nbsp;</th>
+              <td>
+                {{#if viewingCountsKurtosis}}
+                  {{formatNumber viewingCountsKurtosis}}
+                {{/if}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     {{/if}}
 
 

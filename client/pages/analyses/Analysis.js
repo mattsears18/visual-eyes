@@ -134,6 +134,7 @@ Template.Analysis.helpers({
       title: 'Viewing Counts',
       xaxis: {
         title: '# of Viewings per Datafile per Area of Interest',
+        dtick: 1,
       },
       yaxis: {
         title: 'Frequency',

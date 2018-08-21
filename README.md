@@ -1,2 +1,2 @@
 # EyeTracker
-A JavaScript visualization and statistical package for eye tracking data
+A javascript application for visualizing and analyzing eye tracking data

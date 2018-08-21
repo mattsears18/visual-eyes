@@ -1,0 +1,11 @@
+<template name="NewDatafile">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">New Datafile <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Datafiles" id="insertDatafileForm" type="insert"
+        class="insert-datafile-form"}}
+    </div>
+  </div>
+</template>

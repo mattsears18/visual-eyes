@@ -1,0 +1,25 @@
+<template name="AnalysesList">
+  <h4>Analyses {{#if analyses.count}}({{analyses.count}}){{/if}}
+
+    {{#if study.hasPermission 'createAnalyses'}}
+      {{#unless $.Session.get 'newAnalysis'}}
+        {{#if study.allDatafilesProcessed}}
+          &nbsp;<a class="new-analysis"><i class="fa fa-plus"></i></a>
+        {{else}}
+          &nbsp;<i class="fa fa-plus text-muted"></i>
+        {{/if}}
+      {{/unless}}
+    {{/if}}
+  </h4>
+  {{#if $.Session.get 'newAnalysis'}}
+    {{> NewAnalysis}}
+  {{/if}}
+
+  <ul>
+    {{#each analysis in analyses}}
+      <li>
+        <a href="/studies/{{study._id}}/analyses/{{analysis._id}}">{{analysis.name}}</a> {{analysis.createdAt}}
+      </li>
+    {{/each}}
+  </ul>
+</template>

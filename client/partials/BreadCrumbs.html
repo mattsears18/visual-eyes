@@ -39,6 +39,19 @@
           <li class="active">{{aoi.name}}</li>
         {{/if}}
 
+        {{#if isActivePath regex='datafiles'}}
+          <li><a href="/studies">Studies</a></li>
+          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
+          {{#if isActiveRoute 'datafiles'}}
+            <li class="active">Datafiles</li>
+          {{else}}
+            {{#if isActiveRoute 'datafile'}}
+              <li><a href="/studies/{{study._id}}/datafiles">Datafiles</a></li>
+              <li class="active">{{datafile.name}}</li>
+            {{/if}}
+          {{/if}}
+        {{/if}}
+
         {{#if isActivePath regex='recordings'}}
           <li><a href="/studies">Studies</a></li>
           <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>

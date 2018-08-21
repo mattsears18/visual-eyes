@@ -1,18 +1,3 @@
 <template name="Analyses">
-  <h3 class="m-t-0">Analyses
-    {{#if study.hasPermission 'createAnalyses'}}
-      {{#unless $.Session.get 'newAnalysis'}}
-        &nbsp;<a class="new-analysis"><i class="fa fa-plus"></i></a>
-      {{/unless}}
-    {{/if}}
-  </h3>
-  {{#if $.Session.get 'newAnalysis'}}
-    {{> NewAnalysis}}
-  {{/if}}
-
-  <ul>
-    {{#each analyses}}
-      <li><a href="/studies/{{study._id}}/analyses/{{_id}}">{{name}}</a></li>
-    {{/each}}
-  </ul>
+  {{> AnalysesList}}
 </template>

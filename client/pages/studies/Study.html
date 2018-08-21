@@ -23,89 +23,9 @@
   {{#unless $.Session.get 'updateStudy'}}
     <p>{{study.desc}}</p>
 
-    <h4>Eye Tracking Data Files
-      {{#if datafiles.count}}
-        ({{datafiles.count}})
-
-        {{#if study.allDatafilesProcessed}}
-          <span class="label label-success">All Processed</span>
-        {{else}}
-          <span class="label label-default">Datafiles Processing
-            <i class="fa fa-spinner fa-pulse fa-fw"></i>
-          </span>
-        {{/if}}
-      {{/if}}
-    </h4>
-    <ul>
-      {{#each datafile in datafiles}}
-        <li>
-          {{#if datafile.preprocessing}}
-            <span class="label label-default">
-              Pre-processing
-              <i class="fa fa-spinner fa-pulse fa-fw"></i></span>
-          {{/if}}
-          {{#if datafile.processing}}
-            <span class="label label-default">
-              Processing
-              <i class="fa fa-spinner fa-pulse fa-fw"></i></span>
-          {{/if}}
-          {{#if datafile.processed}}
-            <span class="label label-success">Processed</span>
-          {{/if}}
-
-          <a href="{{fileURL datafile}}?download=true" target="_top">{{datafile.name}}</a>
-
-          <!-- omit status for faster datafile processing -->
-          <!-- {{#if datafile.recordingsProcessed}}
-            {{#if datafile.processed}}
-              ({{formatNumber datafile.recordingsProcessed}} recordings)
-            {{else}}
-              ({{formatNumber datafile.recordingsProcessed}} of {{formatNumber datafile.recordings}} recordings processed)
-            {{/if}}
-          {{else}}
-            {{#if datafile.recordings}}
-              (0 of {{formatNumber datafile.recordings}} recordings processed)
-            {{/if}}
-          {{/if}} -->
-
-          {{#if datafile.recordings}}
-            ({{formatNumber datafile.recordings}} recordings)
-          {{/if}}
-        </li>
-      {{/each}}
-    </ul>
+    {{> DatafilesList}}
+    {{> AoisList}}
+    {{> AnalysesList}}
   {{/unless}}
 
-  <h4>Areas of Interest {{#if aois.count}}({{aois.count}}){{/if}}</h4>
-  <ul>
-    {{#each aoi in aois}}
-      <li>
-        <a href="/studies/{{study._id}}/aois/{{aoi._id}}">{{aoi.name}}</a>
-      </li>
-    {{/each}}
-  </ul>
-
-  <h4>Analyses {{#if analyses.count}}({{analyses.count}}){{/if}}
-
-    {{#if study.hasPermission 'createAnalyses'}}
-      {{#unless $.Session.get 'newAnalysis'}}
-        {{#if study.allDatafilesProcessed}}
-          &nbsp;<a class="new-analysis"><i class="fa fa-plus"></i></a>
-        {{else}}
-          &nbsp;<i class="fa fa-plus text-muted"></i>
-        {{/if}}
-      {{/unless}}
-    {{/if}}
-  </h4>
-  {{#if $.Session.get 'newAnalysis'}}
-    {{> NewAnalysis}}
-  {{/if}}
-
-  <ul>
-    {{#each analysis in analyses}}
-      <li>
-        <a href="/studies/{{study._id}}/analyses/{{analysis._id}}">{{analysis.name}}</a> {{analysis.createdAt}}
-      </li>
-    {{/each}}
-  </ul>
 </template>

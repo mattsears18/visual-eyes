@@ -1,0 +1,20 @@
+<template name="UpdateDatafile">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Edit Datafile <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Datafiles" doc=datafile id="updateDatafileForm"
+        type="update" class="update-datafile-form"}}
+
+      <!-- {{> quickForm collection="Datafiles" doc=datafile id="updateDatafileForm"
+        type="method" meteormethod="datafiles.update" class="update-datafile-form"}} -->
+
+      {{#if datafile.hasPermission 'destroy'}}
+        {{> quickRemoveButton collection="Datafiles" _id=datafile._id
+          onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
+          id="destroyDatafileform" class="btn btn-danger"}}
+      {{/if}}
+    </div>
+  </div>
+</template>

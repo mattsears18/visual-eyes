@@ -1,18 +1,3 @@
 <template name="Aois">
-  <h3 class="m-t-0">Aois
-    {{#if isInRole 'create' 'aois'}}
-      {{#unless $.Session.get 'newAoi'}}
-        &nbsp;<a class="new-aoi"><i class="fa fa-plus"></i></a>
-      {{/unless}}
-    {{/if}}
-  </h3>
-  {{#if $.Session.get 'newAoi'}}
-    {{> NewAoi}}
-  {{/if}}
-
-  <ul>
-    {{#each aois}}
-      <li><a href="/studies/{{study._id}}/aois/{{_id}}">{{name}}</a></li>
-    {{/each}}
-  </ul>
+  {{> AoisList}}
 </template>

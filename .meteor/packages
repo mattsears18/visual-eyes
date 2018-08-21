@@ -34,7 +34,6 @@ accounts-ui@1.3.0
 accounts-password@1.5.1
 matb33:bootstrap-glyphicons
 zimme:active-route
-gwendall:auth-client-callbacks
 
 datariot:ganalytics
 check@1.3.1

@@ -8,6 +8,7 @@ Template.Aoi.onCreated(function() {
     aoi = Aois.findOne(aoiId);
 
     self.subscribe('aois.single', aoiId);
+    self.subscribe('images.byAoiId', aoiId);
   });
 });
 

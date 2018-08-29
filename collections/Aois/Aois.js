@@ -78,6 +78,15 @@ Schemas.Aoi = new SimpleSchema({
     },
     optional: true,
   },
+  imageId: {
+    type: String,
+    label: 'Image',
+    autoform: {
+      type: 'fileUpload',
+      collection: 'Images'
+    },
+    optional: true,
+  },
 }, {tracker: Tracker});
 
 Aois.attachSchema(Schemas.Aoi);

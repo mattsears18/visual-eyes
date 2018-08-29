@@ -1,58 +1,59 @@
 <template name="Viewing">
   {{#if $.Session.get 'updateViewing'}}
     {{> UpdateViewing viewing=viewing}}
+  {{else}}
+    <h3 class="m-t-0">Viewing #{{viewing.number}}</h3>
+    <p>
+      <div>
+        <strong>Datafile:</strong>
+        <a href="">{{viewing.datafileName}}</a>
+      </div>
+      <div>
+        <strong>Area of Interest:</strong>
+        <a href="/studies/{{viewing.studyId}}/aois/{{viewing.aoi._id}}">{{viewing.aoiName}}</a>
+      </div>
+      <div>
+        <strong>Period (ms):</strong>
+        {{#if viewing.analysis}}
+          {{formatNumber viewing.analysis.period}}
+        {{/if}}
+      </div>
+      <div>
+        <strong>Minimum Recording Time (ms): </strong>
+        {{#if viewing.duration}}
+          {{formatNumber viewing.minRecordingTime}}
+        {{/if}}
+      </div>
+      <div>
+        <strong>Maximum Recording Time (ms): </strong>
+        {{#if viewing.duration}}
+          {{formatNumber viewing.maxRecordingTime}}
+        {{/if}}
+      </div>
+      <div>
+        <strong>Duration (HH:MM:SS.MS): </strong>
+        {{#if viewing.duration}}
+          {{millisecondsToHMSMS viewing.duration}}
+        {{/if}}
+      </div>
+    </p>
+
+    <h4>Instantaneous Convex Hull Areas</h4>
+    <p>...</p>
+
+    <h4>Cummulative Convex Hull Areas</h4>
+    <p>...</p>
+
+    <h4>Instantaneous Scanpath Length</h4>
+    <p>...</p>
+
+    <h4>Cummulative Scanpath Length</h4>
+    <p>...</p>
+
+    <h4>Scanpath Velocity</h4>
+    <p>...</p>
+
+    <h4>Recordings {{#if recordings.count}}({{recordings.count}}){{/if}}</h4>
+    {{> tabular table=TabularTables.RecordingsByViewing selector=selector class="table table-striped table-bordered"}}
   {{/if}}
-  <h3 class="m-t-0">Viewing #{{viewing.number}}</h3>
-  <p>
-    <div>
-      <strong>Datafile:</strong>
-      <a href="">{{viewing.datafileName}}</a>
-    </div>
-    <div>
-      <strong>Area of Interest:</strong>
-      <a href="/studies/{{viewing.studyId}}/aois/{{viewing.aoi._id}}">{{viewing.aoiName}}</a>
-    </div>
-    <div>
-      <strong>Period (ms):</strong>
-      {{#if viewing.analysis}}
-        {{formatNumber viewing.analysis.period}}
-      {{/if}}
-    </div>
-    <div>
-      <strong>Minimum Recording Time (ms): </strong>
-      {{#if viewing.duration}}
-        {{formatNumber viewing.minRecordingTime}}
-      {{/if}}
-    </div>
-    <div>
-      <strong>Maximum Recording Time (ms): </strong>
-      {{#if viewing.duration}}
-        {{formatNumber viewing.maxRecordingTime}}
-      {{/if}}
-    </div>
-    <div>
-      <strong>Duration (HH:MM:SS.MS): </strong>
-      {{#if viewing.duration}}
-        {{millisecondsToHMSMS viewing.duration}}
-      {{/if}}
-    </div>
-  </p>
-
-  <h4>Instantaneous Convex Hull Areas</h4>
-  <p>...</p>
-
-  <h4>Cummulative Convex Hull Areas</h4>
-  <p>...</p>
-
-  <h4>Instantaneous Scanpath Length</h4>
-  <p>...</p>
-
-  <h4>Cummulative Scanpath Length</h4>
-  <p>...</p>
-
-  <h4>Scanpath Velocity</h4>
-  <p>...</p>
-
-  <h4>Recordings {{#if recordings.count}}({{recordings.count}}){{/if}}</h4>
-  {{> tabular table=TabularTables.RecordingsByViewing selector=selector class="table table-striped table-bordered"}}
 </template>

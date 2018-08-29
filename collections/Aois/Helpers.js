@@ -14,4 +14,7 @@ Aois.helpers({
     }
     return false;
   },
+  image() {
+    return Images.collection.findOne( this.imageId );
+  },
 });

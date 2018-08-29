@@ -1,20 +1,21 @@
 <template name="Recording">
   {{#if $.Session.get 'updateRecording'}}
     {{> UpdateRecording recording=recording}}
-  {{/if}}
-  <h3 class="m-t-0">{{recording._id}}
-    {{#if recording.hasPermission 'update'}}
-      {{#unless $.Session.get 'updateRecording'}}
-        &nbsp;<a href="#" class="update-recording"><i class="fa fa-pencil"></i></a>
-      {{/unless}}
-    {{/if}}
-  </h3>
-  <div>{{json recording}}</div>
+  {{else}}
+    <h3 class="m-t-0">{{recording._id}}
+      {{#if recording.hasPermission 'update'}}
+        {{#unless $.Session.get 'updateRecording'}}
+          &nbsp;<a href="#" class="update-recording"><i class="fa fa-pencil"></i></a>
+        {{/unless}}
+      {{/if}}
+    </h3>
+    <div>{{json recording}}</div>
 
-  <h4>Data File</h4>
-  <div>
-    {{recording.datafile._id}}
-    <br>
-    {{recording.datafileName}}
-  </div>
+    <h4>Data File</h4>
+    <div>
+      {{recording.datafile._id}}
+      <br>
+      {{recording.datafileName}}
+    </div>
+  {{/if}}
 </template>

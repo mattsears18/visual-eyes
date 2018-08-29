@@ -1,12 +1,10 @@
 <template name="Study">
   {{#if $.Session.get 'updateStudy'}}
     {{> UpdateStudy study=study}}
-  {{/if}}
+  {{else}}
+    <h3 class="m-t-0">
+      {{study.name}}
 
-  <h3 class="m-t-0">
-    {{study.name}}
-
-    {{#unless $.Session.get 'updateStudy'}}
       {{#if study.hasPermission 'update'}}
         {{#if study.allDatafilesProcessed}}
           &nbsp;<a href="#" class="update-study"><i class="fa fa-pencil"></i></a>
@@ -15,15 +13,12 @@
         {{/if}}
 
       {{/if}}
-    {{/unless}}
-  </h3>
+    </h3>
 
-  {{#unless $.Session.get 'updateStudy'}}
     <p>{{study.desc}}</p>
 
     {{> DatafilesList}}
     {{> AoisList}}
     {{> AnalysesList}}
-  {{/unless}}
-
+  {{/if}}
 </template>

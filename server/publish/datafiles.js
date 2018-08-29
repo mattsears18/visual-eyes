@@ -2,7 +2,8 @@
 // Datafiles Publications
 ////////////////////////////////////////////////////////////////////////////////
 Meteor.publish('datafiles.all', () => {
-  return Datafiles.find({}).cursor;
+  return Datafiles.find({},
+    { sort: { name: 1 }}).cursor;
 });
 
 Meteor.publish('datafiles.byStudyId', (studyId) => {

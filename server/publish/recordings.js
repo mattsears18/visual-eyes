@@ -18,5 +18,6 @@ Meteor.publish('recordings.byStudyId', (studyId) => {
 Meteor.publish('recordings.byViewingId', (viewingId) => {
   check(viewingId, String);
   viewing = Viewings.findOne(viewingId);
-  return Recordings.find({ _id: { $in: viewing.recordingIds }});
+  return Recordings.find({ _id: { $in: viewing.recordingIds }},
+    { sort: { recordingTime: 1 }});
 });

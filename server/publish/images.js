@@ -26,3 +26,9 @@ Meteor.publish('images.byAoiId', function(aoiId) {
   aoi = Aois.findOne({_id: aoiId});
   return Images.find({_id: aoi.imageId}).cursor;
 });
+
+Meteor.publish('images.byViewingId', function(viewingId) {
+  check(viewingId, String);
+  viewing = Viewings.findOne({_id: viewingId});
+  return Images.find({_id: viewing.aoi().imageId}).cursor;
+});

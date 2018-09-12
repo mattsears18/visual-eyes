@@ -1,3 +1,5 @@
+// import hull from 'hull.js';
+
 Template.Viewing.onCreated(function() {
   var self = this;
   self.autorun(function() {
@@ -11,6 +13,9 @@ Template.Viewing.onCreated(function() {
     self.subscribe('aois.byViewingId', viewingId);
     self.subscribe('analyses.byViewingId', viewingId);
     self.subscribe('recordings.byViewingId', viewingId);
+
+    // var points = [ [236, 126], [234, 115], [238, 109], [247, 102] ];
+    // console.log(hull(points, 50));
   });
 });
 

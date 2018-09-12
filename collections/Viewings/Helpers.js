@@ -1,4 +1,5 @@
 import Viewings from './Viewings';
+import getHulls from './getHulls';
 
 Viewings.helpers({
   hasPermission(action) {
@@ -36,4 +37,10 @@ Viewings.helpers({
   analysis() {
     return Analyses.findOne(this.analysisId);
   },
+  recordings() {
+    return Recordings.find({ _id: { $in: this.recordingIds }});
+  },
+  getHulls() {
+    return getHulls(this);
+  }
 });

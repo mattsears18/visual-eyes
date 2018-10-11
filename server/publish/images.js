@@ -15,7 +15,7 @@ Meteor.publish('images.byStudyId', (studyId) => {
   study = Studies.findOne(studyId);
 
   if(study) {
-    //TODO use .observeChanges() to show new images on study.html after updateStudy form is submitted
+    //TODO use .observeChanges() to show new datafiles on study.html after updateStudy form is submitted
     return Images.find({ _id: { $in: study.imageIds }},
       { sort: { name: 1 }}).cursor;
   }

@@ -28,7 +28,7 @@ Template.Viewing.helpers({
     }
   },
   viewing: () => {
-    return Viewings.findOne();
+    return Viewings.findOne(FlowRouter.getParam('viewingId'));
   },
   datafile: () => {
     return Datafiles.findOne();

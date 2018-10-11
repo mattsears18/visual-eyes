@@ -65,6 +65,7 @@ meteortesting:mocha
 practicalmeteor:chai
 xolvio:cleaner
 underscore@1.0.10
+natestrauser:select2
 aldeed:autoform-select2
 vsivsi:job-collection
 reactive-dict@1.2.0

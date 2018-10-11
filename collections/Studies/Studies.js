@@ -50,6 +50,17 @@ Schemas.Study = new SimpleSchema({
       collection: 'Datafiles'
     }
   },
+  imageIds: {
+    type: Array,
+    label: 'Reference Images'
+  },
+  "imageIds.$": {
+    type: String,
+    autoform: {
+      type: 'fileUpload',
+      collection: 'Images'
+    }
+  },
   removeDuplicateIndices: {
     type: Boolean,
     label: 'Remove Duplicate Indices',

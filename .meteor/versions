@@ -107,6 +107,7 @@ mongo-id@1.0.7
 mrt:later@1.6.1
 msavin:jetsetter@4.0.0
 msavin:mongol@4.0.1
+natestrauser:select2@4.0.3
 npm-bcrypt@0.9.3
 npm-mongo@3.0.11
 observe-sequence@1.0.16

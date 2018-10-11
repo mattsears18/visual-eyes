@@ -17,8 +17,21 @@
 
     <p>{{study.desc}}</p>
 
-    {{> DatafilesList}}
-    {{> AoisList}}
-    {{> AnalysesList}}
+    <div class="row">
+      <div class="col-md-6">
+        {{> DatafilesList}}
+      </div>
+      <div class="col-md-6">
+        {{> ImagesList}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        {{> AoisList}}
+      </div>
+      <div class="col-md-6">
+        {{> AnalysesList}}
+      </div>
+    </div>
   {{/if}}
 </template>

@@ -80,12 +80,19 @@ Schemas.Aoi = new SimpleSchema({
   },
   imageId: {
     type: String,
-    label: 'Image',
-    autoform: {
-      type: 'fileUpload',
-      collection: 'Images'
-    },
+    label: "Reference Image",
     optional: true,
+    autoform: {
+      type: "select2",
+      firstOption: "Select a Reference Image",
+      options: function () {
+        images = Images.find({}, {sort: {'name': 1}}).map(function (image) {
+          return { label: image.name, value: image._id};
+        });
+        images.unshift({ label: 'Select an image', value: '' });
+        return images;
+      }
+    }
   },
 }, {tracker: Tracker});
 

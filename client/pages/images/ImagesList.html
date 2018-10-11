@@ -1,0 +1,27 @@
+<template name="ImagesList">
+  <h4>Reference Images
+    <!-- {{#unless $.Session.get 'newImage'}} -->
+      {{#if images.count}}
+        ({{images.count}})
+      {{/if}}
+    <!-- {{/unless}} -->
+
+    <!-- {{#if study.hasPermission 'update'}}
+      {{#if $.Session.get 'newImage'}}
+        {{> NewImage}}
+      {{/if}}
+      {{#unless $.Session.get 'newImage'}}
+        &nbsp;<a class="new-image"><i class="fa fa-plus"></i></a>
+      {{/unless}}
+    {{/if}} -->
+  </h4>
+  <!-- {{#unless $.Session.get 'newImage'}} -->
+    <ul>
+      {{#each image in images}}
+        <li>
+          <a href="/studies/{{study._id}}/images/{{image._id}}" target="_top">{{image.name}}</a>
+        </li>
+      {{/each}}
+    </ul>
+  <!-- {{/unless}} -->
+</template>

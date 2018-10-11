@@ -43,6 +43,14 @@ export default function getHulls(viewing) {
     return helpers.centroid(pts);
   }
 
+  function getTimeStep(h) {
+    if(h.startIndex > 0) {
+      return h.startTime - recordings[h.startIndex - 1].recordingTime;
+    } else {
+      return 0;
+    }
+  }
+
   for (ri = 0; ri < recordings.length; ri++) {
     h = {};
     h.startIndex = ri;
@@ -51,6 +59,7 @@ export default function getHulls(viewing) {
     if(h.endIndex > h.startIndex) {
       h.startTime = recordings[ri].recordingTime;
       h.endTime = recordings[h.endIndex].recordingTime;
+      h.timeStep = getTimeStep(h);
       h.duration = h.endTime - h.startTime;
       h.recordings = recordings.slice(ri, h.endIndex + 1);
       h.points = getPoints(h);

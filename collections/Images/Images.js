@@ -1,7 +1,10 @@
 import SimpleSchema from 'simpl-schema';
 
 Schemas.Image = Object.assign({}, FilesCollection.schema, {
-
+  studyId: {
+    type: String,
+    optional: true,
+  },
 });
 
 Images = new FilesCollection({
@@ -14,15 +17,3 @@ Images = new FilesCollection({
 Images.collection.attachSchema(new SimpleSchema(Schemas.Image));
 
 export default Images;
-
-
-
-
-
-// Images = new FilesCollection({
-//   collectionName: 'Images',
-//   allowClientCode: true, // Required to let you remove uploaded file
-//   storagePath: '/data/Meteor/uploads/images', //persistent testing file storage
-// });
-//
-// export default Images;

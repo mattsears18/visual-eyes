@@ -1,7 +1,8 @@
 Template.UpdateAoi.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    self.subscribe('images.all');
+    studyId = FlowRouter.getParam('studyId');
+    self.subscribe('images.byStudyId', studyId);
   });
 });
 

@@ -32,41 +32,6 @@ Template.ConvexHullInstantaneous.helpers({
   image: () => {   return Images.findOne(); },
 });
 
-// Template.ConvexHullInstantaneous.events({
-//   'click #instantButton': function() {
-//     Plotly.animate('ConvexHullInstantaneous-Viewing', {
-//       data: [{y: [
-//         Math.random()*1000,
-//         Math.random()*1000,
-//         Math.random()*1000,
-//         Math.random()*1000,
-//         Math.random()*1000,
-//         Math.random()*1000,
-//         Math.random()*1000,
-//         Math.random()*1000,
-//         Math.random()*1000,
-//         Math.random()*1000,
-//         Math.random()*1000,
-//         Math.random()*1000,
-//         Math.random()*1000,
-//         Math.random()*1000,
-//         Math.random()*1000,
-//         Math.random()*1000,
-//         Math.random()*1000,
-//         Math.random()*1000,
-//         Math.random()*1000,
-//       ]}],
-//       traces: [0],
-//       layout: {}
-//     }, {
-//       transition: {
-//         duration: 500,
-//         easing: 'cubic-in-out'
-//       }
-//     })
-//   },
-// });
-
 var pointsTrace = {};
 var polygonTrace = {};
 var centroidTrace = {};
@@ -147,6 +112,8 @@ function getLastFixationHistory(hull) {
 }
 
 function plotAnimate(hull) {
+  centroids.push(hull.centroid);
+
   pointsTrace = {
     name: 'Fixation',
     x: hull.pointsXY.map(function(point) { return point.x; }),
@@ -183,17 +150,17 @@ function plotAnimate(hull) {
     },
   };
 
-  // centroidHistoryTrace = {
-  //   name: 'Centroid History',
-  //   x: getCentroidHistory(hull).x,
-  //   y: getCentroidHistory(hull).y,
-  //   mode: 'lines',
-  //   type: 'scatter',
-  //   line: {
-  //     color: '#dc3545',
-  //     width: 2.5,
-  //   },
-  // };
+  centroidHistoryTrace = {
+    name: 'Centroid History',
+    x: centroids.map(function(point) { return point.x; }),
+    y: centroids.map(function(point) { return point.y; }),
+    mode: 'lines',
+    type: 'scatter',
+    line: {
+      color: '#dc3545',
+      width: 2.5,
+    },
+  };
 
   lastFixationTrace = {
     name: 'Last Fixation',
@@ -202,8 +169,12 @@ function plotAnimate(hull) {
     mode: 'markers',
     type: 'scatter',
     marker: {
-      color: '#63a70a',
+      color: '#FFFFFF',
       size: 15,
+      line: {
+        color: '#63a70a',
+        width: 4
+      },
     },
   };
 

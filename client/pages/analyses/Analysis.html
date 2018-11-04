@@ -22,6 +22,10 @@
     <div><strong>Period (ms):</strong> {{formatNumber analysis.period}}</div>
     {{/if}}
 
+    {{#if analysis.centroidPeriod}}
+    <div><strong>Centroid Period (ms):</strong> {{formatNumber analysis.centroidPeriod}}</div>
+    {{/if}}
+
     {{#if analysis.viewingGap}}
     <div><strong>Viewing Gap (ms):</strong> {{formatNumber analysis.viewingGap}}</div>
     {{/if}}

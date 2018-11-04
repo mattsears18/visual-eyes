@@ -63,6 +63,13 @@ Schemas.Analysis = new SimpleSchema({
       return '5000';
     },
   },
+  centroidPeriod: {
+    type: Number,
+    label: 'Centroid Period (ms)',
+    defaultValue: function() {
+      return '5000';
+    },
+  },
   viewingGap: {
     type: Number,
     label: 'Viewing Gap (ms)',

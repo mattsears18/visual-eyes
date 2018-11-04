@@ -20,6 +20,12 @@
           {{/if}}
         </div>
         <div>
+          <strong>Centroid Period (ms):</strong>
+          {{#if viewing.analysis}}
+            {{formatNumber viewing.analysis.centroidPeriod}}
+          {{/if}}
+        </div>
+        <div>
           <strong>Minimum Recording Time (ms): </strong>
           {{#if viewing.duration}}
             {{formatNumber viewing.minRecordingTime}}

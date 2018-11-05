@@ -1,5 +1,6 @@
 import Viewings from './Viewings';
 import getHulls from './getHulls';
+import makeCentroids from './makeCentroids';
 
 Viewings.helpers({
   hasPermission(action) {
@@ -42,5 +43,8 @@ Viewings.helpers({
   },
   getHulls() {
     return getHulls(this);
-  }
+  },
+  makeCentroids() {
+    return makeCentroids(this);
+  },
 });

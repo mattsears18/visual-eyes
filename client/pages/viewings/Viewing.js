@@ -13,10 +13,15 @@ Template.Viewing.onCreated(function() {
     self.subscribe('aois.byViewingId', viewingId);
     self.subscribe('analyses.byViewingId', viewingId);
     self.subscribe('recordings.byViewingId', viewingId);
-
-    // var points = [ [236, 126], [234, 115], [238, 109], [247, 102] ];
-    // console.log(hull(points, 50));
   });
+
+  this.analysisType = new ReactiveVar('');
+  this.instantContinuous = new ReactiveVar('instantaneous');
+  this.instantContinuousHidden = new ReactiveVar( true );
+  this.slideStep = new ReactiveVar('slide');
+  this.slideStepHidden = new ReactiveVar( true );
+  this.centroidPeriodHidden = new ReactiveVar( true );
+  this.fixationTrailLengthHidden = new ReactiveVar( true );
 });
 
 Template.Viewing.helpers({
@@ -36,6 +41,18 @@ Template.Viewing.helpers({
   recordings: () => {
     return Recordings.find();
   },
+  analysisType: () => { return Template.instance().analysisType.get(); },
+  instantContinuous: () => { return Template.instance().instantContinuous.get(); },
+  instantContinuousHidden: () => { return Template.instance().instantContinuousHidden.get(); },
+  slideStep: () => { return Template.instance().slideStep.get(); },
+  slideStepHidden: () => { return Template.instance().slideStepHidden.get(); },
+  centroidPeriodHidden: () => { return Template.instance().centroidPeriodHidden.get(); },
+  fixationTrailLengthHidden: () => { return Template.instance().fixationTrailLengthHidden.get(); },
+
+  analysisTypeIs: (type) => {
+    console.log(type);
+    return true;
+  }
 });
 
 Template.BreadCrumbs.helpers({
@@ -50,7 +67,32 @@ Template.BreadCrumbs.helpers({
 Template.Viewing.events({
   'click .update-viewing': function() {
     Session.set('updateViewing', true);
-  }
+  },
+  'change #analysisType': function(e, template) {
+    template.analysisType.set( e.target.value );
+    if(e.target.value == 'convexHull') {
+      template.instantContinuousHidden.set( false );
+      template.slideStepHidden.set( false );
+      template.centroidPeriodHidden.set( false );
+      template.fixationTrailLengthHidden.set( false );
+    }
+
+    if(e.target.value == 'scanpathLength') {
+      template.instantContinuousHidden.set( false );
+      template.slideStepHidden.set( true );
+    }
+
+    if(e.target.value == 'scanpathVelocity') {
+      template.instantContinuousHidden.set( false );
+      template.slideStepHidden.set( true );
+    }
+  },
+  'change #instantContinuous': function(e, template) {
+    template.instantContinuous.set( e.target.value );
+  },
+  'change #slideStep': function(e, template) {
+    template.slideStep.set( e.target.value );
+  },
 });
 
 Template.Viewing.destroyed = function(){

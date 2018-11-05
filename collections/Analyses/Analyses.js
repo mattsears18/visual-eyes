@@ -41,31 +41,24 @@ Schemas.Analysis = new SimpleSchema({
     },
     optional: true,
   },
-  analysisTypes: {
-    type: Array,
-    label: 'Analysis Types',
-    autoform: {
-      type: 'select-checkbox',
-      options: {
-        instantaneousConvexHull: "Instantaneous Convex Hull Areas",
-        cummulativeConvexHull: "Cummulative Convex Hull Area",
-        instantaneousScanpathLength: "Instantaneous Scanpath Length",
-        cummulativeScanpathLength: "Cummulative Scanpath Length",
-        scanpathVelocity: "Scanpath Velocity",
-      },
-    }
-  },
-  'analysisTypes.$': String,
+  // analysisTypes: {
+  //   type: Array,
+  //   label: 'Analysis Types',
+  //   autoform: {
+  //     type: 'select-checkbox',
+  //     options: {
+  //       instantaneousConvexHull: "Instantaneous Convex Hull Areas",
+  //       cummulativeConvexHull: "Cummulative Convex Hull Area",
+  //       instantaneousScanpathLength: "Instantaneous Scanpath Length",
+  //       cummulativeScanpathLength: "Cummulative Scanpath Length",
+  //       scanpathVelocity: "Scanpath Velocity",
+  //     },
+  //   }
+  // },
+  // 'analysisTypes.$': String,
   period: {
     type: Number,
     label: 'Period (ms)',
-    defaultValue: function() {
-      return '5000';
-    },
-  },
-  centroidPeriod: {
-    type: Number,
-    label: 'Centroid Period (ms)',
     defaultValue: function() {
       return '5000';
     },

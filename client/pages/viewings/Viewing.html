@@ -20,12 +20,6 @@
           {{/if}}
         </div>
         <div>
-          <strong>Centroid Period (ms):</strong>
-          {{#if viewing.analysis}}
-            {{formatNumber viewing.analysis.centroidPeriod}}
-          {{/if}}
-        </div>
-        <div>
           <strong>Minimum Recording Time (ms): </strong>
           {{#if viewing.duration}}
             {{formatNumber viewing.minRecordingTime}}
@@ -45,23 +39,65 @@
         </div>
       </p>
 
-      <h4>Instantaneous Convex Hull Areas</h4>
-      {{> ConvexHullInstantaneous viewingId=viewing._id}}
+      <form>
+        <div class="form-group" id="analysisTypeGroup">
+          <label for="analysisType">Analysis Type</label>
+          <select class="form-control" id="analysisType">
+            <option disabled selected value="">Analysis Type</option>
+            <option value="convexHull">Convex Hull Areas</option>
+            <option disabled value="scanpathLength">Scanpath Length</option>
+            <option disabled value="scanpathVelocity">Scanpath Velocity</option>
+          </select>
+        </div>
 
-      <h4>Cummulative Convex Hull Areas</h4>
-      {{> ConvexHullCummulative viewingId=viewing._id}}
+        <div id="instantContinuousGroup" class="form-group {{#if instantContinuousHidden}} hidden {{/if}}">
+          <label for="instantContinuous">Instantaneous/Continuous
+            <a href="#">
+              <span class="glyphicon glyphicon-question-sign"></span>
+            </a>
+          </label>
+          <select class="form-control" id="instantContinuous">
+            <option value="instantaneous">Instantaneous</option>
+            <option value="continuous">Continuous</option>
+          </select>
+        </div>
 
-      <h4>Instantaneous Scanpath Length</h4>
-      <p>...</p>
+        <div id="slideStepGroup" class="form-group {{#if slideStepHidden}} hidden {{/if}}">
+          <label for="slideStep">Slide/Step
+            <a href="#">
+              <span class="glyphicon glyphicon-question-sign"></span>
+            </a>
+          </label>
+          <select class="form-control" id="slideStep">
+            <option value="slide">Slide</option>
+            <option value="step">Step</option>
+          </select>
+        </div>
 
-      <h4>Cummulative Scanpath Length</h4>
-      <p>...</p>
+        <div id="centroidPeriodGroup" class="form-group {{#if centroidPeriodHidden}} hidden {{/if}}">
+          <label for="centroidPeriod">Centroid Period (ms)
+            <a href="#">
+              <span class="glyphicon glyphicon-question-sign"></span>
+            </a>
+          </label>
+          <input class="form-control" type="text" placeholder="Centroid Period" id="centroidPeriod" value="5000">
+        </div>
 
-      <h4>Scanpath Velocity</h4>
-      <p>...</p>
+        <div id="fixationTrailLengthGroup" class="form-group {{#if fixationTrailLengthHidden}} hidden {{/if}}">
+          <label for="fixationTrailLength">Fixation Trail Length
+            <a href="#">
+              <span class="glyphicon glyphicon-question-sign"></span>
+            </a>
+          </label>
+          <input class="form-control" type="text" placeholder="Fixation Trail Length" id="fixationTrailLength" value="5">
+        </div>
+      </form>
 
-      <h4>Recordings {{#if recordings.count}}({{recordings.count}}){{/if}}</h4>
-      {{> tabular table=TabularTables.RecordingsByViewing selector=selector class="table table-striped table-bordered"}}
+
+      {{> Animation viewingId=viewing._id analysisType=analysisType instantContinuous=instantContinuous slideStep=slideStep}}
+
+      <!-- <h4>Recordings {{#if recordings.count}}({{recordings.count}}){{/if}}</h4>
+      {{> tabular table=TabularTables.RecordingsByViewing selector=selector class="table table-striped table-bordered"}} -->
     {{/if}}
   {{/if}}
 </template>

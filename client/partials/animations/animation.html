@@ -1,0 +1,45 @@
+<head>
+  <!-- Latest compiled and minified plotly.js JavaScript -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<template name="Animation">
+  {{#if analysisTypeIs "convexHull"}}
+    {{#if instantContinuousIs "instantaneous"}}
+      {{#if slideStepIs "slide"}}
+        {{> ConvexHullInstantaneousSlide viewingId=viewingId}}
+      {{/if}}
+      {{#if slideStepIs "step"}}
+        {{> ConvexHullInstantaneousStep viewingId=viewingId}}
+      {{/if}}
+    {{/if}}
+    {{#if instantContinuousIs "continuous"}}
+      {{#if slideStepIs "slide"}}
+        {{> ConvexHullContinuousSlide viewingId=viewingId}}
+      {{/if}}
+      {{#if slideStepIs "step"}}
+        {{> ConvexHullContinuousStep viewingId=viewingId}}
+      {{/if}}
+    {{/if}}
+  {{/if}}
+
+  {{#if analysisTypeIs "scanpathLength"}}
+    scanpathLength<br>
+    {{#if instantContinuousIs "instantaneous"}}
+      instantaneous<br>
+    {{/if}}
+    {{#if instantContinuousIs "continuous"}}
+      continuous<br>
+    {{/if}}
+  {{/if}}
+
+  {{#if analysisTypeIs "scanpathVelocity"}}
+    scanpathVelocity<br>
+    {{#if instantContinuousIs "instantaneous"}}
+      instantaneous<br>
+    {{/if}}
+    {{#if instantContinuousIs "continuous"}}
+      continuous<br>
+    {{/if}}
+  {{/if}}
+</template>

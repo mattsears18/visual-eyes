@@ -80,7 +80,7 @@
               <span class="glyphicon glyphicon-question-sign"></span>
             </a>
           </label>
-          <input class="form-control" type="text" placeholder="Centroid Period" id="centroidPeriod" value="5000">
+          <input class="form-control" type="text" placeholder="Centroid Period" id="centroidPeriod" value="{{$.Session.get 'centroidPeriod'}}">
         </div>
 
         <div id="fixationTrailLengthGroup" class="form-group {{#if fixationTrailLengthHidden}} hidden {{/if}}">
@@ -89,12 +89,11 @@
               <span class="glyphicon glyphicon-question-sign"></span>
             </a>
           </label>
-          <input class="form-control" type="text" placeholder="Fixation Trail Length" id="fixationTrailLength" value="5">
+          <input class="form-control" type="text" placeholder="Fixation Trail Length" id="fixationTrailLength" value="{{$.Session.get 'fixationTrailLength'}}">
         </div>
       </form>
 
-
-      {{> Animation viewingId=viewing._id analysisType=analysisType instantContinuous=instantContinuous slideStep=slideStep}}
+      {{> Animation viewingId=viewing._id}}
 
       <!-- <h4>Recordings {{#if recordings.count}}({{recordings.count}}){{/if}}</h4>
       {{> tabular table=TabularTables.RecordingsByViewing selector=selector class="table table-striped table-bordered"}} -->

@@ -15,10 +15,13 @@ Template.Viewing.onCreated(function() {
     self.subscribe('recordings.byViewingId', viewingId);
   });
 
-  this.analysisType = new ReactiveVar('');
-  this.instantContinuous = new ReactiveVar('instantaneous');
+  Session.set('analysisType', '');
+  Session.set('instantContinuous', 'instantaneous');
+  Session.set('slideStep', 'slide');
+  Session.set('centroidPeriod', 5000);
+  Session.set('fixationTrailLength', 5);
+
   this.instantContinuousHidden = new ReactiveVar( true );
-  this.slideStep = new ReactiveVar('slide');
   this.slideStepHidden = new ReactiveVar( true );
   this.centroidPeriodHidden = new ReactiveVar( true );
   this.fixationTrailLengthHidden = new ReactiveVar( true );
@@ -41,10 +44,8 @@ Template.Viewing.helpers({
   recordings: () => {
     return Recordings.find();
   },
-  analysisType: () => { return Template.instance().analysisType.get(); },
-  instantContinuous: () => { return Template.instance().instantContinuous.get(); },
+
   instantContinuousHidden: () => { return Template.instance().instantContinuousHidden.get(); },
-  slideStep: () => { return Template.instance().slideStep.get(); },
   slideStepHidden: () => { return Template.instance().slideStepHidden.get(); },
   centroidPeriodHidden: () => { return Template.instance().centroidPeriodHidden.get(); },
   fixationTrailLengthHidden: () => { return Template.instance().fixationTrailLengthHidden.get(); },
@@ -52,7 +53,7 @@ Template.Viewing.helpers({
   analysisTypeIs: (type) => {
     console.log(type);
     return true;
-  }
+  },
 });
 
 Template.BreadCrumbs.helpers({
@@ -69,7 +70,7 @@ Template.Viewing.events({
     Session.set('updateViewing', true);
   },
   'change #analysisType': function(e, template) {
-    template.analysisType.set( e.target.value );
+    Session.set('analysisType', e.target.value );
     if(e.target.value == 'convexHull') {
       template.instantContinuousHidden.set( false );
       template.slideStepHidden.set( false );
@@ -88,10 +89,16 @@ Template.Viewing.events({
     }
   },
   'change #instantContinuous': function(e, template) {
-    template.instantContinuous.set( e.target.value );
+    Session.set('instantContinuous', e.target.value );
   },
   'change #slideStep': function(e, template) {
-    template.slideStep.set( e.target.value );
+    Session.set('slideStep', e.target.value );
+  },
+  'keyup #centroidPeriod': function(e, template) {
+    Session.set('centroidPeriod', e.target.value );
+  },
+  'keyup #fixationTrailLength': function(e, template) {
+    Session.set('fixationTrailLength', e.target.value );
   },
 });
 

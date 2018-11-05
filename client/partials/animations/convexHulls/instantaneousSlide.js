@@ -40,13 +40,10 @@ var centroidHistoryTrace = {};
 var centroids = [];
 var lastFixationTrace = {};
 var lastFixationPastTrace = {};
-var lastFixationLength;
 var data;
 var layout;
 
 function plotInit(viewing) {
-  lastFixationLength = 5;
-
   data = [
     pointsTrace,
     polygonTrace,
@@ -104,7 +101,7 @@ function plotInit(viewing) {
 }
 
 function getLastFixationHistory(hull) {
-  points = hull.pointsXY.slice(Math.max(0, hull.pointsXY.length - lastFixationLength));
+  points = hull.pointsXY.slice(Math.max(0, hull.pointsXY.length - Session.get('fixationTrailLength')));
 
   return {
     x: points.map(function(point) { return point.x; }),
@@ -181,7 +178,7 @@ function plotAnimate(hull) {
   };
 
   lastFixationPastTrace = {
-    name: 'Last ' + lastFixationLength + ' Fixations',
+    name: 'Last ' + Session.get('fixationTrailLength') + ' Fixations',
     x: getLastFixationHistory(hull).x,
     y: getLastFixationHistory(hull).y,
     mode: 'lines',

@@ -1,5 +1,3 @@
-// import hull from 'hull.js';
-
 Template.Viewing.onCreated(function() {
   var self = this;
   self.autorun(function() {

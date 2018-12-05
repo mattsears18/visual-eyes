@@ -1,38 +1,3 @@
-Template.ConvexHullInstantaneousSlide.onCreated(function() {
-  var self = this;
-  self.autorun(function() {
-    centroids = [];
-    viewingId = Template.currentData().viewingId;
-
-    if(viewingId) {
-      self.subscribe('viewings.single', viewingId);
-      self.subscribe('recordings.byViewingId', viewingId);
-      self.subscribe('images.byViewingId', viewingId);
-      self.subscribe('aois.byViewingId', viewingId);
-
-      if(self.subscriptionsReady()) {
-        viewing = Viewings.findOne(viewingId);
-
-        if(viewing) {
-          plotInit(viewing);
-        }
-      }
-    }
-  });
-});
-
-Template.ConvexHullInstantaneousSlide.helpers({
-  hulls: () => {
-    viewing = Viewings.findOne();
-
-    hulls = [];
-    if(viewing) { hulls = viewing.getHulls(); }
-    return hulls;
-  },
-  viewing: () => { return Viewings.findOne(); },
-  image: () => {   return Images.findOne(); },
-});
-
 var pointsTrace = {};
 var polygonTrace = {};
 var centroidTrace = {};
@@ -88,7 +53,7 @@ function plotInit(viewing) {
     };
   }
 
-  Plotly.newPlot('ConvexHullInstantaneousSlide-Viewing',
+  Plotly.newPlot('Animation',
     data,
     layout,
   );
@@ -199,7 +164,7 @@ function plotAnimate(hull) {
     lastFixationPastTrace,
   ];
 
-  Plotly.animate('ConvexHullInstantaneousSlide-Viewing', {
+  Plotly.animate('Animation', {
     data: data,
   }, {
     transition: {

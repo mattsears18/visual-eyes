@@ -9,6 +9,14 @@ var data;
 var layout;
 
 function plotConvexHullInstantaneousSlide(viewing) {
+  pointsTrace = {};
+  polygonTrace = {};
+  centroidTrace = {};
+  centroidHistoryTrace = {};
+  centroids = [];
+  lastFixationTrace = {};
+  lastFixationPastTrace = {};
+
   data = [
     pointsTrace,
     polygonTrace,

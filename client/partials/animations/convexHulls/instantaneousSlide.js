@@ -8,7 +8,7 @@ var lastFixationPastTrace = {};
 var data;
 var layout;
 
-function plotInit(viewing) {
+function plotConvexHullInstantaneousSlide(viewing) {
   data = [
     pointsTrace,
     polygonTrace,
@@ -175,3 +175,5 @@ function plotAnimate(hull) {
     }
   })
 }
+
+export default plotConvexHullInstantaneousSlide;

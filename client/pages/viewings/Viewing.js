@@ -47,11 +47,6 @@ Template.Viewing.helpers({
   slideStepHidden: () => { return Template.instance().slideStepHidden.get(); },
   centroidPeriodHidden: () => { return Template.instance().centroidPeriodHidden.get(); },
   fixationTrailLengthHidden: () => { return Template.instance().fixationTrailLengthHidden.get(); },
-
-  analysisTypeIs: (type) => {
-    console.log(type);
-    return true;
-  },
 });
 
 Template.BreadCrumbs.helpers({

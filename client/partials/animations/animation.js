@@ -1,7 +1,11 @@
+import plotConvexHullInstantaneousSlide from './convexHulls/instantaneousSlide';
+import plotConvexHullInstantaneousStep  from './convexHulls/instantaneousStep';
+import plotConvexHullContinuousSlide    from './convexHulls/continuousSlide';
+import plotConvexHullContinuousStep     from './convexHulls/continuousStep';
+
 Template.Animation.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    centroids = [];
     viewingId = Template.currentData().viewingId;
 
     if(viewingId) {
@@ -13,35 +17,27 @@ Template.Animation.onCreated(function() {
       if(self.subscriptionsReady()) {
         viewing = Viewings.findOne(viewingId);
 
-        // if(viewing) {
-            // Load the correct animation .js file based upon the selected options
-            // if(Session.get('analysisType') == 'convexHull') {
-            //   console.log('conve hull');
-            // }
-            //   plotInit(viewing);
-        // }
+        if(viewing) {
+          if(Session.get('analysisType') == 'convexHull') {
+            if(Session.get('instantContinuous') == 'instantaneous') {
+              if(Session.get('slideStep') == 'slide') {
+                plotConvexHullInstantaneousSlide(viewing);
+              } else if(Session.get('slideStep') == 'step') {
+                plotConvexHullInstantaneousStep(viewing);
+              }
+            } else if(Session.get('instantContinuous') == 'continuous') {
+              if(Session.get('slideStep') == 'slide') {
+                plotConvexHullContinuousSlide(viewing);
+              } else if(Session.get('slideStep') == 'step') {
+                plotConvexHullContinuousStep(viewing);
+              }
+            }
+          }
+        }
       }
     }
   });
 });
-
-// Template.Animation.helpers({
-//   analysisTypeIs: (type) => {
-//     if(type == Session.get('analysisType')) {
-//       return true;
-//     }
-//   },
-//   instantContinuousIs: (val) => {
-//     if(val == Session.get('instantContinuous')) {
-//       return true;
-//     }
-//   },
-//   slideStepIs: (val) => {
-//     if(val == Session.get('slideStep')) {
-//       return true;
-//     }
-//   },
-// });
 
 Template.Animation.helpers({
   hulls: () => {

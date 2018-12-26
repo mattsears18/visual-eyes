@@ -66,10 +66,15 @@ function plotConvexHullInstantaneousSlide(viewing) {
     layout,
   );
 
-  hulls = viewing.getHulls();
-
-  hulls.forEach(function(hull) {
-    plotAnimate(hull);
+  Meteor.call('viewings.getSlideHulls', { viewingId: viewingId }, function (err, hulls) {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log(hulls);
+      hulls.forEach(function(hull) {
+        plotAnimate(hull);
+      });
+    }
   });
 }
 

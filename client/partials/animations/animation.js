@@ -40,15 +40,6 @@ Template.Animation.onCreated(function() {
 });
 
 Template.Animation.helpers({
-  hulls: () => {
-    viewing = Viewings.findOne();
-
-    hulls = [];
-    if(viewing) { hulls = viewing.getHulls(); }
-    console.log('hulls');
-    console.log(hulls);
-    return hulls;
-  },
   viewing: () => { return Viewings.findOne(); },
   image: () => {   return Images.findOne(); },
 });

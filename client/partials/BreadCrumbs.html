@@ -65,6 +65,18 @@
           {{/if}}
         {{/if}}
 
+        {{#if isActiveRoute 'participants'}}
+          <li><a href="/studies">Studies</a></li>
+          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
+          <li class="active">Participants</li>
+        {{/if}}
+        {{#if isActiveRoute 'participant'}}
+          <li><a href="/studies">Studies</a></li>
+          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
+          <li><a href="/studies/{{study._id}}/participants">Participants</a></li>
+          <li class="active">{{participant.name}}</li>
+        {{/if}}
+
         {{#if isActivePath regex='analyses'}}
           <li><a href="/studies">Studies</a></li>
           <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>

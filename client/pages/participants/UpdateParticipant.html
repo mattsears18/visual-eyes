@@ -1,0 +1,20 @@
+<template name="UpdateParticipant">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Edit Participant <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Participants" doc=participant id="updateParticipantForm"
+        type="update" class="update-participant-form"}}
+
+      <!-- {{> quickForm collection="Participants" doc=participant id="updateParticipantForm"
+        type="method" meteormethod="participants.update" class="update-participant-form"}} -->
+
+      {{#if participant.hasPermission 'destroy'}}
+        {{> quickRemoveButton collection="Participants" _id=participant._id
+          onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
+          id="destroyParticipantform" class="btn btn-danger"}}
+      {{/if}}
+    </div>
+  </div>
+</template>

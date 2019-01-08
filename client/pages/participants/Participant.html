@@ -1,0 +1,20 @@
+<template name="Participant">
+  {{#if $.Session.get 'updateParticipant'}}
+    {{> UpdateParticipant participant=participant}}
+  {{else}}
+    <h3 class="m-t-0">{{participant.name}}
+      {{#if participant.hasPermission 'update'}}
+        {{#unless $.Session.get 'updateParticipant'}}
+          &nbsp;<a href="#" class="update-participant"><i class="fa fa-pencil"></i></a>
+        {{/unless}}
+      {{/if}}
+    </h3>
+    <div>{{json participant}}</div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{{fileURL participant.image}}" class="image-full-width">
+      </div>
+    </div>
+  {{/if}}
+</template>

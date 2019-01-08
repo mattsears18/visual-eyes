@@ -52,7 +52,8 @@ Schemas.Study = new SimpleSchema({
   },
   imageIds: {
     type: Array,
-    label: 'Reference Images'
+    label: 'Reference Images',
+    optional: true,
   },
   "imageIds.$": {
     type: String,

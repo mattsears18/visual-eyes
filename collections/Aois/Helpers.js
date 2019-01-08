@@ -4,6 +4,8 @@ Aois.helpers({
   hasPermission(action) {
     check(action, String);
 
+    return true; //TODO actually make this work
+
     study = Studies.findOne(this.studyId);
 
     if(study && study.userPermissions) {

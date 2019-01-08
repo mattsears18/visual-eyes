@@ -20,12 +20,14 @@ Datafiles.collection.after.remove(function (userId, datafile) {
     { multi: true }
   );
 
-
   if(Meteor.isServer) {
     Recordings.remove({ datafileId: datafile._id });
 
     // Delete any AOIs that no longer have datafileIds
     Aois.remove({ datafileIds: {$eq: []} });
+
+    // Delete any Participants that no longer have datafileIds
+    Participants.remove({ datafileId: datafile._id });
 
     // Delete any Viewings that no longer have datafileIds
     Viewings.remove({ datafileId: datafile._id });

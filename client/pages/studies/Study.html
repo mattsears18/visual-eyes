@@ -6,12 +6,15 @@
       {{study.name}}
 
       {{#if study.hasPermission 'update'}}
-        {{#if study.allDatafilesProcessed}}
+        {{#if study.hasNoDatafiles}}
           &nbsp;<a href="#" class="update-study"><i class="fa fa-pencil"></i></a>
         {{else}}
-          &nbsp;<i class="fa fa-pencil text-muted"></i>
+          {{#if study.allDatafilesProcessed}}
+            &nbsp;<a href="#" class="update-study"><i class="fa fa-pencil"></i></a>
+          {{else}}
+            &nbsp;<i class="fa fa-pencil text-muted"></i>
+          {{/if}}
         {{/if}}
-
       {{/if}}
     </h3>
 
@@ -22,13 +25,18 @@
         {{> DatafilesList}}
       </div>
       <div class="col-md-6">
-        {{> ImagesList}}
+        {{> ParticipantsList}}
       </div>
     </div>
     <div class="row">
       <div class="col-md-6">
         {{> AoisList}}
       </div>
+      <div class="col-md-6">
+        {{> ImagesList}}
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-6">
         {{> AnalysesList}}
       </div>

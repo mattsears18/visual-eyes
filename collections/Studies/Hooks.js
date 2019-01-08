@@ -26,5 +26,6 @@ Studies.after.remove(function(userId, study) {
     Datafiles.remove({ _id: { $in: study.datafileIds }});
     Analyses.remove({ studyId: study._id });
     Aois.remove({ studyId: study._id });
+    Participants.remove({ studyId: study._id });
   }
 });

@@ -29,4 +29,13 @@ Studies.helpers({
       return false;
     }
   },
+  hasNoDatafiles() {
+    if(this.datafileIds.length) {
+      // has datafiles
+      return false;
+    } else {
+      // does not have datafiles
+      return true;
+    }
+  },
 });

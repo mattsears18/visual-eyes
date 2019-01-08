@@ -43,6 +43,14 @@ Schemas.Participant = new SimpleSchema({
       type: 'hidden',
     },
   },
+  variables: {
+    type: Array,
+    label: 'Variables',
+    optional: true,
+  },
+  'variables.$': Object,
+  'variables.$.name': String,
+  'variables.$.value': String,
 }, {tracker: Tracker});
 
 Participants.attachSchema(Schemas.Participant);

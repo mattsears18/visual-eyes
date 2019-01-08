@@ -9,7 +9,13 @@
         {{/unless}}
       {{/if}}
     </h3>
-    <div>{{json participant}}</div>
+
+    {{#if participant.variables}}
+      <h4>Variables</h4>
+      {{#each variable in participant.variables}}
+        <div><strong>{{variable.name}}:</strong> {{variable.value}}</div>
+      {{/each}}
+    {{/if}}
 
     <div class="row">
       <div class="col-md-6">

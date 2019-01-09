@@ -11,10 +11,9 @@ Analyses.before.insert(function (userId, doc) {
 
 Analyses.after.remove(function(userId, analysis) {
   if(Meteor.isServer) {
-    Viewings.remove({ analysisId: analysis.id });
+    Viewings.remove({ analysisId: analysis._id });
     Jobs.remove({
-      type: 'analyses.makeViewings',
-      'data.analysisId': analysis.id,
+      'data.analysisId': analysis._id,
     });
   }
 });

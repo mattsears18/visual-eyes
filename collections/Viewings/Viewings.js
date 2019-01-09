@@ -81,6 +81,13 @@ Schemas.Viewing = new SimpleSchema({
     },
     optional: true,
   },
+  averageSlideHullSize: {
+    type: Number,
+    optional: true,
+    autoform: {
+      type: 'hidden',
+    },
+  },
 }, {tracker: Tracker});
 
 Viewings.attachSchema(Schemas.Viewing);

@@ -57,7 +57,7 @@ aldeed:geocoder
 momentjs:moment
 lbee:moment-helpers
 
-aldeed:simple-schema
+
 dburles:mongo-collection-instances
 http@1.4.1
 practicalmeteor:mocha

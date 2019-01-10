@@ -31,7 +31,7 @@
     "popper.js": "^1.14.4",
     "select2": "^4.0",
     "select2-bootstrap-theme": "0.1.0-beta.10",
-    "simpl-schema": "^1.4.2",
+    "simpl-schema": "1.4.3",
     "stringify-object": "^3.2.1"
   }
 }

@@ -37,6 +37,18 @@
             {{millisecondsToHMSMS viewing.duration}}
           {{/if}}
         </div>
+        <div>
+          <strong>Average Convex Hull Size (Slide Method): </strong>
+          {{#if viewing.averageSlideHullSize}}
+            {{decimalToPercent viewing.averageSlideHullSize}}%
+          {{/if}}
+        </div>
+        <div>
+          <strong>Average Convex Hull Size (Step Method): </strong>
+          {{#if viewing.averageStepHullSize}}
+            {{decimalToPercent viewing.averageStepHullSize}}%
+          {{/if}}
+        </div>
       </p>
 
       <form>

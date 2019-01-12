@@ -7,7 +7,7 @@ Template.Viewing.onCreated(function() {
     var viewingId = FlowRouter.getParam('viewingId');
 
     self.subscribe('viewings.single', viewingId);
-    self.subscribe('datafiles.byViewingId', viewingId);
+    self.subscribe('participants.byViewingId', viewingId);
     self.subscribe('aois.byViewingId', viewingId);
     self.subscribe('analyses.byViewingId', viewingId);
     self.subscribe('recordings.byViewingId', viewingId);
@@ -36,8 +36,8 @@ Template.Viewing.helpers({
   viewing: () => {
     return Viewings.findOne(FlowRouter.getParam('viewingId'));
   },
-  datafile: () => {
-    return Datafiles.findOne();
+  participant: () => {
+    return Participants.findOne();
   },
   recordings: () => {
     return Recordings.find();

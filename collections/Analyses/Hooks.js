@@ -20,7 +20,7 @@ Analyses.after.remove(function(userId, analysis) {
 
 Analyses.after.insert(function(userId, analysis) {
   if(Meteor.isServer) {
-    Meteor.call('analyses.makeDatafileJobs', {
+    Meteor.call('analyses.makeParticipantJobs', {
       analysisId: analysis._id,
     });
   }

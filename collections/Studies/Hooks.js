@@ -24,6 +24,7 @@ Studies.after.update(function(userId, study, fieldNames, modifier, options) {
 Studies.after.remove(function(userId, study) {
   if(Meteor.isServer) {
     Datafiles.remove({ _id: { $in: study.datafileIds }});
+    Images.remove({ _id: { $in: study.imageIds }});
     Analyses.remove({ studyId: study._id });
     Aois.remove({ studyId: study._id });
     Participants.remove({ studyId: study._id });

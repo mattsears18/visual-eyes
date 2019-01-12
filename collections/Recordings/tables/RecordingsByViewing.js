@@ -7,10 +7,6 @@ new Tabular.Table({
   collection: Recordings,
   extraFields: [
     '_id',
-    // 'studyId',
-    // 'datafileId',
-    // 'datafile',
-    // 'aoiId',
   ],
   columns: [
     {data: 'index', title: 'Index'},
@@ -20,5 +16,4 @@ new Tabular.Table({
     {data: 'x', title: 'X'},
     {data: 'y', title: 'Y'},
   ],
-  // order: [[ 0, 'asc' ], [ 1, 'asc' ], [ 2, 'asc' ]]
 });

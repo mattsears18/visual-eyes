@@ -7,6 +7,10 @@ Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
     type: String,
     optional: true,
   },
+  participantId: {
+    type: String,
+    optional: true,
+  },
   preprocessing: {
     type: Boolean,
     optional: true,

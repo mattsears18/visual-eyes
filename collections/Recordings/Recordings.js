@@ -27,9 +27,9 @@ Recordings.allow({
 });
 
 Schemas.Recording = new SimpleSchema({
-  datafileId: {
+  participantId: {
     type: String,
-    label: 'datafileId',
+    label: 'participantId',
   },
   recordingTime: {
     type: Number,

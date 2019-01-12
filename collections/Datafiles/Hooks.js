@@ -21,8 +21,6 @@ Datafiles.collection.after.remove(function (userId, datafile) {
   );
 
   if(Meteor.isServer) {
-    Recordings.remove({ datafileId: datafile._id });
-
     // Delete any AOIs that no longer have datafileIds
     Aois.remove({ datafileIds: {$eq: []} });
 

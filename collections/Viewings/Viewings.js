@@ -30,7 +30,7 @@ Schemas.Viewing = new SimpleSchema({
   analysisId: {
     type: String,
   },
-  datafileId: {
+  participantId: {
     type: String,
   },
   participantId: {

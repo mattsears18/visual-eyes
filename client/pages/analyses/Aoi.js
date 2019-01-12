@@ -95,7 +95,7 @@ function getDurations() {
 
 function getViewingCounts() {
   viewings = Viewings.find({}, { sort: { duration: 1 }}).fetch();
-  groups = _.groupBy(viewings, 'datafileId');
+  groups = _.groupBy(viewings, 'participantId');
 
   counts = [];
   for(group in groups) { counts.push(groups[group].length); }

@@ -8,21 +8,21 @@ new Tabular.Table({
   extraFields: [
     '_id',
     'studyId',
-    'datafileId',
-    'datafile',
+    'participantId',
+    'participant',
     'aoiId',
   ],
   columns: [
     {
       data: {
-        _: 'datafileName()',
-        // order: 'datafileName()',
+        _: 'participantName()',
+        // order: 'participantName()',
       },
-      // data: 'datafileName()',
-      title: 'Data File',
+      // data: 'participantName()',
+      title: 'Participant',
       render: function(data, type, row, meta) {
         if(data) {
-          return `<a href="${row.datafile().link()}?download=true" target="_top">${data}</a>`;
+          return `<a href="/studies/${row.studyId()}/participants/${row.participantId}">${data}</a>`;
         }
       }
     },

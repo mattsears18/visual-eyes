@@ -12,11 +12,11 @@ Recordings.helpers({
     }
     return false;
   },
-  datafile() {
-    return Datafiles.findOne(this.datafileId);
+  participant() {
+    return Participants.findOne(this.participantId);
   },
-  datafileName() {
-    return this.datafile().name;
+  participantName() {
+    return this.participant().name;
   },
   study() {
     return Studies.find({_id: this.studyId});

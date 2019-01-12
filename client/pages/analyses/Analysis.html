@@ -32,13 +32,13 @@
 
     <div class="selector-set">
       <h4>
-        Datafiles {{#if datafiles.count}}({{datafiles.count}}){{/if}}
-        <button class="label label-primary toggle-all selector datafile">Show All</button>
+        Participants {{#if participants.count}}({{participants.count}}){{/if}}
+        <button class="label label-primary toggle-all selector participant">Show All</button>
       </h4>
       <h4>
         <div class="well well-sm">
-          {{#each datafile in datafiles}}
-            <button class="label selector datafile label-primary" data-id="{{datafile._id}}">{{datafile.name}}</button>
+          {{#each participant in participants}}
+            <button class="label selector participant label-primary" data-id="{{participant._id}}">{{participant.name}}</button>
           {{/each}}
         </div>
       </h4>

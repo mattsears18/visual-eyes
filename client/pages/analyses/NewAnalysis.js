@@ -4,7 +4,7 @@ Template.NewAnalysis.onCreated(function() {
     var studyId = FlowRouter.getParam('studyId');
     self.subscribe('studies.single', studyId);
     self.subscribe('aois.byStudyId', studyId);
-    self.subscribe('datafiles.byStudyId', studyId);
+    self.subscribe('participants.byStudyId', studyId);
   });
 });
 
@@ -34,11 +34,11 @@ Template.NewAnalysis.helpers({
       return { label: aoi.name, value: aoi._id, checked: 'checked' };
     });
   },
-  datafileOptions: function () {
+  participantOptions: function () {
     studyId = FlowRouter.getParam('studyId');
-    datafiles = Datafiles.find({ studyId: studyId }, { $sort: { name: 1 }}).fetch();
-    return datafiles.map(function(datafile) {
-      return { label: datafile.name, value: datafile._id, checked: 'checked' };
+    participants = Participants.find({ studyId: studyId }, { $sort: { name: 1 }}).fetch();
+    return participants.map(function(participant) {
+      return { label: participant.name, value: participant._id, checked: 'checked' };
     });
   }
 });

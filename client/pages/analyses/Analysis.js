@@ -6,7 +6,7 @@ Template.Analysis.onCreated(function() {
 
   self.selector = new ReactiveDict();
 
-  self.selector.set( 'datafileIds', [] );
+  self.selector.set( 'participantIds', [] );
   self.selector.set( 'aoiIds', [] );
   self.selector.set( 'selector', {} );
 
@@ -19,8 +19,7 @@ Template.Analysis.onCreated(function() {
 
     self.subscribe('analyses.single', analysisId);
     self.subscribe('viewings.byAnalysisId', analysisId);
-    self.subscribe('datafiles.byAnalysisId', analysisId);
-    self.subscribe('participants.byStudyId', studyId);
+    self.subscribe('participants.byAnalysisId', analysisId);
     self.subscribe('aois.byAnalysisId', analysisId);
     self.subscribe('jobs.analyses.makeViewings.byAnalysisId', analysisId);
 
@@ -40,12 +39,12 @@ Template.Analysis.helpers({
   },
   viewings: () => {
     template = Template.instance();
-    datafileIds = template.selector.get('datafileIds');
+    participantIds = template.selector.get('participantIds');
     aoiIds = template.selector.get('aoiIds');
 
     selector = {
       analysisId: FlowRouter.getParam('analysisId'),
-      datafileId: { $in: datafileIds },
+      participantId: { $in: participantIds },
       aoiId:      { $in: aoiIds },
     };
 
@@ -59,11 +58,11 @@ Template.Analysis.helpers({
   aois: () => {
     return Aois.find();
   },
-  datafiles: () => {
-    return Datafiles.find();
+  participants: () => {
+    return Participants.find();
   },
-  showDatafileIds: function() {
-    return Template.instance().selector.get('datafileIds');
+  showParticipantIds: function() {
+    return Template.instance().selector.get('participantIds');
   },
   showAoiIds: function() {
     return Template.instance().selector.get('aoiIds');
@@ -134,7 +133,7 @@ Template.Analysis.helpers({
     return {
       title: 'Viewing Counts',
       xaxis: {
-        title: '# of Viewings per Datafile per Area of Interest',
+        title: '# of Viewings per Participant per Area of Interest',
         dtick: 1,
       },
       yaxis: {
@@ -199,12 +198,12 @@ function getViewingsJobsProgress() {
 }
 
 function updateSelectors(template) {
-  $datafiles = $('.selector.datafile.label-primary');
-  datafileIds = $datafiles.map(function() {
+  $participants = $('.selector.participant.label-primary');
+  participantIds = $participants.map(function() {
     return $(this).data('id');
   }).toArray();
 
-  template.selector.set( 'datafileIds', datafileIds );
+  template.selector.set( 'participantIds', participantIds );
 
   $aois = $('.selector.aoi.label-primary');
   aoiIds = $aois.map(function() {
@@ -231,7 +230,7 @@ function getViewingCounts() {
     { user_id: 301, alert_id: 200, deal_id: 277470 } ];
 
   var groups = _.groupBy(viewings, function(viewing){
-    return viewing.datafileId + '#' + viewing.aoiId;
+    return viewing.participantId + '#' + viewing.aoiId;
   });
 
   var counts = _.map(groups, function(group){

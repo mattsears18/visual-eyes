@@ -8,26 +8,13 @@ new Tabular.Table({
   extraFields: [
     '_id',
     'studyId',
-    'datafileId',
     'participantId',
-    // 'datafile',
     'aoiId',
     // 'aoi',
     'studyId',
     'analysisId',
   ],
   columns: [
-    {
-      data: {
-        _: 'datafileName()',
-      },
-      title: 'Data File',
-      render: function(data, type, row, meta) {
-        if(data) {
-          return `<a href="${row.datafile().link()}?download=true" target="_top">${data}</a>`;
-        }
-      }
-    },
     {
       data: {
         _: 'participantName()',

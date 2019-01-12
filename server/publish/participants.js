@@ -15,3 +15,10 @@ Meteor.publish('participants.byStudyId', (studyId) => {
   return Participants.find({ studyId: studyId },
     { sort: { name: 1 }});
 });
+
+Meteor.publish('participants.byAnalysisId', function(analysisId) {
+  check(analysisId, String);
+  analysis = Analyses.findOne({_id: analysisId});
+  return Participants.find({ _id: { $in: analysis.participantIds }},
+    { sort: { name: 1 }}).cursor;
+});

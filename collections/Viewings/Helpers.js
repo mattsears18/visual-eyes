@@ -20,6 +20,14 @@ Viewings.helpers({
       return this.datafile().name;
     }
   },
+  participant() {
+    return Participants.findOne(this.participantId);
+  },
+  participantName() {
+    if(this.participant()) {
+      return this.participant().name;
+    }
+  },
   aoi() {
     return Aois.findOne(this.aoiId);
   },

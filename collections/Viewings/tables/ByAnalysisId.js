@@ -9,6 +9,7 @@ new Tabular.Table({
     '_id',
     'studyId',
     'datafileId',
+    'participantId',
     // 'datafile',
     'aoiId',
     // 'aoi',
@@ -24,6 +25,17 @@ new Tabular.Table({
       render: function(data, type, row, meta) {
         if(data) {
           return `<a href="${row.datafile().link()}?download=true" target="_top">${data}</a>`;
+        }
+      }
+    },
+    {
+      data: {
+        _: 'participantName()',
+      },
+      title: 'Participant',
+      render: function(data, type, row, meta) {
+        if(data) {
+          return `<a href="/studies/${row.studyId()}/participants/${row.participantId}">${data}</a>`;
         }
       }
     },

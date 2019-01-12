@@ -20,6 +20,7 @@ Template.Analysis.onCreated(function() {
     self.subscribe('analyses.single', analysisId);
     self.subscribe('viewings.byAnalysisId', analysisId);
     self.subscribe('datafiles.byAnalysisId', analysisId);
+    self.subscribe('participants.byStudyId', studyId);
     self.subscribe('aois.byAnalysisId', analysisId);
     self.subscribe('jobs.analyses.makeViewings.byAnalysisId', analysisId);
 

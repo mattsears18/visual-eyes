@@ -33,6 +33,9 @@ Schemas.Viewing = new SimpleSchema({
   datafileId: {
     type: String,
   },
+  participantId: {
+    type: String,
+  },
   aoiId: {
     type: String,
   },

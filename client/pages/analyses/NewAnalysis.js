@@ -44,7 +44,7 @@ Template.NewAnalysis.helpers({
     studyId = FlowRouter.getParam('studyId');
     participants = Participants.find({ studyId: studyId }, { $sort: { name: 1 }}).fetch();
     return participants.map(function(participant) {
-      return { label: participant.name, value: participant._id, defaultValue: true };
+      return { label: participant.name, value: participant._id };
     });
   },
   participantIds: function () {

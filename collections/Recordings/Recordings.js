@@ -48,11 +48,11 @@ Schemas.Recording = new SimpleSchema({
     label: 'Index',
   },
   x: {
-    type: String,
+    type: Number,
     label: 'X',
   },
   y: {
-    type: String,
+    type: Number,
     label: 'Y',
   },
   aoiName: {

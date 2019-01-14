@@ -40,7 +40,8 @@
         <div>
           <strong>Average Convex Hull Size (Slide Method): </strong>
           {{#if viewing.averageSlideHullSize}}
-            {{decimalToPercent viewing.averageSlideHullSize}}%
+            <!-- {{decimalToPercent viewing.averageSlideHullSize}}% -->
+            {{formatNumber viewing.averageSlideHullSize}}
           {{/if}}
         </div>
         <div>

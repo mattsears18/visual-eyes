@@ -5,6 +5,14 @@ Schemas.Image = Object.assign({}, FilesCollection.schema, {
     type: String,
     optional: true,
   },
+  width: {
+    type: Number,
+    optional: true,
+  },
+  height: {
+    type: Number,
+    optional: true,
+  }
 });
 
 Images = new FilesCollection({

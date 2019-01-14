@@ -1,55 +1,53 @@
 import SimpleSchema from 'simpl-schema';
 
-Schemas.Image = Object.assign({}, FilesCollection.schema, {
+SimpleSchema.extendOptions(['autoform']);
+
+Images = new Mongo.Collection('images');
+
+Images.allow({
+  insert: function(userId, doc) {
+    return true;
+  },
+  update: function(userId, doc) {
+    return true;
+  },
+  remove: function(userId, doc) {
+    return true;
+  },
+});
+
+Schemas.Image = new SimpleSchema({
+  imagefileId: {
+    type: String,
+    label: 'Reference Image File',
+    autoform: {
+      type: 'fileUpload',
+      collection: 'Imagefiles'
+    },
+  },
+  name: {
+    type: String,
+    label: 'Name',
+  },
   studyId: {
     type: String,
+    label: 'Study',
+    autoform: {
+      value: function() {
+        return FlowRouter.getParam('studyId');
+      },
+      type: 'hidden'
+    },
     optional: true,
   },
   width: {
     type: Number,
-    optional: true,
   },
   height: {
     type: Number,
-    optional: true,
   },
-  fileWidth: {
-    type: Number,
-    optional: true,
-    autoform: {
-      type: 'hidden',
-    },
-  },
-  fileHeight: {
-    type: Number,
-    optional: true,
-    autoform: {
-      type: 'hidden',
-    },
-  },
-});
+}, {tracker: Tracker});
 
-Images = new FilesCollection({
-  collectionName: 'Images',
-  schema: Schemas.Image,
-  allowClientCode: true, // Required to let you remove uploaded file
-  storagePath: '/data/Meteor/uploads/images', //persistent testing file storage
-});
-
-Images.collection.attachSchema(new SimpleSchema(Schemas.Image));
-
-// if(Meteor.isServer) {
-//   Images.allow({
-//     insert: function(userId, doc) {
-//       return true;
-//     },
-//     update: function(userId, doc) {
-//       return true;
-//     },
-//     remove: function(userId, doc) {
-//       return true;
-//     },
-//   });
-// }
+Images.attachSchema(Schemas.Image);
 
 export default Images;

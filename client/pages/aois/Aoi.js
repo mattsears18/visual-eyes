@@ -5,10 +5,14 @@ Template.Aoi.onCreated(function() {
     self.subscribe('studies.single', studyId);
 
     var aoiId = FlowRouter.getParam('aoiId');
-    aoi = Aois.findOne(aoiId);
 
     self.subscribe('aois.single', aoiId);
     self.subscribe('images.byAoiId', aoiId);
+
+    image = Images.findOne({});
+    if(image) {
+      self.subscribe('imagefiles.byImageId', image._id);
+    }
   });
 });
 

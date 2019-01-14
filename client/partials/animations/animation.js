@@ -12,6 +12,7 @@ Template.Animation.onCreated(function() {
       self.subscribe('viewings.single', viewingId);
       self.subscribe('recordings.byViewingId', viewingId);
       self.subscribe('images.byViewingId', viewingId);
+      self.subscribe('imagefiles.byViewingId', viewingId);
       self.subscribe('aois.byViewingId', viewingId);
 
       if(self.subscriptionsReady()) {

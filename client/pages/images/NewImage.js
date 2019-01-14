@@ -1,7 +1,7 @@
 Template.NewImage.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    self.subscribe('images.all');
+    self.subscribe('imagefiles.all');
   });
 });
 
@@ -13,8 +13,12 @@ Template.NewImage.events({
 
 AutoForm.hooks({
   insertImageForm: {
-    onSuccess: function(formType, imageId) {
-      FlowRouter.go('/images/' + imageId);
+    onSuccess: function(formType, result) {
+      studyId = FlowRouter.getParam('studyId');
+      FlowRouter.go('/studies/' + studyId + '/images/' + result);
+    },
+    onError: function(formType, error) {
+      console.log(error);
     },
   }
 });

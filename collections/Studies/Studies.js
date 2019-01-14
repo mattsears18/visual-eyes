@@ -52,26 +52,26 @@ Schemas.Study = new SimpleSchema({
   },
   defaultImageWidth: {
     type: Number,
-    label: 'Reference Image Width (User Defined)',
+    label: 'Default Reference Image Width (User Defined)',
     defaultValue: 960,
   },
   defaultImageHeight: {
     type: Number,
-    label: 'Reference Image Height (User Defined)',
+    label: 'Default Reference Image Height (User Defined)',
     defaultValue: 720,
   },
-  imageIds: {
-    type: Array,
-    label: 'Reference Images',
-    optional: true,
-  },
-  "imageIds.$": {
-    type: String,
-    autoform: {
-      type: 'fileUpload',
-      collection: 'Images'
-    }
-  },
+  // imageIds: {
+  //   type: Array,
+  //   label: 'Reference Images',
+  //   optional: true,
+  // },
+  // "imageIds.$": {
+  //   type: String,
+  //   autoform: {
+  //     type: 'fileUpload',
+  //     collection: 'Images'
+  //   }
+  // },
   removeDuplicateIndices: {
     type: Boolean,
     label: 'Remove Duplicate Indices',

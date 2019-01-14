@@ -3,7 +3,6 @@ Template.NewStudy.onCreated(function() {
   self.autorun(function() {
     // self.subscribe('datafiles.all');
     self.subscribe('datafiles.all');
-    self.subscribe('images.all');
   });
 });
 

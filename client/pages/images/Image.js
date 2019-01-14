@@ -5,16 +5,17 @@ Template.Image.onCreated(function() {
     self.subscribe('studies.single', studyId);
 
     var imageId = FlowRouter.getParam('imageId');
-    image = Images.findOne(imageId);
-
     self.subscribe('images.single', imageId);
-    self.subscribe('images.byImageId', imageId);
+    self.subscribe('imagefiles.byImageId', imageId);
   });
 });
 
 Template.Image.helpers({
   image: () => {
-    return Images.collection.findOne();
+    return Images.findOne();
+  },
+  imagefile: () => {
+    return Imagefiles.collection.findOne({});
   },
   study: () => {
     return Studies.findOne();
@@ -23,7 +24,7 @@ Template.Image.helpers({
 
 Template.BreadCrumbs.helpers({
   image: () => {
-    return Images.collection.findOne();
+    return Images.findOne();
   },
 });
 

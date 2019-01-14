@@ -1,21 +1,21 @@
 <template name="ImagesList">
   <h4>Reference Images
-    <!-- {{#unless $.Session.get 'newImage'}} -->
-      {{#if images.count}}
-        ({{images.count}})
-      {{/if}}
-    <!-- {{/unless}} -->
+    {{#if images.count}}
+      ({{images.count}})
+    {{/if}}
 
-    <!-- {{#if study.hasPermission 'update'}}
-      {{#if $.Session.get 'newImage'}}
-        {{> NewImage}}
-      {{/if}}
+    {{#if study.hasPermission 'update'}}
       {{#unless $.Session.get 'newImage'}}
         &nbsp;<a class="new-image"><i class="fa fa-plus"></i></a>
       {{/unless}}
-    {{/if}} -->
+    {{/if}}
   </h4>
-  <!-- {{#unless $.Session.get 'newImage'}} -->
+
+  {{#if $.Session.get 'newImage'}}
+    {{> NewImage}}
+  {{/if}}
+
+  <div>
     <ul>
       {{#each image in images}}
         <li>
@@ -23,5 +23,5 @@
         </li>
       {{/each}}
     </ul>
-  <!-- {{/unless}} -->
+  </div>
 </template>

@@ -1,3 +1,10 @@
+Template.UpdateImage.onCreated(function() {
+  var self = this;
+  self.autorun(function() {
+    self.subscribe('imagefiles.all');
+  });
+});
+
 Template.UpdateImage.events({
   'click .fa-close': function() {
     Session.set('updateImage', false);

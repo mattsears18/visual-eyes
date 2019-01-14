@@ -28,24 +28,25 @@ function plotConvexHullInstantaneousSlide(viewing) {
 
   layout = {};
 
-  if(viewing.aoi() && viewing.aoi().image()) {
-    image = viewing.aoi().image();
+  if(viewing.aoi() && viewing.aoi().image() && viewing.aoi().image().imagefile()) {
+    imagefile = viewing.aoi().image().imagefile();
+
     layout = {
       xaxis: {
         rangemode: 'tozero',
-        range: [0, image.fileWidth],
+        range: [0, imagefile.fileWidth],
         autorange: false,
       },
       yaxis: {
         rangemode: 'tozero',
-        range: [0, image.fileHeight],
+        range: [0, imagefile.fileHeight],
         autorange: false,
       },
-      height: image.fileHeight/2,
-      width: image.fileWidth/2,
+      height: imagefile.fileHeight/2,
+      width: imagefile.fileWidth/2,
       images: [
         {
-          source: Images.link(image),
+          source: Imagefiles.link(imagefile),
           xref: 'paper',
           yref: 'paper',
           x: 0,
@@ -70,7 +71,7 @@ function plotConvexHullInstantaneousSlide(viewing) {
     if(err) {
       console.log(err);
     } else {
-      console.log(hulls);
+      // console.log(hulls);
       hulls.forEach(function(hull) {
         plotAnimate(hull);
       });

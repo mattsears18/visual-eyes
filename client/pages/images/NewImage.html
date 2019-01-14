@@ -1,15 +1,11 @@
 <template name="NewImage">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">New Image <i class="fa fa-close pull-right"></i></h3>
+      <h3 class="panel-title">New Reference Image <i class="fa fa-close pull-right"></i></h3>
     </div>
     <div class="panel-body">
-      <!-- {{> quickForm collection="Images" id="insertImageForm" type="insert"
-        class="insert-image-form"}} -->
-
-        {{#autoForm collection="Images" id="insertBookForm" type="insert"}}
-          {{> afQuickField name="studyId"}}
-        {{/autoForm}}
+      {{> quickForm collection="Images" id="insertImageForm" type="insert"
+        class="insert-image-form"}}
     </div>
   </div>
 </template>

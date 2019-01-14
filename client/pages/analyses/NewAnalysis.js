@@ -31,14 +31,26 @@ Template.NewAnalysis.helpers({
     studyId = FlowRouter.getParam('studyId');
     aois = Aois.find({ studyId: studyId }, { $sort: { name: 1 }}).fetch();
     return aois.map(function(aoi) {
-      return { label: aoi.name, value: aoi._id, checked: 'checked' };
+      return { label: aoi.name, value: aoi._id };
     });
+  },
+  aoiIdValues: function () {
+    studyId = FlowRouter.getParam('studyId');
+    aois = Aois.find({ studyId: studyId }).fetch();
+    ids = aois.map(aoi => aoi._id);
+    return ids.join(',');
   },
   participantOptions: function () {
     studyId = FlowRouter.getParam('studyId');
     participants = Participants.find({ studyId: studyId }, { $sort: { name: 1 }}).fetch();
     return participants.map(function(participant) {
-      return { label: participant.name, value: participant._id, checked: 'checked' };
+      return { label: participant.name, value: participant._id, defaultValue: true };
     });
-  }
+  },
+  participantIds: function () {
+    studyId = FlowRouter.getParam('studyId');
+    participants = Participants.find({ studyId: studyId }).fetch();
+    ids = participants.map(participant => participant._id);
+    return ids.join(',');
+  },
 });

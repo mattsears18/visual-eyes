@@ -41,21 +41,6 @@ Schemas.Analysis = new SimpleSchema({
     },
     optional: true,
   },
-  // analysisTypes: {
-  //   type: Array,
-  //   label: 'Analysis Types',
-  //   autoform: {
-  //     type: 'select-checkbox',
-  //     options: {
-  //       instantaneousConvexHull: "Instantaneous Convex Hull Areas",
-  //       cummulativeConvexHull: "Cummulative Convex Hull Area",
-  //       instantaneousScanpathLength: "Instantaneous Scanpath Length",
-  //       cummulativeScanpathLength: "Cummulative Scanpath Length",
-  //       scanpathVelocity: "Scanpath Velocity",
-  //     },
-  //   }
-  // },
-  // 'analysisTypes.$': String,
   period: {
     type: Number,
     label: 'Period (ms)',
@@ -76,6 +61,14 @@ Schemas.Analysis = new SimpleSchema({
     defaultValue: function() {
       return '10000';
     },
+  },
+  ignoreOutsideImage: {
+    type: Boolean,
+    label: 'Ignore Fixations Outside of Reference Image Areas',
+    defaultValue: true,
+    autoform: {
+      type: 'boolean-checkbox',
+    }
   },
   participantIds: {
     type: Array,

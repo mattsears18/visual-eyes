@@ -50,6 +50,22 @@ Schemas.Study = new SimpleSchema({
       collection: 'Datafiles'
     }
   },
+  // defaultImageWidth: {
+  //   type: Number,
+  //   label: 'Default Reference Image Width',
+  //   defaultValue: function() {
+  //     return '960';
+  //   },
+  //   optional: true,
+  // },
+  // defaultImageHeight: {
+  //   type: Number,
+  //   label: 'Default Reference Image Height',
+  //   defaultValue: function() {
+  //     return '720';
+  //   },
+  //   optional: true,
+  // },
   imageIds: {
     type: Array,
     label: 'Reference Images',

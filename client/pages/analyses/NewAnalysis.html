@@ -11,9 +11,10 @@
         {{> afQuickField name="period"}}
         {{> afQuickField name="viewingGap"}}
         {{> afQuickField name="minViewingTime"}}
+        {{> afQuickField name="ignoreOutsideImage"}}
         {{> afQuickField name="studyId"}}
-        {{> afQuickField name="participantIds" options=participantOptions}}
-        {{> afQuickField name="aoiIds" options=aoiOptions}}
+        {{> afQuickField name="participantIds" options=participantOptions value=participantIds}}
+        {{> afQuickField name="aoiIds" options=aoiOptions value=aoiIdValues}}
         <div class="form-group">
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>

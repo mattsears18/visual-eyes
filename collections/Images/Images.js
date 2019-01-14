@@ -12,7 +12,21 @@ Schemas.Image = Object.assign({}, FilesCollection.schema, {
   height: {
     type: Number,
     optional: true,
-  }
+  },
+  fileWidth: {
+    type: Number,
+    optional: true,
+    autoform: {
+      type: 'hidden',
+    },
+  },
+  fileHeight: {
+    type: Number,
+    optional: true,
+    autoform: {
+      type: 'hidden',
+    },
+  },
 });
 
 Images = new FilesCollection({
@@ -23,5 +37,19 @@ Images = new FilesCollection({
 });
 
 Images.collection.attachSchema(new SimpleSchema(Schemas.Image));
+
+// if(Meteor.isServer) {
+//   Images.allow({
+//     insert: function(userId, doc) {
+//       return true;
+//     },
+//     update: function(userId, doc) {
+//       return true;
+//     },
+//     remove: function(userId, doc) {
+//       return true;
+//     },
+//   });
+// }
 
 export default Images;

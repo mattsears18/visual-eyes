@@ -3,6 +3,13 @@ var sizeOf = require('image-size');
 
 Images.collection.before.insert(function(userId, doc) {
   var dims = sizeOf(doc.path);
-  doc.width = dims.width;
-  doc.height = dims.height;
+  doc.fileWidth = dims.width;
+  doc.fileHeight = dims.height;
+});
+
+
+Images.collection.after.remove(function(userId, image) {
+  if(Meteor.isServer) {
+    Aois.update({ imageId: image._id }, { $unset: { imageId: "" }});
+  }
 });

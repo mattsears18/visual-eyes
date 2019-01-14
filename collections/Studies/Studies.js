@@ -52,12 +52,12 @@ Schemas.Study = new SimpleSchema({
   },
   defaultImageWidth: {
     type: Number,
-    label: 'Default Reference Image Width',
+    label: 'Reference Image Width (User Defined)',
     defaultValue: 960,
   },
   defaultImageHeight: {
     type: Number,
-    label: 'Default Reference Image Height',
+    label: 'Reference Image Height (User Defined)',
     defaultValue: 720,
   },
   imageIds: {

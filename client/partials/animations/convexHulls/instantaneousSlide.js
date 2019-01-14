@@ -33,16 +33,16 @@ function plotConvexHullInstantaneousSlide(viewing) {
     layout = {
       xaxis: {
         rangemode: 'tozero',
-        range: [0, image.width],
+        range: [0, image.fileWidth],
         autorange: false,
       },
       yaxis: {
         rangemode: 'tozero',
-        range: [0, image.height],
+        range: [0, image.fileHeight],
         autorange: false,
       },
-      height: image.height/2,
-      width: image.width/2,
+      height: image.fileHeight/2,
+      width: image.fileWidth/2,
       images: [
         {
           source: Images.link(image),

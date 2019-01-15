@@ -20,3 +20,8 @@ Meteor.publish('viewings.byAnalysisIdAoiId', (analysisId, aoiId) => {
   check(aoiId, String);
   return Viewings.find({ analysisId: analysisId, aoiId: aoiId });
 });
+
+Meteor.publish('viewings.byParticipantId', (participantId) => {
+  check(participantId, String);
+  return Viewings.find({ participantId: participantId });
+});

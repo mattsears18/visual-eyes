@@ -55,6 +55,15 @@ new Tabular.Table({
         }
       },
     },
+    {
+      data: 'averageSlideHullSize',
+      title: 'Average Convex Hull Size (Slide)',
+      render: function(data, type, row, meta) {
+        if(data) {
+          return `<a href="/studies/${row.studyId()}/viewings/${row._id}">${helpers.formatNumber(data)}</a>`;
+        }
+      },
+    },
   ],
   // order: [[ 0, 'asc' ], [ 1, 'asc' ], [ 2, 'asc' ]]
 });

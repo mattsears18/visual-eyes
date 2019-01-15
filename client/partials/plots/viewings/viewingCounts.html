@@ -1,0 +1,75 @@
+<template name="PlotViewingCounts">
+  <div class="col-md-6">
+    <div class="well">
+      {{> PlotHistogram data=viewingCountsData layout=viewingCountsLayout name="Viewing-Counts"}}
+      <table class="m-t-20">
+        <tbody>
+          <tr>
+            <th>n  (Participants * AOIs):&nbsp;</th>
+            <td>
+              {{#if viewingCounts}}
+                {{formatNumber viewingCounts.length}}
+              {{/if}}
+            </td>
+          </tr>
+          <tr>
+            <th>Minimum:&nbsp;</th>
+            <td>
+              {{#if viewingCountsMin}}
+                {{formatNumber viewingCountsMin}}
+              {{/if}}
+            </td>
+          </tr>
+          <tr>
+            <th>Maximum:&nbsp;</th>
+            <td>
+              {{#if viewingCountsMax}}
+                {{formatNumber viewingCountsMax}}
+              {{/if}}
+            </td>
+          </tr>
+          <tr>
+            <th>Range:&nbsp;</th>
+            <td>
+              {{#if viewingCountsRange}}
+                {{formatNumber viewingCountsRange}}
+              {{/if}}
+            </td>
+          </tr>
+          <tr>
+            <th>Mean:&nbsp;</th>
+            <td>
+              {{#if viewingCountsMean}}
+                {{formatNumber viewingCountsMean}}
+              {{/if}}
+            </td>
+          </tr>
+          <tr>
+            <th>Median:&nbsp;</th>
+            <td>
+              {{#if viewingCountsMedian}}
+                {{formatNumber viewingCountsMedian}}
+              {{/if}}
+            </td>
+          </tr>
+          <tr>
+            <th>Skewness:&nbsp;</th>
+            <td>
+              {{#if viewingCountsSkewness}}
+                {{formatNumber viewingCountsSkewness}}
+              {{/if}}
+            </td>
+          </tr>
+          <tr>
+            <th>Kurtosis:&nbsp;</th>
+            <td>
+              {{#if viewingCountsKurtosis}}
+                {{formatNumber viewingCountsKurtosis}}
+              {{/if}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>

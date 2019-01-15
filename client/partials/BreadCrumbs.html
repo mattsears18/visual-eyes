@@ -89,7 +89,33 @@
           <li class="active">{{participant.name}}</li>
         {{/if}}
 
-        {{#if isActivePath regex='analyses'}}
+        {{#if isActiveRoute regex='analyses'}}
+          <li><a href="/studies">Studies</a></li>
+          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
+          <li class="active">Analyses</li>
+        {{/if}}
+        {{#if isActiveRoute 'analysis'}}
+          <li><a href="/studies">Studies</a></li>
+          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
+          <li><a href="/studies/{{study._id}}/analyses">Analyses</a></li>
+          <li class="active">{{analysis.name}}</li>
+        {{/if}}
+        {{#if isActiveRoute 'analysisAoi'}}
+          <li><a href="/studies">Studies</a></li>
+          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
+          <li><a href="/studies/{{study._id}}/analyses">Analyses</a></li>
+          <li><a href="/studies/{{study._id}}/analyses/{{analysis._id}}">{{analysis.name}}</a></li>
+          <li class="active">{{aoi.name}}</li>
+        {{/if}}
+        {{#if isActiveRoute 'analysisParticipant'}}
+          <li><a href="/studies">Studies</a></li>
+          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
+          <li><a href="/studies/{{study._id}}/analyses">Analyses</a></li>
+          <li><a href="/studies/{{study._id}}/analyses/{{analysis._id}}">{{analysis.name}}</a></li>
+          <li class="active">{{participant.name}}</li>
+        {{/if}}
+
+        <!-- {{#if isActivePath regex='analyses'}}
           <li><a href="/studies">Studies</a></li>
           <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
           {{#if isActiveRoute 'analyses'}}
@@ -106,9 +132,9 @@
               {{/if}}
             {{/if}}
           {{/if}}
-        {{/if}}
+        {{/if}} -->
 
-        {{#if isActiveRoute 'varaibles'}}
+        {{#if isActiveRoute 'variables'}}
           <li><a href="/studies">Studies</a></li>
           <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
           <li class="active">Variables</li>

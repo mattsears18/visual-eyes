@@ -5,10 +5,7 @@ Template.Participant.onCreated(function() {
     self.subscribe('studies.single', studyId);
 
     var participantId = FlowRouter.getParam('participantId');
-    participant = Participants.findOne(participantId);
-
     self.subscribe('participants.single', participantId);
-    self.subscribe('images.byParticipantId', participantId);
   });
 });
 

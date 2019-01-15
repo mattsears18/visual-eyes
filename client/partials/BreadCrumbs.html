@@ -108,6 +108,18 @@
           {{/if}}
         {{/if}}
 
+        {{#if isActiveRoute 'varaibles'}}
+          <li><a href="/studies">Studies</a></li>
+          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
+          <li class="active">Variables</li>
+        {{/if}}
+        {{#if isActiveRoute 'variable'}}
+          <li><a href="/studies">Studies</a></li>
+          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
+          <li><a href="/studies/{{study._id}}/variables">Variables</a></li>
+          <li class="active">{{variable.name}}</li>
+        {{/if}}
+
         {{#if isActivePath regex='viewings'}}
           <li><a href="/studies">Studies</a></li>
           <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>

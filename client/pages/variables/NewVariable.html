@@ -1,0 +1,11 @@
+<template name="NewVariable">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">New Variable <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Variables" id="insertVariableForm" type="insert"
+        class="insert-variable-form"}}
+    </div>
+  </div>
+</template>

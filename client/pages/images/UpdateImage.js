@@ -20,17 +20,13 @@ AutoForm.hooks({
 });
 
 Template.UpdateImage.helpers({
-  deleteOnSuccess: function() {
-    return function() {
-      FlowRouter.go('/images');
-    }
-  },
   deleteBeforeRemove: function() {
     //TODO replace this alert with a modal
     return function (collection, id) {
       var doc = collection.findOne(id);
       if (confirm('Really delete "' + doc.name + '"?')) {
-        FlowRouter.go('/' + collection._name);
+        var studyId = FlowRouter.getParam('studyId');
+        FlowRouter.go('/studies/' + studyId);
         this.remove();
       }
     };

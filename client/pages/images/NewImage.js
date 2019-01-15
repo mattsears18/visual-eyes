@@ -14,8 +14,9 @@ Template.NewImage.events({
 AutoForm.hooks({
   insertImageForm: {
     onSuccess: function(formType, result) {
-      studyId = FlowRouter.getParam('studyId');
-      FlowRouter.go('/studies/' + studyId + '/images/' + result);
+      // studyId = FlowRouter.getParam('studyId');
+      // FlowRouter.go('/studies/' + studyId + '/images/' + result);
+      Session.set('newImage', false);
     },
     onError: function(formType, error) {
       console.log(error);

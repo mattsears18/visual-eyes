@@ -1,0 +1,27 @@
+<template name="VariablesList">
+  <h4>Variables
+    {{#if variables.count}}
+      ({{variables.count}})
+    {{/if}}
+
+    {{#if study.hasPermission 'update'}}
+      {{#unless $.Session.get 'newVariable'}}
+        &nbsp;<a class="new-variable"><i class="fa fa-plus"></i></a>
+      {{/unless}}
+    {{/if}}
+  </h4>
+
+  {{#if $.Session.get 'newVariable'}}
+    {{> NewVariable}}
+  {{/if}}
+
+  <div>
+    <ul>
+      {{#each variable in variables}}
+        <li>
+          <a href="/studies/{{study._id}}/variables/{{variable._id}}" target="_top">{{variable.name}}</a>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</template>

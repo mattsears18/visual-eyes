@@ -1,0 +1,20 @@
+<template name="UpdateVariable">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Edit Variable <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Variables" doc=variable id="updateVariableForm"
+        type="update" class="update-variable-form"}}
+
+      <!-- {{> quickForm collection="Variables" doc=variable id="updateVariableForm"
+        type="method" meteormethod="variables.update" class="update-variable-form"}} -->
+
+      {{#if variable.hasPermission 'destroy'}}
+        {{> quickRemoveButton collection="Variables" _id=variable._id
+          onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
+          id="destroyVariableform" class="btn btn-danger"}}
+      {{/if}}
+    </div>
+  </div>
+</template>

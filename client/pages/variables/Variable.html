@@ -1,0 +1,21 @@
+<template name="Variable">
+  {{#if $.Session.get 'updateVariable'}}
+    {{> UpdateVariable variable=variable}}
+  {{else}}
+    <h3 class="m-t-0">{{variable.name}}
+      {{#if variable.hasPermission 'update'}}
+        {{#unless $.Session.get 'updateVariable'}}
+          &nbsp;<a href="#" class="update-variable"><i class="fa fa-pencil"></i></a>
+        {{/unless}}
+      {{/if}}
+    </h3>
+
+    <div>{{json variable}}</div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{{fileURL variable.image.imagefile}}" class="image-full-width">
+      </div>
+    </div>
+  {{/if}}
+</template>

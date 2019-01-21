@@ -70,8 +70,20 @@
 
     {{#if viewings.count}}
       <div class="row">
-        {{> PlotViewingDurations viewings=viewings}}
-        {{> PlotViewingCounts viewings=viewings}}
+        <div class="col-md-6">
+          {{> PlotViewingDurations viewings=viewings}}
+        </div>
+        <div class="col-md-6">
+          {{> PlotViewingCounts viewings=viewings}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          {{> PlotViewingAverageSlideHullSizes viewings=viewings}}
+        </div>
+        <!-- <div class="col-md-6">
+          {{> PlotViewingAverageStepHullSizes viewings=viewings}}
+        </div> -->
       </div>
     {{/if}}
 

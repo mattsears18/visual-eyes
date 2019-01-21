@@ -1,29 +1,7 @@
-import { jStat } from 'jStat';
-
 Template.PlotViewingCounts.helpers({
-  viewingCounts: () => {          return getViewingCounts(); },
-  viewingCountsMin: () => {       return Math.min(...getViewingCounts()); },
-  viewingCountsMax: () => {       return Math.max(...getViewingCounts()); },
-  viewingCountsRange: () => {     return jStat.range(getViewingCounts()); },
-  viewingCountsMean: () => {      return jStat.mean(getViewingCounts()); },
-  viewingCountsMedian: () => {    return jStat.median(getViewingCounts()); },
-  viewingCountsSkewness: () => {  return jStat.skewness(getViewingCounts()); },
-  viewingCountsKurtosis: () => {  return jStat.kurtosis(getViewingCounts()); },
+  x: () => {               return getX(); },
 
-  viewingCountsData: () => {
-    return [{
-      x: getViewingCounts(),
-      type: 'histogram',
-      autobinx: false,
-      xbins: {
-        start: 0.5,
-        end: Math.max(...getViewingCounts()),
-        size: 1
-      },
-    }];
-  },
-
-  viewingCountsLayout: () => {
+  layout: () => {
     return {
       title: 'Viewing Counts',
       xaxis: {
@@ -44,13 +22,8 @@ Template.PlotViewingCounts.helpers({
   },
 });
 
-function getViewingCounts() {
+function getX() {
   viewings = Template.currentData().viewings.fetch();
-
-  var list = [ { user_id: 301, alert_id: 199, deal_id: 32243 },
-    { user_id: 301, alert_id: 200, deal_id: 32243 },
-    { user_id: 301, alert_id: 200, deal_id: 107293 },
-    { user_id: 301, alert_id: 200, deal_id: 277470 } ];
 
   var groups = _.groupBy(viewings, function(viewing){
     return viewing.participantId + '#' + viewing.aoiId;

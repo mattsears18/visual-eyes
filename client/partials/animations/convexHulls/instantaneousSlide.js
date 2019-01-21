@@ -71,7 +71,6 @@ function plotConvexHullInstantaneousSlide(viewing) {
     if(err) {
       console.log(err);
     } else {
-  
       hulls.forEach(function(hull) {
         plotAnimate(hull);
       });

@@ -1,0 +1,72 @@
+<template name="PlotStats">
+  <table class="m-t-20">
+    <tbody>
+      <tr>
+        <tr>
+          <th>n:&nbsp;</th>
+          <td>
+            {{#if x}}
+              {{formatNumber x.length}}
+            {{/if}}
+          </td>
+        </tr>
+        <tr>
+          <th>Minimum:&nbsp;</th>
+          <td>
+            {{#if xMin}}
+              {{formatNumber xMin}}
+            {{/if}}
+          </td>
+        </tr>
+        <tr>
+          <th>Maximum:&nbsp;</th>
+          <td>
+            {{#if xMax}}
+              {{formatNumber xMax}}
+            {{/if}}
+          </td>
+        </tr>
+        <tr>
+          <th>Range:&nbsp;</th>
+          <td>
+            {{#if xRange}}
+              {{formatNumber xRange}}
+            {{/if}}
+          </td>
+        </tr>
+        <tr>
+          <th>Mean:&nbsp;</th>
+          <td>
+            {{#if xMean}}
+              {{formatNumber xMean}}
+            {{/if}}
+          </td>
+        </tr>
+        <tr>
+          <th>Median:&nbsp;</th>
+          <td>
+            {{#if xMedian}}
+              {{formatNumber xMedian}}
+            {{/if}}
+          </td>
+        </tr>
+        <tr>
+          <th>Skewness:&nbsp;</th>
+          <td>
+            {{#if xSkewness}}
+              {{formatNumber xSkewness}}
+            {{/if}}
+          </td>
+        </tr>
+        <tr>
+          <th>Kurtosis:&nbsp;</th>
+          <td>
+            {{#if xKurtosis}}
+              {{formatNumber xKurtosis}}
+            {{/if}}
+          </td>
+        </tr>
+      </tr>
+    </tbody>
+  </table>
+</template>

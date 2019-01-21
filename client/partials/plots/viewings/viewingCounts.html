@@ -1,4 +1,12 @@
 <template name="PlotViewingCounts">
+  <div class="well">
+    {{> PlotHistogram x=x layout=layout name="Viewing-Counts"}}
+    {{> PlotStats x=x}}
+  </div>
+</template>
+
+
+<!-- <template name="PlotViewingCounts">
   <div class="col-md-6">
     <div class="well">
       {{> PlotHistogram data=viewingCountsData layout=viewingCountsLayout name="Viewing-Counts"}}
@@ -72,4 +80,4 @@
       </table>
     </div>
   </div>
-</template>
+</template> -->

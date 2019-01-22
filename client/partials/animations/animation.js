@@ -41,6 +41,18 @@ Template.Animation.onCreated(function() {
 });
 
 Template.Animation.helpers({
-  viewing: () => { return Viewings.findOne(); },
-  image: () => {   return Images.findOne(); },
+  // study:    () => { return Studies.findOne(); },
+  viewing:  () => { return Viewings.findOne(); },
+  image:    () => { return Images.findOne(); },
+  aoi:      () => { return Aois.findOne(); },
 });
+
+// Template.Animation.events({
+//   'click .update-aoi': function() {
+//     Session.set('updateAoi', true);
+//   }
+// });
+//
+//  Template.Animation.destroyed = function(){
+//    Session.set('updateAoi', false);
+//  }

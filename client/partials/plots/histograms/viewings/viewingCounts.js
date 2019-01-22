@@ -1,4 +1,4 @@
-Template.PlotViewingCounts.helpers({
+Template.PlotHistogramViewingCounts.helpers({
   x: () => {               return getX(); },
 
   layout: () => {

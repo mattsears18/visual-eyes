@@ -67,26 +67,26 @@
     </div>
     <!-- {{json showAoiIds}} -->
 
-
     {{#if viewings.count}}
       <div class="row">
         <div class="col-md-6">
-          {{> PlotViewingDurations viewings=viewings}}
-        </div>
-        <div class="col-md-6">
-          {{> PlotViewingCounts viewings=viewings}}
+          {{> PlotRegression}}
         </div>
       </div>
       <div class="row">
         <div class="col-md-6">
-          {{> PlotViewingAverageSlideHullSizes viewings=viewings}}
+          {{> PlotHistogramViewingDurations viewings=viewings}}
         </div>
-        <!-- <div class="col-md-6">
-          {{> PlotViewingAverageStepHullSizes viewings=viewings}}
-        </div> -->
+        <div class="col-md-6">
+          {{> PlotHistogramViewingCounts viewings=viewings}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          {{> PlotHistogramViewingAverageSlideHullSizes viewings=viewings}}
+        </div>
       </div>
     {{/if}}
-
 
     {{#if viewings.count}}
       <h4>

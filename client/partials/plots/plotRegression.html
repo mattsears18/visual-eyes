@@ -1,0 +1,15 @@
+<template name="PlotRegression">
+  <div class="well">
+    <div class="form-group">
+      <label for="independent" class="control-label">Independent Variable</label>
+      {{> PlotRegressionSelect name="independent"}}
+    </div>
+    <div class="form-group">
+      <label for="dependent" class="control-label">Dependent Variable</label>
+      {{> PlotRegressionSelect name="dependent"}}
+    </div>
+
+    {{> Plot x=x y=y layout=layout name="Regression"}}
+    {{> RegressionStats x=x y=y}}
+  </div>
+</template>

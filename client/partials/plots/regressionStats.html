@@ -1,0 +1,40 @@
+<template name="RegressionStats">
+  <table class="m-t-20">
+    <tbody>
+      <tr>
+        <tr>
+          <th>Equation:&nbsp;</th>
+          <td>
+            {{#if linearFit}}
+              {{linearFit.string}}
+            {{/if}}
+          </td>
+        </tr>
+        <tr>
+          <th>R^2:&nbsp;</th>
+          <td>
+            {{#if linearFit}}
+              {{linearFit.r2}}
+            {{/if}}
+          </td>
+        </tr>
+        <tr>
+          <th>Slope:&nbsp;</th>
+          <td>
+            {{#if linearFit}}
+              {{slope}} (t=, p=)
+            {{/if}}
+          </td>
+        </tr>
+        <tr>
+          <th>Intercept:&nbsp;</th>
+          <td>
+            {{#if linearFit}}
+              {{intercept}} (t=, p=)
+            {{/if}}
+          </td>
+        </tr>
+      </tr>
+    </tbody>
+  </table>
+</template>

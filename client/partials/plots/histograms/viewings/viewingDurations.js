@@ -1,11 +1,11 @@
-Template.PlotViewingAverageSlideHullSizes.helpers({
-  x: () => {               return getX(); },
+Template.PlotHistogramViewingDurations.helpers({
+  x: () => { return getX(); },
 
   layout: () => {
     return {
-      title: 'Average Convex Hull Sizes (Slide Method)',
+      title: 'Viewing Durations',
       xaxis: {
-        title: 'Size',
+        title: 'Duration (ms)',
         rangemode: 'tozero',
         autorange: true,
       },
@@ -26,6 +26,6 @@ Template.PlotViewingAverageSlideHullSizes.helpers({
 function getX() {
   viewings = Template.currentData().viewings;
   return viewings.fetch().map(function(viewing) {
-    return viewing.averageSlideHullSize;
+    return viewing.duration;
   });
 }

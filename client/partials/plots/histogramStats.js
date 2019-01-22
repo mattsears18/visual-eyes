@@ -1,6 +1,6 @@
 import { jStat } from 'jStat';
 
-Template.PlotStats.helpers({
+Template.HistogramStats.helpers({
   xMin: () => {             return Math.min(...Template.currentData().x); },
   xMax: () => {             return Math.max(...Template.currentData().x); },
   xRange: () => {           return jStat.range(Template.currentData().x); },

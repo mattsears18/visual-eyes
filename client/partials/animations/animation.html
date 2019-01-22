@@ -4,5 +4,21 @@
 </head>
 
 <template name="Animation">
-  <div id="Animation"></div>
+  {{#if aoi.image}}
+    <div id="Animation"></div>
+  {{else}}
+    <div class="m-b-10">
+      No reference image associated with <a href="/studies/{{aoi.studyId}}/aois/{{aoi._id}}">{{aoi.name}}</a>
+
+      <!-- {{#if aoi.hasPermission 'update'}}
+        {{#unless $.Session.get 'updateAoi'}}
+          &nbsp;<a href="#" class="update-aoi"><i class="fa fa-pencil"></i></a>
+        {{/unless}}
+      {{/if}} -->
+    </div>
+  {{/if}}
+
+  <!-- {{#if $.Session.get 'updateAoi'}}
+    {{> UpdateAoi aoi=aoi}}
+  {{/if}} -->
 </template>

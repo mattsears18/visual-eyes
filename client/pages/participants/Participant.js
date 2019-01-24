@@ -3,6 +3,7 @@ Template.Participant.onCreated(function() {
   self.autorun(function() {
     var studyId = FlowRouter.getParam('studyId');
     self.subscribe('studies.single', studyId);
+    self.subscribe('variables.byStudyId', studyId);
 
     var participantId = FlowRouter.getParam('participantId');
     self.subscribe('participants.single', participantId);
@@ -19,6 +20,9 @@ Template.Participant.helpers({
   analyses: () => {
     return Analyses.find();
   },
+  // variables: () => {
+  //   return Variables.find();
+  // }
 });
 
 Template.BreadCrumbs.helpers({

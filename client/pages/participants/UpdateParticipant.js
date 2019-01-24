@@ -1,9 +1,22 @@
 Template.UpdateParticipant.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    studyId = FlowRouter.getParam('studyId');
-    self.subscribe('images.byStudyId', studyId);
+    var studyId = FlowRouter.getParam('studyId');
+    self.subscribe('studies.single', studyId);
+    self.subscribe('variables.byStudyId', studyId);
+
+    var participantId = FlowRouter.getParam('participantId');
+    self.subscribe('participants.single', participantId);
   });
+});
+
+Template.UpdateParticipant.helpers({
+  participant: () => {
+    return Participants.findOne();
+  },
+  variables: () => {
+    return Variables.find();
+  }
 });
 
 Template.UpdateParticipant.events({

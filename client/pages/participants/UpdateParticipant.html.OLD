@@ -7,23 +7,21 @@
       {{#autoForm collection="Participants" doc=participant
         id="updateParticipantForm" type="update" class="update-participant-form"}}
         {{> afQuickField name='name'}}
-
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">Variables</h3>
           </div>
 
           <div class="panel-body">
-
-            {{#each variable in participant.variables}}
-              <div class="form-group">
+            {{#each variables as variable}}
+            {{variable}}
+              <div class="form-group" data-required="true">
+                <input type="text" name="variableVals.0.variableId" data-schema-key="variableVals.0.variableId">
                 <label for="S4jpqaDWqXN79mt5P" class="control-label">{{variable.name}}</label>
-                <input type="hidden" name="variableVals.{{@index}}.variableId" data-schema-key="variableVals.{{@index}}.variableId" value="{{variable._id}}">
-                <input type="text" name="variableVals.{{@index}}.value" id="S4jpqaDWqXN79mt5P" data-schema-key="variableVals.{{@index}}.value" class="form-control" value="{{variable.value}}">
+                <input type="text" name="variableVals.0.value" id="S4jpqaDWqXN79mt5P" required="" data-schema-key="variableVals.0.value" class="form-control">
                 <span class="help-block"></span>
               </div>
             {{/each}}
-
           </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -31,8 +29,8 @@
 
 
 
-      <!-- {{> quickForm collection="Participants" doc=participant id="updateParticipantForm"
-        type="update" class="update-participant-form"}} -->
+      {{> quickForm collection="Participants" doc=participant id="updateParticipantForm"
+        type="update" class="update-participant-form"}}
 
 
       {{#if participant.hasPermission 'destroy'}}

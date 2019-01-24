@@ -11,12 +11,19 @@
     </h3>
 
     {{#if participant.variables}}
-      <h4>Variables</h4>
-      {{#each variable in participant.variables}}
-        <div><strong>{{variable.name}}:</strong> {{variable.value}}</div>
-      {{/each}}
+    <h4>Variables</h4>
+      <div class="well well-sm">
+        <table>
+          {{#each variable in participant.variables}}
+            <tr>
+              <th>{{variable.name}}: </th>
+              <td>{{variable.value}}</td>
+            </tr>
+          {{/each}}
+        </table>
+      </div>
     {{/if}}
 
-    <div>{{json participant}}</div>
+    <!-- <div>{{json participant}}</div> -->
   {{/if}}
 </template>

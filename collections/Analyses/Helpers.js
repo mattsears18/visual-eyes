@@ -1,4 +1,5 @@
 import Analyses from './Analyses';
+import getDataAsCSV from './getDataAsCSV';
 
 Analyses.helpers({
   hasPermission(action) {
@@ -18,4 +19,5 @@ Analyses.helpers({
   participants() {
     return Participants.collection.find({ _id: { $in: this.participantIds }});
   },
+  getDataAsCSV,
 });

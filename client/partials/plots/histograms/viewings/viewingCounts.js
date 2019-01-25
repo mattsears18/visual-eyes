@@ -24,14 +24,5 @@ Template.PlotHistogramViewingCounts.helpers({
 
 function getX() {
   viewings = Template.currentData().viewings.fetch();
-
-  var groups = _.groupBy(viewings, function(viewing){
-    return viewing.participantId + '#' + viewing.aoiId;
-  });
-
-  var counts = _.map(groups, function(group){
-    return group.length;
-  });
-
-  return counts;
+  return helpers.getViewingCounts(viewings);
 }

@@ -1,5 +1,6 @@
 import { jStat } from 'jStat';
 import Jobs from '../../../collections/Jobs/Jobs';
+import Papa from 'papaparse';
 
 Template.Analysis.onCreated(function() {
   var self = this;
@@ -22,6 +23,7 @@ Template.Analysis.onCreated(function() {
     self.subscribe('participants.byAnalysisId', analysisId);
     self.subscribe('aois.byAnalysisId', analysisId);
     self.subscribe('jobs.analyses.makeViewings.byAnalysisId', analysisId);
+    self.subscribe('variables.byStudyId', studyId);
 
     if(self.subscriptionsReady()) { updateSelectors(self); }
   });
@@ -78,7 +80,12 @@ Template.Analysis.helpers({
   },
 });
 
+
 Template.Analysis.events({
+  'click .download-as-csv':function(){
+    var csvContent = CSV.unparse(analysis.getDataAsCSV());
+    window.open('data:text/csv;charset=utf-8,' + escape(csvContent), '_self');
+  },
   'click .update-analysis': function() {
     Session.set('updateAnalysis', true);
   },

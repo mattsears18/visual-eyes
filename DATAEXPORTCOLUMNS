@@ -1,0 +1,15 @@
+analysisName
+participant
+period
+viewingGap
+minimumViewingTime
+viewingDurationMean
+viewingDurationMedian
+viewingDurationTotal
+viewingCountPerAoiMean
+viewingCountPerAoiMedian
+viewingCountTotal
+convexHullSizeSlideMean
+convexHullSizeSlideMedian
+
+all user variables...

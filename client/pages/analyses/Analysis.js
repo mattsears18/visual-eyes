@@ -1,6 +1,5 @@
 import { jStat } from 'jStat';
 import Jobs from '../../../collections/Jobs/Jobs';
-import Papa from 'papaparse';
 
 Template.Analysis.onCreated(function() {
   var self = this;
@@ -83,8 +82,7 @@ Template.Analysis.helpers({
 
 Template.Analysis.events({
   'click .download-as-csv':function(){
-    var csvContent = CSV.unparse(analysis.getDataAsCSV());
-    window.open('data:text/csv;charset=utf-8,' + escape(csvContent), '_self');
+    Meteor.call('analyses.saveCSV', { analysisId: analysis._id });
   },
   'click .update-analysis': function() {
     Session.set('updateAnalysis', true);

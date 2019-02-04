@@ -3,6 +3,7 @@ import jst from 'jStat'; // can't write import jStat from 'jStat' as it would ov
 
 if (Meteor.isServer){
   jStat = jst.jStat;
+  fs = Npm.require('fs');
 }
 
 Meteor.startup(() => {

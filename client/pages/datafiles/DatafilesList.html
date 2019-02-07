@@ -32,7 +32,7 @@
         <a href="/studies/{{study._id}}/datafiles/{{datafile._id}}" target="_top">{{datafile.name}}</a>
 
         {{#if datafile.recordings}}
-          ({{formatNumber datafile.recordings}} recordings)
+          ({{formatNumber datafile.recordings}} fixations)
         {{/if}}
       </li>
     {{/each}}

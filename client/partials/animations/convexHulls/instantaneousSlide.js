@@ -32,6 +32,10 @@ function plotConvexHullInstantaneousSlide(viewing) {
     image = viewing.aoi().image();
     imagefile = viewing.aoi().image().imagefile();
 
+    // force width
+    forceWidth = 800;
+    scale =  forceWidth / imagefile.fileWidth;
+
     layout = {
       xaxis: {
         rangemode: 'tozero',
@@ -43,8 +47,8 @@ function plotConvexHullInstantaneousSlide(viewing) {
         range: [0, image.height],
         autorange: false,
       },
-      height: imagefile.fileHeight/2,
-      width: imagefile.fileWidth/2,
+      height: imagefile.fileHeight * scale,
+      width: forceWidth,
       images: [
         {
           source: Imagefiles.link(imagefile),

@@ -1,2 +1,4 @@
 node_modules/
 settings.json
+localExperiments/hazardIdentification/data/
+localExperiments/pipeSpoolAssembly/data/

@@ -39,9 +39,21 @@ Schemas.Study = new SimpleSchema({
     },
     optional: true,
   },
+  datafileFormat: {
+    type: String,
+    label: "Data File Format",
+    autoform: {
+      type: "select-radio-inline",
+      options: [
+        { label: "SMI", value: "smi" },
+        { label: "iMotions", value: "imotions" },
+      ],
+    },
+    defaultValue: "smi",
+  },
   datafileIds: {
     type: Array,
-    label: 'Eye Tracking Data .txt Files'
+    label: 'Eye Tracking Data Files (.txt, .csv, etc.)'
   },
   "datafileIds.$": {
     type: String,
@@ -60,21 +72,9 @@ Schemas.Study = new SimpleSchema({
     label: 'Default Reference Image Height (User Defined)',
     defaultValue: 720,
   },
-  // imageIds: {
-  //   type: Array,
-  //   label: 'Reference Images',
-  //   optional: true,
-  // },
-  // "imageIds.$": {
-  //   type: String,
-  //   autoform: {
-  //     type: 'fileUpload',
-  //     collection: 'Images'
-  //   }
-  // },
-  removeDuplicateIndices: {
+  fixationsOnly: {
     type: Boolean,
-    label: 'Remove Duplicate Indices',
+    label: 'Use Fixations Instead of Gaze Points (Faster)',
     defaultValue: true,
     autoform: {
       type: 'boolean-checkbox',

@@ -26,8 +26,8 @@ datafiles.process
     processDatafile()
         preprocessResults()
         renameHeaders()             *
-        removeDuplicateIndices()    *
+        fixationsOnly()    *
         getVisualIntakesOnly()      *
     processRecordings()
     getAoiId()                      *
-    processForViewings()            
+    processForViewings()

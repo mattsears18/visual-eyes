@@ -4,7 +4,7 @@
     b. preProcessDatafile()
     c. preprocessResults()
         1. renameHeaders()
-        2. removeDuplicateIndices()
+        2. fixationsOnly()
         3. getVisualIntakesOnly()
         4. processRecordings()
             a. insert recordings

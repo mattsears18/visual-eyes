@@ -39,18 +39,18 @@ Schemas.Study = new SimpleSchema({
     },
     optional: true,
   },
-  datafileFormat: {
-    type: String,
-    label: "Data File Format",
-    autoform: {
-      type: "select-radio-inline",
-      options: [
-        { label: "SMI", value: "smi" },
-        { label: "iMotions", value: "imotions" },
-      ],
-    },
-    defaultValue: "smi",
-  },
+  // datafileFormat: {
+  //   type: String,
+  //   label: "Data File Format",
+  //   autoform: {
+  //     type: "select-radio-inline",
+  //     options: [
+  //       { label: "SMI", value: "smi" },
+  //       { label: "iMotions", value: "imotions" },
+  //     ],
+  //   },
+  //   defaultValue: "smi",
+  // },
   datafileIds: {
     type: Array,
     label: 'Eye Tracking Data Files (.txt, .csv, etc.)'

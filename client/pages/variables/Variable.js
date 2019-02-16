@@ -7,11 +7,11 @@ Template.Variable.onCreated(function() {
     var variableId = FlowRouter.getParam('variableId');
 
     self.subscribe('variables.single', variableId);
-    self.subscribe('images.byVariableId', variableId);
+    self.subscribe('stimuli.byVariableId', variableId);
 
-    image = Images.findOne({});
-    if(image) {
-      self.subscribe('imagefiles.byImageId', image._id);
+    stimulus = Stimuli.findOne({});
+    if(stimulus) {
+      self.subscribe('stimulusfiles.byStimulusId', stimulus._id);
     }
   });
 });

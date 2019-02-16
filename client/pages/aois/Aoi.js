@@ -7,11 +7,11 @@ Template.Aoi.onCreated(function() {
     var aoiId = FlowRouter.getParam('aoiId');
 
     self.subscribe('aois.single', aoiId);
-    self.subscribe('images.byAoiId', aoiId);
+    self.subscribe('stimuli.byAoiId', aoiId);
 
-    image = Images.findOne({});
-    if(image) {
-      self.subscribe('imagefiles.byImageId', image._id);
+    stimulus = Stimuli.findOne({});
+    if(stimulus) {
+      self.subscribe('stimulusfiles.byStimulusId', stimulus._id);
     }
   });
 });

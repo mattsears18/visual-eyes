@@ -1,0 +1,20 @@
+<template name="UpdateStimulus">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Edit Stimulus <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Stimuli" doc=stimulus id="updateStimulusForm"
+        type="update" class="update-stimulus-form"}}
+
+      <!-- {{> quickForm collection="Stimuli" doc=stimulus id="updateStimulusForm"
+        type="method" meteormethod="stimuli.update" class="update-stimulus-form"}} -->
+
+      {{#if stimulus.hasPermission 'destroy'}}
+        {{> quickRemoveButton collection="Stimuli" _id=stimulus._id
+          onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
+          id="destroyStimulusform" class="btn btn-danger"}}
+      {{/if}}
+    </div>
+  </div>
+</template>

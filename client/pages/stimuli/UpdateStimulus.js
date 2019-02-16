@@ -1,25 +1,25 @@
-Template.UpdateImage.onCreated(function() {
+Template.UpdateStimulus.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    self.subscribe('imagefiles.all');
+    self.subscribe('stimulusfiles.all');
   });
 });
 
-Template.UpdateImage.events({
+Template.UpdateStimulus.events({
   'click .fa-close': function() {
-    Session.set('updateImage', false);
+    Session.set('updateStimulus', false);
   }
 });
 
 AutoForm.hooks({
-  updateImageForm: {
+  updateStimulusForm: {
     onSuccess: function(formType, result) {
-      Session.set('updateImage', false);
+      Session.set('updateStimulus', false);
     },
   }
 });
 
-Template.UpdateImage.helpers({
+Template.UpdateStimulus.helpers({
   deleteBeforeRemove: function() {
     //TODO replace this alert with a modal
     return function (collection, id) {

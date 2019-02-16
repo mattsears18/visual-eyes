@@ -78,7 +78,7 @@ Schemas.Aoi = new SimpleSchema({
     },
     optional: true,
   },
-  imageId: {
+  stimulusId: {
     type: String,
     label: "Reference Image",
     optional: true,
@@ -86,11 +86,11 @@ Schemas.Aoi = new SimpleSchema({
       type: "select2",
       firstOption: "Select a Reference Image",
       options: function () {
-        images = Images.find({}, {sort: {'name': 1}}).map(function (image) {
-          return { label: image.name, value: image._id};
+        stimuli = Stimuli.find({}, {sort: {'name': 1}}).map(function (stimulus) {
+          return { label: stimulus.name, value: stimulus._id};
         });
-        images.unshift({ label: 'Select an image', value: '' });
-        return images;
+        stimuli.unshift({ label: 'Select an stimulus', value: '' });
+        return stimuli;
       }
     }
   },

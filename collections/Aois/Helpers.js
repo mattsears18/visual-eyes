@@ -16,7 +16,7 @@ Aois.helpers({
     }
     return false;
   },
-  image() {
-    return Images.findOne( this.imageId );
+  stimulus() {
+    return Stimuli.findOne( this.stimulusId );
   },
 });

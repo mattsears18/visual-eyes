@@ -11,8 +11,8 @@ Template.Animation.onCreated(function() {
     if(viewingId) {
       self.subscribe('viewings.single', viewingId);
       self.subscribe('recordings.byViewingId', viewingId);
-      self.subscribe('images.byViewingId', viewingId);
-      self.subscribe('imagefiles.byViewingId', viewingId);
+      self.subscribe('stimuli.byViewingId', viewingId);
+      self.subscribe('stimulusfiles.byViewingId', viewingId);
       self.subscribe('aois.byViewingId', viewingId);
 
       if(self.subscriptionsReady()) {
@@ -43,7 +43,7 @@ Template.Animation.onCreated(function() {
 Template.Animation.helpers({
   // study:    () => { return Studies.findOne(); },
   viewing:  () => { return Viewings.findOne(); },
-  image:    () => { return Images.findOne(); },
+  stimulus: () => { return Stimuli.findOne(); },
   aoi:      () => { return Aois.findOne(); },
 });
 

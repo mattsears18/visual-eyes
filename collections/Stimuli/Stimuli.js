@@ -2,9 +2,9 @@ import SimpleSchema from 'simpl-schema';
 
 SimpleSchema.extendOptions(['autoform']);
 
-Images = new Mongo.Collection('images');
+Stimuli = new Mongo.Collection('stimuli');
 
-Images.allow({
+Stimuli.allow({
   insert: function(userId, doc) {
     return true;
   },
@@ -16,13 +16,13 @@ Images.allow({
   },
 });
 
-Schemas.Image = new SimpleSchema({
-  imagefileId: {
+Schemas.Stimulus = new SimpleSchema({
+  stimulusfileId: {
     type: String,
-    label: 'Reference Image File',
+    label: 'Stimulus File',
     autoform: {
       type: 'fileUpload',
-      collection: 'Imagefiles'
+      collection: 'Stimulusfiles'
     },
   },
   name: {
@@ -48,6 +48,6 @@ Schemas.Image = new SimpleSchema({
   },
 }, {tracker: Tracker});
 
-Images.attachSchema(Schemas.Image);
+Stimuli.attachSchema(Schemas.Stimulus);
 
-export default Images;
+export default Stimuli;

@@ -13,7 +13,7 @@ MODELS
     studyId
   aois
     name
-    image             ## pdf file
+    stimulus             ## pdf file
     studyId
   recordings
     viewingId

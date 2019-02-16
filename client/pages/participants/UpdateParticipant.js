@@ -31,11 +31,11 @@ AutoForm.hooks({
       Session.set('updateParticipant', false);
 
       //TODO make this a Template.subscribe() instead of Meteor.subscribe()
-      //this is necessary to update the image
+      //this is necessary to update the stimulus
       //see step #4 here: https://guide.meteor.com/data-loading.html#changing-arguments
       //subscription arguments don't change on participant update form submission
       participantId = FlowRouter.getParam('participantId');
-      Meteor.subscribe('images.byParticipantId', participantId);
+      Meteor.subscribe('stimuli.byParticipantId', participantId);
     },
   }
 });

@@ -28,30 +28,30 @@ function plotConvexHullInstantaneousSlide(viewing) {
 
   layout = {};
 
-  if(viewing.aoi() && viewing.aoi().image() && viewing.aoi().image().imagefile()) {
-    image = viewing.aoi().image();
-    imagefile = viewing.aoi().image().imagefile();
+  if(viewing.aoi() && viewing.aoi().stimulus() && viewing.aoi().stimulus().stimulusfile()) {
+    stimulus = viewing.aoi().stimulus();
+    stimulusfile = viewing.aoi().stimulus().stimulusfile();
 
     // force width
     forceWidth = 800;
-    scale =  forceWidth / imagefile.fileWidth;
+    scale =  forceWidth / stimulusfile.fileWidth;
 
     layout = {
       xaxis: {
         rangemode: 'tozero',
-        range: [0, image.width],
+        range: [0, stimulus.width],
         autorange: false,
       },
       yaxis: {
         rangemode: 'tozero',
-        range: [0, image.height],
+        range: [0, stimulus.height],
         autorange: false,
       },
-      height: imagefile.fileHeight * scale,
+      height: stimulusfile.fileHeight * scale,
       width: forceWidth,
       images: [
         {
-          source: Imagefiles.link(imagefile),
+          source: Stimulusfiles.link(stimulusfile),
           xref: 'paper',
           yref: 'paper',
           x: 0,

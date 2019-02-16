@@ -52,16 +52,16 @@
           {{/if}}
         {{/if}}
 
-        {{#if isActiveRoute 'images'}}
+        {{#if isActiveRoute 'stimuli'}}
           <li><a href="/studies">Studies</a></li>
           <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          <li class="active">Reference Images</li>
+          <li class="active">Stimuli</li>
         {{/if}}
-        {{#if isActiveRoute 'image'}}
+        {{#if isActiveRoute 'stimulus'}}
           <li><a href="/studies">Studies</a></li>
           <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          <li><a href="/studies/{{study._id}}/images">Reference Images</a></li>
-          <li class="active">{{image.name}}</li>
+          <li><a href="/studies/{{study._id}}/stimuli">Stimuli</a></li>
+          <li class="active">{{stimulus.name}}</li>
         {{/if}}
 
         {{#if isActivePath regex='recordings'}}

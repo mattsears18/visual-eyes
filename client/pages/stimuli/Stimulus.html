@@ -1,0 +1,19 @@
+<template name="Stimulus">
+  {{#if $.Session.get 'updateStimulus'}}
+    {{> UpdateStimulus stimulus=stimulus}}
+  {{else}}
+    <h3 class="m-t-0">{{stimulus.name}}
+      <!-- {{#if stimulus.hasPermission 'update'}} -->
+        {{#unless $.Session.get 'updateStimulus'}}
+          &nbsp;<a href="#" class="update-stimulus"><i class="fa fa-pencil"></i></a>
+        {{/unless}}
+      <!-- {{/if}} -->
+    </h3>
+
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{{fileURL stimulusfile}}" class="stimulus-full-width">
+      </div>
+    </div>
+  {{/if}}
+</template>

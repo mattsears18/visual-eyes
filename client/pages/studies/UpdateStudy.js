@@ -2,7 +2,7 @@ Template.UpdateStudy.onCreated(function() {
   var self = this;
   self.autorun(function() {
     self.subscribe('datafiles.all');
-    self.subscribe('images.all');
+    self.subscribe('stimuli.all');
   });
 });
 

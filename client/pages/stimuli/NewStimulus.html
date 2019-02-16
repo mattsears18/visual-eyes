@@ -1,0 +1,11 @@
+<template name="NewStimulus">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">New Stimulus <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Stimuli" id="insertStimulusForm" type="insert"
+        class="insert-stimulus-form"}}
+    </div>
+  </div>
+</template>

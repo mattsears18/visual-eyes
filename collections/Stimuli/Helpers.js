@@ -1,7 +1,7 @@
-import Images from './Images';
-import Imagefiles from './Imagefiles/Imagefiles';
+import Stimuli from './Stimuli';
+import Stimulusfiles from './Stimulusfiles/Stimulusfiles';
 
-Images.helpers({
+Stimuli.helpers({
   hasPermission(action) {
     check(action, String);
 
@@ -17,7 +17,7 @@ Images.helpers({
     }
     return false;
   },
-  imagefile() {
-    return Imagefiles.collection.findOne( this.imagefileId );
+  stimulusfile() {
+    return Stimulusfiles.collection.findOne( this.stimulusfileId );
   },
 });

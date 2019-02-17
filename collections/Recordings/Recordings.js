@@ -43,7 +43,7 @@ Schemas.Recording = new SimpleSchema({
     type: String,
     label: 'Category',
   },
-  index: {
+  fixationIndex: {
     type: String,
     label: 'Index',
   },

@@ -11,6 +11,10 @@ Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
     type: String,
     optional: true,
   },
+  format: {
+    type: String,
+    optional: true,
+  },
   preprocessing: {
     type: Boolean,
     optional: true,

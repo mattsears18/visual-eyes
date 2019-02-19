@@ -38,10 +38,12 @@ Schemas.Recording = new SimpleSchema({
   timeOfDay: {
     type: String,
     label: 'Time of Day',
+    optional: true,
   },
   category: {
     type: String,
     label: 'Category',
+    optional: true,
   },
   fixationIndex: {
     type: String,

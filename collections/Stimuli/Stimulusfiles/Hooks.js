@@ -6,3 +6,7 @@ Stimulusfiles.collection.before.insert(function(userId, doc) {
   doc.fileWidth = dims.width;
   doc.fileHeight = dims.height;
 });
+
+Stimulusfiles.collection.after.remove(function(userId, doc) {
+  Stimuli.update({ stimulusfileId: doc._id }, { $unset: { stimulusfileId: true }});
+});

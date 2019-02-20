@@ -3,16 +3,18 @@
     {{> UpdateStimulus stimulus=stimulus}}
   {{else}}
     <h3 class="m-t-0">{{stimulus.name}}
-      <!-- {{#if stimulus.hasPermission 'update'}} -->
+      {{#if stimulus.hasPermission 'update'}}
         {{#unless $.Session.get 'updateStimulus'}}
           &nbsp;<a href="#" class="update-stimulus"><i class="fa fa-pencil"></i></a>
         {{/unless}}
-      <!-- {{/if}} -->
+      {{/if}}
     </h3>
+
+    <div>{{json stimulus}}<br><br></div>
 
     <div class="row">
       <div class="col-md-6">
-        <img src="{{fileURL stimulusfile}}" class="stimulus-full-width">
+        <img src="{{fileURL stimulus.stimulusfile}}" class="image-full-width">
       </div>
     </div>
   {{/if}}

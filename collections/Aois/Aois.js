@@ -45,14 +45,11 @@ Schemas.Aoi = new SimpleSchema({
       type: 'hidden',
     }
   },
-  datafileIds: {
-    type: Array,
+  stimulusId: {
+    type: String,
     autoform: {
       type: 'hidden',
-    },
-  },
-  "datafileIds.$": {
-    type: String,
+    }
   },
   recordingTimeMin: {
     type: Number,

@@ -3,17 +3,7 @@
     {{#if stimuli.count}}
       ({{stimuli.count}})
     {{/if}}
-
-    {{#if study.hasPermission 'update'}}
-      {{#unless $.Session.get 'newStimulus'}}
-        &nbsp;<a class="new-stimulus"><i class="fa fa-plus"></i></a>
-      {{/unless}}
-    {{/if}}
   </h4>
-
-  {{#if $.Session.get 'newStimulus'}}
-    {{> NewStimulus}}
-  {{/if}}
 
   <div>
     <ul>

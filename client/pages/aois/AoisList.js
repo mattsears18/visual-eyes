@@ -7,6 +7,7 @@ Template.AoisList.onCreated(function() {
     if(study) {
       self.subscribe('studies.single', studyId);
       self.subscribe('aois.byStudyId', studyId);
+      self.subscribe('stimuli.byStudyId', studyId);
     }
   });
 });

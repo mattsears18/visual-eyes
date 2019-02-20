@@ -24,6 +24,7 @@ Schemas.Stimulus = new SimpleSchema({
       type: 'fileUpload',
       collection: 'Stimulusfiles'
     },
+    optional: true,
   },
   name: {
     type: String,
@@ -40,11 +41,22 @@ Schemas.Stimulus = new SimpleSchema({
     },
     optional: true,
   },
+  datafileIds: {
+    type: Array,
+    autoform: {
+      type: 'hidden',
+    },
+  },
+  "datafileIds.$": {
+    type: String,
+  },
   width: {
     type: Number,
+    optional: true,
   },
   height: {
     type: Number,
+    optional: true,
   },
 }, {tracker: Tracker});
 

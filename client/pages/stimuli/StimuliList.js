@@ -19,13 +19,3 @@ Template.StimuliList.helpers({
     return Stimuli.find({}, { sort: { name: 1 }});
   },
 });
-
-Template.StimuliList.events({
-  'click .new-stimulus': function() {
-    Session.set('newStimulus', true);
-  }
-});
-
-Template.StimuliList.destroyed = function(){
-  Session.set('newStimulus', false);
-}

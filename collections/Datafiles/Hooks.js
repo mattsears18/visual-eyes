@@ -13,16 +13,16 @@ Datafiles.collection.after.remove(function (userId, datafile) {
     { multi: true }
   );
 
-  // Update AOI.datafileIds
-  Aois.update(
+  // Update Stimuli.datafileIds
+  Stimuli.update(
     { studyId: datafile.studyId },
-    { $pull: {datafileIds: datafile._id }},
+    { $pull: { datafileIds: datafile._id }},
     { multi: true }
   );
 
   if(Meteor.isServer) {
-    // Delete any AOIs that no longer have datafileIds
-    Aois.remove({ datafileIds: {$eq: []} });
+    // Delete any Stimuli that no longer have datafileIds
+    Stimuli.remove({ datafileIds: {$eq: []} });
 
     // Delete any Participants that no longer have datafileIds
     Participants.remove({ datafileId: datafile._id });

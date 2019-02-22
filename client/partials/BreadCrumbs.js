@@ -1,7 +1,9 @@
-Template.BreadCrumbs.onCreated(function() {
-  var self = this;
-  self.autorun(function() {
-    var studyId = FlowRouter.getParam('studyId');
-    if(studyId) { self.subscribe('studies.single', studyId); }
-  });
-});
+// Template.BreadCrumbs.helpers({
+//   studyRoutes: [
+//     'datafiles',
+//     'participants',
+//     'stimuli',
+//     'variables',
+//     'analyses',
+//   ],
+// });

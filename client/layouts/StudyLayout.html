@@ -1,0 +1,69 @@
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<template name="StudyLayout">
+  {{> Navbar}}
+  {{> BreadCrumbs}}
+
+  <div class="container main">
+    {{#if $.Session.get 'updateStudy'}}
+      {{> UpdateStudy study=study}}
+    {{else}}
+      <h3 class="m-t-0">
+        {{study.name}}
+
+        {{#if study.hasPermission 'update'}}
+          {{#if study.hasNoDatafiles}}
+            &nbsp;<a href="#" class="update-study"><i class="fa fa-pencil"></i></a>
+          {{else}}
+            {{#if study.allDatafilesProcessed}}
+              &nbsp;<a href="#" class="update-study"><i class="fa fa-pencil"></i></a>
+            {{else}}
+              &nbsp;<i class="fa fa-pencil text-muted"></i>
+            {{/if}}
+          {{/if}}
+        {{/if}}
+      </h3>
+
+      <p class="m-b-20">{{study.desc}}</p>
+
+      <div class="m-b-20">
+        <ul class="nav nav-tabs">
+          <li class="{{#if isActivePath regex='datafiles'}} active {{/if}}">
+            <a href="/studies/{{study._id}}/datafiles">
+              <i class="fa fa-file"></i>&nbsp;&nbsp;Data Files {{#if datafiles.count}}({{datafiles.count}}){{/if}}
+            </a>
+          </li>
+          <li class="{{#if isActivePath regex='participants'}} active {{/if}}">
+            <a href="/studies/{{study._id}}/participants">
+              <i class="fa fa-user"></i>&nbsp;&nbsp;Participants {{#if participants.count}}({{participants.count}}){{/if}}
+            </a>
+          </li>
+          <li class="{{#if isActivePath regex='stimuli'}} active {{/if}}">
+            <a href="/studies/{{study._id}}/stimuli">
+              <i class="fa fa-image"></i>&nbsp;&nbsp;Stimuli {{#if stimuli.count}}({{stimuli.count}}){{/if}}
+            </a>
+          </li>
+          <li class="{{#if isActivePath regex='variables'}} active {{/if}}">
+            <a href="/studies/{{study._id}}/variables">
+              <i class="fa fa-list"></i>&nbsp;&nbsp;Variables {{#if variables.count}}({{variables.count}}){{/if}}
+            </a>
+          </li>
+          <li class="{{#if isActivePath regex='analyses'}} active {{/if}}">
+            <a href="/studies/{{study._id}}/analyses">
+              <i class="fa fa-chart-area"></i>&nbsp;&nbsp;Analyses {{#if analyses.count}}({{analyses.count}}){{/if}}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <main class="main-layout">
+        {{> Template.dynamic template=main}}
+      </main>
+    {{/if}}
+  </div>
+  {{> Footer}}
+</template>

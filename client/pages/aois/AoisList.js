@@ -6,7 +6,7 @@ Template.AoisList.onCreated(function() {
     study = Studies.findOne(studyId);
     if(study) {
       self.subscribe('studies.single', studyId);
-      self.subscribe('aois.byStudyId', studyId);
+      // self.subscribe('aois.byStudyId', studyId);
       self.subscribe('stimuli.byStudyId', studyId);
     }
   });

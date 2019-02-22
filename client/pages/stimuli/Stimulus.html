@@ -10,11 +10,12 @@
       {{/if}}
     </h3>
 
-    <div>{{json stimulus}}<br><br></div>
-
     <div class="row">
       <div class="col-md-6">
         <img src="{{fileURL stimulus.stimulusfile}}" class="image-full-width">
+      </div>
+      <div class="col-md-6">
+        {{> AoisList}}
       </div>
     </div>
   {{/if}}

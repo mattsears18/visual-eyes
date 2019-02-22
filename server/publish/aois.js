@@ -28,3 +28,9 @@ Meteor.publish('aois.byAnalysisId', function(analysisId) {
   return Aois.find({ _id: { $in: analysis.aoiIds }},
     { sort: { name: 1 }});
 });
+
+Meteor.publish('aois.byStimulusId', function(stimulusId) {
+  check(stimulusId, String);
+  return Aois.find({ stimulusId: stimulusId },
+    { sort: { name: 1 }});
+});

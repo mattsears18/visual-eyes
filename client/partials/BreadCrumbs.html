@@ -1,157 +1,42 @@
 <template name="BreadCrumbs">
   <div class="container">
-    <ol class="breadcrumb">
-      {{#if isActiveRoute 'home'}}
-        <li class="active">Home</li>
-      {{else}}
-        <li><a href="/">Home</a></li>
-        {{#if isActivePath regex='generics'}}
-          {{#if isActiveRoute 'generics'}}
-            <li class="active">Generics</li>
+    <ol class="breadcrumb mtop">
+      {{#if isActivePath regex='studies'}}
+        {{#if isActiveRoute 'studies'}}
+          <li class="active">Studies</li>
+        {{else}}
+          <li><a href="/studies">Studies</a></li>
+          {{#if isActiveRoute regex='study|datafiles|participants|stimuli|variables|analyses'}}
+            <li class="active">{{study.name}}</li>
           {{else}}
-            {{#if isActiveRoute 'generic'}}
-              <li><a href="/generics">Generics</a></li>
-              <li class="active">{{generic.name}}</li>
-            {{/if}}
+            <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
           {{/if}}
         {{/if}}
+      {{/if}}
 
-        {{#if isActivePath regex='studies'}}
-          {{#if isActiveRoute 'studies'}}
-            <li class="active">Studies</li>
-          {{else}}
-            {{#if isActiveRoute 'study'}}
-              <li><a href="/studies">Studies</a></li>
-              <li class="active">{{study.name}}</li>
-            {{/if}}
-          {{/if}}
-        {{/if}}
+      {{#if isActiveRoute 'datafile'}}
+        <li><a href="/studies/{{study._id}}/datafiles">Datafiles</a></li>
+        <li class="active">{{datafile.name}}</li>
+      {{/if}}
 
-        {{#if isActiveRoute 'aois'}}
-          <li><a href="/studies">Studies</a></li>
-          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          <li class="active">AOIs</li>
-        {{/if}}
-        {{#if isActiveRoute 'aoi'}}
-          <li><a href="/studies">Studies</a></li>
-          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          <li><a href="/studies/{{study._id}}/aois">AOIs</a></li>
-          <li class="active">{{aoi.name}}</li>
-        {{/if}}
+      {{#if isActiveRoute 'participant'}}
+        <li><a href="/studies/{{study._id}}/participants">Participants</a></li>
+        <li class="active">{{participant.name}}</li>
+      {{/if}}
 
-        {{#if isActivePath regex='datafiles'}}
-          <li><a href="/studies">Studies</a></li>
-          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          {{#if isActiveRoute 'datafiles'}}
-            <li class="active">Datafiles</li>
-          {{else}}
-            {{#if isActiveRoute 'datafile'}}
-              <li><a href="/studies/{{study._id}}/datafiles">Datafiles</a></li>
-              <li class="active">{{datafile.name}}</li>
-            {{/if}}
-          {{/if}}
-        {{/if}}
+      {{#if isActiveRoute 'stimulus'}}
+        <li><a href="/studies/{{study._id}}/stimuli">Stimuli</a></li>
+        <li class="active">{{stimulus.name}}</li>
+      {{/if}}
 
-        {{#if isActiveRoute 'stimuli'}}
-          <li><a href="/studies">Studies</a></li>
-          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          <li class="active">Stimuli</li>
-        {{/if}}
-        {{#if isActiveRoute 'stimulus'}}
-          <li><a href="/studies">Studies</a></li>
-          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          <li><a href="/studies/{{study._id}}/stimuli">Stimuli</a></li>
-          <li class="active">{{stimulus.name}}</li>
-        {{/if}}
+      {{#if isActiveRoute 'variable'}}
+        <li><a href="/studies/{{study._id}}/variables">Variables</a></li>
+        <li class="active">{{variable.name}}</li>
+      {{/if}}
 
-        {{#if isActivePath regex='recordings'}}
-          <li><a href="/studies">Studies</a></li>
-          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          {{#if isActiveRoute 'recordings'}}
-            <li class="active">Recordings</li>
-          {{else}}
-            {{#if isActiveRoute 'recording'}}
-              <li><a href="/studies/{{study._id}}/recordings">Recordings</a></li>
-              <li class="active">{{recording._id}}</li>
-            {{/if}}
-          {{/if}}
-        {{/if}}
-
-        {{#if isActiveRoute 'participants'}}
-          <li><a href="/studies">Studies</a></li>
-          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          <li class="active">Participants</li>
-        {{/if}}
-        {{#if isActiveRoute 'participant'}}
-          <li><a href="/studies">Studies</a></li>
-          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          <li><a href="/studies/{{study._id}}/participants">Participants</a></li>
-          <li class="active">{{participant.name}}</li>
-        {{/if}}
-
-        {{#if isActiveRoute regex='analyses'}}
-          <li><a href="/studies">Studies</a></li>
-          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          <li class="active">Analyses</li>
-        {{/if}}
-        {{#if isActiveRoute 'analysis'}}
-          <li><a href="/studies">Studies</a></li>
-          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          <li><a href="/studies/{{study._id}}/analyses">Analyses</a></li>
-          <li class="active">{{analysis.name}}</li>
-        {{/if}}
-        {{#if isActiveRoute 'analysisAoi'}}
-          <li><a href="/studies">Studies</a></li>
-          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          <li><a href="/studies/{{study._id}}/analyses">Analyses</a></li>
-          <li><a href="/studies/{{study._id}}/analyses/{{analysis._id}}">{{analysis.name}}</a></li>
-          <li class="active">{{aoi.name}}</li>
-        {{/if}}
-        {{#if isActiveRoute 'analysisParticipant'}}
-          <li><a href="/studies">Studies</a></li>
-          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          <li><a href="/studies/{{study._id}}/analyses">Analyses</a></li>
-          <li><a href="/studies/{{study._id}}/analyses/{{analysis._id}}">{{analysis.name}}</a></li>
-          <li class="active">{{participant.name}}</li>
-        {{/if}}
-
-        <!-- {{#if isActivePath regex='analyses'}}
-          <li><a href="/studies">Studies</a></li>
-          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          {{#if isActiveRoute 'analyses'}}
-            <li class="active">Analyses</li>
-          {{else}}
-            {{#if isActiveRoute 'analysis'}}
-              <li><a href="/studies/{{study._id}}/analyses">Analyses</a></li>
-              <li class="active">{{analysis.name}}</li>
-            {{else}}
-              {{#if isActiveRoute 'analysisAoi'}}
-                <li><a href="/studies/{{study._id}}/analyses">Analyses</a></li>
-                <li><a href="/studies/{{study._id}}/analyses/{{analysis._id}}">{{analysis.name}}</a></li>
-                <li class="active">{{aoi.name}}</li>
-              {{/if}}
-            {{/if}}
-          {{/if}}
-        {{/if}} -->
-
-        {{#if isActiveRoute 'variables'}}
-          <li><a href="/studies">Studies</a></li>
-          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          <li class="active">Variables</li>
-        {{/if}}
-        {{#if isActiveRoute 'variable'}}
-          <li><a href="/studies">Studies</a></li>
-          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          <li><a href="/studies/{{study._id}}/variables">Variables</a></li>
-          <li class="active">{{variable.name}}</li>
-        {{/if}}
-
-        {{#if isActivePath regex='viewings'}}
-          <li><a href="/studies">Studies</a></li>
-          <li><a href="/studies/{{study._id}}">{{study.name}}</a></li>
-          <li class="active">Viewings</li>
-        {{/if}}
-
+      {{#if isActiveRoute 'analysis'}}
+        <li><a href="/studies/{{study._id}}/analyses">Analyses</a></li>
+        <li class="active">{{analysis.name}}</li>
       {{/if}}
     </ol>
   </div>

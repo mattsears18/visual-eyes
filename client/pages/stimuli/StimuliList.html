@@ -1,17 +1,42 @@
 <template name="StimuliList">
-  <h4>Stimuli
-    {{#if stimuli.count}}
-      ({{stimuli.count}})
-    {{/if}}
-  </h4>
+  <!-- <h4>Stimuli {{#if stimuli.count}}({{stimuli.count}}){{/if}}</h4> -->
 
   <div>
-    <ul>
-      {{#each stimulus in stimuli}}
-        <li>
-          <a href="/studies/{{study._id}}/stimuli/{{stimulus._id}}" target="_top">{{stimulus.name}}</a>
-        </li>
-      {{/each}}
-    </ul>
+    <table class="table table-striped">
+      <thead>
+        <th>
+          Stimulus
+        </th>
+        <th>
+          Areas of Interest
+        </th>
+        <th colspan=2>
+          Reference Image (Width x Height)
+        </th>
+      </thead>
+      <tbody>
+        {{#each stimulus in stimuli}}
+          <tr>
+            <td>
+              <a href="/studies/{{study._id}}/stimuli/{{stimulus._id}}" target="_top">{{stimulus.name}}</a>
+            </td>
+            <td class="p-l-10">
+              {{#each aoi in stimulus.aois }}
+                <tr>
+                  <td>
+                    <a href="/studies/{{study._id}}/aois/{{aoi._id}}">{{aoi.name}}</a>
+                  </td>
+                </tr>
+              {{/each}}
+            </td>
+            <td class="p-l-10">
+              {{#if stimulus.stimulusfileId}}
+                <i class="fa fa-image"></i>&nbsp;&nbsp;({{stimulus.width}} x {{stimulus.height}})
+              {{/if}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
   </div>
 </template>

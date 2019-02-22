@@ -62,27 +62,9 @@ Schemas.Study = new SimpleSchema({
       collection: 'Datafiles'
     }
   },
-  defaultImageWidth: {
-    type: Number,
-    label: 'Default Reference Image Width (User Defined)',
-    defaultValue: 960,
-  },
-  defaultImageHeight: {
-    type: Number,
-    label: 'Default Reference Image Height (User Defined)',
-    defaultValue: 720,
-  },
   fixationsOnly: {
     type: Boolean,
     label: 'Use Fixations Instead of Gaze Points (Faster)',
-    defaultValue: true,
-    autoform: {
-      type: 'boolean-checkbox',
-    }
-  },
-  recordVisualIntakesOnly: {
-    type: Boolean,
-    label: 'Record Visual Intakes Only',
     defaultValue: true,
     autoform: {
       type: 'boolean-checkbox',

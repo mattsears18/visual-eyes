@@ -13,6 +13,7 @@ Template.Stimulus.onCreated(function() {
     stimulus = Stimuli.findOne({});
     if(stimulus) {
       self.subscribe('stimulusfiles.byStimulusId', stimulus._id, dummy++);
+      self.subscribe('aois.byStimulusId', stimulus._id);
     }
   });
 });

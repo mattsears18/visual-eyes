@@ -5,7 +5,7 @@
     <table class="table table-striped">
       <thead>
         <th>
-          Stimulus
+          Name
         </th>
         <th>
           Areas of Interest
@@ -31,7 +31,7 @@
             </td>
             <td class="p-l-10">
               {{#if stimulus.stimulusfileId}}
-                <i class="fa fa-image"></i>&nbsp;&nbsp;({{stimulus.width}} x {{stimulus.height}})
+                <img src="{{fileURL stimulus.stimulusfile}}" class="h-100">&nbsp;&nbsp;({{stimulus.width}} x {{stimulus.height}})
               {{/if}}
             </td>
           </tr>

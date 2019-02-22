@@ -1,18 +1,20 @@
 Template.StudyLayout.onCreated(function() {
   var self = this;
+  var dummy = 0;
   self.autorun(function() {
     var studyId = FlowRouter.getParam('studyId');
 
     self.subscribe('studies.single', studyId);
+
     study = Studies.findOne(studyId);
     if(study) {
-      self.subscribe('studies.single', studyId);
       self.subscribe('aois.byStudyId', studyId);
-      self.subscribe('datafiles.byStudyId', studyId);
+      self.subscribe('datafiles.byStudyId', studyId, dummy++);
       self.subscribe('participants.byStudyId', studyId);
       self.subscribe('stimuli.byStudyId', studyId);
       self.subscribe('variables.byStudyId', studyId);
       self.subscribe('analyses.byStudyId', studyId);
+      self.subscribe('stimulusfiles.byStudyId', studyId);
     }
   });
 });
@@ -29,6 +31,9 @@ Template.StudyLayout.helpers({
   },
   stimuli: () => {
     return Stimuli.find();
+  },
+  stimulusfiles: () => {
+    return Stimulusfiles.find();
   },
   variables: () => {
     return Variables.find();

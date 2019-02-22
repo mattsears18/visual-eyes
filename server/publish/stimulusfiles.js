@@ -33,3 +33,18 @@ Meteor.publish('stimulusfiles.byViewingId', function(viewingId) {
     return Stimulusfiles.find({_id: viewing.aoi().stimulus().stimulusfileId}).cursor;
   }
 });
+
+Meteor.publish('stimulusfiles.byStudyId', function(studyId) {
+  check(studyId, String);
+
+  stimuli = Stimuli.find({ studyId: studyId });
+
+  if(stimuli) {
+    ids = stimuli.map(stimulus => stimulus.stimulusfileId);
+    ids = ids.filter(el => el != null);
+
+    if(ids) {
+      return Stimulusfiles.find({ _id: { $in: ids }}).cursor;
+    }
+  }
+});

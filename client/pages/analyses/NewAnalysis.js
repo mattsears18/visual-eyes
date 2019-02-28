@@ -31,7 +31,7 @@ Template.NewAnalysis.helpers({
     studyId = FlowRouter.getParam('studyId');
     aois = Aois.find({ studyId: studyId }, { $sort: { name: 1 }}).fetch();
     return aois.map(function(aoi) {
-      return { label: aoi.name, value: aoi._id };
+      return { label: aoi.stimulus().name + " " + aoi.name, value: aoi._id };
     });
   },
   aoiIdValues: function () {

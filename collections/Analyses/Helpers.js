@@ -13,8 +13,8 @@ Analyses.helpers({
     }
     return false;
   },
-  aois() {
-    return Aois.find({ _id: { $in: this.analysisIds }});
+  stimuli() {
+    return Stimuli.find({ _id: { $in: this.stimulusIds }});
   },
   participants() {
     return Participants.collection.find({ _id: { $in: this.participantIds }});

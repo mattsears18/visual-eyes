@@ -1,12 +1,8 @@
 <template name="VariablesList">
-  <h4>Variables
-    {{#if variables.count}}
-      ({{variables.count}})
-    {{/if}}
-
+  <h4>
     {{#if study.hasPermission 'update'}}
       {{#unless $.Session.get 'newVariable'}}
-        &nbsp;<a class="new-variable"><i class="fa fa-plus"></i></a>
+        <a class="new-variable btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Variable</a>
       {{/unless}}
     {{/if}}
   </h4>
@@ -15,13 +11,22 @@
     {{> NewVariable}}
   {{/if}}
 
-  <div>
-    <ul>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+      </tr>
+    </thead>
+    <tbody>
       {{#each variable in variables}}
-        <li>
-          <a href="/studies/{{study._id}}/variables/{{variable._id}}" target="_top">{{variable.name}}</a>
-        </li>
+        <tr>
+          <td>
+            <a href="/studies/{{study._id}}/variables/{{variable._id}}" target="_top">{{variable.name}}</a>
+          </td>
+        </tr>
       {{/each}}
-    </ul>
-  </div>
+    </tbody>
+  </table>
 </template>

@@ -1,10 +1,20 @@
 <template name="ParticipantsList">
-  <!-- <h4>Participants {{#if participants.count}}({{participants.count}}){{/if}}</h4> -->
-  <ul>
-    {{#each participant in participants}}
-      <li>
-        <a href="/studies/{{study._id}}/participants/{{participant._id}}">{{participant.name}}</a>
-      </li>
-    {{/each}}
-  </ul>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each participant in participants}}
+        <tr>
+          <td>
+            <a href="/studies/{{study._id}}/participants/{{participant._id}}">{{participant.name}}</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </template>

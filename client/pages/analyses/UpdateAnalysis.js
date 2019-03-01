@@ -19,7 +19,7 @@ Template.UpdateAnalysis.helpers({
       var doc = collection.findOne(id);
       if (confirm('Really delete "' + doc.name + '"?')) {
         var studyId = FlowRouter.getParam('studyId');
-        FlowRouter.go('/studies/' + studyId);
+        FlowRouter.go('/studies/' + studyId + '/analyses');
         this.remove();
       }
     };

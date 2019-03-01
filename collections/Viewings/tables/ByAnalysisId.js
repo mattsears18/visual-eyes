@@ -9,8 +9,9 @@ new Tabular.Table({
     '_id',
     'studyId',
     'participantId',
-    'aoiId',
     'stimulus',
+    'aois',
+    'aoiIds',
     'stimulusId',
     'stimulusName',
     'analysisId',
@@ -48,6 +49,19 @@ new Tabular.Table({
       },
     },
     {
+      data: 'aois()',
+      title: 'Areas of Interest',
+      render: function(data, type, row, meta) {
+        if(data) {
+          resp = '';
+          data.fetch().forEach(function(aoi) {
+            resp += `<div><a href="/studies/${row.studyId}/aois/${aoi._id}">${aoi.name}</div>`
+          });
+          return resp;
+        }
+      },
+    },
+    {
       data: 'duration',
       title: 'Duration',
       render: function(data, type, row, meta) {
@@ -66,5 +80,5 @@ new Tabular.Table({
       },
     },
   ],
-  // order: [[ 0, 'asc' ], [ 1, 'asc' ], [ 2, 'asc' ]]
+  order: [[ 0, 'asc' ], [ 1, 'asc' ], [ 2, 'asc' ]]
 });

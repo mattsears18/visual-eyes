@@ -13,16 +13,15 @@ Template.Analysis.onCreated(function() {
   self.autorun(function() {
     var studyId = FlowRouter.getParam('studyId');
     self.subscribe('studies.single', studyId);
+    self.subscribe('aois.byStudyId', studyId);
+    self.subscribe('variables.byStudyId', studyId);
 
     var analysisId = FlowRouter.getParam('analysisId');
-    analysis = Analyses.findOne(analysisId);
-
     self.subscribe('analyses.single', analysisId);
     self.subscribe('viewings.byAnalysisId', analysisId);
     self.subscribe('participants.byAnalysisId', analysisId);
     self.subscribe('stimuli.byAnalysisId', analysisId);
     self.subscribe('jobs.analyses.makeViewings.byAnalysisId', analysisId);
-    self.subscribe('variables.byStudyId', studyId);
 
     if(self.subscriptionsReady()) { updateSelectors(self); }
   });

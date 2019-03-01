@@ -1,18 +1,18 @@
 <template name="StimuliList">
-  <!-- <h4>Stimuli {{#if stimuli.count}}({{stimuli.count}}){{/if}}</h4> -->
-
   <div>
     <table class="table table-striped">
       <thead>
-        <th colspan="2">
-          Name
-        </th>
-        <th>
-          Areas of Interest
-        </th>
-        <th>
-          Reference Image (Width x Height)
-        </th>
+        <tr>
+          <th>
+            Name
+          </th>
+          <th>
+            Areas of Interest
+          </th>
+          <th>
+            Reference Image (Width x Height)
+          </th>
+        </tr>
       </thead>
       <tbody>
         {{#each stimulus in stimuli}}

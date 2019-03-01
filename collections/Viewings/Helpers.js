@@ -42,4 +42,9 @@ Viewings.helpers({
   recordings() {
     return Recordings.find({ _id: { $in: this.recordingIds }}, { sort: { recordingTime: 1 } });
   },
+  aois() {
+    if(this.aoiIds && this.aoiIds.length) {
+      return Aois.find({ _id: { $in: this.aoiIds }}, { sort: { name: 1 } });
+    }
+  },
 });

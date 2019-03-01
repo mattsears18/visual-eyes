@@ -1,11 +1,10 @@
 <template name="AnalysesList">
-  <h4>Analyses {{#if analyses.count}}({{analyses.count}}){{/if}}
-
+  <h4>
     {{#if study.hasPermission 'createAnalyses'}}
       {{#unless $.Session.get 'newAnalysis'}}
         {{#if study.allDatafilesProcessed}}
-          &nbsp;<a class="new-analysis"><i class="fa fa-plus"></i></a>
-          <span class="btn btn-danger pull-right reprocess-analyses"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Analyses</span>
+          <a class="new-analysis btn btn-success pull-left"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Analysis</a>
+          {{#if analyses.count}}<span class="btn btn-danger pull-right reprocess-analyses"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Analyses</span>{{/if}}
         {{else}}
           &nbsp;<i class="fa fa-plus text-muted"></i>
         {{/if}}
@@ -16,11 +15,28 @@
     {{> NewAnalysis}}
   {{/if}}
 
-  <ul>
-    {{#each analysis in analyses}}
-      <li>
-        <a href="/studies/{{study._id}}/analyses/{{analysis._id}}">{{analysis.name}}</a> {{analysis.createdAt}}
-      </li>
-    {{/each}}
-  </ul>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Created at
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each analysis in analyses}}
+        <tr>
+          <td>
+            <a href="/studies/{{study._id}}/analyses/{{analysis._id}}">{{analysis.name}}</a>
+          </td>
+          <td>
+            {{analysis.createdAt}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </template>

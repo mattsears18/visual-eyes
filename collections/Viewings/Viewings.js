@@ -52,6 +52,15 @@ Schemas.Viewing = new SimpleSchema({
       type: 'hidden',
     },
   },
+  aoiIds: {
+    type: Array,
+  },
+  "aoiIds.$": {
+    type: String,
+    autoform: {
+      type: 'hidden',
+    },
+  },
   minRecordingTime: {
     type: Number,
     label: 'Minimum Recording Time',

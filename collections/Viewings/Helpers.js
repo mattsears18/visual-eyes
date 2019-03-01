@@ -28,17 +28,12 @@ Viewings.helpers({
       return this.participant().name;
     }
   },
-  aoi() {
-    return Aois.findOne(this.aoiId);
+  stimulus() {
+    return Stimuli.findOne(this.stimulusId);
   },
-  aoiName() {
-    if(this.aoi()) {
-      return this.aoi().name;
-    }
-  },
-  studyId() {
-    if(this.aoi()) {
-      return this.aoi().studyId;
+  stimulusName() {
+    if(this.stimulus()) {
+      return this.stimulus().name;
     }
   },
   analysis() {

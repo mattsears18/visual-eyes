@@ -29,8 +29,8 @@ Meteor.publish('stimulusfiles.byAoiId', (aoiId) => {
 Meteor.publish('stimulusfiles.byViewingId', function(viewingId) {
   check(viewingId, String);
   viewing = Viewings.findOne({_id: viewingId});
-  if(viewing && viewing.aoi() && viewing.aoi().stimulus()) {
-    return Stimulusfiles.find({_id: viewing.aoi().stimulus().stimulusfileId}).cursor;
+  if(viewing && viewing.stimulus() && viewing.stimulus().stimulusfileId) {
+    return Stimulusfiles.find({_id: viewing.stimulus().stimulusfileId}).cursor;
   }
 });
 

@@ -8,13 +8,13 @@ Template.StudyLayout.onCreated(function() {
 
     study = Studies.findOne(studyId);
     if(study) {
-      self.subscribe('aois.byStudyId', studyId);
+      // self.subscribe('aois.byStudyId', studyId);
       self.subscribe('datafiles.byStudyId', studyId, dummy++);
       self.subscribe('participants.byStudyId', studyId);
       self.subscribe('stimuli.byStudyId', studyId);
       self.subscribe('variables.byStudyId', studyId);
       self.subscribe('analyses.byStudyId', studyId);
-      self.subscribe('stimulusfiles.byStudyId', studyId);
+      // self.subscribe('stimulusfiles.byStudyId', studyId);
     }
   });
 });

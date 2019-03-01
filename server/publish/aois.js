@@ -25,7 +25,7 @@ Meteor.publish('aois.byViewingId', function(viewingId) {
 Meteor.publish('aois.byAnalysisId', function(analysisId) {
   check(analysisId, String);
   analysis = Analyses.findOne({_id: analysisId});
-  return Aois.find({ _id: { $in: analysis.aoiIds }},
+  return Aois.find({ stimulusId: { $in: analysis.stimulusIds }},
     { sort: { name: 1 }});
 });
 

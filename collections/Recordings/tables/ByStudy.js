@@ -22,7 +22,7 @@ new Tabular.Table({
       title: 'Participant',
       render: function(data, type, row, meta) {
         if(data) {
-          return `<a href="/studies/${row.studyId()}/participants/${row.participantId}">${data}</a>`;
+          return `<a href="/studies/${row.studyId}/participants/${row.participantId}">${data}</a>`;
         }
       }
     },

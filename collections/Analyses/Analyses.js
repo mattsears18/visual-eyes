@@ -72,14 +72,14 @@ Schemas.Analysis = new SimpleSchema({
     },
   },
   'participantIds.$': String,
-  aoiIds: {
+  stimulusIds: {
     type: Array,
-    label: 'Areas of Interest to Include',
+    label: 'Stimuli to Include',
     autoform: {
       type: 'select-checkbox',
     },
   },
-  'aoiIds.$': String,
+  'stimulusIds.$': String,
   studyId: {
     type: String,
     label: 'Study',

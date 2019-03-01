@@ -30,13 +30,13 @@ Schemas.Viewing = new SimpleSchema({
   analysisId: {
     type: String,
   },
-  participantId: {
+  studyId: {
     type: String,
   },
   participantId: {
     type: String,
   },
-  aoiId: {
+  stimulusId: {
     type: String,
   },
   number: {

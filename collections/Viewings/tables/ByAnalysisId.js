@@ -10,8 +10,9 @@ new Tabular.Table({
     'studyId',
     'participantId',
     'aoiId',
-    // 'aoi',
-    'studyId',
+    'stimulus',
+    'stimulusId',
+    'stimulusName',
     'analysisId',
   ],
   columns: [
@@ -22,18 +23,18 @@ new Tabular.Table({
       title: 'Participant',
       render: function(data, type, row, meta) {
         if(data) {
-          return `<a href="/studies/${row.studyId()}/participants/${row.participantId}">${data}</a>`;
+          return `<a href="/studies/${row.studyId}/participants/${row.participantId}">${data}</a>`;
         }
       }
     },
     {
       data: {
-        _: 'aoiName()',
+        _: 'stimulusName()',
       },
-      title: 'AOI Name',
+      title: 'Stimulus',
       render: function(data, type, row, meta) {
         if(data) {
-          return `<a href="/studies/${row.studyId()}/analyses/${row.analysisId}/aois/${row.aoiId}">${data}</a>`;
+          return `<a href="/studies/${row.studyId}/stimuli/${row.stimulusId}">${data}</a>`;
         }
       }
     },
@@ -42,7 +43,7 @@ new Tabular.Table({
       title: 'Viewing Number',
       render: function(data, type, row, meta) {
         if(data) {
-          return `<a href="/studies/${row.studyId()}/viewings/${row._id}">${data}</a>`;
+          return `<a href="/studies/${row.studyId}/viewings/${row._id}">${data}</a>`;
         }
       },
     },
@@ -51,7 +52,7 @@ new Tabular.Table({
       title: 'Duration',
       render: function(data, type, row, meta) {
         if(data) {
-          return `<a href="/studies/${row.studyId()}/viewings/${row._id}">${helpers.millisecondsToHMSMS(data)}</a>`;
+          return `<a href="/studies/${row.studyId}/viewings/${row._id}">${helpers.millisecondsToHMSMS(data)}</a>`;
         }
       },
     },
@@ -60,7 +61,7 @@ new Tabular.Table({
       title: 'Average Convex Hull Size (Slide)',
       render: function(data, type, row, meta) {
         if(data) {
-          return `<a href="/studies/${row.studyId()}/viewings/${row._id}">${helpers.formatNumber(data)}</a>`;
+          return `<a href="/studies/${row.studyId}/viewings/${row._id}">${helpers.formatNumber(data)}</a>`;
         }
       },
     },

@@ -12,7 +12,7 @@ Meteor.publish('stimuli.single', function(id) {
 
 Meteor.publish('stimuli.byStudyId', (studyId) => {
   check(studyId, String);
-  return Stimuli.find({ studyId: studyId });
+  return Stimuli.find({ studyId: studyId }, { sort: { name: 1 }});
 });
 
 Meteor.publish('stimuli.byAoiId', function(aoiId) {
@@ -24,5 +24,12 @@ Meteor.publish('stimuli.byAoiId', function(aoiId) {
 Meteor.publish('stimuli.byViewingId', function(viewingId) {
   check(viewingId, String);
   viewing = Viewings.findOne({_id: viewingId});
-  return Stimuli.find({_id: viewing.aoi().stimulusId});
+  return Stimuli.find({_id: viewing.stimulusId});
+});
+
+Meteor.publish('stimuli.byAnalysisId', function(analysisId) {
+  check(analysisId, String);
+  analysis = Analyses.findOne({_id: analysisId});
+  return Stimuli.find({ _id: { $in: analysis.stimulusIds }},
+    { sort: { name: 1 }});
 });

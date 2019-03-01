@@ -2,20 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a457d4be-f434-42bb-861c-b50a621c9d27" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/client/pages/aois/AoisList.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/aois/AoisList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/aois/AoisList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/aois/AoisList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/stimuli/StimuliList.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stimuli/StimuliList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/stimuli/Stimulus.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stimuli/Stimulus.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/stimuli/Stimulus.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stimuli/Stimulus.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/stimuli/UpdateStimulus.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stimuli/UpdateStimulus.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/studies/Study.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/studies/Study.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pages/studies/Study.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/studies/Study.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/styles.styl" beforeDir="false" afterPath="$PROJECT_DIR$/client/styles.styl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/collections/Stimuli/Helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/collections/Stimuli/Helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/collections/Stimuli/Stimulusfiles/Hooks.js" beforeDir="false" afterPath="$PROJECT_DIR$/collections/Stimuli/Stimulusfiles/Hooks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/collections/Studies/Studies.js" beforeDir="false" afterPath="$PROJECT_DIR$/collections/Studies/Studies.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/layouts/StudyLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/layouts/StudyLayout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/analyses/Analysis.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/analyses/Analysis.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/analyses/Analysis.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/analyses/Analysis.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/analyses/NewAnalysis.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/analyses/NewAnalysis.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/analyses/NewAnalysis.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/analyses/NewAnalysis.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/datafiles/Datafiles.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/datafiles/Datafiles.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/datafiles/DatafilesList.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/datafiles/DatafilesList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/datafiles/DatafilesList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/datafiles/DatafilesList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/stimuli/StimuliList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/stimuli/StimuliList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/viewings/Viewing.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/viewings/Viewing.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/pages/viewings/Viewing.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/pages/viewings/Viewing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/partials/animations/animation.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/partials/animations/animation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/partials/animations/convexHulls/instantaneousSlide.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/partials/animations/convexHulls/instantaneousSlide.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/partials/plots/regressionStats.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/partials/plots/regressionStats.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collections/Analyses/Analyses.js" beforeDir="false" afterPath="$PROJECT_DIR$/collections/Analyses/Analyses.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collections/Recordings/Recordings.js" beforeDir="false" afterPath="$PROJECT_DIR$/collections/Recordings/Recordings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collections/Recordings/tables/ByStudy.js" beforeDir="false" afterPath="$PROJECT_DIR$/collections/Recordings/tables/ByStudy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collections/Viewings/Helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/collections/Viewings/Helpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collections/Viewings/Viewings.js" beforeDir="false" afterPath="$PROJECT_DIR$/collections/Viewings/Viewings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collections/Viewings/tables/ByAnalysisId.js" beforeDir="false" afterPath="$PROJECT_DIR$/collections/Viewings/tables/ByAnalysisId.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collections/Viewings/tables/ByAnalysisIdAoiId.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/methods/Analyses/makeParticipantJobs.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/methods/Analyses/makeParticipantJobs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/methods/Analyses/makeViewings.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/methods/Analyses/makeViewings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/methods/Analyses/makeViewingsByParticipantAoi.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/methods/Datafiles/process.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/methods/Datafiles/process.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localExperiments/pipeSpoolAssembly/ParticipantDataOrdered.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/localExperiments/pipeSpoolAssembly/ParticipantDataOrdered.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/localExperiments/pipeSpoolAssembly/results/interestingPlots/~$ots from R and App.docx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/server/publish/aois.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/publish/aois.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/publish/stimuli.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/publish/stimuli.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/publish/stimulusfiles.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/publish/stimulusfiles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/workers/datafiles/process.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/workers/datafiles/process.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,7 +47,11 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/index.html">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -48,6 +69,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -64,7 +86,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -102,15 +123,15 @@
       <workItem from="1549030352966" duration="56000" />
       <workItem from="1549030427187" duration="602000" />
       <workItem from="1550850920855" duration="98000" />
+      <workItem from="1551451015409" duration="56000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="976000" />
+    <option name="totallyTimeSpent" value="1032000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="951" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1680" height="953" extended-state="6" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20735383" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -159,7 +180,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

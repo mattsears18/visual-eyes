@@ -8,7 +8,7 @@ queueDatafilesProcess = Jobs.processJobs('datafiles.process',
     // console.log('datafileId: ' + jobDoc.data.datafileId);
 
     Meteor.call('datafiles.process', {
-      datafileId: jobDoc.data.datafileId,
+      jobDoc: jobDoc,
       callback: callback,
     });
   }

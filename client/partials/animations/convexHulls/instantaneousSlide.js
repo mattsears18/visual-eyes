@@ -28,9 +28,9 @@ function plotConvexHullInstantaneousSlide(viewing) {
 
   layout = {};
 
-  if(viewing.aoi() && viewing.aoi().stimulus() && viewing.aoi().stimulus().stimulusfile()) {
-    stimulus = viewing.aoi().stimulus();
-    stimulusfile = viewing.aoi().stimulus().stimulusfile();
+  if(viewing.stimulus() && viewing.stimulus().stimulusfile()) {
+    stimulus = viewing.stimulus();
+    stimulusfile = viewing.stimulus().stimulusfile();
 
     // force width
     forceWidth = 800;

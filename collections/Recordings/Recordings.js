@@ -59,15 +59,18 @@ Schemas.Recording = new SimpleSchema({
   },
   aoiName: {
     type: String,
-    label: 'aoiName',
   },
   aoiId: {
     type: String,
-    label: 'aoiId',
+  },
+  stimulusName: {
+    type: String,
+  },
+  stimulusId: {
+    type: String,
   },
   studyId: {
     type: String,
-    label: 'studyId',
   },
 }, {tracker: Tracker});
 

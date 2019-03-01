@@ -7,7 +7,7 @@ Template.Analysis.onCreated(function() {
   self.selector = new ReactiveDict();
 
   self.selector.set( 'participantIds', [] );
-  self.selector.set( 'aoiIds', [] );
+  self.selector.set( 'stimulusIds', [] );
   self.selector.set( 'selector', {} );
 
   self.autorun(function() {
@@ -20,6 +20,7 @@ Template.Analysis.onCreated(function() {
     self.subscribe('analyses.single', analysisId);
     self.subscribe('viewings.byAnalysisId', analysisId);
     self.subscribe('participants.byAnalysisId', analysisId);
+    self.subscribe('stimuli.byAnalysisId', analysisId);
     self.subscribe('aois.byAnalysisId', analysisId);
     self.subscribe('jobs.analyses.makeViewings.byAnalysisId', analysisId);
     self.subscribe('variables.byStudyId', studyId);
@@ -41,12 +42,12 @@ Template.Analysis.helpers({
   viewings: () => {
     template = Template.instance();
     participantIds = template.selector.get('participantIds');
-    aoiIds = template.selector.get('aoiIds');
+    stimulusIds = template.selector.get('stimulusIds');
 
     selector = {
       analysisId: FlowRouter.getParam('analysisId'),
       participantId: { $in: participantIds },
-      aoiId:      { $in: aoiIds },
+      stimulusId:      { $in: stimulusIds },
     };
 
     template.selector.set('selector', selector);
@@ -56,8 +57,8 @@ Template.Analysis.helpers({
   study: () => {
     return Studies.findOne();
   },
-  aois: () => {
-    return Aois.find();
+  stimuli: () => {
+    return Stimuli.find();
   },
   participants: () => {
     return Participants.find();
@@ -65,8 +66,8 @@ Template.Analysis.helpers({
   showParticipantIds: function() {
     return Template.instance().selector.get('participantIds');
   },
-  showAoiIds: function() {
-    return Template.instance().selector.get('aoiIds');
+  showStimulusIds: function() {
+    return Template.instance().selector.get('stimulusIds');
   },
   selector: function() {
     return Template.instance().selector.get('selector');
@@ -138,10 +139,10 @@ function updateSelectors(template) {
 
   template.selector.set( 'participantIds', participantIds );
 
-  $aois = $('.selector.aoi.label-primary');
-  aoiIds = $aois.map(function() {
+  $stimuli = $('.selector.stimulus.label-primary');
+  stimulusIds = $stimuli.map(function() {
     return $(this).data('id');
   }).toArray();
 
-  template.selector.set( 'aoiIds', aoiIds );
+  template.selector.set( 'stimulusIds', stimulusIds );
 }

@@ -4,11 +4,11 @@
 </head>
 
 <template name="Animation">
-  {{#if aoi.stimulus}}
+  {{#if stimulus.stimulusfile}}
     <div id="Animation"></div>
   {{else}}
     <div class="m-b-10">
-      No stimulus associated with <a href="/studies/{{aoi.studyId}}/aois/{{aoi._id}}">{{aoi.name}}</a>
+      No stimulus image associated with <a href="/studies/{{stimulus.studyId}}/stimuli/{{stimulus._id}}">{{stimulus.name}}</a>
 
       <!-- {{#if aoi.hasPermission 'update'}}
         {{#unless $.Session.get 'updateAoi'}}

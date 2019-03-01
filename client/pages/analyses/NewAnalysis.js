@@ -27,19 +27,6 @@ AutoForm.hooks({
 });
 
 Template.NewAnalysis.helpers({
-  aoiOptions: function () {
-    studyId = FlowRouter.getParam('studyId');
-    aois = Aois.find({ studyId: studyId }, { $sort: { name: 1 }}).fetch();
-    return aois.map(function(aoi) {
-      return { label: aoi.stimulus().name + " " + aoi.name, value: aoi._id };
-    });
-  },
-  aoiIdValues: function () {
-    studyId = FlowRouter.getParam('studyId');
-    aois = Aois.find({ studyId: studyId }).fetch();
-    ids = aois.map(aoi => aoi._id);
-    return ids.join(',');
-  },
   participantOptions: function () {
     studyId = FlowRouter.getParam('studyId');
     participants = Participants.find({ studyId: studyId }, { $sort: { name: 1 }}).fetch();
@@ -51,6 +38,19 @@ Template.NewAnalysis.helpers({
     studyId = FlowRouter.getParam('studyId');
     participants = Participants.find({ studyId: studyId }).fetch();
     ids = participants.map(participant => participant._id);
+    return ids.join(',');
+  },
+  stimulusOptions: function () {
+    studyId = FlowRouter.getParam('studyId');
+    stimuli = Stimuli.find({ studyId: studyId }, { $sort: { name: 1 }}).fetch();
+    return stimuli.map(function(stimulus) {
+      return { label: stimulus.name, value: stimulus._id };
+    });
+  },
+  stimulusIds: function () {
+    studyId = FlowRouter.getParam('studyId');
+    stimuli = Stimuli.find({ studyId: studyId }).fetch();
+    ids = stimuli.map(stimulus => stimulus._id);
     return ids.join(',');
   },
 });

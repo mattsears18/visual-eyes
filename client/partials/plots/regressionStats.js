@@ -6,11 +6,4 @@ Template.RegressionStats.helpers({
   slopeStats: () => { return 5; },
   intercept: () => {  return helpers.linearEquation(Template.currentData().x, Template.currentData().y).equation[1]; },
   interceptStats: () => { return 5; },
-
-
-
-  balls: () => {
-    data = jStat(Template.currentData().x, Template.currentData().y);
-    // console.log(data);
-  },
 });

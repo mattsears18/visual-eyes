@@ -47,18 +47,17 @@
 
     <div class="selector-set">
       <h4>
-        Areas of Interest {{#if aois.count}}({{aois.count}}){{/if}}
-        <button class="label label-primary toggle-all selector aoi">Show All</button>
+        Stimuli {{#if stimuli.count}}({{stimuli.count}}){{/if}}
+        <button class="label label-primary toggle-all selector stimulus">Show All</button>
       </h4>
       <h4>
         <div class="well well-sm">
-          {{#each aoi in aois}}
-            <button class="label selector aoi label-primary" data-id="{{aoi._id}}">{{aoi.name}}</button>
+          {{#each stimulus in stimuli}}
+            <button class="label selector stimulus label-primary" data-id="{{stimulus._id}}">{{stimulus.name}}</button>
           {{/each}}
         </div>
       </h4>
     </div>
-    <!-- {{json showAoiIds}} -->
 
     {{#if viewings.count}}
       <div class="row">

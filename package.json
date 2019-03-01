@@ -19,6 +19,7 @@
     "datatables.net-buttons-bs": "^1.5.4",
     "datatables.net-dt": "^1.10.19",
     "dstools": "^0.2.8",
+    "extend": "^3.0.2",
     "faker": "^4.1.0",
     "file-saver": "^2.0.0",
     "genstats": "0.0.1",

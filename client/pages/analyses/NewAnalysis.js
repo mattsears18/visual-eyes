@@ -1,12 +1,3 @@
-Template.NewAnalysis.onCreated(function() {
-  var self = this;
-  self.autorun(function() {
-    var studyId = FlowRouter.getParam('studyId');
-    self.subscribe('studies.single', studyId);
-    self.subscribe('participants.byStudyId', studyId);
-  });
-});
-
 Template.NewAnalysis.events({
   'click .fa-close': function() {
     Session.set('newAnalysis', false);

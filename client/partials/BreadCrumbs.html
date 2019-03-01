@@ -44,6 +44,12 @@
         <li><a href="/studies/{{study._id}}/analyses">Analyses</a></li>
         <li class="active">{{analysis.name}}</li>
       {{/if}}
+
+      {{#if isActiveRoute 'viewing'}}
+        <li><a href="/studies/{{study._id}}/analyses">Analyses</a></li>
+        <li><a href="/studies/{{study._id}}/analyses/{{viewing.analysisId}}">{{viewing.analysis.name}}</a></li>
+        <li class="active">Viewing #{{viewing.number}}</li>
+      {{/if}}
     </ol>
   </div>
 </template>

@@ -25,3 +25,7 @@ Analyses.after.insert(function(userId, analysis) {
     });
   }
 });
+
+Analyses.after.update(function(userId, analysis) {
+  console.log(analysis);
+});

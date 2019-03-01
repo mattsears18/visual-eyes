@@ -1,5 +1,4 @@
 MODELS
-  generics          *
   users             *
   studies           *
     name            *

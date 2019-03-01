@@ -24,4 +24,30 @@ Template.UpdateAnalysis.helpers({
       }
     };
   },
+  participantOptions: function () {
+    studyId = FlowRouter.getParam('studyId');
+    participants = Participants.find({ studyId: studyId }, { $sort: { name: 1 }}).fetch();
+    return participants.map(function(participant) {
+      return { label: participant.name, value: participant._id };
+    });
+  },
+  participantIds: function () {
+    studyId = FlowRouter.getParam('studyId');
+    participants = Participants.find({ studyId: studyId }).fetch();
+    ids = participants.map(participant => participant._id);
+    return ids.join(',');
+  },
+  stimulusOptions: function () {
+    studyId = FlowRouter.getParam('studyId');
+    stimuli = Stimuli.find({ studyId: studyId }, { $sort: { name: 1 }}).fetch();
+    return stimuli.map(function(stimulus) {
+      return { label: stimulus.name, value: stimulus._id };
+    });
+  },
+  stimulusIds: function () {
+    studyId = FlowRouter.getParam('studyId');
+    stimuli = Stimuli.find({ studyId: studyId }).fetch();
+    ids = stimuli.map(stimulus => stimulus._id);
+    return ids.join(',');
+  },
 });

@@ -4,17 +4,32 @@
       <h3 class="panel-title">Edit Analysis <i class="fa fa-close pull-right"></i></h3>
     </div>
     <div class="panel-body">
-      <!-- {{> quickForm collection="Analyses" doc=analysis id="updateAnalysisForm"
-        type="update" class="update-analysis-form"}} -->
-
-      {{#autoForm collection="Analyses" doc=analysis id="updateAnalysisForm" type="update"
+      <!-- {{#autoForm collection="Analyses" doc=analysis id="updateAnalysisForm" type="update"
         class="update-analysis-form"}}
         {{> afQuickField name="name"}}
         {{> afQuickField name="desc"}}
         <div class="form-group">
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
+      {{/autoForm}} -->
+
+      {{#autoForm collection="Analyses" doc=analysis id="updateAnalysisForm" type="update"
+        class="update-analysis-form"}}
+        {{> afQuickField name="name"}}
+        {{> afQuickField name="desc"}}
+        {{> afQuickField name="period"}}
+        {{> afQuickField name="viewingGap"}}
+        {{> afQuickField name="minViewingTime"}}
+        {{> afQuickField name="ignoreAoiNoName"}}
+        {{> afQuickField name="ignoreOutsideImage"}}
+        {{> afQuickField name="studyId"}}
+        {{> afQuickField name="participantIds" options=participantOptions value=participantIds}}
+        {{> afQuickField name="stimulusIds" options=stimulusOptions value=stimulusIds}}
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
       {{/autoForm}}
+
 
       {{#if analysis.hasPermission 'destroy'}}
         {{> quickRemoveButton collection="Analyses" _id=analysis._id

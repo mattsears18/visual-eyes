@@ -5,6 +5,7 @@
       {{#unless $.Session.get 'newAnalysis'}}
         {{#if study.allDatafilesProcessed}}
           &nbsp;<a class="new-analysis"><i class="fa fa-plus"></i></a>
+          <span class="btn btn-danger pull-right reprocess-analyses"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Analyses</span>
         {{else}}
           &nbsp;<i class="fa fa-plus text-muted"></i>
         {{/if}}

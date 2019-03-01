@@ -2,7 +2,7 @@
 // Studies Publications
 ////////////////////////////////////////////////////////////////////////////////
 Meteor.publish('studies.all', function() {
-  return Studies.find({});
+  return Studies.find({}, { sort: { name: 1 }});
 });
 
 Meteor.publish('studies.single', function(id) {

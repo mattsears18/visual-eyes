@@ -24,6 +24,9 @@ Template.AnalysesList.helpers({
 Template.AnalysesList.events({
   'click .new-analysis': function() {
     Session.set('newAnalysis', true);
+  },
+  'click .reprocess-analyses': function() {
+    Meteor.call('studies.reprocessAnalyses', { studyId: study._id });
   }
 });
 

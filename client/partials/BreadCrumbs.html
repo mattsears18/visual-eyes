@@ -29,6 +29,12 @@
         <li class="active">{{stimulus.name}}</li>
       {{/if}}
 
+      {{#if isActiveRoute 'aoi'}}
+        <li><a href="/studies/{{study._id}}/stimuli">Stimuli</a></li>
+        <li><a href="/studies/{{study._id}}/stimuli/{{stimulus._id}}">{{stimulus.name}}</a></li>
+        <li class="active">{{aoi.name}}</li>
+      {{/if}}
+
       {{#if isActiveRoute 'variable'}}
         <li><a href="/studies/{{study._id}}/variables">Variables</a></li>
         <li class="active">{{variable.name}}</li>

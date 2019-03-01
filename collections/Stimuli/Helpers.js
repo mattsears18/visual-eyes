@@ -26,4 +26,7 @@ Stimuli.helpers({
   aois() {
     return Aois.find({ stimulusId: this._id });
   },
+  recordings() {
+    return Recordings.find({ stimulusId: this._id });
+  }
 });

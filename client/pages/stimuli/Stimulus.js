@@ -12,8 +12,9 @@ Template.Stimulus.onCreated(function() {
 
     stimulus = Stimuli.findOne({});
     if(stimulus) {
-      self.subscribe('stimulusfiles.byStimulusId', stimulus._id, dummy++);
-      self.subscribe('aois.byStimulusId', stimulus._id);
+      self.subscribe('stimulusfiles.byStimulusId', stimulusId, dummy++);
+      self.subscribe('aois.byStimulusId', stimulusId);
+      self.subscribe('recordings.byStimulusId', stimulusId);
     }
   });
 });

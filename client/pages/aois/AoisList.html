@@ -1,10 +1,15 @@
 <template name="AoisList">
   <h4>Areas of Interest {{#if aois.count}}({{aois.count}}){{/if}}</h4>
-  <ul>
+  <table>
     {{#each aoi in aois}}
-      <li>
-        <a href="/studies/{{study._id}}/aois/{{aoi._id}}">{{aoi.name}}</a>
-      </li>
+      <tr>
+        <td>
+          <a href="/studies/{{study._id}}/aois/{{aoi._id}}">{{aoi.name}}</a>
+        </td>
+        <td class="p-l-10">
+          {{formatNumber aoi.recordings.count}} Fixations
+        </td>
+      </tr>
     {{/each}}
-  </ul>
+  </table>
 </template>

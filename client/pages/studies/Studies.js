@@ -6,7 +6,7 @@ Template.Studies.onCreated(function() {
 });
 
 Template.Studies.helpers({
-  studies: () => { return Studies.find(); },
+  studies: () => { return Studies.find({}, {sort: {name: 1}}); },
 });
 
 Template.Studies.events({

@@ -21,3 +21,8 @@ Meteor.publish('recordings.byViewingId', (viewingId) => {
   return Recordings.find({ _id: { $in: viewing.recordingIds }},
     { sort: { recordingTime: 1 }});
 });
+
+Meteor.publish('recordings.byStimulusId', (stimulusId) => {
+  check(stimulusId, String);
+  return Recordings.find({ stimulusId: stimulusId });
+});

@@ -7,7 +7,5 @@ Aois.before.insert(function (userId, doc) {
 Aois.after.remove(function(userId, aoi) {
   if(Meteor.isServer) {
     Recordings.remove({ aoiId: aoi._id });
-    Viewings.remove({ aoiId: aoi._id });
-    //TODO update datafile recording count
   }
 });

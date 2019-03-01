@@ -3,7 +3,6 @@ Template.NewAnalysis.onCreated(function() {
   self.autorun(function() {
     var studyId = FlowRouter.getParam('studyId');
     self.subscribe('studies.single', studyId);
-    self.subscribe('aois.byStudyId', studyId);
     self.subscribe('participants.byStudyId', studyId);
   });
 });

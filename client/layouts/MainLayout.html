@@ -8,9 +8,13 @@
   {{> Navbar}}
   {{> BreadCrumbs}}
   <div class="container main">
-    <main class="main-layout">
-      {{> Template.dynamic template=main}}
-    </main>
+    {{#if Template.subscriptionsReady}}
+      <main class="main-layout">
+        {{> Template.dynamic template=main}}
+      </main>
+    {{else}}
+      {{> Spinner}}
+    {{/if}}
   </div>
   {{> Footer}}
 </template>

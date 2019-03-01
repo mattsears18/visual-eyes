@@ -21,7 +21,6 @@ Template.Analysis.onCreated(function() {
     self.subscribe('viewings.byAnalysisId', analysisId);
     self.subscribe('participants.byAnalysisId', analysisId);
     self.subscribe('stimuli.byAnalysisId', analysisId);
-    self.subscribe('aois.byAnalysisId', analysisId);
     self.subscribe('jobs.analyses.makeViewings.byAnalysisId', analysisId);
     self.subscribe('variables.byStudyId', studyId);
 

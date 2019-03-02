@@ -70,7 +70,7 @@ Schemas.Analysis = new SimpleSchema({
     defaultValue: true,
     autoform: {
       type: 'boolean-checkbox',
-    }
+    },
   },
   participantIds: {
     type: Array,
@@ -97,20 +97,6 @@ Schemas.Analysis = new SimpleSchema({
   		},
   		type: 'hidden'
   	},
-  },
-  processing: {
-    type: Boolean,
-    optional: true,
-    autoform: {
-      type: 'hidden',
-    },
-  },
-  processed: {
-    type: Boolean,
-    optional: true,
-    autoform: {
-      type: 'hidden',
-    },
   },
 }, {tracker: Tracker});
 

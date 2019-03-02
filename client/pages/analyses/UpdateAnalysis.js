@@ -1,3 +1,16 @@
+Template.UpdateAnalysis.onCreated(function() {
+  var self = this;
+  self.autorun(function() {
+    var studyId = FlowRouter.getParam('studyId');
+
+    study = Studies.findOne(studyId);
+    if(study) {
+      self.subscribe('participants.byStudyId', studyId);
+      self.subscribe('stimuli.byStudyId', studyId);
+    }
+  });
+});
+
 Template.UpdateAnalysis.events({
   'click .fa-close': function() {
     Session.set('updateAnalysis', false);
@@ -31,23 +44,11 @@ Template.UpdateAnalysis.helpers({
       return { label: participant.name, value: participant._id };
     });
   },
-  participantIds: function () {
-    studyId = FlowRouter.getParam('studyId');
-    participants = Participants.find({ studyId: studyId }).fetch();
-    ids = participants.map(participant => participant._id);
-    return ids.join(',');
-  },
   stimulusOptions: function () {
     studyId = FlowRouter.getParam('studyId');
     stimuli = Stimuli.find({ studyId: studyId }, { $sort: { name: 1 }}).fetch();
     return stimuli.map(function(stimulus) {
       return { label: stimulus.name, value: stimulus._id };
     });
-  },
-  stimulusIds: function () {
-    studyId = FlowRouter.getParam('studyId');
-    stimuli = Stimuli.find({ studyId: studyId }).fetch();
-    ids = stimuli.map(stimulus => stimulus._id);
-    return ids.join(',');
   },
 });

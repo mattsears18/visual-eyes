@@ -75,22 +75,6 @@ Schemas.Aoi = new SimpleSchema({
     },
     optional: true,
   },
-  stimulusId: {
-    type: String,
-    label: "Reference Image",
-    optional: true,
-    autoform: {
-      type: "select2",
-      firstOption: "Select a Reference Image",
-      options: function () {
-        stimuli = Stimuli.find({}, {sort: {'name': 1}}).map(function (stimulus) {
-          return { label: stimulus.name, value: stimulus._id};
-        });
-        stimuli.unshift({ label: 'Select an stimulus', value: '' });
-        return stimuli;
-      }
-    }
-  },
 }, {tracker: Tracker});
 
 Aois.attachSchema(Schemas.Aoi);

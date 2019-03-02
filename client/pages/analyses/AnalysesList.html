@@ -5,8 +5,6 @@
         {{#if study.allDatafilesProcessed}}
           <a class="new-analysis btn btn-success pull-left"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Analysis</a>
           {{#if analyses.count}}<span class="btn btn-danger pull-right reprocess-analyses"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Analyses</span>{{/if}}
-        {{else}}
-          &nbsp;<i class="fa fa-plus text-muted"></i>
         {{/if}}
       {{/unless}}
     {{/if}}
@@ -15,28 +13,30 @@
     {{> NewAnalysis}}
   {{/if}}
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>
-          Name
-        </th>
-        <th>
-          Created at
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each analysis in analyses}}
+  {{#if analyses.count}}
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <td>
-            <a href="/studies/{{study._id}}/analyses/{{analysis._id}}">{{analysis.name}}</a>
-          </td>
-          <td>
-            {{analysis.createdAt}}
-          </td>
+          <th>
+            Name
+          </th>
+          <th>
+            Created at
+          </th>
         </tr>
-      {{/each}}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {{#each analysis in analyses}}
+          <tr>
+            <td>
+              <a href="/studies/{{study._id}}/analyses/{{analysis._id}}">{{analysis.name}}</a>
+            </td>
+            <td>
+              {{analysis.createdAt}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{/if}}
 </template>

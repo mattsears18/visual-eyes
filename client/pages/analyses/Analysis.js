@@ -1,6 +1,9 @@
 import { jStat } from 'jStat';
 import Jobs from '../../../collections/Jobs/Jobs';
 
+var participantSub;
+var stimuliSub;
+
 Template.Analysis.onCreated(function() {
   var self = this;
 
@@ -19,13 +22,18 @@ Template.Analysis.onCreated(function() {
     var analysisId = FlowRouter.getParam('analysisId');
     self.subscribe('analyses.single', analysisId);
     self.subscribe('viewings.byAnalysisId', analysisId);
-    self.subscribe('participants.byAnalysisId', analysisId);
-    self.subscribe('stimuli.byAnalysisId', analysisId);
+    participantSub = self.subscribe('participants.byAnalysisId', analysisId);
+    stimuliSub = self.subscribe('stimuli.byAnalysisId', analysisId);
     self.subscribe('jobs.analyses.makeViewings.byAnalysisId', analysisId);
 
     if(self.subscriptionsReady()) { updateSelectors(self); }
   });
 });
+
+Template.UpdateAnalysis.destroyed = function(){
+  participantSub.stop();
+  stimuliSub.stop();
+}
 
 Template.BreadCrumbs.helpers({
   analysis: () => {

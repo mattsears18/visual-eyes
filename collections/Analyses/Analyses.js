@@ -2,8 +2,6 @@ import SimpleSchema from 'simpl-schema';
 
 SimpleSchema.extendOptions(['autoform']);
 
-// SimpleSchema.debug = true;
-
 Analyses = new Mongo.Collection('analyses');
 
 Analyses.allow({
@@ -97,6 +95,13 @@ Schemas.Analysis = new SimpleSchema({
   		},
   		type: 'hidden'
   	},
+  },
+  status: {
+    type: String,
+    autoform: {
+      type: 'hidden',
+    },
+    optional: true,
   },
 }, {tracker: Tracker});
 

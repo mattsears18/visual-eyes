@@ -2,7 +2,7 @@
   <h4>
     {{#if study.hasPermission 'createAnalyses'}}
       {{#unless $.Session.get 'newAnalysis'}}
-        {{#if study.allDatafilesProcessed}}
+        {{#if study.datafilesProcessed}}
           <a class="new-analysis btn btn-success pull-left"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Analysis</a>
           {{#if analyses.count}}<span class="btn btn-danger pull-right reprocess-analyses"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Analyses</span>{{/if}}
         {{/if}}
@@ -23,6 +23,9 @@
           <th>
             Created at
           </th>
+          <th>
+            Status
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -33,6 +36,24 @@
             </td>
             <td>
               {{analysis.createdAt}}
+            </td>
+            <td>
+              {{#if equals analysis.status "needsReprocessing"}}
+                <span class="label label-danger">
+                  Needs Reprocessing
+                </span>
+              {{/if}}
+              {{#if equals analysis.status "processing"}}
+                <span class="label label-default">
+                  Processing
+                  <i class="fa fa-spinner fa-pulse fa-fw"></i>
+                </span>
+              {{/if}}
+              {{#if equals analysis.status "processed"}}
+                <span class="label label-success">
+                  Processed
+                </span>
+              {{/if}}
             </td>
           </tr>
         {{/each}}

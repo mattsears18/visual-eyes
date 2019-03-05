@@ -18,16 +18,11 @@ Studies.helpers({
   aois() {
     return Aois.find({studyId: this._id});
   },
-  allDatafilesProcessed() {
-    datafilesArr = Datafiles.find({ _id: { $in: this.datafileIds }}).fetch();
-
-    if(datafilesArr.length) {
-      return datafilesArr.every(function(datafile) {
-        return datafile.processed;
-      });
-    } else {
-      return false;
-    }
+  datafilesProcessedCount() {
+    return Datafiles.find({
+      _id: { $in: this.datafileIds },
+      processed: true,
+    }).count();
   },
   hasNoDatafiles() {
     if(this.datafileIds.length) {

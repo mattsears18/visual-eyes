@@ -1,7 +1,7 @@
 <template name="DatafilesList">
   <h4>
     {{#if datafiles.count}}
-      {{#if study.allDatafilesProcessed}}
+      {{#if study.datafilesProcessed}}
         <span class="label label-success">All Processed</span>
         <span class="btn btn-danger pull-right reprocess-datafiles"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Datafiles</span>
       {{else}}
@@ -11,33 +11,48 @@
       {{/if}}
     {{/if}}
   </h4>
-  <table>
-    {{#each datafile in datafiles}}
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td>
-          <a href="/studies/{{study._id}}/datafiles/{{datafile._id}}" target="_top">{{datafile.name}}</a>
-        </td>
-        <td class="p-l-10">
-          {{#if datafile.recordings}}
-            ({{formatNumber datafile.recordings}} fixations)
-          {{/if}}
-        </td>
-        <td class="p-l-10">
-          {{#if datafile.preprocessing}}
-            <span class="label label-default">
-              Pre-processing
-              <i class="fa fa-spinner fa-pulse fa-fw"></i></span>
-          {{/if}}
-          {{#if datafile.processing}}
-            <span class="label label-default">
-              Processing
-              <i class="fa fa-spinner fa-pulse fa-fw"></i></span>
-          {{/if}}
-          {{#if datafile.processed}}
-            <span class="label label-success">Processed</span>
-          {{/if}}
-        </td>
+        <th>
+          Name
+        </th>
+        <th>
+          Fixation Count
+        </th>
+        <th>
+          Status
+        </th>
       </tr>
-    {{/each}}
+    </thead>
+    <tbody>
+      {{#each datafile in datafiles}}
+        <tr>
+          <td>
+            <a href="/studies/{{study._id}}/datafiles/{{datafile._id}}" target="_top">{{datafile.name}}</a>
+          </td>
+          <td class="p-l-10">
+            {{#if datafile.recordings}}
+              {{formatNumber datafile.recordings}} fixations
+            {{/if}}
+          </td>
+          <td class="p-l-10">
+            {{#if datafile.preprocessing}}
+              <span class="label label-default">
+                Pre-processing
+                <i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+            {{/if}}
+            {{#if datafile.processing}}
+              <span class="label label-default">
+                Processing
+                <i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+            {{/if}}
+            {{#if datafile.processed}}
+              <span class="label label-success">Processed</span>
+            {{/if}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
   </table>
 </template>

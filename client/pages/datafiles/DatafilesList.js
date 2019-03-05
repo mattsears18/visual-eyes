@@ -7,7 +7,6 @@ Template.DatafilesList.helpers({
   },
 });
 
-
 Template.DatafilesList.events({
   'click .reprocess-datafiles': function() {
     Meteor.call('studies.reprocessDatafiles', { studyId: study._id });

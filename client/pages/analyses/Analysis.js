@@ -18,6 +18,7 @@ Template.Analysis.onCreated(function() {
     self.subscribe('studies.single', studyId);
     self.subscribe('aois.byStudyId', studyId);
     self.subscribe('variables.byStudyId', studyId);
+    self.subscribe('datafiles.byStudyId', studyId);
 
     var analysisId = FlowRouter.getParam('analysisId');
     self.subscribe('analyses.single', analysisId);
@@ -78,18 +79,15 @@ Template.Analysis.helpers({
   selector: function() {
     return Template.instance().selector.get('selector');
   },
-  makeViewingsJobsProgress: () => {
-    return getViewingsJobsProgress();
-  },
-  makeViewingsJobsComplete: () => {
-    return getViewingsJobsProgress() == 100;
-  },
 });
 
 
 Template.Analysis.events({
   'click .download-as-csv':function(){
-    Meteor.call('analyses.saveCSV', { analysisId: analysis._id });
+    Meteor.call('analyses.saveCSV', { analysisId: FlowRouter.getParam('analysisId') });
+  },
+  'click .reprocess-analysis': function() {
+    Meteor.call('analyses.makeParticipantJobs', { analysisId: FlowRouter.getParam('analysisId') });
   },
   'click .update-analysis': function() {
     Session.set('updateAnalysis', true);
@@ -119,6 +117,7 @@ Template.Analysis.events({
     updateSelectors(template)
   },
 });
+
 
 Template.Analysis.destroyed = function(){
   Session.set('updateAnalysis', false);

@@ -16,3 +16,10 @@ Viewings.after.remove(function(userId, viewing) {
     });
   }
 });
+
+Viewings.after.insert(function(userId, viewing) {
+  analysis = Analyses.findOne({ _id: viewing.analysisId });
+  if(analysis.viewingsComplete()) {
+    Analyses.update({ _id: analysis._id }, { $set: { status: 'processed' }});
+  }
+});

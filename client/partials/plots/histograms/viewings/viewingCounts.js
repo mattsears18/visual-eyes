@@ -5,7 +5,7 @@ Template.PlotHistogramViewingCounts.helpers({
     return {
       title: 'Viewing Counts',
       xaxis: {
-        title: '# of Viewings per Participant per Area of Interest',
+        title: '# of Viewings per Participant per Stimulus',
         dtick: 1,
       },
       yaxis: {

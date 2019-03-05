@@ -7,3 +7,9 @@ Variables.before.insert(function (userId, doc) {
     'destroy':  [userId],
   }
 });
+
+
+Variables.after.remove(function (userId, variable) {
+  // Participants.update({ studyId: variable.studyId }, {
+  //   variableVals: { $pull: { variableId: variable._id }}});
+});

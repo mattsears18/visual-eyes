@@ -1,7 +1,5 @@
 import SimpleSchema from 'simpl-schema';
 
-// SimpleSchema.extendOptions(['autoform']);
-
 Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
   studyId: {
     type: String,

@@ -10,6 +10,9 @@ Template.VariablesList.helpers({
 Template.VariablesList.events({
   'click .new-variable': function() {
     Session.set('newVariable', true);
+  },
+  'click .new-variablefile': function() {
+    Session.set('newVariablefile', true);
   }
 });
 

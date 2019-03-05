@@ -2,13 +2,20 @@
   <h4>
     {{#if study.hasPermission 'update'}}
       {{#unless $.Session.get 'newVariable'}}
-        <a class="new-variable btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Variable</a>
+        {{#unless $.Session.get 'newVariablefile'}}
+          <a class="new-variable btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Variable</a>
+          <a class="new-variablefile btn btn-success"><i class="fa fa-upload"></i>&nbsp;&nbsp;Upload Variables</a>
+        {{/unless}}
       {{/unless}}
     {{/if}}
   </h4>
 
   {{#if $.Session.get 'newVariable'}}
     {{> NewVariable}}
+  {{/if}}
+
+  {{#if $.Session.get 'newVariablefile'}}
+    {{> NewVariablefile}}
   {{/if}}
 
   <table class="table table-striped">

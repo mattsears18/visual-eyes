@@ -29,5 +29,6 @@ Studies.after.remove(function(userId, study) {
     Stimuli.remove({ studyId: study._id });
     Participants.remove({ studyId: study._id });
     Variables.remove({ studyId: study._id });
+    Variablefiles.remove({ studyId: study._id });
   }
 });

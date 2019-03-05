@@ -1,0 +1,15 @@
+<template name="NewVariablefile">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Upload Variables <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+        {{#with currentUpload}}
+          Uploading <b>{{file.name}}</b>:
+          <span id="progress">{{progress.get}}%</span>
+        {{else}}
+          <input id="fileInput" type="file" />
+        {{/with}}
+    </div>
+  </div>
+</template>

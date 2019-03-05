@@ -10,11 +10,11 @@
       <!-- {{> quickForm collection="Variables" doc=variable id="updateVariableForm"
         type="method" meteormethod="variables.update" class="update-variable-form"}} -->
 
-      {{#if variable.hasPermission 'destroy'}}
+      <!-- {{#if variable.hasPermission 'destroy'}} -->
         {{> quickRemoveButton collection="Variables" _id=variable._id
           onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
           id="destroyVariableform" class="btn btn-danger"}}
-      {{/if}}
+      <!-- {{/if}} -->
     </div>
   </div>
 </template>

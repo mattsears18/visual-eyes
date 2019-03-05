@@ -3,7 +3,7 @@
     {{> UpdateVariable variable=variable}}
   {{else}}
     <h3 class="m-t-0">{{variable.name}}
-      {{#if variable.hasPermission 'update'}}
+      {{#if study.hasPermission 'update'}}
         {{#unless $.Session.get 'updateVariable'}}
           &nbsp;<a href="#" class="update-variable"><i class="fa fa-pencil"></i></a>
         {{/unless}}

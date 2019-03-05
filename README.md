@@ -1,2 +1,3 @@
 # EyeTracker
-A javascript application for visualizing and analyzing eye tracking data
+A visualization and statistical analysis app for eye tracking data
+- Supports the SMI BeGaze, and iMotions file formats

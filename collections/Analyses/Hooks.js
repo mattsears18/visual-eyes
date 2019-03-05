@@ -26,7 +26,7 @@ Analyses.after.insert(function(userId, analysis) {
 
 Analyses.after.update(function(userId, analysis, fieldNames, modifier, options) {
   if(
-    this.previous.ignoreAoiNoName     != analysis.ignoreAoiNoName ||
+    // this.previous.ignoreAoiNoName     != analysis.ignoreAoiNoName ||
     this.previous.ignoreOutsideImage  != analysis.ignoreOutsideImage ||
     this.previous.minViewingTime      != analysis.minViewingTime ||
     this.previous.period              != analysis.period ||

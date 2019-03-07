@@ -8,11 +8,8 @@ Template.Viewing.onCreated(function() {
 
     self.subscribe('viewings.single', viewingId);
     self.subscribe('participants.byViewingId', viewingId);
-    self.subscribe('aois.byViewingId', viewingId);
     self.subscribe('stimuli.byViewingId', viewingId);
-    self.subscribe('stimulusfiles.byViewingId', viewingId);
     self.subscribe('analyses.byViewingId', viewingId);
-    self.subscribe('recordings.byViewingId', viewingId);
   });
 
   Session.set('analysisType', '');
@@ -40,9 +37,6 @@ Template.Viewing.helpers({
   },
   participant: () => {
     return Participants.findOne();
-  },
-  recordings: () => {
-    return Recordings.find();
   },
 
   instantContinuousHidden: () => { return Template.instance().instantContinuousHidden.get(); },

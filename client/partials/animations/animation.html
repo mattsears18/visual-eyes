@@ -5,20 +5,18 @@
 
 <template name="Animation">
   {{#if stimulus.stimulusfile}}
-    <div id="Animation"></div>
+    <div id="Animation" class="m-t-30">
+      {{#if equals ($.Session.get 'analysisType') 'convexHull'}}
+        {{#if equals ($.Session.get 'instantContinuous') 'instantaneous'}}
+          {{#if equals ($.Session.get 'slideStep') 'slide'}}
+            {{> AnimationInstantaneousSlide}}
+          {{/if}}
+        {{/if}}
+      {{/if}}
+    </div>
   {{else}}
     <div class="m-b-10">
       No stimulus image associated with <a href="/studies/{{stimulus.studyId}}/stimuli/{{stimulus._id}}">{{stimulus.name}}</a>
-
-      <!-- {{#if aoi.hasPermission 'update'}}
-        {{#unless $.Session.get 'updateAoi'}}
-          &nbsp;<a href="#" class="update-aoi"><i class="fa fa-pencil"></i></a>
-        {{/unless}}
-      {{/if}} -->
     </div>
   {{/if}}
-
-  <!-- {{#if $.Session.get 'updateAoi'}}
-    {{> UpdateAoi aoi=aoi}}
-  {{/if}} -->
 </template>

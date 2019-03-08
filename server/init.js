@@ -14,10 +14,12 @@ Meteor.startup(() => {
   });
 });
 
-
 if (Meteor.isServer){
   jStat = jst.jStat;
   fs = Npm.require('fs');
+
+  // Make '/data/meteor/uploads' writable by user
+  // fs.chmodSync('/data/meteor/uploads', 0o755);
 
   if(!Meteor.settings.public.uploads) {
     console.log('no uploads directory set in Meteor.settings');

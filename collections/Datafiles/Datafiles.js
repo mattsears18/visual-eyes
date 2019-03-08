@@ -36,7 +36,7 @@ Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
   }
 });
 
-path = Meteor.settings.public.uploads || '/data/Meteor/uploads';
+path = Meteor.settings.public.uploads || '/data/meteor/uploads';
 
 Datafiles = new FilesCollection({
   collectionName: 'Datafiles',

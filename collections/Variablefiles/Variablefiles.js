@@ -21,7 +21,7 @@ Schemas.Variablefile = Object.assign({}, FilesCollection.schema, {
   },
 });
 
-path = Meteor.settings.public.uploads || '/data/Meteor/uploads';
+path = Meteor.settings.public.uploads || '/data/meteor/uploads';
 
 Variablefiles = new FilesCollection({
   collectionName: 'Variablefiles',

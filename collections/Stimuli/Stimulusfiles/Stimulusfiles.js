@@ -17,7 +17,7 @@ Schemas.Stimulusfile = Object.assign({}, FilesCollection.schema, {
   },
 });
 
-path = Meteor.settings.public.uploads || '/data/Meteor/uploads';
+path = Meteor.settings.public.uploads || '/data/meteor/uploads';
 
 Stimulusfiles = new FilesCollection({
   collectionName: 'Stimulusfiles',

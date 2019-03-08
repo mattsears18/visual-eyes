@@ -1,5 +1,5 @@
 {
-  "name": "eyetracker",
+  "name": "visualeyes",
   "private": true,
   "scripts": {
     "start": "meteor run",

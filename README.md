@@ -17,7 +17,7 @@ npm install
 ```
 6. Launch the application
 ```
-meteor
+npm start
 ```
 7. Navigate to the app: http://localhost:3000
 

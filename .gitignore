@@ -1,4 +1,6 @@
+.DS_Store
+*/.DS_Store
 node_modules/
 settings.json
-localExperiments/hazardIdentification/data/
-localExperiments/pipeSpoolAssembly/data/
+localExperiments/
+uploads/

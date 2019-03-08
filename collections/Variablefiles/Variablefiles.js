@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor'
 import SimpleSchema from 'simpl-schema';
 
 // SimpleSchema.extendOptions(['autoform']);
@@ -20,14 +21,16 @@ Schemas.Variablefile = Object.assign({}, FilesCollection.schema, {
   },
 });
 
+path = Meteor.settings.public.uploads || '/data/Meteor/uploads';
+
 Variablefiles = new FilesCollection({
   collectionName: 'Variablefiles',
   schema: Schemas.Variablefile,
   allowClientCode: true, // Required to let you remove uploaded file
-  storagePath: '/data/Meteor/uploads/variablefiles', //persistent testing file storage
+  storagePath: path + '/variablefiles', //persistent testing file storage
   onAfterUpload(variablefile) {
     if(Meteor.isServer) {
-      Meteor.call('variablefiles.process', { variablefileId: variablefile._id });  
+      Meteor.call('variablefiles.process', { variablefileId: variablefile._id });
     }
   }
 });

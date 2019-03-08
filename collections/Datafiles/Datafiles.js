@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor'
 import SimpleSchema from 'simpl-schema';
 
 Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
@@ -35,11 +36,13 @@ Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
   }
 });
 
+path = Meteor.settings.public.uploads || '/data/Meteor/uploads';
+
 Datafiles = new FilesCollection({
   collectionName: 'Datafiles',
   schema: Schemas.Datafile,
   allowClientCode: true, // Required to let you remove uploaded file
-  storagePath: '/data/Meteor/uploads/datafiles', //persistent testing file storage
+  storagePath: path + '/datafiles', //persistent testing file storage
 });
 
 Datafiles.collection.attachSchema(new SimpleSchema(Schemas.Datafile));

@@ -36,14 +36,16 @@ Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
   }
 });
 
-path = Meteor.settings.public.uploads || '/data/meteor/uploads';
-
-Datafiles = new FilesCollection({
+options = {
   collectionName: 'Datafiles',
   schema: Schemas.Datafile,
   allowClientCode: true, // Required to let you remove uploaded file
-  storagePath: path + '/datafiles', //persistent testing file storage
-});
+}
+
+path = Meteor.settings.public.uploads;
+if(path) { options.storagePath = path + '/datafiles'; }
+
+Datafiles = new FilesCollection(options);
 
 Datafiles.collection.attachSchema(new SimpleSchema(Schemas.Datafile));
 

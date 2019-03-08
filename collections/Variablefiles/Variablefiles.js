@@ -21,19 +21,22 @@ Schemas.Variablefile = Object.assign({}, FilesCollection.schema, {
   },
 });
 
-path = Meteor.settings.public.uploads || '/data/meteor/uploads';
 
-Variablefiles = new FilesCollection({
+options = {
   collectionName: 'Variablefiles',
   schema: Schemas.Variablefile,
   allowClientCode: true, // Required to let you remove uploaded file
-  storagePath: path + '/variablefiles', //persistent testing file storage
   onAfterUpload(variablefile) {
     if(Meteor.isServer) {
       Meteor.call('variablefiles.process', { variablefileId: variablefile._id });
     }
   }
-});
+}
+
+path = Meteor.settings.public.uploads;
+if(path) { options.storagePath = path + '/stimulusfiles'; }
+
+Variablefiles = new FilesCollection(options);
 
 Variablefiles.collection.attachSchema(new SimpleSchema(Schemas.Variablefile));
 

@@ -17,13 +17,10 @@ Schemas.Stimulusfile = Object.assign({}, FilesCollection.schema, {
   },
 });
 
-path = Meteor.settings.public.uploads || '/data/meteor/uploads';
-
-Stimulusfiles = new FilesCollection({
+options = {
   collectionName: 'Stimulusfiles',
   schema: Schemas.Stimulusfile,
   allowClientCode: true, // Required to let you remove uploaded file
-  storagePath: path + '/stimulusfiles', //persistent testing file storage
   onBeforeUpload(file) {
     // Allow upload files under 10MB, and only in png/jpg/jpeg formats
     if (file.size <= 10485760 && /png|jpg|jpeg/i.test(file.ext)) {
@@ -32,6 +29,11 @@ Stimulusfiles = new FilesCollection({
       return 'Please upload stimulus, with size equal or less than 10MB';
     }
   }
-});
+}
+
+path = Meteor.settings.public.uploads;
+if(path) { options.storagePath = path + '/stimulusfiles'; }
+
+Stimulusfiles = new FilesCollection(options);
 
 export default Stimulusfiles;

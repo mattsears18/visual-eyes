@@ -8,5 +8,11 @@ Participants.before.insert(function (userId, doc) {
 Participants.after.remove(function (userId, participant) {
   if(Meteor.isServer) {
     Recordings.remove({ participantId: participant._id });
+
+    Analyses.update({ studyId: participant.studyId }, { $pull: { participantIds: participant._id }}, { multi: true }, (err, num) => {
+      if(err) {
+        console.log(err);
+      }
+    });
   }
 });

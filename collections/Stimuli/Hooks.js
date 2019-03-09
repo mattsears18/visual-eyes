@@ -5,5 +5,11 @@ Stimuli.after.remove(function(userId, stimulus) {
     Aois.remove({ stimulusId: stimulus._id });
     Stimulusfiles.remove({ _id: stimulus.stimulusfileId });
     Recordings.remove({ stimulusId: stimulus._id });
+
+    Analyses.update({ studyId: stimulus.studyId }, { $pull: { stimulusIds: stimulus._id }}, { multi: true }, (err, num) => {
+      if(err) {
+        console.log(err);
+      }
+    });
   }
 });

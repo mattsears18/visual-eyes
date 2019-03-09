@@ -8,7 +8,7 @@ A visualization and statistical analysis app for eye tracking data
 3. Install git: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 4. Clone this repository and change to the directory
 ```
-git clone git@github.com:mattsears18/VisualEyes.git
+git clone https://github.com/mattsears18/VisualEyes.git
 cd VisualEyes
 ```
 5. Install NPM dependencies

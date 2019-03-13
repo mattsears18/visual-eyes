@@ -18,7 +18,14 @@
           Name
         </th>
         <th>
-          Fixation Count
+          File Format
+        </th>
+        <th>
+          {{#if study.fixationsOnly}}
+            Fixations
+          {{else}}
+            Gaze Points
+          {{/if}}
         </th>
         <th>
           Status
@@ -31,9 +38,17 @@
           <td>
             <a href="/studies/{{study._id}}/datafiles/{{datafile._id}}" target="_top">{{datafile.name}}</a>
           </td>
+          <td>
+            {{#if equals datafile.fileFormat 'imotions'}}
+              <span class="label label-default">iMotions</span>
+            {{/if}}
+            {{#if equals datafile.fileFormat 'smi'}}
+              <span class="label label-default">SMI BeGaze</span>
+            {{/if}}
+          </td>
           <td class="p-l-10">
             {{#if datafile.recordings}}
-              {{formatNumber datafile.recordings}} fixations
+              {{formatNumber datafile.recordings}}
             {{/if}}
           </td>
           <td class="p-l-10">

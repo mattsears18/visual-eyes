@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "start": "meteor --settings settings.json",
+    "startMatt": "meteor --settings settingsMatt.json",
     "test": "TEST_WATCH=1 meteor test --driver-package meteortesting:mocha --port 3002"
   },
   "dependencies": {

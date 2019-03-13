@@ -33,7 +33,15 @@ Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
   recordingsProcessed: {
     type: Number,
     optional: true,
-  }
+  },
+  headersRemoved: {
+    type: String,
+    optional: true,
+  },
+  fileFormat: {
+    type: String,
+    optional: true,
+  },
 });
 
 options = {

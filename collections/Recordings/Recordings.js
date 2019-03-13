@@ -48,6 +48,7 @@ Schemas.Recording = new SimpleSchema({
   fixationIndex: {
     type: String,
     label: 'Index',
+    optional: true,
   },
   x: {
     type: Number,

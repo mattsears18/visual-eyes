@@ -17,15 +17,7 @@
           {{study.name}}
 
           {{#if study.hasPermission 'update'}}
-            {{#if study.hasNoDatafiles}}
-              &nbsp;<a href="#" class="update-study"><i class="fa fa-pencil"></i></a>
-            {{else}}
-              {{#if study.datafilesProcessed}}
-                &nbsp;<a href="#" class="update-study"><i class="fa fa-pencil"></i></a>
-              {{else}}
-                &nbsp;<i class="fa fa-pencil text-muted"></i>
-              {{/if}}
-            {{/if}}
+            &nbsp;<a href="#" class="update-study"><i class="fa fa-pencil"></i></a>
           {{/if}}
         </h3>
 

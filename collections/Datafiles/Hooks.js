@@ -3,6 +3,13 @@ import Jobs from '../Jobs/Jobs';
 
 Datafiles.collection.before.insert(function (userId, doc) {
   doc.processed = false;
+  doc.headersRemoved = false;
+});
+
+Datafiles.collection.after.insert(function (userId, datafile) {
+  if(Meteor.isServer) {
+    Meteor.call('datafiles.removeHeaders', { datafileId: datafile._id });  
+  }
 });
 
 Datafiles.collection.after.remove(function (userId, datafile) {

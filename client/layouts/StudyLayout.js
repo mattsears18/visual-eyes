@@ -13,8 +13,6 @@ Template.StudyLayout.onCreated(function() {
       self.subscribe('stimuli.byStudyId', studyId);
       self.subscribe('variables.byStudyId', studyId);
       self.subscribe('analyses.byStudyId', studyId);
-    } else {
-      console.log('no study found! cannot subscribe from StudyLayout');
     }
   });
 });

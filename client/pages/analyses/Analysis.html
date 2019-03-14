@@ -6,7 +6,7 @@
       {{#if Template.subscriptionsReady}}
         {{#if analysis.hasPermission 'update'}}
           {{#unless $.Session.get 'updateAnalysis'}}
-            &nbsp;<a href="#" class="update-analysis"><i class="fa fa-pencil"></i></a>
+            &nbsp;<a href="" class="update-analysis"><i class="fa fa-pencil"></i></a>
           {{/unless}}
         {{/if}}
         <span class="btn btn-danger pull-right reprocess-analysis m-l-10"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Analysis</span>

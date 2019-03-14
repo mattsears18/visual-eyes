@@ -23,3 +23,10 @@ Viewings.after.insert(function(userId, viewing) {
     Analyses.update({ _id: analysis._id }, { $set: { status: 'processed' }});
   }
 });
+
+Viewings.after.update((userId, viewing, fieldNames, modifier, options) => {
+  analysis = Analyses.findOne({ _id: viewing.analysisId });
+  if(analysis.viewingsComplete()) {
+    Analyses.update({ _id: viewing.analysisId }, { $set: { status: 'processed' }});
+  }
+});

@@ -62,8 +62,12 @@ function makeInstantaneousSlidePlot(viewingId) {
         mode: 'markers',
         type: 'scatter',
         marker: {
-          color: '#dc3545',
+          color: 'FFFFFF',
           size: 8,
+          line: {
+            color: '#dc3545',
+            width: 3
+          },
         },
       };
 
@@ -108,12 +112,12 @@ function makeInstantaneousSlidePlot(viewingId) {
       };
 
       traces = [
+        centroidHistoryTrace,
+        centroidTrace,
         pointsTrace,
         polygonTrace,
-        centroidTrace,
-        centroidHistoryTrace,
-        lastFixationTrace,
         lastFixationPastTrace,
+        lastFixationTrace,
       ];
 
       // Make a frame for each hull
@@ -153,12 +157,12 @@ function makeInstantaneousSlidePlot(viewingId) {
         frames.push({
           name: hull.startTime,
           data: [
+            centroidHistory,
+            centroid,
             points,
             polygon,
-            centroid,
-            centroidHistory,
-            lastFixation,
             lastFixationPast,
+            lastFixation,
           ],
         });
       });

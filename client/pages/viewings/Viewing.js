@@ -10,6 +10,7 @@ Template.Viewing.onCreated(function() {
     self.subscribe('participants.byViewingId', viewingId);
     self.subscribe('stimuli.byViewingId', viewingId);
     self.subscribe('analyses.byViewingId', viewingId);
+    self.subscribe('recordings.byViewingId', viewingId);
   });
 
   Session.set('analysisType', '');

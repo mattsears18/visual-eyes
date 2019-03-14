@@ -42,7 +42,7 @@ twbs:bootstrap
 jquery@1.11.10
 session@1.2.0
 
-meteortoys:allthings
+
 reywood:publish-composite
 stevezhu:lodash
 aldeed:delete-button

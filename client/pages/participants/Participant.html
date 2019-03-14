@@ -5,7 +5,7 @@
     <h3 class="m-t-0">{{participant.name}}
       {{#if participant.hasPermission 'update'}}
         {{#unless $.Session.get 'updateParticipant'}}
-          &nbsp;<a href="#" class="update-participant"><i class="fa fa-pencil"></i></a>
+          &nbsp;<a href="" class="update-participant"><i class="fa fa-pencil"></i></a>
         {{/unless}}
       {{/if}}
     </h3>

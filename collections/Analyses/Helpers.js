@@ -22,13 +22,13 @@ Analyses.helpers({
   },
   viewingJobsCount() {
     return Jobs.find({
-      type: 'analyses.makeViewings',
+      type: { $in: ['analyses.makeViewings', 'viewings.saveAverageSlideHullSize'] },
       'data.analysisId': this._id,
     }).count();
   },
   viewingJobsCompletedCount() {
     return Jobs.find({
-      type: 'analyses.makeViewings',
+      type: { $in: ['analyses.makeViewings', 'viewings.saveAverageSlideHullSize'] },
       'data.analysisId': this._id,
       'status': 'completed',
     }).count();

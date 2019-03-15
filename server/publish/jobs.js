@@ -25,3 +25,13 @@ Meteor.startup(function () {
     });
   });
 });
+
+Meteor.startup(function () {
+  Meteor.publish('jobs.viewings.saveAverageSlideHullSize.byAnalysisId', function (analysisId) {
+    check(analysisId, String);
+    return Jobs.find({
+      type: 'viewings.saveAverageSlideHullSize',
+      'data.analysisId': analysisId,
+    });
+  });
+});

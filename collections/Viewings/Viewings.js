@@ -43,15 +43,6 @@ Schemas.Viewing = new SimpleSchema({
     type: Number,
     label: 'Number',
   },
-  recordingIds: {
-    type: Array,
-  },
-  "recordingIds.$": {
-    type: String,
-    autoform: {
-      type: 'hidden',
-    },
-  },
   aoiIds: {
     type: Array,
   },
@@ -93,6 +84,26 @@ Schemas.Viewing = new SimpleSchema({
     },
     optional: true,
   },
+  recordingIds: {
+    type: Array,
+  },
+  "recordingIds.$": {
+    type: String,
+    autoform: {
+      type: 'hidden',
+    },
+  },
+  recordingPoints: {
+    type: Array,
+  },
+  'recordingPoints.$': Object,
+  'recordingPoints.$.fixationIndex': {
+    type: String,
+    optional: true,
+  },
+  'recordingPoints.$.recordingTime': String,
+  'recordingPoints.$.x': String,
+  'recordingPoints.$.y': String,
   averageSlideHullSize: {
     type: Number,
     optional: true,

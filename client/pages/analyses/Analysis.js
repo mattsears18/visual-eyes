@@ -26,6 +26,7 @@ Template.Analysis.onCreated(function() {
     participantSub = self.subscribe('participants.byAnalysisId', analysisId);
     stimuliSub = self.subscribe('stimuli.byAnalysisId', analysisId);
     self.subscribe('jobs.analyses.makeViewings.byAnalysisId', analysisId);
+    self.subscribe('jobs.viewings.saveAverageSlideHullSize.byAnalysisId', analysisId);
 
     if(self.subscriptionsReady()) { updateSelectors(self); }
   });

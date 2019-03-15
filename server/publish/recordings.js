@@ -22,6 +22,20 @@ Meteor.publish('recordings.byViewingId', (viewingId) => {
     { sort: { recordingTime: 1 }});
 });
 
+Meteor.publish('recordings.forPlotHulls.byViewingId', (viewingId) => {
+  check(viewingId, String);
+  viewing = Viewings.findOne(viewingId);
+  return Recordings.find({ _id: { $in: viewing.recordingIds }},
+    { fields: {
+      recordingTime: 1,
+      fixationIndex: 1,
+      x: 1,
+      y: 1
+    }},
+    { sort: { recordingTime: 1 }}
+  );
+});
+
 Meteor.publish('recordings.byStimulusId', (stimulusId) => {
   check(stimulusId, String);
   return Recordings.find({ stimulusId: stimulusId });

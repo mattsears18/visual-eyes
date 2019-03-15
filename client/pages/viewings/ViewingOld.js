@@ -1,4 +1,4 @@
-Template.Viewing.onCreated(function() {
+Template.ViewingOld.onCreated(function() {
   var self = this;
   self.autorun(function() {
     var studyId = FlowRouter.getParam('studyId');
@@ -6,23 +6,22 @@ Template.Viewing.onCreated(function() {
 
     var viewingId = FlowRouter.getParam('viewingId');
 
-    self.subscribe('viewings.single.withRecordingPoints', viewingId);
+    self.subscribe('viewings.single', viewingId);
     self.subscribe('participants.byViewingId', viewingId);
     self.subscribe('stimuli.byViewingId', viewingId);
     self.subscribe('analyses.byViewingId', viewingId);
-    // self.subscribe('recordings.forPlotHulls.byViewingId', viewingId); // this is actually slower... don't use it
-    // self.subscribe('recordings.byViewingId', viewingId);
+    self.subscribe('recordings.byViewingId', viewingId);
 
     if(viewingId && self.subscriptionsReady()) {
       var t0 = performance.now();
-      Meteor.call('viewings.getSlideHulls', { viewingId: viewingId }, (err, hulls) => {
+      Meteor.call('viewings.getSlideHullsOld', { viewingId: viewingId }, (err, hulls) => {
         if(err) {
           console.log(err);
         }
         // console.log(hulls);
         var t1 = performance.now();
         oldTime = t1 - t0;
-        console.log("New Method: " + helpers.formatNumber(oldTime) + " ms.")
+        console.log("Old Method: " + helpers.formatNumber(oldTime) + " ms.")
       });
     }
   });
@@ -39,7 +38,7 @@ Template.Viewing.onCreated(function() {
   this.fixationTrailLengthHidden = new ReactiveVar( true );
 });
 
-Template.Viewing.helpers({
+Template.ViewingOld.helpers({
   selector: () => {
     var viewingId = FlowRouter.getParam('viewingId');
     viewing = Viewings.findOne(viewingId);
@@ -69,7 +68,7 @@ Template.BreadCrumbs.helpers({
   }
 });
 
-Template.Viewing.events({
+Template.ViewingOld.events({
   'click .update-viewing': function() {
     Session.set('updateViewing', true);
   },
@@ -106,6 +105,6 @@ Template.Viewing.events({
   },
 });
 
-Template.Viewing.destroyed = function(){
+Template.ViewingOld.destroyed = function(){
   Session.set('updateViewing', false);
 }

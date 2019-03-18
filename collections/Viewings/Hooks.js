@@ -22,6 +22,8 @@ Viewings.after.insert(function(userId, viewing) {
   if(analysis.viewingsComplete()) {
     Analyses.update({ _id: analysis._id }, { $set: { status: 'processed' }});
   }
+
+  Meteor.call('viewings.makeHullJobs', { viewingId: viewing._id });
 });
 
 Viewings.after.update((userId, viewing, fieldNames, modifier, options) => {

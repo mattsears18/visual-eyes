@@ -17,13 +17,6 @@ export default class PlotHull {
         return 0;
       }
     }
-
-    // TODO turn these into methods so that they're only calculted when they're actually needed (on the client)
-
-    // centroids.push(h.centroid);
-    // h.centroidHistory = JSON.parse(JSON.stringify(centroids));
-    // h.centroidHistoryX = h.centroidHistory.map((point) => { return point.x; });
-    // h.centroidHistoryY = h.centroidHistory.map((point) => { return point.y; });
   }
 
   startTime() {
@@ -38,22 +31,25 @@ export default class PlotHull {
     return this.endTime() - this.startTime();
   }
 
-  points() {
-    return this.recordings().map(function(recording) {
+  points(index) {
+    let ps = this.recordings().map(function(recording) {
       return [parseInt(recording.x), parseInt(recording.y)];
     });
+
+    if(typeof(index) !== 'undefined') {
+      return ps.map((point) => { return point[index]; });
+    } else {
+      return ps;
+    }
   }
 
-  pointsXY() {
-    return this.coordinatesToXY(this.points());
-  }
-
-  pointsX() {
-    return this.points().map((point) => { return point[0]; });
-  }
-
-  pointsY() {
-    return this.points().map((point) => { return point[1]; });
+  fixationTrail(length, index) {
+    let trail = this.points().slice(-length);
+    if(typeof(index) !== 'undefined') {
+      return trail.map((point) => { return point[index]; });
+    } else {
+      return trail;
+    }
   }
 
   pointsTime() {
@@ -68,8 +64,14 @@ export default class PlotHull {
     });
   }
 
-  polygon() {
-    return hull(this.points(), Infinity);
+  polygon(index) {
+    let hullPoints = hull(this.points(), Infinity);
+
+    if(typeof(index) !== 'undefined') {
+      return hullPoints.map((point) => { return point[index]; });
+    } else {
+      return hullPoints;
+    }
   }
 
   area() {
@@ -79,22 +81,6 @@ export default class PlotHull {
   centroid() {
     return helpers.centroid(this.coordinatesToXY(this.polygon()));
   }
-
-
-
-  //
-  // function arrToXY(points) {
-  //   return points.map(function(point) {
-  //     return { x: point[0], y: point[1] };
-  //   });
-  // }
-  //
-  // function getCentroid(h) {
-
-  //
-  //   return helpers.centroid(pts);
-  // }
-  //
 
   coordinatesToXY(points) {
     return points.map(function(point) {

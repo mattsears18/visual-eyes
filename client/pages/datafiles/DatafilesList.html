@@ -3,12 +3,12 @@
     {{#if datafiles.count}}
       {{#if study.datafilesProcessed}}
         <span class="label label-success">All Processed</span>
-        <span class="btn btn-danger pull-right reprocess-datafiles"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Datafiles</span>
       {{else}}
         <span class="label label-default">Datafiles Processing
           <i class="fa fa-spinner fa-pulse fa-fw"></i>
         </span>
       {{/if}}
+      <span class="btn btn-danger pull-right reprocess-datafiles"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Datafiles</span>
     {{/if}}
   </h4>
   <table class="table table-striped">

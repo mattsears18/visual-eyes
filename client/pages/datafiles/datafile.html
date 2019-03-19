@@ -9,5 +9,42 @@
         {{/unless}}
       {{/if}}
     </h3>
+
+    <p>
+      <table>
+        <tr>
+          <th>
+            Raw Row Count:
+          </th>
+          <td class="p-l-10">
+            {{formatNumber datafile.rawRowCount}}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Gaze Point Count:
+          </th>
+          <td class="p-l-10">
+            {{formatNumber datafile.gazePointCount}}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Non-duplicate Gaze Point Count:
+          </th>
+          <td class="p-l-10">
+            {{formatNumber datafile.nonDuplicateGazePointCount}}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Fixation Count:
+          </th>
+          <td class="p-l-10">
+            {{formatNumber datafile.fixationCount}}
+          </td>
+        </tr>
+      </table>
+    </p>
   {{/if}}
 </template>

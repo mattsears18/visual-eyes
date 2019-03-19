@@ -42,6 +42,22 @@ Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
     type: String,
     optional: true,
   },
+  rawRowCount: {
+    type: Number,
+    optional: true,
+  },
+  gazePointCount: {
+    type: Number,
+    optional: true,
+  },
+  nonDuplicateGazePointCount: {
+    type: Number,
+    optional: true,
+  },
+  fixationCount: {
+    type: Number,
+    optional: true,
+  },
 });
 
 options = {

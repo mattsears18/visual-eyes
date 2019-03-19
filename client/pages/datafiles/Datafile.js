@@ -8,13 +8,13 @@ Template.Datafile.onCreated(function() {
 
 Template.BreadCrumbs.helpers({
   datafile: () => {
-    return Datafiles.findOne();
+    return Datafiles.collection.findOne();
   },
 });
 
 Template.Datafile.helpers({
   datafile: () => {
-    return Datafiles.findOne();
+    return Datafiles.collection.findOne();
   },
 });
 

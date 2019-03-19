@@ -22,9 +22,11 @@ Viewings.after.insert(function(userId, viewing) {
 });
 
 Viewings.after.update((userId, viewing, fieldNames, modifier, options) => {
-  analysis = Analyses.findOne({ _id: viewing.analysisId });
-  if(analysis.viewingsComplete()) {
-    Analyses.update({ _id: viewing.analysisId }, { $set: { status: 'processed' }});
-    console.log('created ' + analysis.viewings().count() + ' viewings for analysisId: ' + analysis._id);
+  if(Meteor.isServer) {
+    analysis = Analyses.findOne({ _id: viewing.analysisId });
+    if(analysis.viewingsComplete() && analysis.status != 'processed') {
+      Analyses.update({ _id: viewing.analysisId }, { $set: { status: 'processed' }});
+      console.log('created ' + analysis.viewings().count() + ' viewings for analysisId: ' + analysis._id);
+    }
   }
 });

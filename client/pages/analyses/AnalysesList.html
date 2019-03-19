@@ -3,7 +3,11 @@
     {{#if study.hasPermission 'createAnalyses'}}
       {{#unless $.Session.get 'newAnalysis'}}
         <a class="new-analysis btn btn-success pull-left"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Analysis</a>
-        {{#if analyses.count}}<span class="btn btn-danger pull-right reprocess-analyses"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Analyses</span>{{/if}}
+        {{#if analyses.count}}
+          {{#if study.datafilesProcessingComplete}}
+            <span class="btn btn-danger pull-right reprocess-analyses"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Analyses</span>
+          {{/if}}
+        {{/if}}
       {{/unless}}
     {{/if}}
   </h4>

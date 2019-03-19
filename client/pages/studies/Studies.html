@@ -1,18 +1,22 @@
 <template name="Studies">
-  <h3 class="m-t-0">Studies
-    {{#if isInRole 'create' 'studies'}}
-      {{#unless $.Session.get 'newStudy'}}
-        &nbsp;<a class="new-study"><i class="fa fa-plus"></i></a>
-      {{/unless}}
+  {{#if Template.subscriptionsReady}}
+    <h3 class="m-t-0">Studies
+      {{#if isInRole 'create' 'studies'}}
+        {{#unless $.Session.get 'newStudy'}}
+          &nbsp;<a class="new-study"><i class="fa fa-plus"></i></a>
+        {{/unless}}
+      {{/if}}
+    </h3>
+    {{#if $.Session.get 'newStudy'}}
+      {{> NewStudy}}
     {{/if}}
-  </h3>
-  {{#if $.Session.get 'newStudy'}}
-    {{> NewStudy}}
-  {{/if}}
 
-  <ul>
-    {{#each studies}}
-      <li><a href="/studies/{{_id}}/datafiles">{{name}}</a></li>
-    {{/each}}
-  </ul>
+    <ul>
+      {{#each studies}}
+        <li><a href="/studies/{{_id}}/datafiles">{{name}}</a></li>
+      {{/each}}
+    </ul>
+  {{else}}
+    {{> Spinner}}
+  {{/if}}
 </template>

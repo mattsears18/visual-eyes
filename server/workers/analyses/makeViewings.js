@@ -1,6 +1,9 @@
 import Jobs from '../../../collections/Jobs/Jobs';
 
 export default queueAnalysesMakeViewings = Jobs.processJobs('analyses.makeViewings',
+  {
+    concurrency: 1,
+  },
   function (jobDoc, callback) {
     // console.log('');
     // console.log('got a job!');

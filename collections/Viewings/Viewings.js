@@ -79,14 +79,6 @@ Schemas.Viewing = new SimpleSchema({
       type: 'hidden',
     },
   },
-  viewingsComplete: {
-    type: String,
-    label: 'Viewings Complete',
-    autoform: {
-      type: 'hidden',
-    },
-    optional: true,
-  },
   recordingIds: {
     type: Array,
   },

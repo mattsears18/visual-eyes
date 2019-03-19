@@ -18,12 +18,6 @@ Studies.helpers({
   aois() {
     return Aois.find({studyId: this._id});
   },
-  datafilesProcessedCount() {
-    return Datafiles.find({
-      _id: { $in: this.datafileIds },
-      processed: true,
-    }).count();
-  },
   hasNoDatafiles() {
     if(this.datafileIds.length) {
       // has datafiles
@@ -32,5 +26,23 @@ Studies.helpers({
       // does not have datafiles
       return true;
     }
+  },
+  analysesCount() {
+    return Analyses.find({ studyId: this._id }).count();
+  },
+  analysesProcessedCount() {
+    return Analyses.find({ studyId: this._id, status: 'processed' }).count();
+  },
+  analysesProcessingComplete() {
+    return (this.analysesCount() > 0 && (this.analysesProcessedCount() == this.analysesCount()));
+  },
+  datafilesCount() {
+    return Datafiles.find({ studyId: this._id }).count();
+  },
+  datafilesProcessedCount() {
+    return Datafiles.find({ studyId: this._id, status: 'processed' }).count();
+  },
+  datafilesProcessingComplete() {
+    return (this.datafilesCount() > 0 && (this.datafilesProcessedCount() == this.datafilesCount()));
   },
 });

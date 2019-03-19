@@ -54,14 +54,6 @@ Schemas.Analysis = new SimpleSchema({
     label: 'Minimum Viewing Time (ms)',
     defaultValue: 10000,
   },
-  // ignoreAoiNoName: {
-  //   type: Boolean,
-  //   label: 'Ignore Areas of Interest with No Name',
-  //   defaultValue: true,
-  //   autoform: {
-  //     type: 'boolean-checkbox',
-  //   }
-  // },
   ignoreOutsideImage: {
     type: Boolean,
     label: 'Ignore Fixations Outside of Reference Image Areas',

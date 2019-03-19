@@ -59,20 +59,6 @@ Schemas.Study = new SimpleSchema({
       type: 'boolean-checkbox',
     }
   },
-  datafilesProcessing: {
-    type: Boolean,
-    optional: true,
-    autoform: {
-      type: 'hidden',
-    },
-  },
-  datafilesProcessed: {
-    type: Boolean,
-    optional: true,
-    autoform: {
-      type: 'hidden',
-    }
-  },
 }, {tracker: Tracker});
 
 Studies.attachSchema(Schemas.Study);

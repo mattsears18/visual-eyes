@@ -27,7 +27,10 @@
           <ul class="nav nav-tabs">
             <li class="{{#if isActivePath regex='datafiles'}} active {{/if}}">
               <a href="/studies/{{study._id}}/datafiles">
-                <i class="fa fa-file"></i>&nbsp;&nbsp;Data Files {{#if datafiles.count}}({{datafiles.count}}){{/if}}
+                <span class="{{#unless study.datafilesProcessingComplete}}text-danger{{/unless}}">
+                  <i class="fa fa-file"></i>&nbsp;&nbsp;Data Files {{#if datafiles.count}}({{datafiles.count}}){{/if}}
+                  {{#unless study.datafilesProcessingComplete}}<i class="fa fa-exclamation m-l-3"></i>{{/unless}}
+                </span>
               </a>
             </li>
             <li class="{{#if isActivePath regex='participants'}} active {{/if}}">
@@ -47,7 +50,10 @@
             </li>
             <li class="{{#if isActivePath regex='analyses'}} active {{/if}}">
               <a href="/studies/{{study._id}}/analyses">
-                <i class="fa fa-area-chart"></i>&nbsp;&nbsp;Analyses {{#if analyses.count}}({{analyses.count}}){{/if}}
+                <span class="{{#unless study.analysesProcessingComplete}}text-danger{{/unless}}">
+                  <i class="fa fa-area-chart"></i>&nbsp;&nbsp;Analyses {{#if analyses.count}}({{analyses.count}}){{/if}}
+                  {{#unless study.analysesProcessingComplete}}<i class="fa fa-exclamation m-l-3"></i>{{/unless}}
+                </span>
               </a>
             </li>
           </ul>

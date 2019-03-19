@@ -18,7 +18,10 @@ Analyses.helpers({
     return Stimuli.find({ _id: { $in: this.stimulusIds }});
   },
   participants() {
-    return Participants.collection.find({ _id: { $in: this.participantIds }});
+    return Participants.find({ _id: { $in: this.participantIds }});
+  },
+  viewings() {
+    return Viewings.find({ analysisId: this._id });
   },
   viewingJobsCount() {
     return Jobs.find({

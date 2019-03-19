@@ -28,8 +28,6 @@ function makeInstantaneousSlidePlot(viewingId) {
   if(viewing) {
     hulls = viewing.getSlideHulls();
 
-    console.log()
-
     // Set initial traces
     pointsTrace = {
       name: 'Fixations',
@@ -83,8 +81,6 @@ function makeInstantaneousSlidePlot(viewingId) {
         width: 2.5,
       },
     };
-
-    console.log();
 
     lastFixationTrace = {
       name: 'Last Fixation',
@@ -179,25 +175,23 @@ function makeInstantaneousSlidePlot(viewingId) {
       });
     });
 
-    console.log(frames);
-
 
     // Now create slider steps, one for each frame. The slider
     // executes a plotly.js API command (here, Plotly.animate).
     // In this example, we'll animate to one of the named frames
     // created in the above loop.
-    var sliderSteps = [];
-    hulls.forEach(function(hull) {
-      sliderSteps.push({
-        method: 'animate',
-        label: hull.startTime(),
-        args: [[hull.startTime()], {
-          mode: 'immediate',
-          transition: { duration: 0 },
-          frame: { duration: hull.timeStep(), redraw: false },
-        }]
-      });
-    });
+    // var sliderSteps = [];
+    // hulls.forEach(function(hull) {
+    //   sliderSteps.push({
+    //     method: 'animate',
+    //     label: hull.startTime(),
+    //     args: [[hull.startTime()], {
+    //       mode: 'immediate',
+    //       transition: { duration: 0 },
+    //       frame: { duration: hull.timeStep(), redraw: false },
+    //     }]
+    //   });
+    // });
 
     stimulus = viewing.stimulus();
     stimulusfile = stimulus.stimulusfile();
@@ -247,52 +241,78 @@ function makeInstantaneousSlidePlot(viewingId) {
      // passing `[null]`, which indicates we'd like to interrupt any
      // currently running animations with a new list of frames. Here
      // The new list of frames is empty, so it halts the animation.
-      updatemenus: [{
-        x: 0,
-        y: 0,
-        yanchor: 'top',
-        xanchor: 'left',
-        showactive: false,
-        direction: 'left',
-        type: 'buttons',
-        pad: {t: 87, r: 10},
-        buttons: [{
-          method: 'animate',
-          args: [null, {
-            mode: 'immediate',
-            fromcurrent: true,
-            transition: { duration: 0 },
-          }],
-          label: 'Play'
-        }, {
-          method: 'animate',
-          args: [[null], {
-            mode: 'immediate',
-            transition: {duration: 0},
-          }],
-          label: 'Pause'
-        }]
-      }],
+      // updatemenus: [{
+      //   x: 0,
+      //   y: 0,
+      //   yanchor: 'top',
+      //   xanchor: 'left',
+      //   showactive: false,
+      //   direction: 'left',
+      //   type: 'buttons',
+      //   pad: {t: 87, r: 10},
+      //   buttons: [{
+      //     method: 'animate',
+      //     args: [null, {
+      //       mode: 'immediate',
+      //       fromcurrent: true,
+      //       transition: { duration: 0 },
+      //     }],
+      //     label: 'Play'
+      //   }, {
+      //     method: 'animate',
+      //     args: [[null], {
+      //       mode: 'immediate',
+      //       transition: {duration: 0},
+      //     }],
+      //     label: 'Pause'
+      //   }]
+      // }],
      // Finally, add the slider and use `pad` to position it
      // nicely next to the buttons.
-      sliders: [{
-        pad: { l: 130, t: 50, b: 10, r: 20 },
-        currentvalue: {
-          visible: true,
-          prefix: 'Time (Beginning of Hull Period):',
-          xanchor: 'right',
-          font: {size: 20, color: '#666'}
-        },
-        steps: sliderSteps
-      }]
+      // sliders: [{
+      //   pad: { l: 130, t: 50, b: 10, r: 20 },
+      //   currentvalue: {
+      //     visible: true,
+      //     prefix: 'Time (Beginning of Hull Period):',
+      //     xanchor: 'right',
+      //     font: {size: 20, color: '#666'}
+      //   },
+      //   steps: sliderSteps
+      // }]
     };
 
     // Create the plot:
-    var myPlot = document.getElementById('AnimationInstantaneousSlide');
     Plotly.react('AnimationInstantaneousSlide', {
       data: traces,
       layout: layout,
       frames: frames,
     });
+
+    fi = 0;
+
+    t0 = performance.now();
+    function updatePlot() {
+      Plotly.animate('AnimationInstantaneousSlide', {
+        data: frames[fi].data
+      }, {
+        transition: {
+          duration: 0
+        },
+        frame: {
+          duration: 0,
+          redraw: false
+        }
+      });
+
+      fi++;
+      if(fi < frames.length) {
+        updatePlot();
+      } else {
+        t1 = performance.now();
+        console.log('time to animate: ' + (t1 - t0) + ' ms.');
+      }
+    }
+
+    updatePlot();
   }
 }

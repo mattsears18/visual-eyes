@@ -1,13 +1,6 @@
 <template name="DatafilesList">
   <h4>
     {{#if datafiles.count}}
-      {{#if study.datafilesProcessed}}
-        <span class="label label-success">All Processed</span>
-      {{else}}
-        <span class="label label-default">Datafiles Processing
-          <i class="fa fa-spinner fa-pulse fa-fw"></i>
-        </span>
-      {{/if}}
       <span class="btn btn-danger pull-right reprocess-datafiles"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Datafiles</span>
     {{/if}}
   </h4>
@@ -29,6 +22,13 @@
         </th>
         <th>
           Status
+          {{#if study.datafilesProcessingComplete}}
+            <span class="label label-success">All Processed</span>
+          {{else}}
+            <span class="label label-default">Datafiles Processing
+              <i class="fa fa-spinner fa-pulse fa-fw"></i>
+            </span>
+          {{/if}}
         </th>
       </tr>
     </thead>
@@ -52,17 +52,23 @@
             {{/if}}
           </td>
           <td class="p-l-10">
-            {{#if datafile.preprocessing}}
+            {{#if equals datafile.status 'needsProcessing'}}
+              <span class="label label-danger">Needs Processing</span>
+            {{/if}}
+            {{#if equals datafile.status 'needsReprocessing'}}
+              <span class="label label-danger">Needs Reprocessing</span>
+            {{/if}}
+            {{#if equals datafile.status 'preprocessing'}}
               <span class="label label-default">
                 Pre-processing
                 <i class="fa fa-spinner fa-pulse fa-fw"></i></span>
             {{/if}}
-            {{#if datafile.processing}}
+            {{#if equals datafile.status 'processing'}}
               <span class="label label-default">
                 Processing
                 <i class="fa fa-spinner fa-pulse fa-fw"></i></span>
             {{/if}}
-            {{#if datafile.processed}}
+            {{#if equals datafile.status 'processed'}}
               <span class="label label-success">Processed</span>
             {{/if}}
           </td>

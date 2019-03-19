@@ -14,17 +14,9 @@ Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
     type: String,
     optional: true,
   },
-  preprocessing: {
-    type: Boolean,
-    optional: true,
-  },
-  processing: {
-    type: Boolean,
-    optional: true,
-  },
-  processed: {
-    type: Boolean,
-    optional: true,
+  status: {
+    type: String,
+    defaultValue: 'needsProcessing',
   },
   recordings: {
     type: Number,

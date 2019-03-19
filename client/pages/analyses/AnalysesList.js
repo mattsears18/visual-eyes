@@ -1,3 +1,15 @@
+
+Template.AnalysesList.onCreated(function() {
+  var self = this;
+
+  self.autorun(function() {
+    var studyId = FlowRouter.getParam('studyId');
+    self.subscribe('viewings.byStudyId', studyId);
+  });
+});
+
+
+
 Template.AnalysesList.helpers({
   study: () => {
     return Studies.findOne();

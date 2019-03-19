@@ -5,7 +5,7 @@ export default queueAnalysesMakeViewings = Jobs.processJobs('analyses.makeViewin
     // console.log('');
     // console.log('got a job!');
     // console.log('analyses.makeViewings');
-    // console.log('analysisId: ' + jobDoc.data.analysisId + ', datafileId: ' + jobDoc.data.datafileId + ', aoiId: ' + jobDoc.data.aoiId);
+    // console.log('analysisId: ' + jobDoc.data.analysisId + ', participantId: ' + jobDoc.data.participantId + ', stimulusId: ' + jobDoc.data.stimulusId);
 
     Meteor.call('analyses.makeViewings', {
       jobId: jobDoc._doc._id,

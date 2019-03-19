@@ -8,7 +8,7 @@ Datafiles.collection.before.insert(function (userId, doc) {
 
 Datafiles.collection.after.insert(function (userId, datafile) {
   if(Meteor.isServer) {
-    Meteor.call('datafiles.removeHeaders', { datafileId: datafile._id });  
+    Meteor.call('datafiles.removeHeaders', { datafileId: datafile._id });
   }
 });
 

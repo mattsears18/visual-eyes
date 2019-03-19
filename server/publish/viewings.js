@@ -21,6 +21,13 @@ Meteor.publish('viewings.single.withRecordingPoints', function(id) {
   );
 });
 
+Meteor.publish('viewings.byStudyId', (studyId) => {
+  check(studyId, String);
+  return Viewings.find({ studyId: studyId },
+    { fields: { recordingIds: 0, recordingPoints: 0 }}
+  );
+});
+
 Meteor.publish('viewings.byAnalysisId', (analysisId) => {
   check(analysisId, String);
   return Viewings.find({ analysisId: analysisId },

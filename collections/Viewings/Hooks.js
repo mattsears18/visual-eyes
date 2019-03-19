@@ -18,11 +18,6 @@ Viewings.after.remove(function(userId, viewing) {
 });
 
 Viewings.after.insert(function(userId, viewing) {
-  analysis = Analyses.findOne({ _id: viewing.analysisId });
-  if(analysis.viewingsComplete()) {
-    Analyses.update({ _id: analysis._id }, { $set: { status: 'processed' }});
-  }
-
   Meteor.call('viewings.makeHullJobs', { viewingId: viewing._id });
 });
 
@@ -30,5 +25,6 @@ Viewings.after.update((userId, viewing, fieldNames, modifier, options) => {
   analysis = Analyses.findOne({ _id: viewing.analysisId });
   if(analysis.viewingsComplete()) {
     Analyses.update({ _id: viewing.analysisId }, { $set: { status: 'processed' }});
+    console.log('created ' + analysis.viewings().count() + ' viewings for analysisId: ' + analysis._id);
   }
 });

@@ -106,6 +106,14 @@ Schemas.Viewing = new SimpleSchema({
       type: 'hidden',
     },
   },
+  gazePointFrequency: {
+    type: Number,
+    optional: true,
+  },
+  fixationFrequency: {
+    type: Number,
+    optional: true,
+  },
 }, {tracker: Tracker});
 
 Viewings.attachSchema(Schemas.Viewing);

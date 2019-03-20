@@ -5,6 +5,7 @@ import Studies from '../../Studies/Studies';
 new Tabular.Table({
   name: 'ViewingsByAnalysisId',
   collection: Viewings,
+  pageLength: 100,
   extraFields: [
     '_id',
     'studyId',
@@ -72,10 +73,21 @@ new Tabular.Table({
     },
     {
       data: 'averageSlideHullSize',
-      title: 'Average Convex Hull Size (Slide)',
+      title: 'Average Convex Hull Size (Slide Method)',
       render: function(data, type, row, meta) {
         if(data) {
           return `<a href="/studies/${row.studyId}/viewings/${row._id}">${helpers.formatNumber(data)}</a>`;
+        }
+      },
+    },
+    {
+      data: {
+        _: 'averageSlideHullCoverage()',
+      },
+      title: 'Average Convex Hull Coverage (Slide Method)',
+      render: function(data, type, row, meta) {
+        if(data) {
+          return `<a href="/studies/${row.studyId}/viewings/${row._id}">${helpers.formatNumber(data * 100)}%</a>`;
         }
       },
     },

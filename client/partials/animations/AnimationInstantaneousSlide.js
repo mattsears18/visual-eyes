@@ -290,7 +290,6 @@ function makeInstantaneousSlidePlot(viewingId) {
 
     fi = 0;
 
-    t0 = performance.now();
     function updatePlot() {
       Plotly.animate('AnimationInstantaneousSlide', {
         data: frames[fi].data
@@ -307,9 +306,6 @@ function makeInstantaneousSlidePlot(viewingId) {
       fi++;
       if(fi < frames.length) {
         updatePlot();
-      } else {
-        t1 = performance.now();
-        console.log('time to animate: ' + (t1 - t0) + ' ms.');
       }
     }
 

@@ -32,6 +32,12 @@ Viewings.helpers({
   stimulus() {
     return Stimuli.findOne(this.stimulusId);
   },
+  stimulusArea() {
+    return (this.stimulus().width * this.stimulus().height);
+  },
+  averageSlideHullCoverage() {
+    return (this.averageSlideHullSize / this.stimulusArea());
+  },
   stimulusName() {
     if(this.stimulus()) {
       return this.stimulus().name;

@@ -1,40 +1,49 @@
 import { jStat } from 'jStat';
 
 export default function getDataAsCSV() {
-  analysis = this;
-  participants = Participants.find({"_id": { $in: analysis.participantIds }}).fetch();
+  let analysis = this;
+  let participants = Participants.find({'_id': { $in: analysis.participantIds }}).fetch();
 
-  data = [];
+  let data = [];
 
   participants.forEach(function(participant) {
-    viewings = Viewings.find({"analysisId": analysis._id, "participantId": participant._id}).fetch();
+    let viewings = Viewings.find({'analysisId': analysis._id, 'participantId': participant._id}).fetch();
+    let datafile = Datafiles.findOne({ _id: participant.datafileId });
 
-    viewingCounts = helpers.getViewingCounts(viewings);
+    let viewingCounts = helpers.getViewingCounts(viewings);
 
-    viewingDurations = viewings.map(function(viewing) {
+    let viewingDurations = viewings.map(function(viewing) {
       return viewing.duration;
     });
 
-    averageSlideHullSizes = viewings.map(function(viewing) {
-      return viewing.averageSlideHullSize;
+    let averageSlideHullCoverages = viewings.map(function(viewing) {
+      return viewing.averageSlideHullCoverage();
     });
 
-    participantData = {
-      "analysisName": analysis.name,
-      "analysisId": analysis._id,
-      "period": analysis.period,
-      "viewingGap": analysis.viewingGap,
-      "minViewingTime": analysis.minViewingTime,
-      "participantName": participant.name,
-      "participantId": participant._id,
-      "viewingCountPerStimulusMean": jStat.mean(viewingCounts),
-      "viewingCountPerStimulusMedian": jStat.median(viewingCounts),
-      "viewingCountTotal": jStat.sum(viewingCounts),
-      "viewingDurationMean": jStat.mean(viewingDurations),
-      "viewingDurationMedian": jStat.median(viewingDurations),
-      "viewingDurationTotal": jStat.sum(viewingDurations),
-      "averageConvexHullSizeSlideMean": jStat.mean(averageSlideHullSizes),
-      "averageConvexHullSizeSlideMedian": jStat.median(averageSlideHullSizes),
+    let participantData = {
+      'analysisName': analysis.name,
+      'analysisId': analysis._id,
+      'period': analysis.period,
+      'viewingGap': analysis.viewingGap,
+      'minViewingTime': analysis.minViewingTime,
+      'participantName': participant.name,
+      'participantId': participant._id,
+      'viewingCountPerStimulusMean': jStat.mean(viewingCounts),
+      'viewingCountPerStimulusMedian': jStat.median(viewingCounts),
+      'viewingCountTotal': jStat.sum(viewingCounts),
+      'viewingDurationMean': jStat.mean(viewingDurations),
+      'viewingDurationMedian': jStat.median(viewingDurations),
+      'viewingDurationTotal': jStat.sum(viewingDurations),
+      'averageConvexHullCoverageSlideMean': jStat.mean(averageSlideHullCoverages),
+      'averageConvexHullCoverageSlideMedian': jStat.median(averageSlideHullCoverages),
+      'rawRowCount': datafile.rawRowCount,
+      'gazePointCount': datafile.gazePointCount,
+      'gazePointProportion': (datafile.gazePointCount / datafile.rawRowCount),
+      'nonDuplicateGazePointCount': datafile.nonDuplicateGazePointCount,
+      'nonDuplicateGazePointProportion': (datafile.nonDuplicateGazePointCount / datafile.gazePointCount),
+      'fixationCount': datafile.fixationCount,
+      'fixationProportion': (datafile.fixationCount / datafile.gazePointCount),
+      'fixationNonDuplicateProportion': (datafile.fixationCount / datafile.nonDuplicateGazePointCount),
     };
 
     participant.variables().forEach(function(variable){

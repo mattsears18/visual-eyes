@@ -24,8 +24,11 @@ Template.AnalysesList.events({
     Session.set('newAnalysis', true);
   },
   'click .reprocess-analyses': function() {
-    Meteor.call('studies.reprocessAnalyses', { studyId: study._id });
-  }
+    Meteor.call('studies.reprocessAnalyses', { studyId: FlowRouter.getParam('studyId') });
+  },
+  'click .download-as-csv':function(){
+    Meteor.call('studies.saveCSVs', { studyId: FlowRouter.getParam('studyId') });
+  },
 });
 
 Template.AnalysesList.destroyed = function(){

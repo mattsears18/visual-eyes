@@ -5,7 +5,8 @@
         <a class="new-analysis btn btn-success pull-left"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Analysis</a>
         {{#if analyses.count}}
           {{#if study.datafilesProcessingComplete}}
-            <span class="btn btn-danger pull-right reprocess-analyses"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Analyses</span>
+            <span class="btn btn-danger pull-right reprocess-analyses m-l-10"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Analyses</span>
+            <span class="pull-right btn btn-success download-as-csv"><i class="fa fa-table"></i>&nbsp;Download Data as .CSVs</span>
           {{/if}}
         {{/if}}
       {{/unless}}

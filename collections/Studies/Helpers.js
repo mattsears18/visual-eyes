@@ -13,19 +13,10 @@ Studies.helpers({
     return false;
   },
   datafiles() {
-    return Datafiles.find({ _id: { $in: this.datafileIds }}).cursor;
+    return Datafiles.find({ studyId: this._id }).cursor;
   },
   aois() {
     return Aois.find({studyId: this._id});
-  },
-  hasNoDatafiles() {
-    if(this.datafileIds.length) {
-      // has datafiles
-      return false;
-    } else {
-      // does not have datafiles
-      return true;
-    }
   },
   analysesCount() {
     return Analyses.find({ studyId: this._id }).count();
@@ -40,9 +31,18 @@ Studies.helpers({
     return Datafiles.find({ studyId: this._id }).count();
   },
   datafilesProcessedCount() {
-    return Datafiles.find({ studyId: this._id, status: 'processed' }).count();
+    return Datafiles.find({ studyId: this._id, status: 'processed'}).count();
   },
   datafilesProcessingComplete() {
     return (this.datafilesCount() > 0 && (this.datafilesProcessedCount() == this.datafilesCount()));
+  },
+  stimuli() {
+    return Stimuli.find({ studyId: this._id });
+  },
+  stimuliWithImageCount() {
+    return Stimuli.find({ studyId: this._id, stimulusfileId: { $ne: null }}).count();
+  },
+  stimuliAllHaveImage() {
+    return (this.stimuli().count() == this.stimuliWithImageCount());
   },
 });

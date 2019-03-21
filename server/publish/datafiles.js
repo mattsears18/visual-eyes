@@ -12,7 +12,7 @@ Meteor.publish('datafiles.byStudyId', (studyId) => {
 
   if(study) {
     //TODO use .observeChanges() to show new datafiles on study.html after updateStudy form is submitted
-    return Datafiles.find({ _id: { $in: study.datafileIds }},
+    return Datafiles.find({ studyId: study._id },
       { sort: { name: 1 }}).cursor;
   }
 });

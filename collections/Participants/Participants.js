@@ -37,11 +37,15 @@ Schemas.Participant = new SimpleSchema({
       type: 'hidden',
     },
   },
-  datafileId: {
-    type: String,
+  datafileIds: {
+    type: Array,
+    optional: true,
     autoform: {
       type: 'hidden',
     },
+  },
+  "datafileIds.$": {
+    type: String,
   },
   variableVals: {
     type: Array,

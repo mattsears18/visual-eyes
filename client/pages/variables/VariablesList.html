@@ -18,22 +18,24 @@
     {{> NewVariablefile}}
   {{/if}}
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>
-          Name
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each variable in variables}}
+  {{#if variables.count}}
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <td>
-            <a href="/studies/{{study._id}}/variables/{{variable._id}}" target="_top">{{variable.name}}</a>
-          </td>
+          <th>
+            Name
+          </th>
         </tr>
-      {{/each}}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {{#each variable in variables}}
+          <tr>
+            <td>
+              <a href="/studies/{{study._id}}/variables/{{variable._id}}" target="_top">{{variable.name}}</a>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{/if}}
 </template>

@@ -27,35 +27,48 @@
           <ul class="nav nav-tabs">
             <li class="{{#if isActivePath regex='datafiles'}} active {{/if}}">
               <a href="/studies/{{study._id}}/datafiles">
-                <span class="{{#unless study.datafilesProcessingComplete}}text-danger{{/unless}}">
+                <span class="{{#if datafiles.count}}{{#unless study.datafilesProcessingComplete}}text-danger{{/unless}}{{/if}}">
                   <i class="fa fa-file"></i>&nbsp;&nbsp;Data Files {{#if datafiles.count}}({{datafiles.count}}){{/if}}
-                  {{#unless study.datafilesProcessingComplete}}<i class="fa fa-exclamation m-l-3"></i>{{/unless}}
+                  {{#if datafiles.count}}{{#unless study.datafilesProcessingComplete}}<i class="fa fa-exclamation m-l-3"></i>{{/unless}}{{/if}}
                 </span>
               </a>
             </li>
-            <li class="{{#if isActivePath regex='participants'}} active {{/if}}">
-              <a href="/studies/{{study._id}}/participants">
-                <i class="fa fa-user"></i>&nbsp;&nbsp;Participants {{#if participants.count}}({{participants.count}}){{/if}}
-              </a>
-            </li>
-            <li class="{{#if isActivePath regex='stimuli'}} active {{/if}}">
-              <a href="/studies/{{study._id}}/stimuli">
-                <i class="fa fa-image"></i>&nbsp;&nbsp;Stimuli {{#if stimuli.count}}({{stimuli.count}}){{/if}}
-              </a>
-            </li>
-            <li class="{{#if isActivePath regex='variables'}} active {{/if}}">
-              <a href="/studies/{{study._id}}/variables">
-                <i class="fa fa-list"></i>&nbsp;&nbsp;Variables {{#if variables.count}}({{variables.count}}){{/if}}
-              </a>
-            </li>
-            <li class="{{#if isActivePath regex='analyses'}} active {{/if}}">
-              <a href="/studies/{{study._id}}/analyses">
-                <span class="{{#unless study.analysesProcessingComplete}}text-danger{{/unless}}">
-                  <i class="fa fa-area-chart"></i>&nbsp;&nbsp;Analyses {{#if analyses.count}}({{analyses.count}}){{/if}}
-                  {{#unless study.analysesProcessingComplete}}<i class="fa fa-exclamation m-l-3"></i>{{/unless}}
-                </span>
-              </a>
-            </li>
+            {{#if participants.count}}
+              <li class="{{#if isActivePath regex='participants'}} active {{/if}}">
+                <a href="/studies/{{study._id}}/participants">
+                  <i class="fa fa-user"></i>&nbsp;&nbsp;Participants {{#if participants.count}}({{participants.count}}){{/if}}
+                </a>
+              </li>
+            {{/if}}
+            {{#if stimuli.count}}
+              <li class="{{#if isActivePath regex='stimuli'}} active {{/if}}">
+                <a href="/studies/{{study._id}}/stimuli">
+                  <span class="{{#if stimuli.count}}{{#unless study.stimuliAllHaveImage}}text-danger{{/unless}}{{/if}}">
+                    <i class="fa fa-image"></i>&nbsp;&nbsp;Stimuli {{#if stimuli.count}}({{stimuli.count}}){{/if}}
+                    {{#if stimuli.count}}{{#unless study.stimuliAllHaveImage}}<i class="fa fa-exclamation m-l-3"></i>{{/unless}}{{/if}}
+                  </span>
+                </a>
+              </li>
+            {{/if}}
+            {{#if participants.count}}
+              <li class="{{#if isActivePath regex='variables'}} active {{/if}}">
+                <a href="/studies/{{study._id}}/variables">
+                  <i class="fa fa-list"></i>&nbsp;&nbsp;Variables {{#if variables.count}}({{variables.count}}){{/if}}
+                </a>
+              </li>
+            {{/if}}
+            {{#if participants.count}}
+              {{#if stimuli.count}}
+                <li class="{{#if isActivePath regex='analyses'}} active {{/if}}">
+                  <a href="/studies/{{study._id}}/analyses">
+                    <span class="{{#if analyses.count}}{{#unless study.analysesProcessingComplete}}text-danger{{/unless}}{{/if}}">
+                      <i class="fa fa-area-chart"></i>&nbsp;&nbsp;Analyses {{#if analyses.count}}({{analyses.count}}){{/if}}
+                      {{#if analyses.count}}{{#unless study.analysesProcessingComplete}}<i class="fa fa-exclamation m-l-3"></i>{{/unless}}{{/if}}
+                    </span>
+                  </a>
+                </li>
+              {{/if}}
+            {{/if}}
           </ul>
         </div>
 

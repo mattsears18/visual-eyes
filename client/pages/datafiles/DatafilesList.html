@@ -1,79 +1,99 @@
 <template name="DatafilesList">
   <h4>
-    {{#if datafiles.count}}
-      <span class="btn btn-danger pull-right reprocess-datafiles"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Datafiles</span>
+    {{#if study.hasPermission 'update'}}
+      <a class="upload-datafiles btn btn-success"><i class="fa fa-upload"></i>&nbsp;&nbsp;Upload Datafiles</a>
+      {{#unless $.Session.get 'uploadingDatafiles'}}
+        {{#if datafiles.count}}
+          <span class="btn btn-danger pull-right reprocess-datafiles"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Datafiles</span>
+        {{/if}}
+      {{/unless}}
     {{/if}}
   </h4>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>
-          Name
-        </th>
-        <th>
-          File Format
-        </th>
-        <th>
-          {{#if study.fixationsOnly}}
-            Fixations
-          {{else}}
-            Gaze Points
-          {{/if}}
-        </th>
-        <th>
-          Status
-          {{#if study.datafilesProcessingComplete}}
-            <span class="label label-success">All Processed</span>
-          {{else}}
-            <span class="label label-default">Datafiles Processing
-              <i class="fa fa-spinner fa-pulse fa-fw"></i>
-            </span>
-          {{/if}}
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each datafile in datafiles}}
+
+  {{#if $.Session.get 'uploadingDatafiles'}}
+    {{> DatafilesUploadStatus}}
+  {{/if}}
+
+  {{#if datafiles.count}}
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <td>
-            <a href="/studies/{{study._id}}/datafiles/{{datafile._id}}" target="_top">{{datafile.name}}</a>
-          </td>
-          <td>
-            {{#if equals datafile.fileFormat 'imotions'}}
-              <span class="label label-primary">iMotions</span>
+          <th>
+            Name
+          </th>
+          <th>
+            File Format
+          </th>
+          <th>
+            {{#if study.fixationsOnly}}
+              Fixations
+            {{else}}
+              Gaze Points
             {{/if}}
-            {{#if equals datafile.fileFormat 'smi'}}
-              <span class="label label-primary">SMI BeGaze</span>
-            {{/if}}
-          </td>
-          <td class="p-l-10">
-            {{#if datafile.recordings}}
-              {{formatNumber datafile.recordings}}
-            {{/if}}
-          </td>
-          <td class="p-l-10">
-            {{#if equals datafile.status 'needsProcessing'}}
-              <span class="label label-danger">Needs Processing</span>
-            {{/if}}
-            {{#if equals datafile.status 'needsReprocessing'}}
-              <span class="label label-danger">Needs Reprocessing</span>
-            {{/if}}
-            {{#if equals datafile.status 'preprocessing'}}
-              <span class="label label-default">
-                Pre-processing
-                <i class="fa fa-spinner fa-pulse fa-fw"></i></span>
-            {{/if}}
-            {{#if equals datafile.status 'processing'}}
-              <span class="label label-default">
-                Processing
-                <i class="fa fa-spinner fa-pulse fa-fw"></i></span>
-            {{/if}}
-            {{#if equals datafile.status 'processed'}}
-              <span class="label label-success">Processed</span>
-            {{/if}}
-          </td>
+          </th>
+          <th>
+            Status
+          </th>
+          {{#if study.hasPermission 'update'}}
+            <th>
+              Delete
+            </th>
+          {{/if}}
         </tr>
-      {{/each}}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {{#each datafile in datafiles}}
+          <tr>
+            <td>
+              <a href="/studies/{{study._id}}/datafiles/{{datafile._id}}" target="_top">{{datafile.name}}</a>
+            </td>
+            <td>
+              {{#if equals datafile.fileFormat 'imotions'}}
+                <span class="label label-primary">iMotions</span>
+              {{/if}}
+              {{#if equals datafile.fileFormat 'smi'}}
+                <span class="label label-primary">SMI BeGaze</span>
+              {{/if}}
+            </td>
+            <td class="p-l-10">
+              {{#if datafile.recordings}}
+                {{formatNumber datafile.recordings}}
+              {{/if}}
+            </td>
+            <td class="p-l-10">
+              {{#if equals datafile.status 'needsProcessing'}}
+                <span class="label label-danger">Needs Processing</span>
+              {{/if}}
+              {{#if equals datafile.status 'needsReprocessing'}}
+                <span class="label label-danger">Needs Reprocessing</span>
+              {{/if}}
+              {{#if equals datafile.status 'unrecognizedFileFormat'}}
+                <span class="label label-danger">Unrecognized File Format</span>
+              {{/if}}
+              {{#if equals datafile.status 'preprocessing'}}
+                <span class="label label-default">
+                  Pre-processing
+                  <i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+              {{/if}}
+              {{#if equals datafile.status 'processing'}}
+                <span class="label label-default">
+                  Processing
+                  <i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+              {{/if}}
+              {{#if equals datafile.status 'processed'}}
+                <span class="label label-success">Processed</span>
+              {{/if}}
+            </td>
+            {{#if study.hasPermission 'update'}}
+              <td>
+                <span class="text-danger">
+                  <i class="fa fa-trash delete-datafile" data-datafileid="{{datafile._id}}" data-datafilename="{{datafile.name}}"></i>
+                </span>
+              </td>
+            {{/if}}
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{/if}}
 </template>

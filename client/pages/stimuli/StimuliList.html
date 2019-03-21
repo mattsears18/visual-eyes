@@ -1,4 +1,5 @@
 <template name="StimuliList">
+  <input type="file" name="stimulusfileInput" id="stimulusfileInput" class="hidden">
   <div>
     <table class="table table-striped">
       <thead>
@@ -11,6 +12,9 @@
           </th>
           <th>
             Reference Image (Width x Height)
+          </th>
+          <th>
+            Status
           </th>
         </tr>
       </thead>
@@ -32,6 +36,13 @@
             <td class="p-l-10">
               {{#if stimulus.stimulusfileId}}
                 <img src="{{fileURL stimulus.stimulusfile}}" class="h-100">&nbsp;&nbsp;({{stimulus.width}} x {{stimulus.height}})
+              {{/if}}
+            </td>
+            <td>
+              {{#if stimulus.stimulusfile}}
+                <span class="label label-success">Has Reference Image</span>
+              {{else}}
+                <span class="label label-danger upload-stimulusfile" data-stimulusid="{{stimulus._id}}"><i class="fa fa-upload m-r-5"></i>Needs Reference Image</span>
               {{/if}}
             </td>
           </tr>

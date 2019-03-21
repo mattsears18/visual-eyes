@@ -1,0 +1,18 @@
+<template name="DatafilesUploadStatus">
+  <input type="file" name="datafileInput" id="datafileInput" class="hidden" multiple>
+  {{#if currentUploads.length}}
+    <div class="well well-sm">
+      {{#each upload in currentUploads}}
+        <div>
+          <div>
+            Uploading <b>{{upload.file.name}}</b>:
+            <span id="progress">{{upload.progress.get}}%</span>
+          </div>
+          <div class="progress" style="height: 4px;">
+            <div class="progress-bar" role="progressbar" style="width: {{upload.progress.get}}%;" aria-valuenow="{{upload.progress.get}}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+</template>

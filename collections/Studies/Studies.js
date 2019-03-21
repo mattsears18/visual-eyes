@@ -39,18 +39,6 @@ Schemas.Study = new SimpleSchema({
     },
     optional: true,
   },
-  datafileIds: {
-    type: Array,
-    label: 'Eye Tracking Data Files (.txt, .csv, etc.)',
-    // optional: true,
-  },
-  "datafileIds.$": {
-    type: String,
-    autoform: {
-      type: 'fileUpload',
-      collection: 'Datafiles'
-    }
-  },
   fixationsOnly: {
     type: Boolean,
     label: 'Use Fixations Instead of Gaze Points (Faster)',

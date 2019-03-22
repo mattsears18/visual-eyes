@@ -42,7 +42,7 @@ Schemas.Study = new SimpleSchema({
   fixationsOnly: {
     type: Boolean,
     label: 'Use Fixations Instead of Gaze Points (Faster)',
-    defaultValue: true,
+    defaultValue: false,
     autoform: {
       type: 'boolean-checkbox',
     }

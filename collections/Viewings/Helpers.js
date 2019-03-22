@@ -1,6 +1,5 @@
 import Viewings from './Viewings';
-import PlotHull from './PlotHull';
-import getHullDataAsCSV from './getHullDataAsCSV';
+import PlotHullCollection from './PlotHulls/PlotHullCollection';
 
 Viewings.helpers({
   hasPermission(action) {
@@ -58,53 +57,5 @@ Viewings.helpers({
       return Aois.find({ _id: { $in: this.aoiIds }}, { sort: { name: 1 } });
     }
   },
-  getEndRecordingIndex(ri) {
-    let startTime = this.recordingPoints[ri].recordingTime;
-    let ei = ri;
-    let duration = 0;
-
-    while (duration < this.period) {
-      ei++;
-      if(this.recordingPoints[ei]) {
-        let endTime = this.recordingPoints[ei].recordingTime;
-        duration = endTime - startTime;
-      } else {
-        break;
-      }
-    }
-    return ei - 1;
-  },
-  getStartRecordingIndex(endIndex) {
-    let endTime = this.recordingPoints[endIndex].recordingTime;
-    let startIndex = endIndex;
-    let duration = 0;
-
-    while (duration < this.period) {
-      startIndex--;
-      if(this.recordingPoints[startIndex]) {
-        let startTime = this.recordingPoints[startIndex].recordingTime;
-        duration = endTime - startTime;
-      } else {
-        break;
-      }
-    }
-    return startIndex + 1;
-  },
-  slideHulls() {
-    let hulls = [];
-    let firstHullEndIndex = this.getEndRecordingIndex(0);
-    let firstHull = new PlotHull(this, 0, firstHullEndIndex);
-
-    for(endIndex = (this.recordingPoints.length - 1); endIndex > firstHullEndIndex; endIndex--) {
-      let startIndex = this.getStartRecordingIndex(endIndex);
-      let h = new PlotHull(this, startIndex, endIndex);
-      hulls.push(h);
-    }
-
-    hulls.push(firstHull);
-    hulls = hulls.reverse();
-
-    return hulls;
-  },
-  getHullDataAsCSV,
+  plotHulls() { return new PlotHullCollection(this); }
 });

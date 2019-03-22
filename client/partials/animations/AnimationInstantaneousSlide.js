@@ -23,10 +23,10 @@ Template.AnimationInstantaneousSlide.helpers({
 function makeInstantaneousSlidePlot(viewingId) {
   Plotly.purge('AnimationInstantaneousSlide');
 
-  viewing = Viewings.findOne();
+  let viewing = Viewings.findOne();
 
   if(viewing) {
-    hulls = viewing.slideHulls();
+    let hulls = viewing.plotHulls().getHulls();
 
     // Set initial traces
     pointsTrace = {

@@ -1,18 +1,12 @@
-Template.AnimationInstantaneousSlide.onCreated(function() {
+Template.AnimationInstantaneousSlide.onRendered(function() {
   var self = this;
 
-  self.autorun(function() {
-    viewingId = FlowRouter.getParam('viewingId');
-    Session.get('fixationTrailLength');
+  viewingId = FlowRouter.getParam('viewingId');
+  Session.get('fixationTrailLength');
 
-    if(viewingId) {
-      self.subscribe('viewings.single', viewingId);
-      self.subscribe('stimuli.byViewingId', viewingId);
-      self.subscribe('stimulusfiles.byViewingId', viewingId);
-
-      if(self.subscriptionsReady()) { makeInstantaneousSlidePlot(viewingId); }
-    }
-  });
+  if(viewingId) {
+    if(self.subscriptionsReady()) { makeInstantaneousSlidePlot(); }
+  }
 });
 
 Template.AnimationInstantaneousSlide.helpers({
@@ -20,12 +14,13 @@ Template.AnimationInstantaneousSlide.helpers({
   stimulus: () => { return Stimuli.findOne(); },
 });
 
-function makeInstantaneousSlidePlot(viewingId) {
+function makeInstantaneousSlidePlot() {
   Plotly.purge('AnimationInstantaneousSlide');
 
   let viewing = Viewings.findOne();
-
   if(viewing) {
+    let t0 = performance.now();
+
     let hulls = viewing.plotHulls().getHulls();
 
     // Set initial traces
@@ -120,44 +115,37 @@ function makeInstantaneousSlidePlot(viewingId) {
     ];
 
     let centroids = [];
-    hulls.forEach((hull) => {
-      centroids.push(hull.centroid());
-    });
-
-
-    // Make a frame for each hull
     let frames = [];
 
-    hulls.forEach(function(hull, hi) {
-      points = {
+    hulls.forEach((hull, hi) => {
+      centroids.push(hull.centroid());
+      let points = {
         x: hull.points(0),
         y: hull.points(1),
         text: hull.pointsTimeText(),
       };
 
-      polygon = {
+      let polygon = {
         x: hull.polygon(0),
         y: hull.polygon(1),
       }
 
-      centroid = {
+      let centroid = {
         x: [hull.centroid().x],
         y: [hull.centroid().y],
       }
 
-      centroidTrail = {
+      let centroidTrail = {
         x: centroids.slice(0, hi + 1).map((c) => { return c.x; }),
         y: centroids.slice(0, hi + 1).map((c) => { return c.y; }),
-        // x: [5],
-        // y: [5],
       }
 
-      lastFixation = {
+      let lastFixation = {
         x: [hull.recordings().slice(-1)[0].x],
         y: [hull.recordings().slice(-1)[0].y],
       }
 
-      lastFixationTrail = {
+      let lastFixationTrail = {
         x: hull.fixationTrail(Session.get('fixationTrailLength'), 0),
         y: hull.fixationTrail(Session.get('fixationTrailLength'), 1),
       }
@@ -288,7 +276,10 @@ function makeInstantaneousSlidePlot(viewingId) {
       frames: frames,
     });
 
-    fi = 0;
+    let fi = 0;
+
+    let t1 = performance.now();
+    console.log('time: ' + helpers.formatNumber(t1 - t0) + ' ms');
 
     function updatePlot() {
       Plotly.animate('AnimationInstantaneousSlide', {

@@ -4,6 +4,7 @@ Template.Animation.onCreated(function() {
     viewingId = FlowRouter.getParam('viewingId');
 
     if(viewingId) {
+      self.subscribe('viewings.single', viewingId);
       self.subscribe('stimuli.byViewingId', viewingId);
       self.subscribe('stimulusfiles.byViewingId', viewingId);
     }

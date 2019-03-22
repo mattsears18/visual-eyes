@@ -98,9 +98,13 @@ export default class PlotHull {
   }
 
   fixationTrail(length, index) {
-    let trail = this.points().slice(-length);
+    let trailStart = Math.max((this.endIndex + 1 - length), 0);
+    let trailEnd = (this.endIndex + 1);
+    let trail = this.XYToCoordinates(this.viewing().recordingPoints).slice(trailStart, trailEnd);
     if(typeof(index) !== 'undefined') {
-      return trail.map((point) => { return point[index]; });
+      return trail.map((point) => {
+        return point[index];
+      });
     } else {
       return trail;
     }
@@ -135,6 +139,12 @@ export default class PlotHull {
   coordinatesToXY(points) {
     return points.map(function(point) {
       return { x: point[0], y: point[1] };
+    });
+  }
+
+  XYToCoordinates(points) {
+    return points.map(function(point) {
+      return [parseInt(point.x), parseInt(point.y)];
     });
   }
 }

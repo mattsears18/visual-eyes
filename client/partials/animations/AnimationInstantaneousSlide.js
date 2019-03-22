@@ -26,7 +26,7 @@ function makeInstantaneousSlidePlot(viewingId) {
   viewing = Viewings.findOne();
 
   if(viewing) {
-    hulls = viewing.getSlideHulls();
+    hulls = viewing.slideHulls();
 
     // Set initial traces
     pointsTrace = {

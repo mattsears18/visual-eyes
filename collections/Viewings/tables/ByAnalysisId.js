@@ -72,8 +72,8 @@ new Tabular.Table({
       },
     },
     {
-      data: 'averageSlideHullSize',
-      title: 'Average Convex Hull Size (Slide Method)',
+      data: 'averageSlideHullArea',
+      title: 'Average Convex Hull Area (Slide Method)',
       render: function(data, type, row, meta) {
         if(data) {
           return `<a href="/studies/${row.studyId}/viewings/${row._id}">${helpers.formatNumber(data)}</a>`;

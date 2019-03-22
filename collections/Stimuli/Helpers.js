@@ -20,6 +20,9 @@ Stimuli.helpers({
   stimulusfile() {
     return Stimulusfiles.collection.findOne( this.stimulusfileId );
   },
+  area() {
+    return (this.height * this.width);
+  },
   aoiCount() {
     return Aois.find({ stimulusId: this._id }).fetch().length;
   },

@@ -9,7 +9,7 @@ export default function getDataAsCSV() {
   participants.forEach(function(participant) {
     let viewings = Viewings.find({'analysisId': analysis._id, 'participantId': participant._id}).fetch();
     let datafiles = Datafiles.find({ _id: { $in: participant.datafileIds }});
-    
+
     let viewingCounts = helpers.getViewingCounts(viewings);
 
     let viewingDurations = viewings.map(function(viewing) {
@@ -65,5 +65,5 @@ export default function getDataAsCSV() {
     data.push(participantData);
   });
 
-  return data;
+  return CSV.unparse(data);
 }

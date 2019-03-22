@@ -2,21 +2,22 @@ import hull from 'hull.js';
 var area = require('area-polygon');
 
 export default class PlotHull {
-  constructor(allRecordings, startIndex, endIndex) {
+  constructor(viewing, startIndex, endIndex) {
+    this.viewing = () => { return viewing; };
     this.startIndex = startIndex;
     this.endIndex = endIndex;
 
-    this.recordings = () => {
-      return allRecordings.slice(this.startIndex, this.endIndex + 1)
-    }
-
-    this.timeStep = () => {
-      if(this.startIndex > 0) {
-        return this.recordings()[0].recordingTime - allRecordings[this.startIndex - 1].recordingTime;
+    this.duration = () => {
+      if(this.viewing().recordingPoints[this.endIndex + 1]) {
+        return (this.viewing().recordingPoints[this.endIndex + 1].recordingTime - this.endTime());
       } else {
         return 0;
       }
     }
+  }
+
+  recordings() {
+    return this.viewing().recordingPoints.slice(this.startIndex, this.endIndex + 1);
   }
 
   startTime() {
@@ -27,8 +28,61 @@ export default class PlotHull {
     return this.recordings()[this.recordings().length - 1].recordingTime;
   }
 
-  duration() {
-    return this.endTime() - this.startTime();
+  period() {
+    return (this.endTime() - this.startTime());
+  }
+
+  timeStep() {
+    if(this.startIndex > 0) {
+      return (this.recordings()[this.recordings().length - 1].recordingTime -
+              this.recordings()[this.recordings().length - 2].recordingTime);
+    } else {
+      return 0;
+    }
+  }
+
+  area() {
+    return area(this.points());
+  }
+
+  areaDuration() {
+    return (this.area() * this.duration());
+  }
+
+  coverage() {
+    return (this.area() / this.viewing().stimulus().area());
+  }
+
+  coverageDuration() {
+    return (this.coverage() * this.duration());
+  }
+
+  distanceX() {
+    if(this.startIndex > 0) {
+      return (this.recordings()[this.recordings().length - 1].x - this.recordings()[this.recordings().length - 2].x);
+    } else {
+      return 0;
+    }
+  }
+
+  distanceY() {
+    if(this.startIndex > 0) {
+      return (this.recordings()[this.recordings().length - 1].y - this.recordings()[this.recordings().length - 2].y);
+    } else {
+      return 0;
+    }
+  }
+
+  distance() {
+    return Math.sqrt((this.distanceX() * this.distanceX() + this.distanceY() * this.distanceY()));
+  }
+
+  lastPointX() {
+    return this.recordings()[this.recordings().length - 1].x;
+  }
+
+  lastPointY() {
+    return this.recordings()[this.recordings().length - 1].y;
   }
 
   points(index) {
@@ -72,10 +126,6 @@ export default class PlotHull {
     } else {
       return hullPoints;
     }
-  }
-
-  area() {
-    return area(this.points());
   }
 
   centroid() {

@@ -1,5 +1,6 @@
 import Viewings from './Viewings';
 import PlotHull from './PlotHull';
+import getHullDataAsCSV from './getHullDataAsCSV';
 
 Viewings.helpers({
   hasPermission(action) {
@@ -36,12 +37,15 @@ Viewings.helpers({
     return (this.stimulus().width * this.stimulus().height);
   },
   averageSlideHullCoverage() {
-    return (this.averageSlideHullSize / this.stimulusArea());
+    return (this.averageSlideHullArea / this.stimulusArea());
   },
   stimulusName() {
     if(this.stimulus()) {
       return this.stimulus().name;
     }
+  },
+  study() {
+    return Studies.findOne({ _id: this.studyId });
   },
   analysis() {
     return Analyses.findOne(this.analysisId);
@@ -55,15 +59,14 @@ Viewings.helpers({
     }
   },
   getEndRecordingIndex(ri) {
-    // return 27;
-    startTime = this.recordingPoints[ri].recordingTime;
-    ei = ri;
-    duration = 0;
+    let startTime = this.recordingPoints[ri].recordingTime;
+    let ei = ri;
+    let duration = 0;
 
     while (duration < this.period) {
       ei++;
       if(this.recordingPoints[ei]) {
-        endTime = this.recordingPoints[ei].recordingTime;
+        let endTime = this.recordingPoints[ei].recordingTime;
         duration = endTime - startTime;
       } else {
         break;
@@ -71,23 +74,37 @@ Viewings.helpers({
     }
     return ei - 1;
   },
-  getSlideHulls() {
-    hulls = [];
+  getStartRecordingIndex(endIndex) {
+    let endTime = this.recordingPoints[endIndex].recordingTime;
+    let startIndex = endIndex;
+    let duration = 0;
 
-    for (ri = 0; ri < this.recordingPoints.length; ri++) {
-      startIndex = ri;
-      endIndex = this.getEndRecordingIndex(ri);
-
-      if(startIndex < endIndex) {
-        h = new PlotHull(this.recordingPoints, startIndex, endIndex);
-        hulls.push(h);
+    while (duration < this.period) {
+      startIndex--;
+      if(this.recordingPoints[startIndex]) {
+        let startTime = this.recordingPoints[startIndex].recordingTime;
+        duration = endTime - startTime;
+      } else {
+        break;
       }
+    }
+    return startIndex + 1;
+  },
+  slideHulls() {
+    let hulls = [];
+    let firstHullEndIndex = this.getEndRecordingIndex(0);
+    let firstHull = new PlotHull(this, 0, firstHullEndIndex);
 
-      // Don't create additional hulls after reaching the end
-      if(endIndex == this.recordingPoints.length - 1) break;
-      // console.log('recording ' + ri + ' of ' + recordings.length);
+    for(endIndex = (this.recordingPoints.length - 1); endIndex > firstHullEndIndex; endIndex--) {
+      let startIndex = this.getStartRecordingIndex(endIndex);
+      let h = new PlotHull(this, startIndex, endIndex);
+      hulls.push(h);
     }
 
+    hulls.push(firstHull);
+    hulls = hulls.reverse();
+
     return hulls;
-  }
+  },
+  getHullDataAsCSV,
 });

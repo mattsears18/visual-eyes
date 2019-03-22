@@ -14,6 +14,9 @@ Analyses.helpers({
     }
     return false;
   },
+  study() {
+    return Studies.findOne({ _id: this.studyId });
+  },
   stimuli() {
     return Stimuli.find({ _id: { $in: this.stimulusIds }});
   },
@@ -25,13 +28,13 @@ Analyses.helpers({
   },
   viewingJobsCount() {
     return Jobs.find({
-      type: { $in: ['analyses.makeViewings', 'viewings.saveAverageSlideHullSize'] },
+      type: { $in: ['analyses.makeViewings', 'viewings.saveAverageSlideHullArea'] },
       'data.analysisId': this._id,
     }).count();
   },
   viewingJobsCompletedCount() {
     return Jobs.find({
-      type: { $in: ['analyses.makeViewings', 'viewings.saveAverageSlideHullSize'] },
+      type: { $in: ['analyses.makeViewings', 'viewings.saveAverageSlideHullArea'] },
       'data.analysisId': this._id,
       'status': 'completed',
     }).count();

@@ -11,7 +11,7 @@
         </div>
         <div>
           <strong>Stimulus:</strong>
-          <a href="/studies/{{viewing.studyId}}/stimuli/{{viewing.stimulus._id}}">{{viewing.stimulus.name}}</a>
+          <a href="/studies/{{viewing.studyId}}/stimuli/{{viewing.stimulus._id}}">{{viewing.stimulus.name}}</a> ({{viewing.stimulus.width}} x {{viewing.stimulus.height}})
         </div>
         <div>
           <strong>Period (ms):</strong>
@@ -38,16 +38,15 @@
           {{/if}}
         </div>
         <div>
-          <strong>Average Convex Hull Size (Slide Method): </strong>
-          {{#if viewing.averageSlideHullSize}}
-            <!-- {{decimalToPercent viewing.averageSlideHullSize}}% -->
-            {{formatNumber viewing.averageSlideHullSize}}
+          <strong>Average Convex Hull Area (Slide Method): </strong>
+          {{#if viewing.averageSlideHullArea}}
+            {{formatNumber viewing.averageSlideHullArea}} ({{decimalToPercent viewing.averageSlideHullCoverage}}%)
           {{/if}}
         </div>
         <div>
-          <strong>Average Convex Hull Size (Step Method): </strong>
-          {{#if viewing.averageStepHullSize}}
-            {{decimalToPercent viewing.averageStepHullSize}}%
+          <strong>Average Convex Hull Area (Step Method): </strong>
+          {{#if viewing.averageStepHullArea}}
+            {{decimalToPercent viewing.averageStepHullArea}}%
           {{/if}}
         </div>
       </p>

@@ -99,7 +99,7 @@ Schemas.Viewing = new SimpleSchema({
   'recordingPoints.$.recordingTime': String,
   'recordingPoints.$.x': String,
   'recordingPoints.$.y': String,
-  averageSlideHullSize: {
+  averageSlideHullArea: {
     type: Number,
     optional: true,
     autoform: {

@@ -1,22 +1,53 @@
 <head>
-  <!-- Latest compiled and minified plotly.js JavaScript -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <template name="Animation">
   {{#if stimulus.stimulusfile}}
     <div id="Animation" class="m-t-30">
-      {{#if equals ($.Session.get 'analysisType') 'convexHull'}}
-        {{#if equals ($.Session.get 'instantContinuous') 'instantaneous'}}
-          {{#if equals ($.Session.get 'slideStep') 'slide'}}
-            <h4>
-              <span class="btn btn-success download-hulls-as-csv"><i class="fa fa-table"></i>&nbsp;Download Animation Data as .CSV</span>
-            </h4>
-            {{> AnimationInstantaneousSlide}}
-          {{/if}}
-        {{/if}}
-      {{/if}}
+      <h4>
+        <span class="btn btn-success download-data-as-csv"><i class="fa fa-table"></i>&nbsp;Download Animation Data as .CSV</span>
+      </h4>
+      <div id="PlotArea" class="m-t-30"></div>
     </div>
+    <div class="m-l-50 m-t-20" style="width: {{progressSliderWidth}}px;">
+      <input type="range" class="form-control-range" id="formControlRange" value="{{progressPercent}}">
+    </div>
+    <div class="m-t-20 m-l-50">
+      <button class="btn btn-primary">
+        <i class="fa fa-fast-backward"></i>
+      </button>
+      <button class="btn btn-primary">
+        <i class="fa fa-step-backward"></i>
+      </button>
+      <button class="btn btn-primary {{#if playing}}pause-animation{{else}}play-animation{{/if}}">
+        <i class="fa {{#if playing}}fa-pause{{else}}fa-play{{/if}}"></i>
+      </button>
+      <button class="btn btn-primary">
+        <i class="fa fa-step-forward"></i>
+      </button>
+      <button class="btn btn-primary">
+        <i class="fa fa-fast-forward"></i>
+      </button>
+      <span>
+        <!-- <span>{{millisecondsToHMSMS startTime}}</span> -->
+        <span class="m-l-10 m-r-5">{{millisecondsToHMSMS currentTime}}</span>
+        of
+        <span class="m-l-5 m-r-10">{{millisecondsToHMSMS endTime}}</span>
+        <span><strong>{{progressPercent}}%</strong></span>
+      </span>
+    </div>
+    <div>playing: {{json playing}}</div>
+    <div>framesTimes: {{json frameTimes}}</div>
+    <div>frameIndex: {{json frameIndex}}</div>
+    <div>frameCount: {{json frameCount}}</div>
+    <div>timeOffset: {{json timeOffset}}</div>
+    <div>startTime: {{millisecondsToHMSMS startTime}}</div>
+    <div>currentTime: {{millisecondsToHMSMS currentTime}}</div>
+    <div>endTime: {{millisecondsToHMSMS endTime}}</div>
+    <div>progress: {{formatNumber progressPercent}}%</div>
+    <!-- <div>hull area: {{formatNumber currentHull.area}}</div>
+    <div>hull coverage: {{formatNumber currentHull.coveragePercent}}%</div> -->
   {{else}}
     <div class="m-b-10">
       No stimulus image associated with <a href="/studies/{{stimulus.studyId}}/stimuli/{{stimulus._id}}">{{stimulus.name}}</a>

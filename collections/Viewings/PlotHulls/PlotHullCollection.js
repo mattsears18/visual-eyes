@@ -63,14 +63,14 @@ export default class PlotHullCollection {
     let data = [];
     let hulls = this.getHulls();
 
-    hulls.forEach(function(hull, hi) {
+    hulls.forEach((hull, hi) => {
       let hullData = {
-        study: viewing.study().name,
-        analysis: viewing.analysis().name,
-        participant: viewing.participant().name,
+        study: this.viewing().study().name,
+        analysis: this.viewing().analysis().name,
+        participant: this.viewing().participant().name,
         stimulus: hull.viewing().stimulus().name,
         viewingNumber: hull.viewing().number,
-        period: viewing.analysis().period,
+        period: this.viewing().analysis().period,
         startIndex: hull.startIndex,
         endIndex: hull.endIndex,
         startTime: hull.startTime(),
@@ -100,10 +100,10 @@ export default class PlotHullCollection {
         stimulusArea: hull.viewing().stimulus().area(),
         area: hull.area(),
         areaDuration: hull.areaDuration(),
-        averageArea: viewing.averageSlideHullArea,
+        averageArea: this.viewing().averageSlideHullArea,
         coverage: hull.coverage(),
         coverageDuration: hull.coverageDuration(),
-        averageCoverage: viewing.averageSlideHullCoverage(),
+        averageCoverage: this.viewing().averageSlideHullCoverage(),
       }
 
       if(hi > 0) {
@@ -111,7 +111,7 @@ export default class PlotHullCollection {
         hullData.centroidDistanceY = (hulls[hi].centroid().y - hulls[hi - 1].centroid().y);
         hullData.centroidDistance = Math.sqrt(hullData.centroidDistanceX * hullData.centroidDistanceX + hullData.centroidDistanceY * hullData.centroidDistanceY)
       }
-      
+
       data.push(hullData);
     });
 

@@ -1,20 +1,12 @@
 Template.Viewing.onCreated(function() {
-  var self = this;
-  self.autorun(function() {
-    var studyId = FlowRouter.getParam('studyId');
-    self.subscribe('studies.single', studyId);
-
-    var viewingId = FlowRouter.getParam('viewingId');
-
-    self.subscribe('viewings.single.withRecordingPoints', viewingId);
-    self.subscribe('participants.byViewingId', viewingId);
-    self.subscribe('stimuli.byViewingId', viewingId);
-    self.subscribe('analyses.byViewingId', viewingId);
-    
-    if(viewingId && self.subscriptionsReady()) {
-      viewing = Viewings.findOne();
-    }
-  });
+  this.instantContinuousVisible = new ReactiveVar( false );
+  this.slideStepVisible = new ReactiveVar( false );
+  this.centroidPeriodVisible = new ReactiveVar( false );
+  this.fixationTrailLengthVisible = new ReactiveVar( false );
+  this.animationVisible = new ReactiveVar( false );
+  this.layout = new ReactiveVar();
+  this.initialTraces = new ReactiveVar([]);
+  this.frames = new ReactiveVar([]);
 
   Session.set('analysisType', '');
   Session.set('instantContinuous', 'instantaneous');
@@ -22,10 +14,37 @@ Template.Viewing.onCreated(function() {
   Session.set('centroidPeriod', 5000);
   Session.set('fixationTrailLength', 5);
 
-  this.instantContinuousHidden = new ReactiveVar( true );
-  this.slideStepHidden = new ReactiveVar( true );
-  this.centroidPeriodHidden = new ReactiveVar( true );
-  this.fixationTrailLengthHidden = new ReactiveVar( true );
+  this.autorun(() => {
+    var studyId = FlowRouter.getParam('studyId');
+    this.subscribe('studies.single', studyId);
+
+    var viewingId = FlowRouter.getParam('viewingId');
+    let viewing = Viewings.findOne({});
+
+    this.subscribe('viewings.single.withRecordingPoints', viewingId);
+    this.subscribe('participants.byViewingId', viewingId);
+    this.subscribe('stimuli.byViewingId', viewingId);
+    this.subscribe('stimulusfiles.byViewingId', viewingId);
+    this.subscribe('analyses.byViewingId', viewingId);
+
+    if(viewing && this.subscriptionsReady()) {
+      if(Session.get('analysisType')) {
+        options = {
+          analysisType: Session.get('analysisType'),
+          instantContinuous: Session.get('instantContinuous'),
+          centroidPeriod: Session.get('centroidPeriod'),
+          fixationTrailLength: Session.get('fixationTrailLength'),
+        };
+
+        this.layout.set(viewing.getLayout(options));
+        this.initialTraces.set(viewing.getInitialTraces(options));
+        t0 = performance.now();
+        this.frames.set(viewing.getFrames(options));
+        t1 = performance.now();
+        console.log('init time: ' + helpers.formatNumber(t1 - t0) + ' ms');
+      }
+    }
+  });
 });
 
 Template.Viewing.helpers({
@@ -43,10 +62,14 @@ Template.Viewing.helpers({
     return Participants.findOne();
   },
 
-  instantContinuousHidden: () => { return Template.instance().instantContinuousHidden.get(); },
-  slideStepHidden: () => { return Template.instance().slideStepHidden.get(); },
-  centroidPeriodHidden: () => { return Template.instance().centroidPeriodHidden.get(); },
-  fixationTrailLengthHidden: () => { return Template.instance().fixationTrailLengthHidden.get(); },
+  instantContinuousVisible: () => { return Template.instance().instantContinuousVisible.get(); },
+  slideStepVisible: () => { return Template.instance().slideStepVisible.get(); },
+  centroidPeriodVisible: () => { return Template.instance().centroidPeriodVisible.get(); },
+  fixationTrailLengthVisible: () => { return Template.instance().fixationTrailLengthVisible.get(); },
+  animationVisible: () => { return Template.instance().animationVisible.get(); },
+  layout: () => { return Template.instance().layout.get(); },
+  initialTraces: () => { return Template.instance().initialTraces.get(); },
+  frames: () => { return Template.instance().frames.get(); },
 });
 
 Template.BreadCrumbs.helpers({
@@ -65,20 +88,20 @@ Template.Viewing.events({
   'change #analysisType': function(e, template) {
     Session.set('analysisType', e.target.value );
     if(e.target.value == 'convexHull') {
-      template.instantContinuousHidden.set( false );
-      template.slideStepHidden.set( false );
-      template.centroidPeriodHidden.set( false );
-      template.fixationTrailLengthHidden.set( false );
+      template.animationVisible.set( true );
+      template.instantContinuousVisible.set( true );
+      template.slideStepVisible.set( true );
+      template.fixationTrailLengthVisible.set( true );
     }
 
     if(e.target.value == 'scanpathLength') {
-      template.instantContinuousHidden.set( false );
-      template.slideStepHidden.set( true );
+      template.instantContinuousVisible.set( true );
+      template.slideStepVisible.set( true );
     }
 
     if(e.target.value == 'scanpathVelocity') {
-      template.instantContinuousHidden.set( false );
-      template.slideStepHidden.set( true );
+      template.instantContinuousVisible.set( true );
+      template.slideStepVisible.set( false );
     }
   },
   'change #instantContinuous': function(e, template) {
@@ -86,11 +109,16 @@ Template.Viewing.events({
   },
   'change #slideStep': function(e, template) {
     Session.set('slideStep', e.target.value );
+    if(e.target.value == 'step') {
+      template.centroidPeriodVisible.set( true );
+    } else {
+      template.centroidPeriodVisible.set( false );
+    }
   },
-  'keyup #centroidPeriod': function(e, template) {
+  'change #centroidPeriod': function(e, template) {
     Session.set('centroidPeriod', e.target.value );
   },
-  'keyup #fixationTrailLength': function(e, template) {
+  'change #fixationTrailLength': function(e, template) {
     Session.set('fixationTrailLength', e.target.value );
   },
 });

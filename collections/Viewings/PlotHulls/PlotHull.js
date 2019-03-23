@@ -53,6 +53,10 @@ export default class PlotHull {
     return (this.area() / this.viewing().stimulus().area());
   }
 
+  coveragePercent() {
+    return (this.coverage() * 100);
+  }
+
   coverageDuration() {
     return (this.coverage() * this.duration());
   }

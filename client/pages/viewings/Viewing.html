@@ -62,51 +62,60 @@
           </select>
         </div>
 
-        <div id="instantContinuousGroup" class="form-group {{#if instantContinuousHidden}} hidden {{/if}}">
-          <label for="instantContinuous">Instantaneous/Continuous
-            <a href="">
-              <span class="glyphicon glyphicon-question-sign"></span>
-            </a>
-          </label>
-          <select class="form-control" id="instantContinuous">
-            <option value="instantaneous">Instantaneous</option>
-            <option value="continuous">Continuous</option>
-          </select>
-        </div>
+        {{#if instantContinuousVisible}}
+          <div id="instantContinuousGroup" class="form-group">
+            <label for="instantContinuous">Instantaneous/Continuous
+              <a href="">
+                <span class="glyphicon glyphicon-question-sign"></span>
+              </a>
+            </label>
+            <select class="form-control" id="instantContinuous">
+              <option value="instantaneous">Instantaneous</option>
+              <option value="continuous">Continuous</option>
+            </select>
+          </div>
+        {{/if}}
 
-        <div id="slideStepGroup" class="form-group {{#if slideStepHidden}} hidden {{/if}}">
-          <label for="slideStep">Slide/Step
-            <a href="">
-              <span class="glyphicon glyphicon-question-sign"></span>
-            </a>
-          </label>
-          <select class="form-control" id="slideStep">
-            <option value="slide">Slide</option>
-            <option value="step">Step</option>
-          </select>
-        </div>
+        {{#if slideStepVisible}}
+          <div id="slideStepGroup" class="form-group">
+            <label for="slideStep">Slide/Step
+              <a href="">
+                <span class="glyphicon glyphicon-question-sign"></span>
+              </a>
+            </label>
+            <select class="form-control" id="slideStep">
+              <option value="slide">Slide</option>
+              <option value="step">Step</option>
+            </select>
+          </div>
+        {{/if}}
 
-        <div id="centroidPeriodGroup" class="form-group {{#if centroidPeriodHidden}} hidden {{/if}}">
-          <label for="centroidPeriod">Centroid Period (ms)
-            <a href="">
-              <span class="glyphicon glyphicon-question-sign"></span>
-            </a>
-          </label>
-          <input class="form-control" type="text" placeholder="Centroid Period" id="centroidPeriod" value="{{$.Session.get 'centroidPeriod'}}">
-        </div>
+        {{#if centroidPeriodVisible}}
+          <div id="centroidPeriodGroup" class="form-group">
+            <label for="centroidPeriod">Centroid Period (ms)
+              <a href="">
+                <span class="glyphicon glyphicon-question-sign"></span>
+              </a>
+            </label>
+            <input class="form-control" type="text" placeholder="Centroid Period" id="centroidPeriod" value="{{$.Session.get 'centroidPeriod'}}">
+          </div>
+        {{/if}}
 
-        <div id="fixationTrailLengthGroup" class="form-group {{#if fixationTrailLengthHidden}} hidden {{/if}}">
-          <label for="fixationTrailLength">Fixation Trail Length
-            <a href="">
-              <span class="glyphicon glyphicon-question-sign"></span>
-            </a>
-          </label>
-          <input class="form-control" type="text" placeholder="Fixation Trail Length" id="fixationTrailLength" value="{{$.Session.get 'fixationTrailLength'}}">
-        </div>
+        {{#if fixationTrailLengthVisible}}
+          <div id="fixationTrailLengthGroup" class="form-group">
+            <label for="fixationTrailLength">Fixation Trail Length
+              <a href="">
+                <span class="glyphicon glyphicon-question-sign"></span>
+              </a>
+            </label>
+            <input class="form-control" type="text" placeholder="Fixation Trail Length" id="fixationTrailLength" value="{{$.Session.get 'fixationTrailLength'}}">
+          </div>
+        {{/if}}
       </form>
 
-      {{> Animation}}
-
+      {{#if animationVisible}}
+        {{> Animation layout=layout initialTraces=initialTraces frames=frames}}
+      {{/if}}
     {{/if}}
   {{/if}}
 </template>

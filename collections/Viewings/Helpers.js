@@ -1,5 +1,8 @@
 import Viewings from './Viewings';
 import PlotHullCollection from './PlotHulls/PlotHullCollection';
+import getLayout from './getLayout';
+import getInitialTraces from './getInitialTraces';
+import getFrames from './getFrames';
 
 Viewings.helpers({
   hasPermission(action) {
@@ -57,5 +60,10 @@ Viewings.helpers({
       return Aois.find({ _id: { $in: this.aoiIds }}, { sort: { name: 1 } });
     }
   },
-  plotHulls() { return new PlotHullCollection(this); }
+  plotHulls() {
+    return new PlotHullCollection(this);
+  },
+  getLayout,
+  getInitialTraces,
+  getFrames,
 });

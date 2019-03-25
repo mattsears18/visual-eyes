@@ -44,8 +44,8 @@ export default function getInitialTraces(options) {
 
   let centroidTrailTrace = {
     name: 'Centroid Trail',
-    x: [hulls[0].centroid().x],
-    y: [hulls[0].centroid().y],
+    x: [-10, -11], // can't draw a line from 1 point, so have to send 2 points
+    y: [-10, -11], // can't draw a line from 1 point, so have to send 2 points
     mode: 'lines',
     type: 'scatter',
     line: {
@@ -70,10 +70,18 @@ export default function getInitialTraces(options) {
     },
   };
 
+  let name;
+
+  if(this.study().fixationsOnly) {
+    name = 'Last ' + Session.get('fixationTrailLength') + ' Fixations';
+  } else {
+    name = 'Last ' + Session.get('fixationTrailLength') + ' Gaze Points';
+  }
+
   let lastFixationTrailTrace = {
-    name: 'Last ' + Session.get('fixationTrailLength') + ' Fixations',
-    x: [hulls[0].recordings().slice(-1)[0].x],
-    y: [hulls[0].recordings().slice(-1)[0].y],
+    name: name,
+    x: hulls[0].fixationTrail(Session.get('fixationTrailLength'), 0),
+    y: hulls[0].fixationTrail(Session.get('fixationTrailLength'), 1),
     mode: 'lines',
     type: 'scatter',
     line: {
@@ -84,10 +92,10 @@ export default function getInitialTraces(options) {
 
   return [
     centroidTrailTrace,
-    centroidTrace,
     pointsTrace,
-    polygonTrace,
     lastFixationTrailTrace,
+    centroidTrace,
+    polygonTrace,
     lastFixationTrace,
   ];
 }

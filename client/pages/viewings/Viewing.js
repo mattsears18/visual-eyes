@@ -12,7 +12,7 @@ Template.Viewing.onCreated(function() {
   Session.set('instantContinuous', 'instantaneous');
   Session.set('slideStep', 'slide');
   Session.set('centroidPeriod', 5000);
-  Session.set('fixationTrailLength', 5);
+  Session.set('fixationTrailLength', 40);
 
   this.autorun(() => {
     var studyId = FlowRouter.getParam('studyId');

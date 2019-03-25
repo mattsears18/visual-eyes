@@ -4,7 +4,7 @@ export default function getFrames(options) {
   let centroids = [];
   let frames = [];
 
-  for(hi = 0; hi < 200; hi++) {
+  for(hi = 0; hi < hulls.length; hi++) {
     centroids.push(hulls[hi].centroid());
     let points = {
       x: hulls[hi].points(0),
@@ -22,9 +22,20 @@ export default function getFrames(options) {
       y: [hulls[hi].centroid().y],
     }
 
-    let centroidTrail = {
-      x: centroids.slice(0, hi + 1).map((c) => { return c.x; }),
-      y: centroids.slice(0, hi + 1).map((c) => { return c.y; }),
+    let centroidTrail;
+
+    if(hi == 0) {
+      centroidTrail = {
+        // x: [hulls[hi].centroid().x, (hulls[hi].centroid().x + 0.01)], // can't draw a line from 1 point, so have to send 2 points
+        // y: [hulls[hi].centroid().y, (hulls[hi].centroid().y + 0.01)], // can't draw a line from 1 point, so have to send 2 points
+        x: [-10, -11], // can't draw a line from 1 point, so have to send 2 points
+        y: [-10, -11], // can't draw a line from 1 point, so have to send 2 points
+      };
+    } else {
+      centroidTrail = {
+        x: centroids.slice(0, hi + 1).map((c) => { return c.x; }),
+        y: centroids.slice(0, hi + 1).map((c) => { return c.y; }),
+      };
     }
 
     let lastFixation = {
@@ -41,10 +52,10 @@ export default function getFrames(options) {
       name: hulls[hi].endTime(),
       data: [
         centroidTrail,
-        centroid,
         points,
-        polygon,
         lastFixationTrail,
+        centroid,
+        polygon,
         lastFixation,
       ],
     });

@@ -42,7 +42,11 @@ export default class PlotHull {
   }
 
   area() {
-    return area(this.points());
+    if(this.points().length > 2) {
+      return area(this.points());
+    } else {
+      return 0;
+    }
   }
 
   areaDuration() {

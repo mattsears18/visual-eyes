@@ -10,7 +10,7 @@
           {{/unless}}
         {{/if}}
         <span class="btn btn-danger pull-right reprocess-analysis m-l-10"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Analysis</span>
-        <span class="pull-right btn btn-success download-as-csv"><i class="fa fa-table"></i>&nbsp;Download Data as .CSV</span>
+        <span class="pull-right btn btn-success download-as-csv"><i class="fa fa-table"></i>&nbsp;Download Analysis as .CSV</span>
       {{/if}}
 
       {{#unless analysis.viewingsComplete}}
@@ -94,6 +94,8 @@
             <i class="fa fa-spinner fa-pulse fa-fw"></i>
           </span>
         {{/unless}}
+
+        <span class="pull-right btn btn-success download-viewings-as-csv m-b-20"><i class="fa fa-table"></i>&nbsp;Download Viewings as .CSV</span>
       </h4>
 
       {{> tabular table=TabularTables.ViewingsByAnalysisId selector=selector class="table table-striped table-bordered"}}

@@ -1,6 +1,7 @@
 import Analyses from './Analyses';
 import Jobs from '../Jobs/Jobs';
 import getDataAsCSV from './getDataAsCSV';
+import getViewingsDataAsCSV from './getViewingsDataAsCSV';
 
 Analyses.helpers({
   hasPermission(action) {
@@ -52,4 +53,5 @@ Analyses.helpers({
     return this.viewingsProgress() == 100;
   },
   getDataAsCSV,
+  getViewingsDataAsCSV,
 });

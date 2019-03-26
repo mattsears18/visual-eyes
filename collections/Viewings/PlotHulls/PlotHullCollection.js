@@ -65,11 +65,18 @@ export default class PlotHullCollection {
 
     hulls.forEach((hull, hi) => {
       let hullData = {
+        link: 'http://',
         study: this.viewing().study().name,
         analysis: this.viewing().analysis().name,
+        period: this.viewing().analysis().period,
+        viewingGap: this.viewing().analysis().viewingGap,
+        minViewingTime: this.viewing().analysis().minViewingTime,
         participant: this.viewing().participant().name,
         stimulus: hull.viewing().stimulus().name,
         viewingNumber: hull.viewing().number,
+        stimulusWidth: hull.viewing().stimulus().width,
+        stimulusHeight: hull.viewing().stimulus().height,
+        stimulusArea: hull.viewing().stimulus().area(),
         period: this.viewing().analysis().period,
         startIndex: hull.startIndex,
         endIndex: hull.endIndex,
@@ -95,9 +102,6 @@ export default class PlotHullCollection {
         centroidDistance: 0,
         centroidDistanceX: 0,
         centroidDistanceY: 0,
-        stimulusWidth: hull.viewing().stimulus().width,
-        stimulusHeight: hull.viewing().stimulus().height,
-        stimulusArea: hull.viewing().stimulus().area(),
         area: hull.area(),
         areaDuration: hull.areaDuration(),
         averageArea: this.viewing().averageSlideHullArea,

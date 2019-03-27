@@ -17,12 +17,6 @@ Meteor.publish('datafiles.byStudyId', (studyId) => {
   }
 });
 
-Meteor.publish('datafiles.byRecordingId', function(recordingId) {
-  check(recordingId, String);
-  recording = Recordings.findOne({_id: recordingId});
-  return Datafiles.find({_id: recording.datafileId}).cursor;
-});
-
 Meteor.publish('datafiles.byViewingId', function(viewingId) {
   check(viewingId, String);
   viewing = Viewings.findOne({_id: viewingId});

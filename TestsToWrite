@@ -1,4 +1,4 @@
-on create study
+gazepointon create study
     current user has permission to update
     current user has permission to delete
 
@@ -7,7 +7,7 @@ on create datafile
     current user has permission to update
     current user has permission to delete
     it has a studyId
-    it has the correct number of recordings
+    it has the correct number of gazepoints
     it adds datafile._id to the correct aois
 
 
@@ -28,6 +28,6 @@ datafiles.process
         renameHeaders()             *
         getFixationsOnly()    *
         getVisualIntakesOnly()      *
-    processRecordings()
+    processGazepoints()
     getAoiId()                      *
     processForViewings()

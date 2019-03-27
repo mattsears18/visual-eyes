@@ -1,42 +1,42 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Recordings Publications
+// Gazepoints Publications
 ////////////////////////////////////////////////////////////////////////////////
-Meteor.publish('recordings.all', function() {
-  return Recordings.find({});
+Meteor.publish('gazepoints.all', function() {
+  return Gazepoints.find({});
 });
 
-Meteor.publish('recordings.single', function(id) {
+Meteor.publish('gazepoints.single', function(id) {
   check(id, String);
-  return Recordings.find({_id: id});
+  return Gazepoints.find({_id: id});
 });
 
-Meteor.publish('recordings.byStudyId', (studyId) => {
+Meteor.publish('gazepoints.byStudyId', (studyId) => {
   check(studyId, String);
-  return Recordings.find({ studyId: studyId });
+  return Gazepoints.find({ studyId: studyId });
 });
 
-Meteor.publish('recordings.byViewingId', (viewingId) => {
+Meteor.publish('gazepoints.byViewingId', (viewingId) => {
   check(viewingId, String);
   viewing = Viewings.findOne(viewingId);
-  return Recordings.find({ _id: { $in: viewing.recordingIds }},
-    { sort: { recordingTime: 1 }});
+  return Gazepoints.find({ _id: { $in: viewing.gazepointIds }},
+    { sort: { timestamp: 1 }});
 });
 
-Meteor.publish('recordings.forPlotHulls.byViewingId', (viewingId) => {
+Meteor.publish('gazepoints.forPlotHulls.byViewingId', (viewingId) => {
   check(viewingId, String);
   viewing = Viewings.findOne(viewingId);
-  return Recordings.find({ _id: { $in: viewing.recordingIds }},
+  return Gazepoints.find({ _id: { $in: viewing.gazepointIds }},
     { fields: {
-      recordingTime: 1,
+      timestamp: 1,
       fixationIndex: 1,
       x: 1,
       y: 1
     }},
-    { sort: { recordingTime: 1 }}
+    { sort: { timestamp: 1 }}
   );
 });
 
-Meteor.publish('recordings.byStimulusId', (stimulusId) => {
+Meteor.publish('gazepoints.byStimulusId', (stimulusId) => {
   check(stimulusId, String);
-  return Recordings.find({ stimulusId: stimulusId });
+  return Gazepoints.find({ stimulusId: stimulusId });
 });

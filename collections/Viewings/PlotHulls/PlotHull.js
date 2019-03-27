@@ -8,24 +8,24 @@ export default class PlotHull {
     this.endIndex = endIndex;
 
     this.duration = () => {
-      if(this.viewing().recordingPoints[this.endIndex + 1]) {
-        return (this.viewing().recordingPoints[this.endIndex + 1].recordingTime - this.endTime());
+      if(this.viewing().gazepoints[this.endIndex + 1]) {
+        return (this.viewing().gazepoints[this.endIndex + 1].timestamp - this.endTime());
       } else {
         return 0;
       }
     }
   }
 
-  recordings() {
-    return this.viewing().recordingPoints.slice(this.startIndex, this.endIndex + 1);
+  gazepoints() {
+    return this.viewing().gazepoints.slice(this.startIndex, this.endIndex + 1);
   }
 
   startTime() {
-    return this.recordings()[0].recordingTime;
+    return this.gazepoints()[0].timestamp;
   }
 
   endTime() {
-    return this.recordings()[this.recordings().length - 1].recordingTime;
+    return this.gazepoints()[this.gazepoints().length - 1].timestamp;
   }
 
   period() {
@@ -33,17 +33,17 @@ export default class PlotHull {
   }
 
   timeStep() {
-    if(this.startIndex > 0) {
-      return (this.recordings()[this.recordings().length - 1].recordingTime -
-              this.recordings()[this.recordings().length - 2].recordingTime);
+    if(this.gazepoints() && this.gazepoints().length > 2) {
+      return (this.gazepoints()[this.gazepoints().length - 1].timestamp -
+              this.gazepoints()[this.gazepoints().length - 2].timestamp);
     } else {
       return 0;
     }
   }
 
   area() {
-    if(this.points().length > 2) {
-      return area(this.points());
+    if(this.gazepoints().length > 2) {
+      return area(this.gazepoints());
     } else {
       return 0;
     }
@@ -65,50 +65,55 @@ export default class PlotHull {
     return (this.coverage() * this.duration());
   }
 
-  distanceX() {
-    if(this.startIndex > 0) {
-      return (this.recordings()[this.recordings().length - 1].x - this.recordings()[this.recordings().length - 2].x);
+  distance(index) {
+    if(typeof(index) != 'undefined') {
+      if(this.gazepoints() && this.gazepoints().length > 2) {
+        return (this.gazepoints()[this.gazepoints().length - 1][index] - this.gazepoints()[this.gazepoints().length - 2][index]);
+      } else {
+        return 0;
+      }
+    } else {
+      return Math.sqrt((this.distance(0) * this.distance(0) + this.distance(1) * this.distance(1)));
+    }
+  }
+
+  velocity() {
+    if(this.timeStep() > 0 && this.distance() > 0) {
+      return (this.distance() / this.timeStep());
     } else {
       return 0;
     }
   }
 
-  distanceY() {
-    if(this.startIndex > 0) {
-      return (this.recordings()[this.recordings().length - 1].y - this.recordings()[this.recordings().length - 2].y);
-    } else {
-      return 0;
+  lastGazepoint(index) {
+    if(this.gazepoints() && this.gazepoints().length) {
+      return this.gazepoints()[this.gazepoints().length - 1];
     }
   }
 
-  distance() {
-    return Math.sqrt((this.distanceX() * this.distanceX() + this.distanceY() * this.distanceY()));
-  }
+  gazepoints(index) {
+    if(this.viewing() && this.viewing().stimulus() && this.viewing().stimulus().width > 0 && this.viewing().stimulus().height > 0) {
+      let ps = this.gazepoints().map((gazepoint) => {
+        return [
+          +(gazepoint.x / this.viewing().stimulus().width).toFixed(10),
+          +(gazepoint.y / this.viewing().stimulus().height).toFixed(10)
+        ];
+      });
 
-  lastPointX() {
-    return this.recordings()[this.recordings().length - 1].x;
-  }
-
-  lastPointY() {
-    return this.recordings()[this.recordings().length - 1].y;
-  }
-
-  points(index) {
-    let ps = this.recordings().map(function(recording) {
-      return [parseInt(recording.x), parseInt(recording.y)];
-    });
-
-    if(typeof(index) !== 'undefined') {
-      return ps.map((point) => { return point[index]; });
+      if(typeof(index) !== 'undefined') {
+        return ps.map((point) => { return point[index]; });
+      } else {
+        return ps;
+      }
     } else {
-      return ps;
+      return [];
     }
   }
 
   fixationTrail(length, index) {
     let trailStart = Math.max((this.endIndex + 1 - length), 0);
     let trailEnd = (this.endIndex + 1);
-    let trail = this.XYToCoordinates(this.viewing().recordingPoints).slice(trailStart, trailEnd);
+    let trail = this.XYToCoordinates(this.viewing().gazepoints).slice(trailStart, trailEnd);
     if(typeof(index) !== 'undefined') {
       return trail.map((point) => {
         return point[index];
@@ -118,20 +123,20 @@ export default class PlotHull {
     }
   }
 
-  pointsTime() {
-    return this.recordings().map(function(recording) {
-      return recording.recordingTime;
+  gazepointsTime() {
+    return this.gazepoints().map(function(gazepoint) {
+      return gazepoint.timestamp;
     });
   }
 
-  pointsTimeText() {
-    return this.recordings().map(function(recording) {
-      return 'Time: ' + recording.recordingTime + 'ms';
+  gazepointsTimeText() {
+    return this.gazepoints().map(function(gazepoint) {
+      return 'Time: ' + gazepoint.timestamp + 'ms';
     });
   }
 
   polygon(index) {
-    let hullPoints = hull(this.points(), Infinity);
+    let hullPoints = hull(this.gazepoints(), Infinity);
 
     if(typeof(index) !== 'undefined') {
       return hullPoints.map((point) => { return point[index]; });

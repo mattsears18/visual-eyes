@@ -55,17 +55,17 @@ Schemas.Viewing = new SimpleSchema({
       type: 'hidden',
     },
   },
-  minRecordingTime: {
+  startTime: {
     type: Number,
-    label: 'Minimum Recording Time',
+    label: 'First Gazepoint Timestamp',
     optional: true,
     autoform: {
       type: 'hidden',
     },
   },
-  maxRecordingTime: {
+  endTime: {
     type: Number,
-    label: 'Maximum Recording Time',
+    label: 'Last Gazepoint Timestamp',
     optional: true,
     autoform: {
       type: 'hidden',
@@ -79,26 +79,26 @@ Schemas.Viewing = new SimpleSchema({
       type: 'hidden',
     },
   },
-  recordingIds: {
+  gazepointIds: {
     type: Array,
   },
-  "recordingIds.$": {
+  "gazepointIds.$": {
     type: String,
     autoform: {
       type: 'hidden',
     },
   },
-  recordingPoints: {
+  gazepoints: {
     type: Array,
   },
-  'recordingPoints.$': Object,
-  'recordingPoints.$.fixationIndex': {
+  'gazepoints.$': Object,
+  'gazepoints.$.fixationIndex': {
     type: String,
     optional: true,
   },
-  'recordingPoints.$.recordingTime': String,
-  'recordingPoints.$.x': String,
-  'recordingPoints.$.y': String,
+  'gazepoints.$.timestamp': String,
+  'gazepoints.$.x': String,
+  'gazepoints.$.y': String,
   averageSlideHullArea: {
     type: Number,
     optional: true,
@@ -106,7 +106,15 @@ Schemas.Viewing = new SimpleSchema({
       type: 'hidden',
     },
   },
-  gazePointFrequency: {
+  gazepointCount: {
+    type: Number,
+    optional: true,
+  },
+  gazepointFrequency: {
+    type: Number,
+    optional: true,
+  },
+  fixationCount: {
     type: Number,
     optional: true,
   },

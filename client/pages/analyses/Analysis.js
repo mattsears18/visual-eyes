@@ -87,7 +87,7 @@ Template.Analysis.events({
   'click .download-as-csv':function(){
     Meteor.call('analyses.saveCSV', { analysisId: FlowRouter.getParam('analysisId') });
   },
-  'click .download-viewings-as-csv':function(){
+  'click .download-viewings-as-csv':function(e, template){
     Meteor.call('analyses.saveViewingsCSV', { analysisId: FlowRouter.getParam('analysisId') });
   },
   'click .reprocess-analysis': function() {

@@ -40,7 +40,7 @@
 //   //
 //   //     describe('renameHeaders()', function() {
 //   //       it('renames SMI BeGaze default headings to correct headings', function() {
-//   //         expect(smiRenamed[0].hasOwnProperty('recordingTime')).to.be.true;
+//   //         expect(smiRenamed[0].hasOwnProperty('timestamp')).to.be.true;
 //   //         expect(smiRenamed[0].hasOwnProperty('timeOfDay')).to.be.true;
 //   //         expect(smiRenamed[0].hasOwnProperty('category')).to.be.true;
 //   //         expect(smiRenamed[0].hasOwnProperty('fixationIndex')).to.be.true;
@@ -107,7 +107,7 @@
 //   //
 //   //     describe('renameHeaders()', function() {
 //   //       it('renames iMotions default headings to correct headings', function() {
-//   //         expect(imotionsRenamed[0].hasOwnProperty('recordingTime')).to.be.true;
+//   //         expect(imotionsRenamed[0].hasOwnProperty('timestamp')).to.be.true;
 //   //         expect(imotionsRenamed[0].hasOwnProperty('fixationIndex')).to.be.true;
 //   //         expect(imotionsRenamed[0].hasOwnProperty('x')).to.be.true;
 //   //         expect(imotionsRenamed[0].hasOwnProperty('y')).to.be.true;

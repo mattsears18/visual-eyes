@@ -52,8 +52,8 @@ Viewings.helpers({
   analysis() {
     return Analyses.findOne(this.analysisId);
   },
-  recordings() {
-    return Recordings.find({ _id: { $in: this.recordingIds }}, { sort: { recordingTime: 1 } });
+  gazepoints() {
+    return Gazepoints.find({ _id: { $in: this.gazepointIds }}, { sort: { timestamp: 1 } });
   },
   aois() {
     if(this.aoiIds && this.aoiIds.length) {

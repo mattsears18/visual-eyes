@@ -19,7 +19,7 @@ Aois.helpers({
   stimulus() {
     return Stimuli.findOne( this.stimulusId );
   },
-  recordings() {
-    return Recordings.find({ aoiId: this._id });
+  gazepoints() {
+    return Gazepoints.find({ aoiId: this._id });
   }
 });

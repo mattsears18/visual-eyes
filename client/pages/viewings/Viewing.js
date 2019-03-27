@@ -21,7 +21,7 @@ Template.Viewing.onCreated(function() {
     var viewingId = FlowRouter.getParam('viewingId');
     let viewing = Viewings.findOne({});
 
-    this.subscribe('viewings.single.withRecordingPoints', viewingId);
+    this.subscribe('viewings.single.withGazepoints', viewingId);
     this.subscribe('participants.byViewingId', viewingId);
     this.subscribe('stimuli.byViewingId', viewingId);
     this.subscribe('stimulusfiles.byViewingId', viewingId);
@@ -52,7 +52,7 @@ Template.Viewing.helpers({
     var viewingId = FlowRouter.getParam('viewingId');
     viewing = Viewings.findOne(viewingId);
     if(viewing) {
-      return { _id: { $in: viewing.recordingIds }};
+      return { _id: { $in: viewing.gazepointIds }};
     }
   },
   viewing: () => {

@@ -9,12 +9,12 @@ export default class PlotHullCollection {
 
   getHulls() {
     let hulls = [];
-    let firstHullEndIndex = this.getEndRecordingIndex(0);
+    let firstHullEndIndex = this.getEndGazepointIndex(0);
     let firstHull = new PlotHull(this.viewing(), 0, firstHullEndIndex);
     let endIndex;
 
-    for(endIndex = (this.viewing().recordingPoints.length - 1); endIndex > firstHullEndIndex; endIndex--) {
-      let startIndex = this.getStartRecordingIndex(endIndex);
+    for(endIndex = (this.viewing().gazepoints.length - 1); endIndex > firstHullEndIndex; endIndex--) {
+      let startIndex = this.getStartGazepointIndex(endIndex);
       let h = new PlotHull(this.viewing(), startIndex, endIndex);
       hulls.push(h);
     }
@@ -25,15 +25,15 @@ export default class PlotHullCollection {
     return hulls;
   }
 
-  getEndRecordingIndex(startIndex) {
-    let startTime = this.viewing().recordingPoints[startIndex].recordingTime;
+  getEndGazepointIndex(startIndex) {
+    let startTime = this.viewing().gazepoints[startIndex].timestamp;
     let endIndex = startIndex;
     let duration = 0;
 
     while (duration < this.viewing().period) {
       endIndex++;
-      if(this.viewing().recordingPoints[endIndex]) {
-        let endTime = this.viewing().recordingPoints[endIndex].recordingTime;
+      if(this.viewing().gazepoints[endIndex]) {
+        let endTime = this.viewing().gazepoints[endIndex].timestamp;
         duration = endTime - startTime;
       } else {
         break;
@@ -42,15 +42,15 @@ export default class PlotHullCollection {
     return endIndex - 1;
   }
 
-  getStartRecordingIndex(endIndex) {
-    let endTime = this.viewing().recordingPoints[endIndex].recordingTime;
+  getStartGazepointIndex(endIndex) {
+    let endTime = this.viewing().gazepoints[endIndex].timestamp;
     let startIndex = endIndex;
     let duration = 0;
 
     while (duration < this.viewing().period) {
       startIndex--;
-      if(this.viewing().recordingPoints[startIndex]) {
-        let startTime = this.viewing().recordingPoints[startIndex].recordingTime;
+      if(this.viewing().gazepoints[startIndex]) {
+        let startTime = this.viewing().gazepoints[startIndex].timestamp;
         duration = endTime - startTime;
       } else {
         break;
@@ -85,23 +85,21 @@ export default class PlotHullCollection {
         hullPeriod: hull.period(),
         timeStep: hull.timeStep(),
         duration: hull.duration(),
-        pointCount: hull.recordings().length,
-        pointsX: hull.recordings().map((recording) => {
-          return parseInt(recording.x);
-        }),
-        pointsY: hull.recordings().map((recording) => {
-          return parseInt(recording.y);
-        }),
-        lastPointX: hull.lastPointX(),
-        lastPointY: hull.lastPointY(),
+        gazepointCount: hull.gazepoints().length,
+        gazepointsX: hull.gazepoints(0),
+        gazepointsY: hull.gazepoints(1),
+        lastGazepointX: hull.lastGazepoint()[0],
+        lastGazepointY: hull.lastGazepoint()[1],
         distance: hull.distance(),
-        distanceX: hull.distanceX(),
-        distanceY: hull.distanceY(),
+        distanceX: hull.distance(0),
+        distanceY: hull.distance(1),
+        velocity: hull.velocity(),
         centroidX: hull.centroid().x,
         centroidY: hull.centroid().y,
         centroidDistance: 0,
         centroidDistanceX: 0,
         centroidDistanceY: 0,
+        centroidVelocity: 0,
         area: hull.area(),
         areaDuration: hull.areaDuration(),
         averageArea: this.viewing().averageSlideHullArea,

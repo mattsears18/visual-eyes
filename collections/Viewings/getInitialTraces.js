@@ -56,8 +56,8 @@ export default function getInitialTraces(options) {
 
   let lastFixationTrace = {
     name: 'Last Fixation',
-    x: [hulls[0].recordings().slice(-1)[0].x],
-    y: [hulls[0].recordings().slice(-1)[0].y],
+    x: [hulls[0].gazepoints().slice(-1)[0].x],
+    y: [hulls[0].gazepoints().slice(-1)[0].y],
     mode: 'markers',
     type: 'scatter',
     marker: {

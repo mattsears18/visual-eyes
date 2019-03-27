@@ -7,9 +7,6 @@
       {{> quickForm collection="Datafiles" doc=datafile id="updateDatafileForm"
         type="update" class="update-datafile-form"}}
 
-      <!-- {{> quickForm collection="Datafiles" doc=datafile id="updateDatafileForm"
-        type="method" meteormethod="datafiles.update" class="update-datafile-form"}} -->
-
       {{#if datafile.hasPermission 'destroy'}}
         {{> quickRemoveButton collection="Datafiles" _id=datafile._id
           onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove

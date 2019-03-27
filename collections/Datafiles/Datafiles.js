@@ -18,14 +18,6 @@ Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
     type: String,
     defaultValue: 'needsProcessing',
   },
-  recordings: {
-    type: Number,
-    optional: true,
-  },
-  recordingsProcessed: {
-    type: Number,
-    optional: true,
-  },
   headersRemoved: {
     type: String,
     optional: true,
@@ -38,11 +30,15 @@ Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
     type: Number,
     optional: true,
   },
-  gazePointCount: {
+  rawRowsProcessed: {
     type: Number,
     optional: true,
   },
-  nonDuplicateGazePointCount: {
+  dupGazepointCount: {
+    type: Number,
+    optional: true,
+  },
+  gazepointCount: {
     type: Number,
     optional: true,
   },

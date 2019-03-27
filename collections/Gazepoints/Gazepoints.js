@@ -2,38 +2,38 @@ import SimpleSchema from 'simpl-schema';
 
 SimpleSchema.extendOptions(['autoform']);
 
-Recordings = new Mongo.Collection('recordings');
+Gazepoints = new Mongo.Collection('gazepoints');
 
-Recordings.allow({
+Gazepoints.allow({
   insert: function(userId, doc) {
     return true;
-    if(!Roles.userIsInRole(userId, 'create', 'recordings')) {
-      throw new Meteor.Error('recordings.create.unauthorized',
-        'You do not have permission to create recordings.');
+    if(!Roles.userIsInRole(userId, 'create', 'gazepoints')) {
+      throw new Meteor.Error('gazepoints.create.unauthorized',
+        'You do not have permission to create gazepoints.');
     } else {
       return true;
     }
   },
   update: function(userId, doc) {
     return true;
-    recording = Recordings.findOne({_id: doc._id});
-    return recording.hasPermission('update');
+    gazepoint = Gazepoints.findOne({_id: doc._id});
+    return gazepoint.hasPermission('update');
   },
   remove: function(userId, doc) {
     return true;
-    recording = Recordings.findOne({_id: doc._id});
-    return recording.hasPermission('destroy');
+    gazepoint = Gazepoints.findOne({_id: doc._id});
+    return gazepoint.hasPermission('destroy');
   },
 });
 
-Schemas.Recording = new SimpleSchema({
+Schemas.Gazepoint = new SimpleSchema({
   participantId: {
     type: String,
     label: 'participantId',
   },
-  recordingTime: {
+  timestamp: {
     type: Number,
-    label: 'Recording Time',
+    label: 'Timestamp',
   },
   timeOfDay: {
     type: String,
@@ -75,6 +75,6 @@ Schemas.Recording = new SimpleSchema({
   },
 }, {tracker: Tracker});
 
-Recordings.attachSchema(Schemas.Recording);
+Gazepoints.attachSchema(Schemas.Gazepoint);
 
-export default Recordings;
+export default Gazepoints;

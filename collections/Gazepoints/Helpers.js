@@ -1,6 +1,6 @@
-import Recordings from './Recordings';
+import Gazepoints from './Gazepoints';
 
-Recordings.helpers({
+Gazepoints.helpers({
   hasPermission(action) {
     check(action, String);
 

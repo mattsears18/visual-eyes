@@ -51,25 +51,25 @@ Schemas.Aoi = new SimpleSchema({
       type: 'hidden',
     }
   },
-  recordingTimeMin: {
+  timestampMin: {
     type: Number,
-    label: 'Minimum Recording Time',
+    label: 'First Gazepoint Timestamp',
     autoform: {
       type: 'hidden',
     },
     optional: true,
   },
-  recordingTimeMax: {
+  timestampMax: {
     type: Number,
-    label: 'Maximum Recording Time',
+    label: 'Last Gazepoint Timestamp',
     autoform: {
       type: 'hidden',
     },
     optional: true,
   },
-  recordingTimeTotal: {
+  duration: {
     type: Number,
-    label: 'Total Recording Time',
+    label: 'Duration',
     autoform: {
       type: 'hidden',
     },

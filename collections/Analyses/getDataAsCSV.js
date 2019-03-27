@@ -22,12 +22,12 @@ export default function getDataAsCSV() {
 
     let participantData = {
       link: 'http://',
-      studyName: '',
-      analysisName: analysis.name,
+      study: '',
+      analysis: analysis.name,
       period: analysis.period,
       viewingGap: analysis.viewingGap,
       minViewingTime: analysis.minViewingTime,
-      participantName: participant.name,
+      participant: participant.name,
       viewingCountPerStimulusMean: jStat.mean(viewingCounts),
       viewingCountPerStimulusMedian: jStat.median(viewingCounts),
       viewingCountTotal: jStat.sum(viewingCounts),
@@ -37,24 +37,15 @@ export default function getDataAsCSV() {
       averageConvexHullCoverageSlideMean: jStat.mean(averageSlideHullCoverages),
       averageConvexHullCoverageSlideMedian: jStat.median(averageSlideHullCoverages),
       rawRowCount: jStat.sum(datafiles.map((datafile) => { return datafile.rawRowCount; })),
-      gazePointCount: jStat.sum(datafiles.map((datafile) => { return datafile.gazePointCount; })),
-      gazePointProportion: (
-        jStat.sum(datafiles.map((datafile) => { return datafile.rawRowCount; })) /
-        jStat.sum(datafiles.map((datafile) => { return datafile.gazePointCount; }))
-      ),
-      nonDuplicateGazePointCount: jStat.sum(datafiles.map((datafile) => { return datafile.nonDuplicateGazePointCount; })),
-      nonDuplicateGazePointProportion: (
-        jStat.sum(datafiles.map((datafile) => { return datafile.nonDuplicateGazePointCount; })) /
-        jStat.sum(datafiles.map((datafile) => { return datafile.gazePointCount; }))
+      gazepointCount: jStat.sum(datafiles.map((datafile) => { return datafile.gazepointCount; })),
+      gazepointProportion: (
+        jStat.sum(datafiles.map((datafile) => { return datafile.gazepointCount; })) /
+        jStat.sum(datafiles.map((datafile) => { return datafile.rawRowCount; }))
       ),
       fixationCount: jStat.sum(datafiles.map((datafile) => { return datafile.fixationCount; })),
       fixationProportion: (
         jStat.sum(datafiles.map((datafile) => { return datafile.fixationCount; })) /
-        jStat.sum(datafiles.map((datafile) => { return datafile.gazePointCount; }))
-      ),
-      fixationNonDuplicateProportion: (
-        jStat.sum(datafiles.map((datafile) => { return datafile.fixationCount; })) /
-        jStat.sum(datafiles.map((datafile) => { return datafile.nonDuplicateGazePointCount; }))
+        jStat.sum(datafiles.map((datafile) => { return datafile.gazepointCount; }))
       ),
     };
 

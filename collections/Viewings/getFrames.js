@@ -39,8 +39,8 @@ export default function getFrames(options) {
     }
 
     let lastFixation = {
-      x: [hulls[hi].recordings().slice(-1)[0].x],
-      y: [hulls[hi].recordings().slice(-1)[0].y],
+      x: [hulls[hi].gazepoints().slice(-1)[0].x],
+      y: [hulls[hi].gazepoints().slice(-1)[0].y],
     }
 
     let lastFixationTrail = {

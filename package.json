@@ -23,7 +23,7 @@
     "faker": "^4.1.0",
     "file-saver": "^2.0.0",
     "genstats": "0.0.1",
-    "hull.js": "^0.2.10",
+    "hull.js": "git://github.com/mattsears18/hull.git#length-3-pointsets",
     "image-size": "^0.6.3",
     "jStat": "^1.7.1",
     "jquery": ">=3.0.0",

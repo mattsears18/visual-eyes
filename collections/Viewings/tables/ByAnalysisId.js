@@ -16,6 +16,8 @@ new Tabular.Table({
     'stimulusId',
     'stimulusName',
     'analysisId',
+    'status',
+    'averageSlideHullCoverage',
   ],
   columns: [
     {
@@ -72,22 +74,30 @@ new Tabular.Table({
       },
     },
     {
-      data: 'averageSlideHullArea',
-      title: 'Average Convex Hull Area (Slide Method)',
-      render: function(data, type, row, meta) {
-        if(data) {
-          return `<a href="/studies/${row.studyId}/viewings/${row._id}">${helpers.formatNumber(data)}</a>`;
-        }
-      },
-    },
-    {
       data: {
-        _: 'averageSlideHullCoverage()',
+        _: 'averageSlideHullCoverage',
       },
       title: 'Average Convex Hull Coverage (Slide Method)',
       render: function(data, type, row, meta) {
         if(data) {
           return `<a href="/studies/${row.studyId}/viewings/${row._id}">${helpers.formatNumber(data * 100)}%</a>`;
+        }
+      },
+    },
+    {
+      data: 'status',
+      title: 'Status',
+      render: function(status, type, row, meta) {
+        if(status) {
+          if(status == 'invalidStimulus') {
+            return `<div><span class="label label-danger">Invalid Stimulus</span></div><div class="m-t-5"><span class="btn btn-primary upload-stimulusfile" data-stimulusid="${row.stimulusId}"><i class="fa fa-upload m-r-5"></i>Upload Reference Image</span></div>`
+          }
+          if(status == 'processing') {
+            return `<span class="label label-default">Processing<i class="fa fa-spinner fa-pulse fa-fw m-l-3"></i></span>`;
+          }
+          if(status == 'processed') {
+            return `<span class="label label-success">Processed</span>`;
+          }
         }
       },
     },

@@ -42,7 +42,7 @@
               {{#if stimulus.stimulusfile}}
                 <span class="label label-success">Has Reference Image</span>
               {{else}}
-                <span class="label label-danger upload-stimulusfile" data-stimulusid="{{stimulus._id}}"><i class="fa fa-upload m-r-5"></i>Needs Reference Image</span>
+                <div><span class="label label-danger">Needs Reference Image</span></div><div class="m-t-5"><span class="btn btn-primary upload-stimulusfile" data-stimulusid="{{stimulus._id}}"><i class="fa fa-upload m-r-5"></i>Upload Reference Image</span></div>
               {{/if}}
             </td>
           </tr>

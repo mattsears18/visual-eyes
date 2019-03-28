@@ -38,30 +38,14 @@
           {{/if}}
         </div>
         <div>
-          <strong>Average Convex Hull Area (Slide Method): </strong>
-          {{#if viewing.averageSlideHullArea}}
-            {{formatNumber viewing.averageSlideHullArea}} ({{decimalToPercent viewing.averageSlideHullCoverage}}%)
-          {{/if}}
-        </div>
-        <div>
-          <strong>Average Convex Hull Area (Step Method): </strong>
-          {{#if viewing.averageStepHullArea}}
-            {{decimalToPercent viewing.averageStepHullArea}}%
+          <strong>Average Convex Hull Coverage (Slide Method): </strong>
+          {{#if viewing.averageSlideHullCoverage}}
+            {{decimalToPercent viewing.averageSlideHullCoverage}}%
           {{/if}}
         </div>
       </p>
 
       <form>
-        <div class="form-group" id="analysisTypeGroup">
-          <label for="analysisType">Analysis Type</label>
-          <select class="form-control" id="analysisType">
-            <option disabled selected value="">Analysis Type</option>
-            <option value="convexHull">Convex Hull Areas</option>
-            <option disabled value="scanpathLength">Scanpath Length</option>
-            <option disabled value="scanpathVelocity">Scanpath Velocity</option>
-          </select>
-        </div>
-
         {{#if instantContinuousVisible}}
           <div id="instantContinuousGroup" class="form-group">
             <label for="instantContinuous">Instantaneous/Continuous

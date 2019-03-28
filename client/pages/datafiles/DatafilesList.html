@@ -71,14 +71,10 @@
                 <span class="label label-danger">Unrecognized File Format</span>
               {{/if}}
               {{#if equals datafile.status 'preprocessing'}}
-                <span class="label label-default">
-                  Pre-processing
-                  <i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+                <span class="label label-default">Pre-processing<i class="fa fa-spinner fa-pulse fa-fw m-l-3"></i></span>
               {{/if}}
               {{#if equals datafile.status 'processing'}}
-                <span class="label label-default">
-                  Processing
-                  <i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+                <span class="label label-default">Processing<i class="fa fa-spinner fa-pulse fa-fw m-l-3"></i></span>
               {{/if}}
               {{#if equals datafile.status 'processed'}}
                 <span class="label label-success">Processed</span>

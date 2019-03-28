@@ -10,7 +10,7 @@
       </h4>
       <div id="PlotArea" class="m-t-30"></div>
     </div>
-    <div class="m-l-50 m-t-10" style="width: {{progressSliderWidth}}px;">
+    <div class="m-l-50" style="width: {{progressSliderWidth}}px;">
       <input type="range" class="form-control-range slider-animation" id="slider-animation" value="{{progressPercent}}">
     </div>
     <div class="m-t-10 m-l-50">
@@ -47,8 +47,6 @@
     <div>currentTime: {{millisecondsToHMSMS currentTime}}</div>
     <div>endTime: {{millisecondsToHMSMS endTime}}</div>
     <div>progress: {{formatNumber progressPercent}}%</div> -->
-    <!-- <div>hull area: {{formatNumber currentHull.area}}</div>
-    <div>hull coverage: {{formatNumber currentHull.coveragePercent}}%</div> -->
   {{else}}
     <div class="m-b-10">
       No stimulus image associated with <a href="/studies/{{stimulus.studyId}}/stimuli/{{stimulus._id}}">{{stimulus.name}}</a>

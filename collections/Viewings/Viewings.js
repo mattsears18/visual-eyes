@@ -79,27 +79,18 @@ Schemas.Viewing = new SimpleSchema({
       type: 'hidden',
     },
   },
-  gazepointIds: {
-    type: Array,
-  },
-  "gazepointIds.$": {
-    type: String,
-    autoform: {
-      type: 'hidden',
-    },
-  },
   gazepoints: {
     type: Array,
   },
   'gazepoints.$': Object,
   'gazepoints.$.fixationIndex': {
-    type: String,
+    type: Number,
     optional: true,
   },
-  'gazepoints.$.timestamp': String,
-  'gazepoints.$.x': String,
-  'gazepoints.$.y': String,
-  averageSlideHullArea: {
+  'gazepoints.$.timestamp': Number,
+  'gazepoints.$.x': Number,
+  'gazepoints.$.y': Number,
+  averageSlideHullCoverage: {
     type: Number,
     optional: true,
     autoform: {
@@ -120,6 +111,10 @@ Schemas.Viewing = new SimpleSchema({
   },
   fixationFrequency: {
     type: Number,
+    optional: true,
+  },
+  status: {
+    type: String,
     optional: true,
   },
 }, {tracker: Tracker});

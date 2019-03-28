@@ -5,14 +5,12 @@ export default function getLayout(options) {
 
   return {
     xaxis: {
-      rangemode: 'tozero',
-      range: [0, this.stimulus().width],
-      autorange: false,
+      range: [0, 1],
+      showticklabels: false,
     },
     yaxis: {
-      rangemode: 'tozero',
-      range: [0, this.stimulus().height],
-      autorange: false,
+      range: [0, 1],
+      showticklabels: false,
     },
     height: forceHeight + margin.b + margin.t,
     width: (this.stimulus().stimulusfile().fileWidth * scale) + margin.l + margin.r + 146,

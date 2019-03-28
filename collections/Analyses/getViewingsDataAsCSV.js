@@ -33,15 +33,11 @@ export default function getDataAsCSV() {
       slideHullCount: '',
       firstHullStartTime: '',
       lastHullEndTime: '',
-      slideHullAreas: '',
       slideHullCoverages: '',
       slideHullDurations: '',
       slideHullDurationTotal: '',
-      slideHullAreaDurations: '',
-      slideHullAreaDurationTotal: '',
       slideHullCoverageDurations: '',
       slideHullCoverageDurationTotal: '',
-      averageSlideHullArea: '',
       averageSlideHullCoverage: '',
     };
 

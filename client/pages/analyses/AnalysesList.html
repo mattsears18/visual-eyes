@@ -57,20 +57,13 @@
             </td>
             <td>
               {{#if equals analysis.status "needsReprocessing"}}
-                <span class="label label-danger">
-                  Needs Reprocessing
-                </span>
+                <span class="label label-danger">Needs Reprocessing</span>
               {{/if}}
               {{#if equals analysis.status "processing"}}
-                <span class="label label-default">
-                  Processing
-                  <i class="fa fa-spinner fa-pulse fa-fw"></i>
-                </span>
+                <span class="label label-default">Processing<i class="fa fa-spinner fa-pulse fa-fw m-l-3"></i></span>
               {{/if}}
               {{#if equals analysis.status "processed"}}
-                <span class="label label-success">
-                  Processed
-                </span>
+                <span class="label label-success">Processed</span>
               {{/if}}
             </td>
           </tr>

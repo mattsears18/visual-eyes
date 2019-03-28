@@ -1,11 +1,11 @@
 import Jobs from '../../../collections/Jobs/Jobs';
 
-export default queueViewingsSaveAverageSlideHullArea = Jobs.processJobs('viewings.saveAverageSlideHullArea',
+export default queueViewingsSaveAverageSlideHullCoverage = Jobs.processJobs('viewings.saveAverageSlideHullCoverage',
   {
     concurrency: 1,
   },
   function (jobDoc, callback) {
-    Meteor.call('viewings.saveAverageSlideHullArea', {
+    Meteor.call('viewings.saveAverageSlideHullCoverage', {
       jobId: jobDoc._doc._id,
       callback: callback,
     });

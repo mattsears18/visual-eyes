@@ -13,3 +13,12 @@ Stimuli.after.remove(function(userId, stimulus) {
     });
   }
 });
+
+Stimuli.after.update(function(userId, stimulus, fieldNames, modifier, options) {
+  if(
+    this.previous.width   != stimulus.width ||
+    this.previous.height  != stimulus.height
+  ) {
+    Meteor.call('studies.reprocessAnalyses', { studyId: stimulus.studyId });
+  }
+});

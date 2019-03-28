@@ -27,10 +27,10 @@ Meteor.startup(function () {
 });
 
 Meteor.startup(function () {
-  Meteor.publish('jobs.viewings.saveAverageSlideHullArea.byAnalysisId', function (analysisId) {
+  Meteor.publish('jobs.viewings.saveAverageSlideHullCoverage.byAnalysisId', function (analysisId) {
     check(analysisId, String);
     return Jobs.find({
-      type: 'viewings.saveAverageSlideHullArea',
+      type: 'viewings.saveAverageSlideHullCoverage',
       'data.analysisId': analysisId,
     });
   });

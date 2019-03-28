@@ -7,9 +7,8 @@ export default function getFrames(options) {
   for(hi = 0; hi < hulls.length; hi++) {
     centroids.push(hulls[hi].centroid());
     let points = {
-      x: hulls[hi].points(0),
-      y: hulls[hi].points(1),
-      // text: hulls[hi].pointsTimeText(),
+      x: hulls[hi].gazepoints('x'),
+      y: hulls[hi].gazepoints('y'),
     };
 
     let polygon = {
@@ -26,8 +25,6 @@ export default function getFrames(options) {
 
     if(hi == 0) {
       centroidTrail = {
-        // x: [hulls[hi].centroid().x, (hulls[hi].centroid().x + 0.01)], // can't draw a line from 1 point, so have to send 2 points
-        // y: [hulls[hi].centroid().y, (hulls[hi].centroid().y + 0.01)], // can't draw a line from 1 point, so have to send 2 points
         x: [-10, -11], // can't draw a line from 1 point, so have to send 2 points
         y: [-10, -11], // can't draw a line from 1 point, so have to send 2 points
       };
@@ -44,11 +41,11 @@ export default function getFrames(options) {
     }
 
     let lastFixationTrail = {
-      x: hulls[hi].fixationTrail(Session.get('fixationTrailLength'), 0),
-      y: hulls[hi].fixationTrail(Session.get('fixationTrailLength'), 1),
+      x: hulls[hi].fixationTrail(Session.get('fixationTrailLength'), 'x'),
+      y: hulls[hi].fixationTrail(Session.get('fixationTrailLength'), 'y'),
     }
 
-    frames.push({
+    let frame = {
       name: hulls[hi].endTime(),
       data: [
         centroidTrail,
@@ -58,7 +55,9 @@ export default function getFrames(options) {
         polygon,
         lastFixation,
       ],
-    });
+    }
+
+    frames.push(frame);
   }
   return frames;
 }

@@ -40,7 +40,6 @@ Template.Animation.events({
   'click .download-data-as-csv': (e, template) => {
     Meteor.call('viewings.saveCSV', {
       viewingId: FlowRouter.getParam('viewingId'),
-      analysisType: Session.get('analysisType'),
       instantContinuous: Session.get('instantContinuous'),
       slideStep: Session.get('slideStep'),
       centroidPeriod: Session.get('centroidPeriod'),
@@ -51,7 +50,6 @@ Template.Animation.events({
 Template.Animation.onRendered(initAnimation);
 
 function initAnimation() {
-  console.log('init animation');
   Plotly.purge('PlotArea');
 
   Plotly.react('PlotArea', {
@@ -143,8 +141,8 @@ function playAnimation(timestamp) {
 }
 
 function plotFrame() {
-  console.log('plot frame: ' + this.frameIndex.get());
-  console.log(this.data.frames[this.frameIndex.get()]);
+  // console.log('plot frame: ' + this.frameIndex.get());
+  // console.log(this.data.frames[this.frameIndex.get()]);
   Plotly.animate('PlotArea', {
     data: this.data.frames[this.frameIndex.get()].data
   }, {

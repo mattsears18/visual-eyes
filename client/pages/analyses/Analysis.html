@@ -14,10 +14,7 @@
       {{/if}}
 
       {{#unless analysis.viewingsComplete}}
-        <span class="label label-default">Creating Viewings
-          {{formatNumber analysis.viewingsProgress}}%
-          <i class="fa fa-spinner fa-pulse fa-fw"></i>
-        </span>
+        <span class="label label-default">Creating Viewings {{formatNumber analysis.viewingsProgress}}%<i class="fa fa-spinner fa-pulse fa-fw m-l-3"></i></span>
       {{/unless}}
     </h3>
 
@@ -79,7 +76,7 @@
       </div>
       <div class="row">
         <div class="col-md-6">
-          {{> PlotHistogramViewingAverageSlideHullAreas viewings=viewings}}
+          {{> PlotHistogramViewingAverageSlideHullCoverages viewings=viewings}}
         </div>
       </div>
     {{/if}}
@@ -89,10 +86,7 @@
         Viewings ({{viewings.count}})
 
         {{#unless analysis.viewingsComplete}}
-          <span class="label label-default">Creating Viewings
-            {{formatNumber analysis.viewingsProgress}}%
-            <i class="fa fa-spinner fa-pulse fa-fw"></i>
-          </span>
+          <span class="label label-default">Creating Viewings {{formatNumber analysis.viewingsProgress}}%<i class="fa fa-spinner fa-pulse fa-fw m-l-3"></i></span>
         {{/unless}}
 
         <span class="pull-right btn btn-success download-viewings-as-csv m-b-20"><i class="fa fa-table"></i>&nbsp;Download Viewings as .CSV</span>

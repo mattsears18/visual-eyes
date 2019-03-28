@@ -16,8 +16,13 @@ export default class PlotHull {
     }
   }
 
-  gazepoints() {
-    return this.viewing().gazepoints.slice(this.startIndex, this.endIndex + 1);
+  gazepoints(which) {
+    let gp = this.viewing().gazepoints.slice(this.startIndex, this.endIndex + 1);
+    if(typeof(which) != 'undefined') {
+      return gp.map((gazepoint) => { return gazepoint[which]; });
+    } else {
+      return gp;
+    }
   }
 
   startTime() {
@@ -41,20 +46,12 @@ export default class PlotHull {
     }
   }
 
-  area() {
+  coverage() {
     if(this.gazepoints().length > 2) {
       return area(this.gazepoints());
     } else {
       return 0;
     }
-  }
-
-  areaDuration() {
-    return (this.area() * this.duration());
-  }
-
-  coverage() {
-    return (this.area() / this.viewing().stimulus().area());
   }
 
   coveragePercent() {
@@ -65,15 +62,15 @@ export default class PlotHull {
     return (this.coverage() * this.duration());
   }
 
-  distance(index) {
-    if(typeof(index) != 'undefined') {
+  distance(which) {
+    if(typeof(which) != 'undefined') {
       if(this.gazepoints() && this.gazepoints().length > 2) {
-        return (this.gazepoints()[this.gazepoints().length - 1][index] - this.gazepoints()[this.gazepoints().length - 2][index]);
+        return (this.gazepoints()[this.gazepoints().length - 1][which] - this.gazepoints()[this.gazepoints().length - 2][which]);
       } else {
         return 0;
       }
     } else {
-      return Math.sqrt((this.distance(0) * this.distance(0) + this.distance(1) * this.distance(1)));
+      return Math.sqrt((this.distance('x') * this.distance('x') + this.distance('y') * this.distance('y')));
     }
   }
 
@@ -85,36 +82,17 @@ export default class PlotHull {
     }
   }
 
-  lastGazepoint(index) {
+  lastGazepoint() {
     if(this.gazepoints() && this.gazepoints().length) {
       return this.gazepoints()[this.gazepoints().length - 1];
-    }
-  }
-
-  gazepoints(index) {
-    if(this.viewing() && this.viewing().stimulus() && this.viewing().stimulus().width > 0 && this.viewing().stimulus().height > 0) {
-      let ps = this.gazepoints().map((gazepoint) => {
-        return [
-          +(gazepoint.x / this.viewing().stimulus().width).toFixed(10),
-          +(gazepoint.y / this.viewing().stimulus().height).toFixed(10)
-        ];
-      });
-
-      if(typeof(index) !== 'undefined') {
-        return ps.map((point) => { return point[index]; });
-      } else {
-        return ps;
-      }
-    } else {
-      return [];
     }
   }
 
   fixationTrail(length, index) {
     let trailStart = Math.max((this.endIndex + 1 - length), 0);
     let trailEnd = (this.endIndex + 1);
-    let trail = this.XYToCoordinates(this.viewing().gazepoints).slice(trailStart, trailEnd);
-    if(typeof(index) !== 'undefined') {
+    let trail = this.viewing().gazepoints.slice(trailStart, trailEnd);
+    if(typeof(index) != 'undefined') {
       return trail.map((point) => {
         return point[index];
       });
@@ -131,14 +109,14 @@ export default class PlotHull {
 
   gazepointsTimeText() {
     return this.gazepoints().map(function(gazepoint) {
-      return 'Time: ' + gazepoint.timestamp + 'ms';
+      return 'Time: ' + helpers.formatNumber(gazepoint.timestamp) + 'ms';
     });
   }
 
   polygon(index) {
-    let hullPoints = hull(this.gazepoints(), Infinity);
+    let hullPoints = hull(this.XYToCoordinates(this.gazepoints()), Infinity);
 
-    if(typeof(index) !== 'undefined') {
+    if(typeof(index) != 'undefined') {
       return hullPoints.map((point) => { return point[index]; });
     } else {
       return hullPoints;
@@ -157,7 +135,7 @@ export default class PlotHull {
 
   XYToCoordinates(points) {
     return points.map(function(point) {
-      return [parseInt(point.x), parseInt(point.y)];
+      return [point.x, point.y];
     });
   }
 }

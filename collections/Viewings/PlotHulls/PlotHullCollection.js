@@ -26,6 +26,13 @@ export default class PlotHullCollection {
   }
 
   getEndGazepointIndex(startIndex) {
+    if(!(this.viewing() && this.viewing().gazepoints && this.viewing().gazepoints[startIndex])) {
+      console.log('gazepoint not found!');
+      console.log('startIndex: ' + startIndex);
+      console.log('viewingId: ' + this.viewing()._id);
+      return;
+    }
+
     let startTime = this.viewing().gazepoints[startIndex].timestamp;
     let endIndex = startIndex;
     let duration = 0;
@@ -86,10 +93,10 @@ export default class PlotHullCollection {
         timeStep: hull.timeStep(),
         duration: hull.duration(),
         gazepointCount: hull.gazepoints().length,
-        gazepointsX: hull.gazepoints(0),
-        gazepointsY: hull.gazepoints(1),
-        lastGazepointX: hull.lastGazepoint()[0],
-        lastGazepointY: hull.lastGazepoint()[1],
+        gazepointsX: hull.gazepoints('x'),
+        gazepointsY: hull.gazepoints('y'),
+        lastGazepointX: hull.lastGazepoint().x,
+        lastGazepointY: hull.lastGazepoint().y,
         distance: hull.distance(),
         distanceX: hull.distance(0),
         distanceY: hull.distance(1),
@@ -100,18 +107,18 @@ export default class PlotHullCollection {
         centroidDistanceX: 0,
         centroidDistanceY: 0,
         centroidVelocity: 0,
-        area: hull.area(),
-        areaDuration: hull.areaDuration(),
-        averageArea: this.viewing().averageSlideHullArea,
         coverage: hull.coverage(),
         coverageDuration: hull.coverageDuration(),
-        averageCoverage: this.viewing().averageSlideHullCoverage(),
+        averageCoverage: this.viewing().averageSlideHullCoverage,
       }
 
       if(hi > 0) {
         hullData.centroidDistanceX = (hulls[hi].centroid().x - hulls[hi - 1].centroid().x);
         hullData.centroidDistanceY = (hulls[hi].centroid().y - hulls[hi - 1].centroid().y);
         hullData.centroidDistance = Math.sqrt(hullData.centroidDistanceX * hullData.centroidDistanceX + hullData.centroidDistanceY * hullData.centroidDistanceY)
+        if(hullData.timeStep > 0 && hullData.centroidDistance > 0) {
+          hullData.centroidVelocity = (hullData.centroidDistance / hullData.timeStep);
+        }
       }
 
       data.push(hullData);

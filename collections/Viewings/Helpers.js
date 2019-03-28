@@ -36,10 +36,7 @@ Viewings.helpers({
     return Stimuli.findOne(this.stimulusId);
   },
   stimulusArea() {
-    return (this.stimulus().width * this.stimulus().height);
-  },
-  averageSlideHullCoverage() {
-    return (this.averageSlideHullArea / this.stimulusArea());
+    return this.stimulus().area();
   },
   stimulusName() {
     if(this.stimulus()) {
@@ -51,9 +48,6 @@ Viewings.helpers({
   },
   analysis() {
     return Analyses.findOne(this.analysisId);
-  },
-  gazepoints() {
-    return Gazepoints.find({ _id: { $in: this.gazepointIds }}, { sort: { timestamp: 1 } });
   },
   aois() {
     if(this.aoiIds && this.aoiIds.length) {

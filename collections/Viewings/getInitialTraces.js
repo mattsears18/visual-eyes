@@ -3,9 +3,9 @@ export default function getInitialTraces(options) {
 
   let pointsTrace = {
     name: 'Fixations',
-    x: hulls[0].points(0),
-    y: hulls[0].points(1),
-    text: hulls[0].pointsTimeText(),
+    x: hulls[0].gazepoints('x'),
+    y: hulls[0].gazepoints('y'),
+    text: hulls[0].gazepointsTimeText(),
     mode: 'markers',
     type: 'scatter',
     marker: {

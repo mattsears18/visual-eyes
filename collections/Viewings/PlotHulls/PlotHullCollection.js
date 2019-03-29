@@ -72,7 +72,7 @@ export default class PlotHullCollection {
 
     hulls.forEach((hull, hi) => {
       let hullData = {
-        link: 'http://',
+        link: Meteor.absoluteUrl() + 'studies/' + this.viewing().analysis().study()._id + '/viewings/' + this.viewing()._id,
         study: this.viewing().study().name,
         analysis: this.viewing().analysis().name,
         period: this.viewing().analysis().period,
@@ -98,15 +98,19 @@ export default class PlotHullCollection {
         lastGazepointX: hull.lastGazepoint().x,
         lastGazepointY: hull.lastGazepoint().y,
         distance: hull.distance(),
-        distanceX: hull.distance(0),
-        distanceY: hull.distance(1),
+        distanceX: hull.distance('x'),
+        distanceY: hull.distance('y'),
         velocity: hull.velocity(),
+        velocityX: hull.velocity('x'),
+        velocityY: hull.velocity('y'),
         centroidX: hull.centroid().x,
         centroidY: hull.centroid().y,
         centroidDistance: 0,
         centroidDistanceX: 0,
         centroidDistanceY: 0,
         centroidVelocity: 0,
+        centroidVelocityX: 0,
+        centroidVelocityY: 0,
         coverage: hull.coverage(),
         coverageDuration: hull.coverageDuration(),
         averageCoverage: this.viewing().averageSlideHullCoverage,
@@ -118,7 +122,10 @@ export default class PlotHullCollection {
         hullData.centroidDistance = Math.sqrt(hullData.centroidDistanceX * hullData.centroidDistanceX + hullData.centroidDistanceY * hullData.centroidDistanceY)
         if(hullData.timeStep > 0 && hullData.centroidDistance > 0) {
           hullData.centroidVelocity = (hullData.centroidDistance / hullData.timeStep);
+          hullData.centroidVelocityX = (hullData.centroidDistanceX / hullData.timeStep);
+          hullData.centroidVelocityY = (hullData.centroidDistanceY / hullData.timeStep);
         }
+
       }
 
       data.push(hullData);

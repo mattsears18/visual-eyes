@@ -17,25 +17,30 @@ export default function getDataAsCSV() {
     });
 
     let averageSlideHullCoverages = viewings.map(function(viewing) {
-      return viewing.averageSlideHullCoverage();
+      return viewing.averageSlideHullCoverage;
     });
 
     let participantData = {
-      link: 'http://',
-      study: '',
+      link: Meteor.absoluteUrl() + 'studies/' + analysis.study()._id + '/participants/' + participant._id,
+      study: analysis.study().name,
+      pointsType: analysis.study().pointsType(),
       analysis: analysis.name,
       period: analysis.period,
       viewingGap: analysis.viewingGap,
       minViewingTime: analysis.minViewingTime,
       participant: participant.name,
+      viewingCountPerStimulus: viewingCounts,
       viewingCountPerStimulusMean: jStat.mean(viewingCounts),
       viewingCountPerStimulusMedian: jStat.median(viewingCounts),
-      viewingCountTotal: jStat.sum(viewingCounts),
-      viewingDurationMean: jStat.mean(viewingDurations),
-      viewingDurationMedian: jStat.median(viewingDurations),
-      viewingDurationTotal: jStat.sum(viewingDurations),
-      averageConvexHullCoverageSlideMean: jStat.mean(averageSlideHullCoverages),
-      averageConvexHullCoverageSlideMedian: jStat.median(averageSlideHullCoverages),
+      viewingCountPerParticipant: jStat.sum(viewingCounts),
+      viewingDurationPerStimulus: viewingDurations,
+      viewingDurationPerStimulusMean: jStat.mean(viewingDurations),
+      viewingDurationPerStimulusMedian: jStat.median(viewingDurations),
+      viewingDurationPerParticipant: jStat.sum(viewingDurations),
+      slideHullCoveragePerStimulus: averageSlideHullCoverages,
+      slideHullCoveragePerStimulusMean: jStat.mean(averageSlideHullCoverages),
+      slideHullCoveragePerStimulusMedian: jStat.median(averageSlideHullCoverages),
+      slideHullCoveragePerParticipant: '',
       rawRowCount: jStat.sum(datafiles.map((datafile) => { return datafile.rawRowCount; })),
       gazepointCount: jStat.sum(datafiles.map((datafile) => { return datafile.gazepointCount; })),
       gazepointProportion: (

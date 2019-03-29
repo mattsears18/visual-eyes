@@ -74,9 +74,9 @@ export default class PlotHull {
     }
   }
 
-  velocity() {
+  velocity(which) {
     if(this.timeStep() > 0 && this.distance() > 0) {
-      return (this.distance() / this.timeStep());
+      return (this.distance(which) / this.timeStep());
     } else {
       return 0;
     }

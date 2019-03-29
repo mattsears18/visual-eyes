@@ -33,12 +33,12 @@ export default function getDataAsCSV() {
       slideHullCount: '',
       firstHullStartTime: '',
       lastHullEndTime: '',
-      slideHullCoverages: '',
-      slideHullDurations: '',
-      slideHullDurationTotal: '',
-      slideHullCoverageDurations: '',
-      slideHullCoverageDurationTotal: '',
-      averageSlideHullCoverage: '',
+      slideHullCoveragePerHull: '',
+      slideHullDurationPerHull: '',
+      slideHullDurationPerViewing: '',
+      slideHullCoverageDurationPerHull: '',
+      slideHullCoverageDurationPerViewing: '',
+      averageSlideHullCoveragePerViewing: '',
     };
 
     data.push(viewingData);

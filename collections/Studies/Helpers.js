@@ -45,4 +45,11 @@ Studies.helpers({
   stimuliAllHaveImage() {
     return (this.stimuli().count() == this.stimuliWithImageCount());
   },
+  pointsType() {
+    let pointsType = 'gazepoints';
+    if(this.fixationsOnly) {
+      pointsType = 'fixations';
+    }
+    return pointsType;
+  }
 });

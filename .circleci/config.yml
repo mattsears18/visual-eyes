@@ -1,0 +1,38 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/app
+    docker:
+      - image: imagename
+        auth:
+          username: port80labs  # can specify string literal values
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout
+      - restore_cache:
+          name : Restore NPM Cache
+          key: npm-cache-{{ checksum "package.json" }}
+      - restore_cache:
+          name: Restore Meteor Package Cache
+          key: packages-cache-{{ checksum ".meteor/versions" }}
+      - run:
+          name: Create Settings File
+          command: echo $METEOR_SETTINGS > settings.json
+      - run:
+          name: Install npm dependencies
+          command: meteor npm install
+      - save_cache:
+          name: Save NPM Cache
+          key: npm-cache-{{ checksum "package.json" }}
+          paths:
+            - 'node_modules'
+      - run:
+          name: Run Test
+          command: meteor npm test
+      - save_cache:
+          key: packages-cache-{{ checksum ".meteor/versions" }}
+          paths:
+            - './.meteor/local/build'
+            - './.meteor/local/bundler-cache'
+            - './.meteor/local/isopacks'
+            - './.meteor/local/plugin-cache'

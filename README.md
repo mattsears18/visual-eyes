@@ -1,4 +1,6 @@
 # VisualEyes
+[![Build Status](https://travis-ci.org/mattsears18/VisualEyes.svg?branch=master)](https://travis-ci.org/mattsears18/VisualEyes)
+
 A visualization and statistical analysis web application for eye tracking data
 - Supports the SMI BeGaze and iMotions file formats
 - Compatible with macOS, Windows, and Linux
@@ -46,7 +48,7 @@ npm start
 ## Quick Start
 1. After installing VisualEyes (see installation instructions above), launch the app and navigate to: http://localhost:3000
 2. Register for an account (top right corner of the app).
-3. Create a `study` with at least one eye tracking data file. 
+3. Create a `study` with at least one eye tracking data file.
 
     Notes:
     * `Participants` should have individual eye tracking data files.
@@ -58,8 +60,8 @@ npm start
 
     Note:
     * If you used the example data file above, then this reference image can be used for the "Spool 1" `stimulus` (right-click and "Save Link As"): https://github.com/mattsears18/VisualEyes/raw/master/testFiles/realFile/DWG01.png
-    
-    
+
+
 5. Confirm the `width` and `height` of each `stimulus`. By default, the `width` and `height` are set to the width and height of the uploaded stimulus file (reference image).
 6. If desired, create `variables` for the `participants`, e.g. age, gender, etc.
 7. Create an `analysis`. `Viewings` are generated from the `analysis`.

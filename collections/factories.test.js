@@ -39,6 +39,7 @@ let baseDatafile = {
 }
 
 let imotionsFields = {
+  fileFormat: 'imotions',
   path: '/Users/mattsears/code/VisualEyes/testFiles/realFile/imotionsWael.txt',
   versions : {
     original : {
@@ -52,6 +53,7 @@ let imotionsFields = {
 }
 
 let smiFields = {
+  fileFormat: 'smi',
   path: '/Users/mattsears/code/VisualEyes/testFiles/realFile/smiWael.txt',
   versions : {
     original : {

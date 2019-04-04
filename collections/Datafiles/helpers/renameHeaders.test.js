@@ -2,7 +2,7 @@ require('./../../factories.test');
 
 describe('Datafiles.renameHeaders()', () => {
   it('throws a noFileformat error', () => {
-    let datafile = Factory.create('imotionsDatafile');
+    let datafile = Factory.create('imotionsDatafile', { fileFormat: undefined });
     chai.expect(() => { datafile.renameHeaders() }).to.throw('noFileFormat');
   });
 

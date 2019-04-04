@@ -15,7 +15,7 @@ if(Meteor.isServer) {
     });
 
     it('is not a text file', async () => {
-      let datafile = Factory.create('imotionsDatafile', { isText: false });
+      let datafile = Factory.create('imotionsDatafile', { isText: false, fileFormat: undefined });
       chai.expect(await datafile.setFileFormat()).to.be.an('undefined');
       chai.expect(datafile.status).to.equal('unrecognizedFileFormat');
     });

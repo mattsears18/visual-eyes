@@ -59,7 +59,7 @@ jobs:
       - run:
           name: unit tests
           # command: meteor npm run test:unit
-          command: npm test
+          command: meteor test --driver-package meteortesting:mocha
       # - run:
       #     name: start app and run e2e tests
       #     command: meteor npm run test:e2e-standalone

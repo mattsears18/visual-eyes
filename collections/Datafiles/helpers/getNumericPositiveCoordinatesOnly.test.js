@@ -1,9 +1,18 @@
+import StubCollections from 'meteor/hwillson:stub-collections';
 import Datafiles from './../Datafiles';
 import { resetDatabase } from 'meteor/xolvio:cleaner';
 import { Factory } from 'meteor/dburles:factory';
 require('./../../factories');
 
 describe('Datafiles.getNumericPositiveCoordinatesOnly()', () => {
+  beforeEach(() => {
+    StubCollections.stub([Datafiles.collection, Studies]);
+    resetDatabase();
+  });
+  afterEach(() => {
+    StubCollections.restore();
+  });
+
   it('removes negative coordinate values', () => {
     let datafile = Factory.create('imotionsDatafile');
     let rows = [

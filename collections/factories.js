@@ -2,6 +2,9 @@ import { Factory } from 'meteor/dburles:factory';
 import faker from 'faker';
 import Datafiles from './Datafiles/Datafiles';
 import Studies from './Studies/Studies';
+import StubCollections from 'meteor/hwillson:stub-collections';
+
+// StubCollections.stub([Datafiles.collection, Studies]);
 
 Factory.define('study', Studies, {
   name: () => faker.lorem.words(),

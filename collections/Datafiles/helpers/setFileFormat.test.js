@@ -1,3 +1,4 @@
+import StubCollections from 'meteor/hwillson:stub-collections';
 import Datafiles from './../Datafiles';
 import { resetDatabase } from 'meteor/xolvio:cleaner';
 import { Factory } from 'meteor/dburles:factory';
@@ -6,7 +7,11 @@ require('./../../factories');
 if(Meteor.isServer) {
   describe('Datafiles.setFileFormat()', () => {
     beforeEach(() => {
+      StubCollections.stub([Datafiles.collection, Studies]);
       resetDatabase();
+    });
+    afterEach(() => {
+      StubCollections.restore();
     });
 
     it('sets the imotions fileFormat', async () => {

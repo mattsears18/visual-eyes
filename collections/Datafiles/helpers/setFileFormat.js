@@ -5,6 +5,7 @@ export default async function setFileFormat() {
   } else {
     if(!this.fileFormat) {
       this.fileFormat = await this.detectFileFormat();
+      Datafiles.update({ _id: this._id }, { $set: { fileFormat: this.fileFormat }});
     }
   }
 

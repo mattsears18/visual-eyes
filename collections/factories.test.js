@@ -4,7 +4,12 @@ import Datafiles from './Datafiles/Datafiles';
 import Studies from './Studies/Studies';
 import StubCollections from 'meteor/hwillson:stub-collections';
 
-// StubCollections.stub([Datafiles.collection, Studies]);
+StubCollections.stub([
+  Datafiles.collection,
+  Studies,
+]);
+
+console.log('stubbed');
 
 Factory.define('study', Studies, {
   name: () => faker.lorem.words(),
@@ -13,7 +18,7 @@ Factory.define('study', Studies, {
 });
 
 let baseDatafile = {
-  studyId: Factory.create('study')._id,
+  studyId: () => Factory.create('study')._id,
   size: faker.random.number(),
   type: 'text/plain',
   name: () => faker.lorem.words(),

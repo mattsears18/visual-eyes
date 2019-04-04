@@ -1,18 +1,6 @@
-import StubCollections from 'meteor/hwillson:stub-collections';
-import Datafiles from './../Datafiles';
-import { resetDatabase } from 'meteor/xolvio:cleaner';
-import { Factory } from 'meteor/dburles:factory';
-require('./../../factories');
+require('./../../factories.test');
 
 describe('Datafiles.renameHeaders()', () => {
-  beforeEach(() => {
-    StubCollections.stub([Datafiles.collection, Studies]);
-    resetDatabase();
-  });
-  afterEach(() => {
-    StubCollections.restore();
-  });
-
   it('throws a noFileformat error', () => {
     let datafile = Factory.create('imotionsDatafile');
     chai.expect(() => { datafile.renameHeaders() }).to.throw('noFileFormat');

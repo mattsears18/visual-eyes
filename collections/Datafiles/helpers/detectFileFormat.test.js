@@ -1,19 +1,7 @@
-import StubCollections from 'meteor/hwillson:stub-collections';
-import Datafiles from './../Datafiles';
-import { resetDatabase } from 'meteor/xolvio:cleaner';
-import { Factory } from 'meteor/dburles:factory';
-require('./../../factories');
+require('./../../factories.test');
 
 if(Meteor.isServer) {
   describe('Datafiles.detectFileFormat()', () => {
-    beforeEach(() => {
-      StubCollections.stub([Datafiles.collection, Studies]);
-      resetDatabase();
-    });
-    afterEach(() => {
-      StubCollections.restore();
-    });
-
     it('detects the imotions file format', async () => {
       let datafile = Factory.create('imotionsDatafile');
       chai.expect(await datafile.detectFileFormat()).to.equal('imotions');

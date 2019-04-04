@@ -1,5 +1,11 @@
 export default async function getGazepoints() {
-  let rows = await this.getRenamedRows();
+  let rows
+  try {
+    rows = await this.getRenamedRows();
+  }
+  catch (err) {
+    console.log(err);
+  }
 
   let rawRows = this.getNumericPositiveCoordinatesOnly(rows);
   console.log(helpers.formatNumber(rawRows.length) + ' raw rows');

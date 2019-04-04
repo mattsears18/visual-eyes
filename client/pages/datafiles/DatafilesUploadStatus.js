@@ -52,10 +52,13 @@ Template.DatafilesUploadStatus.events({
             uploads = uploads.filter(function(upload) {
               return (!(upload.config.fileId == datafileDoc._id));
             });
-            template.currentUploads.set(uploads);
-            if(!uploads.length) {
-              Session.set('uploadingDatafiles', false);
-            }
+
+            setTimeout(() => {
+              template.currentUploads.set(uploads);
+              if(!uploads.length) {
+                Session.set('uploadingDatafiles', false);
+              }
+            }, 2000);
           });
 
           uploadInstance.start();

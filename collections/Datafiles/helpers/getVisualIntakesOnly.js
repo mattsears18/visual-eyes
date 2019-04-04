@@ -11,7 +11,10 @@ export default function getVisualIntakesOnly(data) {
     i++;
   }
 
-  if(!categories) throw new Error('noCategories');
+  if(!categories) {
+    // does not have categories, so just return all
+    return data;
+  }
 
   return data.filter(row => row.category == 'Visual Intake');
 }

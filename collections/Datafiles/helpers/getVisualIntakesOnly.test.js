@@ -1,35 +1,11 @@
-import StubCollections from 'meteor/hwillson:stub-collections';
-import Datafiles from './../Datafiles';
-import { resetDatabase } from 'meteor/xolvio:cleaner';
-import { Factory } from 'meteor/dburles:factory';
-require('./../../factories');
+require('./../../factories.test');
 
 describe('Datafiles.getVisualIntakesOnly()', () => {
-  beforeEach(() => {
-    StubCollections.stub([Datafiles.collection, Studies]);
-    resetDatabase();
-  });
-  afterEach(() => {
-    StubCollections.restore();
-  });
-
   it('throws noDataReceived error', () => {
     let datafile = Factory.create('imotionsDatafile');
     let rows = [];
     chai.expect(() => { datafile.getVisualIntakesOnly() }).to.throw('noDataReceived');
     chai.expect(() => { datafile.getVisualIntakesOnly(rows) }).to.throw('noDataReceived');
-  });
-
-  it('throws noCategories error', () => {
-    let datafile = Factory.create('imotionsDatafile');
-    let rows = [
-      { x: 1, },
-      { x: 2, },
-      { x: 3, },
-      { x: 4, },
-      { x: 5, },
-    ];
-    chai.expect(() => { datafile.getVisualIntakesOnly(rows) }).to.throw('noCategories');
   });
 
   it('detects visual intakes when the first row (and others) do not have a category', () => {
@@ -48,6 +24,18 @@ describe('Datafiles.getVisualIntakesOnly()', () => {
     ];
 
     chai.expect(datafile.getVisualIntakesOnly(rows)).to.eql(expectedRows);
+  });
+
+  it('has no categories so it does not filter the points', () => {
+    let datafile = Factory.create('imotionsDatafile');
+    let rows = [
+      { x: 1, },
+      { x: 2, },
+      { x: 3, },
+      { x: 4, },
+      { x: 5, },
+    ];
+    chai.expect(datafile.getVisualIntakesOnly(rows)).to.eql(rows);
   });
 
   it('removes everything except visual intakes', () => {

@@ -1,5 +1,3 @@
-import Variables from './Variables';
-
 Variables.helpers({
   hasPermission(action) {
     check(action, String);

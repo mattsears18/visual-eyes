@@ -99,4 +99,7 @@ Schemas.Analysis = new SimpleSchema({
 
 Analyses.attachSchema(Schemas.Analysis);
 
+require('./helpers');
+require('./hooks');
+
 export default Analyses;

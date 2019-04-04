@@ -27,6 +27,9 @@ Gazepoints.allow({
 });
 
 Schemas.Gazepoint = new SimpleSchema({
+  datafileId: {
+    type: String,
+  },
   participantId: {
     type: String,
     label: 'participantId',
@@ -76,5 +79,8 @@ Schemas.Gazepoint = new SimpleSchema({
 }, {tracker: Tracker});
 
 Gazepoints.attachSchema(Schemas.Gazepoint);
+
+require('./helpers');
+require('./hooks');
 
 export default Gazepoints;

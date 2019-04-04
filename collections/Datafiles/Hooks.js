@@ -1,16 +1,17 @@
-import Datafiles from './Datafiles';
 import Jobs from '../Jobs/Jobs';
 
 Datafiles.collection.before.insert(function (userId, doc) {
   doc.processed = false;
   doc.headersRemoved = false;
-  doc.studyId = doc.meta.studyId;
+  if(doc.meta && doc.meta.study) {
+    doc.studyId = doc.meta.studyId;
+  }
 });
 
-Datafiles.collection.after.insert(function (userId, datafile) {
+Datafiles.collection.after.insert(function (userId, doc) {
   if(Meteor.isServer) {
-    Meteor.call('datafiles.removeHeadersDetectFormat', { datafileId: datafile._id });
-    Meteor.call('datafiles.makeDatafileJob', { datafileId: datafile._id });
+    let datafile = Datafiles.collection.findOne({ _id: doc._id });
+    datafile.makeProcessJob();
   }
 });
 

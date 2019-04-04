@@ -1,4 +1,3 @@
-import Stimulusfiles from './Stimulusfiles';
 import Stimuli from '../Stimuli';
 var sizeOf = require('image-size');
 

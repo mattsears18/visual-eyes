@@ -1,4 +1,3 @@
-import Viewings from './Viewings';
 import PlotHullCollection from './PlotHulls/PlotHullCollection';
 import getLayout from './getLayout';
 import getInitialTraces from './getInitialTraces';

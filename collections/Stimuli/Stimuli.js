@@ -62,4 +62,7 @@ Schemas.Stimulus = new SimpleSchema({
 
 Stimuli.attachSchema(Schemas.Stimulus);
 
+require('./helpers');
+require('./hooks');
+
 export default Stimuli;

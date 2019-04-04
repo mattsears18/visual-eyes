@@ -79,4 +79,7 @@ Schemas.Aoi = new SimpleSchema({
 
 Aois.attachSchema(Schemas.Aoi);
 
+require('./helpers');
+require('./hooks');
+
 export default Aois;

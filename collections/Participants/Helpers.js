@@ -1,5 +1,3 @@
-import Participants from './Participants';
-
 Participants.helpers({
   hasPermission(action) {
     check(action, String);

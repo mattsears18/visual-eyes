@@ -36,4 +36,7 @@ Schemas.Variable = new SimpleSchema({
 
 Variables.attachSchema(Schemas.Variable);
 
+require('./helpers');
+require('./hooks');
+
 export default Variables;

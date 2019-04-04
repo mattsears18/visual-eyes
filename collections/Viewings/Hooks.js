@@ -1,4 +1,3 @@
-import Viewings from './Viewings';
 import Jobs from '../Jobs/Jobs';
 
 Viewings.before.insert(function (userId, doc) {

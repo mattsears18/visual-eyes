@@ -40,4 +40,6 @@ Variablefiles = new FilesCollection(options);
 
 Variablefiles.collection.attachSchema(new SimpleSchema(Schemas.Variablefile));
 
+require('./hooks');
+
 export default Variablefiles;

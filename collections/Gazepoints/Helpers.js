@@ -1,5 +1,3 @@
-import Gazepoints from './Gazepoints';
-
 Gazepoints.helpers({
   hasPermission(action) {
     check(action, String);

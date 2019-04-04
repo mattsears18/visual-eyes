@@ -1,5 +1,3 @@
-import Aois from './Aois';
-
 Aois.before.insert(function (userId, doc) {
   doc.createdAt = new Date;
 });

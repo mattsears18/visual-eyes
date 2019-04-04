@@ -9,7 +9,7 @@ Template.DatafilesList.helpers({
 
 Template.DatafilesList.events({
   'click .reprocess-datafiles': function() {
-    Meteor.call('studies.reprocessDatafiles', { studyId: study._id });
+    study.reprocessDatafiles();
   },
   'click .upload-datafiles': function() {
     Session.set('uploadingDatafiles', true);

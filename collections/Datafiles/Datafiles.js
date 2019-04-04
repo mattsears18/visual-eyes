@@ -1,5 +1,7 @@
 import { Meteor } from 'meteor/meteor'
 import SimpleSchema from 'simpl-schema';
+import Schemas from '../../lib/schemas';
+import { FilesCollection } from 'meteor/ostrio:files';
 
 Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
   studyId: {
@@ -60,5 +62,20 @@ if(path) { options.storagePath = path + '/datafiles'; }
 Datafiles = new FilesCollection(options);
 
 Datafiles.collection.attachSchema(new SimpleSchema(Schemas.Datafile));
+
+Datafiles.collection.allow({
+  insert: function(userId, doc) {
+    return true;
+  },
+  update: function(userId, doc) {
+    return true;
+  },
+  remove: function(userId, doc) {
+    return true;
+  },
+});
+
+require('./helpers');
+require('./hooks');
 
 export default Datafiles;

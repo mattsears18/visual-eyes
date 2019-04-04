@@ -1,4 +1,3 @@
-import Stimuli from './Stimuli';
 import Stimulusfiles from './Stimulusfiles/Stimulusfiles';
 
 Stimuli.helpers({

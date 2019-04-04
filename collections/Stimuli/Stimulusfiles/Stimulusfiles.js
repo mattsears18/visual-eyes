@@ -36,4 +36,6 @@ if(path) { options.storagePath = path + '/stimulusfiles'; }
 
 Stimulusfiles = new FilesCollection(options);
 
+require('./hooks');
+
 export default Stimulusfiles;

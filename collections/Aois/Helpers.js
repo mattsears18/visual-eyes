@@ -1,5 +1,3 @@
-import Aois from './Aois';
-
 Aois.helpers({
   hasPermission(action) {
     check(action, String);

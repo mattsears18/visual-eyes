@@ -121,4 +121,7 @@ Schemas.Viewing = new SimpleSchema({
 
 Viewings.attachSchema(Schemas.Viewing);
 
+require('./helpers');
+require('./hooks');
+
 export default Viewings;

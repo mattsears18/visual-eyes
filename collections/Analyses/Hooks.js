@@ -1,4 +1,3 @@
-import Analyses from './Analyses';
 import Jobs from '../Jobs/Jobs';
 
 Analyses.before.insert(function (userId, doc) {
@@ -19,9 +18,7 @@ Analyses.after.remove(function(userId, analysis) {
 });
 
 Analyses.after.insert(function(userId, analysis) {
-  if(Meteor.isServer) {
-    Meteor.call('analyses.makeParticipantJobs', { analysisId: analysis._id });
-  }
+  Meteor.call('analyses.makeViewingJobs', { analysisId: analysis._id });
 });
 
 Analyses.after.update(function(userId, analysis, fieldNames, modifier, options) {
@@ -34,6 +31,6 @@ Analyses.after.update(function(userId, analysis, fieldNames, modifier, options) 
     (! helpers.arraysEqual(this.previous.stimulusIds, analysis.stimulusIds)) ||
     (! helpers.arraysEqual(this.previous.participantIds, analysis.participantIds))
   ) {
-    Meteor.call('analyses.makeParticipantJobs', { analysisId: analysis._id });
+    Meteor.call('analyses.makeViewingJobs', { analysisId: analysis._id });
   }
 });

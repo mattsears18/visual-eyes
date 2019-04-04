@@ -59,4 +59,7 @@ Schemas.Participant = new SimpleSchema({
 
 Participants.attachSchema(Schemas.Participant);
 
+require('./helpers');
+require('./hooks');
+
 export default Participants;

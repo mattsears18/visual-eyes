@@ -1,3 +1,4 @@
+import Schemas from '../../lib/schemas';
 import SimpleSchema from 'simpl-schema';
 
 SimpleSchema.extendOptions(['autoform']);
@@ -50,5 +51,8 @@ Schemas.Study = new SimpleSchema({
 }, {tracker: Tracker});
 
 Studies.attachSchema(Schemas.Study);
+
+require('./helpers');
+require('./hooks');
 
 export default Studies;

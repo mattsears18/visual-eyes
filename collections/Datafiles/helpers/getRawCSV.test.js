@@ -16,8 +16,6 @@ if(Meteor.isServer) {
 
     it('has 12,742 rows of raw data', async () => {
       let smiDatafile = Factory.create('smiDatafile');
-
-      console.log(await smiDatafile.getRawCSV()[10]);
       chai.expect((await smiDatafile.getRawCSV()).length).to.equal(12742);
     });
   });

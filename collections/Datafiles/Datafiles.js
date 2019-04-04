@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor'
 import SimpleSchema from 'simpl-schema';
 import Schemas from '../../lib/schemas';
 import { FilesCollection } from 'meteor/ostrio:files';
+const path = require('path');
 
 Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
   studyId: {
@@ -56,8 +57,8 @@ options = {
   allowClientCode: true, // Required to let you remove uploaded file
 }
 
-path = Meteor.settings.public.uploads;
-if(path) { options.storagePath = path + '/datafiles'; }
+uploadPath = Meteor.settings.public.uploads;
+if(uploadPath) { options.storagePath = uploadPath + '/datafiles'; }
 
 Datafiles = new FilesCollection(options);
 

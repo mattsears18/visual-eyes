@@ -7,8 +7,13 @@ A visualization and statistical analysis web application for eye tracking data
 
 VisualEyes is a web application, which means that it runs in your internet browser, but all files uploaded to VisualEyes are stored on your machine and all computations are run on your machine.
 
+## Deployment
+Rather than installing VisualEyes on your local machine, an instance of VisualEyes can be deployed to Heroku.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Installation Prerequisites
-Follow the installation instructions for your operating system for each of the following applications:
+To install VisualEyes on your local machine, follow the installation instructions for your operating system for each of the following applications:
 1. Install Node.js (includes NPM): https://nodejs.org
 2. Install Meteor.js: https://www.meteor.com/install
 3. Install git: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
@@ -20,10 +25,6 @@ Follow the installation instructions for your operating system for each of the f
 ### macOS
 ```
 cd ~/
-```
-or (replace [your username] with your actual macOS username)
-```
-cd /Users/[your username]
 ```
 ### Windows
 (replace [your username] with your actual Windows username)

@@ -1,7 +1,13 @@
 require('./../../factories.test');
 
 describe('Datafiles.getStimuliOnly()', () => {
-  it('removes rows with stimulus name that contains \'.avi\'', () => {
+  it('returns empty array when passed empty array', async () => {
+    let datafile = Factory.create('imotionsDatafile');
+    let rows = [];
+    chai.expect(await datafile.getStimuliOnly(rows)).to.eql(rows);
+  });
+
+  it('removes rows with stimulus name that contains \'.avi\'', async () => {
     let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { stimulusName: '.avi', x: 1, },
@@ -14,10 +20,10 @@ describe('Datafiles.getStimuliOnly()', () => {
     let expectedRows = [
       { stimulusName: 'someName', x: 5, },
     ];
-    chai.expect(datafile.getStimuliOnly(rows)).to.eql(expectedRows);
+    chai.expect(await datafile.getStimuliOnly(rows)).to.eql(expectedRows);
   });
 
-  it('removes rows with stimulus name that contains \'smiGlasses\'', () => {
+  it('removes rows with stimulus name that contains \'smiGlasses\'', async () => {
     let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { stimulusName: 'smiGlasses', x: 1, },
@@ -30,10 +36,10 @@ describe('Datafiles.getStimuliOnly()', () => {
     let expectedRows = [
       { stimulusName: 'someName', x: 5, },
     ];
-    chai.expect(datafile.getStimuliOnly(rows)).to.eql(expectedRows);
+    chai.expect(await datafile.getStimuliOnly(rows)).to.eql(expectedRows);
   });
 
-  it('removes rows with blank or undefined stimulusName', () => {
+  it('removes rows with blank or undefined stimulusName', async () => {
     let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { x: 1, },
@@ -46,6 +52,6 @@ describe('Datafiles.getStimuliOnly()', () => {
     let expectedRows = [
       { stimulusName: 'someName', x: 5, },
     ];
-    chai.expect(datafile.getStimuliOnly(rows)).to.eql(expectedRows);
+    chai.expect(await datafile.getStimuliOnly(rows)).to.eql(expectedRows);
   });
 });

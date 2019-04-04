@@ -1,7 +1,13 @@
 require('./../../factories.test');
 
 describe('Datafiles.getNumericPositiveCoordinatesOnly()', () => {
-  it('removes negative coordinate values', () => {
+  it('returns empty array when passed empty array', async () => {
+    let datafile = Factory.create('imotionsDatafile');
+    let rows = [];
+    chai.expect(await datafile.getNumericPositiveCoordinatesOnly(rows)).to.eql(rows);
+  });
+
+  it('removes negative coordinate values', async () => {
     let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { x: '100', y: '500'},
@@ -11,10 +17,10 @@ describe('Datafiles.getNumericPositiveCoordinatesOnly()', () => {
     let expectedRows = [
       { x: '100', y: '500'},
     ];
-    chai.expect(datafile.getNumericPositiveCoordinatesOnly(rows)).to.eql(expectedRows);
+    chai.expect(await datafile.getNumericPositiveCoordinatesOnly(rows)).to.eql(expectedRows);
   });
 
-  it('removes blanks', () => {
+  it('removes blanks', async () => {
     let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { x: '100', y: '500'},
@@ -24,10 +30,10 @@ describe('Datafiles.getNumericPositiveCoordinatesOnly()', () => {
     let expectedRows = [
       { x: '100', y: '500'},
     ];
-    chai.expect(datafile.getNumericPositiveCoordinatesOnly(rows)).to.eql(expectedRows);
+    chai.expect(await datafile.getNumericPositiveCoordinatesOnly(rows)).to.eql(expectedRows);
   });
 
-  it('removes dashes', () => {
+  it('removes dashes', async () => {
     let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { x: '100', y: '500'},
@@ -37,6 +43,6 @@ describe('Datafiles.getNumericPositiveCoordinatesOnly()', () => {
     let expectedRows = [
       { x: '100', y: '500'},
     ];
-    chai.expect(datafile.getNumericPositiveCoordinatesOnly(rows)).to.eql(expectedRows);
+    chai.expect(await datafile.getNumericPositiveCoordinatesOnly(rows)).to.eql(expectedRows);
   });
 });

@@ -4,5 +4,5 @@ import { Factory } from 'meteor/dburles:factory';
 require('./../../factories.test');
 
 describe('Datafiles.removeHeaders()', () => {
-  
+
 });

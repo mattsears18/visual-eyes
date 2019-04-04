@@ -1,4 +1,5 @@
-export default function getNumericPositiveCoordinatesOnly(data) {
+export default async function getNumericPositiveCoordinatesOnly(data) {
+  if(!data) { data = await this.getRenamedRows() }
   return data.filter(row => {
     return (
       Number.isInteger(parseInt(row.x)) &&

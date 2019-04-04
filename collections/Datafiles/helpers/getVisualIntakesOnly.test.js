@@ -1,14 +1,13 @@
 require('./../../factories.test');
 
 describe('Datafiles.getVisualIntakesOnly()', () => {
-  it('throws noDataReceived error', () => {
+  it('returns empty array when passed empty array', async () => {
     let datafile = Factory.create('imotionsDatafile');
     let rows = [];
-    chai.expect(() => { datafile.getVisualIntakesOnly() }).to.throw('noDataReceived');
-    chai.expect(() => { datafile.getVisualIntakesOnly(rows) }).to.throw('noDataReceived');
+    chai.expect(await datafile.getVisualIntakesOnly(rows)).to.eql(rows);
   });
 
-  it('filters out all rows without a category', () => {
+  it('filters out all rows without a category', async () => {
     let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { x: '1' },
@@ -25,10 +24,10 @@ describe('Datafiles.getVisualIntakesOnly()', () => {
       { category: 'Visual Intake', x: '5' },
     ];
 
-    chai.expect(datafile.getVisualIntakesOnly(rows)).to.eql(expectedRows);
+    chai.expect(await datafile.getVisualIntakesOnly(rows)).to.eql(expectedRows);
   });
 
-  it('filters out all categories except visual intakes', () => {
+  it('filters out all categories except visual intakes', async () => {
     let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { category: 'Visual Intake', x: '1' },
@@ -44,10 +43,10 @@ describe('Datafiles.getVisualIntakesOnly()', () => {
       { category: 'Visual Intake', x: '5' },
     ];
 
-    chai.expect(datafile.getVisualIntakesOnly(rows)).to.eql(expectedRows);
+    chai.expect(await datafile.getVisualIntakesOnly(rows)).to.eql(expectedRows);
   });
 
-  it('filters out all rows', () => {
+  it('filters out all rows', async () => {
     let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { x: 1, },
@@ -59,6 +58,6 @@ describe('Datafiles.getVisualIntakesOnly()', () => {
 
     let expectedRows = [];
 
-    chai.expect(datafile.getVisualIntakesOnly(rows)).to.eql(expectedRows);
+    chai.expect(await datafile.getVisualIntakesOnly(rows)).to.eql(expectedRows);
   });
 });

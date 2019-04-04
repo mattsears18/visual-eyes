@@ -1,8 +1,8 @@
 export default function findOrInsert(collectionName, query) {
   let collection = Mongo.Collection.get(collectionName);
 
-  if(!collection) { throw { error: "noCollectionFound" }}
-  if(typeof(query) != 'object') { throw { error: "queryMustBeJson" }}
+  if(!collection) throw new Error('noCollectionFound');
+  if(typeof(query) != 'object') throw new Error('queryMustBeJson');
 
   let cleanQuery = collection.simpleSchema().clean(query);
 

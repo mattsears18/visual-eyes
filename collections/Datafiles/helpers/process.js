@@ -29,11 +29,11 @@ export default async function process() {
   this.removeHeaders();
 
   if(!this.fileFormat) {
-    await this.detectFormat();
+    await this.setFileFormat();
   }
 
   if(this.status == 'unrecognizedFileFormat') {
-    throw { error: "unrecognizedFileFormat" };
+    throw new Error('unrecognizedFileFormat');
   }
 
   console.log('remove any old gazepoints');
@@ -47,7 +47,7 @@ export default async function process() {
 
   let study = Studies.findOne({ _id: this.studyId });
   if(!study) {
-    throw { error: "noStudy" };
+    throw new Error('noStudy');
   }
 
   this.participantId = this.study().findOrInsert('participants', {
@@ -63,7 +63,7 @@ export default async function process() {
     }
   }, (err, num) => {
     if(err) {
-      throw { error: err.error };
+      console.log(err);
     }
   });
 

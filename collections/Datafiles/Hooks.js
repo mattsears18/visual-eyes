@@ -3,7 +3,7 @@ import Jobs from '../Jobs/Jobs';
 Datafiles.collection.before.insert(function (userId, doc) {
   doc.processed = false;
   doc.headersRemoved = false;
-  if(doc.meta && doc.meta.study) {
+  if(doc.meta && doc.meta.studyId) {
     doc.studyId = doc.meta.studyId;
   }
 });

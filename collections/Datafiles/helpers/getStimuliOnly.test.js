@@ -3,6 +3,6 @@ import { resetDatabase } from 'meteor/xolvio:cleaner';
 import { Factory } from 'meteor/dburles:factory';
 require('./../../factories');
 
-describe('Datafiles.process()', () => {
-
+describe('Datafiles.getStimuliOnly()', () => {
+  
 });

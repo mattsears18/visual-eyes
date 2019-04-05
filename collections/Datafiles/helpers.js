@@ -1,5 +1,6 @@
 import makeProcessJob                     from './helpers/makeProcessJob';
 import getName                            from './helpers/getName';
+import filterSortFloat                    from './helpers/filterSortFloat';
 import removeHeaders                      from './helpers/removeHeaders';
 import getRawCSV                          from './helpers/getRawCSV';
 import detectFileFormat                   from './helpers/detectFileFormat';
@@ -20,6 +21,7 @@ import process                            from './helpers/process';
 Datafiles.collection.helpers({
   makeProcessJob,
   getName,
+  filterSortFloat,
   removeHeaders,
   getRawCSV,
   detectFileFormat,

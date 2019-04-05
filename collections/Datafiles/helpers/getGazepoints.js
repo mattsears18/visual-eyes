@@ -1,15 +1,9 @@
 require('../../../lib/helpers');
 
-export default async function getGazepoints() {
-  let rows
-  try {
-    rows = await this.getRenamedRows();
-  }
-  catch (err) {
-    console.log(err);
-  }
+export default async function getGazepoints(data) {
+  if(!data) { data = await this.getRenamedRows() }
 
-  let rawRows = this.getNumericPositiveCoordinatesOnly(rows);
+  let rawRows = await this.getNumericPositiveCoordinatesOnly(data);
   console.log(helpers.formatNumber(rawRows.length) + ' raw rows');
   if(!this.rawRowCount) {
     this.rawRowCount = rawRows.length;
@@ -18,7 +12,7 @@ export default async function getGazepoints() {
 
   let visualRows = rawRows;
   if(helpers.keyInArray('category', rawRows)) {
-    visualRows = this.getVisualIntakesOnly(rawRows);
+    visualRows = await this.getVisualIntakesOnly(rawRows);
     console.log(helpers.formatNumber(visualRows.length) + ' visual intake rows');
   } else {
     console.log('no visual intakes, so no need to filter');
@@ -26,7 +20,7 @@ export default async function getGazepoints() {
 
   let dupGazepoints = visualRows;
   if(helpers.keyInArray('stimulusName', visualRows)) {
-    dupGazepoints = this.getStimuliOnly(visualRows);
+    dupGazepoints = await this.getStimuliOnly(visualRows);
     console.log(helpers.formatNumber(dupGazepoints.length) + ' gazepoints (with duplicates)');
   } else {
     console.log('no stimuli, so no need to filter');

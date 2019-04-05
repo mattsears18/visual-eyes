@@ -2,17 +2,17 @@ require('./../../factories.test');
 
 describe('Datafiles.renameHeaders()', () => {
   it('throws a noFileformat error', () => {
-    let datafile = Factory.create('imotionsDatafile', { fileFormat: undefined });
+    let datafile = Factory.create('smiDatafile', { fileFormat: undefined });
     chai.expect(() => { datafile.renameHeaders() }).to.throw('noFileFormat');
   });
 
   it('throws a noCSVData error', () => {
-    let datafile = Factory.create('imotionsDatafile', { fileFormat: 'smi' });
+    let datafile = Factory.create('smiDatafile');
     chai.expect(() => { datafile.renameHeaders() }).to.throw('noCSVData');
   });
 
   it('throws an unrecognizedFileFormat error', () => {
-    let datafile = Factory.create('imotionsDatafile', { fileFormat: 'foo' });
+    let datafile = Factory.create('smiDatafile', { fileFormat: 'foo' });
     chai.expect(() => { datafile.renameHeaders([1,2,3]) }).to.throw('unrecognizedFileFormat');
   });
 

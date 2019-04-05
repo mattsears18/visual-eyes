@@ -2,13 +2,13 @@ require('./../../factories.test');
 
 describe('Datafiles.getStimuliOnly()', () => {
   it('returns empty array when passed empty array', async () => {
-    let datafile = Factory.create('imotionsDatafile');
+    let datafile = Factory.create('smiDatafile');
     let rows = [];
     chai.expect(await datafile.getStimuliOnly(rows)).to.eql(rows);
   });
 
   it('removes rows with stimulus name that contains \'.avi\'', async () => {
-    let datafile = Factory.create('imotionsDatafile');
+    let datafile = Factory.create('smiDatafile');
     let rows = [
       { stimulusName: '.avi', x: 1, },
       { stimulusName: 'adsfegrhfb.avi', x: 2, },
@@ -24,7 +24,7 @@ describe('Datafiles.getStimuliOnly()', () => {
   });
 
   it('removes rows with stimulus name that contains \'smiGlasses\'', async () => {
-    let datafile = Factory.create('imotionsDatafile');
+    let datafile = Factory.create('smiDatafile');
     let rows = [
       { stimulusName: 'smiGlasses', x: 1, },
       { stimulusName: 'adsfegrhfbsmiGlasses', x: 2, },
@@ -40,7 +40,7 @@ describe('Datafiles.getStimuliOnly()', () => {
   });
 
   it('removes rows with blank or undefined stimulusName', async () => {
-    let datafile = Factory.create('imotionsDatafile');
+    let datafile = Factory.create('smiDatafile');
     let rows = [
       { x: 1, },
       { x: 2, },

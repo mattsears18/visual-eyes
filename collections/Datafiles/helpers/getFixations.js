@@ -1,10 +1,18 @@
-export default function getFixations() {
-  let gazepoints = this.getGazepoints();
-  let fixations = this.getFixationsOnly(gazepoints);
-  console.log(helpers.formatNumber(fixations.length) + ' fixations');
-  if(!this.fixationCount) {
-    this.fixationCount = fixations.length;
-    Datafiles.update({ _id: this._id }, { $set: { fixationCount: this.fixationCount }});
-  }
-  return fixations;
+export default async function getFixations(data) {
+  if(!data) { data = await this.getGazepoints() }
+
+  let goodRows = [];
+  let indices = [];
+
+  data.forEach((row) => {
+    if(Number.isInteger(parseInt(row.fixationIndex))){
+      let ref = row.fixationIndex + ', ' + row.stimulusName;
+      if(!indices.includes(ref)) {
+        indices.push(ref);
+        goodRows.push(row);
+      }
+    }
+  });
+
+  return goodRows;
 }

@@ -67,10 +67,7 @@ export default async function process() {
     }
   });
 
-  let points = await this.getPoints();
-  this.makeGazepoints(points);
-
-  return;
+  return this.makeGazepoints();
 }
 
 

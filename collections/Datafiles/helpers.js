@@ -12,7 +12,6 @@ import getVisualIntakesOnly               from './helpers/getVisualIntakesOnly';
 import getStimuliOnly                     from './helpers/getStimuliOnly';
 import getNonDuplicateCoordinatesOnly     from './helpers/getNonDuplicateCoordinatesOnly';
 import getGazepoints                      from './helpers/getGazepoints';
-import getFixationsOnly                   from './helpers/getFixationsOnly';
 import getFixations                       from './helpers/getFixations';
 import getPoints                          from './helpers/getPoints';
 import makeGazepoints                     from './helpers/makeGazepoints';
@@ -33,7 +32,6 @@ Datafiles.collection.helpers({
   getStimuliOnly,
   getNonDuplicateCoordinatesOnly,
   getGazepoints,
-  getFixationsOnly,
   getFixations,
   getPoints,
   makeGazepoints,

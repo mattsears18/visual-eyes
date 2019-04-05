@@ -1,10 +1,12 @@
-export default function makeGazepoints(points) {
-  console.log('make ' + helpers.formatNumber(points.length) + ' gazepoints!');
+export default async function makeGazepoints(data) {
+  if(!data) { data = this.getPoints() }
+
+  console.log('make ' + helpers.formatNumber(data.length) + ' gazepoints!');
   Datafiles.update({ _id: this._id }, { $set: { status: 'processing' }});
 
-  points.forEach((point) => {
-    point.datafileId = this._id;
-    point.participantId = this.participantId;
+  data.forEach((row) => {
+    row.datafileId = this._id;
+    row.participantId = this.participantId;
   });
 }
 

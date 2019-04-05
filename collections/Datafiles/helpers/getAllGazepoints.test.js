@@ -30,26 +30,116 @@ if(Meteor.isServer) {
       chai.expect(await datafile.getAllGazepoints({ data: rows })).to.eql(expectedRows);
     });
 
-    let expectedRawRowCount =       9115;       // verified in MS Excel
-    let expectedDupGazepointCount = 3218;       // verified in MS Excel
-    let expectedGazepointCount =    1126;       // verified in MS Excel
+    describe('iMotions', () => {
+      let expectedRawRowCount =       12271;      // verified in MS Excel
+      let expectedIntegerRowCount =   9115;       // verified in MS Excel
+      let expectedVisualRowCount =    9115;       // verified in MS Excel
+      let expectedDupGazepointCount = 3218;       // verified in MS Excel
+      let expectedGazepointCount =    1223;       // verified in MS Excel
 
-    it('gets ' + expectedGazepointCount + ' real iMotions gazepoints', async () => {
-      let study = Factory.create('study', { fixationsOnly: false });
-      let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
+      it('gets ' + helpers.formatNumber(expectedGazepointCount) + ' real iMotions gazepoints', async () => {
+        let study = Factory.create('study', { fixationsOnly: false });
+        let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
 
-      let points = await datafile.getAllGazepoints({});
-      // chai.expect(points.length).to.equal(expectedGazepointCount);
+        let points = await datafile.getAllGazepoints({});
+        chai.expect(points.length).to.equal(expectedGazepointCount);
+      });
+
+      it('sets the point stats on the datafile instance', async () => {
+        let study = Factory.create('study', { fixationsOnly: false });
+        let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
+
+        let points = await datafile.getAllGazepoints({});
+        chai.expect(datafile.rawRowCount).to.equal(expectedRawRowCount);
+        chai.expect(datafile.integerRowCount).to.equal(expectedIntegerRowCount);
+        chai.expect(datafile.visualRowCount).to.equal(expectedVisualRowCount);
+        chai.expect(datafile.dupGazepointCount).to.equal(expectedDupGazepointCount);
+        chai.expect(datafile.gazepointCount).to.equal(expectedGazepointCount);
+      });
+
+      it('saves the point stats to the database', async () => {
+        let study = Factory.create('study', { fixationsOnly: false });
+        let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
+
+        let points = await datafile.getAllGazepoints({ saveStats: true });
+        let dbDatafile = Datafiles.findOne({ _id: datafile._id });
+
+        chai.expect(dbDatafile.rawRowCount).to.equal(expectedRawRowCount);
+        chai.expect(dbDatafile.integerRowCount).to.equal(expectedIntegerRowCount);
+        chai.expect(dbDatafile.visualRowCount).to.equal(expectedVisualRowCount);
+        chai.expect(dbDatafile.dupGazepointCount).to.equal(expectedDupGazepointCount);
+        chai.expect(dbDatafile.gazepointCount).to.equal(expectedGazepointCount);
+      });
+
+      it('does NOT save the point stats to the database', async () => {
+        let study = Factory.create('study', { fixationsOnly: false });
+        let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
+
+        let points = await datafile.getAllGazepoints({});
+        let dbDatafile = Datafiles.findOne({ _id: datafile._id });
+
+        chai.expect(dbDatafile.rawRowCount).to.be.an('undefined');
+        chai.expect(dbDatafile.integerRowCount).to.be.an('undefined');
+        chai.expect(dbDatafile.visualRowCount).to.be.an('undefined');
+        chai.expect(dbDatafile.dupGazepointCount).to.be.an('undefined');
+        chai.expect(dbDatafile.gazepointCount).to.be.an('undefined');
+      });
     });
 
-    it('sets the stats on the datafile instance', async () => {
-      let study = Factory.create('study', { fixationsOnly: false });
-      let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
+    describe('SMI', () => {
+      let expectedRawRowCount =       12742;      // verified in MS Excel
+      let expectedIntegerRowCount =   10289;      // verified in MS Excel
+      let expectedVisualRowCount =    7513;       // verified in MS Excel
+      let expectedDupGazepointCount = 2948;       // verified in MS Excel
+      let expectedGazepointCount =    205;        // verified in MS Excel
 
-      let points = await datafile.getAllGazepoints({});
-      chai.expect(datafile.rawRowCount).to.equal(expectedRawRowCount);
-      chai.expect(datafile.dupGazepointCount).to.equal(expectedDupGazepointCount);
-      // chai.expect(datafile.gazepointCount).to.equal(expectedGazepointCount);
+      it('gets ' + helpers.formatNumber(expectedGazepointCount) + ' real SMI gazepoints', async () => {
+        let study = Factory.create('study', { fixationsOnly: false });
+        let datafile = Factory.create('smiDatafile', { studyId: study._id });
+
+        let points = await datafile.getAllGazepoints({});
+        chai.expect(points.length).to.equal(expectedGazepointCount);
+      });
+
+      it('sets the point stats on the datafile instance', async () => {
+        let study = Factory.create('study', { fixationsOnly: false });
+        let datafile = Factory.create('smiDatafile', { studyId: study._id });
+
+        let points = await datafile.getAllGazepoints({});
+        chai.expect(datafile.rawRowCount).to.equal(expectedRawRowCount);
+        chai.expect(datafile.integerRowCount).to.equal(expectedIntegerRowCount);
+        chai.expect(datafile.visualRowCount).to.equal(expectedVisualRowCount);
+        chai.expect(datafile.dupGazepointCount).to.equal(expectedDupGazepointCount);
+        chai.expect(datafile.gazepointCount).to.equal(expectedGazepointCount);
+      });
+
+      it('saves the point stats to the database', async () => {
+        let study = Factory.create('study', { fixationsOnly: false });
+        let datafile = Factory.create('smiDatafile', { studyId: study._id });
+
+        let points = await datafile.getAllGazepoints({ saveStats: true });
+        let dbDatafile = Datafiles.findOne({ _id: datafile._id });
+
+        chai.expect(dbDatafile.rawRowCount).to.equal(expectedRawRowCount);
+        chai.expect(dbDatafile.integerRowCount).to.equal(expectedIntegerRowCount);
+        chai.expect(dbDatafile.visualRowCount).to.equal(expectedVisualRowCount);
+        chai.expect(dbDatafile.dupGazepointCount).to.equal(expectedDupGazepointCount);
+        chai.expect(dbDatafile.gazepointCount).to.equal(expectedGazepointCount);
+      });
+
+      it('does NOT save the point stats to the database', async () => {
+        let study = Factory.create('study', { fixationsOnly: false });
+        let datafile = Factory.create('smiDatafile', { studyId: study._id });
+
+        let points = await datafile.getAllGazepoints({});
+        let dbDatafile = Datafiles.findOne({ _id: datafile._id });
+
+        chai.expect(dbDatafile.rawRowCount).to.be.an('undefined');
+        chai.expect(dbDatafile.integerRowCount).to.be.an('undefined');
+        chai.expect(dbDatafile.visualRowCount).to.be.an('undefined');
+        chai.expect(dbDatafile.dupGazepointCount).to.be.an('undefined');
+        chai.expect(dbDatafile.gazepointCount).to.be.an('undefined');
+      });
     });
   });
 }

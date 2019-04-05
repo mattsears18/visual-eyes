@@ -13,6 +13,8 @@ describe('Datafiles.getNumericPositiveCoordinatesOnly()', () => {
       { x: '100', y: '500'},
       { x: '-1', y: '500'},
       { x: '100', y: '-1'},
+      { x: '100', y: '-0.71'},
+      { x: '100', y: '-1.3'},
     ];
     let expectedRows = [
       { x: '100', y: '500'},

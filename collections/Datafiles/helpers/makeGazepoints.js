@@ -1,5 +1,5 @@
 export default async function makeGazepoints(data) {
-  if(!data) { data = this.getPoints() }
+  if(!data) { data = await this.getPoints() }
 
   console.log('make ' + helpers.formatNumber(data.length) + ' gazepoints!');
   Datafiles.update({ _id: this._id }, { $set: { status: 'processing' }});
@@ -8,6 +8,8 @@ export default async function makeGazepoints(data) {
     row.datafileId = this._id;
     row.participantId = this.participantId;
   });
+
+  return data;
 }
 
 

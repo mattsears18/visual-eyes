@@ -2,22 +2,22 @@ require('./../../factories.test');
 
 describe('Datafiles.renameHeaders()', () => {
   it('throws a noFileformat error', () => {
-    let datafile = Factory.create('smiDatafile', { fileFormat: undefined });
+    let datafile = Factory.create('imotionsDatafile', { fileFormat: undefined });
     chai.expect(() => { datafile.renameHeaders() }).to.throw('noFileFormat');
   });
 
   it('throws a noCSVData error', () => {
-    let datafile = Factory.create('smiDatafile');
+    let datafile = Factory.create('imotionsDatafile');
     chai.expect(() => { datafile.renameHeaders() }).to.throw('noCSVData');
   });
 
   it('throws an unrecognizedFileFormat error', () => {
-    let datafile = Factory.create('smiDatafile', { fileFormat: 'foo' });
+    let datafile = Factory.create('imotionsDatafile', { fileFormat: 'foo' });
     chai.expect(() => { datafile.renameHeaders([1,2,3]) }).to.throw('unrecognizedFileFormat');
   });
 
   it('renames smi headers', () => {
-    let datafile = Factory.create('smiDatafile', { fileFormat: 'smi' });
+    let datafile = Factory.create('smiDatafile');
     let rows = [
       {
         'RecordingTime [ms]': '2554850.7630',
@@ -88,7 +88,7 @@ describe('Datafiles.renameHeaders()', () => {
   });
 
   it('renames imotions headers', () => {
-    let datafile = Factory.create('imotionsDatafile', { fileFormat: 'imotions' });
+    let datafile = Factory.create('imotionsDatafile');
     let rows = [
       {
         'Timestamp': '597',

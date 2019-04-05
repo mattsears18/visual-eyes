@@ -2,13 +2,13 @@ require('./../../factories.test');
 
 describe('Datafiles.getNonDuplicateCoordinatesOnly()', () => {
   it('returns empty array when passed empty array', async () => {
-    let datafile = Factory.create('smiDatafile');
+    let datafile = Factory.create('imotionsDatafile');
     let rows = [];
     chai.expect(await datafile.getNonDuplicateCoordinatesOnly(rows)).to.eql(rows);
   });
 
   it('removes duplicate coordinates on the same stimulus', async () => {
-    let datafile = Factory.create('smiDatafile');
+    let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { stimulusName:'stimulus', x: '100',  y: '100', a: '1'},
       { stimulusName:'stimulus', x: '100',  y: '50', a: '2'},
@@ -33,7 +33,7 @@ describe('Datafiles.getNonDuplicateCoordinatesOnly()', () => {
   });
 
   it('does not remove duplicate coordinates on different stimuli', async () => {
-    let datafile = Factory.create('smiDatafile');
+    let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { stimulusName:'stimulus1', x: '100',  y: '100', a: '1'},
       { stimulusName:'stimulus2', x: '100',  y: '100', a: '2'},

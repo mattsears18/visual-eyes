@@ -15,13 +15,13 @@ if(Meteor.isServer) {
     });
 
     it('is not a text file', async () => {
-      let datafile = Factory.create('smiDatafile', { isText: false, fileFormat: undefined });
+      let datafile = Factory.create('imotionsDatafile', { isText: false, fileFormat: undefined });
       chai.expect(await datafile.setFileFormat()).to.be.an('undefined');
       chai.expect(datafile.status).to.equal('unrecognizedFileFormat');
     });
 
     it('returns a previously saved fileFormat', async () => {
-      let datafile = Factory.create('smiDatafile', { fileFormat: 'foo' });
+      let datafile = Factory.create('imotionsDatafile', { fileFormat: 'foo' });
       chai.expect(await datafile.fileFormat).to.equal('foo');
       chai.expect(await datafile.setFileFormat()).to.equal('foo');
     });

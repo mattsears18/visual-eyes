@@ -2,7 +2,7 @@ require('./../../factories.test');
 
 describe('Datafiles.getGazepoints()', () => {
   it('gets gazepoints', async () => {
-    let datafile = Factory.create('smiDatafile');
+    let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { timestamp: '1',   x: '-3', y: '100', stimulusName: 'someName', category: 'Visual Intake' },       // negative
       { timestamp: '2',   x: '100', y: 'dsfdgry', stimulusName: 'someName', category: 'Visual Intake' },  // non numeric

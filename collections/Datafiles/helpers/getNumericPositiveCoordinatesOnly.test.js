@@ -2,13 +2,13 @@ require('./../../factories.test');
 
 describe('Datafiles.getNumericPositiveCoordinatesOnly()', () => {
   it('returns empty array when passed empty array', async () => {
-    let datafile = Factory.create('smiDatafile');
+    let datafile = Factory.create('imotionsDatafile');
     let rows = [];
     chai.expect(await datafile.getNumericPositiveCoordinatesOnly(rows)).to.eql(rows);
   });
 
   it('removes negative coordinate values', async () => {
-    let datafile = Factory.create('smiDatafile');
+    let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { x: '100', y: '500'},
       { x: '-1', y: '500'},
@@ -21,7 +21,7 @@ describe('Datafiles.getNumericPositiveCoordinatesOnly()', () => {
   });
 
   it('removes blanks', async () => {
-    let datafile = Factory.create('smiDatafile');
+    let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { x: '100', y: '500'},
       { x: '', y: '500'},
@@ -34,7 +34,7 @@ describe('Datafiles.getNumericPositiveCoordinatesOnly()', () => {
   });
 
   it('removes dashes', async () => {
-    let datafile = Factory.create('smiDatafile');
+    let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { x: '100', y: '500'},
       { x: '-', y: '500'},

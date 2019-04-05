@@ -2,7 +2,7 @@ require('./../../factories.test');
 
 describe('Datafiles.getFixations()', () => {
   it('filters out duplicate fixation indices', async () => {
-    let datafile = Factory.create('smiDatafile');
+    let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { stimulusName: 'someName', timestamp: '1', fixationIndex: '1' },   // good
       { stimulusName: 'someName', timestamp: '2', fixationIndex: '1' },   // duplicate
@@ -23,7 +23,7 @@ describe('Datafiles.getFixations()', () => {
   });
 
   it('filters out non numeric and undefined indices', async () => {
-    let datafile = Factory.create('smiDatafile');
+    let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { stimulusName: 'someName', timestamp: '1', fixationIndex: '1' },
       { stimulusName: 'someName', timestamp: '2', fixationIndex: '' },
@@ -43,7 +43,7 @@ describe('Datafiles.getFixations()', () => {
   });
 
   it('filters out duplicates and non numerics', async () => {
-    let datafile = Factory.create('smiDatafile');
+    let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { stimulusName: 'someName', timestamp: '1', fixationIndex: '1' },       // good
       { stimulusName: 'someName', timestamp: '2', fixationIndex: '1' },       // duplicate

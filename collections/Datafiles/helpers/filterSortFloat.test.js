@@ -2,7 +2,7 @@ require('./../../factories.test');
 
 describe('Datafiles.filterSortFloat()', () => {
   it('filters out non float values and sorts by timestamp', async () => {
-    let datafile = Factory.create('smiDatafile');
+    let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { timestamp: '', x: '1' },
       { timestamp: '-', x: '2' },

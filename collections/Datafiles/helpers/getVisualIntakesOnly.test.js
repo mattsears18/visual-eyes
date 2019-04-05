@@ -2,13 +2,13 @@ require('./../../factories.test');
 
 describe('Datafiles.getVisualIntakesOnly()', () => {
   it('returns empty array when passed empty array', async () => {
-    let datafile = Factory.create('smiDatafile');
+    let datafile = Factory.create('imotionsDatafile');
     let rows = [];
     chai.expect(await datafile.getVisualIntakesOnly(rows)).to.eql(rows);
   });
 
   it('filters out all rows without a category', async () => {
-    let datafile = Factory.create('smiDatafile');
+    let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { x: '1' },
       { x: '2' },
@@ -28,7 +28,7 @@ describe('Datafiles.getVisualIntakesOnly()', () => {
   });
 
   it('filters out all categories except visual intakes', async () => {
-    let datafile = Factory.create('smiDatafile');
+    let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { category: 'Visual Intake', x: '1' },
       { category: '', x: '2' },
@@ -47,7 +47,7 @@ describe('Datafiles.getVisualIntakesOnly()', () => {
   });
 
   it('filters out all rows', async () => {
-    let datafile = Factory.create('smiDatafile');
+    let datafile = Factory.create('imotionsDatafile');
     let rows = [
       { x: 1, },
       { x: 2, },

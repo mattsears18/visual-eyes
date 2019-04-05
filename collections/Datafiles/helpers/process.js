@@ -8,7 +8,6 @@ export default async function process() {
   delete this.headersRemoved;
   delete this.fileFormat;
   delete this.rawRowCount;
-  delete this.rawRowsProcessed;
   delete this.gazepointCount;
   delete this.dupGazepointCount;
   delete this.fixationCount;
@@ -19,7 +18,6 @@ export default async function process() {
       headersRemoved: 1,
       fileFormat: 1,
       rawRowCount: 1,
-      rawRowsProcessed: 1,
       gazepointCount: 1,
       dupGazepointCount: 1,
       fixationCount: 1,
@@ -27,28 +25,31 @@ export default async function process() {
   });
 
   this.removeHeaders();
-
-  if(!this.fileFormat) {
-    await this.setFileFormat();
-  }
+  await this.setFileFormat();
 
   if(this.status == 'unrecognizedFileFormat') {
     throw new Error('unrecognizedFileFormat');
   }
 
+  let study = Studies.findOne({ _id: this.studyId });
+  if(!study) {
+    throw new Error('noStudy');
+  }
+
   console.log('remove any old gazepoints');
   Gazepoints.remove({ datafileId: this._id });
 
-  console.log('update any old stimuli');
+  console.log('pull from any old stimuli');
   Stimuli.update({},
     { $pull: { datafileIds: this._id }},
     { multi: true }
   );
 
-  let study = Studies.findOne({ _id: this.studyId });
-  if(!study) {
-    throw new Error('noStudy');
-  }
+  console.log('pull froxm any old participants');
+  Participants.update({},
+    { $pull: { datafileIds: this._id }},
+    { multi: true }
+  );
 
   this.participantId = this.study().findOrInsert('participants', {
     name: this.getName(),
@@ -59,7 +60,6 @@ export default async function process() {
     $set: {
       participantId: this.participantId,
       status: 'preprocessing',
-      rawRowsProcessed: 0,
     }
   }, (err, num) => {
     if(err) {
@@ -69,45 +69,3 @@ export default async function process() {
 
   return this.makeGazepoints();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Meteor.methods({
-//   'studies.reprocessDatafiles'({ studyId, callback }) {
-//     check(studyId, String);
-//
-//     if(Meteor.isServer) {
-//       console.log('reprocess datafiles');
-//       console.log('studyId: ' + study._id);
-//     }
-//
-//     study = Studies.findOne({_id: studyId});
-//
-//     if(study) {
-//       Gazepoints.remove({ studyId: studyId });
-//       Viewings.remove({ studyId: studyId });
-//
-//       Analyses.update({ studyId: studyId },
-//         { $set: { status: 'needsReprocessing' }},
-//         { multi: true }
-//       );
-//
-//       datafiles = Datafiles.find({ studyId: study._id });
-//
-//       datafiles.forEach((datafile) => {
-//
-//       });
-//     }
-//   },
-// });

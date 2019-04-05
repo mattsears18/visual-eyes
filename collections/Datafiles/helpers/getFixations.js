@@ -1,5 +1,5 @@
 export default async function getFixations(data) {
-  if(!data) { data = await this.getGazepoints() }
+  if(!data) { data = await this.getAllGazepoints() }
 
   let goodRows = [];
   let indices = [];

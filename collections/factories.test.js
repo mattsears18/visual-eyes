@@ -4,6 +4,8 @@ import Datafiles        from './Datafiles/Datafiles';
 import Studies          from './Studies/Studies';
 import Stimuli          from './Stimuli/Stimuli';
 import Aois             from './Aois/Aois';
+import Gazepoints       from './Gazepoints/Gazepoints';
+import Participants     from './Participants/Participants';
 import StubCollections  from 'meteor/hwillson:stub-collections';
 
 StubCollections.stub([
@@ -11,6 +13,8 @@ StubCollections.stub([
   Studies,
   Stimuli,
   Aois,
+  Gazepoints,
+  Participants,
 ]);
 
 console.log('stubbed');

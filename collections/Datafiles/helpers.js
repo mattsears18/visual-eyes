@@ -11,9 +11,9 @@ import getNumericPositiveCoordinatesOnly  from './helpers/getNumericPositiveCoor
 import getVisualIntakesOnly               from './helpers/getVisualIntakesOnly';
 import getStimuliOnly                     from './helpers/getStimuliOnly';
 import getNonDuplicateCoordinatesOnly     from './helpers/getNonDuplicateCoordinatesOnly';
-import getGazepoints                      from './helpers/getGazepoints';
+import getAllGazepoints                      from './helpers/getAllGazepoints';
 import getFixations                       from './helpers/getFixations';
-import getPoints                          from './helpers/getPoints';
+import getGazepoints                          from './helpers/getGazepoints';
 import makeGazepoints                     from './helpers/makeGazepoints';
 import process                            from './helpers/process';
 
@@ -31,9 +31,9 @@ Datafiles.collection.helpers({
   getVisualIntakesOnly,
   getStimuliOnly,
   getNonDuplicateCoordinatesOnly,
-  getGazepoints,
+  getAllGazepoints,
   getFixations,
-  getPoints,
+  getGazepoints,
   makeGazepoints,
   process,
 

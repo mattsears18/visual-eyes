@@ -14,7 +14,7 @@ export default async function process() {
   delete this.fixationCount;
 
   Datafiles.update({ _id: this._id }, {
-    $set: { status: 'needsProcessing' },
+    $set: { status: 'preprocessing' },
     $unset: {
       headersRemoved: 1,
       fileFormat: 1,
@@ -64,7 +64,6 @@ export default async function process() {
   Datafiles.update({ _id: this._id }, {
     $set: {
       participantId: this.participantId,
-      status: 'preprocessing',
     }
   }, (err, num) => {
     if(err) {
@@ -72,5 +71,10 @@ export default async function process() {
     }
   });
 
-  return this.makeGazepoints();
+  Datafiles.update({ _id: this._id }, { $set: { status: 'processing' }});
+
+  let gazepoints = await this.makeGazepoints();
+  console.log('made ' + helpers.formatNumber(gazepoints.count()) + ' gazepoints!');
+
+  Datafiles.update({ _id: this._id }, { $set: { status: 'processed' }});
 }

@@ -1,12 +1,16 @@
-import { Factory } from 'meteor/dburles:factory';
-import faker from 'faker';
-import Datafiles from './Datafiles/Datafiles';
-import Studies from './Studies/Studies';
-import StubCollections from 'meteor/hwillson:stub-collections';
+import { Factory }      from 'meteor/dburles:factory';
+import faker            from 'faker';
+import Datafiles        from './Datafiles/Datafiles';
+import Studies          from './Studies/Studies';
+import Stimuli          from './Stimuli/Stimuli';
+import Aois             from './Aois/Aois';
+import StubCollections  from 'meteor/hwillson:stub-collections';
 
 StubCollections.stub([
   Datafiles.collection,
   Studies,
+  Stimuli,
+  Aois,
 ]);
 
 console.log('stubbed');

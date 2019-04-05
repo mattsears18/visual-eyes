@@ -1,4 +1,4 @@
-import Stimulusfiles from './Stimulusfiles/Stimulusfiles';
+import Stimulusfiles          from './Stimulusfiles/Stimulusfiles';
 
 Stimuli.helpers({
   hasPermission(action) {

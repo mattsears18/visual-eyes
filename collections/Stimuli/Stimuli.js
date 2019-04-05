@@ -46,6 +46,7 @@ Schemas.Stimulus = new SimpleSchema({
     autoform: {
       type: 'hidden',
     },
+    optional: true,
   },
   "datafileIds.$": {
     type: String,

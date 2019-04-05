@@ -1,7 +1,7 @@
 const csv = require('csvtojson');
 
 export default function removeHeaders() {
-  console.log('remove datafile headers. datafileId: ' + this._id);
+  console.log('remove datafile headers');
 
   let data = fs.readFileSync(this.path, 'utf-8');
   let lines = data.toString().split("\n");

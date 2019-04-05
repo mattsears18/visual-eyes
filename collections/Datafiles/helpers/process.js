@@ -1,8 +1,9 @@
+import helpers from '../../../lib/helpers';
 const csv = require('csvtojson');
 
 export default async function process() {
   console.log('================================================================================');
-  console.log('datafiles.process');
+  console.log('datafiles.process - datafileId: ' + this._id);
 
   this.status = 'needsProcessing';
   delete this.headersRemoved;
@@ -39,21 +40,25 @@ export default async function process() {
   console.log('remove any old gazepoints');
   Gazepoints.remove({ datafileId: this._id });
 
-  console.log('pull from any old stimuli');
+  console.log('pull datafileId from any old stimuli');
   Stimuli.update({},
     { $pull: { datafileIds: this._id }},
     { multi: true }
   );
 
-  console.log('pull froxm any old participants');
+  console.log('pull datafileId from any old participants');
   Participants.update({},
     { $pull: { datafileIds: this._id }},
     { multi: true }
   );
 
-  this.participantId = this.study().findOrInsert('participants', {
+  this.participantId = helpers.findOrInsert('participants', {
     name: this.getName(),
     studyId: this.studyId,
+  });
+
+  Participants.update({ _id: this.participantId }, {
+    $addToSet: { datafileIds: this._id },
   });
 
   Datafiles.update({ _id: this._id }, {

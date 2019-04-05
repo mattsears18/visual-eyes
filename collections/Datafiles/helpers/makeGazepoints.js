@@ -1,12 +1,42 @@
+import helpers from '../../../lib/helpers';
+
 export default async function makeGazepoints(data) {
   if(!data) { data = await this.getPoints() }
 
   console.log('make ' + helpers.formatNumber(data.length) + ' gazepoints!');
   Datafiles.update({ _id: this._id }, { $set: { status: 'processing' }});
 
+  let sdPairs = [];
+
   data.forEach((row) => {
     row.datafileId = this._id;
+    row.studyId = this.studyId,
     row.participantId = this.participantId;
+    row.aoiName = (row.aoiName || '-');
+
+    row.stimulusId = helpers.findOrInsert('stimuli', {
+      name: row.stimulusName,
+      studyId: this.studyId,
+    });
+
+    if(!sdPairs.some(el => (el.stimulusId == row.stimulusId && el.datafileId == row.datafileId))) {
+      sdPairs.push({ stimulusId: row.stimulusId, datafileId: row.datafileId });
+    }
+
+    row.aoiId = helpers.findOrInsert('aois', {
+      name: row.aoiName,
+      stimulusId: row.stimulusId,
+      studyId: row.studyId,
+    });
+  });
+
+  // TODO improve by adding all datafileIds to set at once, too many DB calls as-is
+  sdPairs.forEach((pair) => {
+    Stimuli.update({ _id: pair.stimulusId }, {
+      $addToSet: {
+        datafileIds: pair.datafileId,
+      },
+    });
   });
 
   return data;

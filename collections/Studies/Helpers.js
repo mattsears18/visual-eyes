@@ -1,9 +1,7 @@
 import reprocessDatafiles     from './helpers/reprocessDatafiles';
-import findOrInsert           from './helpers/findOrInsert';
 
 Studies.helpers({
   reprocessDatafiles,
-  findOrInsert,
 
   hasPermission(action) {
     check(action, String);

@@ -139,7 +139,6 @@ export default async function makeGazepoints(data) {
 //   getNumericPositiveCoordinatesOnly,
 //   getStimuliOnly,
 //   getVisualIntakesOnly,
-//   getFixationsOnly,
 //   getStimulusId,
 //   getAoiId,
 // }

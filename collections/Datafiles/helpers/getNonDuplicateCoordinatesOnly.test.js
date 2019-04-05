@@ -10,6 +10,7 @@ describe('Datafiles.getNonDuplicateCoordinatesOnly()', () => {
   it('removes duplicate coordinates on the same stimulus', async () => {
     let datafile = Factory.create('imotionsDatafile');
     let rows = [
+      { stimulusName:'stimulus', x: '100',  y: '100', a: '0'},
       { stimulusName:'stimulus', x: '100',  y: '100', a: '1'},
       { stimulusName:'stimulus', x: '100',  y: '50', a: '2'},
       { stimulusName:'stimulus', x: '50',   y: '50', a: '3'},
@@ -21,9 +22,11 @@ describe('Datafiles.getNonDuplicateCoordinatesOnly()', () => {
       { stimulusName:'stimulus', x: '100',  y: '100', a: '9'},
       { stimulusName:'stimulus', x: '50',   y: '50', a: '10'},
       { stimulusName:'stimulus', x: '50',   y: '50', a: '11'},
+      { stimulusName:'stimulus', x: '50',   y: '50', a: '12'},
+      { stimulusName:'stimulus', x: '50',   y: '50', a: '13'},
     ];
     let expectedRows = [
-      { stimulusName:'stimulus', x: '100',  y: '100', a: '1'},
+      { stimulusName:'stimulus', x: '100',  y: '100', a: '0'},
       { stimulusName:'stimulus', x: '100',  y: '50', a: '2'},
       { stimulusName:'stimulus', x: '50',   y: '50', a: '3'},
       { stimulusName:'stimulus', x: '100',  y: '100', a: '7'},

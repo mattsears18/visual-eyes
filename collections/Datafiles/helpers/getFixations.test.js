@@ -19,7 +19,7 @@ describe('Datafiles.getFixations()', () => {
       { stimulusName: 'someName', timestamp: '7', fixationIndex: '3' },   // good
     ];
 
-    chai.expect(await datafile.getFixations(rows)).to.eql(expectedRows);
+    chai.expect(await datafile.getFixations({ data: rows })).to.eql(expectedRows);
   });
 
   it('filters out non numeric and undefined indices', async () => {
@@ -39,7 +39,7 @@ describe('Datafiles.getFixations()', () => {
       { stimulusName: 'someName', timestamp: '7', fixationIndex: '3' },
     ];
 
-    chai.expect(await datafile.getFixations(rows)).to.eql(expectedRows);
+    chai.expect(await datafile.getFixations({ data: rows })).to.eql(expectedRows);
   });
 
   it('filters out duplicates and non numerics', async () => {
@@ -62,6 +62,6 @@ describe('Datafiles.getFixations()', () => {
       { stimulusName: 'someName', timestamp: '9', fixationIndex: '7' },       // good
     ];
 
-    chai.expect(await datafile.getFixations(rows)).to.eql(expectedRows);
+    chai.expect(await datafile.getFixations({ data: rows })).to.eql(expectedRows);
   });
 });

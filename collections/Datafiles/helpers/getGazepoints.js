@@ -1,7 +1,9 @@
-export default function getGazepoints() {
+export default function getGazepoints({
+  saveStats = false
+}) {
   if(this.study().fixationsOnly) {
-    return this.getFixations();
+    return this.getFixations({ saveStats: saveStats });
   } else {
-    return this.getAllGazepoints();
+    return this.getAllGazepoints({ saveStats: saveStats });
   }
 }

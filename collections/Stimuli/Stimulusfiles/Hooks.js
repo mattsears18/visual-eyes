@@ -17,8 +17,4 @@ Stimulusfiles.collection.before.insert(function(userId, doc) {
 
 Stimulusfiles.collection.after.remove(function(userId, doc) {
   Stimuli.update({ stimulusfileId: doc._id }, { $unset: { stimulusfileId: true }});
-
-  if(Meteor.isServer) {
-    Meteor.call('stimulusfiles.removeOrphans');
-  }
 });

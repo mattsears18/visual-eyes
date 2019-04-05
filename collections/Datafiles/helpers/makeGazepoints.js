@@ -1,7 +1,12 @@
 import helpers from '../../../lib/helpers';
 
-export default async function makeGazepoints(data) {
-  if(!data) { data = await this.getGazepoints() }
+export default async function makeGazepoints({
+  data = null,
+  saveStats = false,
+}) {
+
+  if(!data) { data = await this.getGazepoints({ saveStats: saveStats }) }
+
   console.log('make ' + helpers.formatNumber(data.length) + ' gazepoints!');
 
   let sdPairs = [];

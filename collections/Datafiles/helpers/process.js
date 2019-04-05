@@ -73,7 +73,7 @@ export default async function process() {
 
   Datafiles.update({ _id: this._id }, { $set: { status: 'processing' }});
 
-  let gazepoints = await this.makeGazepoints();
+  let gazepoints = await this.makeGazepoints({ saveStats: true });
   console.log('made ' + helpers.formatNumber(gazepoints.count()) + ' gazepoints!');
 
   Datafiles.update({ _id: this._id }, { $set: { status: 'processed' }});

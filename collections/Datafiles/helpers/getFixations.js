@@ -17,5 +17,11 @@ export default async function getFixations({
     }
   });
 
+  this.fixationCount = goodRows.length;
+
+  if(saveStats) {
+    Datafiles.update({ _id: this._id }, { $set: { fixationCount: this.fixationCount }});
+  }
+
   return goodRows;
 }

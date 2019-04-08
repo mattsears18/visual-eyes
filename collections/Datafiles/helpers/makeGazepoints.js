@@ -7,7 +7,10 @@ export default async function makeGazepoints({
 
   if(!data) { data = await this.getGazepoints({ saveStats: saveStats }) }
 
-  console.log('make ' + helpers.formatNumber(data.length) + ' gazepoints!');
+  if(saveStats && !this.study().fixationsOnly) {
+    // save the fixationCount
+    let fixations = await this.getFixations({ saveStats });
+  }
 
   let sdPairs = [];
 

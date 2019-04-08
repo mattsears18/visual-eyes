@@ -1,5 +1,5 @@
 require('../../../lib/helpers');
-fs = Npm.require('fs');
+fs = require('fs');
 const { parse } = require('json2csv');
 
 export default async function getAllGazepoints({

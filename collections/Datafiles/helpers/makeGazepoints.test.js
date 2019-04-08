@@ -2,14 +2,15 @@ require('./../../factories.test');
 
 if(Meteor.isServer) {
   describe('Datafiles.makeGazepoints()', () => {
-    // it('makes _____ imotions gazepoints', async () => {
-    //   let study = Factory.create('study', { fixationsOnly: false });
-    //   let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
-    //
-    //   let expectedGazepointCount = 0;
-    //
-    //   let points = await datafile.makeGazepoints({});
-    //   chai.expect(points.count()).to.equal(expectedGazepointCount);
-    // }).timeout(20000);
+    it('saves the fixation count even though study.fixationsOnly == false', async () => {
+      let study = Factory.create('study', { fixationsOnly: false });
+      let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
+
+      let points = await datafile.makeGazepoints({ saveStats: true });
+      let dbDatafile = Datafiles.findOne({ _id: datafile._id });
+
+      chai.expect(dbDatafile.gazepointCount).to.exist;
+      chai.expect(dbDatafile.fixationCount).to.exist;
+    }).timeout(20000);
   });
 }

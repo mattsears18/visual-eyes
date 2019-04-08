@@ -14,7 +14,8 @@ export default async function process() {
   delete this.fixationCount;
 
   Datafiles.update({ _id: this._id }, {
-    $set: { status: 'preprocessing' }});
+    $set: { status: 'preprocessing' }}
+  );
 
   this.removeHeaders();
   await this.setFileFormat();
@@ -67,5 +68,8 @@ export default async function process() {
   let gazepoints = await this.makeGazepoints({ saveStats: true });
   console.log('made ' + helpers.formatNumber(gazepoints.count()) + ' gazepoints');
 
+  this.status = 'processed';
   Datafiles.update({ _id: this._id }, { $set: { status: 'processed' }});
+
+  return this;
 }

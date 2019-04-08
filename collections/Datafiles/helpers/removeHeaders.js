@@ -1,5 +1,3 @@
-const csv = require('csvtojson');
-
 export default function removeHeaders() {
   console.log('remove datafile headers');
 
@@ -30,6 +28,8 @@ export default function removeHeaders() {
       Datafiles.update({ _id: this._id }, { $set: { headersRemoved: true, fileFormat: 'smi' }});
     } else {
       console.log('Does not have iMotions header or BeGaze header. Assume it has no header at all...');
+      this.headersRemoved = true;
+      Datafiles.update({ _id: this._id }, { $set: { headersRemoved: true }});
     }
   }
 }

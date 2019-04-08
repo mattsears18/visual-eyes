@@ -22,7 +22,7 @@ Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
     defaultValue: 'needsProcessing',
   },
   headersRemoved: {
-    type: String,
+    type: Boolean,
     optional: true,
   },
   fileFormat: {

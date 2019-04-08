@@ -6,13 +6,6 @@ import SimpleSchema from 'simpl-schema';
 Schemas.Variablefile = Object.assign({}, FilesCollection.schema, {
   studyId: {
     type: String,
-    label: 'Study',
-    autoform: {
-      value: function() {
-        return FlowRouter.getParam('studyId');
-      },
-      type: 'hidden'
-    },
     optional: true,
   },
   status: {
@@ -28,7 +21,8 @@ options = {
   allowClientCode: true, // Required to let you remove uploaded file
   onAfterUpload(variablefile) {
     if(Meteor.isServer) {
-      Meteor.call('variablefiles.process', { variablefileId: variablefile._id });
+      let vf = Variablefiles.collection.findOne({ _id: variablefile._id });
+      vf.process();
     }
   }
 }

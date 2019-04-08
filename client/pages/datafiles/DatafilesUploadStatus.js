@@ -53,12 +53,10 @@ Template.DatafilesUploadStatus.events({
               return (!(upload.config.fileId == datafileDoc._id));
             });
 
-            setTimeout(() => {
-              template.currentUploads.set(uploads);
-              if(!uploads.length) {
-                Session.set('uploadingDatafiles', false);
-              }
-            }, 2000);
+            template.currentUploads.set(uploads);
+            if(!uploads.length) {
+              Session.set('uploadingDatafiles', false);
+            }
           });
 
           uploadInstance.start();

@@ -13,15 +13,6 @@ export default async function getAllGazepoints({
   let integerRows = await this.getNumericPositiveCoordinatesOnly(data);
   this.integerRowCount = parseInt(integerRows.length);
 
-  if(this.integerRowCount > 10288) {
-    let myData = integerRows.map((row, ri) => { return { i: ri, t: row.timestamp }});
-    fs.writeFile(process.env['PWD'] + '/meh.csv', parse(myData), function(err) {
-      if(err) {
-        return console.log(err);
-      }
-    });
-  }
-
   let visualRows = integerRows;
   if(helpers.keyInArray('category', integerRows)) {
     visualRows = await this.getVisualIntakesOnly(integerRows);

@@ -97,6 +97,13 @@ Schemas.Viewing = new SimpleSchema({
       type: 'hidden',
     },
   },
+  averageStepHullCoverage: {
+    type: Number,
+    optional: true,
+    autoform: {
+      type: 'hidden',
+    },
+  },
   gazepointCount: {
     type: Number,
     optional: true,

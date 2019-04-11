@@ -1,10 +1,14 @@
-import PlotHull from './PlotHull';
+import PlotHull from './PlotHull/PlotHull';
 import { jStat } from 'jStat';
 const json2csv = require('json2csv').parse;
 
 export default class PlotHullCollection {
-  constructor(viewing) {
+  constructor({
+    viewing,
+    slideStep,
+  }) {
     this.viewing = () => { return viewing; }
+    this.slideStep = slideStep;
   }
 
   getHulls() {

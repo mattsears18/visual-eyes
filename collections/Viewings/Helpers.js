@@ -1,9 +1,23 @@
-import PlotHullCollection from './PlotHulls/PlotHullCollection';
-import getLayout from './getLayout';
-import getInitialTraces from './getInitialTraces';
-import getFrames from './getFrames';
+import PlotHullCollection       from './PlotHullCollection/PlotHullCollection';
+import getLayout                from './helpers/getLayout';
+import getInitialTraces         from './helpers/getInitialTraces';
+import getFrames                from './helpers/getFrames';
+import makeHullJobs             from './helpers/makeHullJobs';
+import saveAverageHullCoverage  from './helpers/saveAverageHullCoverage'
 
 Viewings.helpers({
+  getLayout,
+  getInitialTraces,
+  getFrames,
+  makeHullJobs,
+  saveAverageHullCoverage,
+
+  plotHullCollection({ slideStep }) {
+    return new PlotHullCollection({
+      viewing: this,
+      slideStep: slideStep,
+    });
+  },
   hasPermission(action) {
     check(action, String);
 
@@ -53,10 +67,4 @@ Viewings.helpers({
       return Aois.find({ _id: { $in: this.aoiIds }}, { sort: { name: 1 } });
     }
   },
-  plotHulls() {
-    return new PlotHullCollection(this);
-  },
-  getLayout,
-  getInitialTraces,
-  getFrames,
 });

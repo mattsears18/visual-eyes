@@ -45,13 +45,13 @@ Analyses.helpers({
   },
   viewingJobsCount() {
     return Jobs.find({
-      type: { $in: ['analyses.makeViewings', 'viewings.saveAverageSlideHullCoverage'] },
+      type: { $in: ['analyses.makeViewings', 'viewings.saveAverageHullCoverage'] },
       'data.analysisId': this._id,
     }).count();
   },
   viewingJobsCompletedCount() {
     return Jobs.find({
-      type: { $in: ['analyses.makeViewings', 'viewings.saveAverageSlideHullCoverage'] },
+      type: { $in: ['analyses.makeViewings', 'viewings.saveAverageHullCoverage'] },
       'data.analysisId': this._id,
       'status': 'completed',
     }).count();

@@ -9,7 +9,7 @@ export default async function getFixations({
 
   data.forEach((row) => {
     if(Number.isInteger(parseInt(row.fixationIndex))){
-      let ref = row.fixationIndex + ', ' + row.stimulusName;
+      let ref = row.fixationIndex + ', ' + row.stimulusId;
       if(!indices.includes(ref)) {
         indices.push(ref);
         goodRows.push(row);

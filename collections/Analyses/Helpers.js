@@ -1,8 +1,25 @@
-import Jobs from '../Jobs/Jobs';
-import getDataAsCSV from './getDataAsCSV';
-import getViewingsDataAsCSV from './getViewingsDataAsCSV';
+import Jobs                       from '../Jobs/Jobs';
+import removeViewingsAndJobs      from './helpers/removeViewingAndJobs';
+import getViewingEndIndex         from './helpers/getViewingEndIndex';
+import makeViewingJobs            from './helpers/makeViewingJobs';
+import getViewingFixationCount    from './helpers/getViewingFixationCount';
+import getViewingAoiIds           from './helpers/getViewingAoiIds';
+import makeViewingFromGazepoints  from './helpers/makeViewingFromGazepoints';
+import makeViewings               from './helpers/makeViewings';
+import getDataAsCSV               from './getDataAsCSV';
+import getViewingsDataAsCSV       from './getViewingsDataAsCSV';
 
 Analyses.helpers({
+  removeViewingsAndJobs,
+  getViewingEndIndex,
+  makeViewingJobs,
+  getViewingFixationCount,
+  getViewingAoiIds,
+  makeViewingFromGazepoints,
+  makeViewings,
+  getDataAsCSV,
+  getViewingsDataAsCSV,
+
   hasPermission(action) {
     check(action, String);
 
@@ -51,6 +68,4 @@ Analyses.helpers({
   viewingsComplete() {
     return this.viewingsProgress() == 100;
   },
-  getDataAsCSV,
-  getViewingsDataAsCSV,
 });

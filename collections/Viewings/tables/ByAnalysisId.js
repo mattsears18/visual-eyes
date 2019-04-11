@@ -14,7 +14,6 @@ new Tabular.Table({
     'aois',
     'aoiIds',
     'stimulusId',
-    'stimulusName',
     'analysisId',
     'status',
     'averageSlideHullCoverage',

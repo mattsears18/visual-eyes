@@ -30,6 +30,8 @@ Meteor.publish('stimuli.byViewingId', function(viewingId) {
 Meteor.publish('stimuli.byAnalysisId', function(analysisId) {
   check(analysisId, String);
   analysis = Analyses.findOne({_id: analysisId});
-  return Stimuli.find({ _id: { $in: analysis.stimulusIds }},
-    { sort: { name: 1 }});
+  if(analysis) {
+    return Stimuli.find({ _id: { $in: analysis.stimulusIds }},
+      { sort: { name: 1 }});
+  }
 });

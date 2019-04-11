@@ -91,7 +91,8 @@ Template.Analysis.events({
     Meteor.call('analyses.saveViewingsCSV', { analysisId: FlowRouter.getParam('analysisId') });
   },
   'click .reprocess-analysis': function() {
-    Meteor.call('analyses.makeViewingJobs', { analysisId: FlowRouter.getParam('analysisId') });
+    let analysis = Analyses.findOne({ _id: FlowRouter.getParam('analysisId') });
+    analysis.makeViewingJobs();
   },
   'click .update-analysis': function() {
     Session.set('updateAnalysis', true);

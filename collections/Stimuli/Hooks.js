@@ -17,6 +17,7 @@ Stimuli.after.update(function(userId, stimulus, fieldNames, modifier, options) {
     this.previous.width   != stimulus.width ||
     this.previous.height  != stimulus.height
   ) {
-    Meteor.call('studies.reprocessAnalyses', { studyId: stimulus.studyId });
+    let study = Studies.findOne({ _id: stimulus.studyId });
+    study.reprocessAnalyses();
   }
 });

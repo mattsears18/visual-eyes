@@ -13,7 +13,7 @@ Viewings.after.remove(function(userId, viewing) {
 });
 
 Viewings.after.insert(function(userId, doc) {
-  Meteor.call('viewings.makeHullJobs', { viewingId: doc._id });
+  // Meteor.call('viewings.makeHullJobs', { viewingId: doc._id });
 });
 
 Viewings.after.update((userId, viewing, fieldNames, modifier, options) => {

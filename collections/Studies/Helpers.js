@@ -1,6 +1,8 @@
+import reprocessAnalyses      from './helpers/reprocessAnalyses';
 import reprocessDatafiles     from './helpers/reprocessDatafiles';
 
 Studies.helpers({
+  reprocessAnalyses,
   reprocessDatafiles,
 
   hasPermission(action) {

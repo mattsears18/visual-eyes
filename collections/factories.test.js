@@ -6,6 +6,8 @@ import Stimuli          from './Stimuli/Stimuli';
 import Aois             from './Aois/Aois';
 import Gazepoints       from './Gazepoints/Gazepoints';
 import Participants     from './Participants/Participants';
+import Analyses         from './Analyses/Analyses';
+import Viewings         from './Viewings/Viewings';
 import StubCollections  from 'meteor/hwillson:stub-collections';
 
 StubCollections.stub([
@@ -15,6 +17,8 @@ StubCollections.stub([
   Aois,
   Gazepoints,
   Participants,
+  Analyses,
+  Viewings,
 ]);
 
 console.log('stubbed');
@@ -90,3 +94,48 @@ let unrecognizedFields = {
 Factory.define('imotionsDatafile', Datafiles.collection,      {...baseDatafile, ...imotionsFields});
 Factory.define('smiDatafile', Datafiles.collection,           {...baseDatafile, ...smiFields});
 Factory.define('unrecognizedDatafile', Datafiles.collection,  {...baseDatafile, ...unrecognizedFields});
+
+
+Factory.define('analysis', Analyses, {
+  studyId: () => Factory.create('study')._id,
+  name: () => faker.lorem.words(),
+  desc: () => faker.lorem.paragraph(),
+  period: 5000,
+  viewingGap: 5000,
+  minViewingTime: 10000,
+  ignoreOutsideImage: () => faker.boolean,
+  participantIds: [],
+  stimulusIds: [],
+});
+
+
+Factory.define('participant', Participants, {
+  name: () => faker.lorem.words(),
+  studyId: () => Factory.create('study')._id,
+  datafileIds: [],
+});
+
+
+Factory.define('stimulus', Stimuli, {
+  name: () => faker.lorem.words(),
+  studyId: () => Factory.create('study')._id,
+});
+
+
+Factory.define('aoi', Aois, {
+  name: () => faker.lorem.words(),
+  studyId: () => Factory.create('study')._id,
+  stimulusId: () => Factory.create('stimulus')._id,
+});
+
+
+Factory.define('gazepoint', Gazepoints, {
+  studyId: () => Factory.create('study')._id,
+  datafileId: () => Factory.create('imotionsDatafile')._id,
+  participantId: () => Factory.create('participant')._id,
+  stimulusId: () => Factory.create('stimulus')._id,
+  aoiId: () => Factory.create('aoi')._id,
+  timestamp: () => Math.floor(Math.random() * 100000),
+  x: () => Math.random(),
+  y: () => Math.random(),
+});

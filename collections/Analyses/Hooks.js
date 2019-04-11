@@ -18,19 +18,22 @@ Analyses.after.remove(function(userId, analysis) {
 });
 
 Analyses.after.insert(function(userId, analysis) {
-  Meteor.call('analyses.makeViewingJobs', { analysisId: analysis._id });
+  if(Meteor.isServer) {
+    Analyses.findOne({ _id: analysis._id }).makeViewingJobs();
+  }
 });
 
 Analyses.after.update(function(userId, analysis, fieldNames, modifier, options) {
-  if(
-    // this.previous.ignoreAoiNoName     != analysis.ignoreAoiNoName ||
-    this.previous.ignoreOutsideImage  != analysis.ignoreOutsideImage ||
-    this.previous.minViewingTime      != analysis.minViewingTime ||
-    this.previous.period              != analysis.period ||
-    this.previous.viewingGap          != analysis.viewingGap ||
-    (! helpers.arraysEqual(this.previous.stimulusIds, analysis.stimulusIds)) ||
-    (! helpers.arraysEqual(this.previous.participantIds, analysis.participantIds))
-  ) {
-    Meteor.call('analyses.makeViewingJobs', { analysisId: analysis._id });
+  if(Meteor.isServer) {
+    if(
+      this.previous.ignoreOutsideImage  != analysis.ignoreOutsideImage ||
+      this.previous.minViewingTime      != analysis.minViewingTime ||
+      this.previous.period              != analysis.period ||
+      this.previous.viewingGap          != analysis.viewingGap ||
+      (! helpers.arraysEqual(this.previous.stimulusIds, analysis.stimulusIds)) ||
+      (! helpers.arraysEqual(this.previous.participantIds, analysis.participantIds))
+    ) {
+      Analyses.findOne({ _id: analysis._id }).makeViewingJobs();
+    }
   }
 });

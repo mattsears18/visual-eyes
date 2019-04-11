@@ -27,12 +27,21 @@ Gazepoints.allow({
 });
 
 Schemas.Gazepoint = new SimpleSchema({
+  studyId: {
+    type: String,
+  },
   datafileId: {
     type: String,
   },
   participantId: {
     type: String,
     label: 'participantId',
+  },
+  stimulusId: {
+    type: String,
+  },
+  aoiId: {
+    type: String,
   },
   timestamp: {
     type: Number,
@@ -60,21 +69,6 @@ Schemas.Gazepoint = new SimpleSchema({
   y: {
     type: Number,
     label: 'Y',
-  },
-  aoiName: {
-    type: String,
-  },
-  aoiId: {
-    type: String,
-  },
-  stimulusName: {
-    type: String,
-  },
-  stimulusId: {
-    type: String,
-  },
-  studyId: {
-    type: String,
   },
 }, {tracker: Tracker});
 

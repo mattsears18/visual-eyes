@@ -2,6 +2,13 @@ require('./../../factories.test');
 
 if(Meteor.isServer) {
   describe('Analyses.makeViewings()', () => {
+    it.only('has no participantId', () => {
+      let analysis = Factory.create('analysis');
+      chai.expect(analysis.makeViewings({})).to.equal('dasfdgvbf');
+
+      //pick back up here - need to fix promises
+    });
+
     it('makes 2 viewings', async () => {
       let study = Factory.create('study');
       let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
@@ -13,7 +20,8 @@ if(Meteor.isServer) {
         participantIds: [ participant._id ],
         stimulusIds: [ stimulus._id ],
         viewingGap: 2000,
-        minViewingTime: 5000
+        minViewingTime: 5000,
+        ignoreOutsideImage: false,
       });
 
       let points = [
@@ -61,5 +69,5 @@ if(Meteor.isServer) {
       chai.expect(viewings[1].endTime).to.equal(23000);
 
     }).timeout(20000);
-  });  
+  });
 }

@@ -52,5 +52,5 @@ if(Meteor.isServer) {
       chai.expect(viewing.fixationFrequency).to.equal(0.5);
 
     }).timeout(20000);
-  });  
+  });
 }

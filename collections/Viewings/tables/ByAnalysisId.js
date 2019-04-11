@@ -97,6 +97,9 @@ new Tabular.Table({
           if(status == 'processed') {
             return `<span class="label label-success">Processed</span>`;
           }
+          if(status == 'invalidStimulusDimensions') {
+            return `<span class="label label-danger">Invalid Stimulus Dimensions</span>`;
+          }
         }
       },
     },

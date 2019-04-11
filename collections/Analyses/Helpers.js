@@ -1,14 +1,15 @@
 import Jobs                       from '../Jobs/Jobs';
-import removeViewingsAndJobs      from './helpers/removeViewingAndJobs';
-import getViewingEndIndex         from './helpers/getViewingEndIndex';
-import makeViewingJobs            from './helpers/makeViewingJobs';
-import getViewingFixationCount    from './helpers/getViewingFixationCount';
-import getViewingAoiIds           from './helpers/getViewingAoiIds';
-import makeViewingFromGazepoints  from './helpers/makeViewingFromGazepoints';
-import makeViewings               from './helpers/makeViewings';
-import updateStatus               from './helpers/updateStatus';
-import getDataAsCSV               from './helpers/getDataAsCSV';
-import getViewingsDataAsCSV       from './helpers/getViewingsDataAsCSV';
+import removeViewingsAndJobs      from './imports/removeViewingAndJobs';
+import getViewingEndIndex         from './imports/getViewingEndIndex';
+import makeViewingJobs            from './imports/makeViewingJobs';
+import getViewingFixationCount    from './imports/getViewingFixationCount';
+import getViewingAoiIds           from './imports/getViewingAoiIds';
+import normalizeGazepoints        from './imports/normalizeGazepoints';
+import makeViewingFromGazepoints  from './imports/makeViewingFromGazepoints';
+import makeViewings               from './imports/makeViewings';
+import updateStatus               from './imports/updateStatus';
+import getDataAsCSV               from './imports/getDataAsCSV';
+import getViewingsDataAsCSV       from './imports/getViewingsDataAsCSV';
 
 Analyses.helpers({
   removeViewingsAndJobs,
@@ -16,6 +17,7 @@ Analyses.helpers({
   makeViewingJobs,
   getViewingFixationCount,
   getViewingAoiIds,
+  normalizeGazepoints,
   makeViewingFromGazepoints,
   makeViewings,
   updateStatus,

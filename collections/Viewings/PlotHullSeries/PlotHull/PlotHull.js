@@ -1,8 +1,37 @@
-import hull from 'hull.js';
-var area = require('area-polygon');
+import hull                 from 'hull.js';
+import gazepoints           from './imports/gazepoints';
+import timestep             from './imports/timestep';
+import coverage             from './imports/coverage';
+import distance             from './imports/distance';
+import velocity             from './imports/velocity';
+import fixationTrail        from './imports/fixationTrail';
+import polygon              from './imports/polygon';
+import coordinatesToXY      from './imports/coordinatesToXY';
+import XYToCoordinates      from './imports/XYToCoordinates';
 
 export default class PlotHull {
-  constructor(viewing, startIndex, endIndex) {
+  gazepoints = gazepoints;
+  timestep = timestep;
+  coverage = coverage;
+  distance = distance;
+  velocity = velocity;
+  fixationTrail = fixationTrail;
+  polygon = polygon;
+  coordinatesToXY = coordinatesToXY;
+  XYToCoordinates = XYToCoordinates;
+
+  constructor({
+    viewing,
+    startIndex = 0,
+    endIndex,
+  }) {
+    if(!viewing) { throw new Error('noViewing') }
+    if(!viewing.gazepoints.length) { throw new Error('noGazepoints') }
+
+    if(!endIndex) {
+      endIndex = viewing.gazepoints.length - 1;
+    }
+
     this.viewing = () => { return viewing; };
     this.startIndex = startIndex;
     this.endIndex = endIndex;
@@ -13,15 +42,6 @@ export default class PlotHull {
       } else {
         return 0;
       }
-    }
-  }
-
-  gazepoints(which) {
-    let gp = this.viewing().gazepoints.slice(this.startIndex, this.endIndex + 1);
-    if(typeof(which) != 'undefined') {
-      return gp.map((gazepoint) => { return gazepoint[which]; });
-    } else {
-      return gp;
     }
   }
 
@@ -37,23 +57,6 @@ export default class PlotHull {
     return (this.endTime() - this.startTime());
   }
 
-  timeStep() {
-    if(this.gazepoints() && this.gazepoints().length > 2) {
-      return (this.gazepoints()[this.gazepoints().length - 1].timestamp -
-              this.gazepoints()[this.gazepoints().length - 2].timestamp);
-    } else {
-      return 0;
-    }
-  }
-
-  coverage() {
-    if(this.gazepoints().length > 2) {
-      return area(this.gazepoints());
-    } else {
-      return 0;
-    }
-  }
-
   coveragePercent() {
     return (this.coverage() * 100);
   }
@@ -62,43 +65,8 @@ export default class PlotHull {
     return (this.coverage() * this.duration());
   }
 
-  distance(which) {
-    if(typeof(which) != 'undefined') {
-      if(this.gazepoints() && this.gazepoints().length > 2) {
-        return (this.gazepoints()[this.gazepoints().length - 1][which] - this.gazepoints()[this.gazepoints().length - 2][which]);
-      } else {
-        return 0;
-      }
-    } else {
-      return Math.sqrt((this.distance('x') * this.distance('x') + this.distance('y') * this.distance('y')));
-    }
-  }
-
-  velocity(which) {
-    if(this.timeStep() > 0 && this.distance() > 0) {
-      return (this.distance(which) / this.timeStep());
-    } else {
-      return 0;
-    }
-  }
-
   lastGazepoint() {
-    if(this.gazepoints() && this.gazepoints().length) {
-      return this.gazepoints()[this.gazepoints().length - 1];
-    }
-  }
-
-  fixationTrail(length, index) {
-    let trailStart = Math.max((this.endIndex + 1 - length), 0);
-    let trailEnd = (this.endIndex + 1);
-    let trail = this.viewing().gazepoints.slice(trailStart, trailEnd);
-    if(typeof(index) != 'undefined') {
-      return trail.map((point) => {
-        return point[index];
-      });
-    } else {
-      return trail;
-    }
+    return this.gazepoints()[this.gazepoints().length - 1];
   }
 
   gazepointsTime() {
@@ -113,29 +81,7 @@ export default class PlotHull {
     });
   }
 
-  polygon(index) {
-    let hullPoints = hull(this.XYToCoordinates(this.gazepoints()), Infinity);
-
-    if(typeof(index) != 'undefined') {
-      return hullPoints.map((point) => { return point[index]; });
-    } else {
-      return hullPoints;
-    }
-  }
-
   centroid() {
     return helpers.centroid(this.coordinatesToXY(this.polygon()));
-  }
-
-  coordinatesToXY(points) {
-    return points.map(function(point) {
-      return { x: point[0], y: point[1] };
-    });
-  }
-
-  XYToCoordinates(points) {
-    return points.map(function(point) {
-      return [point.x, point.y];
-    });
   }
 }

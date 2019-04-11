@@ -6,6 +6,17 @@ export default function makeViewingFromGazepoints({
   participantId,
   stimulusId,
 }) {
+  // if(!participantId) { throw new Error('noParticipantId'); }
+  // let participant = Participants.findOne({ _id: participantId });
+  // if(!participant) {
+  //   throw new Error('noParticipantFound');
+  // }
+  //
+  // if(!stimulusId) { throw new Error('noStimulusId'); }
+  let stimulus = Stimuli.findOne({ _id: stimulusId });
+  // if(!stimulus) {
+  //   throw new Error('noStimulusFound');
+  // }
   // console.log('make viewing ' + number + ': [' + startIndex + ', ' + endIndex + ']');
 
   let pointsFull = gazepoints.slice(startIndex, endIndex + 1);
@@ -22,6 +33,13 @@ export default function makeViewingFromGazepoints({
   let fixationCount = this.getViewingFixationCount(points);
 
   let analysis = this;
+  let status = 'processing';
+
+  if(stimulus.width && stimulus.height) {
+    points = this.normalizeGazepoints(points);
+  } else {
+    status = 'invalidStimulusDimensions';
+  }
 
   return new Promise((resolve, reject) => {
     Viewings.insert({
@@ -40,7 +58,7 @@ export default function makeViewingFromGazepoints({
       gazepointFrequency: points.length / duration * 1000,
       fixationCount: fixationCount,
       fixationFrequency: fixationCount / duration * 1000,
-      status: 'processing',
+      status: status,
     }, (err, id) => {
       if (err) {
         reject(err);

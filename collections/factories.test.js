@@ -10,6 +10,8 @@ import Analyses         from './Analyses/Analyses';
 import Viewings         from './Viewings/Viewings';
 import StubCollections  from 'meteor/hwillson:stub-collections';
 
+var chaiAsPromised = require("chai-as-promised");
+
 StubCollections.stub([
   Datafiles.collection,
   Studies,
@@ -119,6 +121,8 @@ Factory.define('participant', Participants, {
 Factory.define('stimulus', Stimuli, {
   name: () => faker.lorem.words(),
   studyId: () => Factory.create('study')._id,
+  width: () => faker.random.number (4),
+  height: () => faker.random.number(4),
 });
 
 
@@ -136,6 +140,54 @@ Factory.define('gazepoint', Gazepoints, {
   stimulusId: () => Factory.create('stimulus')._id,
   aoiId: () => Factory.create('aoi')._id,
   timestamp: () => Math.floor(Math.random() * 100000),
-  x: () => Math.random(),
-  y: () => Math.random(),
+  x: () => Math.random() * 1000,
+  y: () => Math.random() * 1000,
+});
+
+
+Factory.define('viewing', Viewings, {
+  analysisId: () => Factory.create('analysis')._id,
+  studyId: () => Factory.create('study')._id,
+  participantId: () => Factory.create('participant')._id,
+  stimulusId: () => Factory.create('stimulus')._id,
+  number: () => faker.random.number(1),
+  period: () => 5000,
+  aoiIds: [],
+  gazepoints: [],
+});
+
+
+// viewing with Gazepoints
+let study = Factory.create('study');
+let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
+let participant = Factory.create('participant', { studyId: study._id, datafileIds: [datafile._id] });
+let stimulus = Factory.create('stimulus', { studyId: study._id });
+let aoi = Factory.create('aoi', { studyId: study._id, stimulusId: stimulus._id });
+let analysis = Factory.create('analysis', { studyId: study._id });
+
+let gazepoints = [];
+
+for(i = 0; i < 100; i++) {
+  let gazepoint = Factory.create('gazepoint', {
+    studyId: study._id,
+    datafileId: datafile._id,
+    participantId: participant._id,
+    stimulusId: stimulus._id,
+    aoiId: aoi._id,
+  });
+
+  gazepoints.push(gazepoint);
+}
+
+gazepoints.sort((a, b) => a.timestamp - b.timestamp);
+
+Factory.define('viewingWithGazepoints', Viewings, {
+  analysisId: analysis._id,
+  studyId: study._id,
+  participantId: participant._id,
+  stimulusId: stimulus._id,
+  number: () => faker.random.number(1),
+  period: 5000,
+  aoiIds: [aoi._id],
+  gazepoints: gazepoints,
 });

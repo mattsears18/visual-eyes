@@ -1,12 +1,12 @@
-import getEndGazepointIndex     from './helpers/getEndGazepointIndex';
-import getStartGazepointIndex   from './helpers/getStartGazepointIndex';
-import hulls                    from './helpers/hulls';
-import getAverageCoverage       from './helpers/getAverageCoverage';
-import getFrames                from './helpers/getFrames';
-import getInitialTraces         from './helpers/getInitialTraces';
-import getLayout                from './helpers/getLayout';
-import getCSV                   from './helpers/getCSV';
-import saveCSV                  from './helpers/saveCSV';
+import getEndGazepointIndex     from './imports/getEndGazepointIndex';
+import getStartGazepointIndex   from './imports/getStartGazepointIndex';
+import hulls                    from './imports/hulls';
+import getAverageCoverage       from './imports/getAverageCoverage';
+import getFrames                from './imports/getFrames';
+import getInitialTraces         from './imports/getInitialTraces';
+import getLayout                from './imports/getLayout';
+import getCSV                   from './imports/getCSV';
+import saveCSV                  from './imports/saveCSV';
 
 export default class PlotHullSeries {
   getEndGazepointIndex = getEndGazepointIndex;
@@ -26,6 +26,9 @@ export default class PlotHullSeries {
     centroidPeriod,
     fixationTrailLength,
   }) {
+    if(!viewing) { throw new Error('noViewing') }
+    if(!viewing.gazepoints.length) { throw new Error('noGazepoints') }
+
     this.viewing = () => { return viewing; }
     this.instantContinuous = instantContinuous;
     this.slideStep = slideStep;

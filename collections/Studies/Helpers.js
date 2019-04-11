@@ -1,5 +1,5 @@
-import reprocessAnalyses      from './helpers/reprocessAnalyses';
-import reprocessDatafiles     from './helpers/reprocessDatafiles';
+import reprocessAnalyses      from './imports/reprocessAnalyses';
+import reprocessDatafiles     from './imports/reprocessDatafiles';
 
 Studies.helpers({
   reprocessAnalyses,

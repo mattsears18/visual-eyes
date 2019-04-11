@@ -1,4 +1,4 @@
-import process from './helpers/process';
+import process from './imports/process';
 
 Variablefiles.collection.helpers({
   process,

@@ -13,8 +13,8 @@
         <span class="pull-right btn btn-success download-as-csv"><i class="fa fa-table"></i>&nbsp;Download Analysis as .CSV</span>
       {{/if}}
 
-      {{#unless analysis.viewingsComplete}}
-        <span class="label label-default">Creating Viewings {{formatNumber analysis.viewingsProgress}}%<i class="fa fa-spinner fa-pulse fa-fw m-l-3"></i></span>
+      {{#unless analysis.allJobsCompleted}}
+        <span class="label label-default">Creating Viewings {{formatNumber analysis.jobsProgress}}%<i class="fa fa-spinner fa-pulse fa-fw m-l-3"></i></span>
       {{/unless}}
     </h3>
 
@@ -85,7 +85,7 @@
       <h4>
         Viewings ({{viewings.count}})
 
-        {{#unless analysis.viewingsComplete}}
+        {{#unless analysis.allJobsCompleted}}
           <span class="label label-default">Creating Viewings {{formatNumber analysis.viewingsProgress}}%<i class="fa fa-spinner fa-pulse fa-fw m-l-3"></i></span>
         {{/unless}}
 

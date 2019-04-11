@@ -4,7 +4,9 @@ export default function makeHullJobs() {
   let slideJob = new Job(Jobs, 'viewings.saveAverageHullCoverage',
     {
       viewingId: this._id,
+      analysisId: this.analysisId,
       slideStep: 'slide',
+      instantContinuous: 'instant',
     }
   );
 
@@ -20,7 +22,9 @@ export default function makeHullJobs() {
   let stepJob = new Job(Jobs, 'viewings.saveAverageHullCoverage',
   {
     viewingId: this._id,
+    analysisId: this.analysisId,
     slideStep: 'step',
+    instantContinuous: 'instant',
   }
   );
 

@@ -27,18 +27,18 @@ Template.Viewing.onCreated(function() {
     this.subscribe('analyses.byViewingId', viewingId);
 
     if(viewing && this.subscriptionsReady()) {
-      options = {
+      let hullSeries = viewing.plotHullSeries({
         instantContinuous: Session.get('instantContinuous'),
+        slideStep: Session.get('slideStep'),
         centroidPeriod: Session.get('centroidPeriod'),
         fixationTrailLength: Session.get('fixationTrailLength'),
-      };
+      });
 
-      this.layout.set(viewing.getLayout(options));
-      this.initialTraces.set(viewing.getInitialTraces(options));
-      t0 = performance.now();
-      this.frames.set(viewing.getFrames(options));
-      t1 = performance.now();
-      console.log('init time: ' + helpers.formatNumber(t1 - t0) + ' ms');
+      console.log(hullSeries);
+
+      // this.layout.set(hullSeries.getLayout());
+      // this.initialTraces.set(hullSeries.getInitialTraces());
+      // this.frames.set(hullSeries.getFrames());
     }
   });
 });

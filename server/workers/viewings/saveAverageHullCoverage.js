@@ -11,15 +11,17 @@ export default queueViewingsSaveAverageHullCoverage = Jobs.processJobs('viewings
       job.remove();
     } else {
       try {
-        viewing.saveAverageHullCoverage({ slideStep: job.data.slideStep });
+        let avg = viewing.saveAverageHullCoverage({
+          slideStep: job.data.slideStep,
+          instantContinuous: job.data.instantContinuous,
+         });
         job.done();
       } catch(err) {
         console.log(err);
       }
     }
 
-    console.log('callback()');
-    console.log('check if all viewings processed. if so, update analysis status to processed');
+    viewing.updateStatus();
     callback();
   }
 );

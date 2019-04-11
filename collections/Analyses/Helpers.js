@@ -6,8 +6,9 @@ import getViewingFixationCount    from './helpers/getViewingFixationCount';
 import getViewingAoiIds           from './helpers/getViewingAoiIds';
 import makeViewingFromGazepoints  from './helpers/makeViewingFromGazepoints';
 import makeViewings               from './helpers/makeViewings';
-import getDataAsCSV               from './getDataAsCSV';
-import getViewingsDataAsCSV       from './getViewingsDataAsCSV';
+import updateStatus               from './helpers/updateStatus';
+import getDataAsCSV               from './helpers/getDataAsCSV';
+import getViewingsDataAsCSV       from './helpers/getViewingsDataAsCSV';
 
 Analyses.helpers({
   removeViewingsAndJobs,
@@ -17,6 +18,7 @@ Analyses.helpers({
   getViewingAoiIds,
   makeViewingFromGazepoints,
   makeViewings,
+  updateStatus,
   getDataAsCSV,
   getViewingsDataAsCSV,
 
@@ -43,29 +45,26 @@ Analyses.helpers({
   viewings() {
     return Viewings.find({ analysisId: this._id });
   },
-  viewingJobsCount() {
-    return Jobs.find({
-      type: { $in: ['analyses.makeViewings', 'viewings.saveAverageHullCoverage'] },
-      'data.analysisId': this._id,
-    }).count();
+  jobs() {
+    return Jobs.find({ 'data.analysisId': this._id });
   },
-  viewingJobsCompletedCount() {
-    return Jobs.find({
-      type: { $in: ['analyses.makeViewings', 'viewings.saveAverageHullCoverage'] },
-      'data.analysisId': this._id,
-      'status': 'completed',
-    }).count();
+  jobsCount() {
+    return this.jobs().count();
   },
-  viewingsProgress() {
-    progress = 0;
-
-    if(this.viewingJobsCount() && this.viewingJobsCompletedCount) {
-      progress = this.viewingJobsCompletedCount() / this.viewingJobsCount() * 100;
+  jobsCompleted() {
+    return Jobs.find({ 'data.analysisId': this._id, 'status': 'completed' });
+  },
+  jobsCompletedCount() {
+    return this.jobsCompleted().count();
+  },
+  jobsProgress() {
+    let progress = 0;
+    if(this.jobsCount()) {
+      progress = (this.jobsCompletedCount() / this.jobsCount() * 100);
     }
-
     return progress;
   },
-  viewingsComplete() {
-    return this.viewingsProgress() == 100;
+  allJobsCompleted() {
+    return (this.jobsCount() == this.jobsCompletedCount());
   },
 });

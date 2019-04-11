@@ -1,5 +1,5 @@
 export default function getFrames(options) {
-  let hulls = this.plotHulls().getHulls();
+  let hulls = this.hulls();
 
   let centroids = [];
   let frames = [];

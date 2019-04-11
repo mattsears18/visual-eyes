@@ -1,22 +1,16 @@
-import PlotHullCollection       from './PlotHullCollection/PlotHullCollection';
-import getLayout                from './helpers/getLayout';
-import getInitialTraces         from './helpers/getInitialTraces';
-import getFrames                from './helpers/getFrames';
+import Jobs                     from '../Jobs/Jobs';
+import PlotHullSeries           from './PlotHullSeries/PlotHullSeries';
 import makeHullJobs             from './helpers/makeHullJobs';
-import saveAverageHullCoverage  from './helpers/saveAverageHullCoverage'
+import saveAverageHullCoverage  from './helpers/saveAverageHullCoverage';
+import updateStatus             from './helpers/updateStatus';
 
 Viewings.helpers({
-  getLayout,
-  getInitialTraces,
-  getFrames,
   makeHullJobs,
   saveAverageHullCoverage,
+  updateStatus,
 
-  plotHullCollection({ slideStep }) {
-    return new PlotHullCollection({
-      viewing: this,
-      slideStep: slideStep,
-    });
+  plotHullSeries(params) {
+    return new PlotHullSeries({ viewing: this, ...params });
   },
   hasPermission(action) {
     check(action, String);
@@ -66,5 +60,21 @@ Viewings.helpers({
     if(this.aoiIds && this.aoiIds.length) {
       return Aois.find({ _id: { $in: this.aoiIds }}, { sort: { name: 1 } });
     }
+  },
+  jobs() {
+    return Jobs.find({ 'data.viewingId': this._id });
+  },
+  jobsCompleted() {
+    return Jobs.find({ 'data.viewingId': this._id, 'status': 'completed' });
+  },
+  jobsProgress() {
+    let progress = 0;
+    if(this.jobs().count()) {
+      progress = (this.jobsCompleted().count() / this.jobs().count() * 100);
+    }
+    return progress;
+  },
+  allJobsCompleted() {
+    return (this.jobs().count() == this.jobsCompleted().count());
   },
 });

@@ -1,5 +1,5 @@
 export default function getInitialTraces(options) {
-  let hulls = this.plotHulls().getHulls();
+  let hulls = this.plotHullSeries().hulls();
 
   let pointsTrace = {
     name: 'Fixations',

@@ -22,7 +22,6 @@ export default queueAnalysesMakeViewings = Jobs.processJobs('analyses.makeViewin
       job.remove();
     }
 
-    // console.log('callback()');
     callback();
   }
 );

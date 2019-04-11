@@ -8,8 +8,15 @@ export default function removeViewingsAndJobs() {
     Viewings.remove({ _id: viewing._id });
   });
 
-  let jobs = Jobs.find({ type: 'analyses.makeViewings', 'data.analysisId':  this._id });
-  jobs.forEach(job => {
-    Jobs.remove({ _id: job._id });
+  let jobDocs = Jobs.find({ 'data.analysisId':  this._id });
+
+  jobDocs.forEach((jobDoc) => {
+    Jobs.getJob(jobDoc._id,
+      function (err, job) {
+        if (job) {
+          job.remove();
+        }
+      }
+    );
   });
 }

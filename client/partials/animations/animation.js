@@ -38,12 +38,13 @@ Template.Animation.helpers({
 
 Template.Animation.events({
   'click .download-data-as-csv': (e, template) => {
-    Meteor.call('viewings.saveCSV', {
-      viewingId: FlowRouter.getParam('viewingId'),
+    let viewing = Viewings.findOne({ _id: FlowRouter.getParam('viewingId') });
+    viewing.plotHullSeries({
       instantContinuous: Session.get('instantContinuous'),
       slideStep: Session.get('slideStep'),
       centroidPeriod: Session.get('centroidPeriod'),
-    });
+      fixationTrailLength: Session.get('fixationTrailLength'),
+    }).saveCSV();
   },
 });
 

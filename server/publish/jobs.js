@@ -12,26 +12,6 @@ Meteor.startup(function () {
 Meteor.startup(function () {
   Meteor.publish('jobs.byAnalysisId', function (analysisId) {
     check(analysisId, String);
-    return Jobs.find({ data: { analysisId: analysisId }});
-  });
-});
-
-Meteor.startup(function () {
-  Meteor.publish('jobs.analyses.makeViewings.byAnalysisId', function (analysisId) {
-    check(analysisId, String);
-    return Jobs.find({
-      type: 'analyses.makeViewings',
-      'data.analysisId': analysisId,
-    });
-  });
-});
-
-Meteor.startup(function () {
-  Meteor.publish('jobs.viewings.saveAverageHullCoverage.byAnalysisId', function (analysisId) {
-    check(analysisId, String);
-    return Jobs.find({
-      type: 'viewings.saveAverageHullCoverage',
-      'data.analysisId': analysisId,
-    });
+    return Jobs.find({ 'data.analysisId': analysisId });
   });
 });

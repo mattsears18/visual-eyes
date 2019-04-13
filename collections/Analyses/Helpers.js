@@ -1,5 +1,4 @@
 import Jobs                       from '../Jobs/Jobs';
-import removeViewingsAndJobs      from './imports/removeViewingAndJobs';
 import getViewingEndIndex         from './imports/getViewingEndIndex';
 import makeViewingJobs            from './imports/makeViewingJobs';
 import getViewingFixationCount    from './imports/getViewingFixationCount';
@@ -9,9 +8,10 @@ import makeViewings               from './imports/makeViewings';
 import updateStatus               from './imports/updateStatus';
 import getDataAsCSV               from './imports/getDataAsCSV';
 import getViewingsDataAsCSV       from './imports/getViewingsDataAsCSV';
+import allViewingsCreated         from './imports/allViewingsCreated';
+import allViewingsProcessed       from './imports/allViewingsProcessed';
 
 Analyses.helpers({
-  removeViewingsAndJobs,
   getViewingEndIndex,
   makeViewingJobs,
   getViewingFixationCount,
@@ -21,6 +21,8 @@ Analyses.helpers({
   updateStatus,
   getDataAsCSV,
   getViewingsDataAsCSV,
+  allViewingsCreated,
+  allViewingsProcessed,
 
   hasPermission(action) {
     check(action, String);
@@ -45,11 +47,11 @@ Analyses.helpers({
   viewings() {
     return Viewings.find({ analysisId: this._id });
   },
-  jobs() {
-    return Jobs.find({ 'data.analysisId': this._id });
+  jobs(search) {
+    return Jobs.find({ 'data.analysisId': this._id, ...search });
   },
-  jobsCount() {
-    return this.jobs().count();
+  jobsCount(search) {
+    return this.jobs(search).count();
   },
   jobsCompleted() {
     return Jobs.find({ 'data.analysisId': this._id, 'status': 'completed' });

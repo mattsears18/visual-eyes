@@ -2,7 +2,7 @@ import Jobs from '../../../collections/Jobs/Jobs';
 
 export default queueAnalysesMakeViewings = Jobs.processJobs('analyses.makeViewings',
   { concurrency: 1 },
-  async (job, callback) => {
+  (job, callback) => {
     let analysis = Analyses.findOne({ _id: job.data.analysisId });
     if(!analysis) {
       console.log('Analysis not found. analysisId: ' + job.data.analysisId);
@@ -11,7 +11,7 @@ export default queueAnalysesMakeViewings = Jobs.processJobs('analyses.makeViewin
     }
 
     try {
-      analysis.makeViewings({
+      let viewingIds = analysis.makeViewings({
         participantId: job.data.participantId,
         stimulusId: job.data.stimulusId,
       });

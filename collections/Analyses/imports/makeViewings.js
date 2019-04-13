@@ -1,17 +1,17 @@
-export default async function makeViewings({
+export default function makeViewings({
   participantId,
   stimulusId,
 }) {
   if(!participantId) { throw new Error('noParticipantId'); }
   let participant = Participants.findOne({ _id: participantId });
   if(!participant) {
-    throw new Error('Participant not found. participantId: ' + participantId);
+    throw new Error('noParticipantFound');
   }
 
   if(!stimulusId) { throw new Error('noStimulusId'); }
   let stimulus = Stimuli.findOne({ _id: stimulusId });
   if(!stimulus) {
-    throw new Error('Stimulus not found. stimulusId: ' + stimulusId);
+    throw new Error('noStimulusFound');
   }
 
   let search = { participantId: participantId, stimulusId: stimulusId };
@@ -32,7 +32,7 @@ export default async function makeViewings({
 
   let gazepoints = Gazepoints.find(search, { sort: { timestamp: 1 }});
   let gazepointsArr = gazepoints.fetch();
-  let viewings = [];
+  let viewingIds = [];
 
   if(gazepointsArr.length) {
     let startIndex = 0;
@@ -56,7 +56,7 @@ export default async function makeViewings({
       if(!endIndex) { continue; }
 
       try {
-        let viewing = await this.makeViewingFromGazepoints({
+        let viewingId = this.makeViewingFromGazepoints({
           gazepoints: gazepointsArr,
           startIndex: startIndex,
           endIndex: endIndex,
@@ -64,7 +64,7 @@ export default async function makeViewings({
           participantId: participantId,
           stimulusId: stimulusId,
         });
-        viewings.push(viewing);
+        viewingIds.push(viewingId);
       }
       catch(err) {
         console.log(err);
@@ -74,5 +74,5 @@ export default async function makeViewings({
     } while(startIndex < gazepointsArr.length - 1);
   }
 
-  return viewings;
+  return viewingIds;
 }

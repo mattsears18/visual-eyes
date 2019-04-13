@@ -1,11 +1,11 @@
 import { jStat } from 'jStat';
 import Jobs from '../../../collections/Jobs/Jobs';
 
-var participantSub;
-var stimuliSub;
+let participantSub;
+let stimuliSub;
 
 Template.Analysis.onCreated(function() {
-  var self = this;
+  let self = this;
 
   self.selector = new ReactiveDict();
 
@@ -14,19 +14,25 @@ Template.Analysis.onCreated(function() {
   self.selector.set( 'selector', {} );
 
   self.autorun(function() {
-    var studyId = FlowRouter.getParam('studyId');
+    let studyId = FlowRouter.getParam('studyId');
     self.subscribe('studies.single', studyId);
     self.subscribe('aois.byStudyId', studyId);
     self.subscribe('variables.byStudyId', studyId);
     self.subscribe('datafiles.byStudyId', studyId);
 
-    var analysisId = FlowRouter.getParam('analysisId');
+    let analysisId = FlowRouter.getParam('analysisId');
     self.subscribe('analyses.single', analysisId);
     self.subscribe('viewings.byAnalysisId', analysisId);
     participantSub = self.subscribe('participants.byAnalysisId', analysisId);
     stimuliSub = self.subscribe('stimuli.byAnalysisId', analysisId);
-    self.subscribe('jobs.analyses.makeViewings.byAnalysisId', analysisId);
-    self.subscribe('jobs.viewings.saveAverageHullCoverage.byAnalysisId', analysisId);
+
+    let analysis = Analyses.findOne({});
+    if(analysis && analysis.status == 'processing') {
+      console.log('subscribe');
+      self.subscribe('jobs.byAnalysisId', analysisId);
+    } else {
+      console.log('do not subscribe');
+    }
 
     if(self.subscriptionsReady()) { updateSelectors(self); }
   });

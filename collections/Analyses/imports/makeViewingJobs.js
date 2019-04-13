@@ -5,7 +5,12 @@ export default function makeViewingJobs() {
   this.status = 'processing';
   Analyses.update({ _id: this._id }, { $set: { status: "processing" }});
 
-  this.removeViewingsAndJobs();
+  try {
+    Meteor.call('analyses.removeViewingsAndJobs', { analysisId: this._id });
+  }
+  catch(err) {
+    console.log(err);
+  }
 
   this.participantIds.forEach((participantId) => {
     let participant = Participants.findOne({ _id: participantId });

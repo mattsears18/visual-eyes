@@ -1,3 +1,5 @@
 export default function updateStatus() {
-  console.log('update analysis status');
+  if(this.allViewingsProcessed() && this.status != 'processed') {
+    Analyses.update({ _id: this._id }, { $set: { status: 'processed' }});
+  }
 }

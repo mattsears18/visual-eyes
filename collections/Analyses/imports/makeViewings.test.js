@@ -34,7 +34,7 @@ describe('Analyses.makeViewings()', () => {
     }).to.throw('noStimulusFound');
   });
 
-  it('makes 2 viewings', async () => {
+  it('makes 2 viewings', () => {
     let study = Factory.create('study');
     let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
     let participant = Factory.create('participant', { studyId: study._id });

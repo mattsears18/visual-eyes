@@ -9,7 +9,7 @@ export default function makeViewingJobs() {
     Meteor.call('analyses.removeViewingsAndJobs', { analysisId: this._id });
   }
   catch(err) {
-    console.log(err);
+    // console.log(err);
   }
 
   this.participantIds.forEach((participantId) => {

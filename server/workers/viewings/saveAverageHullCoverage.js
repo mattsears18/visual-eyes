@@ -17,7 +17,12 @@ export default queueViewingsSaveAverageHullCoverage = Jobs.processJobs('viewings
          });
         job.done();
       } catch(err) {
-        console.log(err);
+        if(['invalidStimulusDimensions'].indexOf(err.message) != -1) {
+          console.log('invalid stimulus dimensions');
+          job.cancel();
+        } else {
+          console.log(err);
+        }
       }
     }
 

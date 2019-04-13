@@ -1,7 +1,9 @@
 export default function saveAverageHullCoverage(params) {
-  let avg = this.plotHullSeries(params).getAverageCoverage();
-  console.log('average hull coverage: ' + avg);
+  if(!this.stimulus().width || !this.stimulus().height) {
+    throw new Error('invalidStimulusDimensions');
+  }
 
+  let avg = this.plotHullSeries(params).getAverageCoverage();
   let fieldSave;
 
   if(params.slideStep == 'slide') {
@@ -10,9 +12,7 @@ export default function saveAverageHullCoverage(params) {
     fieldSave = { averageStepHullCoverage: avg };
   }
 
-  if(fieldSave) {
-    Viewings.update({ _id: this._id }, { $set: fieldSave });
-  }
+  if(fieldSave) { Viewings.update({ _id: this._id }, { $set: fieldSave }) }
 
   return avg;
 }

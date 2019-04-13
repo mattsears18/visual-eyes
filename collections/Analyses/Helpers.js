@@ -4,7 +4,6 @@ import getViewingEndIndex         from './imports/getViewingEndIndex';
 import makeViewingJobs            from './imports/makeViewingJobs';
 import getViewingFixationCount    from './imports/getViewingFixationCount';
 import getViewingAoiIds           from './imports/getViewingAoiIds';
-import normalizeGazepoints        from './imports/normalizeGazepoints';
 import makeViewingFromGazepoints  from './imports/makeViewingFromGazepoints';
 import makeViewings               from './imports/makeViewings';
 import updateStatus               from './imports/updateStatus';
@@ -17,7 +16,6 @@ Analyses.helpers({
   makeViewingJobs,
   getViewingFixationCount,
   getViewingAoiIds,
-  normalizeGazepoints,
   makeViewingFromGazepoints,
   makeViewings,
   updateStatus,

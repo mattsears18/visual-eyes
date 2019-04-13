@@ -2,11 +2,11 @@ require('./../../factories.test');
 
 if(Meteor.isServer) {
   describe('Analyses.makeViewings()', () => {
-    it.only('has no participantId', () => {
+    it('has no participantId', () => {
       let analysis = Factory.create('analysis');
       chai.expect(analysis.makeViewings({})).to.equal('dasfdgvbf');
 
-      //pick back up here - need to fix promises
+      //pick back up here   - need to fix promises
     });
 
     it('makes 2 viewings', async () => {

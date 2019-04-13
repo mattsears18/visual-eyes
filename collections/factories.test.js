@@ -121,8 +121,8 @@ Factory.define('participant', Participants, {
 Factory.define('stimulus', Stimuli, {
   name: () => faker.lorem.words(),
   studyId: () => Factory.create('study')._id,
-  width: () => faker.random.number (4),
-  height: () => faker.random.number(4),
+  width: () => faker.random.number({min: 100, max: 3000}),
+  height: () => faker.random.number({min: 100, max: 3000}),
 });
 
 
@@ -150,7 +150,7 @@ Factory.define('viewing', Viewings, {
   studyId: () => Factory.create('study')._id,
   participantId: () => Factory.create('participant')._id,
   stimulusId: () => Factory.create('stimulus')._id,
-  number: () => faker.random.number(1),
+  number: () => faker.random.number({ min: 1, max: 10 }),
   period: () => 5000,
   aoiIds: [],
   gazepoints: [],
@@ -186,7 +186,7 @@ Factory.define('viewingWithGazepoints', Viewings, {
   studyId: study._id,
   participantId: participant._id,
   stimulusId: stimulus._id,
-  number: () => faker.random.number(1),
+  number: () => faker.random.number({ min: 1, max: 10 }),
   period: 5000,
   aoiIds: [aoi._id],
   gazepoints: gazepoints,

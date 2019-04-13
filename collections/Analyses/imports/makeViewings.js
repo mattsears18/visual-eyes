@@ -50,7 +50,6 @@ export default async function makeViewings({
           startIndex = err.details.nextIndex;
         } else {
           console.log(err);
-
         }
       }
 

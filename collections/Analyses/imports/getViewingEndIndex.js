@@ -7,18 +7,18 @@ export default function getViewingEndIndex({
   }
 
   let startTime = gazepoints[startIndex].timestamp;
+  let endIndex = parseInt(startIndex);
 
   for(i = startIndex + 1; i < gazepoints.length; i++) {
-    if((gazepoints[i].timestamp - gazepoints[i - 1].timestamp) > this.viewingGap) {
+    if(gazepoints[i].timestamp - gazepoints[i - 1].timestamp > this.viewingGap) {
       break;
     }
-
-    endIndex = i;
+    endIndex++;
   }
 
   // console.log('points length: ' + gazepoints.length + ' startIndex: ' + startIndex + ' endIndex: ' + endIndex);
 
-  if(!endIndex || ((gazepoints[endIndex].timestamp - gazepoints[startIndex].timestamp) < this.minViewingTime)) {
+  if((gazepoints[endIndex].timestamp - gazepoints[startIndex].timestamp) < this.minViewingTime) {
     throw new Meteor.Error('minViewingTimeNotMet', null, { nextIndex: endIndex + 1 });
   }
 

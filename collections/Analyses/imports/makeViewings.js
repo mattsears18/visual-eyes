@@ -30,9 +30,13 @@ export default function makeViewings({
     }
   }
 
+  console.log('participant: ' + participant.name + ' stimulus: ' + stimulus.name);
+
   let gazepoints = Gazepoints.find(search, { sort: { timestamp: 1 }});
   let gazepointsArr = gazepoints.fetch();
   let viewingIds = [];
+
+  console.log('gazepoint count: ' + gazepointsArr.length);
 
   if(gazepointsArr.length) {
     let startIndex = 0;
@@ -45,17 +49,23 @@ export default function makeViewings({
           gazepoints: gazepointsArr,
           startIndex: startIndex,
         });
+        console.log('start: ' + startIndex + ' end: ' + endIndex);
       } catch(err) {
+        console.log('start: ' + startIndex + ' end: ' + endIndex);
         if(err.error == 'minViewingTimeNotMet') {
+          console.log(err.details);
           startIndex = err.details.nextIndex;
         } else {
           console.log(err);
         }
       }
 
-      if(!endIndex) { continue; }
+      if(!endIndex) {
+        continue
+      }
 
       try {
+        console.log('make the viewing!');
         let viewingId = this.makeViewingFromGazepoints({
           gazepoints: gazepointsArr,
           startIndex: startIndex,

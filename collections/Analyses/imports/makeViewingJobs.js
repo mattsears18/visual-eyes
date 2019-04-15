@@ -6,7 +6,8 @@ export default function makeViewingJobs() {
   Analyses.update({ _id: this._id }, { $set: { status: "processing" }});
 
   try {
-    Meteor.call('analyses.removeViewingsAndJobs', { analysisId: this._id });
+    Meteor.call('analyses.removeViewings', { analysisId: this._id });
+    Meteor.call('analyses.removeJobs', { analysisId: this._id });
   }
   catch(err) {
     // console.log(err);

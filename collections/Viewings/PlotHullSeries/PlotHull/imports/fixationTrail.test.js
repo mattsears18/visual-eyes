@@ -1,7 +1,7 @@
 require('../../../../factories.test');
 import PlotHull from '../PlotHull';
 
-describe.only('PlotHull.fixationTrail()', () => {
+describe('PlotHull.fixationTrail()', () => {
   it('gets a trail', () => {
     let viewing = Factory.create('viewing', {
       gazepoints: [
@@ -18,6 +18,40 @@ describe.only('PlotHull.fixationTrail()', () => {
       { x: 100, y: 100, timestamp: 2000 },
       { x: 100, y: 100, timestamp: 3000 },
       { x: 100, y: 100, timestamp: 4000 },
+    ]);
+  });
+
+  it('gets the x coordinates of a trail', () => {
+    let viewing = Factory.create('viewing', {
+      gazepoints: [
+        { x: 100, y: 100, timestamp: 0 },
+        { x: 100, y: 100, timestamp: 1000 },
+        { x: 200, y: 100, timestamp: 2000 },
+        { x: 300, y: 100, timestamp: 3000 },
+        { x: 400, y: 100, timestamp: 4000 },
+      ],
+    });
+
+    let plotHull = new PlotHull({ viewing: viewing });
+    chai.expect(plotHull.fixationTrail(3, 'x')).to.eql([
+      200, 300, 400
+    ]);
+  });
+
+  it('gets the y coordinates of a trail', () => {
+    let viewing = Factory.create('viewing', {
+      gazepoints: [
+        { x: 100, y: 100, timestamp: 0 },
+        { x: 100, y: 100, timestamp: 1000 },
+        { x: 200, y: 700, timestamp: 2000 },
+        { x: 300, y: 300, timestamp: 3000 },
+        { x: 400, y: 200, timestamp: 4000 },
+      ],
+    });
+
+    let plotHull = new PlotHull({ viewing: viewing });
+    chai.expect(plotHull.fixationTrail(3, 'y')).to.eql([
+      700, 300, 200
     ]);
   });
 

@@ -1,22 +1,22 @@
 export default function getLayout(options) {
   let forceHeight = 600;
-  let scale = forceHeight / this.stimulus().stimulusfile().fileHeight;
+  let scale = forceHeight / this.viewing().stimulus().stimulusfile().fileHeight;
   let margin = { l: 50, r: 10, b: 20, t: 0, pad: 4 };
 
   return {
     xaxis: {
-      range: [0, 1],
+      range: [0, this.viewing().stimulus().width],
       showticklabels: false,
     },
     yaxis: {
-      range: [0, 1],
+      range: [0, this.viewing().stimulus().height],
       showticklabels: false,
     },
     height: forceHeight + margin.b + margin.t,
-    width: (this.stimulus().stimulusfile().fileWidth * scale) + margin.l + margin.r + 146,
+    width: (this.viewing().stimulus().stimulusfile().fileWidth * scale) + margin.l + margin.r + 146,
     margin: margin,
     images: [{
-      source: Stimulusfiles.link(this.stimulus().stimulusfile()),
+      source: Stimulusfiles.link(this.viewing().stimulus().stimulusfile()),
       xref: 'paper',
       yref: 'paper',
       x: 0,

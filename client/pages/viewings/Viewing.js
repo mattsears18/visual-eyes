@@ -34,11 +34,9 @@ Template.Viewing.onCreated(function() {
         fixationTrailLength: Session.get('fixationTrailLength'),
       });
 
-      console.log(hullSeries);
-
-      // this.layout.set(hullSeries.getLayout());
-      // this.initialTraces.set(hullSeries.getInitialTraces());
-      // this.frames.set(hullSeries.getFrames());
+      this.layout.set(hullSeries.getLayout());
+      this.initialTraces.set(hullSeries.getInitialTraces());
+      this.frames.set(hullSeries.getFrames());
     }
   });
 });

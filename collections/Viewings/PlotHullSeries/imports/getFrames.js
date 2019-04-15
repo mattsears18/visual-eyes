@@ -59,5 +59,6 @@ export default function getFrames(options) {
 
     frames.push(frame);
   }
+  
   return frames;
 }

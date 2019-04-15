@@ -1,4 +1,3 @@
-import hull                 from 'hull.js';
 import gazepoints           from './imports/gazepoints';
 import timestep             from './imports/timestep';
 import coverage             from './imports/coverage';

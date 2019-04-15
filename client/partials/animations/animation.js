@@ -95,10 +95,12 @@ Template.Animation.events({
   },
   'click .end-animation': (e, template) => {
     template.playing.set(false);
-    template.timeOffset.set(0);
-    template.frameIndex.set(template.frameTimes.get().length - 1);
-    template.currentTime.set(template.frameTimes.get()[template.frameIndex.get()]);
-    plotFrame.bind(template)();
+    setTimeout(() => {
+      template.timeOffset.set(0);
+      template.frameIndex.set(template.frameTimes.get().length - 1);
+      template.currentTime.set(template.frameTimes.get()[template.frameIndex.get()]);
+      plotFrame.bind(template)();
+    }, 100);
   },
   'input .slider-animation': (e, template) => {
     template.playing.set(false);

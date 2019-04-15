@@ -1,5 +1,5 @@
 export default function getInitialTraces(options) {
-  let hulls = this.plotHullSeries().hulls();
+  let hulls = this.hulls();
 
   let pointsTrace = {
     name: 'Fixations',
@@ -72,7 +72,7 @@ export default function getInitialTraces(options) {
 
   let name;
 
-  if(this.study().fixationsOnly) {
+  if(this.viewing().study().fixationsOnly) {
     name = 'Last ' + Session.get('fixationTrailLength') + ' Fixations';
   } else {
     name = 'Last ' + Session.get('fixationTrailLength') + ' Gaze Points';

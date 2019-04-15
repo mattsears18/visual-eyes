@@ -1,3 +1,5 @@
+import hull from 'hull.js';
+
 export default function polygon(index) {
   let hullPoints = hull(this.XYToCoordinates(this.gazepoints()), Infinity);
 

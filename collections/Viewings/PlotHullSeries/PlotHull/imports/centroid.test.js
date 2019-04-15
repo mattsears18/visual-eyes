@@ -1,7 +1,7 @@
 require('../../../../factories.test');
 import PlotHull from '../PlotHull';
 
-describe.only('PlotHull.centroid()', () => {
+describe('PlotHull.centroid()', () => {
   it('gets a centroid with no inner points', () => {
     let viewing = Factory.create('viewing', {
       gazepoints: [

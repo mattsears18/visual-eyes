@@ -81,51 +81,34 @@ describe('PlotHull.area()', () => {
     chai.expect(plotHull.area({})).to.equal(5000);
   });
 
-  it('has invalid stimulus dimensions', () => {
-    let stimulus = Factory.create('stimulus', { width: 0, height: 1000 });
+  it('has three unique but colinear points', () => {
     let viewing = Factory.create('viewing', {
-      stimulusId: stimulus._id,
       gazepoints: [
         { x: 100, y: 100, timestamp: 0 },
-        { x: 200, y: 100, timestamp: 1000 },
-        { x: 200, y: 200, timestamp: 2000 },
-        { x: 100, y: 200, timestamp: 3000 },
+        { x: 200, y: 200, timestamp: 1000 },
+        { x: 300, y: 300, timestamp: 2000 },
       ],
     });
 
     let plotHull = new PlotHull({ viewing: viewing });
-    chai.expect(() => { plotHull.area({ normalized: true }) }).to.throw('invalidStimulusDimensions');
+    chai.expect(plotHull.area({})).to.equal(0);
   });
 
-  it('gets an area normalized to the stimulus dimensions', () => {
-    let stimulus = Factory.create('stimulus', { width: 2000, height: 1000 });
+  it('gets the area of a custom set of points', () => {
     let viewing = Factory.create('viewing', {
-      stimulusId: stimulus._id,
       gazepoints: [
-        { x: 100, y: 100, timestamp: 0 },
-        { x: 200, y: 100, timestamp: 1000 },
-        { x: 200, y: 200, timestamp: 2000 },
-        { x: 100, y: 200, timestamp: 3000 },
-      ],
+        { x: 1, y: 1, timestamp: 1000 },
+      ]
     });
-
     let plotHull = new PlotHull({ viewing: viewing });
-    chai.expect(parseFloat(plotHull.area({ normalized: true }).toFixed(3))).to.equal(0.005);
-  });
 
-  it('gets an area normalized to the stimulus dimensions (whole stimulus)', () => {
-    let stimulus = Factory.create('stimulus', { width: 2000, height: 1000 });
-    let viewing = Factory.create('viewing', {
-      stimulusId: stimulus._id,
-      gazepoints: [
-        { x: 0,     y: 0, timestamp: 0 },
-        { x: 2000,  y: 0, timestamp: 1000 },
-        { x: 2000,  y: 1000, timestamp: 2000 },
-        { x: 0,     y: 1000, timestamp: 3000 },
-      ],
-    });
+    let points = [
+      { x: 0,   y: 0 },
+      { x: 300, y: 0 },
+      { x: 300, y: 100 },
+      { x: 0,   y: 100 },
+    ]
 
-    let plotHull = new PlotHull({ viewing: viewing });
-    chai.expect(plotHull.area({ normalized: true })).to.equal(1);
+    chai.expect(plotHull.area({ points: points })).to.equal(30000);
   });
 });

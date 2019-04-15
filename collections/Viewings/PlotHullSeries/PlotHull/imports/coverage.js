@@ -1,6 +1,5 @@
 export default function coverage({
-  points = this.polygon(),
-  normalized = false,
+  points = helpers.distinctPoints(this.polygon({})),
 }) {
-  return 1337;
+  return this.area({ points: points }) / this.viewing().stimulus().area();
 }

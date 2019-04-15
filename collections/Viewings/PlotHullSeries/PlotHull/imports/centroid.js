@@ -1,5 +1,5 @@
 export default function centroid({
-  points = helpers.distinctPoints(this.coordinatesToXY(this.polygon({}))),
+  points = helpers.distinctPoints(this.polygon({})),
 }) {
   if(points.length == 1) return points[0];
   if(points.length == 2) {

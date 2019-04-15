@@ -4,6 +4,7 @@ import gazepoints           from './imports/gazepoints';
 import timestep             from './imports/timestep';
 import coverage             from './imports/coverage';
 import distance             from './imports/distance';
+import azimuth              from './imports/azimuth';
 import velocity             from './imports/velocity';
 import fixationTrail        from './imports/fixationTrail';
 import polygon              from './imports/polygon';
@@ -17,6 +18,7 @@ export default class PlotHull {
   timestep = timestep;
   coverage = coverage;
   distance = distance;
+  azimuth = azimuth;
   velocity = velocity;
   fixationTrail = fixationTrail;
   polygon = polygon;

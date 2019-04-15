@@ -102,4 +102,61 @@ describe('PlotHull - simple methods', () => {
     let plotHull = new PlotHull({ viewing: viewing });
     chai.expect(plotHull.period()).to.equal(3663);
   });
+
+  it('has a lastGazepoint', () => {
+    let viewing = Factory.create('viewing', {
+      gazepoints: [
+        { x: 100, y: 100, timestamp: 1337 },
+        { x: 100, y: 100, timestamp: 2000 },
+        { x: 100, y: 100, timestamp: 3000 },
+        { x: 100, y: 100, timestamp: 4000 },
+        { x: 100, y: 100, timestamp: 5000 },
+      ],
+    });
+
+    let plotHull = new PlotHull({ viewing: viewing });
+    chai.expect(plotHull.lastGazepoint()).to.eql({ x: 100, y: 100, timestamp: 5000 });
+  });
+
+  it('gets the gazepoint times', () => {
+    let viewing = Factory.create('viewing', {
+      gazepoints: [
+        { x: 100, y: 100, timestamp: 1337 },
+        { x: 100, y: 100, timestamp: 2000 },
+        { x: 100, y: 100, timestamp: 3000 },
+        { x: 100, y: 100, timestamp: 4000 },
+        { x: 100, y: 100, timestamp: 5000 },
+      ],
+    });
+
+    let plotHull = new PlotHull({ viewing: viewing });
+    chai.expect(plotHull.gazepointsTime()).to.eql([
+      1337,
+      2000,
+      3000,
+      4000,
+      5000,
+    ]);
+  });
+
+  it('formats the gazepoint times', () => {
+    let viewing = Factory.create('viewing', {
+      gazepoints: [
+        { x: 100, y: 100, timestamp: 1337 },
+        { x: 100, y: 100, timestamp: 2000 },
+        { x: 100, y: 100, timestamp: 3000 },
+        { x: 100, y: 100, timestamp: 4000 },
+        { x: 100, y: 100, timestamp: 5000 },
+      ],
+    });
+
+    let plotHull = new PlotHull({ viewing: viewing });
+    chai.expect(plotHull.gazepointsTimeText()).to.eql([
+      'Time: 1,337ms',
+      'Time: 2,000ms',
+      'Time: 3,000ms',
+      'Time: 4,000ms',
+      'Time: 5,000ms',
+    ]);
+  });
 });

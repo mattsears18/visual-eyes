@@ -1,3 +1,5 @@
+import coordinatesToXY      from './imports/coordinatesToXY';
+import XYToCoordinates      from './imports/XYToCoordinates';
 import gazepoints           from './imports/gazepoints';
 import timestep             from './imports/timestep';
 import coverage             from './imports/coverage';
@@ -5,10 +7,12 @@ import distance             from './imports/distance';
 import velocity             from './imports/velocity';
 import fixationTrail        from './imports/fixationTrail';
 import polygon              from './imports/polygon';
-import coordinatesToXY      from './imports/coordinatesToXY';
-import XYToCoordinates      from './imports/XYToCoordinates';
+import area                 from './imports/area';
+import centroid             from './imports/centroid';
 
 export default class PlotHull {
+  coordinatesToXY = coordinatesToXY;
+  XYToCoordinates = XYToCoordinates;
   gazepoints = gazepoints;
   timestep = timestep;
   coverage = coverage;
@@ -16,8 +20,8 @@ export default class PlotHull {
   velocity = velocity;
   fixationTrail = fixationTrail;
   polygon = polygon;
-  coordinatesToXY = coordinatesToXY;
-  XYToCoordinates = XYToCoordinates;
+  area = area;
+  centroid = centroid;
 
   constructor({
     viewing,
@@ -78,9 +82,5 @@ export default class PlotHull {
     return this.gazepoints().map(function(gazepoint) {
       return 'Time: ' + helpers.formatNumber(gazepoint.timestamp) + 'ms';
     });
-  }
-
-  centroid() {
-    return helpers.centroid(this.coordinatesToXY(this.polygon()));
   }
 }

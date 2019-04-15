@@ -2,13 +2,13 @@ import coordinatesToXY      from './imports/coordinatesToXY';
 import XYToCoordinates      from './imports/XYToCoordinates';
 import gazepoints           from './imports/gazepoints';
 import timeStep             from './imports/timeStep';
-import coverage             from './imports/coverage';
 import distance             from './imports/distance';
 import azimuth              from './imports/azimuth';
 import velocity             from './imports/velocity';
 import fixationTrail        from './imports/fixationTrail';
 import polygon              from './imports/polygon';
 import area                 from './imports/area';
+import coverage             from './imports/coverage';
 import centroid             from './imports/centroid';
 
 export default class PlotHull {
@@ -16,13 +16,13 @@ export default class PlotHull {
   XYToCoordinates = XYToCoordinates;
   gazepoints = gazepoints;
   timeStep = timeStep;
-  coverage = coverage;
   distance = distance;
   azimuth = azimuth;
   velocity = velocity;
   fixationTrail = fixationTrail;
   polygon = polygon;
   area = area;
+  coverage = coverage;
   centroid = centroid;
 
   constructor({

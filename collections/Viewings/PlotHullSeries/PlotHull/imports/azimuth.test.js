@@ -1,7 +1,7 @@
 require('../../../../factories.test');
 import PlotHull from '../PlotHull';
 
-describe.only('PlotHull.azimuth()', () => {
+describe('PlotHull.azimuth()', () => {
   it('has too few points to calculate an azimuth', () => {
     let viewing = Factory.create('viewing', {
       gazepoints: [

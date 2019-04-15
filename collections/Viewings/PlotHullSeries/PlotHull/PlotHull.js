@@ -1,7 +1,7 @@
 import coordinatesToXY      from './imports/coordinatesToXY';
 import XYToCoordinates      from './imports/XYToCoordinates';
 import gazepoints           from './imports/gazepoints';
-import timestep             from './imports/timestep';
+import timeStep             from './imports/timeStep';
 import coverage             from './imports/coverage';
 import distance             from './imports/distance';
 import azimuth              from './imports/azimuth';
@@ -15,7 +15,7 @@ export default class PlotHull {
   coordinatesToXY = coordinatesToXY;
   XYToCoordinates = XYToCoordinates;
   gazepoints = gazepoints;
-  timestep = timestep;
+  timeStep = timeStep;
   coverage = coverage;
   distance = distance;
   azimuth = azimuth;

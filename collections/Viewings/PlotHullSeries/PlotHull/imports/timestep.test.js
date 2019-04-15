@@ -1,8 +1,8 @@
 require('../../../../factories.test');
 import PlotHull from '../PlotHull';
 
-describe('PlotHull.timestep()', () => {
-  it('has too few points to calculate a timestep', () => {
+describe('PlotHull.timeStep()', () => {
+  it('has too few points to calculate a timeStep', () => {
     let viewing = Factory.create('viewing', {
       gazepoints: [
         { x: 100, y: 100, timestamp: 0 },
@@ -10,11 +10,11 @@ describe('PlotHull.timestep()', () => {
     });
 
     let plotHull = new PlotHull({ viewing: viewing });
-    chai.expect(plotHull.timestep()).to.equal(0);
+    chai.expect(plotHull.timeStep()).to.equal(0);
   });
 
 
-  it('gets a timestep', () => {
+  it('gets a timeStep', () => {
     let viewing = Factory.create('viewing', {
       gazepoints: [
         { x: 100, y: 100, timestamp: 0 },
@@ -26,6 +26,6 @@ describe('PlotHull.timestep()', () => {
     });
 
     let plotHull = new PlotHull({ viewing: viewing });
-    chai.expect(plotHull.timestep()).to.equal(500);
+    chai.expect(plotHull.timeStep()).to.equal(500);
   });
 });

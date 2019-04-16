@@ -62,12 +62,12 @@ export default class PlotHull {
     return (this.endTime() - this.startTime());
   }
 
-  coveragePercent() {
-    return (this.coverage() * 100);
+  coveragePercent({ points = helpers.distinctPoints(this.polygon({})) }) {
+    return (this.coverage({ points: points }) * 100);
   }
 
   coverageDuration() {
-    return (this.coverage() * this.duration());
+    return (this.coverage({}) * this.duration());
   }
 
   lastGazepoint() {

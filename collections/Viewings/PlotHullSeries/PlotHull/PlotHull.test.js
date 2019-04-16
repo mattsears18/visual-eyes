@@ -118,6 +118,60 @@ describe('PlotHull - simple methods', () => {
     chai.expect(plotHull.lastGazepoint()).to.eql({ x: 100, y: 100, timestamp: 5000 });
   });
 
+  it('has a coveragePercent', () => {
+    let stimulus = Factory.create('stimulus', { width: 2000, height: 1000 });
+    let viewing = Factory.create('viewing', {
+      stimulusId: stimulus._id,
+      gazepoints: [
+        { x: 100, y: 100, timestamp: 0 },
+        { x: 200, y: 100, timestamp: 1000 },
+        { x: 200, y: 200, timestamp: 2000 },
+        { x: 100, y: 200, timestamp: 3000 },
+      ],
+    });
+
+    let plotHull = new PlotHull({ viewing: viewing });
+    chai.expect(plotHull.coveragePercent({})).to.equal(0.5);
+  });
+
+  it('has a coveragePercent', () => {
+    let stimulus = Factory.create('stimulus', { width: 2000, height: 1000 });
+    let viewing = Factory.create('viewing', {
+      stimulusId: stimulus._id,
+      gazepoints: [
+        { x: 100, y: 100, timestamp: 0 },
+        { x: 200, y: 100, timestamp: 1000 },
+        { x: 200, y: 200, timestamp: 2000 },
+        { x: 100, y: 200, timestamp: 3000 },
+      ],
+    });
+
+    let plotHull = new PlotHull({ viewing: viewing });
+    chai.expect(plotHull.coveragePercent({})).to.equal(0.5);
+  });
+
+  it('has a coverageDuration', () => {
+    let stimulus = Factory.create('stimulus', { width: 2000, height: 1000 });
+    let viewing = Factory.create('viewing', {
+      stimulusId: stimulus._id,
+      gazepoints: [
+        { x: 0,   y: 0,   timestamp: 0 },
+        { x: 100, y: 0,   timestamp: 1000 },
+        { x: 100, y: 100, timestamp: 2000 },
+        { x: 0,   y: 100, timestamp: 3000 },
+        { x: 30,  y: 30,  timestamp: 7000 },
+        { x: 20,  y: 20,  timestamp: 8000 },
+        { x: 50,  y: 50,  timestamp: 10000 },
+        { x: 100, y: 100, timestamp: 12000 },
+        { x: 100, y: 100, timestamp: 14000 },
+      ],
+    });
+
+    chai.expect(new PlotHull({ viewing: viewing, startIndex: 0, endIndex: 1 }).coverageDuration()).to.equal(0);
+    chai.expect(new PlotHull({ viewing: viewing, startIndex: 0, endIndex: 3 }).coverageDuration()).to.equal(20);
+    chai.expect(new PlotHull({ viewing: viewing, startIndex: 0, endIndex: 6 }).coverageDuration()).to.equal(10);
+  });
+
   it('gets the gazepoint times', () => {
     let viewing = Factory.create('viewing', {
       gazepoints: [

@@ -1,7 +1,7 @@
 require('../../../../factories.test');
 import PlotHull from '../PlotHull';
 
-describe.only('PlotHull.coverage()', () => {
+describe('PlotHull.coverage()', () => {
   it('has too few gazepoints', () => {
     let viewing = Factory.create('viewing', {
       gazepoints: [

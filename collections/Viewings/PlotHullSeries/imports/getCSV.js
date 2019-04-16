@@ -2,7 +2,7 @@ const json2csv = require('json2csv').parse;
 
 export default function getCSV() {
   let data = [];
-  let hulls = this.hulls();
+  let hulls = this.getHulls();
 
   hulls.forEach((hull, hi) => {
     let hullData = {

@@ -1,5 +1,5 @@
 export default function getInitialTraces(options) {
-  let hulls = this.hulls();
+  let hulls = this.getHulls();
 
   let pointsTrace = {
     name: 'Fixations',
@@ -16,8 +16,8 @@ export default function getInitialTraces(options) {
 
   let polygonTrace = {
     name: 'Convex Hull',
-    x: hulls[0].polygon(0),
-    y: hulls[0].polygon(1),
+    x: hulls[0].polygon({ which: 'x' }),
+    y: hulls[0].polygon({ which: 'y' }),
     mode: 'lines',
     type: 'scatter',
     line: {
@@ -28,8 +28,8 @@ export default function getInitialTraces(options) {
 
   let centroidTrace = {
     name: 'Centroid',
-    x: [hulls[0].centroid().x],
-    y: [hulls[0].centroid().y],
+    x: [hulls[0].centroid({}).x],
+    y: [hulls[0].centroid({}).y],
     mode: 'markers',
     type: 'scatter',
     marker: {

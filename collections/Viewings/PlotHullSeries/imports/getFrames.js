@@ -1,5 +1,5 @@
 export default function getFrames(options) {
-  let hulls = this.hulls();
+  let hulls = this.getHulls();
 
   let centroids = [];
   let frames = [];
@@ -59,6 +59,6 @@ export default function getFrames(options) {
 
     frames.push(frame);
   }
-  
+
   return frames;
 }

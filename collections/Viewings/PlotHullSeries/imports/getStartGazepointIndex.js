@@ -7,6 +7,8 @@ export default function getStartGazepointIndex(endIndex) {
   let startIndex = endIndex;
   let duration = 0;
 
+  if(this.instantContinuous == 'continuous') return 0;
+
   while (duration <= viewing.period) {
     startIndex--;
     if(gazepoints[startIndex]) {

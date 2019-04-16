@@ -1,6 +1,6 @@
-import PlotHull                 from '../PlotHull/PlotHull';
+import PlotHull from '../PlotHull/PlotHull';
 
-export default function hulls() {
+export default function getHulls() {
   let hulls = [];
 
   if(!this.viewing().gazepoints.length) { return hulls; }

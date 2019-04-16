@@ -1,6 +1,6 @@
 import getEndGazepointIndex     from './imports/getEndGazepointIndex';
 import getStartGazepointIndex   from './imports/getStartGazepointIndex';
-import hulls                    from './imports/hulls';
+import getHulls                 from './imports/getHulls';
 import getAverageCoverage       from './imports/getAverageCoverage';
 import getFrames                from './imports/getFrames';
 import getInitialTraces         from './imports/getInitialTraces';
@@ -11,7 +11,7 @@ import saveCSV                  from './imports/saveCSV';
 export default class PlotHullSeries {
   getEndGazepointIndex = getEndGazepointIndex;
   getStartGazepointIndex = getStartGazepointIndex;
-  hulls = hulls;
+  getHulls = getHulls;
   getAverageCoverage = getAverageCoverage;
   getFrames = getFrames;
   getInitialTraces = getInitialTraces;

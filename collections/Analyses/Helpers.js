@@ -6,8 +6,10 @@ import getViewingAoiIds           from './imports/getViewingAoiIds';
 import makeViewingFromGazepoints  from './imports/makeViewingFromGazepoints';
 import makeViewings               from './imports/makeViewings';
 import updateStatus               from './imports/updateStatus';
-import getDataAsCSV               from './imports/getDataAsCSV';
-import getViewingsDataAsCSV       from './imports/getViewingsDataAsCSV';
+import getCSVParticipants         from './imports/getCSVParticipants';
+import saveCSVParticipants        from './imports/saveCSVParticipants';
+import getCSVViewings             from './imports/getCSVViewings';
+import saveCSVViewings            from './imports/saveCSVViewings';
 import allViewingsCreated         from './imports/allViewingsCreated';
 import allViewingsProcessed       from './imports/allViewingsProcessed';
 
@@ -19,8 +21,10 @@ Analyses.helpers({
   makeViewingFromGazepoints,
   makeViewings,
   updateStatus,
-  getDataAsCSV,
-  getViewingsDataAsCSV,
+  getCSVParticipants,
+  saveCSVParticipants,
+  getCSVViewings,
+  saveCSVViewings,
   allViewingsCreated,
   allViewingsProcessed,
 

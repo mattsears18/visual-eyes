@@ -91,10 +91,12 @@ Template.Analysis.helpers({
 
 Template.Analysis.events({
   'click .download-as-csv':function(){
-    Meteor.call('analyses.saveCSV', { analysisId: FlowRouter.getParam('analysisId') });
+    let analysis = Analyses.findOne();
+    analysis.saveCSVParticipants();
   },
   'click .download-viewings-as-csv':function(e, template){
-    Meteor.call('analyses.saveViewingsCSV', { analysisId: FlowRouter.getParam('analysisId') });
+    let analysis = Analyses.findOne();
+    analysis.saveCSVViewings();
   },
   'click .reprocess-analysis': function() {
     let analysis = Analyses.findOne({ _id: FlowRouter.getParam('analysisId') });

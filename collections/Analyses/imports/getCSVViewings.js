@@ -1,10 +1,8 @@
 import { jStat } from 'jStat';
 
-export default function getDataAsCSV() {
+export default function getCSVViewings() {
   let analysis = this;
   let viewings = Viewings.find({ 'analysisId' : analysis._id}).fetch();
-
-  console.log(viewings);
 
   let data = [];
 
@@ -29,7 +27,7 @@ export default function getDataAsCSV() {
       gazepointFrequency: viewing.gazepointFrequency,
       fixationCount: viewing.fixationCount,
       fixationFrequency: viewing.fixationFrequency,
-      fixationProportion: viewing.fixationProportion(),
+      fixationProportion: '',
       slideHullCount: '',
       firstHullStartTime: '',
       lastHullEndTime: '',

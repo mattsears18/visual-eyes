@@ -18,6 +18,7 @@ export default function getCSV() {
       stimulusWidth: hull.viewing().stimulus().width,
       stimulusHeight: hull.viewing().stimulus().height,
       stimulusArea: hull.viewing().stimulus().area(),
+      hullNumber: hi + 1,
       period: this.viewing().analysis().period,
       startIndex: hull.startIndex,
       endIndex: hull.endIndex,

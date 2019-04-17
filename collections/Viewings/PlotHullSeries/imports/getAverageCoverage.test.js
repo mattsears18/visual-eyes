@@ -1,6 +1,6 @@
 require('../../../factories.test');
 
-describe.only('PlotHull.getAverageCoverage()', () => {
+describe('PlotHull.getAverageCoverage()', () => {
   it('gets the average coverage', () => {
     let stimulus = Factory.create('stimulus', { width: 1000, height: 1000 });
     let viewing = Factory.create('viewing', {

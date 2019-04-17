@@ -1,10 +1,10 @@
 export default function removeHeaders() {
-  console.log('remove datafile headers');
+  // console.log('remove datafile headers');
 
   let data = fs.readFileSync(this.path, 'utf-8');
   let lines = data.toString().split("\n");
   if(lines[0].substr(0, 6) == '#Study') {
-    console.log('Has iMotions header. Remove it.');
+    // console.log('Has iMotions header. Remove it.');
 
     // Remove top 5 lines
     let dataNoHeader = lines.slice(5).join('\n');
@@ -16,7 +16,7 @@ export default function removeHeaders() {
     Datafiles.update({ _id: this._id }, { $set: { headersRemoved: true, fileFormat: 'imotions' }});
   } else {
     if(lines[0].substr(0, 11) == '## [BeGaze]') {
-      console.log('Has BeGaze header. Remove it.');
+      // console.log('Has BeGaze header. Remove it.');
 
       // Remove top 4 lines
       let dataNoHeader = lines.slice(4).join('\n');
@@ -27,7 +27,7 @@ export default function removeHeaders() {
 
       Datafiles.update({ _id: this._id }, { $set: { headersRemoved: true, fileFormat: 'smi' }});
     } else {
-      console.log('Does not have iMotions header or BeGaze header. Assume it has no header at all...');
+      // console.log('Does not have iMotions header or BeGaze header. Assume it has no header at all...');
       this.headersRemoved = true;
       Datafiles.update({ _id: this._id }, { $set: { headersRemoved: true }});
     }

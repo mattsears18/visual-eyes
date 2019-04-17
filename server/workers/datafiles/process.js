@@ -23,7 +23,7 @@ export default queueDatafilesProcess = Jobs.processJobs('datafiles.process',
         }
       }
     }
-    console.log('callback()');
+
     console.log('check if all datafiles processed. if so, reprocess analyses');
     callback();
   },

@@ -28,7 +28,8 @@ Template.AnalysesList.events({
     study.reprocessAnalyses();
   },
   'click .download-as-csv':function(){
-    Meteor.call('studies.saveCSVs', { studyId: FlowRouter.getParam('studyId') });
+    let study = Studies.findOne();
+    study.saveCSVs();
   },
 });
 

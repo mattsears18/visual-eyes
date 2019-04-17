@@ -14,7 +14,7 @@ export default function saveCSVParticipants() {
 
   if(Meteor.isClient) {
     // Set default file name for organizing later
-    let nameFile = this.study().name + ' - p' + this.period + 'vg' + this.viewingGap + 'mvt' + this.minViewingTime;
+    let nameFile = this.study().name + ' - p' + this.period + 'vg' + this.viewingGap + 'mvt' + this.minViewingTime + ' - Participants';
     var blob = new Blob([csvContent], {type: "text/csv;charset=utf-8"});
     // Save file to user's disk
     FileSaver.saveAs(blob, nameFile);

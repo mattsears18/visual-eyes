@@ -126,6 +126,41 @@ Factory.define('stimulus', Stimuli, {
 });
 
 
+Factory.define('stimulusfile', Stimulusfiles.collection, {
+  studyId: () => Factory.create('study')._id,
+  size: faker.random.number(),
+  type: 'image/png',
+  name: () => faker.lorem.words(),
+  ext: 'png',
+  extension: 'png',
+  extensionWithDot: '.png',
+  mime: 'image/png',
+  userId: '',
+  _downloadRoute : '/cdn/storage',
+  _collectionName : 'Stimulusfiles',
+  isVideo : false,
+  isAudio : false,
+  isImage : true,
+  isText : false,
+  isJSON : false,
+  isPDF : false,
+  public : false,
+  stimulusId: () => Factory.create('stimulus')._id,
+  fileWidth: () => 1222, //faker.random.number({min: 100, max: 3000}),
+  fileHeight: () => 855, //faker.random.number({min: 100, max: 3000}),
+  path: '/Users/mattsears/code/VisualEyes/testFiles/stimulusfiles/DWG01.png',
+  versions : {
+    original : {
+        path : '/Users/mattsears/code/VisualEyes/testFiles/stimulusfiles/DWG01.png',
+        size : 185427,
+        type : 'image/png',
+        extension : 'png'
+    }
+  },
+  _storagePath : '/Users/mattsears/code/VisualEyes/testFiles/stimulusfiles/',
+});
+
+
 Factory.define('aoi', Aois, {
   name: () => faker.lorem.words(),
   studyId: () => Factory.create('study')._id,

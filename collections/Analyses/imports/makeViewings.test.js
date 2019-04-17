@@ -97,5 +97,5 @@ describe('Analyses.makeViewings()', () => {
     chai.expect(viewings[1].endTime).to.equal(23000);
     chai.expect(viewings[1].number).to.equal(2);
 
-  }).timeout(20000);
+  }).timeout(60000);
 });

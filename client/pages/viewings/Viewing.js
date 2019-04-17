@@ -35,8 +35,8 @@ Template.Viewing.onCreated(function() {
       });
 
       this.layout.set(hullSeries.getLayout());
-      this.initialTraces.set(hullSeries.getInitialTraces());
-      this.frames.set(hullSeries.getFrames());
+      this.initialTraces.set(hullSeries.getTraces({ initial: true }));
+      this.frames.set(hullSeries.getTraces({}));
     }
   });
 });

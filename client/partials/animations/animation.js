@@ -73,49 +73,56 @@ Template.Animation.events({
     template.timeOffset.set(0);
   },
   'click .step-backward-animation': (e, template) => {
+    let index = Math.max(template.frameIndex.get() - 1, 0);
     template.playing.set(false);
     template.timeOffset.set(0);
-    template.frameIndex.set(Math.max(template.frameIndex.get() - 1, 0));
-    template.currentTime.set(template.frameTimes.get()[template.frameIndex.get()]);
-    plotFrame.bind(template)();
+    template.frameIndex.set(index);
+    template.currentTime.set(template.frameTimes.get()[index]);
+    plotFrame.bind(template)(index);
   },
   'click .beginning-animation': (e, template) => {
+    let index = 0;
     template.playing.set(false);
     template.timeOffset.set(0);
-    template.frameIndex.set(0);
-    template.currentTime.set(template.frameTimes.get()[template.frameIndex.get()]);
-    plotFrame.bind(template)();
+    template.frameIndex.set(index);
+    template.currentTime.set(template.frameTimes.get()[index]);
+    plotFrame.bind(template)(index);
   },
   'click .step-forward-animation': (e, template) => {
+    let index = Math.min(template.frameIndex.get() + 1, template.frameTimes.get().length - 1);
     template.playing.set(false);
     template.timeOffset.set(0);
-    template.frameIndex.set(Math.min(template.frameIndex.get() + 1, template.frameTimes.get().length - 1));
-    template.currentTime.set(template.frameTimes.get()[template.frameIndex.get()]);
-    plotFrame.bind(template)();
+    template.frameIndex.set(index);
+    template.currentTime.set(template.frameTimes.get()[index]);
+    plotFrame.bind(template)(index);
   },
   'click .end-animation': (e, template) => {
-    template.playing.set(false);
-    setTimeout(() => {
-      template.timeOffset.set(0);
-      template.frameIndex.set(template.frameTimes.get().length - 1);
-      template.currentTime.set(template.frameTimes.get()[template.frameIndex.get()]);
-      plotFrame.bind(template)();
-    }, 100);
-  },
-  'input .slider-animation': (e, template) => {
+    let index = template.frameTimes.get().length - 1;
     template.playing.set(false);
     template.timeOffset.set(0);
-    template.frameIndex.set(Math.max(parseInt(template.frameTimes.get().length * e.target.value / 100) - 1, 0));
-    template.currentTime.set(template.frameTimes.get()[template.frameIndex.get()]);
-    plotFrame.bind(template)();
+    template.frameIndex.set(index);
+    template.currentTime.set(template.frameTimes.get()[index]);
+    plotFrame.bind(template)(index);
+  },
+  'input .slider-animation': (e, template) => {
+    let index = Math.max(parseInt(template.frameTimes.get().length * e.target.value / 100) - 1, 0);
+    template.playing.set(false);
+    template.timeOffset.set(0);
+    template.frameIndex.set(index);
+    template.currentTime.set(template.frameTimes.get()[index]);
+    plotFrame.bind(template)(index);
   },
 });
 
 function playAnimation(timestamp) {
-  if(this.frameIndex.get() == this.frameTimes.get().length - 1) {
-    // reached the end, start coverage
-    this.frameIndex.set(0);
+  if(this.playing.get()) {
+    if(this.frameIndex.get() == this.frameTimes.get().length - 1) {
+      // reached the end, start over
+      this.frameIndex.set(0);
+      plotFrame.bind(this)(0);
+    }
   }
+
   if(this.timeOffset.get() == 0) {
     this.timeOffset.set(this.frameTimes.get()[this.frameIndex.get()] - timestamp);
   }
@@ -143,11 +150,11 @@ function playAnimation(timestamp) {
   }
 }
 
-function plotFrame() {
-  // console.log('plot frame: ' + this.frameIndex.get());
-  // console.log(this.data.frames[this.frameIndex.get()]);
+function plotFrame(index) {
+  if(typeof(index) == 'undefined') { index = this.frameIndex.get() }
+
   Plotly.animate('PlotArea', {
-    data: this.data.frames[this.frameIndex.get()].data
+    data: this.data.frames[index].data
   }, {
     transition: {
       duration: 0

@@ -24,7 +24,7 @@ if(Meteor.isServer) {
       let participant = Participants.findOne({ _id: datafile.participantId });
 
       chai.expect(participant.datafileIds).to.eql([datafile._id]);
-    }).timeout(20000);
+    }).timeout(60000);
 
     it('creates one participant from two datafiles', async () => {
       let study = Factory.create('study');
@@ -38,6 +38,6 @@ if(Meteor.isServer) {
 
       chai.expect(datafile1.participantId).to.equal(datafile2.participantId);
       chai.expect(participant.datafileIds).to.eql([datafile1._id, datafile2._id]);
-    }).timeout(20000);
-  });  
+    }).timeout(60000);
+  });
 }

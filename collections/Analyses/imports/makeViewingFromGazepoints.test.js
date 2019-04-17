@@ -146,5 +146,5 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
     chai.expect(viewing.fixationCount).to.equal(2);
     chai.expect(viewing.fixationFrequency).to.equal(0.5);
 
-  }).timeout(20000);
+  }).timeout(60000);
 });

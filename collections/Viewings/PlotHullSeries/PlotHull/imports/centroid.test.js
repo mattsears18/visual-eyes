@@ -80,4 +80,18 @@ describe('PlotHull.centroid()', () => {
     let plotHull = new PlotHull({ viewing: viewing });
     chai.expect(plotHull.centroid({})).to.eql({ x: 50, y: 100 });
   });
+
+  it('gets a single coordinate of the centroid', () => {
+    let viewing = Factory.create('viewing', {
+      gazepoints: [
+        { x: 0, y: 0, timestamp: 0 },
+        { x: 100, y: 0, timestamp: 1000 },
+        { x: 50, y: 300, timestamp: 2000 },
+      ],
+    });
+
+    let plotHull = new PlotHull({ viewing: viewing });
+    chai.expect(plotHull.centroid({ which: 'x' })).to.eql(50);
+    chai.expect(plotHull.centroid({ which: 'y' })).to.eql(100);
+  });
 });

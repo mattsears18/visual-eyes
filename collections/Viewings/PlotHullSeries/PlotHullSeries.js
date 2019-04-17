@@ -2,29 +2,31 @@ import getEndGazepointIndex     from './imports/getEndGazepointIndex';
 import getStartGazepointIndex   from './imports/getStartGazepointIndex';
 import getHulls                 from './imports/getHulls';
 import getAverageCoverage       from './imports/getAverageCoverage';
-import getFrames                from './imports/getFrames';
-import getInitialTraces         from './imports/getInitialTraces';
+import getTraces                from './imports/getTraces';
 import getLayout                from './imports/getLayout';
 import getCSV                   from './imports/getCSV';
 import saveCSV                  from './imports/saveCSV';
+import getCentroids             from './imports/getCentroids';
+import getCentroidTrailTrace    from './imports/getCentroidTrailTrace';
 
 export default class PlotHullSeries {
   getEndGazepointIndex = getEndGazepointIndex;
   getStartGazepointIndex = getStartGazepointIndex;
   getHulls = getHulls;
   getAverageCoverage = getAverageCoverage;
-  getFrames = getFrames;
-  getInitialTraces = getInitialTraces;
+  getTraces = getTraces;
   getLayout = getLayout;
   getCSV = getCSV;
   saveCSV = saveCSV;
+  getCentroids = getCentroids;
+  getCentroidTrailTrace = getCentroidTrailTrace;
 
   constructor({
     viewing,
     instantContinuous = 'instant',
     slideStep,
     centroidPeriod,
-    fixationTrailLength,
+    fixationTrailLength = 40,
   }) {
     if(!viewing) { throw new Error('noViewing') }
     if(!viewing.gazepoints.length) { throw new Error('noGazepoints') }

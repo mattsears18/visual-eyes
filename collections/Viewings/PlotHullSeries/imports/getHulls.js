@@ -9,6 +9,7 @@ export default function getHulls() {
 
   let firstHull = new PlotHull({
     viewing: this.viewing(),
+    fixationTrailLength: this.fixationTrailLength,
     startIndex: 0,
     endIndex: firstHullEndIndex
   });
@@ -19,6 +20,7 @@ export default function getHulls() {
     let startIndex = this.getStartGazepointIndex(endIndex);
     let h = new PlotHull({
       viewing: this.viewing(),
+      fixationTrailLength: this.fixationTrailLength,
       startIndex: startIndex,
       endIndex: endIndex,
     });

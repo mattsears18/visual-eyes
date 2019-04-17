@@ -1,15 +1,20 @@
-import coordinatesToXY      from './imports/coordinatesToXY';
-import XYToCoordinates      from './imports/XYToCoordinates';
-import gazepoints           from './imports/gazepoints';
-import timeStep             from './imports/timeStep';
-import distance             from './imports/distance';
-import azimuth              from './imports/azimuth';
-import velocity             from './imports/velocity';
-import fixationTrail        from './imports/fixationTrail';
-import polygon              from './imports/polygon';
-import area                 from './imports/area';
-import coverage             from './imports/coverage';
-import centroid             from './imports/centroid';
+import coordinatesToXY            from './imports/coordinatesToXY';
+import XYToCoordinates            from './imports/XYToCoordinates';
+import gazepoints                 from './imports/gazepoints';
+import timeStep                   from './imports/timeStep';
+import distance                   from './imports/distance';
+import azimuth                    from './imports/azimuth';
+import velocity                   from './imports/velocity';
+import fixationTrail              from './imports/fixationTrail';
+import polygon                    from './imports/polygon';
+import area                       from './imports/area';
+import coverage                   from './imports/coverage';
+import centroid                   from './imports/centroid';
+import getPointsTrace             from './imports/getPointsTrace';
+import getLastPointTrailTrace     from './imports/getLastPointTrailTrace';
+import getCentroidTrace           from './imports/getCentroidTrace';
+import getPolygonTrace            from './imports/getPolygonTrace';
+import getLastPointTrace          from './imports/getLastPointTrace';
 
 export default class PlotHull {
   coordinatesToXY = coordinatesToXY;
@@ -24,9 +29,15 @@ export default class PlotHull {
   area = area;
   coverage = coverage;
   centroid = centroid;
+  getPointsTrace = getPointsTrace;
+  getLastPointTrailTrace = getLastPointTrailTrace;
+  getCentroidTrace = getCentroidTrace;
+  getPolygonTrace = getPolygonTrace;
+  getLastPointTrace = getLastPointTrace;
 
   constructor({
     viewing,
+    fixationTrailLength,
     startIndex = 0,
     endIndex,
   }) {
@@ -38,6 +49,7 @@ export default class PlotHull {
     }
 
     this.viewing = () => { return viewing; };
+    this.fixationTrailLength = fixationTrailLength;
     this.startIndex = startIndex;
     this.endIndex = endIndex;
 

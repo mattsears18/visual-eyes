@@ -37,22 +37,22 @@ export default function getCSV() {
       velocity: hull.velocity(),
       velocityX: hull.velocity('x'),
       velocityY: hull.velocity('y'),
-      centroidX: hull.centroid().x,
-      centroidY: hull.centroid().y,
+      centroidX: hull.centroid({}).x,
+      centroidY: hull.centroid({}).y,
       centroidDistance: 0,
       centroidDistanceX: 0,
       centroidDistanceY: 0,
       centroidVelocity: 0,
       centroidVelocityX: 0,
       centroidVelocityY: 0,
-      coverage: hull.coverage(),
+      coverage: hull.coverage({}),
       coverageDuration: hull.coverageDuration(),
       averageCoverage: this.viewing().averageSlideHullCoverage,
     }
 
     if(hi > 0) {
-      hullData.centroidDistanceX = (hulls[hi].centroid().x - hulls[hi - 1].centroid().x);
-      hullData.centroidDistanceY = (hulls[hi].centroid().y - hulls[hi - 1].centroid().y);
+      hullData.centroidDistanceX = (hulls[hi].centroid({}).x - hulls[hi - 1].centroid({}).x);
+      hullData.centroidDistanceY = (hulls[hi].centroid({}).y - hulls[hi - 1].centroid({}).y);
       hullData.centroidDistance = Math.sqrt(hullData.centroidDistanceX * hullData.centroidDistanceX + hullData.centroidDistanceY * hullData.centroidDistanceY)
       if(hullData.timeStep > 0 && hullData.centroidDistance > 0) {
         hullData.centroidVelocity = (hullData.centroidDistance / hullData.timeStep);

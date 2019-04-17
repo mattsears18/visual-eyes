@@ -11,6 +11,6 @@ if(Meteor.isServer) {
 
       chai.expect(dbDatafile.gazepointCount).to.exist;
       chai.expect(dbDatafile.fixationCount).to.exist;
-    }).timeout(20000);
+    }).timeout(60000);
   });
 }

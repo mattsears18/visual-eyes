@@ -2,8 +2,8 @@ import helpers from '../../../lib/helpers';
 const csv = require('csvtojson');
 
 export default async function process() {
-  console.log('================================================================================');
-  console.log('datafiles.process - datafileId: ' + this._id);
+  // console.log('================================================================================');
+  // console.log('datafiles.process - datafileId: ' + this._id);
 
   this.status = 'needsProcessing';
   delete this.headersRemoved;
@@ -29,16 +29,16 @@ export default async function process() {
     throw new Error('noStudy');
   }
 
-  console.log('remove any old gazepoints');
+  // console.log('remove any old gazepoints');
   Gazepoints.remove({ datafileId: this._id });
 
-  console.log('pull datafileId from any old stimuli');
+  // console.log('pull datafileId from any old stimuli');
   Stimuli.update({},
     { $pull: { datafileIds: this._id }},
     { multi: true }
   );
 
-  console.log('pull datafileId from any old participants');
+  // console.log('pull datafileId from any old participants');
   Participants.update({},
     { $pull: { datafileIds: this._id }},
     { multi: true }
@@ -66,7 +66,7 @@ export default async function process() {
   Datafiles.update({ _id: this._id }, { $set: { status: 'processing' }});
 
   let gazepoints = await this.makeGazepoints({ saveStats: true });
-  console.log('made ' + helpers.formatNumber(gazepoints.count()) + ' gazepoints');
+  // console.log('made ' + helpers.formatNumber(gazepoints.count()) + ' gazepoints');
 
   this.status = 'processed';
   Datafiles.update({ _id: this._id }, { $set: { status: 'processed' }});

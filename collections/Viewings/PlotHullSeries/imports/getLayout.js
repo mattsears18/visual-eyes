@@ -6,11 +6,11 @@ export default function getLayout(options) {
   return {
     xaxis: {
       range: [0, this.viewing().stimulus().width],
-      showticklabels: false,
+      showticklabels: true,
     },
     yaxis: {
       range: [0, this.viewing().stimulus().height],
-      showticklabels: false,
+      showticklabels: true,
     },
     height: forceHeight + margin.b + margin.t,
     width: (this.viewing().stimulus().stimulusfile().fileWidth * scale) + margin.l + margin.r + 146,

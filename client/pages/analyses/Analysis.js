@@ -28,12 +28,9 @@ Template.Analysis.onCreated(function() {
 
     let analysis = Analyses.findOne({});
     if(analysis && analysis.status == 'processing') {
-      console.log('subscribe');
       self.subscribe('jobs.byAnalysisId', analysisId);
-    } else {
-      console.log('do not subscribe');
     }
-
+    
     if(self.subscriptionsReady()) { updateSelectors(self); }
   });
 });

@@ -33,6 +33,35 @@ Meteor.publish('viewings.byAnalysisId', (analysisId) => {
   );
 });
 
+Meteor.publish('viewings.simple.byAnalysisId', (analysisId) => {
+  check(analysisId, String);
+  return Viewings.find({ analysisId: analysisId },
+    {
+      fields: {
+        stimulusId: 1,
+        participantId: 1,
+        number: 1,
+      }
+    }
+  );
+});
+
+Meteor.publish('viewings.simple.byParams', (params) => {
+  return Viewings.find(params,
+    {
+      fields: {
+        stimulusId: 1,
+        participantId: 1,
+        number: 1,
+      }
+    }
+  );
+});
+
+Meteor.publish('viewings.byParams.withGazepoints', (params) => {
+  return Viewings.find(params);
+});
+
 Meteor.publish('viewings.byAnalysisIdWithGazepoints', (analysisId) => {
   check(analysisId, String);
   return Viewings.find({ analysisId: analysisId });

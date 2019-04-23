@@ -4,10 +4,10 @@ Viewings.before.insert(function (userId, doc) {
   doc.createdAt = new Date;
 });
 
-Viewings.after.insert(function(userId, doc) {
-  let viewing = Viewings.findOne({ _id: doc._id });
-  viewing.makeHullJobs();
-});
+// Viewings.after.insert(function(userId, doc) {
+//   let viewing = Viewings.findOne({ _id: doc._id });
+//   viewing.makeHullJobs();
+// });
 
 Viewings.after.remove(function(userId, viewing) {
   if(Meteor.isServer) {

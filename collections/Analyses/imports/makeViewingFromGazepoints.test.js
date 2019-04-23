@@ -93,7 +93,7 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
   });
 
   it('successfully makes a viewing', async () => {
-    let analysis = Factory.create('analysis', { period: 1337 });
+    let analysis = Factory.create('analysis');
     let participant = Factory.create('participant');
     let stimulus = Factory.create('stimulus');
     let points = [
@@ -123,7 +123,6 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
     let viewing = Viewings.findOne({ _id: viewingId });
 
     chai.expect(viewing.analysisId).to.equal(analysis._id);
-    chai.expect(viewing.period).to.equal(1337);
     chai.expect(viewing.startTime).to.equal(2000);
     chai.expect(viewing.endTime).to.equal(6000);
     chai.expect(viewing.duration).to.equal(4000);
@@ -131,7 +130,7 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
     chai.expect(viewing.participantId).to.equal(participant._id);
     chai.expect(viewing.stimulusId).to.equal(stimulus._id);
     chai.expect(viewing.aoiIds.length).to.equal(0);
-    chai.expect(viewing.status).to.equal('processing');
+    chai.expect(viewing.status).to.equal('processed');
 
     chai.expect(viewing.gazepoints).to.eql([
       { x: 0.5, y: 0.5, timestamp: 2000, fixationIndex: 1 },

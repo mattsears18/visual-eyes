@@ -102,7 +102,6 @@ Factory.define('analysis', Analyses, {
   studyId: () => Factory.create('study')._id,
   name: () => faker.lorem.words(),
   desc: () => faker.lorem.paragraph(),
-  period: 5000,
   viewingGap: 5000,
   minViewingTime: 10000,
   ignoreOutsideImage: () => faker.boolean,
@@ -186,7 +185,6 @@ Factory.define('viewing', Viewings, {
   participantId: () => Factory.create('participant')._id,
   stimulusId: () => Factory.create('stimulus')._id,
   number: () => faker.random.number({ min: 1, max: 10 }),
-  period: () => 5000,
   aoiIds: [],
   gazepoints: [],
 });
@@ -222,7 +220,6 @@ Factory.define('viewingWithGazepoints', Viewings, {
   participantId: participant._id,
   stimulusId: stimulus._id,
   number: () => faker.random.number({ min: 1, max: 10 }),
-  period: 5000,
   aoiIds: [aoi._id],
   gazepoints: gazepoints,
 });

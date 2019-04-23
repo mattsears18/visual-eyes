@@ -1,17 +1,14 @@
 import Jobs                     from '../Jobs/Jobs';
-import PlotHullSeries           from './PlotHullSeries/PlotHullSeries';
 import makeHullJobs             from './imports/makeHullJobs';
-import saveAverageHullCoverage  from './imports/saveAverageHullCoverage';
 import updateStatus             from './imports/updateStatus';
+import getHullseries            from './imports/getHullseries';
+import getNextViewingId         from './imports/getNextViewingId';
 
 Viewings.helpers({
   makeHullJobs,
-  saveAverageHullCoverage,
   updateStatus,
-
-  plotHullSeries(params) {
-    return new PlotHullSeries({ viewing: this, ...params });
-  },
+  getHullseries,
+  getNextViewingId,
 
   hasPermission(action) {
     check(action, String);

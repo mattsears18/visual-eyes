@@ -43,9 +43,6 @@ Schemas.Viewing = new SimpleSchema({
     type: Number,
     label: 'Number',
   },
-  period: {
-    type: Number,
-  },
   aoiIds: {
     type: Array,
   },

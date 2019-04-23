@@ -28,7 +28,6 @@ Analyses.after.update(function(userId, analysis, fieldNames, modifier, options) 
     if(
       this.previous.ignoreOutsideImage  != analysis.ignoreOutsideImage ||
       this.previous.minViewingTime      != analysis.minViewingTime ||
-      this.previous.period              != analysis.period ||
       this.previous.viewingGap          != analysis.viewingGap ||
       (! helpers.arraysEqual(this.previous.stimulusIds, analysis.stimulusIds)) ||
       (! helpers.arraysEqual(this.previous.participantIds, analysis.participantIds))

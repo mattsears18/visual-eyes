@@ -1,105 +1,17 @@
 <template name="Viewing">
-  {{#if Template.subscriptionsReady}}
-    {{#if $.Session.get 'updateViewing'}}
-      {{> UpdateViewing viewing=viewing}}
+  {{#if hullseries}}
+    {{json hullseries}}
+
+    {{#if equals hullseries.status 'processed'}}
+      show me an animation!
     {{else}}
-      <h3 class="m-t-0">Viewing #{{viewing.number}}</h3>
-      <p>
-        <div>
-          <strong>Participant:</strong>
-          <a href="/studies/{{viewing.studyId}}/participants/{{viewing.participant._id}}">{{viewing.participantName}}</a>
-        </div>
-        <div>
-          <strong>Stimulus:</strong>
-          <a href="/studies/{{viewing.studyId}}/stimuli/{{viewing.stimulus._id}}">{{viewing.stimulus.name}}</a> ({{viewing.stimulus.width}} x {{viewing.stimulus.height}})
-        </div>
-        <div>
-          <strong>Period (ms):</strong>
-          {{#if viewing.analysis}}
-            {{formatNumber viewing.analysis.period}}
-          {{/if}}
-        </div>
-        <div>
-          <strong>Start Time (ms): </strong>
-          {{#if viewing.duration}}
-            {{formatNumber viewing.startTime}}
-          {{/if}}
-        </div>
-        <div>
-          <strong>End Time (ms): </strong>
-          {{#if viewing.duration}}
-            {{formatNumber viewing.endTime}}
-          {{/if}}
-        </div>
-        <div>
-          <strong>Duration (HH:MM:SS.MS): </strong>
-          {{#if viewing.duration}}
-            {{millisecondsToHMSMS viewing.duration}}
-          {{/if}}
-        </div>
-        <div>
-          <strong>Average Convex Hull Coverage (Slide Method): </strong>
-          {{#if viewing.averageSlideHullCoverage}}
-            {{decimalToPercent viewing.averageSlideHullCoverage}}%
-          {{/if}}
-        </div>
-      </p>
-
-      <form>
-        {{#if instantContinuousVisible}}
-          <div id="instantContinuousGroup" class="form-group">
-            <label for="instantContinuous">Instantaneous/Continuous
-              <a href="">
-                <span class="glyphicon glyphicon-question-sign"></span>
-              </a>
-            </label>
-            <select class="form-control" id="instantContinuous">
-              <option value="instantaneous">Instantaneous</option>
-              <option value="continuous">Continuous</option>
-            </select>
-          </div>
-        {{/if}}
-
-        {{#if slideStepVisible}}
-          <div id="slideStepGroup" class="form-group">
-            <label for="slideStep">Slide/Step
-              <a href="">
-                <span class="glyphicon glyphicon-question-sign"></span>
-              </a>
-            </label>
-            <select class="form-control" id="slideStep">
-              <option value="slide">Slide</option>
-              <option value="step">Step</option>
-            </select>
-          </div>
-        {{/if}}
-
-        {{#if centroidPeriodVisible}}
-          <div id="centroidPeriodGroup" class="form-group">
-            <label for="centroidPeriod">Centroid Period (ms)
-              <a href="">
-                <span class="glyphicon glyphicon-question-sign"></span>
-              </a>
-            </label>
-            <input class="form-control" type="text" placeholder="Centroid Period" id="centroidPeriod" value="{{$.Session.get 'centroidPeriod'}}">
-          </div>
-        {{/if}}
-
-        {{#if fixationTrailLengthVisible}}
-          <div id="fixationTrailLengthGroup" class="form-group">
-            <label for="fixationTrailLength">Point Trail Length
-              <a href="">
-                <span class="glyphicon glyphicon-question-sign"></span>
-              </a>
-            </label>
-            <input class="form-control" type="text" placeholder="Fixation Trail Length" id="fixationTrailLength" value="{{$.Session.get 'fixationTrailLength'}}">
-          </div>
-        {{/if}}
-      </form>
-
-      {{#if animationVisible}}
-        {{> Animation layout=layout initialTraces=initialTraces frames=frames}}
-      {{/if}}
+      {{> Spinner}}
     {{/if}}
+
+    <!-- {{> Animation layout=layout initialTraces=initialTraces frames=frames}} -->
+  {{else}}
+    <div class="text-center">
+      <button class="btn btn-lg btn-primary m-t-100 generate-animation">Generate Animation!</button>
+    </div>
   {{/if}}
 </template>

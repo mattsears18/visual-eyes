@@ -45,7 +45,7 @@ export default function makeViewingFromGazepoints({
   }
 
   let analysis = this;
-  let status = 'processing';
+  let status = 'processed';
 
   if(!stimulus.width || !stimulus.height) {
     status = 'invalidStimulusDimensions';
@@ -54,7 +54,6 @@ export default function makeViewingFromGazepoints({
   return Viewings.insert({
     studyId: this.studyId,
     analysisId: analysis._id,
-    period: this.period,
     participantId: participantId,
     stimulusId: stimulusId,
     aoiIds: this.getViewingAoiIds(pointsFull),

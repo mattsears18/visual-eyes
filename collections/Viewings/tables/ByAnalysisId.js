@@ -16,7 +16,6 @@ new Tabular.Table({
     'stimulusId',
     'analysisId',
     'status',
-    'averageSlideHullCoverage',
   ],
   columns: [
     {
@@ -46,7 +45,7 @@ new Tabular.Table({
       title: 'Viewing Number',
       render: function(data, type, row, meta) {
         if(data) {
-          return `<a href="/studies/${row.studyId}/viewings/${row._id}">${data}</a>`;
+          return `<a href="/studies/${row.studyId}/analyses/${row.analysisId}/${row.participantId}/${row.stimulusId}/${row.number}">${data}</a>`;
         }
       },
     },
@@ -68,18 +67,7 @@ new Tabular.Table({
       title: 'Duration',
       render: function(data, type, row, meta) {
         if(data) {
-          return `<a href="/studies/${row.studyId}/viewings/${row._id}">${helpers.millisecondsToHMSMS(data)}</a>`;
-        }
-      },
-    },
-    {
-      data: {
-        _: 'averageSlideHullCoverage',
-      },
-      title: 'Average Convex Hull Coverage (Slide Method)',
-      render: function(data, type, row, meta) {
-        if(data) {
-          return `<a href="/studies/${row.studyId}/viewings/${row._id}">${helpers.formatNumber(data * 100)}%</a>`;
+          return `<a href="/studies/${row.studyId}/analyses/${row.analysisId}/${row.participantId}/${row.stimulusId}/${row.number}">${helpers.millisecondsToHMSMS(data)}</a>`;
         }
       },
     },

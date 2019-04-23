@@ -39,11 +39,15 @@
     "papaparse": "^4.6.3",
     "plotly.js-dist": "^1.43.2",
     "popper.js": "^1.14.6",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "regression": "^2.0.1",
     "select2": "^4.0",
     "select2-bootstrap-theme": "0.1.0-beta.10",
     "simpl-schema": "1.4.3",
-    "stringify-object": "^3.3.0"
+    "stringify-object": "^3.3.0",
+    "time-hulls": "file:../time-hulls",
+    "underscore": "^1.9.1"
   },
   "devDependencies": {
     "chai-as-promised": "^7.1.1"

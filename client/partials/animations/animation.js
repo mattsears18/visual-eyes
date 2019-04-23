@@ -43,7 +43,7 @@ Template.Animation.events({
       instantContinuous: Session.get('instantContinuous'),
       slideStep: Session.get('slideStep'),
       centroidPeriod: Session.get('centroidPeriod'),
-      fixationTrailLength: Session.get('fixationTrailLength'),
+      pointTrailLength: Session.get('pointTrailLength'),
     }).saveCSV();
   },
 });

@@ -16,6 +16,7 @@ export default queueAnalysesMakeViewings = Jobs.processJobs('analyses.makeViewin
         stimulusId: job.data.stimulusId,
       });
       job.done();
+      analysis.updateStatus();
     } catch(err) {
       console.log(err);
       job.cancel();

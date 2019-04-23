@@ -39,11 +39,6 @@ Schemas.Analysis = new SimpleSchema({
     },
     optional: true,
   },
-  period: {
-    type: Number,
-    label: 'Period (ms)',
-    defaultValue: 5000,
-  },
   viewingGap: {
     type: Number,
     label: 'Viewing Gap (ms)',

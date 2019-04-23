@@ -6,15 +6,6 @@ if(Meteor.isServer) {
     admin: function (userId, method, params) {
       return (userId ? true : false);
     },
-    // remove: function() {
-    //   return true;
-    // },
-    // insert: function() {
-    //   return true;
-    // },
-    // update: function() {
-    //   return true;
-    // },
   });
 }
 

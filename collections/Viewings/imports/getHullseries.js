@@ -1,15 +1,18 @@
-export default function getHullseries({
-  period,
-  timestep,
-  includeIncomplete,
-}) {
+import { TimeHullSeries } from 'time-hulls';
 
-  let hullseriesId = helpers.findOrInsert('hullseries', {
-    viewingId: this._id,
+export default function getHullseries({
+  period = 5000,
+  timestep = 0,
+  includeIncomplete = false,
+  pointTrailLength = 10,
+}) {
+  return new TimeHullSeries({
+    points: this.gazepoints,
     period: period,
     timestep: timestep,
     includeIncomplete: includeIncomplete,
+    pointTrailLength: pointTrailLength,
+    width: this.stimulus().width,
+    height: this.stimulus().height,
   });
-
-  return Hullseries.findOne({ _id: hullseriesId });
 }

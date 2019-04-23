@@ -28,7 +28,7 @@ console.log('stubbed');
 Factory.define('study', Studies, {
   name: () => faker.lorem.words(),
   desc: () => faker.lorem.paragraph(),
-  fixationsOnly: () => faker.boolean,
+  fixationsOnly: faker.random.boolean,
 });
 
 let baseDatafile = {
@@ -104,7 +104,7 @@ Factory.define('analysis', Analyses, {
   desc: () => faker.lorem.paragraph(),
   viewingGap: 5000,
   minViewingTime: 10000,
-  ignoreOutsideImage: () => faker.boolean,
+  ignoreOutsideImage: faker.random.boolean,
   participantIds: [],
   stimulusIds: [],
 });

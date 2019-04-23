@@ -1,14 +1,8 @@
 import Jobs                     from '../Jobs/Jobs';
-import makeHullJobs             from './imports/makeHullJobs';
-import updateStatus             from './imports/updateStatus';
 import getHullseries            from './imports/getHullseries';
-import getNextViewingId         from './imports/getNextViewingId';
 
 Viewings.helpers({
-  makeHullJobs,
-  updateStatus,
   getHullseries,
-  getNextViewingId,
 
   hasPermission(action) {
     check(action, String);

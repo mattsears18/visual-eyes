@@ -1,17 +1,15 @@
 <template name="Viewing">
   {{#if hullseries}}
-    {{json hullseries}}
-
-    {{#if equals hullseries.status 'processed'}}
+    <!-- {{json hullseries}} -->
+    {{#if hullseries.getAverageCoverage}}
+      {{json hullseries.getAverageCoverage}}
+      <br><br>
       show me an animation!
+      <!-- {{> Animation layout=layout initialTraces=initialTraces frames=frames}} -->
     {{else}}
-      {{> Spinner}}
+      <div class="m-t-100">
+        {{> Spinner}}
+      </div>
     {{/if}}
-
-    <!-- {{> Animation layout=layout initialTraces=initialTraces frames=frames}} -->
-  {{else}}
-    <div class="text-center">
-      <button class="btn btn-lg btn-primary m-t-100 generate-animation">Generate Animation!</button>
-    </div>
   {{/if}}
 </template>

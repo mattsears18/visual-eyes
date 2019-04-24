@@ -8,3 +8,4 @@ node_modules/
 settingsMatt.json
 localExperiments/
 uploads/
+.nyc_output

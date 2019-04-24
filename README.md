@@ -1,5 +1,6 @@
 # VisualEyes
-[![Build Status](https://travis-ci.org/mattsears18/VisualEyes.svg?branch=master)](https://travis-ci.org/mattsears18/VisualEyes)
+![Travis (.org)](https://img.shields.io/travis/mattsears18/VisualEyes.svg)
+![Coveralls github](https://img.shields.io/coveralls/github/mattsears18/VisualEyes.svg)
 
 A visualization and statistical analysis web application for eye tracking data
 - Supports the SMI BeGaze and iMotions file formats

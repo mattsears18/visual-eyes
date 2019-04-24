@@ -1,15 +1,22 @@
 <template name="Viewing">
-  {{#if hullseries}}
-    <!-- {{json hullseries}} -->
-    {{#if hullseries.getAverageCoverage}}
-      {{json hullseries.getAverageCoverage}}
-      <br><br>
-      show me an animation!
-      <!-- {{> Animation layout=layout initialTraces=initialTraces frames=frames}} -->
-    {{else}}
-      <div class="m-t-100">
-        {{> Spinner}}
+  {{#if viewing.gazepoints}}
+    <div>
+      <strong>Hull Count:</strong> {{hulls.length}}
+    </div>
+    <br>
+
+    {{#each hull in hulls}}
+      <div class="well">
+        [{{hull.startIndex}} : {{hull.endIndex}}] {{hull.period}}
       </div>
-    {{/if}}
+    {{/each}}
+    <br><br>
+
+    show me an animation!
+    <!-- {{> Animation layout=layout initialTraces=initialTraces frames=frames}} -->
+  {{else}}
+    <div class="m-t-100">
+      {{> Spinner}}
+    </div>
   {{/if}}
 </template>

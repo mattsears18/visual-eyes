@@ -1,19 +1,6 @@
 <template name="Viewing">
-  {{#if viewing.gazepoints}}
-    <div>
-      <strong>Hull Count:</strong> {{hulls.length}}
-    </div>
-    <br>
-
-    {{#each hull in hulls}}
-      <div class="well">
-        [{{hull.startIndex}} : {{hull.endIndex}}] {{hull.period}}
-      </div>
-    {{/each}}
-    <br><br>
-
-    show me an animation!
-    <!-- {{> Animation layout=layout initialTraces=initialTraces frames=frames}} -->
+  {{#if viewing}}
+    {{> ViewingAnimation viewing=viewing}}
   {{else}}
     <div class="m-t-100">
       {{> Spinner}}

@@ -1,57 +1,50 @@
-<!-- <head>
-  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-</head> -->
-
 <template name="Viewings">
   {{#if Template.subscriptionsReady}}
-    {{#if $.Session.get 'updateViewing'}}
-      {{> UpdateViewing viewing=viewing}}
-    {{else}}
-      <div class="row">
-        <div class="col-md-6 m-b-20">
-          <table>
-            <tr>
-              <th>Participant:</th>
-              <td class="p-l-10 p-t-5 p-b-5">
-                <button class="btn btn-primary participant previous"><i class="fa fa-chevron-left"></i></button>
-              </td>
-              <td class="p-l-10 text-center">
-                <a href="/studies/{{study._id}}/participants/{{participant._id}}">{{participant.name}}</a>
-              </td>
-              <td class="p-l-10 p-t-5 p-b-5">
-                <button class="btn btn-primary participant next"><i class="fa fa-chevron-right"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th>Stimulus:</th>
-              <td class="p-l-10 p-t-5 p-b-5">
-                <button class="btn btn-primary stimulus previous"><i class="fa fa-chevron-left"></i></button>
-              </td>
-              <td class="p-l-10 text-center">
-                <a href="/studies/{{study._id}}/stimuli/{{stimulus._id}}">{{stimulus.name}}</a>
-              </td>
-              <td class="p-l-10 p-t-5 p-b-5">
-                <button class="btn btn-primary stimulus next"><i class="fa fa-chevron-right"></i></button>
-              </td>
-            </tr>
-            <tr>
-              <th>Viewing Number:</th>
-              <td class="p-l-10 p-t-5 p-b-5">
-                <button class="btn btn-primary number previous"><i class="fa fa-chevron-left"></i></button>
-              </td>
-              <td class="p-l-10 text-center">
-                {{number}} of {{viewingCount}}
-              </td>
-              <td class="p-l-10 p-t-5 p-b-5">
-                <button class="btn btn-primary number next"><i class="fa fa-chevron-right"></i></button>
-              </td>
-            </tr>
-          </table>
-        </div>
+    <div class="row">
+      <div class="col-md-6 m-b-20">
+        <table>
+          <tr>
+            <th>Participant:</th>
+            <td class="p-l-10 p-t-5 p-b-5">
+              <button class="btn btn-primary participant previous"><i class="fa fa-chevron-left"></i></button>
+            </td>
+            <td class="p-l-10 text-center">
+              <a href="/studies/{{study._id}}/participants/{{participant._id}}">{{participant.name}}</a>
+            </td>
+            <td class="p-l-10 p-t-5 p-b-5">
+              <button class="btn btn-primary participant next"><i class="fa fa-chevron-right"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <th>Stimulus:</th>
+            <td class="p-l-10 p-t-5 p-b-5">
+              <button class="btn btn-primary stimulus previous"><i class="fa fa-chevron-left"></i></button>
+            </td>
+            <td class="p-l-10 text-center">
+              <a href="/studies/{{study._id}}/stimuli/{{stimulus._id}}">{{stimulus.name}}</a>
+            </td>
+            <td class="p-l-10 p-t-5 p-b-5">
+              <button class="btn btn-primary stimulus next"><i class="fa fa-chevron-right"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <th>Viewing Number:</th>
+            <td class="p-l-10 p-t-5 p-b-5">
+              <button class="btn btn-primary number previous"><i class="fa fa-chevron-left"></i></button>
+            </td>
+            <td class="p-l-10 text-center">
+              {{number}} of {{viewingCount}}
+            </td>
+            <td class="p-l-10 p-t-5 p-b-5">
+              <button class="btn btn-primary number next"><i class="fa fa-chevron-right"></i></button>
+            </td>
+          </tr>
+        </table>
+      </div>
 
-        <div class="col-md-6">
-          <div class="well m-b-20">
+      <div class="col-md-6">
+        <div class="well m-b-20">
+          {{#if viewing.duration}}
             <table>
               <tr>
                 <th>Duration:</th>
@@ -72,63 +65,15 @@
                 <td>({{formatNumber viewing.fixationFrequency}}/sec)</td>
               </tr>
             </table>
-          </div>
+          {{else}}
+            {{> Spinner}}
+          {{/if}}
         </div>
       </div>
+    </div>
 
-      <form>
-        <div class="row">
-          <div class="col-md-3 col-xs-6">
-            <div id="periodGroup" class="form-group">
-              <label for="period">Period
-                <a href="">
-                  <span class="glyphicon glyphicon-question-sign"></span>
-                </a>
-              </label>
-              <input class="form-control reactive" type="number" placeholder="Period" id="period" value="{{period}}">
-            </div>
-          </div>
-          <div class="col-md-3 col-xs-6">
-            <div id="timestepGroup" class="form-group">
-              <label for="timestep">Time Step
-                <a href="">
-                  <span class="glyphicon glyphicon-question-sign"></span>
-                </a>
-              </label>
-              <input class="form-control reactive" type="number" placeholder="Time Step" id="timestep" value="{{timestep}}">
-            </div>
-          </div>
-          <div class="col-md-3 col-xs-6">
-            <div id="pointTrailLengthGroup" class="form-group">
-              <label for="pointTrailLength">Point Trail Length
-                <a href="">
-                  <span class="glyphicon glyphicon-question-sign"></span>
-                </a>
-              </label>
-              <input class="form-control reactive" type="number" placeholder="Point Trail Length" id="pointTrailLength" value="{{pointTrailLength}}">
-            </div>
-          </div>
-          <div class="col-md-3 col-xs-6">
-            <div id="includeIncompleteGroup" class="form-group">
-              <label for="includeIncomplete">Include Incomplete Hulls?</label>
-              <a href="">
-                <span class="glyphicon glyphicon-question-sign"></span>
-              </a>
-              <div>
-                {{#if $.Session.get 'includeIncomplete'}}
-                  <input type="checkbox" checked data-toggle="toggle" class="bootstrap-toggle reactive" id="includeIncomplete"> Yes
-                {{else}}
-                  <input type="checkbox" data-toggle="toggle" class="bootstrap-toggle reactive" id="includeIncomplete"> Yes
-                {{/if}}
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-
-      {{#if viewing}}
-        {{> Viewing viewingId=viewing._id period=period timestep=timestep includeIncomplete=includeIncomplete pointTrailLength=pointTrailLength}}
-      {{/if}}
+    {{#if viewing}}
+      {{> Viewing viewingId=viewing._id period=period timestep=timestep includeIncomplete=includeIncomplete pointTrailLength=pointTrailLength}}
     {{/if}}
   {{else}}
     {{> Spinner}}

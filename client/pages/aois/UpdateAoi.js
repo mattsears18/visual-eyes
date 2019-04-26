@@ -22,7 +22,6 @@ AutoForm.hooks({
 
 Template.UpdateAoi.helpers({
   deleteBeforeRemove: function() {
-    //TODO replace this alert with a modal
     return function (collection, id) {
       var doc = collection.findOne(id);
       if (confirm('Really delete "' + doc.name + '"?')) {

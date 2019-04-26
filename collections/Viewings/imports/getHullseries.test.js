@@ -1,7 +1,7 @@
 require('./../../factories.test');
 
 describe('Viewing.getHullseries()', () => {
-  it.only('gets a hullseries', () => {
+  it('gets a hullseries', () => {
     let viewing = Factory.create('viewingWithGazepoints');
     let hullseries = viewing.getHullseries({
       period: 5000,

@@ -1,12 +1,14 @@
-import { TimeHullSeries } from 'time-hulls';
+import ViewingHullSeries from './ViewingHullSeries/ViewingHullSeries';
 
-export default function getHullseries({
-  period = 5000,
-  timestep = 0,
-  includeIncomplete = false,
-  pointTrailLength = 10,
-}) {
-  return new TimeHullSeries({
+export default function getHullseries(opt) {
+  opt = opt || {}
+  let period = opt.period || 5000
+  let timestep = opt.timestep || 0
+  let includeIncomplete = opt.includeIncomplete || false
+  let pointTrailLength = opt.pointTrailLength || 10
+
+  return new ViewingHullSeries({
+    viewing: this,
     points: this.gazepoints,
     period: period,
     timestep: timestep,

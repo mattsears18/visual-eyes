@@ -4,7 +4,7 @@ Stimuli.helpers({
   hasPermission(action) {
     check(action, String);
 
-    return true; //TODO actually make this work
+    return true;
 
     study = Studies.findOne(this.studyId);
 

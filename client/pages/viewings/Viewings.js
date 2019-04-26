@@ -1,9 +1,5 @@
 Template.Viewings.onCreated(function() {
   this.viewing = new ReactiveVar();
-  this.period = new ReactiveVar(5000);
-  this.timestep = new ReactiveVar(0);
-  this.includeIncomplete = new ReactiveVar(false);
-  this.pointTrailLength = new ReactiveVar(10);
 
   this.autorun(() => {
     let studyId = FlowRouter.getParam('studyId');
@@ -18,7 +14,7 @@ Template.Viewings.onCreated(function() {
       analysisId: FlowRouter.getParam('analysisId'),
     });
 
-    if(this.subscriptionsReady && Viewings.find().count()) {
+    if(this.subscriptionsReady() && Viewings.find().count()) {
       let viewing = Viewings.findOne({
         participantId: FlowRouter.getParam('participantId'),
         stimulusId: FlowRouter.getParam('stimulusId'),
@@ -47,10 +43,6 @@ Template.Viewings.helpers({
   participant: () => { return Participants.findOne({ _id: FlowRouter.getParam('participantId') }) },
   stimulus: () => { return Stimuli.findOne({ _id: FlowRouter.getParam('stimulusId') }) },
   number: () => { return parseInt(FlowRouter.getParam('number')) },
-  period: () => { return Template.instance().period.get() },
-  timestep: () => { return Template.instance().timestep.get() },
-  includeIncomplete: () => { return Template.instance().includeIncomplete.get() },
-  pointTrailLength: () => { return Template.instance().pointTrailLength.get() },
 });
 
 Template.BreadCrumbs.helpers({
@@ -62,8 +54,6 @@ Template.Viewings.events({
   'click .update-viewing': () => {
     Session.set('updateViewing', true);
   },
-
-
   'click .participant.next': (e, t) => {
     let ids = Participants.find().fetch().map(p => p._id);
     let index = ids.indexOf(FlowRouter.getParam('participantId'));
@@ -86,8 +76,6 @@ Template.Viewings.events({
 
     FlowRouter.setParams({ participantId: ids[index] });
   },
-
-
   'click .stimulus.next': (e, t) => {
     let ids = Stimuli.find().fetch().map(p => p._id);
     let index = ids.indexOf(FlowRouter.getParam('stimulusId'));
@@ -110,8 +98,6 @@ Template.Viewings.events({
 
     FlowRouter.setParams({ stimulusId: ids[index] });
   },
-
-
   'click .number.next': () => {
     if(parseInt(FlowRouter.getParam('number')) == Viewings.find({
       participantId: FlowRouter.getParam('participantId'),
@@ -131,17 +117,6 @@ Template.Viewings.events({
     } else {
       FlowRouter.setParams({ 'number': parseInt(FlowRouter.getParam('number')) - 1 });
     }
-  },
-
-  'change .reactive': (e, t) => {
-    let value;
-    if(e.target.type == 'checkbox') {
-      value = e.target.checked;
-    } else {
-      value = e.target.value;
-    }
-
-    t[e.target.id].set(value);
   },
 });
 

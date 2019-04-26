@@ -1,5 +1,10 @@
 Template.Viewings.onCreated(function() {
   this.viewing = new ReactiveVar();
+  this.period = new ReactiveVar(5000);
+  this.timestep = new ReactiveVar(0);
+  this.includeIncomplete = new ReactiveVar(false);
+  this.pointTrailLength = new ReactiveVar(10);
+  this.hullParams = new ReactiveVar();
 
   this.autorun(() => {
     let studyId = FlowRouter.getParam('studyId');
@@ -23,6 +28,12 @@ Template.Viewings.onCreated(function() {
 
       if(viewing) {
         this.viewing.set(viewing);
+        this.hullParams.set({
+          period: Template.instance().period.get(),
+          timestep: Template.instance().timestep.get(),
+          includeIncomplete: Template.instance().includeIncomplete.get(),
+          pointTrailLength: Template.instance().pointTrailLength.get(),
+        })
       } else {
         if(parseInt(FlowRouter.getParam('number')) > 1) {
           FlowRouter.setParams({ number: '1' });
@@ -33,16 +44,21 @@ Template.Viewings.onCreated(function() {
 });
 
 Template.Viewings.helpers({
-  viewing: () => { return Template.instance().viewing.get() },
+  viewing: () => {            return Template.instance().viewing.get() },
   viewingCount: () => {
     return Viewings.find({
       participantId: FlowRouter.getParam('participantId'),
       stimulusId: FlowRouter.getParam('stimulusId'),
     }).count()
   },
-  participant: () => { return Participants.findOne({ _id: FlowRouter.getParam('participantId') }) },
-  stimulus: () => { return Stimuli.findOne({ _id: FlowRouter.getParam('stimulusId') }) },
-  number: () => { return parseInt(FlowRouter.getParam('number')) },
+  participant: () => {        return Participants.findOne({ _id: FlowRouter.getParam('participantId') }) },
+  stimulus: () => {           return Stimuli.findOne({ _id: FlowRouter.getParam('stimulusId') }) },
+  number: () => {             return parseInt(FlowRouter.getParam('number')) },
+  period: () => {             return Template.instance().period.get() },
+  timestep: () => {           return Template.instance().timestep.get() },
+  includeIncomplete: () => {  return Template.instance().includeIncomplete.get() },
+  pointTrailLength: () => {   return Template.instance().pointTrailLength.get() },
+  hullParams: () => {         return Template.instance().hullParams.get() },
 });
 
 Template.BreadCrumbs.helpers({
@@ -123,3 +139,15 @@ Template.Viewings.events({
 Template.Viewings.destroyed = function(){
   Session.set('updateViewing', false);
 }
+
+Template.Viewings.events({
+  'change .reactive': (e, t) => {
+    let value;
+    if(e.target.type == 'checkbox') {
+      value = e.target.checked;
+    } else {
+      value = e.target.value;
+    }
+    t[e.target.id].set(value);
+  },
+})

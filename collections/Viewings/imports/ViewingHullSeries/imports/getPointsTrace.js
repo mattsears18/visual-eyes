@@ -30,8 +30,8 @@ export default function getPointsTrace(opt) {
     }
   } else {
     return {
-      x: this.points('x'),
-      y: this.points('y'),
+      x: hull.getPoints('x'),
+      y: hull.getPoints('y'),
     };
   }
 }

@@ -15,5 +15,6 @@ Template.Viewing.onCreated(function() {
 });
 
 Template.Viewing.helpers({
-  viewing: () => { return Template.instance().viewing.get() },
+  viewing: () => {    return Template.instance().viewing.get() },
+  hullParams: () => { return Template.currentData().hullParams },
 });

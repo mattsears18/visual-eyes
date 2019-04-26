@@ -1,63 +1,20 @@
 <template name="ViewingAnimation">
   {{#if viewing}}
-    <form>
-      <div class="row">
-        <div class="col-md-3 col-xs-6">
-          <div id="periodGroup" class="form-group">
-            <label for="period">Period
-              <a href="">
-                <span class="glyphicon glyphicon-question-sign"></span>
-              </a>
-            </label>
-            <input class="form-control reactive" type="number" placeholder="Period" id="period" value="{{period}}">
-          </div>
-        </div>
-        <div class="col-md-3 col-xs-6">
-          <div id="timestepGroup" class="form-group">
-            <label for="timestep">Time Step
-              <a href="">
-                <span class="glyphicon glyphicon-question-sign"></span>
-              </a>
-            </label>
-            <input class="form-control reactive" type="number" placeholder="Time Step" id="timestep" value="{{timestep}}">
-          </div>
-        </div>
-        <div class="col-md-3 col-xs-6">
-          <div id="pointTrailLengthGroup" class="form-group">
-            <label for="pointTrailLength">Point Trail Length
-              <a href="">
-                <span class="glyphicon glyphicon-question-sign"></span>
-              </a>
-            </label>
-            <input class="form-control reactive" type="number" placeholder="Point Trail Length" id="pointTrailLength" value="{{pointTrailLength}}">
-          </div>
-        </div>
-        <div class="col-md-3 col-xs-6">
-          <div id="includeIncompleteGroup" class="form-group">
-            <label for="includeIncomplete">Include Incomplete Hulls?</label>
-            <a href="">
-              <span class="glyphicon glyphicon-question-sign"></span>
-            </a>
-            <div>
-              {{#if includeIncomplete}}
-                <input type="checkbox" checked data-toggle="toggle" class="bootstrap-toggle reactive" id="includeIncomplete"> Yes
-              {{else}}
-                <input type="checkbox" data-toggle="toggle" class="bootstrap-toggle reactive" id="includeIncomplete"> Yes
-              {{/if}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-    {{#if plotData}}
-      <h4>
-        <span class="btn btn-success download-data-as-csv"><i class="fa fa-download"></i>&nbsp;Download Animation Data as .CSV</span>
-      </h4>
-      <!-- {{> Animation layout=plotData.layout initialTraces=plotData.initialTraces frames=plotData.frames}} -->
+    {{#if hullseries}}
+      {{#if frames}}
+        <h4>
+          <span class="btn btn-success download-data-as-csv"><i class="fa fa-download"></i>&nbsp;Download Animation Data as .CSV</span>
+        </h4>
+        {{> Animation layout=layout initialTraces=initialTraces frames=frames}}
+      {{else}}
+        <span class="label label-danger">Parameters produced no convex hulls</span>
+      {{/if}}
     {{else}}
       {{#if Template.subscriptionsReady}}
-        <div><span class="label label-danger">No stimulus image associated with {{viewing.stimulus.name}}</span></div>
-        <div class="m-t-5"><a href="/studies/{{viewing.stimulus.studyId}}/stimuli/{{viewing.stimulus._id}}">{{viewing.stimulus.name}}</a></div>
+        {{#unless stimulusfile}}
+          <div><span class="label label-danger">No stimulus image associated with {{viewing.stimulus.name}}</span></div>
+          <div class="m-t-5"><a href="/studies/{{viewing.stimulus.studyId}}/stimuli/{{viewing.stimulus._id}}">{{viewing.stimulus.name}}</a></div>
+        {{/unless}}
       {{else}}
         <div class="m-t-100">
           {{> Spinner}}

@@ -2,6 +2,9 @@ export default function getTraces(opt) {
   opt = opt || {}
   let initial = opt.initial || false
   let hulls = this.getHulls();
+  let index = opt.index;
+
+  let t0 = performance.now()
 
   if(initial) {
     let hull = hulls[0];
@@ -17,31 +20,19 @@ export default function getTraces(opt) {
       ],
     };
   } else {
-    let frames = [];
+    if(typeof(index) != 'undefined') {
+      let hull = hulls[index]
+      let data = [
+        this.getCentroidTrailTrace({    lastHull: hull }),
+        this.getPointsTrace({           hull: hull }),
+        this.getLastPointTrailTrace({   hull: hull }),
+        this.getPolygonTrace({          hull: hull }),
+        this.getCentroidTrace({         hull: hull }),
+        this.getLastPointTrace({        hull: hull }),
+      ]
 
-    for(i=0; i < hulls.length; i++) {
-      let hull = hulls[i]
-      let frame = {
-        name: hulls[i].endTime(),
-        getData: () => {
-          // let t0 = performance.now()
-          let data = [
-            this.getCentroidTrailTrace({ lastHull: hull }),
-            this.getPointsTrace({ hull: hull }),
-            this.getLastPointTrailTrace({ hull: hull }),
-            this.getPolygonTrace({ hull: hull }),
-            this.getCentroidTrace({ hull: hull }),
-            this.getLastPointTrace({ hull: hull }),
-          ]
-
-          // console.log('getData() duration: ' + (performance.now() - t0) + ' ms')
-          return data;
-        },
-      }
-
-      frames.push(frame);
+      console.log('ViewingHullSeries.getTraces() duration: ' + (performance.now() - t0) + ' ms')
+      return data
     }
-
-    return frames;
   }
 }

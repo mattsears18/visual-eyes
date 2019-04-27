@@ -29,10 +29,10 @@ Template.Viewings.onCreated(function() {
       if(viewing) {
         this.viewing.set(viewing);
         this.hullParams.set({
-          period: Template.instance().period.get(),
-          timestep: Template.instance().timestep.get(),
+          period: parseInt(Template.instance().period.get()),
+          timestep: parseInt(Template.instance().timestep.get()),
           includeIncomplete: Template.instance().includeIncomplete.get(),
-          pointTrailLength: Template.instance().pointTrailLength.get(),
+          pointTrailLength: parseInt(Template.instance().pointTrailLength.get()),
         })
       } else {
         if(parseInt(FlowRouter.getParam('number')) > 1) {

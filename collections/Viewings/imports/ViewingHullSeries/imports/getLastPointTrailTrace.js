@@ -2,35 +2,31 @@ export default function getLastPointTrailTrace(opt) {
   opt = opt || {}
   let initial = opt.initial || false
   let hull = opt.hull
+  let pointTrailLength = opt.pointTrailLength || this.pointTrailLength
 
   if(typeof(hull) == 'undefined') {
     throw new Error('noHull');
   }
 
-  let name;
-
-  if(this.viewing.study().fixationsOnly) {
-    name = 'Last ' + this.pointTrailLength + ' Fixations';
-  } else {
-    name = 'Last ' + this.pointTrailLength + ' Gaze Points';
+  let data = {
+    x: this.getLastPointTrail({ hull: hull, which: 'x', pointTrailLength: pointTrailLength }),
+    y: this.getLastPointTrail({ hull: hull, which: 'y', pointTrailLength: pointTrailLength }),
   }
 
   if(initial) {
-    return {
-      name: name,
-      x: this.getLastPointTrail({ hull: hull, pointTrailLength: this.pointTrailLength, which: 'x' }),
-      y: this.getLastPointTrail({ hull: hull, pointTrailLength: this.pointTrailLength, which: 'y' }),
-      mode: 'lines',
-      type: 'scatter',
-      line: {
-        color: '#63a70a',
-        width: 2.5,
-      },
+    let name;
+
+    if(this.viewing.study().fixationsOnly) {
+      name = 'Last ' + this.pointTrailLength + ' Fixations';
+    } else {
+      name = 'Last ' + this.pointTrailLength + ' Gaze Points';
     }
-  } else {
-    return {
-      x: this.getLastPointTrail({ hull: hull, pointTrailLength: this.pointTrailLength, which: 'x' }),
-      y: this.getLastPointTrail({ hull: hull, pointTrailLength: this.pointTrailLength, which: 'y' }),
-    };
+
+    data.name = name
+    data.mode = 'lines'
+    data.type = 'scatter'
+    data.line = { color: '#63a70a', width: 2.5 }
   }
+
+  return data
 }

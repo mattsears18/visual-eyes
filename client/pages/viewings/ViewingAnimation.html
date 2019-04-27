@@ -1,14 +1,10 @@
 <template name="ViewingAnimation">
   {{#if viewing}}
     {{#if hullseries}}
-      {{#if frames}}
-        <h4>
-          <span class="btn btn-success download-data-as-csv"><i class="fa fa-download"></i>&nbsp;Download Animation Data as .CSV</span>
-        </h4>
-        {{> Animation layout=layout initialTraces=initialTraces frames=frames}}
-      {{else}}
-        <span class="label label-danger">Parameters produced no convex hulls</span>
-      {{/if}}
+      <h4>
+        <span class="btn btn-success download-data-as-csv"><i class="fa fa-download"></i>&nbsp;Download Animation Data as .CSV</span>
+      </h4>
+      {{> Animation layout=layout initialTraces=initialTraces frameSeries=hullseries}}
     {{else}}
       {{#if Template.subscriptionsReady}}
         {{#unless stimulusfile}}

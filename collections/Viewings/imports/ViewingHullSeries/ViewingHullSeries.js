@@ -19,6 +19,8 @@ export default class ViewingHullSeries extends TimeHullSeries {
     } else {
       throw new Error('noViewing')
     }
+
+    this.pointTrailLength = parseInt(opt.pointTrailLength) || 10
   }
 
   getPlotData             = getPlotData
@@ -32,4 +34,7 @@ export default class ViewingHullSeries extends TimeHullSeries {
   getLastPointTrailTrace  = getLastPointTrailTrace
   getPolygonTrace         = getPolygonTrace
   getCentroidTrace        = getCentroidTrace
+
+  getFrames               = this.getHulls
+  getFrameData            = this.getTraces
 }

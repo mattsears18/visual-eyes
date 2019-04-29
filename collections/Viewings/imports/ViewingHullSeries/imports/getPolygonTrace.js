@@ -4,7 +4,7 @@ export default function getPolygonTrace(opt) {
   let hull = opt.hull
 
   if(typeof(hull) == 'undefined') {
-    throw new Error('noHull');
+    throw new Error('noHull')
   }
 
   if(initial) {
@@ -23,6 +23,6 @@ export default function getPolygonTrace(opt) {
     return {
       x: hull.polygon({ which: 'x' }),
       y: hull.polygon({ which: 'y' }),
-    };
+    }
   }
 }

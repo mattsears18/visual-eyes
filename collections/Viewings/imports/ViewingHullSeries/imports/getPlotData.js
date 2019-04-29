@@ -1,5 +1,5 @@
 export default function getPlotData() {
-  let t0 = performance.now();
+  let t0 = performance.now()
 
   let plotData = {
     layout: this.getLayout(),

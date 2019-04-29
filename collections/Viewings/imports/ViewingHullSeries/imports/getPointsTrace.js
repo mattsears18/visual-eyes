@@ -4,15 +4,15 @@ export default function getPointsTrace(opt) {
   let initial = opt.initial || false
 
   if(typeof(hull) == 'undefined') {
-    throw new Error('noHull');
+    throw new Error('noHull')
   }
 
-  let name;
+  let name
 
   if(this.viewing.study().fixationsOnly) {
-    name = 'Fixations';
+    name = 'Fixations'
   } else {
-    name = 'Gaze Points';
+    name = 'Gaze Points'
   }
 
   if(initial) {
@@ -32,6 +32,6 @@ export default function getPointsTrace(opt) {
     return {
       x: hull.getPoints('x'),
       y: hull.getPoints('y'),
-    };
+    }
   }
 }

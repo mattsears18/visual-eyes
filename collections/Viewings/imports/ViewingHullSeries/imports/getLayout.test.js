@@ -1,13 +1,13 @@
 // describe('TimeHullSeries.getLayout()', () => {
 //   it('gets the layout', () => {
-//     let study = Factory.create('study', { fixationsOnly: false });
-//     let stimulusfile = Factory.create('stimulusfile', { studyId: study._id });
+//     let study = Factory.create('study', { fixationsOnly: false })
+//     let stimulusfile = Factory.create('stimulusfile', { studyId: study._id })
 //     let stimulus = Factory.create('stimulus', {
 //       studyId: study._id,
 //       stimulusfileId: stimulusfile._id,
 //       width: stimulusfile.fileWidth,
 //       height: stimulusfile.fileHeight,
-//     });
+//     })
 //     let viewing = Factory.create('viewing', {
 //       studyId: study._id,
 //       stimulusId: stimulus._id,
@@ -29,16 +29,16 @@
 //         { x: 500, y: 200, timestamp: 13000 },
 //         { x: 600, y: 100, timestamp: 14000 },
 //       ],
-//     });
+//     })
 //
 //     let hullSeries = viewing.timeHullSeries({
 //       instantContinuous: 'instantaneous',
 //       slideStep: 'slide',
 //       pointTrailLength: 10,
-//     });
+//     })
 //
-//     let layout = hullSeries.getLayout();
+//     let layout = hullSeries.getLayout()
 //
-//     expect(layout.height).to.equal(620);
-//   });
-// });
+//     expect(layout.height).to.equal(620)
+//   })
+// })

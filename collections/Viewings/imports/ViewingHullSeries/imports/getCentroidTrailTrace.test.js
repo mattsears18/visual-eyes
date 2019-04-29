@@ -1,7 +1,7 @@
 require('../../../../factories.test')
 import ViewingHullSeries from '../ViewingHullSeries'
 
-describe.only('ViewingHullSeries.getCentroidTrailTrace()', () => {
+describe('ViewingHullSeries.getCentroidTrailTrace()', () => {
   it('gets the initial centroid trail trace', () => {
     let points = [
       { x: 100, y: 400, timestamp: 0 },

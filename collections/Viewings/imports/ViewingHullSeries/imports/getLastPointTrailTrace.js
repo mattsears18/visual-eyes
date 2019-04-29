@@ -5,7 +5,7 @@ export default function getLastPointTrailTrace(opt) {
   let pointTrailLength = typeof(opt.pointTrailLength) == 'number' ? opt.pointTrailLength : this.pointTrailLength
 
   if(typeof(hull) == 'undefined') {
-    throw new Error('noHull');
+    throw new Error('noHull')
   }
 
   let data = {
@@ -14,12 +14,12 @@ export default function getLastPointTrailTrace(opt) {
   }
 
   if(initial) {
-    let name;
+    let name
 
     if(this.viewing.study().fixationsOnly) {
-      name = 'Last ' + this.pointTrailLength + ' Fixations';
+      name = 'Last ' + this.pointTrailLength + ' Fixations'
     } else {
-      name = 'Last ' + this.pointTrailLength + ' Gaze Points';
+      name = 'Last ' + this.pointTrailLength + ' Gaze Points'
     }
 
     data.name = name

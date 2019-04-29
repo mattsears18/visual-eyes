@@ -4,15 +4,15 @@ export default function getLastPointTrace(opt) {
   let hull = opt.hull
 
   if(typeof(hull) == 'undefined') {
-    throw new Error('noHull');
+    throw new Error('noHull')
   }
 
-  let name;
+  let name
 
   if(this.viewing.study().fixationsOnly) {
-    name = 'Last Fixation';
+    name = 'Last Fixation'
   } else {
-    name = 'Last Gaze Point';
+    name = 'Last Gaze Point'
   }
 
   if(initial) {
@@ -35,6 +35,6 @@ export default function getLastPointTrace(opt) {
     return {
       x: [hull.points.slice(-1)[0].x],
       y: [hull.points.slice(-1)[0].y],
-    };
+    }
   }
 }

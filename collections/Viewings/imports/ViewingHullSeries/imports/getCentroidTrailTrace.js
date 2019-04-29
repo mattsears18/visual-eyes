@@ -21,16 +21,16 @@ export default function getCentroidTrailTrace(opt) {
     let ys = []
 
     if(typeof(endHullIndex) == 'number') {
-      xs = this.getCentroids({ endHullIndex: endHullIndex, which: 'x' });
-      ys = this.getCentroids({ endHullIndex: endHullIndex, which: 'y' });
+      xs = this.getCentroids({ endHullIndex: endHullIndex, which: 'x' })
+      ys = this.getCentroids({ endHullIndex: endHullIndex, which: 'y' })
     } else if(lastHull){
-      xs = this.getCentroids({ endHullIndex: lastHull.number - 1, which: 'x' });
-      ys = this.getCentroids({ endHullIndex: lastHull.number - 1, which: 'y' });
+      xs = this.getCentroids({ endHullIndex: lastHull.number - 1, which: 'x' })
+      ys = this.getCentroids({ endHullIndex: lastHull.number - 1, which: 'y' })
     }
 
     if(xs.length == 1 || ys.length == 1) {
-      xs = [-10, -11];
-      ys = [-10, -11];
+      xs = [-10, -11]
+      ys = [-10, -11]
     }
 
     return { x: xs, y: ys }

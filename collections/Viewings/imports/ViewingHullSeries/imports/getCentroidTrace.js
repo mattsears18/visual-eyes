@@ -4,7 +4,7 @@ export default function getCentroidTrace(opt) {
   let hull = opt.hull
 
   if(typeof(hull) == 'undefined') {
-    throw new Error('noHull');
+    throw new Error('noHull')
   }
 
   if(initial) {

@@ -1,6 +1,6 @@
 // describe('TimeHull.getPolygonTrace()', () => {
 //   it('gets the initial polygon trace', () => {
-//     let study = Factory.create('study', { fixationsOnly: false });
+//     let study = Factory.create('study', { fixationsOnly: false })
 //     let viewing = Factory.create('viewing', {
 //       studyId: study._id,
 //       period: 5000,
@@ -21,23 +21,23 @@
 //         { x: 500, y: 200, timestamp: 13000 },
 //         { x: 600, y: 100, timestamp: 14000 },
 //       ],
-//     });
+//     })
 //
 //     let hull = viewing.timeHullSeries({
 //       instantContinuous: 'instantaneous',
 //       slideStep: 'slide',
 //       pointTrailLength: 10,
-//     }).getHulls()[0];
+//     }).getHulls()[0]
 //
-//     let trace = hull.getPolygonTrace({ initial: true });
+//     let trace = hull.getPolygonTrace({ initial: true })
 //
-//     expect(trace.name).to.equal('Convex Hull');
-//     expect(trace.x).to.eql([ 600, 500, 100, 400, 600 ]);
-//     expect(trace.y).to.eql([ 600, 700, 400, 100, 600 ]);
-//   });
+//     expect(trace.name).to.equal('Convex Hull')
+//     expect(trace.x).to.eql([ 600, 500, 100, 400, 600 ])
+//     expect(trace.y).to.eql([ 600, 700, 400, 100, 600 ])
+//   })
 //
 //   it('gets a polygon trace (not initial)', () => {
-//     let study = Factory.create('study', { fixationsOnly: false });
+//     let study = Factory.create('study', { fixationsOnly: false })
 //     let viewing = Factory.create('viewing', {
 //       studyId: study._id,
 //       period: 5000,
@@ -58,18 +58,18 @@
 //         { x: 500, y: 200, timestamp: 13000 },
 //         { x: 600, y: 100, timestamp: 14000 },
 //       ],
-//     });
+//     })
 //
 //     let hull = viewing.timeHullSeries({
 //       instantContinuous: 'instantaneous',
 //       slideStep: 'slide',
 //       pointTrailLength: 10,
-//     }).getHulls()[9];
+//     }).getHulls()[9]
 //
-//     let trace = hull.getPolygonTrace({ initial: false });
+//     let trace = hull.getPolygonTrace({ initial: false })
 //
-//     expect(trace.name).to.be.an('undefined');
-//     expect(trace.x).to.eql([ 600, 300, 100, 200, 600 ]);
-//     expect(trace.y).to.eql([ 100, 400, 200, 100, 100 ]);
-//   });
-// });
+//     expect(trace.name).to.be.an('undefined')
+//     expect(trace.x).to.eql([ 600, 300, 100, 200, 600 ])
+//     expect(trace.y).to.eql([ 100, 400, 200, 100, 100 ])
+//   })
+// })

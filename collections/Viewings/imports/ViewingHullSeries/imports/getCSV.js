@@ -1,9 +1,9 @@
-// const json2csv = require('json2csv').parse;
+// const json2csv = require('json2csv').parse
 
 
   // getCSV() {
-  //   let data = [];
-  //   let hulls = this.getHulls();
+  //   let data = []
+  //   let hulls = this.getHulls()
   //
   //   hulls.forEach((hull, hi) => {
   //     let hullData = {
@@ -53,27 +53,27 @@
   //     }
   //
   //     if(hi > 0) {
-  //       hullData.centroidDistanceX = (hulls[hi].centroid({}).x - hulls[hi - 1].centroid({}).x);
-  //       hullData.centroidDistanceY = (hulls[hi].centroid({}).y - hulls[hi - 1].centroid({}).y);
+  //       hullData.centroidDistanceX = (hulls[hi].centroid({}).x - hulls[hi - 1].centroid({}).x)
+  //       hullData.centroidDistanceY = (hulls[hi].centroid({}).y - hulls[hi - 1].centroid({}).y)
   //       hullData.centroidDistance = Math.sqrt(hullData.centroidDistanceX * hullData.centroidDistanceX + hullData.centroidDistanceY * hullData.centroidDistanceY)
   //       if(hullData.timeStep > 0 && hullData.centroidDistance > 0) {
-  //         hullData.centroidVelocity = (hullData.centroidDistance / hullData.timeStep);
-  //         hullData.centroidVelocityX = (hullData.centroidDistanceX / hullData.timeStep);
-  //         hullData.centroidVelocityY = (hullData.centroidDistanceY / hullData.timeStep);
+  //         hullData.centroidVelocity = (hullData.centroidDistance / hullData.timeStep)
+  //         hullData.centroidVelocityX = (hullData.centroidDistanceX / hullData.timeStep)
+  //         hullData.centroidVelocityY = (hullData.centroidDistanceY / hullData.timeStep)
   //       }
   //
   //     }
   //
-  //     data.push(hullData);
-  //   });
+  //     data.push(hullData)
+  //   })
   //
-  //   let csv;
+  //   let csv
   //
   //   try {
-  //     csv = json2csv(data);
+  //     csv = json2csv(data)
   //   } catch (err) {
-  //     console.error(err);
+  //     console.error(err)
   //   }
   //
-  //   return csv;
+  //   return csv
   // }

@@ -1,13 +1,13 @@
 export default function getTraces(opt) {
   opt = opt || {}
   let initial = opt.initial || false
-  let hulls = this.getHulls();
-  let index = opt.index;
+  let hulls = this.getHulls()
+  let index = opt.index
 
   let t0 = performance.now()
 
   if(initial) {
-    let hull = hulls[0];
+    let hull = hulls[0]
     return {
       name: hull.endTime(),
       data: [
@@ -18,7 +18,7 @@ export default function getTraces(opt) {
         this.getCentroidTrace({         initial: true, hull: hull }),
         this.getLastPointTrace({        initial: true, hull: hull }),
       ],
-    };
+    }
   } else {
     if(typeof(index) != 'undefined') {
       let hull = hulls[index]

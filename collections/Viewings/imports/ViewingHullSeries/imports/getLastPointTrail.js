@@ -12,8 +12,8 @@ export default function getLastPointTrail(opt) {
   let pointsTrail = pointsToHull.slice(-pointTrailLength)
 
   if(typeof(which) != 'undefined') {
-    return pointsTrail.map(point => point[which]);
+    return pointsTrail.map(point => point[which])
   } else {
-    return pointTrail;
+    return pointTrail
   }
 }

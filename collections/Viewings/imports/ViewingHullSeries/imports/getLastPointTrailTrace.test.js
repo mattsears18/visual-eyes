@@ -1,6 +1,6 @@
 // describe('TimeHull.getLastPointTrailTrace()', () => {
 //   it('gets the initial fixation trail trace', () => {
-//     let study = Factory.create('study', { fixationsOnly: false });
+//     let study = Factory.create('study', { fixationsOnly: false })
 //     let viewing = Factory.create('viewing', {
 //       studyId: study._id,
 //       period: 5000,
@@ -21,23 +21,23 @@
 //         { x: 500, y: 200, timestamp: 13000 },
 //         { x: 600, y: 100, timestamp: 14000 },
 //       ],
-//     });
+//     })
 //
 //     let hull = viewing.timeHullSeries({
 //       instantContinuous: 'instantaneous',
 //       slideStep: 'slide',
 //       pointTrailLength: 10,
-//     }).getHulls()[0];
+//     }).getHulls()[0]
 //
-//     let trace = hull.getLastPointTrailTrace({ initial: true });
+//     let trace = hull.getLastPointTrailTrace({ initial: true })
 //
-//     expect(trace.name).to.equal('Last 10 Gaze Points');
-//     expect(trace.x).to.eql([ 100, 200, 300, 400, 500, 600 ]);
-//     expect(trace.y).to.eql([ 400, 300, 200, 100, 700, 600 ]);
-//   });
+//     expect(trace.name).to.equal('Last 10 Gaze Points')
+//     expect(trace.x).to.eql([ 100, 200, 300, 400, 500, 600 ])
+//     expect(trace.y).to.eql([ 400, 300, 200, 100, 700, 600 ])
+//   })
 //
 //   it('gets a last fixation trail trace (not initial)', () => {
-//     let study = Factory.create('study', { fixationsOnly: false });
+//     let study = Factory.create('study', { fixationsOnly: false })
 //     let viewing = Factory.create('viewing', {
 //       studyId: study._id,
 //       period: 5000,
@@ -58,18 +58,18 @@
 //         { x: 500, y: 200, timestamp: 13000 },
 //         { x: 600, y: 100, timestamp: 14000 },
 //       ],
-//     });
+//     })
 //
 //     let hull = viewing.timeHullSeries({
 //       instantContinuous: 'instantaneous',
 //       slideStep: 'slide',
 //       pointTrailLength: 10,
-//     }).getHulls()[9];
+//     }).getHulls()[9]
 //
-//     let trace = hull.getLastPointTrailTrace({ initial: false });
+//     let trace = hull.getLastPointTrailTrace({ initial: false })
 //
-//     expect(trace.name).to.be.an('undefined');
-//     expect(trace.x).to.eql([ 600, 700 ,800, 900, 100, 200, 300, 400, 500, 600 ]);
-//     expect(trace.y).to.eql([ 600, 500, 400, 300, 200, 100, 400, 300, 200, 100 ]);
-//   });
-// });
+//     expect(trace.name).to.be.an('undefined')
+//     expect(trace.x).to.eql([ 600, 700 ,800, 900, 100, 200, 300, 400, 500, 600 ])
+//     expect(trace.y).to.eql([ 600, 500, 400, 300, 200, 100, 400, 300, 200, 100 ])
+//   })
+// })

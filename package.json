@@ -17,6 +17,11 @@
     "eye tracking"
   ],
   "dependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/register": "^7.4.4",
     "@babel/runtime": "^7.4.3",
     "area-polygon": "^1.0.1",
     "aws-sdk": "^2.442.0",

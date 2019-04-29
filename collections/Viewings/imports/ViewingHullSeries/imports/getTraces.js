@@ -11,8 +11,8 @@ export default function getTraces(opt) {
     return {
       name: hull.endTime(),
       data: [
-        this.getCentroidTrailTrace({    initial: true }),
         this.getPointsTrace({           initial: true, hull: hull }),
+        this.getCentroidTrailTrace({    initial: true }),
         this.getLastPointTrailTrace({   initial: true, hull: hull }),
         this.getPolygonTrace({          initial: true, hull: hull }),
         this.getCentroidTrace({         initial: true, hull: hull }),
@@ -23,8 +23,8 @@ export default function getTraces(opt) {
     if(typeof(index) != 'undefined') {
       let hull = hulls[index]
       let data = [
-        this.getCentroidTrailTrace({    lastHull: hull }),
         this.getPointsTrace({           hull: hull }),
+        this.getCentroidTrailTrace({    lastHull: hull }),
         this.getLastPointTrailTrace({   hull: hull }),
         this.getPolygonTrace({          hull: hull }),
         this.getCentroidTrace({         hull: hull }),

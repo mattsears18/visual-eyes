@@ -2,7 +2,7 @@ export default function getLastPointTrailTrace(opt) {
   opt = opt || {}
   let initial = opt.initial || false
   let hull = opt.hull
-  let pointTrailLength = opt.pointTrailLength || this.pointTrailLength
+  let pointTrailLength = typeof(opt.pointTrailLength) == 'number' ? opt.pointTrailLength : this.pointTrailLength
 
   if(typeof(hull) == 'undefined') {
     throw new Error('noHull');

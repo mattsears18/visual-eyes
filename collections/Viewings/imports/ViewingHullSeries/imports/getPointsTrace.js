@@ -1,11 +1,7 @@
 export default function getPointsTrace(opt) {
   opt = opt || {}
-  let hull = opt.hull
+  let hull = this.getHull(opt)
   let initial = opt.initial || false
-
-  if(typeof(hull) == 'undefined') {
-    throw new Error('noHull')
-  }
 
   let name
 

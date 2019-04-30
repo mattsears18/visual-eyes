@@ -1,15 +1,16 @@
-require('./../../factories.test');
+require('./../../factories.test')
+const expect = require('chai').expect
 
 if(Meteor.isServer) {
   describe('Datafiles.getRawCSV()', () => {
     it('has 12,271 rows of raw data', async () => {
       let imotionsDatafile = Factory.create('imotionsDatafile');
-      chai.expect((await imotionsDatafile.getRawCSV()).length).to.equal(12271);
+      expect((await imotionsDatafile.getRawCSV()).length).to.equal(12271);
     });
 
     it('has 12,742 rows of raw data', async () => {
       let smiDatafile = Factory.create('smiDatafile');
-      chai.expect((await smiDatafile.getRawCSV()).length).to.equal(12742);
+      expect((await smiDatafile.getRawCSV()).length).to.equal(12742);
     });
   });
 }

@@ -1,4 +1,5 @@
-require('./../../factories.test');
+require('./../../factories.test')
+const expect = require('chai').expect
 
 if(Meteor.isServer) {
   describe('Datafiles.makeGazepoints()', () => {
@@ -9,8 +10,8 @@ if(Meteor.isServer) {
       let points = await datafile.makeGazepoints({ saveStats: true });
       let dbDatafile = Datafiles.findOne({ _id: datafile._id });
 
-      chai.expect(dbDatafile.gazepointCount).to.exist;
-      chai.expect(dbDatafile.fixationCount).to.exist;
+      expect(dbDatafile.gazepointCount).to.exist;
+      expect(dbDatafile.fixationCount).to.exist;
     }).timeout(60000);
   });
 }

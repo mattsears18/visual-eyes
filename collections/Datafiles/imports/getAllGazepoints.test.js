@@ -1,4 +1,5 @@
-require('./../../factories.test');
+require('./../../factories.test')
+const expect = require('chai').expect
 
 if(Meteor.isServer) {
   describe('Datafiles.getAllGazepoints()', () => {
@@ -27,7 +28,7 @@ if(Meteor.isServer) {
         { timestamp: '13',  x: '100', y: '100', stimulusName: 'someName', category: 'Visual Intake' },      // good
       ];
 
-      chai.expect(await datafile.getAllGazepoints({ data: rows })).to.eql(expectedRows);
+      expect(await datafile.getAllGazepoints({ data: rows })).to.eql(expectedRows);
     });
 
     describe('iMotions', () => {
@@ -42,7 +43,7 @@ if(Meteor.isServer) {
         let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
 
         let points = await datafile.getAllGazepoints({});
-        chai.expect(points.length).to.equal(expectedGazepointCount);
+        expect(points.length).to.equal(expectedGazepointCount);
       });
 
       it('sets the point stats on the datafile instance', async () => {
@@ -50,11 +51,11 @@ if(Meteor.isServer) {
         let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
 
         let points = await datafile.getAllGazepoints({});
-        chai.expect(datafile.rawRowCount).to.equal(expectedRawRowCount);
-        chai.expect(datafile.integerRowCount).to.equal(expectedIntegerRowCount);
-        chai.expect(datafile.visualRowCount).to.equal(expectedVisualRowCount);
-        chai.expect(datafile.dupGazepointCount).to.equal(expectedDupGazepointCount);
-        chai.expect(datafile.gazepointCount).to.equal(expectedGazepointCount);
+        expect(datafile.rawRowCount).to.equal(expectedRawRowCount);
+        expect(datafile.integerRowCount).to.equal(expectedIntegerRowCount);
+        expect(datafile.visualRowCount).to.equal(expectedVisualRowCount);
+        expect(datafile.dupGazepointCount).to.equal(expectedDupGazepointCount);
+        expect(datafile.gazepointCount).to.equal(expectedGazepointCount);
       });
 
       it('saves the point stats to the database', async () => {
@@ -64,11 +65,11 @@ if(Meteor.isServer) {
         let points = await datafile.getAllGazepoints({ saveStats: true });
         let dbDatafile = Datafiles.findOne({ _id: datafile._id });
 
-        chai.expect(dbDatafile.rawRowCount).to.equal(expectedRawRowCount);
-        chai.expect(dbDatafile.integerRowCount).to.equal(expectedIntegerRowCount);
-        chai.expect(dbDatafile.visualRowCount).to.equal(expectedVisualRowCount);
-        chai.expect(dbDatafile.dupGazepointCount).to.equal(expectedDupGazepointCount);
-        chai.expect(dbDatafile.gazepointCount).to.equal(expectedGazepointCount);
+        expect(dbDatafile.rawRowCount).to.equal(expectedRawRowCount);
+        expect(dbDatafile.integerRowCount).to.equal(expectedIntegerRowCount);
+        expect(dbDatafile.visualRowCount).to.equal(expectedVisualRowCount);
+        expect(dbDatafile.dupGazepointCount).to.equal(expectedDupGazepointCount);
+        expect(dbDatafile.gazepointCount).to.equal(expectedGazepointCount);
       });
 
       it('does NOT save the point stats to the database', async () => {
@@ -78,11 +79,11 @@ if(Meteor.isServer) {
         let points = await datafile.getAllGazepoints({});
         let dbDatafile = Datafiles.findOne({ _id: datafile._id });
 
-        chai.expect(dbDatafile.rawRowCount).to.be.an('undefined');
-        chai.expect(dbDatafile.integerRowCount).to.be.an('undefined');
-        chai.expect(dbDatafile.visualRowCount).to.be.an('undefined');
-        chai.expect(dbDatafile.dupGazepointCount).to.be.an('undefined');
-        chai.expect(dbDatafile.gazepointCount).to.be.an('undefined');
+        expect(dbDatafile.rawRowCount).to.be.an('undefined');
+        expect(dbDatafile.integerRowCount).to.be.an('undefined');
+        expect(dbDatafile.visualRowCount).to.be.an('undefined');
+        expect(dbDatafile.dupGazepointCount).to.be.an('undefined');
+        expect(dbDatafile.gazepointCount).to.be.an('undefined');
       });
     });
 
@@ -98,7 +99,7 @@ if(Meteor.isServer) {
         let datafile = Factory.create('smiDatafile', { studyId: study._id });
 
         let points = await datafile.getAllGazepoints({});
-        chai.expect(points.length).to.equal(expectedGazepointCount);
+        expect(points.length).to.equal(expectedGazepointCount);
       });
 
       it('sets the point stats on the datafile instance', async () => {
@@ -106,11 +107,11 @@ if(Meteor.isServer) {
         let datafile = Factory.create('smiDatafile', { studyId: study._id });
 
         let points = await datafile.getAllGazepoints({});
-        chai.expect(datafile.rawRowCount).to.equal(expectedRawRowCount);
-        chai.expect(datafile.integerRowCount).to.equal(expectedIntegerRowCount);
-        chai.expect(datafile.visualRowCount).to.equal(expectedVisualRowCount);
-        chai.expect(datafile.dupGazepointCount).to.equal(expectedDupGazepointCount);
-        chai.expect(datafile.gazepointCount).to.equal(expectedGazepointCount);
+        expect(datafile.rawRowCount).to.equal(expectedRawRowCount);
+        expect(datafile.integerRowCount).to.equal(expectedIntegerRowCount);
+        expect(datafile.visualRowCount).to.equal(expectedVisualRowCount);
+        expect(datafile.dupGazepointCount).to.equal(expectedDupGazepointCount);
+        expect(datafile.gazepointCount).to.equal(expectedGazepointCount);
       });
 
       it('saves the point stats to the database', async () => {
@@ -120,11 +121,11 @@ if(Meteor.isServer) {
         let points = await datafile.getAllGazepoints({ saveStats: true });
         let dbDatafile = Datafiles.findOne({ _id: datafile._id });
 
-        chai.expect(dbDatafile.rawRowCount).to.equal(expectedRawRowCount);
-        chai.expect(dbDatafile.integerRowCount).to.equal(expectedIntegerRowCount);
-        chai.expect(dbDatafile.visualRowCount).to.equal(expectedVisualRowCount);
-        chai.expect(dbDatafile.dupGazepointCount).to.equal(expectedDupGazepointCount);
-        chai.expect(dbDatafile.gazepointCount).to.equal(expectedGazepointCount);
+        expect(dbDatafile.rawRowCount).to.equal(expectedRawRowCount);
+        expect(dbDatafile.integerRowCount).to.equal(expectedIntegerRowCount);
+        expect(dbDatafile.visualRowCount).to.equal(expectedVisualRowCount);
+        expect(dbDatafile.dupGazepointCount).to.equal(expectedDupGazepointCount);
+        expect(dbDatafile.gazepointCount).to.equal(expectedGazepointCount);
       });
 
       it('does NOT save the point stats to the database', async () => {
@@ -134,11 +135,11 @@ if(Meteor.isServer) {
         let points = await datafile.getAllGazepoints({});
         let dbDatafile = Datafiles.findOne({ _id: datafile._id });
 
-        chai.expect(dbDatafile.rawRowCount).to.be.an('undefined');
-        chai.expect(dbDatafile.integerRowCount).to.be.an('undefined');
-        chai.expect(dbDatafile.visualRowCount).to.be.an('undefined');
-        chai.expect(dbDatafile.dupGazepointCount).to.be.an('undefined');
-        chai.expect(dbDatafile.gazepointCount).to.be.an('undefined');
+        expect(dbDatafile.rawRowCount).to.be.an('undefined');
+        expect(dbDatafile.integerRowCount).to.be.an('undefined');
+        expect(dbDatafile.visualRowCount).to.be.an('undefined');
+        expect(dbDatafile.dupGazepointCount).to.be.an('undefined');
+        expect(dbDatafile.gazepointCount).to.be.an('undefined');
       });
     });
   });

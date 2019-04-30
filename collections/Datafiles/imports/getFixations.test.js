@@ -1,4 +1,5 @@
-require('./../../factories.test');
+require('./../../factories.test')
+const expect = require('chai').expect
 
 describe('Datafiles.getFixations()', () => {
   it('filters out duplicate fixation indices', async () => {
@@ -19,7 +20,7 @@ describe('Datafiles.getFixations()', () => {
       { stimulusName: 'someName', timestamp: '7', fixationIndex: '3' },   // good
     ];
 
-    chai.expect(await datafile.getFixations({ data: rows })).to.eql(expectedRows);
+    expect(await datafile.getFixations({ data: rows })).to.eql(expectedRows);
   });
 
   it('filters out non numeric and undefined indices', async () => {
@@ -39,7 +40,7 @@ describe('Datafiles.getFixations()', () => {
       { stimulusName: 'someName', timestamp: '7', fixationIndex: '3' },
     ];
 
-    chai.expect(await datafile.getFixations({ data: rows })).to.eql(expectedRows);
+    expect(await datafile.getFixations({ data: rows })).to.eql(expectedRows);
   });
 
   it('filters out duplicates and non numerics', async () => {
@@ -62,7 +63,7 @@ describe('Datafiles.getFixations()', () => {
       { stimulusName: 'someName', timestamp: '9', fixationIndex: '7' },       // good
     ];
 
-    chai.expect(await datafile.getFixations({ data: rows })).to.eql(expectedRows);
+    expect(await datafile.getFixations({ data: rows })).to.eql(expectedRows);
   });
 
 
@@ -75,7 +76,7 @@ describe('Datafiles.getFixations()', () => {
         let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
 
         let points = await datafile.getFixations({});
-        chai.expect(points.length).to.equal(expectedFixationCount);
+        expect(points.length).to.equal(expectedFixationCount);
       });
 
       it('sets the fixation count on the datafile instance', async () => {
@@ -83,7 +84,7 @@ describe('Datafiles.getFixations()', () => {
         let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
 
         let points = await datafile.getFixations({});
-        chai.expect(datafile.fixationCount).to.equal(expectedFixationCount);
+        expect(datafile.fixationCount).to.equal(expectedFixationCount);
       });
 
       it('saves the fixaiton count to the database', async () => {
@@ -93,7 +94,7 @@ describe('Datafiles.getFixations()', () => {
         let points = await datafile.getFixations({ saveStats: true });
         let dbDatafile = Datafiles.findOne({ _id: datafile._id });
 
-        chai.expect(dbDatafile.fixationCount).to.equal(expectedFixationCount);
+        expect(dbDatafile.fixationCount).to.equal(expectedFixationCount);
       });
 
       it('does NOT save the fixation count to the database', async () => {
@@ -103,7 +104,7 @@ describe('Datafiles.getFixations()', () => {
         let points = await datafile.getFixations({});
         let dbDatafile = Datafiles.findOne({ _id: datafile._id });
 
-        chai.expect(dbDatafile.fixationCount).to.be.an('undefined');
+        expect(dbDatafile.fixationCount).to.be.an('undefined');
       });
     });
 
@@ -115,7 +116,7 @@ describe('Datafiles.getFixations()', () => {
         let datafile = Factory.create('smiDatafile', { studyId: study._id });
 
         let points = await datafile.getFixations({});
-        chai.expect(points.length).to.equal(expectedFixationCount);
+        expect(points.length).to.equal(expectedFixationCount);
       });
     });
   }

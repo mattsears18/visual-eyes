@@ -34,5 +34,5 @@ Template.ViewingAnimation.helpers({
   stimulusfile: () => {       return Template.instance().hullseries.get() },
   hullseries: () => {         return Template.instance().hullseries.get() },
   layout: () => {             return Template.instance().hullseries.get().getLayout() },
-  initialTraces: () => {      return Template.instance().hullseries.get().getTraces({ initial: true }) },
+  initialTraces: () => {      return Template.instance().hullseries.get().getTraces({ initial: true, hullIndex: 0 }) },
 });

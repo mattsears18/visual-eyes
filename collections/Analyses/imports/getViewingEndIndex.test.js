@@ -1,4 +1,5 @@
-require('./../../factories.test');
+require('./../../factories.test')
+const expect = require('chai').expect
 
 describe('Analyses.getViewingEndIndex()', () => {
   it('gets the endIndex', async () => {
@@ -20,7 +21,7 @@ describe('Analyses.getViewingEndIndex()', () => {
       { timestamp: 9000 },
     ];
 
-    chai.expect(analysis.getViewingEndIndex({ gazepoints: points })).to.equal(9);
+    expect(analysis.getViewingEndIndex({ gazepoints: points })).to.equal(9);
   });
 
   it('exceeds the viewingGap', async () => {
@@ -42,7 +43,7 @@ describe('Analyses.getViewingEndIndex()', () => {
       { timestamp: 19000 },
     ];
 
-    chai.expect(analysis.getViewingEndIndex({ gazepoints: points })).to.equal(4);
+    expect(analysis.getViewingEndIndex({ gazepoints: points })).to.equal(4);
   });
 
   it('does not meet the minViewingTime and has more points', async () => {
@@ -64,12 +65,12 @@ describe('Analyses.getViewingEndIndex()', () => {
       { timestamp: 19000 },
     ];
 
-    chai.expect(() => { analysis.getViewingEndIndex({ gazepoints: points })}).to.throw('minViewingTimeNotMet');
+    expect(() => { analysis.getViewingEndIndex({ gazepoints: points })}).to.throw('minViewingTimeNotMet');
 
     try {
       analysis.getViewingEndIndex({ gazepoints: points });
     } catch(err) {
-      chai.expect(err.details.nextIndex).to.equal(5);
+      expect(err.details.nextIndex).to.equal(5);
     }
   });
 
@@ -87,6 +88,6 @@ describe('Analyses.getViewingEndIndex()', () => {
       { timestamp: 4000 },
     ];
 
-    chai.expect(() => { analysis.getViewingEndIndex({ gazepoints: points, startIndex: 4 })}).to.throw('startIndexTooHigh');
+    expect(() => { analysis.getViewingEndIndex({ gazepoints: points, startIndex: 4 })}).to.throw('startIndexTooHigh');
   });
 });

@@ -1,23 +1,24 @@
-require('./../../factories.test');
+require('./../../factories.test')
+const expect = require('chai').expect
 
 describe('Analyses.makeViewings()', () => {
   it('has no participantId', () => {
     let analysis = Factory.create('analysis');
-    chai.expect(() => {
+    expect(() => {
       analysis.makeViewings({})
     }).to.throw('noParticipantId');
   });
 
   it('has a nonexistent participant', () => {
     let analysis = Factory.create('analysis');
-    chai.expect(() => {
+    expect(() => {
       analysis.makeViewings({ participantId: 'abc' })
     }).to.throw('noParticipantFound');
   });
 
   it('has no stimulusId', () => {
     let analysis = Factory.create('analysis');
-    chai.expect(() => {
+    expect(() => {
       analysis.makeViewings({
         participantId: Factory.create('participant')._id,
       })
@@ -26,7 +27,7 @@ describe('Analyses.makeViewings()', () => {
 
   it('has a nonexistent stimulus', () => {
     let analysis = Factory.create('analysis');
-    chai.expect(() => {
+    expect(() => {
       analysis.makeViewings({
         participantId: Factory.create('participant')._id,
         stimulusId: 'abc',
@@ -87,15 +88,15 @@ describe('Analyses.makeViewings()', () => {
 
     let viewings = Viewings.find({ analysisId: analysis._id }).fetch();
 
-    chai.expect(viewings.length).to.equal(2);
+    expect(viewings.length).to.equal(2);
 
-    chai.expect(viewings[0].startTime).to.equal(0);
-    chai.expect(viewings[0].endTime).to.equal(5000);
-    chai.expect(viewings[0].number).to.equal(1);
+    expect(viewings[0].startTime).to.equal(0);
+    expect(viewings[0].endTime).to.equal(5000);
+    expect(viewings[0].number).to.equal(1);
 
-    chai.expect(viewings[1].startTime).to.equal(14000);
-    chai.expect(viewings[1].endTime).to.equal(23000);
-    chai.expect(viewings[1].number).to.equal(2);
+    expect(viewings[1].startTime).to.equal(14000);
+    expect(viewings[1].endTime).to.equal(23000);
+    expect(viewings[1].number).to.equal(2);
 
   }).timeout(60000);
 });

@@ -1,15 +1,15 @@
 import { TimeHullSeries }       from 'time-hulls'
 import getLayout                from './imports/getLayout'
-import getPlotData              from './imports/getPlotData'
 import getTraces                from './imports/getTraces'
 import getCentroidTrailTrace    from './imports/getCentroidTrailTrace'
 import getPointsTrace           from './imports/getPointsTrace'
 import getPointsTimeText        from './imports/getPointsTimeText'
 import getLastPointTrace        from './imports/getLastPointTrace'
-import getLastPointTrail        from './imports/getLastPointTrail'
-import getLastPointTrailTrace   from './imports/getLastPointTrailTrace'
+import getPointTrail            from './imports/getPointTrail'
+import getPointTrailTrace       from './imports/getPointTrailTrace'
 import getPolygonTrace          from './imports/getPolygonTrace'
 import getCentroidTrace         from './imports/getCentroidTrace'
+import getFrameData             from './imports/getFrameData'
 
 export default class ViewingHullSeries extends TimeHullSeries {
   constructor(opt) {
@@ -33,18 +33,17 @@ export default class ViewingHullSeries extends TimeHullSeries {
       : 10
   }
 
-  getPlotData             = getPlotData
   getLayout               = getLayout
   getTraces               = getTraces
   getCentroidTrailTrace   = getCentroidTrailTrace
   getPointsTrace          = getPointsTrace
   getPointsTimeText       = getPointsTimeText
   getLastPointTrace       = getLastPointTrace
-  getLastPointTrail       = getLastPointTrail
-  getLastPointTrailTrace  = getLastPointTrailTrace
+  getPointTrail           = getPointTrail
+  getPointTrailTrace      = getPointTrailTrace
   getPolygonTrace         = getPolygonTrace
   getCentroidTrace        = getCentroidTrace
+  getFrameData            = getFrameData
 
   getFrames               = this.getHulls
-  getFrameData            = this.getTraces
 }

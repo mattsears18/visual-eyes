@@ -1,4 +1,5 @@
-require('./../../factories.test');
+require('./../../factories.test')
+const expect = require('chai').expect
 
 if(Meteor.isServer) {
   describe('Datafiles.process()', () => {
@@ -8,22 +9,22 @@ if(Meteor.isServer) {
 
       await datafile.process();
 
-      chai.expect(datafile.headersRemoved).to.be.true;
-      chai.expect(datafile.participantId).to.exist;
-      chai.expect(datafile.fileFormat).to.exist;
+      expect(datafile.headersRemoved).to.be.true;
+      expect(datafile.participantId).to.exist;
+      expect(datafile.fileFormat).to.exist;
 
-      chai.expect(datafile.rawRowCount).to.exist;
-      chai.expect(datafile.integerRowCount).to.exist;
-      chai.expect(datafile.visualRowCount).to.exist;
-      chai.expect(datafile.dupGazepointCount).to.exist;
-      chai.expect(datafile.gazepointCount).to.exist;
-      chai.expect(datafile.fixationCount).to.exist;
+      expect(datafile.rawRowCount).to.exist;
+      expect(datafile.integerRowCount).to.exist;
+      expect(datafile.visualRowCount).to.exist;
+      expect(datafile.dupGazepointCount).to.exist;
+      expect(datafile.gazepointCount).to.exist;
+      expect(datafile.fixationCount).to.exist;
 
-      chai.expect(datafile.status).to.equal('processed');
+      expect(datafile.status).to.equal('processed');
 
       let participant = Participants.findOne({ _id: datafile.participantId });
 
-      chai.expect(participant.datafileIds).to.eql([datafile._id]);
+      expect(participant.datafileIds).to.eql([datafile._id]);
     }).timeout(60000);
 
     it('creates one participant from two datafiles', async () => {
@@ -36,8 +37,8 @@ if(Meteor.isServer) {
 
       let participant = Participants.findOne({ _id: datafile1.participantId });
 
-      chai.expect(datafile1.participantId).to.equal(datafile2.participantId);
-      chai.expect(participant.datafileIds).to.eql([datafile1._id, datafile2._id]);
+      expect(datafile1.participantId).to.equal(datafile2.participantId);
+      expect(participant.datafileIds).to.eql([datafile1._id, datafile2._id]);
     }).timeout(60000);
   });
 }

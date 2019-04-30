@@ -1,10 +1,11 @@
-require('./../../factories.test');
+require('./../../factories.test')
+const expect = require('chai').expect
 
 describe('Datafiles.getNonDuplicateCoordinatesOnly()', () => {
   it('returns empty array when passed empty array', async () => {
     let datafile = Factory.create('imotionsDatafile');
     let rows = [];
-    chai.expect(await datafile.getNonDuplicateCoordinatesOnly(rows)).to.eql(rows);
+    expect(await datafile.getNonDuplicateCoordinatesOnly(rows)).to.eql(rows);
   });
 
   it('removes duplicate coordinates on the same stimulus', async () => {
@@ -32,7 +33,7 @@ describe('Datafiles.getNonDuplicateCoordinatesOnly()', () => {
       { stimulusName:'stimulus', x: '100',  y: '100', a: '7'},
       { stimulusName:'stimulus', x: '50',   y: '50', a: '10'},
     ];
-    chai.expect(await datafile.getNonDuplicateCoordinatesOnly(rows)).to.eql(expectedRows);
+    expect(await datafile.getNonDuplicateCoordinatesOnly(rows)).to.eql(expectedRows);
   });
 
   it('does not remove duplicate coordinates on different stimuli', async () => {
@@ -55,6 +56,6 @@ describe('Datafiles.getNonDuplicateCoordinatesOnly()', () => {
       { stimulusName:'stimulus2', x: '50',   y: '50', a: '5'},
       { stimulusName:'stimulus3', x: '50',   y: '50', a: '6'},
     ];
-    chai.expect(await datafile.getNonDuplicateCoordinatesOnly(rows)).to.eql(expectedRows);
+    expect(await datafile.getNonDuplicateCoordinatesOnly(rows)).to.eql(expectedRows);
   });
 });

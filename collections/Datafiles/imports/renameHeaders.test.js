@@ -1,19 +1,20 @@
-require('./../../factories.test');
+require('./../../factories.test')
+const expect = require('chai').expect
 
 describe('Datafiles.renameHeaders()', () => {
   it('throws a noFileformat error', () => {
     let datafile = Factory.create('imotionsDatafile', { fileFormat: undefined });
-    chai.expect(() => { datafile.renameHeaders() }).to.throw('noFileFormat');
+    expect(() => { datafile.renameHeaders() }).to.throw('noFileFormat');
   });
 
   it('throws a noCSVData error', () => {
     let datafile = Factory.create('imotionsDatafile');
-    chai.expect(() => { datafile.renameHeaders() }).to.throw('noCSVData');
+    expect(() => { datafile.renameHeaders() }).to.throw('noCSVData');
   });
 
   it('throws an unrecognizedFileFormat error', () => {
     let datafile = Factory.create('imotionsDatafile', { fileFormat: 'foo' });
-    chai.expect(() => { datafile.renameHeaders([1,2,3]) }).to.throw('unrecognizedFileFormat');
+    expect(() => { datafile.renameHeaders([1,2,3]) }).to.throw('unrecognizedFileFormat');
   });
 
   it('renames smi headers', () => {
@@ -84,7 +85,7 @@ describe('Datafiles.renameHeaders()', () => {
       }
     ];
 
-    chai.expect(datafile.renameHeaders(rows)).to.eql(expectedRows);
+    expect(datafile.renameHeaders(rows)).to.eql(expectedRows);
   });
 
   it('renames imotions headers', () => {
@@ -143,6 +144,6 @@ describe('Datafiles.renameHeaders()', () => {
       },
     ];
 
-    chai.expect(datafile.renameHeaders(rows)).to.eql(expectedRows);
+    expect(datafile.renameHeaders(rows)).to.eql(expectedRows);
   });
 });

@@ -1,11 +1,7 @@
 export default function getPolygonTrace(opt) {
   opt = opt || {}
   let initial = opt.initial || false
-  let hull = opt.hull
-
-  if(typeof(hull) == 'undefined') {
-    throw new Error('noHull')
-  }
+  let hull = this.getHull(opt)
 
   if(initial) {
     return {

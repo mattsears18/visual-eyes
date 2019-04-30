@@ -58,9 +58,7 @@ aldeed:geocoder
 momentjs:moment
 lbee:moment-helpers
 http@1.4.2
-practicalmeteor:mocha
 meteortesting:mocha
-practicalmeteor:chai
 xolvio:cleaner
 underscore@1.0.10
 natestrauser:select2

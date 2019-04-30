@@ -1,4 +1,5 @@
-require('./../../factories.test');
+require('./../../factories.test')
+const expect = require('chai').expect
 
 describe('Datafiles.filterSortFloat()', () => {
   it('filters out non float values and sorts by timestamp', async () => {
@@ -23,6 +24,6 @@ describe('Datafiles.filterSortFloat()', () => {
       { timestamp: '4', x: '9' },
     ];
 
-    chai.expect(datafile.filterSortFloat('timestamp', rows)).to.eql(expectedRows);
+    expect(datafile.filterSortFloat('timestamp', rows)).to.eql(expectedRows);
   });
 });

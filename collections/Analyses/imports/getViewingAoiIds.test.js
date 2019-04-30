@@ -1,4 +1,5 @@
 require('./../../factories.test');
+const expect = require('chai').expect
 
 describe('Analyses.getViewingAoiIds()', () => {
   it('does not have aoiIds', () => {
@@ -11,7 +12,7 @@ describe('Analyses.getViewingAoiIds()', () => {
       { timestamp: 4000 },
     ];
 
-    chai.expect(analysis.getViewingAoiIds(points)).to.eql([]);
+    expect(analysis.getViewingAoiIds(points)).to.eql([]);
   });
 
   it('has aoiIds', () => {
@@ -24,7 +25,7 @@ describe('Analyses.getViewingAoiIds()', () => {
       { timestamp: 4000 },
     ];
 
-    chai.expect(analysis.getViewingAoiIds(points)).to.eql(['dfgrhtjyghfgdf', 'dafsdgfhgjfhgd']);
+    expect(analysis.getViewingAoiIds(points)).to.eql(['dfgrhtjyghfgdf', 'dafsdgfhgjfhgd']);
   });
 
   it('has duplicate aoiIds', () => {
@@ -37,6 +38,6 @@ describe('Analyses.getViewingAoiIds()', () => {
       { timestamp: 4000, aoiId: 'sdfegrhtrytefs' },
     ];
 
-    chai.expect(analysis.getViewingAoiIds(points)).to.eql(['dfgrhtjyghfgdf', 'sdfegrhtrytefs']);
+    expect(analysis.getViewingAoiIds(points)).to.eql(['dfgrhtjyghfgdf', 'sdfegrhtrytefs']);
   });
 });

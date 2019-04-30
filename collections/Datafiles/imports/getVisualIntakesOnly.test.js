@@ -1,10 +1,11 @@
-require('./../../factories.test');
+require('./../../factories.test')
+const expect = require('chai').expect
 
 describe('Datafiles.getVisualIntakesOnly()', () => {
   it('returns empty array when passed empty array', async () => {
     let datafile = Factory.create('imotionsDatafile');
     let rows = [];
-    chai.expect(await datafile.getVisualIntakesOnly(rows)).to.eql(rows);
+    expect(await datafile.getVisualIntakesOnly(rows)).to.eql(rows);
   });
 
   it('filters out all rows without a category', async () => {
@@ -24,7 +25,7 @@ describe('Datafiles.getVisualIntakesOnly()', () => {
       { category: 'Visual Intake', x: '5' },
     ];
 
-    chai.expect(await datafile.getVisualIntakesOnly(rows)).to.eql(expectedRows);
+    expect(await datafile.getVisualIntakesOnly(rows)).to.eql(expectedRows);
   });
 
   it('filters out all categories except visual intakes', async () => {
@@ -43,7 +44,7 @@ describe('Datafiles.getVisualIntakesOnly()', () => {
       { category: 'Visual Intake', x: '5' },
     ];
 
-    chai.expect(await datafile.getVisualIntakesOnly(rows)).to.eql(expectedRows);
+    expect(await datafile.getVisualIntakesOnly(rows)).to.eql(expectedRows);
   });
 
   it('filters out all rows', async () => {
@@ -58,6 +59,6 @@ describe('Datafiles.getVisualIntakesOnly()', () => {
 
     let expectedRows = [];
 
-    chai.expect(await datafile.getVisualIntakesOnly(rows)).to.eql(expectedRows);
+    expect(await datafile.getVisualIntakesOnly(rows)).to.eql(expectedRows);
   });
 });

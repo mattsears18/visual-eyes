@@ -1,4 +1,5 @@
 require('./../../factories.test')
+const expect = require('chai').expect
 
 describe('Viewing.getHullseries()', () => {
   it('gets a hullseries', () => {
@@ -10,6 +11,6 @@ describe('Viewing.getHullseries()', () => {
       pointTrailLength: 10,
     })
 
-    chai.expect(hullseries.getHulls()).is.an('array')
+    expect(hullseries.getHulls()).is.an('array')
   })
 })

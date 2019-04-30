@@ -1,23 +1,24 @@
-require('./../../factories.test');
+require('./../../factories.test')
+const expect = require('chai').expect
 
 describe('Analyses.makeViewingFromGazepoints()', () => {
   it('has no participantId', () => {
     let analysis = Factory.create('analysis');
-    chai.expect(() => {
+    expect(() => {
       analysis.makeViewingFromGazepoints({})
     }).to.throw('noParticipantId');
   });
 
   it('has a nonexistent participant', () => {
     let analysis = Factory.create('analysis');
-    chai.expect(() => {
+    expect(() => {
       analysis.makeViewingFromGazepoints({ participantId: 'abc' })
     }).to.throw('noParticipantFound');
   });
 
   it('has no stimulusId', () => {
     let analysis = Factory.create('analysis');
-    chai.expect(() => {
+    expect(() => {
       analysis.makeViewingFromGazepoints({
         participantId: Factory.create('participant')._id,
       })
@@ -26,7 +27,7 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
 
   it('has a nonexistent stimulus', () => {
     let analysis = Factory.create('analysis');
-    chai.expect(() => {
+    expect(() => {
       analysis.makeViewingFromGazepoints({
         participantId: Factory.create('participant')._id,
         stimulusId: 'abc',
@@ -36,7 +37,7 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
 
   it('has no gazepoints', () => {
     let analysis = Factory.create('analysis');
-    chai.expect(() => {
+    expect(() => {
       analysis.makeViewingFromGazepoints({
         participantId: Factory.create('participant')._id,
         stimulusId: Factory.create('stimulus')._id,
@@ -46,7 +47,7 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
 
   it('has a startIndex that is out of bounds', () => {
     let analysis = Factory.create('analysis');
-    chai.expect(() => {
+    expect(() => {
       analysis.makeViewingFromGazepoints({
         participantId: Factory.create('participant')._id,
         stimulusId: Factory.create('stimulus')._id,
@@ -58,7 +59,7 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
 
   it('has an endIndex that is out of bounds', () => {
     let analysis = Factory.create('analysis');
-    chai.expect(() => {
+    expect(() => {
       analysis.makeViewingFromGazepoints({
         participantId: Factory.create('participant')._id,
         stimulusId: Factory.create('stimulus')._id,
@@ -77,7 +78,7 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
     });
 
     let viewing = Viewings.findOne({ _id: viewingId });
-    chai.expect(viewing.status).to.equal('invalidStimulusDimensions');
+    expect(viewing.status).to.equal('invalidStimulusDimensions');
   });
 
   it('has an invalid stimulus height', () => {
@@ -89,7 +90,7 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
     });
 
     let viewing = Viewings.findOne({ _id: viewingId });
-    chai.expect(viewing.status).to.equal('invalidStimulusDimensions');
+    expect(viewing.status).to.equal('invalidStimulusDimensions');
   });
 
   it('successfully makes a viewing', async () => {
@@ -122,17 +123,17 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
 
     let viewing = Viewings.findOne({ _id: viewingId });
 
-    chai.expect(viewing.analysisId).to.equal(analysis._id);
-    chai.expect(viewing.startTime).to.equal(2000);
-    chai.expect(viewing.endTime).to.equal(6000);
-    chai.expect(viewing.duration).to.equal(4000);
-    chai.expect(viewing.number).to.equal(7);
-    chai.expect(viewing.participantId).to.equal(participant._id);
-    chai.expect(viewing.stimulusId).to.equal(stimulus._id);
-    chai.expect(viewing.aoiIds.length).to.equal(0);
-    chai.expect(viewing.status).to.equal('processed');
+    expect(viewing.analysisId).to.equal(analysis._id);
+    expect(viewing.startTime).to.equal(2000);
+    expect(viewing.endTime).to.equal(6000);
+    expect(viewing.duration).to.equal(4000);
+    expect(viewing.number).to.equal(7);
+    expect(viewing.participantId).to.equal(participant._id);
+    expect(viewing.stimulusId).to.equal(stimulus._id);
+    expect(viewing.aoiIds.length).to.equal(0);
+    expect(viewing.status).to.equal('processed');
 
-    chai.expect(viewing.gazepoints).to.eql([
+    expect(viewing.gazepoints).to.eql([
       { x: 0.5, y: 0.5, timestamp: 2000, fixationIndex: 1 },
       { x: 0.5, y: 0.5, timestamp: 3000 },
       { x: 0.5, y: 0.5, timestamp: 4000 },
@@ -140,10 +141,10 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
       { x: 0.5, y: 0.5, timestamp: 6000 },
     ]);
 
-    chai.expect(viewing.gazepointCount).to.equal(5);
-    chai.expect(viewing.gazepointFrequency).to.equal(1.25);
-    chai.expect(viewing.fixationCount).to.equal(2);
-    chai.expect(viewing.fixationFrequency).to.equal(0.5);
+    expect(viewing.gazepointCount).to.equal(5);
+    expect(viewing.gazepointFrequency).to.equal(1.25);
+    expect(viewing.fixationCount).to.equal(2);
+    expect(viewing.fixationFrequency).to.equal(0.5);
 
   }).timeout(60000);
 });

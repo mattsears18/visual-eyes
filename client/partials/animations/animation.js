@@ -151,7 +151,7 @@ function playAnimation(timestamp) {
 
 function plotFrame(index) {
   if(typeof(index) == 'undefined') { index = this.frameIndex.get() }
-  let frame = this.frames.get()[this.frameIndex.get()]
+  let frame = this.frames.get()[index]
 
   let data
   if(frame.data) {

@@ -117,14 +117,6 @@ Factory.define('participant', Participants, {
 });
 
 
-Factory.define('stimulus', Stimuli, {
-  name: () => faker.lorem.words(),
-  studyId: () => Factory.create('study')._id,
-  width: () => faker.random.number({min: 100, max: 3000}),
-  height: () => faker.random.number({min: 100, max: 3000}),
-});
-
-
 Factory.define('stimulusfile', Stimulusfiles.collection, {
   studyId: () => Factory.create('study')._id,
   size: faker.random.number(),
@@ -157,6 +149,17 @@ Factory.define('stimulusfile', Stimulusfiles.collection, {
     }
   },
   _storagePath : '/Users/mattsears/code/VisualEyes/testFiles/stimulusfiles/',
+});
+
+
+Factory.define('stimulus', Stimuli, {
+  name: () => faker.lorem.words(),
+  studyId: () => Factory.create('study')._id,
+  width: () => faker.random.number({min: 100, max: 3000}),
+  height: () => faker.random.number({min: 100, max: 3000}),
+  stimulusfileId: () => {
+    return Factory.create('stimulusfile', { stimulusId: 'dummyId' })._id
+  },
 });
 
 

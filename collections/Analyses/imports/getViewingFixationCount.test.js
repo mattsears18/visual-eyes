@@ -1,4 +1,5 @@
-require('./../../factories.test');
+require('./../../factories.test')
+const expect = require('chai').expect
 
 describe('Analyses.getViewingFixationCount()', () => {
   it('dose not have fixations', () => {
@@ -11,7 +12,7 @@ describe('Analyses.getViewingFixationCount()', () => {
       { timestamp: 4000 },
     ];
 
-    chai.expect(analysis.getViewingFixationCount(points)).to.equal(0);
+    expect(analysis.getViewingFixationCount(points)).to.equal(0);
   });
 
   it('has duplicate fixation indices', () => {
@@ -24,7 +25,7 @@ describe('Analyses.getViewingFixationCount()', () => {
       { timestamp: 4000 },
     ];
 
-    chai.expect(analysis.getViewingFixationCount(points)).to.equal(1);
+    expect(analysis.getViewingFixationCount(points)).to.equal(1);
   });
 
   it('has fixations', () => {
@@ -37,6 +38,6 @@ describe('Analyses.getViewingFixationCount()', () => {
       { timestamp: 4000 },
     ];
 
-    chai.expect(analysis.getViewingFixationCount(points)).to.equal(3);
+    expect(analysis.getViewingFixationCount(points)).to.equal(3);
   });
 });

@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for collections/Datafiles/imports/makeGazepoints.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/Users/mattsears/code/VisualEyes/.coverage/prettify.css" />
+    <link rel="stylesheet" href="/Users/mattsears/code/VisualEyes/.coverage/base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(/Users/mattsears/code/VisualEyes/.coverage/sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="/Users/mattsears/code/VisualEyes/.coverage/index.html">All files</a> collections/Datafiles/imports/makeGazepoints.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">92.59% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>25/27</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">87.5% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>14/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>5/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">95.24% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>20/21</span>
+      </div>
+    </div>
+    <p class="quiet">
+      Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+    </p>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</td><td class="line-coverage quiet"><span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2756x</span>
+<span class="cline-any cline-yes">2756x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2756x</span>
+<span class="cline-any cline-yes">1223x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2756x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2756x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2756x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2756x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2756x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import helpers from '../../../lib/helpers';
+&nbsp;
+export default async function makeGazepoints({
+  data = null,
+  saveStats = <span class="branch-0 cbranch-no" title="branch not covered" >false,</span>
+}) <span class="cstat-no" title="statement not covered" >{</span>
+&nbsp;
+  <span class="missing-if-branch" title="else path not taken" >E</span>if(!data) { data = await this.getGazepoints({ saveStats: saveStats }) }
+&nbsp;
+  if(saveStats &amp;&amp; !this.study().fixationsOnly) {
+    // save the fixationCount
+    let fixations = <span class="cstat-no" title="statement not covered" >await this.getFixations({ saveStats });</span>
+  }
+&nbsp;
+  let sdPairs = [];
+&nbsp;
+  data.forEach((point) =&gt; {
+    point.datafileId = this._id;
+    point.studyId = this.studyId,
+&nbsp;
+    point.participantId = this.participantId;
+    if(!point.participantId) {
+      point.participantId = helpers.findOrInsert('participants', {
+        name: this.getName(),
+        studyId: this.studyId,
+      });
+    }
+&nbsp;
+    point.aoiName = (point.aoiName || '-');
+&nbsp;
+    point.stimulusId = helpers.findOrInsert('stimuli', {
+      name: point.stimulusName,
+      studyId: this.studyId,
+    });
+&nbsp;
+    if(!sdPairs.some(el =&gt; (el.stimulusId == point.stimulusId &amp;&amp; el.datafileId == point.datafileId))) {
+      sdPairs.push({ stimulusId: point.stimulusId, datafileId: point.datafileId });
+    }
+&nbsp;
+    point.aoiId = helpers.findOrInsert('aois', {
+      name: point.aoiName,
+      stimulusId: point.stimulusId,
+      studyId: point.studyId,
+    });
+&nbsp;
+    Gazepoints.insert(point);
+  });
+&nbsp;
+  // TODO improve by adding all datafileIds to set at once, too many DB calls as-is
+  sdPairs.forEach((pair) =&gt; {
+    Stimuli.update({ _id: pair.stimulusId }, {
+      $addToSet: {
+        datafileIds: pair.datafileId,
+      },
+    });
+  });
+&nbsp;
+  return Gazepoints.find({ datafileId: this._id });
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Apr 30 2019 17:55:03 GMT-0400 (EDT)
+</div>
+</div>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/sorter.js"></script>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/block-navigation.js"></script>
+</body>
+</html>

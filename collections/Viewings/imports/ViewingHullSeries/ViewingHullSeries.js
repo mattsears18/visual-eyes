@@ -10,6 +10,7 @@ import getPointTrailTrace       from './imports/getPointTrailTrace'
 import getPolygonTrace          from './imports/getPolygonTrace'
 import getCentroidTrace         from './imports/getCentroidTrace'
 import getFrameData             from './imports/getFrameData'
+import getCSV                   from './imports/getCSV'
 
 export default class ViewingHullSeries extends TimeHullSeries {
   constructor(opt) {
@@ -17,6 +18,8 @@ export default class ViewingHullSeries extends TimeHullSeries {
     if(typeof(opt.points) == 'undefined') {
       if(typeof(opt.viewing) != 'undefined') {
         opt.points = opt.viewing.gazepoints
+        opt.width  = opt.width  || opt.viewing.stimulus() ? opt.viewing.stimulus().width : 0
+        opt.height = opt.height || opt.viewing.stimulus() ? opt.viewing.stimulus().height : 0
       }
     }
 
@@ -44,6 +47,6 @@ export default class ViewingHullSeries extends TimeHullSeries {
   getPolygonTrace         = getPolygonTrace
   getCentroidTrace        = getCentroidTrace
   getFrameData            = getFrameData
-
   getFrames               = this.getHulls
+  getCSV                  = getCSV
 }

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for collections/Datafiles/hooks.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/Users/mattsears/code/VisualEyes/.coverage/prettify.css" />
+    <link rel="stylesheet" href="/Users/mattsears/code/VisualEyes/.coverage/base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(/Users/mattsears/code/VisualEyes/.coverage/sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="/Users/mattsears/code/VisualEyes/.coverage/index.html">All files</a> collections/Datafiles/hooks.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">53.33% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>8/15</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>4/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">66.67% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/3</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>7/14</span>
+      </div>
+    </div>
+    <p class="quiet">
+      Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+    </p>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">64x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">64x</span>
+<span class="cline-any cline-yes">62x</span>
+<span class="cline-any cline-yes">62x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Jobs from '../Jobs/Jobs';
+&nbsp;
+Datafiles.collection.before.insert(function (userId, doc) {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if(doc.meta &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >doc.meta.studyId) {</span>
+<span class="cstat-no" title="statement not covered" >    doc.studyId = doc.meta.studyId;</span>
+  }
+});
+&nbsp;
+Datafiles.collection.after.insert(function (userId, doc) {
+  if(Meteor.isServer) {
+    let datafile = Datafiles.collection.findOne({ _id: doc._id });
+    datafile.makeProcessJob();
+  }
+});
+&nbsp;
+Datafiles.collection.after.remove(<span class="fstat-no" title="function not covered" >function (</span>userId, datafile) {
+  // Update Stimuli.datafileIds
+<span class="cstat-no" title="statement not covered" >  Stimuli.update(</span>
+    { studyId: datafile.studyId },
+    { $pull: { datafileIds: datafile._id }},
+    { multi: true }
+  );
+&nbsp;
+  // Update Participant.datafileIds
+<span class="cstat-no" title="statement not covered" >  Participants.update(</span>
+    { studyId: datafile.studyId },
+    { $pull: { datafileIds: datafile._id }},
+    { multi: true }
+  );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if(Meteor.isServer) {</span>
+    // Delete any Stimuli that no longer have datafileIds
+<span class="cstat-no" title="statement not covered" >    Stimuli.remove({ datafileIds: {$eq: []} });</span>
+&nbsp;
+    // Delete any Participants that no longer have datafileIds
+<span class="cstat-no" title="statement not covered" >    Participants.remove({ datafileIds: {$eq: []} });</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    Jobs.remove({ data: { datafileId: datafile._id }});</span>
+  }
+});
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Apr 30 2019 17:55:03 GMT-0400 (EDT)
+</div>
+</div>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/sorter.js"></script>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/block-navigation.js"></script>
+</body>
+</html>

@@ -36,3 +36,10 @@ Template.ViewingAnimation.helpers({
   layout: () => {             return Template.instance().hullseries.get().getLayout() },
   initialTraces: () => {      return Template.instance().hullseries.get().getTraces({ initial: true, hullIndex: 0 }) },
 });
+
+
+Template.ViewingAnimation.events({
+  'click .download-as-csv':function(){
+    Template.instance().viewing.get().saveCSV(Template.instance().hullParams.get())
+  },
+});

@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for collections/Viewings/imports/ViewingHullSeries/ViewingHullSeries.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/Users/mattsears/code/VisualEyes/.coverage/prettify.css" />
+    <link rel="stylesheet" href="/Users/mattsears/code/VisualEyes/.coverage/base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(/Users/mattsears/code/VisualEyes/.coverage/sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="/Users/mattsears/code/VisualEyes/.coverage/index.html">All files</a> collections/Viewings/imports/ViewingHullSeries/ViewingHullSeries.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>40/40</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">90% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>18/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>13/13</span>
+      </div>
+    </div>
+    <p class="quiet">
+      Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+    </p>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53</td><td class="line-coverage quiet"><span class="cline-any cline-yes">69x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">416x</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { TimeHullSeries }       from 'time-hulls'
+import getLayout                from './imports/getLayout'
+import getTraces                from './imports/getTraces'
+import getCentroidTrailTrace    from './imports/getCentroidTrailTrace'
+import getPointsTrace           from './imports/getPointsTrace'
+import getPointsTimeText        from './imports/getPointsTimeText'
+import getLastPointTrace        from './imports/getLastPointTrace'
+import getPointTrail            from './imports/getPointTrail'
+import getPointTrailTrace       from './imports/getPointTrailTrace'
+import getPolygonTrace          from './imports/getPolygonTrace'
+import getCentroidTrace         from './imports/getCentroidTrace'
+import getFrameData             from './imports/getFrameData'
+import getCSV                   from './imports/getCSV'
+&nbsp;
+export default class ViewingHullSeries extends TimeHullSeries {
+  constructor(opt) {
+    opt = opt || {}
+    if(typeof(opt.points) == 'undefined') {
+      if(typeof(opt.viewing) != 'undefined') {
+        opt.points = opt.viewing.gazepoints
+        opt.width  = opt.width  || opt.viewing.stimulus() ? opt.viewing.stimulus().width : <span class="branch-1 cbranch-no" title="branch not covered" >0</span>
+        opt.height = opt.height || opt.viewing.stimulus() ? opt.viewing.stimulus().height : <span class="branch-1 cbranch-no" title="branch not covered" >0</span>
+      }
+    }
+&nbsp;
+    super(opt)
+&nbsp;
+    if(typeof(opt.viewing) != 'undefined') {
+      this.viewing = opt.viewing
+    } else {
+      throw new Error('noViewing')
+    }
+&nbsp;
+    this.pointTrailLength = (typeof(opt.pointTrailLength) == 'number' &amp;&amp; opt.pointTrailLength &gt; 0)
+      ? parseInt(opt.pointTrailLength)
+      : 10
+  }
+&nbsp;
+  getLayout               = getLayout
+  getTraces               = getTraces
+  getCentroidTrailTrace   = getCentroidTrailTrace
+  getPointsTrace          = getPointsTrace
+  getPointsTimeText       = getPointsTimeText
+  getLastPointTrace       = getLastPointTrace
+  getPointTrail           = getPointTrail
+  getPointTrailTrace      = getPointTrailTrace
+  getPolygonTrace         = getPolygonTrace
+  getCentroidTrace        = getCentroidTrace
+  getFrameData            = getFrameData
+  getFrames               = this.getHulls
+  getCSV                  = getCSV
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Apr 30 2019 17:55:03 GMT-0400 (EDT)
+</div>
+</div>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/sorter.js"></script>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/block-navigation.js"></script>
+</body>
+</html>

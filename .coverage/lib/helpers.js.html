@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/helpers.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/Users/mattsears/code/VisualEyes/.coverage/prettify.css" />
+    <link rel="stylesheet" href="/Users/mattsears/code/VisualEyes/.coverage/base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(/Users/mattsears/code/VisualEyes/.coverage/sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="/Users/mattsears/code/VisualEyes/.coverage/index.html">All files</a> lib/helpers.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">40.35% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>23/57</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">61.11% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>11/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">7.14% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">37.5% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>18/48</span>
+      </div>
+    </div>
+    <p class="quiet">
+      Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+    </p>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140</td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">878497x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">106x</span>
+<span class="cline-any cline-yes">106x</span>
+<span class="cline-any cline-yes">106x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">106x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">106x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54x</span>
+<span class="cline-any cline-yes">54x</span>
+<span class="cline-any cline-yes">54x</span>
+<span class="cline-any cline-yes">176386x</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">176386x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import regression from 'regression';
+import distinctPoints from './imports/distinctPoints';
+import findOrInsert from './imports/findOrInsert';
+&nbsp;
+helpers = {
+  distinctPoints,
+  findOrInsert,
+&nbsp;
+  isFloaty(n){
+    return (!isNaN(parseFloat(n)));
+  },
+  coinFlip: <span class="fstat-no" title="function not covered" >() =&gt; </span>{
+<span class="cstat-no" title="statement not covered" >    return (Math.floor(Math.random() * 2) == 0);</span>
+  },
+  uniqueArray: (<span class="fstat-no" title="function not covered" >array) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    return array.filter(<span class="fstat-no" title="function not covered" >function (</span>value, index, self) {</span>
+<span class="cstat-no" title="statement not covered" >      return self.indexOf(value) === index;</span>
+    });
+  },
+  millisecondsToHMSMS: (<span class="fstat-no" title="function not covered" >ms) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    return moment.utc(ms).format("HH:mm:ss.SSS");</span>
+  },
+  millisecondsToMSMS: (<span class="fstat-no" title="function not covered" >ms) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    return moment.utc(ms).format("mm:ss.SSS");</span>
+  },
+  json: (<span class="fstat-no" title="function not covered" >jsonObject) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    return JSON.stringify(jsonObject);</span>
+  },
+  formatNumber: (number) =&gt; {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if(number) {
+      return number.toLocaleString('en');
+    } else {
+<span class="cstat-no" title="statement not covered" >      return 0;</span>
+    }
+  },
+  decimalToPercent: (<span class="fstat-no" title="function not covered" >number) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    return (number * 100).toFixed(2);</span>
+  },
+  sortNumber: <span class="fstat-no" title="function not covered" >(a</span>, b) =&gt; {
+<span class="cstat-no" title="statement not covered" >    return a - b;</span>
+  },
+  toggleInArray(array, value) {
+    var index = <span class="cstat-no" title="statement not covered" >array.indexOf(value);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (index === -1) {</span>
+<span class="cstat-no" title="statement not covered" >        array.push(value);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >        array.splice(index, 1);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return array;</span>
+  },
+  arraysEqual(a, b) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (a === b) <span class="cstat-no" title="statement not covered" >return true;</span>
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (a == null || b == null) <span class="cstat-no" title="statement not covered" >return false;</span>
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (a.length != b.length) <span class="cstat-no" title="statement not covered" >return false;</span>
+&nbsp;
+    // If you don't care about the order of the elements inside
+    // the array, you should sort both arrays here.
+    // Please note that calling sort on an array will modify that array.
+    // you might want to clone your array first.
+&nbsp;
+    for (var i = 0; i &lt; a.length; ++i) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (a[i] !== b[i]) <span class="cstat-no" title="statement not covered" >return false;</span>
+    }
+    return true;
+  },
+  // centroid(points) {
+  //   var pts = points.slice();
+  //   if(pts.length == 1) {
+  //     return { x: pts[0].x, y: pts[0].y }
+  //   } else {
+  //     // https://stackoverflow.com/questions/9692448/how-can-you-find-the-centroid-of-a-concave-irregular-polygon-in-javascript
+  //     var first = pts[0], last = pts[pts.length-1];
+  //     if (first.x != last.x || first.y != last.y) pts.push(first);
+  //     var twicearea=0,
+  //     x=0, y=0,
+  //     nPts = pts.length,
+  //     p1, p2, f;
+  //     for ( var i=0, j=nPts-1 ; i&lt;nPts ; j=i++ ) {
+  //       p1 = pts[i]; p2 = pts[j];
+  //       f = p1.x*p2.y - p2.x*p1.y;
+  //       twicearea += f;
+  //       x += ( p1.x + p2.x ) * f;
+  //       y += ( p1.y + p2.y ) * f;
+  //     }
+  //     f = twicearea * 3;
+  //     return { x:x/f, y:y/f };
+  //   }
+  // },
+  linearPredictions(xs, ys) {
+<span class="cstat-no" title="statement not covered" >    equation = linearEquation(xs, ys);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    predictions = [];</span>
+<span class="cstat-no" title="statement not covered" >    equation.points.forEach(<span class="fstat-no" title="function not covered" >function(</span>point) {</span>
+<span class="cstat-no" title="statement not covered" >      predictions.push(point[1]);</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return predictions;</span>
+  },
+  linearEquation(xs, ys) {
+<span class="cstat-no" title="statement not covered" >    return linearEquation(xs, ys);</span>
+  },
+  getViewingCounts(viewings) {
+    var groups = <span class="cstat-no" title="statement not covered" >_.groupBy(viewings, <span class="fstat-no" title="function not covered" >function(</span>viewing){</span>
+<span class="cstat-no" title="statement not covered" >      return viewing.participantId + '#' + viewing.stimulusId;</span>
+    });
+&nbsp;
+    var counts = <span class="cstat-no" title="statement not covered" >_.map(groups, <span class="fstat-no" title="function not covered" >function(</span>group){</span>
+<span class="cstat-no" title="statement not covered" >      return group.length;</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return counts;</span>
+  },
+  equals(a, b) {
+<span class="cstat-no" title="statement not covered" >    return a === b;</span>
+  },
+  keyInArray(key, array) {
+    let hasKey = false;
+    let i = 0;
+    while(array[i] &amp;&amp; !hasKey) {
+      if(array[i].hasOwnProperty(key)) {
+        hasKey = true;
+      }
+      i++;
+    }
+    return hasKey;
+  },
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >linearEquation(xs, ys) {</span>
+<span class="cstat-no" title="statement not covered" >  pairs = [];</span>
+<span class="cstat-no" title="statement not covered" >  xs.forEach(<span class="fstat-no" title="function not covered" >function(</span>x, i) {</span>
+<span class="cstat-no" title="statement not covered" >    pairs.push([x, ys[i]]);</span>
+  });
+<span class="cstat-no" title="statement not covered" >  return regression.linear(pairs);</span>
+}
+&nbsp;
+export default helpers;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Apr 30 2019 17:55:03 GMT-0400 (EDT)
+</div>
+</div>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/sorter.js"></script>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/block-navigation.js"></script>
+</body>
+</html>

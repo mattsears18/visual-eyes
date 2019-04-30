@@ -1,8 +1,10 @@
 import Jobs                     from '../Jobs/Jobs';
 import getHullseries            from './imports/getHullseries';
+import saveCSV                  from './imports/saveCSV'
 
 Viewings.helpers({
   getHullseries,
+  saveCSV,
 
   hasPermission(action) {
     check(action, String);

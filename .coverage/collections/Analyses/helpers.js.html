@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for collections/Analyses/helpers.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/Users/mattsears/code/VisualEyes/.coverage/prettify.css" />
+    <link rel="stylesheet" href="/Users/mattsears/code/VisualEyes/.coverage/base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(/Users/mattsears/code/VisualEyes/.coverage/sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="/Users/mattsears/code/VisualEyes/.coverage/index.html">All files</a> collections/Analyses/helpers.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">61.7% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>29/47</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/20</span>
+      </div>
+    </div>
+    <p class="quiet">
+      Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+    </p>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77</td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Jobs                       from '../Jobs/Jobs';
+import getViewingEndIndex         from './imports/getViewingEndIndex';
+import makeViewingJobs            from './imports/makeViewingJobs';
+import getViewingFixationCount    from './imports/getViewingFixationCount';
+import getViewingAoiIds           from './imports/getViewingAoiIds';
+import makeViewingFromGazepoints  from './imports/makeViewingFromGazepoints';
+import makeViewings               from './imports/makeViewings';
+import updateStatus               from './imports/updateStatus';
+import getCSVParticipants         from './imports/getCSVParticipants';
+import saveCSVParticipants        from './imports/saveCSVParticipants';
+import getCSVViewings             from './imports/getCSVViewings';
+import saveCSVViewings            from './imports/saveCSVViewings';
+import allViewingsCreated         from './imports/allViewingsCreated';
+import allViewingsProcessed       from './imports/allViewingsProcessed';
+&nbsp;
+Analyses.helpers({
+  getViewingEndIndex,
+  makeViewingJobs,
+  getViewingFixationCount,
+  getViewingAoiIds,
+  makeViewingFromGazepoints,
+  makeViewings,
+  updateStatus,
+  getCSVParticipants,
+  saveCSVParticipants,
+  getCSVViewings,
+  saveCSVViewings,
+  allViewingsCreated,
+  allViewingsProcessed,
+&nbsp;
+  hasPermission(action) {
+<span class="cstat-no" title="statement not covered" >    check(action, String);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if(this.userPermissions) {</span>
+<span class="cstat-no" title="statement not covered" >      userIds = this.userPermissions[action];</span>
+<span class="cstat-no" title="statement not covered" >      if(userIds) {</span>
+<span class="cstat-no" title="statement not covered" >        return userIds.includes(Meteor.userId());</span>
+      }
+    }
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+  },
+  study() {
+    return Studies.findOne({ _id: this.studyId });
+  },
+  stimuli() {
+<span class="cstat-no" title="statement not covered" >    return Stimuli.find({ _id: { $in: this.stimulusIds }});</span>
+  },
+  participants() {
+<span class="cstat-no" title="statement not covered" >    return Participants.find({ _id: { $in: this.participantIds }});</span>
+  },
+  viewings() {
+<span class="cstat-no" title="statement not covered" >    return Viewings.find({ analysisId: this._id });</span>
+  },
+  jobs(search) {
+<span class="cstat-no" title="statement not covered" >    return Jobs.find({ 'data.analysisId': this._id, ...search });</span>
+  },
+  jobsCount(search) {
+<span class="cstat-no" title="statement not covered" >    return this.jobs(search).count();</span>
+  },
+  jobsCompleted() {
+<span class="cstat-no" title="statement not covered" >    return Jobs.find({ 'data.analysisId': this._id, 'status': 'completed' });</span>
+  },
+  jobsCompletedCount() {
+<span class="cstat-no" title="statement not covered" >    return this.jobsCompleted().count();</span>
+  },
+  jobsProgress() {
+    let progress = <span class="cstat-no" title="statement not covered" >0;</span>
+<span class="cstat-no" title="statement not covered" >    if(this.jobsCount()) {</span>
+<span class="cstat-no" title="statement not covered" >      progress = (this.jobsCompletedCount() / this.jobsCount() * 100);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return progress;</span>
+  },
+  allJobsCompleted() {
+<span class="cstat-no" title="statement not covered" >    return (this.jobsCount() == this.jobsCompletedCount());</span>
+  },
+});
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Apr 30 2019 17:55:03 GMT-0400 (EDT)
+</div>
+</div>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/sorter.js"></script>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/block-navigation.js"></script>
+</body>
+</html>

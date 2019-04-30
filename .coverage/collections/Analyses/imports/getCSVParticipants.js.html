@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for collections/Analyses/imports/getCSVParticipants.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/Users/mattsears/code/VisualEyes/.coverage/prettify.css" />
+    <link rel="stylesheet" href="/Users/mattsears/code/VisualEyes/.coverage/base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(/Users/mattsears/code/VisualEyes/.coverage/sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="/Users/mattsears/code/VisualEyes/.coverage/index.html">All files</a> collections/Analyses/imports/getCSVParticipants.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">14.81% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>4/27</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.17% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>1/24</span>
+      </div>
+    </div>
+    <p class="quiet">
+      Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+    </p>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66</td><td class="line-coverage quiet"><span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { jStat } from 'jStat';
+&nbsp;
+export default function getCSVParticipants() {
+  let analysis = <span class="cstat-no" title="statement not covered" >this;</span>
+  let participants = <span class="cstat-no" title="statement not covered" >Participants.find({'_id': { $in: analysis.participantIds }}).fetch();</span>
+&nbsp;
+  let data = <span class="cstat-no" title="statement not covered" >[];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  participants.forEach(<span class="fstat-no" title="function not covered" >function(</span>participant) {</span>
+    let viewings = <span class="cstat-no" title="statement not covered" >Viewings.find({'analysisId': analysis._id, 'participantId': participant._id}).fetch();</span>
+    let datafiles = <span class="cstat-no" title="statement not covered" >Datafiles.find({ _id: { $in: participant.datafileIds }});</span>
+&nbsp;
+    let viewingCounts = <span class="cstat-no" title="statement not covered" >helpers.getViewingCounts(viewings);</span>
+&nbsp;
+    let viewingDurations = <span class="cstat-no" title="statement not covered" >viewings.map(<span class="fstat-no" title="function not covered" >function(</span>viewing) {</span>
+<span class="cstat-no" title="statement not covered" >      return viewing.duration;</span>
+    });
+&nbsp;
+    let averageSlideHullCoverages = <span class="cstat-no" title="statement not covered" >viewings.map(<span class="fstat-no" title="function not covered" >function(</span>viewing) {</span>
+<span class="cstat-no" title="statement not covered" >      return viewing.averageSlideHullCoverage;</span>
+    });
+&nbsp;
+    let participantData = <span class="cstat-no" title="statement not covered" >{</span>
+      link: Meteor.absoluteUrl() + 'studies/' + analysis.study()._id + '/participants/' + participant._id,
+      study: analysis.study().name,
+      pointsType: analysis.study().pointsType(),
+      analysis: analysis.name,
+      period: analysis.period,
+      viewingGap: analysis.viewingGap,
+      minViewingTime: analysis.minViewingTime,
+      participant: participant.name,
+      viewingCountPerStimulus: viewingCounts,
+      viewingCountPerStimulusMean: jStat.mean(viewingCounts),
+      viewingCountPerStimulusMedian: jStat.median(viewingCounts),
+      viewingCountPerParticipant: jStat.sum(viewingCounts),
+      viewingDurationPerStimulus: viewingDurations,
+      viewingDurationPerStimulusMean: jStat.mean(viewingDurations),
+      viewingDurationPerStimulusMedian: jStat.median(viewingDurations),
+      viewingDurationPerParticipant: jStat.sum(viewingDurations),
+      slideHullCoveragePerStimulus: averageSlideHullCoverages,
+      slideHullCoveragePerStimulusMean: jStat.mean(averageSlideHullCoverages),
+      slideHullCoveragePerStimulusMedian: jStat.median(averageSlideHullCoverages),
+      slideHullCoveragePerParticipant: '',
+      rawRowCount: jStat.sum(datafiles.map((<span class="fstat-no" title="function not covered" >datafile) =&gt; { <span class="cstat-no" title="statement not covered" >return datafile.rawRowCount; })),</span></span>
+      gazepointCount: jStat.sum(datafiles.map((<span class="fstat-no" title="function not covered" >datafile) =&gt; { <span class="cstat-no" title="statement not covered" >return datafile.gazepointCount; })),</span></span>
+      gazepointProportion: (
+        jStat.sum(datafiles.map((<span class="fstat-no" title="function not covered" >datafile) =&gt; { <span class="cstat-no" title="statement not covered" >return datafile.gazepointCount; })) /</span></span>
+        jStat.sum(datafiles.map((<span class="fstat-no" title="function not covered" >datafile) =&gt; { <span class="cstat-no" title="statement not covered" >return datafile.rawRowCount; }))</span></span>
+      ),
+      fixationCount: jStat.sum(datafiles.map((<span class="fstat-no" title="function not covered" >datafile) =&gt; { <span class="cstat-no" title="statement not covered" >return datafile.fixationCount; })),</span></span>
+      fixationProportion: (
+        jStat.sum(datafiles.map((<span class="fstat-no" title="function not covered" >datafile) =&gt; { <span class="cstat-no" title="statement not covered" >return datafile.fixationCount; })) /</span></span>
+        jStat.sum(datafiles.map((<span class="fstat-no" title="function not covered" >datafile) =&gt; { <span class="cstat-no" title="statement not covered" >return datafile.gazepointCount; }))</span></span>
+      ),
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    participant.variables().forEach(<span class="fstat-no" title="function not covered" >function(</span>variable){</span>
+<span class="cstat-no" title="statement not covered" >      participantData[variable.name] = variable.value;</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    data.push(participantData);</span>
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return CSV.unparse(data);</span>
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Apr 30 2019 17:55:03 GMT-0400 (EDT)
+</div>
+</div>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/sorter.js"></script>
+<script src="/Users/mattsears/code/VisualEyes/.coverage/block-navigation.js"></script>
+</body>
+</html>

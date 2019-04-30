@@ -8,7 +8,22 @@
     "start": "meteor --settings settings.json",
     "startMatt": "meteor --settings settingsMatt.json",
     "test": "TEST_WATCH=1 meteor test --driver-package meteortesting:mocha --port 3002",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "coverage:unit": "BABEL_ENV=COVERAGE TEST_BROWSER_DRIVER=puppeteer COVERAGE=1 COVERAGE_OUT_HTML=1 COVERAGE_APP_FOLDER=$PWD/ meteor test --once --driver-package meteortesting:mocha",
+    "coverage:watch": "BABEL_ENV=COVERAGE COVERAGE=1 COVERAGE_VERBOSE=1 COVERAGE_APP_FOLDER=$PWD/ TEST_WATCH=1 meteor test --driver-package meteortesting:mocha"
+  },
+  "nyc": {
+    "sourceMap": false,
+    "instrument": false
+  },
+  "babel": {
+    "env": {
+      "COVERAGE": {
+        "plugins": [
+          "istanbul"
+        ]
+      }
+    }
   },
   "keywords": [
     "convex",
@@ -17,11 +32,6 @@
     "eye tracking"
   ],
   "dependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.4",
-    "@babel/node": "^7.2.2",
-    "@babel/preset-env": "^7.4.4",
-    "@babel/register": "^7.4.4",
     "@babel/runtime": "^7.4.3",
     "area-polygon": "^1.0.1",
     "aws-sdk": "^2.442.0",
@@ -65,11 +75,22 @@
     "underscore": "^1.9.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/register": "^7.4.4",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-istanbul": "^5.1.3",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "coveralls": "^3.0.3",
     "mocha": "^6.1.4",
     "mocha-lcov-reporter": "^1.3.0",
-    "nyc": "^14.0.0"
+    "nyc": "^14.0.0",
+    "puppeteer": "^1.15.0"
   }
 }

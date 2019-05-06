@@ -7,7 +7,8 @@
   "scripts": {
     "start": "meteor --settings settings.json",
     "startMatt": "meteor --settings settingsMatt.json",
-    "test": "TEST_WATCH=1 meteor test --driver-package meteortesting:mocha --port 3002",
+    "test": "meteor test --driver-package meteortesting:mocha --port 3002",
+    "watch": "TEST_WATCH=1 npm test",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coverage:unit": "BABEL_ENV=COVERAGE TEST_BROWSER_DRIVER=puppeteer COVERAGE=1 COVERAGE_OUT_HTML=1 COVERAGE_APP_FOLDER=$PWD/ meteor test --once --driver-package meteortesting:mocha",
     "coverage:watch": "BABEL_ENV=COVERAGE COVERAGE=1 COVERAGE_VERBOSE=1 COVERAGE_APP_FOLDER=$PWD/ TEST_WATCH=1 meteor test --driver-package meteortesting:mocha"
@@ -48,7 +49,6 @@
     "faker": "^4.1.0",
     "file-saver": "^2.0.1",
     "genstats": "0.0.1",
-    "hull.js": "git://github.com/mattsears18/hull.git#length-3-pointsets",
     "image-size": "^0.6.3",
     "jStat": "^1.7.1",
     "jquery": "^3.4.0",
@@ -71,7 +71,7 @@
     "select2-bootstrap-theme": "0.1.0-beta.10",
     "simpl-schema": "1.4.3",
     "stringify-object": "^3.3.0",
-    "time-hulls": "file:../time-hulls",
+    "time-hulls": "0.0.89",
     "underscore": "^1.9.1"
   },
   "devDependencies": {

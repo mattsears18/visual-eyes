@@ -1,11 +1,10 @@
 lastAnalysisExport.csv
 lastAnalysisParticipants.csv
-lastAnalysisParticipants.csv
 lastPlotHullSeries.csv
-.DS_Store
-*/.DS_Store
+*.DS_Store
 node_modules/
 settingsMatt.json
 localExperiments/
 uploads/
 .nyc_output
+.idea/

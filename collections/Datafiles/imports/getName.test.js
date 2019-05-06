@@ -1,5 +1,5 @@
-require('./../../factories.test')
-const expect = require('chai').expect
+require('./../../factories.test');
+const expect = require('chai').expect;
 
 describe('Datafiles.getName()', () => {
   it('removes the file extension', async () => {

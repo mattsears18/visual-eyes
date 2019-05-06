@@ -1,10 +1,9 @@
 import ViewingHullSeries from './ViewingHullSeries/ViewingHullSeries'
 
 export default function getHullseries(opt) {
-  // let t0 = performance.now()
-  opt = opt || {}
+  opt = opt || {};
 
-  let hullseries = new ViewingHullSeries({
+  return new ViewingHullSeries({
     viewing: this,
     points: this.gazepoints,
     period: opt.period,
@@ -14,8 +13,4 @@ export default function getHullseries(opt) {
     width: this.stimulus().width,
     height: this.stimulus().height,
   })
-
-  // console.log('Viewing.getHullseries() duration: ' + helpers.formatNumber(performance.now() - t0) + ' ms')
-
-  return hullseries
 }

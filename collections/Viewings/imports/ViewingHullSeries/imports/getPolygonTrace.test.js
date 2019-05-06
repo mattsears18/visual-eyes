@@ -1,5 +1,5 @@
-require('../../../../factories.test')
-const expect = require('chai').expect
+require('../../../../factories.test');
+const expect = require('chai').expect;
 import ViewingHullSeries from '../ViewingHullSeries'
 
 describe('ViewingHullSeries.getPolygonTrace()', () => {
@@ -19,7 +19,7 @@ describe('ViewingHullSeries.getPolygonTrace()', () => {
     { x: 400, y: 300, timestamp: 12000 },
     { x: 500, y: 200, timestamp: 13000 },
     { x: 600, y: 100, timestamp: 14000 },
-  ]
+  ];
 
   it('gets the initial polygon trace', () => {
     let hullseries = new ViewingHullSeries({
@@ -28,14 +28,14 @@ describe('ViewingHullSeries.getPolygonTrace()', () => {
         gazepoints: points
       }),
       period: 5000,
-    })
+    });
 
-    let trace = hullseries.getPolygonTrace({ initial: true, hullIndex: 0 })
+    let trace = hullseries.getPolygonTrace({ initial: true, hullIndex: 0 });
 
-    expect(trace.name).to.equal('Convex Hull')
-    expect(trace.x).to.eql([ 600, 500, 100, 400, 600 ])
+    expect(trace.name).to.equal('Convex Hull');
+    expect(trace.x).to.eql([ 600, 500, 100, 400, 600 ]);
     expect(trace.y).to.eql([ 600, 700, 400, 100, 600 ])
-  })
+  });
 
   it('gets a polygon trace (not initial)', () => {
     let hullseries = new ViewingHullSeries({
@@ -44,12 +44,12 @@ describe('ViewingHullSeries.getPolygonTrace()', () => {
         gazepoints: points
       }),
       period: 5000,
-    })
+    });
 
-    let trace = hullseries.getPolygonTrace({ initial: false, hullIndex: 9 })
+    let trace = hullseries.getPolygonTrace({ initial: false, hullIndex: 9 });
 
-    expect(trace.name).to.be.an('undefined')
-    expect(trace.x).to.eql([ 600, 300, 100, 200, 600 ])
+    expect(trace.name).to.be.an('undefined');
+    expect(trace.x).to.eql([ 600, 300, 100, 200, 600 ]);
     expect(trace.y).to.eql([ 100, 400, 200, 100, 100 ])
   })
-})
+});

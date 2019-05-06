@@ -1,5 +1,5 @@
-require('../../../../factories.test')
-const expect = require('chai').expect
+require('../../../../factories.test');
+const expect = require('chai').expect;
 import ViewingHullSeries from '../ViewingHullSeries'
 
 describe('ViewingHullSeries.getPointsTimeText()', () => {
@@ -20,12 +20,12 @@ describe('ViewingHullSeries.getPointsTimeText()', () => {
       { x: 400, y: 300, timestamp: 12000 },
       { x: 500, y: 200, timestamp: 13000 },
       { x: 600, y: 100, timestamp: 14000 },
-    ]
+    ];
 
     let hullseries = new ViewingHullSeries({
       viewing: Factory.create('viewing', { gazepoints: points }),
       period: 5000,
-    })
+    });
 
     expect(hullseries.getPointsTimeText({ hullIndex: 3 })).to.eql([
       'Time: 3000ms',
@@ -36,4 +36,4 @@ describe('ViewingHullSeries.getPointsTimeText()', () => {
       'Time: 8000ms',
     ])
   })
-})
+});

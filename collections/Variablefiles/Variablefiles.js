@@ -25,7 +25,7 @@ options = {
       vf.process();
     }
   }
-}
+};
 
 path = Meteor.settings.public.uploads;
 if(path) { options.storagePath = path + '/stimulusfiles'; }

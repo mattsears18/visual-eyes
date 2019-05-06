@@ -1,7 +1,7 @@
 export default function getPolygonTrace(opt) {
-  opt = opt || {}
-  let initial = opt.initial || false
-  let hull = this.getHull(opt)
+  opt = opt || {};
+  let initial = opt.initial || false;
+  let hull = this.getHull(opt);
 
   if(initial) {
     return {

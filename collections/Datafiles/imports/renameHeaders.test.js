@@ -1,5 +1,5 @@
-require('./../../factories.test')
-const expect = require('chai').expect
+require('./../../factories.test');
+const expect = require('chai').expect;
 
 describe('Datafiles.renameHeaders()', () => {
   it('throws a noFileformat error', () => {

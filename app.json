@@ -1,7 +1,7 @@
 {
-  "name": "VisualEyes",
+  "name": "visual-eyes",
   "description": "A visualization and statistical analysis web application for eye tracking data",
-  "repository": "https://github.com/mattsears18/VisualEyes",
+  "repository": "https://github.com/mattsears18/visual-eyes",
   "keywords": [
     "eye tracking",
     "visualization",
@@ -12,6 +12,7 @@
     "psychology",
     "imotions",
     "smi",
+    "sensomotoric instruments",
     "begaze"
   ]
 }

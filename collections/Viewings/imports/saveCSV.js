@@ -1,9 +1,9 @@
 import FileSaver from 'file-saver';
 
 export default function saveCSV(opt) {
-  opt = opt || {}
+  opt = opt || {};
 
-  var csvContent = this.getHullseries(opt).getCSV()
+  var csvContent = this.getHullseries(opt).getCSV();
   if(Meteor.isServer) {
     // Save file on the server with default filename for analysis in R
     fs.writeFile(process.env['PWD'] + '/lastViewing.csv', csvContent, function(err) {

@@ -3,14 +3,13 @@ import faker            from 'faker';
 import Datafiles        from './Datafiles/Datafiles';
 import Studies          from './Studies/Studies';
 import Stimuli          from './Stimuli/Stimuli';
+import Stimulusfiles    from './Stimuli/Stimulusfiles/Stimulusfiles';
 import Aois             from './Aois/Aois';
 import Gazepoints       from './Gazepoints/Gazepoints';
 import Participants     from './Participants/Participants';
 import Analyses         from './Analyses/Analyses';
 import Viewings         from './Viewings/Viewings';
 import StubCollections  from 'meteor/hwillson:stub-collections';
-
-var chaiAsPromised = require("chai-as-promised");
 
 StubCollections.stub([
   Datafiles.collection,
@@ -50,48 +49,48 @@ let baseDatafile = {
   isJSON : false,
   isPDF : false,
   public : false,
-}
+};
 
 let imotionsFields = {
   fileFormat: 'imotions',
-  path: '/Users/mattsears/code/VisualEyes/testFiles/realFile/imotionsWael.txt',
+  path: '/Users/mattsears/code/visual-eyes/testFiles/realFile/imotionsWael.txt',
   versions : {
     original : {
-        path : '/Users/mattsears/code/VisualEyes/testFiles/realFile/imotionsWael.txt',
+        path : '/Users/mattsears/code/visual-eyes/testFiles/realFile/imotionsWael.txt',
         size : 2452899,
         type : 'text/plain',
         extension : 'txt'
     }
   },
-  _storagePath : '/Users/mattsears/code/VisualEyes/testFiles/realFile/',
-}
+  _storagePath : '/Users/mattsears/code/visual-eyes/testFiles/realFile/',
+};
 
 let smiFields = {
   fileFormat: 'smi',
-  path: '/Users/mattsears/code/VisualEyes/testFiles/realFile/smiWael.txt',
+  path: '/Users/mattsears/code/visual-eyes/testFiles/realFile/smiWael.txt',
   versions : {
     original : {
-        path : '/Users/mattsears/code/VisualEyes/testFiles/realFile/smiWael.txt',
+        path : '/Users/mattsears/code/visual-eyes/testFiles/realFile/smiWael.txt',
         size : 4519224,
         type : 'text/plain',
         extension : 'txt'
     }
   },
-  _storagePath : '/Users/mattsears/code/VisualEyes/testFiles/realFile/',
-}
+  _storagePath : '/Users/mattsears/code/visual-eyes/testFiles/realFile/',
+};
 
 let unrecognizedFields = {
-  path: '/Users/mattsears/code/VisualEyes/testFiles/realFile/unrecognizedWael.txt',
+  path: '/Users/mattsears/code/visual-eyes/testFiles/realFile/unrecognizedWael.txt',
   versions : {
     original : {
-        path : '/Users/mattsears/code/VisualEyes/testFiles/realFile/unrecognizedWael.txt',
+        path : '/Users/mattsears/code/visual-eyes/testFiles/realFile/unrecognizedWael.txt',
         size : 4519224,
         type : 'text/plain',
         extension : 'txt'
     }
   },
-  _storagePath : '/Users/mattsears/code/VisualEyes/testFiles/realFile/',
-}
+  _storagePath : '/Users/mattsears/code/visual-eyes/testFiles/realFile/',
+};
 
 Factory.define('imotionsDatafile', Datafiles.collection,      {...baseDatafile, ...imotionsFields});
 Factory.define('smiDatafile', Datafiles.collection,           {...baseDatafile, ...smiFields});
@@ -139,16 +138,16 @@ Factory.define('stimulusfile', Stimulusfiles.collection, {
   stimulusId: () => Factory.create('stimulus')._id,
   fileWidth: () => 1222, //faker.random.number({min: 100, max: 3000}),
   fileHeight: () => 855, //faker.random.number({min: 100, max: 3000}),
-  path: '/Users/mattsears/code/VisualEyes/testFiles/stimulusfiles/DWG01.png',
+  path: '/Users/mattsears/code/visual-eyes/testFiles/stimulusfiles/DWG01.png',
   versions : {
     original : {
-        path : '/Users/mattsears/code/VisualEyes/testFiles/stimulusfiles/DWG01.png',
+        path : '/Users/mattsears/code/visual-eyes/testFiles/stimulusfiles/DWG01.png',
         size : 185427,
         type : 'image/png',
         extension : 'png'
     }
   },
-  _storagePath : '/Users/mattsears/code/VisualEyes/testFiles/stimulusfiles/',
+  _storagePath : '/Users/mattsears/code/visual-eyes/testFiles/stimulusfiles/',
 });
 
 
@@ -203,7 +202,7 @@ let analysis = Factory.create('analysis', { studyId: study._id });
 
 let gazepoints = [];
 
-for(i = 0; i < 100; i++) {
+for(let i = 0; i < 100; i++) {
   let gazepoint = Factory.create('gazepoint', {
     studyId: study._id,
     datafileId: datafile._id,

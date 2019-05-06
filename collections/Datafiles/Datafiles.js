@@ -55,11 +55,12 @@ Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
   },
 });
 
+let options;
 options = {
   collectionName: 'Datafiles',
   schema: Schemas.Datafile,
   allowClientCode: true, // Required to let you remove uploaded file
-}
+};
 
 uploadPath = Meteor.settings.public.uploads;
 if(uploadPath) { options.storagePath = uploadPath + '/datafiles'; }

@@ -1,5 +1,5 @@
-require('./../../factories.test')
-const expect = require('chai').expect
+require('./../../factories.test');
+const expect = require('chai').expect;
 
 describe('Datafiles.getNonDuplicateCoordinatesOnly()', () => {
   it('returns empty array when passed empty array', async () => {

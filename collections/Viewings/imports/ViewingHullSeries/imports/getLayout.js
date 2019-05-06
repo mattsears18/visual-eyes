@@ -1,11 +1,11 @@
 export default function getLayout(opt) {
-  opt = opt || {}
+  opt = opt || {};
 
   if(typeof(this.viewing.stimulus().stimulusfile()) == 'undefined') { throw new Error('noStimulusfile') }
 
-  let forceHeight = 600
-  let scale = forceHeight / this.viewing.stimulus().stimulusfile().fileHeight
-  let margin = { l: 50, r: 10, b: 20, t: 0, pad: 4 }
+  let forceHeight = 600;
+  let scale = forceHeight / this.viewing.stimulus().stimulusfile().fileHeight;
+  let margin = { l: 50, r: 10, b: 20, t: 0, pad: 4 };
 
   return {
     xaxis: {

@@ -1,5 +1,5 @@
-require('./../../factories.test')
-const expect = require('chai').expect
+require('./../../factories.test');
+const expect = require('chai').expect;
 
 describe('Datafiles.filterSortFloat()', () => {
   it('filters out non float values and sorts by timestamp', async () => {

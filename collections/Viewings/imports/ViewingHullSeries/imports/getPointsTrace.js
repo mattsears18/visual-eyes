@@ -1,9 +1,9 @@
 export default function getPointsTrace(opt) {
-  opt = opt || {}
-  let hull = this.getHull(opt)
-  let initial = opt.initial || false
+  opt = opt || {};
+  let hull = this.getHull(opt);
+  let initial = opt.initial || false;
 
-  let name
+  let name;
 
   if(this.viewing.study().fixationsOnly) {
     name = 'Fixations'

@@ -1,9 +1,9 @@
 export default function getLastPointTrace(opt) {
-  opt = opt || {}
-  let initial = opt.initial || false
-  let hull = this.getHull(opt)
+  opt = opt || {};
+  let initial = opt.initial || false;
+  let hull = this.getHull(opt);
 
-  let name
+  let name;
 
   if(this.viewing.study().fixationsOnly) {
     name = 'Last Fixation'

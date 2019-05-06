@@ -29,7 +29,7 @@ options = {
       return 'Please upload stimulus, with size equal or less than 10MB';
     }
   }
-}
+};
 
 path = Meteor.settings.public.uploads;
 if(path) { options.storagePath = path + '/stimulusfiles'; }

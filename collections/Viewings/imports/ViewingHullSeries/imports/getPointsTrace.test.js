@@ -1,5 +1,5 @@
-require('../../../../factories.test')
-const expect = require('chai').expect
+require('../../../../factories.test');
+const expect = require('chai').expect;
 import ViewingHullSeries from '../ViewingHullSeries'
 
 describe('ViewingHullSeries.getPointsTrace()', () => {
@@ -19,7 +19,7 @@ describe('ViewingHullSeries.getPointsTrace()', () => {
     { x: 400, y: 300, timestamp: 12000 },
     { x: 500, y: 200, timestamp: 13000 },
     { x: 600, y: 100, timestamp: 14000 },
-  ]
+  ];
 
   it('gets fixations', () => {
     let hullseries = new ViewingHullSeries({
@@ -27,11 +27,11 @@ describe('ViewingHullSeries.getPointsTrace()', () => {
         studyId: Factory.create('study', { fixationsOnly: true, })._id,
       }),
       period: 5000,
-    })
+    });
 
-    let trace = hullseries.getPointsTrace({ initial: true, hullIndex: 3 })
+    let trace = hullseries.getPointsTrace({ initial: true, hullIndex: 3 });
     expect(trace.name).to.equal('Fixations')
-  })
+  });
 
   it('gets the initial points trace', () => {
     let hullseries = new ViewingHullSeries({
@@ -40,14 +40,14 @@ describe('ViewingHullSeries.getPointsTrace()', () => {
         gazepoints: points,
       }),
       period: 5000,
-    })
+    });
 
-    let trace = hullseries.getPointsTrace({ initial: true, hullIndex: 0 })
+    let trace = hullseries.getPointsTrace({ initial: true, hullIndex: 0 });
 
-    expect(trace.name).to.equal('Gaze Points')
-    expect(trace.x).to.eql([ 100, 200, 300, 400, 500, 600 ])
+    expect(trace.name).to.equal('Gaze Points');
+    expect(trace.x).to.eql([ 100, 200, 300, 400, 500, 600 ]);
     expect(trace.y).to.eql([ 400, 300, 200, 100, 700, 600 ])
-  })
+  });
 
   it('gets a points trace (not initial)', () => {
     let hullseries = new ViewingHullSeries({
@@ -56,12 +56,12 @@ describe('ViewingHullSeries.getPointsTrace()', () => {
         gazepoints: points,
       }),
       period: 5000,
-    })
+    });
 
-    let trace = hullseries.getPointsTrace({ initial: false, hullIndex: 3 })
+    let trace = hullseries.getPointsTrace({ initial: false, hullIndex: 3 });
 
-    expect(trace.name).to.be.an('undefined')
-    expect(trace.x).to.eql([ 400, 500, 600, 700, 800, 900 ])
+    expect(trace.name).to.be.an('undefined');
+    expect(trace.x).to.eql([ 400, 500, 600, 700, 800, 900 ]);
     expect(trace.y).to.eql([ 100, 700, 600, 500, 400, 300 ])
   })
-})
+});

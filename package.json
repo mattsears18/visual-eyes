@@ -1,17 +1,16 @@
 {
-  "name": "visualeyes",
+  "name": "visual-eyes",
   "version": "0.0.1",
   "description": "A visualization and statistical analysis web application for eye tracking data",
   "license": "MIT",
-  "repository": "mattsears18/VisualEyes",
+  "repository": "mattsears18/visual-eyes",
   "scripts": {
     "start": "meteor --settings settings.json",
     "startMatt": "meteor --settings settingsMatt.json",
     "test": "meteor test --driver-package meteortesting:mocha --port 3002",
     "watch": "TEST_WATCH=1 npm test",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "coverage:unit": "BABEL_ENV=COVERAGE TEST_BROWSER_DRIVER=puppeteer COVERAGE=1 COVERAGE_OUT_HTML=1 COVERAGE_APP_FOLDER=$PWD/ meteor test --once --driver-package meteortesting:mocha",
-    "coverage:watch": "BABEL_ENV=COVERAGE COVERAGE=1 COVERAGE_VERBOSE=1 COVERAGE_APP_FOLDER=$PWD/ TEST_WATCH=1 meteor test --driver-package meteortesting:mocha"
+    "coverage": "BABEL_ENV=COVERAGE COVERAGE=1 COVERAGE_OUT_HTML=1 COVERAGE_APP_FOLDER=$PWD/ meteor test --once --driver-package meteortesting:mocha --port 3003",
+    "coverage:watch": "BABEL_ENV=COVERAGE COVERAGE=1 COVERAGE_VERBOSE=1 COVERAGE_APP_FOLDER=$PWD/ TEST_WATCH=1 meteor test --driver-package meteortesting:mocha --port 3003"
   },
   "nyc": {
     "sourceMap": false,
@@ -33,6 +32,7 @@
     "eye tracking"
   ],
   "dependencies": {
+    "@babel/polyfill": "7.4.3",
     "@babel/runtime": "^7.4.3",
     "area-polygon": "^1.0.1",
     "aws-sdk": "^2.442.0",
@@ -54,7 +54,6 @@
     "jquery": "^3.4.0",
     "js-call-r": "0.0.4",
     "json2csv": "^4.5.0",
-    "jstat": "^1.7.1",
     "lodash": "^4.17.11",
     "luxon": "^0.5.8",
     "meteor-job": "^1.5.2",
@@ -71,25 +70,30 @@
     "select2-bootstrap-theme": "0.1.0-beta.10",
     "simpl-schema": "1.4.3",
     "stringify-object": "^3.3.0",
-    "time-hulls": "0.0.89",
+    "time-hulls": "0.0.90",
     "underscore": "^1.9.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.4",
-    "@babel/node": "^7.2.2",
+    "@babel/cli": "7.4.3",
+    "@babel/core": "7.4.3",
+    "@babel/plugin-proposal-class-properties": "7.4.0",
+    "@babel/plugin-syntax-dynamic-import": "7.2.0",
+    "@babel/plugin-transform-modules-commonjs": "7.4.3",
+    "@babel/plugin-transform-react-constant-elements": "7.2.0",
+    "@babel/plugin-transform-react-inline-elements": "7.2.0",
     "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "7.0.0",
     "@babel/register": "^7.4.4",
-    "babel-cli": "^6.26.0",
+    "@babel/node": "^7.2.2",
     "babel-plugin-istanbul": "^5.1.3",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
+    "@babel/polyfill": "7.4.3",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "coveralls": "^3.0.3",
+    "eslint": "^5.16.0",
     "mocha": "^6.1.4",
     "mocha-lcov-reporter": "^1.3.0",
+    "nodemon": "^1.19.0",
     "nyc": "^14.0.0",
     "puppeteer": "^1.15.0"
   }

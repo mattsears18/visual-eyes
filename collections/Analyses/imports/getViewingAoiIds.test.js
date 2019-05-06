@@ -1,5 +1,5 @@
 require('./../../factories.test');
-const expect = require('chai').expect
+const expect = require('chai').expect;
 
 describe('Analyses.getViewingAoiIds()', () => {
   it('does not have aoiIds', () => {

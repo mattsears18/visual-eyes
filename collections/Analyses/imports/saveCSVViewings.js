@@ -1,7 +1,7 @@
 import FileSaver from 'file-saver';
 
 export default function saveCSVParticipants() {
-  var csvContent = this.getCSVViewings();
+  const csvContent = this.getCSVViewings();
 
   if(Meteor.isServer) {
     // Save file on the server with default filename for analysis in R
@@ -15,7 +15,7 @@ export default function saveCSVParticipants() {
   if(Meteor.isClient) {
     // Set default file name for organizing later
     let nameFile = this.study().name + ' - p' + this.period + 'vg' + this.viewingGap + 'mvt' + this.minViewingTime + ' - Viewings';
-    var blob = new Blob([csvContent], {type: "text/csv;charset=utf-8"});
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
     // Save file to user's disk
     FileSaver.saveAs(blob, nameFile);
   }

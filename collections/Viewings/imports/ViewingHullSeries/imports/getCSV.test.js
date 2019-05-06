@@ -1,5 +1,5 @@
-require('../../../../factories.test')
-const expect = require('chai').expect
+require('../../../../factories.test');
+const expect = require('chai').expect;
 import ViewingHullSeries from '../ViewingHullSeries'
 
 describe('ViewingHullSeries.getCSV()', () => {
@@ -19,7 +19,7 @@ describe('ViewingHullSeries.getCSV()', () => {
     { x: 400, y: 300, timestamp: 12000 },
     { x: 500, y: 200, timestamp: 13000 },
     { x: 600, y: 100, timestamp: 14000 },
-  ]
+  ];
 
   it('gets csv content', () => {
     let hullseries = new ViewingHullSeries({
@@ -28,11 +28,11 @@ describe('ViewingHullSeries.getCSV()', () => {
         stimulusId: Factory.create('stimulus')._id,
       }),
       period: 5000,
-    })
+    });
 
-    console.log(hullseries.height)
+    console.log(hullseries.height);
 
     expect(hullseries.getCSV().length).to.be.gt(0)
 
   })
-})
+});

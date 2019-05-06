@@ -1,8 +1,8 @@
-const json2csv = require('json2csv').parse
+const json2csv = require('json2csv').parse;
 
 export default function getCSV() {
-  let data = []
-  let hulls = this.getHulls()
+  let data = [];
+  let hulls = this.getHulls();
 
   hulls.forEach((hull, hi) => {
     let hullData = {
@@ -51,23 +51,23 @@ export default function getCSV() {
       coverage: hull.coverage({ width: this.viewing.stimulus().width, height: this.viewing.stimulus().height }),
       coverageDuration: hull.coverageDuration({ width: this.viewing.stimulus().width, height: this.viewing.stimulus().height }),
       averageCoverage: this.getAverageCoverage(),
-    }
+    };
 
     if(hi > 0) {
-      hullData.centroidDistanceX = (hulls[hi].centroid({}).x - hulls[hi - 1].centroid({}).x)
-      hullData.centroidDistanceY = (hulls[hi].centroid({}).y - hulls[hi - 1].centroid({}).y)
-      hullData.centroidDistance = Math.sqrt(hullData.centroidDistanceX * hullData.centroidDistanceX + hullData.centroidDistanceY * hullData.centroidDistanceY)
+      hullData.centroidDistanceX = (hulls[hi].centroid({}).x - hulls[hi - 1].centroid({}).x);
+      hullData.centroidDistanceY = (hulls[hi].centroid({}).y - hulls[hi - 1].centroid({}).y);
+      hullData.centroidDistance = Math.sqrt(hullData.centroidDistanceX * hullData.centroidDistanceX + hullData.centroidDistanceY * hullData.centroidDistanceY);
       if(hullData.timeStep > 0 && hullData.centroidDistance > 0) {
-        hullData.centroidVelocity = (hullData.centroidDistance / hullData.timeStep)
-        hullData.centroidVelocityX = (hullData.centroidDistanceX / hullData.timeStep)
+        hullData.centroidVelocity = (hullData.centroidDistance / hullData.timeStep);
+        hullData.centroidVelocityX = (hullData.centroidDistanceX / hullData.timeStep);
         hullData.centroidVelocityY = (hullData.centroidDistanceY / hullData.timeStep)
       }
     }
 
     data.push(hullData)
-  })
+  });
 
-  let csv
+  let csv;
 
   try {
     csv = json2csv(data)

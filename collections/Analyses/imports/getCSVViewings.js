@@ -1,5 +1,3 @@
-import { jStat } from 'jStat';
-
 export default function getCSVViewings() {
   let analysis = this;
   let viewings = Viewings.find({ 'analysisId' : analysis._id}).fetch();

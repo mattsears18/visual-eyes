@@ -1,6 +1,6 @@
 export default function getCentroidTrailTrace(opt) {
-  opt = opt || {}
-  let initial = opt.initial || false
+  opt = opt || {};
+  let initial = opt.initial || false;
 
   if(initial) {
     return {
@@ -15,13 +15,13 @@ export default function getCentroidTrailTrace(opt) {
       },
     }
   } else {
-    let hull = this.getHull(opt)
-    
-    let xs = this.getCentroids({ hull: hull, which: 'x' })
-    let ys = this.getCentroids({ hull: hull, which: 'y' })
+    let hull = this.getHull(opt);
+
+    let xs = this.getCentroids({ hull: hull, which: 'x' });
+    let ys = this.getCentroids({ hull: hull, which: 'y' });
 
     if(xs.length == 1 || ys.length == 1) {
-      xs = [-10, -11]
+      xs = [-10, -11];
       ys = [-10, -11]
     }
 

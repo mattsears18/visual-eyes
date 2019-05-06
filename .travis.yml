@@ -1,6 +1,9 @@
 language: node_js
+
 node_js:
-  - "10.15.3"
+  - 'node'
+  - 'lts/*'
+
 before_script:
   # Install meteor
   - curl https://install.meteor.com | /bin/sh

@@ -1,3 +1,5 @@
+sudo: required
+
 language: node_js
 
 node_js:
@@ -10,7 +12,12 @@ before_script:
   # Add meteor to path (instead of asking for sudo in the Travis container)
   # We can then use the faster container infrastructure - http://docs.travis-ci.com/user/workers/container-based-infrastructure/
   - export PATH=$HOME/.meteor:$PATH
+
+script:
+  - meteor npm install --save bcrypt
+
 cache:
   directories:
     - node_modules
-# after_success: npm run coverage
+    - ~/.meteor
+    - .meteor/local

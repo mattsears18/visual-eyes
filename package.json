@@ -6,7 +6,6 @@
   "repository": "mattsears18/visual-eyes",
   "scripts": {
     "start": "meteor --settings settings.json",
-    "startMatt": "meteor --settings settingsMatt.json",
     "test": "meteor test --driver-package meteortesting:mocha --port 3002",
     "watch": "TEST_WATCH=1 npm test",
     "coverage": "BABEL_ENV=COVERAGE COVERAGE=1 COVERAGE_OUT_HTML=1 COVERAGE_APP_FOLDER=$PWD/ meteor test --once --driver-package meteortesting:mocha --port 3003",
@@ -89,7 +88,6 @@
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "coveralls": "^3.0.3",
-    "eslint": "^5.16.0",
     "mocha": "^6.1.4",
     "mocha-lcov-reporter": "^1.3.0",
     "nodemon": "^1.19.0",

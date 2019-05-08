@@ -1,46 +1,52 @@
-import Jobs from '../../Jobs/Jobs';
+import Jobs from "../../Jobs/Jobs";
 
 export default function makeViewingJobs() {
   // console.log('analysis.makeViewingJobs() analysisId: ' + this._id);
-  this.status = 'processing';
-  Analyses.update({ _id: this._id }, { $set: { status: "processing" }});
+  this.status = "processing";
+  Analyses.update({ _id: this._id }, { $set: { status: "processing" } });
 
   try {
-    Meteor.call('analyses.removeViewings', { analysisId: this._id });
-    Meteor.call('analyses.removeJobs', { analysisId: this._id });
-  }
-  catch(err) {
+    Meteor.call("analyses.removeViewings", { analysisId: this._id });
+    Meteor.call("analyses.removeJobs", { analysisId: this._id });
+  } catch (err) {
     // console.log(err);
   }
 
-  this.participantIds.forEach((participantId) => {
+  this.participantIds.forEach(participantId => {
     let participant = Participants.findOne({ _id: participantId });
-    if(!participant) {
-      console.log('no participant found: ' + participantId);
-      Analyses.update({ _id: this._id }, { $pull: { participantIds: participantId }});
+    if (!participant) {
+      console.log("no participant found: " + participantId);
+      Analyses.update(
+        { _id: this._id },
+        { $pull: { participantIds: participantId } }
+      );
       return;
     }
 
-    this.stimulusIds.forEach((stimulusId) => {
+    this.stimulusIds.forEach(stimulusId => {
       let stimulus = Stimuli.findOne({ _id: stimulusId });
-      if(!stimulus) {
-        console.log('no stimulus found: ' + stimulusId);
-        Analyses.update({ _id: this._id }, { $pull: { stimulusIds: stimulusId }});
+      if (!stimulus) {
+        console.log("no stimulus found: " + stimulusId);
+        Analyses.update(
+          { _id: this._id },
+          { $pull: { stimulusIds: stimulusId } }
+        );
         return;
       }
 
       // console.log('make job for this._id: ' + this._id + ', participantId: ' + participantId + ', stimulusId: ' + stimulusId);
-      let job = new Job(Jobs, 'analyses.makeViewings', {
+      let job = new Job(Jobs, "analyses.makeViewings", {
         analysisId: this._id,
         participantId: participantId,
-        stimulusId: stimulusId,
+        stimulusId: stimulusId
       });
 
-      job.priority('normal')
+      job
+        .priority("normal")
         .retry({
           retries: Jobs.forever,
           wait: 1000,
-          backoff: 'constant'     // wait constant amount of time between each retry
+          backoff: "constant" // wait constant amount of time between each retry
         })
         .save();
     });

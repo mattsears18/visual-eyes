@@ -1,8 +1,8 @@
-require('../../../../factories.test')
-const expect = require('chai').expect
-import ViewingHullSeries from '../ViewingHullSeries'
+require("../../../../factories.test");
+const expect = require("chai").expect;
+import ViewingHullSeries from "../ViewingHullSeries";
 
-describe('ViewingHullSeries.getCentroidTrace()', () => {
+describe("ViewingHullSeries.getCentroidTrace()", () => {
   const points = [
     { x: 100, y: 400, timestamp: 0 },
     { x: 200, y: 300, timestamp: 1000 },
@@ -18,32 +18,32 @@ describe('ViewingHullSeries.getCentroidTrace()', () => {
     { x: 300, y: 400, timestamp: 11000 },
     { x: 400, y: 300, timestamp: 12000 },
     { x: 500, y: 200, timestamp: 13000 },
-    { x: 600, y: 100, timestamp: 14000 },
-  ]
+    { x: 600, y: 100, timestamp: 14000 }
+  ];
 
-  it('gets the initial centroid trace', () => {
+  it("gets the initial centroid trace", () => {
     let hullseries = new ViewingHullSeries({
-      viewing: Factory.create('viewing', { gazepoints: points }),
-      period: 5000,
-    })
+      viewing: Factory.create("viewing", { gazepoints: points }),
+      period: 5000
+    });
 
-    let trace = hullseries.getCentroidTrace({ initial: true, hullIndex: 0 })
+    let trace = hullseries.getCentroidTrace({ initial: true, hullIndex: 0 });
 
-    expect(trace.name).to.equal('Centroid')
-    expect(trace.x).to.eql([ 375 ])
-    expect(trace.y).to.eql([ 416 + 2/3 ])
-  })
+    expect(trace.name).to.equal("Centroid");
+    expect(trace.x).to.eql([375]);
+    expect(trace.y).to.eql([416 + 2 / 3]);
+  });
 
-  it('gets a centroid trace (not initial)', () => {
+  it("gets a centroid trace (not initial)", () => {
     let hullseries = new ViewingHullSeries({
-      viewing: Factory.create('viewing', { gazepoints: points }),
-      period: 5000,
-    })
+      viewing: Factory.create("viewing", { gazepoints: points }),
+      period: 5000
+    });
 
-    let trace = hullseries.getCentroidTrace({ initial: false, hullIndex: 3 })
+    let trace = hullseries.getCentroidTrace({ initial: false, hullIndex: 3 });
 
-    expect(trace.name).to.be.an('undefined')
-    expect(trace.x).to.eql([ 600 ])
-    expect(trace.y).to.eql([ 366 + 2/3 ])
-  })
-})
+    expect(trace.name).to.be.an("undefined");
+    expect(trace.x).to.eql([600]);
+    expect(trace.y).to.eql([366 + 2 / 3]);
+  });
+});

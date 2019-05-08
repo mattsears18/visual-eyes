@@ -1,11 +1,11 @@
-var Jobs = JobCollection('JobsQueue');
+var Jobs = JobCollection("JobsQueue");
 
-if(Meteor.isServer) {
+if (Meteor.isServer) {
   Jobs.allow({
     // Grant full permission to any authenticated user
-    admin: function (userId, method, params) {
-      return (!!userId);
-    },
+    admin: function(userId, method, params) {
+      return !!userId;
+    }
   });
 }
 

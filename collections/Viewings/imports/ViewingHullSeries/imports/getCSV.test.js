@@ -1,8 +1,8 @@
-require('../../../../factories.test');
-const expect = require('chai').expect;
-import ViewingHullSeries from '../ViewingHullSeries'
+require("../../../../factories.test");
+const expect = require("chai").expect;
+import ViewingHullSeries from "../ViewingHullSeries";
 
-describe('ViewingHullSeries.getCSV()', () => {
+describe("ViewingHullSeries.getCSV()", () => {
   const points = [
     { x: 100, y: 400, timestamp: 0 },
     { x: 200, y: 300, timestamp: 1000 },
@@ -18,21 +18,20 @@ describe('ViewingHullSeries.getCSV()', () => {
     { x: 300, y: 400, timestamp: 11000 },
     { x: 400, y: 300, timestamp: 12000 },
     { x: 500, y: 200, timestamp: 13000 },
-    { x: 600, y: 100, timestamp: 14000 },
+    { x: 600, y: 100, timestamp: 14000 }
   ];
 
-  it('gets csv content', () => {
+  it("gets csv content", () => {
     let hullseries = new ViewingHullSeries({
-      viewing: Factory.create('viewing', {
+      viewing: Factory.create("viewing", {
         gazepoints: points,
-        stimulusId: Factory.create('stimulus')._id,
+        stimulusId: Factory.create("stimulus")._id
       }),
-      period: 5000,
+      period: 5000
     });
 
     console.log(hullseries.height);
 
-    expect(hullseries.getCSV().length).to.be.gt(0)
-
-  })
+    expect(hullseries.getCSV().length).to.be.gt(0);
+  });
 });

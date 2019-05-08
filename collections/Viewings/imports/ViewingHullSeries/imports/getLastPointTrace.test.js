@@ -1,9 +1,9 @@
-require('../../../../factories.test');
-const expect = require('chai').expect;
-import ViewingHullSeries from '../ViewingHullSeries'
+require("../../../../factories.test");
+const expect = require("chai").expect;
+import ViewingHullSeries from "../ViewingHullSeries";
 
-describe('ViewingHullSeries.getLastPointTrace()', () => {
-  it('gets the initial last point trace', () => {
+describe("ViewingHullSeries.getLastPointTrace()", () => {
+  it("gets the initial last point trace", () => {
     let points = [
       { x: 100, y: 400, timestamp: 0 },
       { x: 200, y: 300, timestamp: 1000 },
@@ -19,25 +19,25 @@ describe('ViewingHullSeries.getLastPointTrace()', () => {
       { x: 300, y: 400, timestamp: 11000 },
       { x: 400, y: 300, timestamp: 12000 },
       { x: 500, y: 200, timestamp: 13000 },
-      { x: 600, y: 100, timestamp: 14000 },
+      { x: 600, y: 100, timestamp: 14000 }
     ];
 
     let hullseries = new ViewingHullSeries({
-      viewing: Factory.create('viewing', {
-        studyId: Factory.create('study', { fixationsOnly: false })._id,
-        gazepoints: points,
-       }),
-      period: 5000,
+      viewing: Factory.create("viewing", {
+        studyId: Factory.create("study", { fixationsOnly: false })._id,
+        gazepoints: points
+      }),
+      period: 5000
     });
 
     let trace = hullseries.getLastPointTrace({ initial: true, hullIndex: 0 });
 
-    expect(trace.name).to.equal('Last Gaze Point');
-    expect(trace.x).to.eql([ 600 ]);
-    expect(trace.y).to.eql([ 600 ])
+    expect(trace.name).to.equal("Last Gaze Point");
+    expect(trace.x).to.eql([600]);
+    expect(trace.y).to.eql([600]);
   });
 
-  it('gets a last point trace (not initial)', () => {
+  it("gets a last point trace (not initial)", () => {
     let points = [
       { x: 100, y: 400, timestamp: 0 },
       { x: 200, y: 300, timestamp: 1000 },
@@ -53,25 +53,25 @@ describe('ViewingHullSeries.getLastPointTrace()', () => {
       { x: 300, y: 400, timestamp: 11000 },
       { x: 400, y: 300, timestamp: 12000 },
       { x: 500, y: 200, timestamp: 13000 },
-      { x: 600, y: 100, timestamp: 14000 },
+      { x: 600, y: 100, timestamp: 14000 }
     ];
 
     let hullseries = new ViewingHullSeries({
-      viewing: Factory.create('viewing', {
-        studyId: Factory.create('study', { fixationsOnly: false })._id,
-        gazepoints: points,
-       }),
-      period: 5000,
+      viewing: Factory.create("viewing", {
+        studyId: Factory.create("study", { fixationsOnly: false })._id,
+        gazepoints: points
+      }),
+      period: 5000
     });
 
     let trace = hullseries.getLastPointTrace({ initial: false, hullIndex: 9 });
 
-    expect(trace.name).to.be.an('undefined');
-    expect(trace.x).to.eql([ 600 ]);
-    expect(trace.y).to.eql([ 100 ])
+    expect(trace.name).to.be.an("undefined");
+    expect(trace.x).to.eql([600]);
+    expect(trace.y).to.eql([100]);
   });
 
-  it('has a study with fixaitonsOnly = true', () => {
+  it("has a study with fixaitonsOnly = true", () => {
     let points = [
       { x: 100, y: 400, timestamp: 0 },
       { x: 200, y: 300, timestamp: 1000 },
@@ -87,21 +87,21 @@ describe('ViewingHullSeries.getLastPointTrace()', () => {
       { x: 300, y: 400, timestamp: 11000 },
       { x: 400, y: 300, timestamp: 12000 },
       { x: 500, y: 200, timestamp: 13000 },
-      { x: 600, y: 100, timestamp: 14000 },
+      { x: 600, y: 100, timestamp: 14000 }
     ];
 
     let hullseries = new ViewingHullSeries({
-      viewing: Factory.create('viewing', {
-        studyId: Factory.create('study', { fixationsOnly: true })._id,
-        gazepoints: points,
-       }),
-      period: 5000,
+      viewing: Factory.create("viewing", {
+        studyId: Factory.create("study", { fixationsOnly: true })._id,
+        gazepoints: points
+      }),
+      period: 5000
     });
 
     let trace = hullseries.getLastPointTrace({ initial: true, hullIndex: 0 });
 
-    expect(trace.name).to.equal('Last Fixation');
-    expect(trace.x).to.eql([ 600 ]);
-    expect(trace.y).to.eql([ 600 ])
-  })
+    expect(trace.name).to.equal("Last Fixation");
+    expect(trace.x).to.eql([600]);
+    expect(trace.y).to.eql([600]);
+  });
 });

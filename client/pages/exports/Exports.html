@@ -1,0 +1,35 @@
+<template name="Exports">
+  <div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+          <label for="exportType">Export Type</label>
+          <select class="form-control export-type" id="exportType">
+            <option disabled selected>Select...</option>
+            <option disabled value="allAnalysesSingle">All Analyses in Study - Single File</option>
+            <option disabled vlaue="allAnalysesIndividual">All Analyses in Study - Individual Files</option>
+            <option value="allParticipantsSingle">All Participants in Analysis - Single File</option>
+            <option value="allParticipantsIndividual">All Participants in Analysis - Individual Files</option>
+            <option value="allViewingsSingle">All Viewings in Analysis (Convex Hull Data) - Single File</option>
+            <option value="allViewingsIndividual">All Viewings in Analysis (Convex Hull Data) - Individual Files</option>
+            <option disabled value="singleViewing">Single Viewing (Convex Hull Data)</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        {{#if analysisSelectorVisible}}
+          {{> AnalysisSelector}}
+        {{/if}}
+      </div>
+    </div>
+    {{#if Template.subscriptionsReady}}
+      {{#if downloadButtonVisible}}
+        <div>
+          <button class="btn btn-primary download-button"><i class="fa fa-download"></i> Download .CSV File(s)</button>
+        </div>
+      {{/if}}
+    {{else}}
+      {{> Spinner}}
+    {{/if}}
+  </div>
+</template>

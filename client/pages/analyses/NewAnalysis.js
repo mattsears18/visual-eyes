@@ -11,36 +11,42 @@ AutoForm.hooks({
       FlowRouter.go('/studies/' + studyId + '/analyses/' + result);
     },
     onError: function(formType, error) {
-      console.log(error);
-    },
+      // console.log(error);
+    }
   }
 });
 
 Template.NewAnalysis.helpers({
-  participantOptions: function () {
+  participantOptions: function() {
     studyId = FlowRouter.getParam('studyId');
-    participants = Participants.find({ studyId: studyId }, { $sort: { name: 1 }}).fetch();
+    participants = Participants.find(
+      { studyId: studyId },
+      { $sort: { name: 1 } }
+    ).fetch();
     return participants.map(function(participant) {
       return { label: participant.name, value: participant._id };
     });
   },
-  participantIds: function () {
+  participantIds: function() {
     studyId = FlowRouter.getParam('studyId');
     participants = Participants.find({ studyId: studyId }).fetch();
     ids = participants.map(participant => participant._id);
     return ids.join(',');
   },
-  stimulusOptions: function () {
+  stimulusOptions: function() {
     studyId = FlowRouter.getParam('studyId');
-    stimuli = Stimuli.find({ studyId: studyId }, { $sort: { name: 1 }}).fetch();
+    stimuli = Stimuli.find(
+      { studyId: studyId },
+      { $sort: { name: 1 } }
+    ).fetch();
     return stimuli.map(function(stimulus) {
       return { label: stimulus.name, value: stimulus._id };
     });
   },
-  stimulusIds: function () {
+  stimulusIds: function() {
     studyId = FlowRouter.getParam('studyId');
     stimuli = Stimuli.find({ studyId: studyId }).fetch();
     ids = stimuli.map(stimulus => stimulus._id);
     return ids.join(',');
-  },
+  }
 });

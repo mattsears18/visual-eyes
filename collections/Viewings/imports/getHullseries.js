@@ -1,4 +1,4 @@
-import ViewingHullSeries from './ViewingHullSeries/ViewingHullSeries'
+import ViewingHullSeries from "./ViewingHullSeries/ViewingHullSeries";
 
 export default function getHullseries(opt) {
   opt = opt || {};
@@ -11,6 +11,6 @@ export default function getHullseries(opt) {
     includeIncomplete: opt.includeIncomplete,
     pointTrailLength: opt.pointTrailLength,
     width: this.stimulus().width,
-    height: this.stimulus().height,
-  })
+    height: this.stimulus().height
+  });
 }

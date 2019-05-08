@@ -69,6 +69,13 @@
                 </li>
               {{/if}}
             {{/if}}
+            {{#if analyses.count}}
+              <li class="{{#if isActivePath regex='export'}} active {{/if}}">
+                <a href="/studies/{{study._id}}/exports">
+                  <i class="fa fa-share-square-o"></i>&nbsp;&nbsp;Export Data
+                </a>
+              </li>
+            {{/if}}
           </ul>
         </div>
 

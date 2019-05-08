@@ -1,0 +1,11 @@
+<template name="AnalysisSelector">
+  <div class="form-group">
+    <label for="exportType">Analysis</label>
+    <select class="form-control analysis-selector" id="analysisSelector">
+      <option disabled selected>Select...</option>
+      {{#each analysis in analyses}}
+        <option value="{{analysis._id}}">{{analysis.name}}</option>
+      {{/each}}
+    </select>
+  </div>
+</template>

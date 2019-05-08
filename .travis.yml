@@ -6,6 +6,9 @@ node_js:
   - 'node'
   - 'lts/*'
 
+install:
+  - meteor npm install
+
 before_script:
   # Install meteor
   - curl https://install.meteor.com | /bin/sh
@@ -15,6 +18,7 @@ before_script:
 
 script:
   - meteor npm install --save bcrypt
+  - npm test
 
 notifications:
   email:

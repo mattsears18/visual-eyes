@@ -30,7 +30,7 @@ Template.Analysis.onCreated(function() {
     if(analysis && analysis.status == 'processing') {
       self.subscribe('jobs.byAnalysisId', analysisId);
     }
-    
+
     if(self.subscriptionsReady()) { updateSelectors(self); }
   });
 });
@@ -87,14 +87,6 @@ Template.Analysis.helpers({
 
 
 Template.Analysis.events({
-  'click .download-as-csv':function(){
-    let analysis = Analyses.findOne();
-    analysis.saveCSVParticipants();
-  },
-  'click .download-viewings-as-csv':function(e, template){
-    let analysis = Analyses.findOne();
-    analysis.saveCSVViewings();
-  },
   'click .reprocess-analysis': function() {
     let analysis = Analyses.findOne({ _id: FlowRouter.getParam('analysisId') });
     analysis.makeViewingJobs();

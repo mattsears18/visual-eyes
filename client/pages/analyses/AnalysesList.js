@@ -27,10 +27,6 @@ Template.AnalysesList.events({
     let study = Studies.findOne({ _id: FlowRouter.getParam('studyId') });
     study.reprocessAnalyses();
   },
-  'click .download-as-csv':function(){
-    let study = Studies.findOne();
-    study.saveCSVs();
-  },
 });
 
 Template.AnalysesList.destroyed = function(){

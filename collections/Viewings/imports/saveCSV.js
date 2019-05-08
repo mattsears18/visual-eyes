@@ -15,7 +15,14 @@ export default function saveCSV(opt) {
 
   if(Meteor.isClient) {
     // Set default file name for organizing later
-    let nameFile = this.study().name + ' - p' + this.period + 'vg' + this.viewingGap + 'mvt' + this.minViewingTime + ' - Viewing';
+    let nameFile = this.study().name + ' - vg' + this.analysis().viewingGap + 'mvt' +
+      this.analysis().minViewingTime + 'p' + opt.period + 'ts' + opt.timestep;
+
+    if(opt.includeIncomplete) {
+      nameFile += 'incomplete';
+    }
+    nameFile = nameFile + ' - Viewing - ' + this.participant().name;
+
     var blob = new Blob([csvContent], {type: "text/csv;charset=utf-8"});
     // Save file to user's disk
     FileSaver.saveAs(blob, nameFile);

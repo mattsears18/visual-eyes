@@ -24,6 +24,8 @@ export default function getCSV() {
       endIndex: hull.endIndex,
       startTime: hull.startTime(),
       endTime: hull.endTime(),
+      elapsedTime: (hull.endTime() - this.getStartTime()),
+      elapsedTimeNormalized: ((hull.endTime() - this.getStartTime()) / this.getDuration()),
       startTimeNormalized: hull.startTime({ normalized: true }),
       endTimeNormalized: hull.endTime({ normalized: true }),
       hullPeriod: hull.period(),

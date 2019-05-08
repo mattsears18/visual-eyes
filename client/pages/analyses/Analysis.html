@@ -10,7 +10,6 @@
           {{/unless}}
         {{/if}}
         <span class="btn btn-danger pull-right reprocess-analysis m-l-10"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Analysis</span>
-        <span class="pull-right btn btn-success download-as-csv"><i class="fa fa-download"></i>&nbsp;Download Analysis as .CSV</span>
       {{/if}}
 
       {{#if equals analysis.status 'processing'}}
@@ -84,8 +83,6 @@
         {{#unless analysis.allJobsCompleted}}
           <span class="label label-default">Creating Viewings {{formatNumber analysis.jobsProgress}}%<i class="fa fa-spinner fa-pulse fa-fw m-l-3"></i></span>
         {{/unless}}
-
-        <span class="pull-right btn btn-success download-viewings-as-csv m-b-20"><i class="fa fa-download"></i>&nbsp;Download Viewings as .CSV</span>
       </h4>
 
       {{> tabular table=TabularTables.ViewingsByAnalysisId selector=selector class="table table-striped table-bordered"}}

@@ -8,3 +8,4 @@ localExperiments/
 uploads/
 .nyc_output
 .idea/
+.coverage

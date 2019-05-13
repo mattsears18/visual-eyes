@@ -11,6 +11,7 @@ visual-eyes is a web application, which means that it runs in your internet brow
 ## Deployment
 Rather than installing visual-eyes on your local machine, an instance of visual-eyes can be deployed to Heroku.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/faa346a0e11347e19e48508a78e441e3)](https://app.codacy.com/app/mattsears18/visual-eyes?utm_source=github.com&utm_medium=referral&utm_content=mattsears18/visual-eyes&utm_campaign=Badge_Grade_Dashboard)
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Installation Prerequisites

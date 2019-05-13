@@ -12,12 +12,8 @@ Template.Exports.onCreated(function() {
 });
 
 Template.Exports.helpers({
-  analysisSelectorVisible: () => {
-    return Template.instance().analysisSelectorVisible.get();
-  },
-  downloadButtonVisible: () => {
-    return Template.instance().downloadButtonVisible.get();
-  }
+  analysisSelectorVisible: () => Template.instance().analysisSelectorVisible.get(),
+  downloadButtonVisible: () => Template.instance().downloadButtonVisible.get(),
 });
 
 Template.Exports.events({
@@ -26,10 +22,10 @@ Template.Exports.events({
     t.exportType.set(e.target.value);
 
     if (
-      exportType === 'allParticipantsSingle' ||
-      exportType === 'allParticipantsIndividual' ||
-      exportType === 'allViewingsSingle' ||
-      exportType === 'allViewingsIndividual'
+      exportType === 'allParticipantsSingle'
+      || exportType === 'allParticipantsIndividual'
+      || exportType === 'allViewingsSingle'
+      || exportType === 'allViewingsIndividual'
     ) {
       t.analysisSelectorVisible.set(true);
     } else {
@@ -47,8 +43,10 @@ Template.Exports.events({
     }
   },
   'click .download-button': (e, t) => {
+    console.log('balls');
+    console.log(t.exportType.get());
     if (t.analysisId.get()) {
-      let analysis = Analyses.findOne({ _id: t.analysisId.get() });
+      const analysis = Analyses.findOne({ _id: t.analysisId.get() });
 
       if (t.exportType.get() === 'allParticipantsSingle') {
         console.log('analysis.saveCSVParticipants()');
@@ -58,5 +56,5 @@ Template.Exports.events({
         analysis.saveCSVParticipants();
       }
     }
-  }
+  },
 });

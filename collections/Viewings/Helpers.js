@@ -1,6 +1,6 @@
-import Jobs from "../Jobs/Jobs";
-import getHullseries from "./imports/getHullseries";
-import saveCSV from "./imports/saveCSV";
+import Jobs from '../Jobs/Jobs';
+import getHullseries from './imports/getHullseries';
+import saveCSV from './imports/saveCSV';
 
 Viewings.helpers({
   getHullseries,
@@ -56,10 +56,10 @@ Viewings.helpers({
     }
   },
   jobs() {
-    return Jobs.find({ "data.viewingId": this._id });
+    return Jobs.find({ 'data.viewingId': this._id });
   },
   jobsCompleted() {
-    return Jobs.find({ "data.viewingId": this._id, status: "completed" });
+    return Jobs.find({ 'data.viewingId': this._id, status: 'completed' });
   },
   jobsProgress() {
     let progress = 0;
@@ -70,5 +70,5 @@ Viewings.helpers({
   },
   allJobsCompleted() {
     return this.jobs().count() == this.jobsCompleted().count();
-  }
+  },
 });

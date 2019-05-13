@@ -1,0 +1,11 @@
+{
+    "workbench.colorTheme": "Monokai",
+    "editor.fontSize": 16,
+    "debug.console.fontSize": 16,
+    "markdown.preview.fontSize": 16,
+    "terminal.integrated.fontSize": 16,
+    "editor.fontFamily": "Monaco, Menlo, 'Courier New', monospace",
+    "html.format.wrapLineLength": 100,
+    "editor.wordWrapColumn": 100,
+    "editor.wordWrap": "wordWrapColumn"
+}

@@ -1,6 +1,6 @@
-import Jobs                     from '../Jobs/Jobs';
-import getHullseries            from './imports/getHullseries';
-import saveCSV                  from './imports/saveCSV'
+import Jobs from '../Jobs/Jobs';
+import getHullseries from './imports/getHullseries';
+import saveCSV from './imports/saveCSV';
 
 Viewings.helpers({
   getHullseries,
@@ -9,9 +9,9 @@ Viewings.helpers({
   hasPermission(action) {
     check(action, String);
 
-    if(this.userPermissions) {
+    if (this.userPermissions) {
       userIds = this.userPermissions[action];
-      if(userIds) {
+      if (userIds) {
         return userIds.includes(Meteor.userId());
       }
     }
@@ -21,7 +21,7 @@ Viewings.helpers({
     return Datafiles.findOne(this.datafileId);
   },
   datafileName() {
-    if(this.datafile()) {
+    if (this.datafile()) {
       return this.datafile().name;
     }
   },
@@ -29,7 +29,7 @@ Viewings.helpers({
     return Participants.findOne(this.participantId);
   },
   participantName() {
-    if(this.participant()) {
+    if (this.participant()) {
       return this.participant().name;
     }
   },
@@ -40,7 +40,7 @@ Viewings.helpers({
     return this.stimulus().area();
   },
   stimulusName() {
-    if(this.stimulus()) {
+    if (this.stimulus()) {
       return this.stimulus().name;
     }
   },
@@ -51,24 +51,24 @@ Viewings.helpers({
     return Analyses.findOne(this.analysisId);
   },
   aois() {
-    if(this.aoiIds && this.aoiIds.length) {
-      return Aois.find({ _id: { $in: this.aoiIds }}, { sort: { name: 1 } });
+    if (this.aoiIds && this.aoiIds.length) {
+      return Aois.find({ _id: { $in: this.aoiIds } }, { sort: { name: 1 } });
     }
   },
   jobs() {
     return Jobs.find({ 'data.viewingId': this._id });
   },
   jobsCompleted() {
-    return Jobs.find({ 'data.viewingId': this._id, 'status': 'completed' });
+    return Jobs.find({ 'data.viewingId': this._id, status: 'completed' });
   },
   jobsProgress() {
     let progress = 0;
-    if(this.jobs().count()) {
-      progress = (this.jobsCompleted().count() / this.jobs().count() * 100);
+    if (this.jobs().count()) {
+      progress = (this.jobsCompleted().count() / this.jobs().count()) * 100;
     }
     return progress;
   },
   allJobsCompleted() {
-    return (this.jobs().count() == this.jobsCompleted().count());
+    return this.jobs().count() == this.jobsCompleted().count();
   },
 });

@@ -5,26 +5,14 @@ SimpleSchema.extendOptions(['autoform']);
 Viewings = new Mongo.Collection('viewings');
 
 Viewings.allow({
-  insert(userId, doc) {
+  insert() {
     return true;
-    if (!Roles.userIsInRole(userId, 'create', 'viewings')) {
-      throw new Meteor.Error(
-        'viewings.create.unauthorized',
-        'You do not have permission to create viewings.',
-      );
-    } else {
-      return true;
-    }
   },
-  update(userId, doc) {
+  update() {
     return true;
-    viewing = Viewings.findOne({ _id: doc._id });
-    return viewing.hasPermission('update');
   },
-  remove(userId, doc) {
+  remove() {
     return true;
-    viewing = Viewings.findOne({ _id: doc._id });
-    return viewing.hasPermission('destroy');
   },
 });
 

@@ -5,13 +5,13 @@ SimpleSchema.extendOptions(['autoform']);
 Variables = new Mongo.Collection('variables');
 
 Variables.allow({
-  insert: function(userId, doc) {
+  insert(userId, doc) {
     return true;
   },
-  update: function(userId, doc) {
+  update(userId, doc) {
     return true;
   },
-  remove: function(userId, doc) {
+  remove(userId, doc) {
     return true;
   },
 });
@@ -25,14 +25,14 @@ Schemas.Variable = new SimpleSchema({
     type: String,
     label: 'Study',
     autoform: {
-      value: function() {
+      value() {
         return FlowRouter.getParam('studyId');
       },
-      type: 'hidden'
+      type: 'hidden',
     },
     optional: true,
   },
-}, {tracker: Tracker});
+}, { tracker: Tracker });
 
 Variables.attachSchema(Schemas.Variable);
 

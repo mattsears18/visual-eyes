@@ -1,10 +1,10 @@
 require('./../../factories.test');
-const expect = require('chai').expect;
+const { expect } = require('chai');
 
 describe('Analyses.getViewingFixationCount()', () => {
   it('dose not have fixations', () => {
-    let analysis = Factory.create('analysis');
-    let points = [
+    const analysis = Factory.create('analysis');
+    const points = [
       { timestamp: 0 },
       { timestamp: 1000 },
       { timestamp: 2000 },
@@ -16,8 +16,8 @@ describe('Analyses.getViewingFixationCount()', () => {
   });
 
   it('has duplicate fixation indices', () => {
-    let analysis = Factory.create('analysis');
-    let points = [
+    const analysis = Factory.create('analysis');
+    const points = [
       { timestamp: 0 },
       { timestamp: 1000, fixationIndex: 1 },
       { timestamp: 2000, fixationIndex: 1 },
@@ -29,8 +29,8 @@ describe('Analyses.getViewingFixationCount()', () => {
   });
 
   it('has fixations', () => {
-    let analysis = Factory.create('analysis');
-    let points = [
+    const analysis = Factory.create('analysis');
+    const points = [
       { timestamp: 0 },
       { timestamp: 1000, fixationIndex: 1 },
       { timestamp: 2000, fixationIndex: 2 },

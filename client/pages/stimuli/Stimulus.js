@@ -1,17 +1,17 @@
 Template.Stimulus.onCreated(function() {
-  var self = this;
-  var dummy = 0;
+  const self = this;
+  let dummy = 0;
 
   self.autorun(function() {
-    var studyId = FlowRouter.getParam('studyId');
+    const studyId = FlowRouter.getParam('studyId');
     self.subscribe('studies.single', studyId);
 
-    var stimulusId = FlowRouter.getParam('stimulusId');
+    const stimulusId = FlowRouter.getParam('stimulusId');
 
     self.subscribe('stimuli.single', stimulusId);
 
     stimulus = Stimuli.findOne({});
-    if(stimulus) {
+    if (stimulus) {
       self.subscribe('stimulusfiles.byStimulusId', stimulusId, dummy++);
       self.subscribe('aois.byStimulusId', stimulusId);
     }
@@ -19,32 +19,23 @@ Template.Stimulus.onCreated(function() {
 });
 
 Template.Stimulus.helpers({
-  stimulus: () => {
-    return Stimuli.findOne();
-  },
-  study: () => {
-    return Studies.findOne();
-  },
+  stimulus: () => Stimuli.findOne(),
+  study: () => Studies.findOne(),
 });
 
 Template.BreadCrumbs.helpers({
-  stimulus: () => {
-    return Stimuli.findOne();
-  },
+  stimulus: () => Stimuli.findOne(),
 });
 
 Template.Stimulus.events({
-  'click .update-stimulus': function() {
+  'click .update-stimulus'() {
     Session.set('updateStimulus', true);
-  }
+  },
 });
 
-Template.Stimulus.destroyed = function(){
+Template.Stimulus.destroyed = function() {
   Session.set('updateStimulus', false);
-}
-
-
-
+};
 
 
 // Template.Stimulus.onCreated(function() {

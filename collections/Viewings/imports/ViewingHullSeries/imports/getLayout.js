@@ -1,11 +1,13 @@
 export default function getLayout(opt) {
   opt = opt || {};
 
-  if(typeof(this.viewing.stimulus().stimulusfile()) == 'undefined') { throw new Error('noStimulusfile') }
+  if (typeof (this.viewing.stimulus().stimulusfile()) === 'undefined') { throw new Error('noStimulusfile'); }
 
-  let forceHeight = 600;
-  let scale = forceHeight / this.viewing.stimulus().stimulusfile().fileHeight;
-  let margin = { l: 50, r: 10, b: 20, t: 0, pad: 4 };
+  const forceHeight = 600;
+  const scale = forceHeight / this.viewing.stimulus().stimulusfile().fileHeight;
+  const margin = {
+    l: 50, r: 10, b: 20, t: 0, pad: 4,
+  };
 
   return {
     xaxis: {
@@ -18,7 +20,7 @@ export default function getLayout(opt) {
     },
     height: forceHeight + margin.b + margin.t,
     width: (this.viewing.stimulus().stimulusfile().fileWidth * scale) + margin.l + margin.r + 146,
-    margin: margin,
+    margin,
     images: [{
       source: Stimulusfiles.link(this.viewing.stimulus().stimulusfile()),
       xref: 'paper',
@@ -33,5 +35,5 @@ export default function getLayout(opt) {
       layer: 'below',
     }],
     hovermode: 'closest',
-  }
+  };
 }

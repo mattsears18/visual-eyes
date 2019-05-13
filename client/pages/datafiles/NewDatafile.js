@@ -1,13 +1,13 @@
 Template.NewDatafile.events({
-  'click .fa-close': function() {
+  'click .fa-close'() {
     Session.set('newDatafile', false);
-  }
+  },
 });
 
 AutoForm.hooks({
   insertDatafileForm: {
-    onSuccess: function(formType, result) {
-      FlowRouter.go('/datafiles/' + result);
+    onSuccess(formType, result) {
+      FlowRouter.go(`/datafiles/${result}`);
     },
-  }
+  },
 });

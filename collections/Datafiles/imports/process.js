@@ -1,4 +1,5 @@
 import helpers from '../../../lib/helpers';
+
 const csv = require('csvtojson');
 
 export default async function process() {
@@ -13,19 +14,17 @@ export default async function process() {
   delete this.dupGazepointCount;
   delete this.fixationCount;
 
-  Datafiles.update({ _id: this._id }, {
-    $set: { status: 'preprocessing' }}
-  );
+  Datafiles.update({ _id: this._id }, { $set: { status: 'preprocessing' } });
 
   this.removeHeaders();
   await this.setFileFormat();
 
-  if(this.status == 'unrecognizedFileFormat') {
+  if (this.status == 'unrecognizedFileFormat') {
     throw new Error('unrecognizedFileFormat');
   }
 
-  let study = Studies.findOne({ _id: this.studyId });
-  if(!study) {
+  const study = Studies.findOne({ _id: this.studyId });
+  if (!study) {
     throw new Error('noStudy');
   }
 
@@ -34,15 +33,13 @@ export default async function process() {
 
   // console.log('pull datafileId from any old stimuli');
   Stimuli.update({},
-    { $pull: { datafileIds: this._id }},
-    { multi: true }
-  );
+    { $pull: { datafileIds: this._id } },
+    { multi: true });
 
   // console.log('pull datafileId from any old participants');
   Participants.update({},
-    { $pull: { datafileIds: this._id }},
-    { multi: true }
-  );
+    { $pull: { datafileIds: this._id } },
+    { multi: true });
 
   this.participantId = helpers.findOrInsert('participants', {
     name: this.getName(),
@@ -56,20 +53,20 @@ export default async function process() {
   Datafiles.update({ _id: this._id }, {
     $set: {
       participantId: this.participantId,
-    }
+    },
   }, (err, num) => {
-    if(err) {
+    if (err) {
       console.log(err);
     }
   });
 
-  Datafiles.update({ _id: this._id }, { $set: { status: 'processing' }});
+  Datafiles.update({ _id: this._id }, { $set: { status: 'processing' } });
 
-  let gazepoints = await this.makeGazepoints({ saveStats: true });
+  const gazepoints = await this.makeGazepoints({ saveStats: true });
   // console.log('made ' + helpers.formatNumber(gazepoints.count()) + ' gazepoints');
 
   this.status = 'processed';
-  Datafiles.update({ _id: this._id }, { $set: { status: 'processed' }});
+  Datafiles.update({ _id: this._id }, { $set: { status: 'processed' } });
 
   return this;
 }

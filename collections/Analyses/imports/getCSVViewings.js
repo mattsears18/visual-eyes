@@ -1,12 +1,12 @@
 export default function getCSVViewings() {
-  let analysis = this;
-  let viewings = Viewings.find({ 'analysisId' : analysis._id}).fetch();
+  const analysis = this;
+  const viewings = Viewings.find({ analysisId: analysis._id }).fetch();
 
-  let data = [];
+  const data = [];
 
   viewings.forEach(function(viewing) {
-    let viewingData = {
-      link: Meteor.absoluteUrl() + 'studies/' + analysis.study()._id + '/viewings/' + viewing._id,
+    const viewingData = {
+      link: `${Meteor.absoluteUrl()}studies/${analysis.study()._id}/viewings/${viewing._id}`,
       study: analysis.study().name,
       analysis: analysis.name,
       period: analysis.period,

@@ -1,33 +1,32 @@
 export default function getPointsTrace(opt) {
   opt = opt || {};
-  let hull = this.getHull(opt);
-  let initial = opt.initial || false;
+  const hull = this.getHull(opt);
+  const initial = opt.initial || false;
 
   let name;
 
-  if(this.viewing.study().fixationsOnly) {
-    name = 'Fixations'
+  if (this.viewing.study().fixationsOnly) {
+    name = 'Fixations';
   } else {
-    name = 'Gaze Points'
+    name = 'Gaze Points';
   }
 
-  if(initial) {
+  if (initial) {
     return {
-      name: name,
+      name,
       x: hull.getPoints('x'),
       y: hull.getPoints('y'),
-      text: this.getPointsTimeText({ hull: hull }),
+      text: this.getPointsTimeText({ hull }),
       mode: 'markers',
       type: 'scatter',
       marker: {
         color: '#337ab7',
         size: 8,
       },
-    }
-  } else {
-    return {
-      x: hull.getPoints('x'),
-      y: hull.getPoints('y'),
-    }
+    };
   }
+  return {
+    x: hull.getPoints('x'),
+    y: hull.getPoints('y'),
+  };
 }

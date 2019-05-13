@@ -1,7 +1,8 @@
-import { Meteor } from 'meteor/meteor'
+import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
-import Schemas from '../../lib/schemas';
 import { FilesCollection } from 'meteor/ostrio:files';
+import Schemas from '../../lib/schemas';
+
 const path = require('path');
 
 Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
@@ -63,20 +64,20 @@ options = {
 };
 
 uploadPath = Meteor.settings.public.uploads;
-if(uploadPath) { options.storagePath = uploadPath + '/datafiles'; }
+if (uploadPath) { options.storagePath = `${uploadPath}/datafiles`; }
 
 Datafiles = new FilesCollection(options);
 
 Datafiles.collection.attachSchema(new SimpleSchema(Schemas.Datafile));
 
 Datafiles.collection.allow({
-  insert: function(userId, doc) {
+  insert(userId, doc) {
     return true;
   },
-  update: function(userId, doc) {
+  update(userId, doc) {
     return true;
   },
-  remove: function(userId, doc) {
+  remove(userId, doc) {
     return true;
   },
 });

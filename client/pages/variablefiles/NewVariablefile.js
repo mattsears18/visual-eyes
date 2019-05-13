@@ -1,4 +1,4 @@
-import { Template }    from 'meteor/templating';
+import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 Template.NewVariablefile.onCreated(function () {
@@ -8,11 +8,11 @@ Template.NewVariablefile.onCreated(function () {
 Template.NewVariablefile.helpers({
   currentUpload() {
     return Template.instance().currentUpload.get();
-  }
+  },
 });
 
 Template.NewVariablefile.events({
-  'click .fa-close': function() {
+  'click .fa-close'() {
     Session.set('newVariablefile', false);
   },
   'change #fileInput'(e, template) {
@@ -32,7 +32,7 @@ Template.NewVariablefile.events({
 
       upload.on('end', function (error, fileObj) {
         if (error) {
-          alert('Error during upload: ' + error);
+          alert(`Error during upload: ${error}`);
         }
         template.currentUpload.set(false);
         Session.set('newVariablefile', false);
@@ -40,5 +40,5 @@ Template.NewVariablefile.events({
 
       upload.start();
     }
-  }
+  },
 });

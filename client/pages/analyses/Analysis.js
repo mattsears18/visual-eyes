@@ -1,34 +1,34 @@
-import { jStat } from "jStat";
-import Jobs from "../../../collections/Jobs/Jobs";
+import { jStat } from 'jStat';
+import Jobs from '../../../collections/Jobs/Jobs';
 
 let participantSub;
 let stimuliSub;
 
 Template.Analysis.onCreated(function() {
-  let self = this;
+  const self = this;
 
   self.selector = new ReactiveDict();
 
-  self.selector.set("participantIds", []);
-  self.selector.set("stimulusIds", []);
-  self.selector.set("selector", {});
+  self.selector.set('participantIds', []);
+  self.selector.set('stimulusIds', []);
+  self.selector.set('selector', {});
 
   self.autorun(function() {
-    let studyId = FlowRouter.getParam("studyId");
-    self.subscribe("studies.single", studyId);
-    self.subscribe("aois.byStudyId", studyId);
-    self.subscribe("variables.byStudyId", studyId);
-    self.subscribe("datafiles.byStudyId", studyId);
+    const studyId = FlowRouter.getParam('studyId');
+    self.subscribe('studies.single', studyId);
+    self.subscribe('aois.byStudyId', studyId);
+    self.subscribe('variables.byStudyId', studyId);
+    self.subscribe('datafiles.byStudyId', studyId);
 
-    let analysisId = FlowRouter.getParam("analysisId");
-    self.subscribe("analyses.single", analysisId);
-    self.subscribe("viewings.byAnalysisId", analysisId);
-    participantSub = self.subscribe("participants.byAnalysisId", analysisId);
-    stimuliSub = self.subscribe("stimuli.byAnalysisId", analysisId);
+    const analysisId = FlowRouter.getParam('analysisId');
+    self.subscribe('analyses.single', analysisId);
+    self.subscribe('viewings.byAnalysisId', analysisId);
+    participantSub = self.subscribe('participants.byAnalysisId', analysisId);
+    stimuliSub = self.subscribe('stimuli.byAnalysisId', analysisId);
 
-    let analysis = Analyses.findOne({});
-    if (analysis && analysis.status == "processing") {
-      self.subscribe("jobs.byAnalysisId", analysisId);
+    const analysis = Analyses.findOne({});
+    if (analysis && analysis.status == 'processing') {
+      self.subscribe('jobs.byAnalysisId', analysisId);
     }
 
     if (self.subscriptionsReady()) {
@@ -43,93 +43,83 @@ Template.UpdateAnalysis.destroyed = function() {
 };
 
 Template.BreadCrumbs.helpers({
-  analysis: () => {
-    return Analyses.findOne();
-  }
+  analysis: () => Analyses.findOne(),
 });
 
 Template.Analysis.helpers({
-  analysis: () => {
-    return Analyses.findOne();
-  },
+  analysis: () => Analyses.findOne(),
   viewings: () => {
     template = Template.instance();
-    participantIds = template.selector.get("participantIds");
-    stimulusIds = template.selector.get("stimulusIds");
+    participantIds = template.selector.get('participantIds');
+    stimulusIds = template.selector.get('stimulusIds');
 
     selector = {
-      analysisId: FlowRouter.getParam("analysisId"),
+      analysisId: FlowRouter.getParam('analysisId'),
       participantId: { $in: participantIds },
-      stimulusId: { $in: stimulusIds }
+      stimulusId: { $in: stimulusIds },
     };
 
-    template.selector.set("selector", selector);
+    template.selector.set('selector', selector);
 
     return Viewings.find(selector);
   },
-  study: () => {
-    return Studies.findOne();
+  study: () => Studies.findOne(),
+  stimuli: () => Stimuli.find(),
+  participants: () => Participants.find(),
+  showParticipantIds() {
+    return Template.instance().selector.get('participantIds');
   },
-  stimuli: () => {
-    return Stimuli.find();
+  showStimulusIds() {
+    return Template.instance().selector.get('stimulusIds');
   },
-  participants: () => {
-    return Participants.find();
+  selector() {
+    return Template.instance().selector.get('selector');
   },
-  showParticipantIds: function() {
-    return Template.instance().selector.get("participantIds");
-  },
-  showStimulusIds: function() {
-    return Template.instance().selector.get("stimulusIds");
-  },
-  selector: function() {
-    return Template.instance().selector.get("selector");
-  }
 });
 
 Template.Analysis.events({
-  "click .reprocess-analysis": function() {
-    let analysis = Analyses.findOne({ _id: FlowRouter.getParam("analysisId") });
+  'click .reprocess-analysis'() {
+    const analysis = Analyses.findOne({ _id: FlowRouter.getParam('analysisId') });
     analysis.makeViewingJobs();
   },
-  "click .update-analysis": function() {
-    Session.set("updateAnalysis", true);
+  'click .update-analysis'() {
+    Session.set('updateAnalysis', true);
   },
-  "click .selector": function(e, template) {
+  'click .selector'(e, template) {
     $target = $(e.target);
-    $target.toggleClass("label-primary");
-    $target.toggleClass("label-default");
+    $target.toggleClass('label-primary');
+    $target.toggleClass('label-default');
 
     updateSelectors(template);
   },
-  "click .toggle-all": function(e, template) {
+  'click .toggle-all'(e, template) {
     $toggle = $(e.target);
-    $toggle.toggleClass("label-primary");
-    $toggle.toggleClass("label-default");
+    $toggle.toggleClass('label-primary');
+    $toggle.toggleClass('label-default');
 
-    $selectors = $toggle.closest(".selector-set").find(".selector");
+    $selectors = $toggle.closest('.selector-set').find('.selector');
 
-    if ($toggle.hasClass("label-primary")) {
-      $selectors.addClass("label-default");
-      $selectors.removeClass("label-primary");
-    } else if ($toggle.hasClass("label-default")) {
-      $selectors.addClass("label-primary");
-      $selectors.removeClass("label-default");
+    if ($toggle.hasClass('label-primary')) {
+      $selectors.addClass('label-default');
+      $selectors.removeClass('label-primary');
+    } else if ($toggle.hasClass('label-default')) {
+      $selectors.addClass('label-primary');
+      $selectors.removeClass('label-default');
     }
 
     updateSelectors(template);
-  }
+  },
 });
 
 Template.Analysis.destroyed = function() {
-  Session.set("updateAnalysis", false);
+  Session.set('updateAnalysis', false);
 };
 
 function getViewingsJobsProgress() {
   progress = 0;
 
   jobsCount = Jobs.find().count();
-  jobsCompletedCount = Jobs.find({ status: "completed" }).count();
+  jobsCompletedCount = Jobs.find({ status: 'completed' }).count();
 
   if (jobsCount && jobsCompletedCount) {
     progress = helpers.formatNumber((jobsCompletedCount / jobsCount) * 100);
@@ -139,21 +129,21 @@ function getViewingsJobsProgress() {
 }
 
 function updateSelectors(template) {
-  $participants = $(".selector.participant.label-primary");
+  $participants = $('.selector.participant.label-primary');
   participantIds = $participants
     .map(function() {
-      return $(this).data("id");
+      return $(this).data('id');
     })
     .toArray();
 
-  template.selector.set("participantIds", participantIds);
+  template.selector.set('participantIds', participantIds);
 
-  $stimuli = $(".selector.stimulus.label-primary");
+  $stimuli = $('.selector.stimulus.label-primary');
   stimulusIds = $stimuli
     .map(function() {
-      return $(this).data("id");
+      return $(this).data('id');
     })
     .toArray();
 
-  template.selector.set("stimulusIds", stimulusIds);
+  template.selector.set('stimulusIds', stimulusIds);
 }

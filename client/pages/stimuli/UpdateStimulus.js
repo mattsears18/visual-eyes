@@ -1,13 +1,13 @@
 Template.UpdateStimulus.onCreated(function() {
-  var self = this;
-  var intervalId;
+  const self = this;
+  let intervalId;
   self.autorun(function() {
     self.subscribe('stimulusfiles.all');
   });
 });
 
 Template.UpdateStimulus.events({
-  'click .fa-close': function() {
+  'click .fa-close'() {
     Session.set('updateStimulus', false);
   },
   'change .af-file-upload-capture': () => {
@@ -17,11 +17,11 @@ Template.UpdateStimulus.events({
 
 function changeWidthHeight() {
   sfId = $('input[name="stimulusfileId"]').val();
-  if(sfId) {
+  if (sfId) {
     fileSearch = Stimulusfiles.find({ _id: sfId });
-    if(fileSearch) {
+    if (fileSearch) {
       fileSearch = fileSearch.fetch();
-      if(fileSearch.length) {
+      if (fileSearch.length) {
         newFile = fileSearch[0];
         $('input[name="width"]').val(newFile.fileWidth);
         $('input[name="height"]').val(newFile.fileHeight);
@@ -44,19 +44,19 @@ function clearWidthHeight() {
 
 AutoForm.hooks({
   updateStimulusForm: {
-    onSuccess: function(formType, result) {
+    onSuccess(formType, result) {
       Session.set('updateStimulus', false);
     },
-  }
+  },
 });
 
 Template.UpdateStimulus.helpers({
-  deleteBeforeRemove: function() {
+  deleteBeforeRemove() {
     return function (collection, id) {
-      var doc = collection.findOne(id);
-      if (confirm('Really delete "' + doc.name + '"?')) {
-        var studyId = FlowRouter.getParam('studyId');
-        FlowRouter.go('/studies/' + studyId + '/stimuli');
+      const doc = collection.findOne(id);
+      if (confirm(`Really delete "${doc.name}"?`)) {
+        const studyId = FlowRouter.getParam('studyId');
+        FlowRouter.go(`/studies/${studyId}/stimuli`);
         this.remove();
       }
     };
@@ -64,7 +64,7 @@ Template.UpdateStimulus.helpers({
 });
 
 Template.UpdateStimulus.destroyed = function() {
-  if(typeof(intervalId) !== 'undefined')  {
+  if (typeof (intervalId) !== 'undefined') {
     Meteor.clearInterval(intervalId);
   }
-}
+};

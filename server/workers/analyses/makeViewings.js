@@ -1,20 +1,20 @@
-import Jobs from "../../../collections/Jobs/Jobs";
+import Jobs from '../../../collections/Jobs/Jobs';
 
 export default (queueAnalysesMakeViewings = Jobs.processJobs(
-  "analyses.makeViewings",
+  'analyses.makeViewings',
   { concurrency: 1 },
   (job, callback) => {
-    let analysis = Analyses.findOne({ _id: job.data.analysisId });
+    const analysis = Analyses.findOne({ _id: job.data.analysisId });
     if (!analysis) {
-      console.log("Analysis not found. analysisId: " + job.data.analysisId);
+      console.log(`Analysis not found. analysisId: ${job.data.analysisId}`);
       job.cancel();
       job.remove();
     }
 
     try {
-      let viewingIds = analysis.makeViewings({
+      const viewingIds = analysis.makeViewings({
         participantId: job.data.participantId,
-        stimulusId: job.data.stimulusId
+        stimulusId: job.data.stimulusId,
       });
       job.done();
       analysis.updateStatus();
@@ -25,5 +25,5 @@ export default (queueAnalysesMakeViewings = Jobs.processJobs(
     }
 
     callback();
-  }
+  },
 ));

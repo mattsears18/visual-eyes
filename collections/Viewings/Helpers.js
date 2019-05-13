@@ -10,7 +10,7 @@ Viewings.helpers({
     check(action, String);
 
     if (this.userPermissions) {
-      userIds = this.userPermissions[action];
+      const userIds = this.userPermissions[action];
       if (userIds) {
         return userIds.includes(Meteor.userId());
       }
@@ -21,17 +21,13 @@ Viewings.helpers({
     return Datafiles.findOne(this.datafileId);
   },
   datafileName() {
-    if (this.datafile()) {
-      return this.datafile().name;
-    }
+    return this.datafile() ? this.datafile().name : undefined;
   },
   participant() {
     return Participants.findOne(this.participantId);
   },
   participantName() {
-    if (this.participant()) {
-      return this.participant().name;
-    }
+    return this.participant() ? this.participant().name : undefined;
   },
   stimulus() {
     return Stimuli.findOne(this.stimulusId);
@@ -40,9 +36,7 @@ Viewings.helpers({
     return this.stimulus().area();
   },
   stimulusName() {
-    if (this.stimulus()) {
-      return this.stimulus().name;
-    }
+    return this.stimulus() ? this.stimulus().name : undefined;
   },
   study() {
     return Studies.findOne({ _id: this.studyId });
@@ -54,6 +48,7 @@ Viewings.helpers({
     if (this.aoiIds && this.aoiIds.length) {
       return Aois.find({ _id: { $in: this.aoiIds } }, { sort: { name: 1 } });
     }
+    return undefined;
   },
   jobs() {
     return Jobs.find({ 'data.viewingId': this._id });
@@ -69,6 +64,6 @@ Viewings.helpers({
     return progress;
   },
   allJobsCompleted() {
-    return this.jobs().count() == this.jobsCompleted().count();
+    return this.jobs().count() === this.jobsCompleted().count();
   },
 });

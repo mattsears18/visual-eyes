@@ -1,8 +1,9 @@
-require("../../../../factories.test");
-const expect = require("chai").expect;
-import ViewingHullSeries from "../ViewingHullSeries";
+import ViewingHullSeries from '../ViewingHullSeries';
 
-describe("ViewingHullSeries.pointTrail()", () => {
+require('../../../../factories.test');
+const { expect } = require('chai');
+
+describe('ViewingHullSeries.pointTrail()', () => {
   const points = [
     { x: 100, y: 400, timestamp: 0 },
     { x: 200, y: 300, timestamp: 1000 },
@@ -18,16 +19,16 @@ describe("ViewingHullSeries.pointTrail()", () => {
     { x: 300, y: 400, timestamp: 11000 },
     { x: 400, y: 300, timestamp: 12000 },
     { x: 500, y: 200, timestamp: 13000 },
-    { x: 600, y: 100, timestamp: 14000 }
+    { x: 600, y: 100, timestamp: 14000 },
   ];
 
-  it("gets a point trail with default length (10)", () => {
-    let hullseries = new ViewingHullSeries({
-      viewing: Factory.create("viewing", { gazepoints: points }),
-      period: 5000
+  it('gets a point trail with default length (10)', () => {
+    const hullseries = new ViewingHullSeries({
+      viewing: Factory.create('viewing', { gazepoints: points }),
+      period: 5000,
     });
 
-    let pointTrail = hullseries.getPointTrail({ hullIndex: 7 });
+    const pointTrail = hullseries.getPointTrail({ hullIndex: 7 });
 
     expect(pointTrail.length).to.equal(10);
     expect(pointTrail).to.eql([
@@ -40,17 +41,17 @@ describe("ViewingHullSeries.pointTrail()", () => {
       { x: 100, y: 200, timestamp: 9000 },
       { x: 200, y: 100, timestamp: 10000 },
       { x: 300, y: 400, timestamp: 11000 },
-      { x: 400, y: 300, timestamp: 12000 }
+      { x: 400, y: 300, timestamp: 12000 },
     ]);
   });
 
-  it("gets the x coordinates of a trail", () => {
-    let hullseries = new ViewingHullSeries({
-      viewing: Factory.create("viewing", { gazepoints: points }),
-      period: 5000
+  it('gets the x coordinates of a trail', () => {
+    const hullseries = new ViewingHullSeries({
+      viewing: Factory.create('viewing', { gazepoints: points }),
+      period: 5000,
     });
 
-    let pointTrail = hullseries.getPointTrail({ hullIndex: 7, which: "x" });
+    const pointTrail = hullseries.getPointTrail({ hullIndex: 7, which: 'x' });
     expect(pointTrail).to.eql([
       400,
       500,
@@ -61,17 +62,17 @@ describe("ViewingHullSeries.pointTrail()", () => {
       100,
       200,
       300,
-      400
+      400,
     ]);
   });
 
-  it("gets the y coordinates of a trail", () => {
-    let hullseries = new ViewingHullSeries({
-      viewing: Factory.create("viewing", { gazepoints: points }),
-      period: 5000
+  it('gets the y coordinates of a trail', () => {
+    const hullseries = new ViewingHullSeries({
+      viewing: Factory.create('viewing', { gazepoints: points }),
+      period: 5000,
     });
 
-    let pointTrail = hullseries.getPointTrail({ hullIndex: 7, which: "y" });
+    const pointTrail = hullseries.getPointTrail({ hullIndex: 7, which: 'y' });
     expect(pointTrail).to.eql([
       100,
       700,
@@ -82,19 +83,19 @@ describe("ViewingHullSeries.pointTrail()", () => {
       200,
       100,
       400,
-      300
+      300,
     ]);
   });
 
-  it("requests a trail longer than the points", () => {
-    let hullseries = new ViewingHullSeries({
-      viewing: Factory.create("viewing", { gazepoints: points }),
-      period: 5000
+  it('requests a trail longer than the points', () => {
+    const hullseries = new ViewingHullSeries({
+      viewing: Factory.create('viewing', { gazepoints: points }),
+      period: 5000,
     });
 
-    let pointTrail = hullseries.getPointTrail({
+    const pointTrail = hullseries.getPointTrail({
       hullIndex: 7,
-      pointTrailLength: 200
+      pointTrailLength: 200,
     });
     expect(pointTrail).to.eql([
       { x: 100, y: 400, timestamp: 0 },
@@ -109,30 +110,30 @@ describe("ViewingHullSeries.pointTrail()", () => {
       { x: 100, y: 200, timestamp: 9000 },
       { x: 200, y: 100, timestamp: 10000 },
       { x: 300, y: 400, timestamp: 11000 },
-      { x: 400, y: 300, timestamp: 12000 }
+      { x: 400, y: 300, timestamp: 12000 },
     ]);
   });
 
-  it("has an invalid point trail length", () => {
-    let hullseries = new ViewingHullSeries({
-      viewing: Factory.create("viewing", { gazepoints: points }),
-      period: 5000
+  it('has an invalid point trail length', () => {
+    const hullseries = new ViewingHullSeries({
+      viewing: Factory.create('viewing', { gazepoints: points }),
+      period: 5000,
     });
 
     expect(() => {
       hullseries.getPointTrail({ hullIndex: 7, pointTrailLength: -1 });
-    }).to.throw("invalidPointTrailLength");
+    }).to.throw('invalidPointTrailLength');
   });
 
-  it("requests a zero length point trail", () => {
-    let hullseries = new ViewingHullSeries({
-      viewing: Factory.create("viewing", { gazepoints: points }),
-      period: 5000
+  it('requests a zero length point trail', () => {
+    const hullseries = new ViewingHullSeries({
+      viewing: Factory.create('viewing', { gazepoints: points }),
+      period: 5000,
     });
 
-    let pointTrail = hullseries.getPointTrail({
+    const pointTrail = hullseries.getPointTrail({
       hullIndex: 7,
-      pointTrailLength: 0
+      pointTrailLength: 0,
     });
     expect(pointTrail).to.eql([]);
   });

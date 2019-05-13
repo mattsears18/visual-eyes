@@ -1,8 +1,9 @@
-require("../../../../factories.test");
-const expect = require("chai").expect;
-import ViewingHullSeries from "../ViewingHullSeries";
+import ViewingHullSeries from '../ViewingHullSeries';
 
-describe("ViewingHullSeries.getCentroidTrailTrace()", () => {
+require('../../../../factories.test');
+const { expect } = require('chai');
+
+describe('ViewingHullSeries.getCentroidTrailTrace()', () => {
   const points = [
     { x: 100, y: 400, timestamp: 0 },
     { x: 200, y: 300, timestamp: 1000 },
@@ -18,56 +19,56 @@ describe("ViewingHullSeries.getCentroidTrailTrace()", () => {
     { x: 300, y: 400, timestamp: 11000 },
     { x: 400, y: 300, timestamp: 12000 },
     { x: 500, y: 200, timestamp: 13000 },
-    { x: 600, y: 100, timestamp: 14000 }
+    { x: 600, y: 100, timestamp: 14000 },
   ];
 
-  it("gets the initial centroid trail trace", () => {
-    let hullseries = new ViewingHullSeries({
-      viewing: Factory.create("viewing", { gazepoints: points }),
-      period: 5000
+  it('gets the initial centroid trail trace', () => {
+    const hullseries = new ViewingHullSeries({
+      viewing: Factory.create('viewing', { gazepoints: points }),
+      period: 5000,
     });
 
-    let trace = hullseries.getCentroidTrailTrace({ initial: true });
+    const trace = hullseries.getCentroidTrailTrace({ initial: true });
 
-    expect(trace.name).to.equal("Centroid Trail");
+    expect(trace.name).to.equal('Centroid Trail');
     expect(trace.x).to.eql([-10, -11]);
     expect(trace.y).to.eql([-10, -11]);
   });
 
-  it("gets a centroid trail trace (not initial) for the first 5 hulls", () => {
-    let hullseries = new ViewingHullSeries({
-      viewing: Factory.create("viewing", { gazepoints: points }),
-      period: 5000
+  it('gets a centroid trail trace (not initial) for the first 5 hulls', () => {
+    const hullseries = new ViewingHullSeries({
+      viewing: Factory.create('viewing', { gazepoints: points }),
+      period: 5000,
     });
 
-    let trace = hullseries.getCentroidTrailTrace({
+    const trace = hullseries.getCentroidTrailTrace({
       initial: false,
-      hullIndex: 4
+      hullIndex: 4,
     });
 
-    expect(trace.name).to.be.an("undefined");
+    expect(trace.name).to.be.an('undefined');
     expect(trace.x).to.eql([375, 450, 525, 600, 500]);
     expect(trace.y).to.eql([
       416.6666666666667,
       400,
       383.3333333333333,
       366.6666666666667,
-      400
+      400,
     ]);
   });
 
-  it("gets the centroid trail trace (not initial) for the first hull", () => {
-    let hullseries = new ViewingHullSeries({
-      viewing: Factory.create("viewing", { gazepoints: points }),
-      period: 5000
+  it('gets the centroid trail trace (not initial) for the first hull', () => {
+    const hullseries = new ViewingHullSeries({
+      viewing: Factory.create('viewing', { gazepoints: points }),
+      period: 5000,
     });
 
-    let trace = hullseries.getCentroidTrailTrace({
+    const trace = hullseries.getCentroidTrailTrace({
       initial: false,
-      hullIndex: 0
+      hullIndex: 0,
     });
 
-    expect(trace.name).to.be.an("undefined");
+    expect(trace.name).to.be.an('undefined');
     expect(trace.x).to.eql([-10, -11]);
     expect(trace.y).to.eql([-10, -11]);
   });

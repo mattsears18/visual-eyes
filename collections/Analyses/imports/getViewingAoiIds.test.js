@@ -1,10 +1,10 @@
 require('./../../factories.test');
-const expect = require('chai').expect;
+const { expect } = require('chai');
 
 describe('Analyses.getViewingAoiIds()', () => {
   it('does not have aoiIds', () => {
-    let analysis = Factory.create('analysis');
-    let points = [
+    const analysis = Factory.create('analysis');
+    const points = [
       { timestamp: 0 },
       { timestamp: 1000 },
       { timestamp: 2000 },
@@ -16,8 +16,8 @@ describe('Analyses.getViewingAoiIds()', () => {
   });
 
   it('has aoiIds', () => {
-    let analysis = Factory.create('analysis');
-    let points = [
+    const analysis = Factory.create('analysis');
+    const points = [
       { timestamp: 0 },
       { timestamp: 1000, aoiId: 'dfgrhtjyghfgdf' },
       { timestamp: 2000, aoiId: 'dafsdgfhgjfhgd' },
@@ -29,8 +29,8 @@ describe('Analyses.getViewingAoiIds()', () => {
   });
 
   it('has duplicate aoiIds', () => {
-    let analysis = Factory.create('analysis');
-    let points = [
+    const analysis = Factory.create('analysis');
+    const points = [
       { timestamp: 0 },
       { timestamp: 1000, aoiId: 'dfgrhtjyghfgdf' },
       { timestamp: 2000, aoiId: 'sdfegrhtrytefs' },

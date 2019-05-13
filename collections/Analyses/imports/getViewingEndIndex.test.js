@@ -1,14 +1,14 @@
 require('./../../factories.test');
-const expect = require('chai').expect;
+const { expect } = require('chai');
 
 describe('Analyses.getViewingEndIndex()', () => {
   it('gets the endIndex', async () => {
-    let analysis = Factory.create('analysis', {
+    const analysis = Factory.create('analysis', {
       minViewingTime: 5000,
       viewingGap: 5000,
     });
 
-    let points = [
+    const points = [
       { timestamp: 0 },
       { timestamp: 1000 },
       { timestamp: 2000 },
@@ -25,12 +25,12 @@ describe('Analyses.getViewingEndIndex()', () => {
   });
 
   it('exceeds the viewingGap', async () => {
-    let analysis = Factory.create('analysis', {
+    const analysis = Factory.create('analysis', {
       minViewingTime: 3000,
       viewingGap: 5000,
     });
 
-    let points = [
+    const points = [
       { timestamp: 0 },
       { timestamp: 1000 },
       { timestamp: 2000 },
@@ -47,12 +47,12 @@ describe('Analyses.getViewingEndIndex()', () => {
   });
 
   it('does not meet the minViewingTime and has more points', async () => {
-    let analysis = Factory.create('analysis', {
+    const analysis = Factory.create('analysis', {
       minViewingTime: 10000,
       viewingGap: 5000,
     });
 
-    let points = [
+    const points = [
       { timestamp: 0 },
       { timestamp: 1000 },
       { timestamp: 2000 },
@@ -65,22 +65,22 @@ describe('Analyses.getViewingEndIndex()', () => {
       { timestamp: 19000 },
     ];
 
-    expect(() => { analysis.getViewingEndIndex({ gazepoints: points })}).to.throw('minViewingTimeNotMet');
+    expect(() => { analysis.getViewingEndIndex({ gazepoints: points }); }).to.throw('minViewingTimeNotMet');
 
     try {
       analysis.getViewingEndIndex({ gazepoints: points });
-    } catch(err) {
+    } catch (err) {
       expect(err.details.nextIndex).to.equal(5);
     }
   });
 
   it('has has a startIndex that is too high', async () => {
-    let analysis = Factory.create('analysis', {
+    const analysis = Factory.create('analysis', {
       minViewingTime: 10000,
       viewingGap: 5000,
     });
 
-    let points = [
+    const points = [
       { timestamp: 0 },
       { timestamp: 1000 },
       { timestamp: 2000 },
@@ -88,6 +88,6 @@ describe('Analyses.getViewingEndIndex()', () => {
       { timestamp: 4000 },
     ];
 
-    expect(() => { analysis.getViewingEndIndex({ gazepoints: points, startIndex: 4 })}).to.throw('startIndexTooHigh');
+    expect(() => { analysis.getViewingEndIndex({ gazepoints: points, startIndex: 4 }); }).to.throw('startIndexTooHigh');
   });
 });

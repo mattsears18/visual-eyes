@@ -1,8 +1,6 @@
 export default function getPointsTimeText(opt) {
   opt = opt || {};
-  let hull = this.getHull(opt);
+  const hull = this.getHull(opt);
 
-  return hull.points.map((point) => {
-    return 'Time: ' + point.timestamp + 'ms'
-  })
+  return hull.points.map(point => `Time: ${point.timestamp}ms`);
 }

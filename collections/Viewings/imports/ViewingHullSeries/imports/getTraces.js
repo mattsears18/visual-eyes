@@ -1,30 +1,29 @@
 export default function getTraces(opt) {
   opt = opt || {};
-  let initial = opt.initial || false;
-  let hull = this.getHull(opt);
+  const initial = opt.initial || false;
+  const hull = this.getHull(opt);
 
-  if(initial) {
+  if (initial) {
     return {
       name: hull.endTime(),
       data: [
-        this.getPointsTrace({         initial: true, hull: hull }),
-        this.getPointTrailTrace({     initial: true, hull: hull }),
-        this.getCentroidTrailTrace({  initial: true }),
-        this.getPolygonTrace({        initial: true, hull: hull }),
-        this.getCentroidTrace({       initial: true, hull: hull }),
-        this.getLastPointTrace({      initial: true, hull: hull }),
+        this.getPointsTrace({ initial: true, hull }),
+        this.getPointTrailTrace({ initial: true, hull }),
+        this.getCentroidTrailTrace({ initial: true }),
+        this.getPolygonTrace({ initial: true, hull }),
+        this.getCentroidTrace({ initial: true, hull }),
+        this.getLastPointTrace({ initial: true, hull }),
       ],
-    }
-  } else {
-    let data = [
-      this.getPointsTrace({         hull: hull }),
-      this.getPointTrailTrace({     hull: hull }),
-      this.getCentroidTrailTrace({  hull: hull }),
-      this.getPolygonTrace({        hull: hull }),
-      this.getCentroidTrace({       hull: hull }),
-      this.getLastPointTrace({      hull: hull }),
-    ];
-
-    return data
+    };
   }
+  const data = [
+    this.getPointsTrace({ hull }),
+    this.getPointTrailTrace({ hull }),
+    this.getCentroidTrailTrace({ hull }),
+    this.getPolygonTrace({ hull }),
+    this.getCentroidTrace({ hull }),
+    this.getLastPointTrace({ hull }),
+  ];
+
+  return data;
 }

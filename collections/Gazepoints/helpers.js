@@ -2,9 +2,9 @@ Gazepoints.helpers({
   hasPermission(action) {
     check(action, String);
 
-    if(this.userPermissions) {
+    if (this.userPermissions) {
       userIds = this.userPermissions[action];
-      if(userIds) {
+      if (userIds) {
         return userIds.includes(Meteor.userId());
       }
     }
@@ -17,6 +17,6 @@ Gazepoints.helpers({
     return this.participant().name;
   },
   study() {
-    return Studies.find({_id: this.studyId});
+    return Studies.find({ _id: this.studyId });
   },
 });

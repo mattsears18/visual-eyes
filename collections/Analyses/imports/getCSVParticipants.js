@@ -1,27 +1,27 @@
 import { jStat } from 'jStat';
 
 export default function getCSVParticipants() {
-  let analysis = this;
-  let participants = Participants.find({'_id': { $in: analysis.participantIds }}).fetch();
+  const analysis = this;
+  const participants = Participants.find({ _id: { $in: analysis.participantIds } }).fetch();
 
-  let data = [];
+  const data = [];
 
   participants.forEach(function(participant) {
-    let viewings = Viewings.find({'analysisId': analysis._id, 'participantId': participant._id}).fetch();
-    let datafiles = Datafiles.find({ _id: { $in: participant.datafileIds }});
+    const viewings = Viewings.find({ analysisId: analysis._id, participantId: participant._id }).fetch();
+    const datafiles = Datafiles.find({ _id: { $in: participant.datafileIds } });
 
-    let viewingCounts = helpers.getViewingCounts(viewings);
+    const viewingCounts = helpers.getViewingCounts(viewings);
 
-    let viewingDurations = viewings.map(function(viewing) {
+    const viewingDurations = viewings.map(function(viewing) {
       return viewing.duration;
     });
 
-    let averageSlideHullCoverages = viewings.map(function(viewing) {
+    const averageSlideHullCoverages = viewings.map(function(viewing) {
       return viewing.averageSlideHullCoverage;
     });
 
-    let participantData = {
-      link: Meteor.absoluteUrl() + 'studies/' + analysis.study()._id + '/participants/' + participant._id,
+    const participantData = {
+      link: `${Meteor.absoluteUrl()}studies/${analysis.study()._id}/participants/${participant._id}`,
       study: analysis.study().name,
       pointsType: analysis.study().pointsType(),
       analysis: analysis.name,
@@ -41,20 +41,20 @@ export default function getCSVParticipants() {
       slideHullCoveragePerStimulusMean: jStat.mean(averageSlideHullCoverages),
       slideHullCoveragePerStimulusMedian: jStat.median(averageSlideHullCoverages),
       slideHullCoveragePerParticipant: '',
-      rawRowCount: jStat.sum(datafiles.map((datafile) => { return datafile.rawRowCount; })),
-      gazepointCount: jStat.sum(datafiles.map((datafile) => { return datafile.gazepointCount; })),
+      rawRowCount: jStat.sum(datafiles.map(datafile => datafile.rawRowCount)),
+      gazepointCount: jStat.sum(datafiles.map(datafile => datafile.gazepointCount)),
       gazepointProportion: (
-        jStat.sum(datafiles.map((datafile) => { return datafile.gazepointCount; })) /
-        jStat.sum(datafiles.map((datafile) => { return datafile.rawRowCount; }))
+        jStat.sum(datafiles.map(datafile => datafile.gazepointCount))
+        / jStat.sum(datafiles.map(datafile => datafile.rawRowCount))
       ),
-      fixationCount: jStat.sum(datafiles.map((datafile) => { return datafile.fixationCount; })),
+      fixationCount: jStat.sum(datafiles.map(datafile => datafile.fixationCount)),
       fixationProportion: (
-        jStat.sum(datafiles.map((datafile) => { return datafile.fixationCount; })) /
-        jStat.sum(datafiles.map((datafile) => { return datafile.gazepointCount; }))
+        jStat.sum(datafiles.map(datafile => datafile.fixationCount))
+        / jStat.sum(datafiles.map(datafile => datafile.gazepointCount))
       ),
     };
 
-    participant.variables().forEach(function(variable){
+    participant.variables().forEach(function(variable) {
       participantData[variable.name] = variable.value;
     });
 

@@ -1,10 +1,10 @@
 require('./../../factories.test');
-const expect = require('chai').expect;
+const { expect } = require('chai');
 
 describe('Datafiles.filterSortFloat()', () => {
   it('filters out non float values and sorts by timestamp', async () => {
-    let datafile = Factory.create('imotionsDatafile');
-    let rows = [
+    const datafile = Factory.create('imotionsDatafile');
+    const rows = [
       { timestamp: '', x: '1' },
       { timestamp: '-', x: '2' },
       { timestamp: 'dsfd', x: '3' },
@@ -17,7 +17,7 @@ describe('Datafiles.filterSortFloat()', () => {
       { timestamp: undefined, x: '10' },
     ];
 
-    let expectedRows = [
+    const expectedRows = [
       { timestamp: 2, x: '6' },
       { timestamp: 2.67564, x: '7' },
       { timestamp: 3, x: '8' },

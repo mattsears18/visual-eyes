@@ -5,23 +5,23 @@ SimpleSchema.extendOptions(['autoform']);
 Gazepoints = new Mongo.Collection('gazepoints');
 
 Gazepoints.allow({
-  insert: function(userId, doc) {
+  insert(userId, doc) {
     return true;
-    if(!Roles.userIsInRole(userId, 'create', 'gazepoints')) {
+    if (!Roles.userIsInRole(userId, 'create', 'gazepoints')) {
       throw new Meteor.Error('gazepoints.create.unauthorized',
         'You do not have permission to create gazepoints.');
     } else {
       return true;
     }
   },
-  update: function(userId, doc) {
+  update(userId, doc) {
     return true;
-    gazepoint = Gazepoints.findOne({_id: doc._id});
+    gazepoint = Gazepoints.findOne({ _id: doc._id });
     return gazepoint.hasPermission('update');
   },
-  remove: function(userId, doc) {
+  remove(userId, doc) {
     return true;
-    gazepoint = Gazepoints.findOne({_id: doc._id});
+    gazepoint = Gazepoints.findOne({ _id: doc._id });
     return gazepoint.hasPermission('destroy');
   },
 });
@@ -70,7 +70,7 @@ Schemas.Gazepoint = new SimpleSchema({
     type: Number,
     label: 'Y',
   },
-}, {tracker: Tracker});
+}, { tracker: Tracker });
 
 Gazepoints.attachSchema(Schemas.Gazepoint);
 

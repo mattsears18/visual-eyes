@@ -1,13 +1,13 @@
 Template.NewViewing.events({
-  'click .fa-close': function() {
+  'click .fa-close'() {
     Session.set('newViewing', false);
-  }
+  },
 });
 
 AutoForm.hooks({
   insertViewingForm: {
-    onSuccess: function(formType, result) {
-      FlowRouter.go('/viewings/' + result);
+    onSuccess(formType, result) {
+      FlowRouter.go(`/viewings/${result}`);
     },
-  }
+  },
 });

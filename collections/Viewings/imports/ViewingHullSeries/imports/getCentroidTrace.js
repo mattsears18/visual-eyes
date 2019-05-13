@@ -1,9 +1,9 @@
 export default function getCentroidTrace(opt) {
   opt = opt || {};
-  let initial = opt.initial || false;
-  let hull = this.getHull(opt);
+  const initial = opt.initial || false;
+  const hull = this.getHull(opt);
 
-  if(initial) {
+  if (initial) {
     return {
       name: 'Centroid',
       x: [hull.centroid().x],
@@ -15,14 +15,13 @@ export default function getCentroidTrace(opt) {
         size: 8,
         line: {
           color: '#dc3545',
-          width: 3
+          width: 3,
         },
       },
-    }
-  } else {
-    return {
-      x: [hull.centroid().x],
-      y: [hull.centroid().y],
-    }
+    };
   }
+  return {
+    x: [hull.centroid().x],
+    y: [hull.centroid().y],
+  };
 }

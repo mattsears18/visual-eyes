@@ -4,22 +4,21 @@ export default async function makeGazepoints({
   data = null,
   saveStats = false,
 }) {
+  if (!data) { data = await this.getGazepoints({ saveStats }); }
 
-  if(!data) { data = await this.getGazepoints({ saveStats: saveStats }) }
-
-  if(saveStats && !this.study().fixationsOnly) {
+  if (saveStats && !this.study().fixationsOnly) {
     // save the fixationCount
-    let fixations = await this.getFixations({ saveStats });
+    const fixations = await this.getFixations({ saveStats });
   }
 
-  let sdPairs = [];
+  const sdPairs = [];
 
   data.forEach((point) => {
     point.datafileId = this._id;
     point.studyId = this.studyId,
 
     point.participantId = this.participantId;
-    if(!point.participantId) {
+    if (!point.participantId) {
       point.participantId = helpers.findOrInsert('participants', {
         name: this.getName(),
         studyId: this.studyId,
@@ -33,7 +32,7 @@ export default async function makeGazepoints({
       studyId: this.studyId,
     });
 
-    if(!sdPairs.some(el => (el.stimulusId == point.stimulusId && el.datafileId == point.datafileId))) {
+    if (!sdPairs.some(el => (el.stimulusId == point.stimulusId && el.datafileId == point.datafileId))) {
       sdPairs.push({ stimulusId: point.stimulusId, datafileId: point.datafileId });
     }
 

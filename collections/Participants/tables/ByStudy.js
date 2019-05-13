@@ -1,5 +1,5 @@
-import Participants from '../Participants';
 import Tabular from 'meteor/aldeed:tabular';
+import Participants from '../Participants';
 import Studies from '../../Studies/Studies';
 
 new Tabular.Table({
@@ -9,6 +9,6 @@ new Tabular.Table({
     '_id',
   ],
   columns: [
-    {data: 'name', title: 'Name'},
+    { data: 'name', title: 'Name' },
   ],
 });

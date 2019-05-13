@@ -1,11 +1,11 @@
 require('./../../factories.test');
-const expect = require('chai').expect;
+const { expect } = require('chai');
 
-if(Meteor.isServer) {
+if (Meteor.isServer) {
   describe('Datafiles.process()', () => {
     it('processes an SMI datafile', async () => {
-      let study = Factory.create('study');
-      let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
+      const study = Factory.create('study');
+      const datafile = Factory.create('imotionsDatafile', { studyId: study._id });
 
       await datafile.process();
 
@@ -22,20 +22,20 @@ if(Meteor.isServer) {
 
       expect(datafile.status).to.equal('processed');
 
-      let participant = Participants.findOne({ _id: datafile.participantId });
+      const participant = Participants.findOne({ _id: datafile.participantId });
 
       expect(participant.datafileIds).to.eql([datafile._id]);
     }).timeout(60000);
 
     it('creates one participant from two datafiles', async () => {
-      let study = Factory.create('study');
-      let datafile1 = Factory.create('imotionsDatafile', { studyId: study._id });
+      const study = Factory.create('study');
+      const datafile1 = Factory.create('imotionsDatafile', { studyId: study._id });
       await datafile1.process();
 
-      let datafile2 = Factory.create('imotionsDatafile', { studyId: study._id, name: datafile1.name });
+      const datafile2 = Factory.create('imotionsDatafile', { studyId: study._id, name: datafile1.name });
       await datafile2.process();
 
-      let participant = Participants.findOne({ _id: datafile1.participantId });
+      const participant = Participants.findOne({ _id: datafile1.participantId });
 
       expect(datafile1.participantId).to.equal(datafile2.participantId);
       expect(participant.datafileIds).to.eql([datafile1._id, datafile2._id]);

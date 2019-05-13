@@ -2,15 +2,15 @@ export default async function getFixations({
   data = null,
   saveStats = false,
 }) {
-  if(!data) { data = await this.getAllGazepoints({ saveStats: saveStats }) }
+  if (!data) { data = await this.getAllGazepoints({ saveStats }); }
 
-  let goodRows = [];
-  let indices = [];
+  const goodRows = [];
+  const indices = [];
 
   data.forEach((row) => {
-    if(Number.isInteger(parseInt(row.fixationIndex))){
-      let ref = row.fixationIndex + ', ' + row.stimulusId;
-      if(!indices.includes(ref)) {
+    if (Number.isInteger(parseInt(row.fixationIndex))) {
+      const ref = `${row.fixationIndex}, ${row.stimulusId}`;
+      if (!indices.includes(ref)) {
         indices.push(ref);
         goodRows.push(row);
       }
@@ -19,8 +19,8 @@ export default async function getFixations({
 
   this.fixationCount = goodRows.length;
 
-  if(saveStats) {
-    Datafiles.update({ _id: this._id }, { $set: { fixationCount: this.fixationCount }});
+  if (saveStats) {
+    Datafiles.update({ _id: this._id }, { $set: { fixationCount: this.fixationCount } });
   }
 
   return goodRows;

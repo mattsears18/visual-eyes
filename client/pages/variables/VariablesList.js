@@ -1,21 +1,17 @@
 Template.VariablesList.helpers({
-  study: () => {
-    return Studies.findOne();
-  },
-  variables: () => {
-    return Variables.find({}, { sort: { name: 1 }});
-  },
+  study: () => Studies.findOne(),
+  variables: () => Variables.find({}, { sort: { name: 1 } }),
 });
 
 Template.VariablesList.events({
-  'click .new-variable': function() {
+  'click .new-variable'() {
     Session.set('newVariable', true);
   },
-  'click .new-variablefile': function() {
+  'click .new-variablefile'() {
     Session.set('newVariablefile', true);
-  }
+  },
 });
 
-Template.VariablesList.destroyed = function(){
+Template.VariablesList.destroyed = function() {
   Session.set('newVariable', false);
-}
+};

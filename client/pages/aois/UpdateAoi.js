@@ -1,5 +1,5 @@
 Template.UpdateAoi.onCreated(function() {
-  var self = this;
+  const self = this;
   self.autorun(function() {
     studyId = FlowRouter.getParam('studyId');
     self.subscribe('stimuli.byStudyId', studyId);
@@ -7,26 +7,26 @@ Template.UpdateAoi.onCreated(function() {
 });
 
 Template.UpdateAoi.events({
-  'click .fa-close': function() {
+  'click .fa-close'() {
     Session.set('updateAoi', false);
-  }
+  },
 });
 
 AutoForm.hooks({
   updateAoiForm: {
-    onSuccess: function(formType, result) {
+    onSuccess(formType, result) {
       Session.set('updateAoi', false);
     },
-  }
+  },
 });
 
 Template.UpdateAoi.helpers({
-  deleteBeforeRemove: function() {
+  deleteBeforeRemove() {
     return function (collection, id) {
-      var doc = collection.findOne(id);
-      if (confirm('Really delete "' + doc.name + '"?')) {
-        var studyId = FlowRouter.getParam('studyId');
-        FlowRouter.go('/studies/' + studyId + '/stimuli');
+      const doc = collection.findOne(id);
+      if (confirm(`Really delete "${doc.name}"?`)) {
+        const studyId = FlowRouter.getParam('studyId');
+        FlowRouter.go(`/studies/${studyId}/stimuli`);
         this.remove();
       }
     };

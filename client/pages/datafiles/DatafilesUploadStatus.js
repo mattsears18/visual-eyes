@@ -7,34 +7,34 @@ Template.DatafilesUploadStatus.onRendered(function() {
 });
 
 Template.DatafilesUploadStatus.helpers({
-  datafiles: function () {
+  datafiles () {
     return Datafiles.find();
-  }
+  },
 });
 
 Template.DatafilesUploadStatus.helpers({
-  currentUpload: function () {
+  currentUpload () {
     return Template.instance().currentUpload.get();
   },
-  currentUploads: function() {
+  currentUploads() {
     return Template.instance().currentUploads.get();
-  }
+  },
 });
 
 Template.DatafilesUploadStatus.events({
-  'change #datafileInput': function (e, template) {
+  'change #datafileInput' (e, template) {
     if (e.currentTarget.files && e.currentTarget.files[0]) {
-      var files = e.currentTarget.files;
-      if(files) {
-        var studyId = FlowRouter.getParam('studyId');
-        for(i=0; i < files.length; i++){
-          var uploadInstance = Datafiles.insert({
+      const { files } = e.currentTarget;
+      if (files) {
+        const studyId = FlowRouter.getParam('studyId');
+        for (i = 0; i < files.length; i++) {
+          const uploadInstance = Datafiles.insert({
             file: files[i],
             meta: {
-              studyId: studyId,
+              studyId,
             },
             streams: 'dynamic',
-            chunkSize: 'dynamic'
+            chunkSize: 'dynamic',
           }, false);
 
           uploadInstance.on('start', function() {
@@ -45,7 +45,7 @@ Template.DatafilesUploadStatus.events({
 
           uploadInstance.on('end', function(error, datafileDoc) {
             if (error) {
-              window.alert('Error during upload: ' + error.reason);
+              window.alert(`Error during upload: ${error.reason}`);
             }
 
             uploads = template.currentUploads.get();
@@ -54,7 +54,7 @@ Template.DatafilesUploadStatus.events({
             });
 
             template.currentUploads.set(uploads);
-            if(!uploads.length) {
+            if (!uploads.length) {
               Session.set('uploadingDatafiles', false);
             }
           });
@@ -64,5 +64,5 @@ Template.DatafilesUploadStatus.events({
         $('#datafileInput').val('');
       }
     }
-  }
+  },
 });

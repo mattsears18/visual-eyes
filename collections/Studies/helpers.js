@@ -1,6 +1,6 @@
-import reprocessAnalyses from "./imports/reprocessAnalyses";
-import reprocessDatafiles from "./imports/reprocessDatafiles";
-import saveCSVs from "./imports/saveCSVs";
+import reprocessAnalyses from './imports/reprocessAnalyses';
+import reprocessDatafiles from './imports/reprocessDatafiles';
+import saveCSVs from './imports/saveCSVs';
 
 Studies.helpers({
   reprocessAnalyses,
@@ -28,24 +28,24 @@ Studies.helpers({
     return Analyses.find({ studyId: this._id }).count();
   },
   analysesProcessedCount() {
-    return Analyses.find({ studyId: this._id, status: "processed" }).count();
+    return Analyses.find({ studyId: this._id, status: 'processed' }).count();
   },
   analysesProcessingComplete() {
     return (
-      this.analysesCount() > 0 &&
-      this.analysesProcessedCount() == this.analysesCount()
+      this.analysesCount() > 0
+      && this.analysesProcessedCount() == this.analysesCount()
     );
   },
   datafilesCount() {
     return Datafiles.find({ studyId: this._id }).count();
   },
   datafilesProcessedCount() {
-    return Datafiles.find({ studyId: this._id, status: "processed" }).count();
+    return Datafiles.find({ studyId: this._id, status: 'processed' }).count();
   },
   datafilesProcessingComplete() {
     return (
-      this.datafilesCount() > 0 &&
-      this.datafilesProcessedCount() == this.datafilesCount()
+      this.datafilesCount() > 0
+      && this.datafilesProcessedCount() == this.datafilesCount()
     );
   },
   stimuli() {
@@ -54,17 +54,17 @@ Studies.helpers({
   stimuliWithImageCount() {
     return Stimuli.find({
       studyId: this._id,
-      stimulusfileId: { $ne: null }
+      stimulusfileId: { $ne: null },
     }).count();
   },
   stimuliAllHaveImage() {
     return this.stimuli().count() == this.stimuliWithImageCount();
   },
   pointsType() {
-    let pointsType = "gazepoints";
+    let pointsType = 'gazepoints';
     if (this.fixationsOnly) {
-      pointsType = "fixations";
+      pointsType = 'fixations';
     }
     return pointsType;
-  }
+  },
 });

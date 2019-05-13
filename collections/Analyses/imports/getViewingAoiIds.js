@@ -1,9 +1,9 @@
 export default function getViewingAoiIds(gazepoints) {
-  let aoiIds = [];
+  const aoiIds = [];
 
-  gazepoints.forEach(point => {
-    if(point.aoiId) {
-      if(!aoiIds.includes(point.aoiId)) {
+  gazepoints.forEach((point) => {
+    if (point.aoiId) {
+      if (!aoiIds.includes(point.aoiId)) {
         aoiIds.push(point.aoiId);
       }
     }

@@ -5,23 +5,23 @@ SimpleSchema.extendOptions(['autoform']);
 Participants = new Mongo.Collection('participants');
 
 Participants.allow({
-  insert: function(userId, doc) {
+  insert(userId, doc) {
     return true;
-    if(!Roles.userIsInRole(userId, 'create', 'participants')) {
+    if (!Roles.userIsInRole(userId, 'create', 'participants')) {
       throw new Meteor.Error('participants.create.unauthorized',
         'You do not have permission to create participants.');
     } else {
       return true;
     }
   },
-  update: function(userId, doc) {
+  update(userId, doc) {
     return true;
-    participant = Participants.findOne({_id: doc._id});
+    participant = Participants.findOne({ _id: doc._id });
     return participant.hasPermission('update');
   },
-  remove: function(userId, doc) {
+  remove(userId, doc) {
     return true;
-    participant = Participants.findOne({_id: doc._id});
+    participant = Participants.findOne({ _id: doc._id });
     return participant.hasPermission('destroy');
   },
 });
@@ -44,7 +44,7 @@ Schemas.Participant = new SimpleSchema({
       type: 'hidden',
     },
   },
-  "datafileIds.$": {
+  'datafileIds.$': {
     type: String,
   },
   variableVals: {
@@ -55,7 +55,7 @@ Schemas.Participant = new SimpleSchema({
   'variableVals.$': Object,
   'variableVals.$.variableId': String,
   'variableVals.$.value': String,
-}, {requiredByDefault: false, tracker: Tracker});
+}, { requiredByDefault: false, tracker: Tracker });
 
 Participants.attachSchema(Schemas.Participant);
 

@@ -1,4 +1,4 @@
-import Jobs from "../Jobs/Jobs";
+import Jobs from '../Jobs/Jobs';
 
 Datafiles.collection.before.insert(function(userId, doc) {
   if (doc.meta && doc.meta.studyId) {
@@ -8,7 +8,7 @@ Datafiles.collection.before.insert(function(userId, doc) {
 
 Datafiles.collection.after.insert(function(userId, doc) {
   if (Meteor.isServer) {
-    let datafile = Datafiles.collection.findOne({ _id: doc._id });
+    const datafile = Datafiles.collection.findOne({ _id: doc._id });
     datafile.makeProcessJob();
   }
 });
@@ -18,14 +18,14 @@ Datafiles.collection.after.remove(function(userId, datafile) {
   Stimuli.update(
     { studyId: datafile.studyId },
     { $pull: { datafileIds: datafile._id } },
-    { multi: true }
+    { multi: true },
   );
 
   // Update Participant.datafileIds
   Participants.update(
     { studyId: datafile.studyId },
     { $pull: { datafileIds: datafile._id } },
-    { multi: true }
+    { multi: true },
   );
 
   if (Meteor.isServer) {

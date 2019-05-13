@@ -5,22 +5,22 @@ Template.ViewingAnimation.onCreated(function() {
   this.hullParams = new ReactiveVar(Template.currentData().hullParams);
 
   this.autorun(() => {
-    this.subscribe("stimulusfiles.byViewingId", this.viewing.get()._id);
+    this.subscribe('stimulusfiles.byViewingId', this.viewing.get()._id);
     this.hullseries.set();
     this.hullParams.set({
       period: Template.currentData().hullParams.period,
       timestep: Template.currentData().hullParams.timestep,
       includeIncomplete: Template.currentData().hullParams.includeIncomplete,
-      pointTrailLength: Template.currentData().hullParams.pointTrailLength
+      pointTrailLength: Template.currentData().hullParams.pointTrailLength,
     });
 
     if (this.subscriptionsReady()) {
-      let stimulusfile = Stimulusfiles.collection.findOne({
-        _id: this.viewing.get().stimulus().stimulusfileId
+      const stimulusfile = Stimulusfiles.collection.findOne({
+        _id: this.viewing.get().stimulus().stimulusfileId,
       });
       if (stimulusfile) {
         this.stimulusfile.set(stimulusfile);
-        let hullseries = this.viewing
+        const hullseries = this.viewing
           .get()
           .getHullseries(this.hullParams.get());
 
@@ -34,23 +34,13 @@ Template.ViewingAnimation.onCreated(function() {
 });
 
 Template.ViewingAnimation.helpers({
-  viewing: () => {
-    return Template.instance().viewing.get();
-  },
-  stimulusfile: () => {
-    return Template.instance().hullseries.get();
-  },
-  hullseries: () => {
-    return Template.instance().hullseries.get();
-  },
-  layout: () => {
-    return Template.instance()
-      .hullseries.get()
-      .getLayout();
-  },
-  initialTraces: () => {
-    return Template.instance()
-      .hullseries.get()
-      .getTraces({ initial: true, hullIndex: 0 });
-  }
+  viewing: () => Template.instance().viewing.get(),
+  stimulusfile: () => Template.instance().hullseries.get(),
+  hullseries: () => Template.instance().hullseries.get(),
+  layout: () => Template.instance()
+    .hullseries.get()
+    .getLayout(),
+  initialTraces: () => Template.instance()
+    .hullseries.get()
+    .getTraces({ initial: true, hullIndex: 0 }),
 });

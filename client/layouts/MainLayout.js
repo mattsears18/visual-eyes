@@ -1,8 +1,8 @@
 Template.MainLayout.onCreated(function() {
-  var self = this;
+  const self = this;
   self.autorun(function() {
-    var studyId = FlowRouter.getParam('studyId');
-    if(studyId) {
+    const studyId = FlowRouter.getParam('studyId');
+    if (studyId) {
       self.subscribe('studies.single', studyId);
     }
   });

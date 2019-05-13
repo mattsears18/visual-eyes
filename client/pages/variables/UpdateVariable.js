@@ -1,24 +1,24 @@
 Template.UpdateVariable.events({
-  'click .fa-close': function() {
+  'click .fa-close'() {
     Session.set('updateVariable', false);
-  }
+  },
 });
 
 AutoForm.hooks({
   updateVariableForm: {
-    onSuccess: function(formType, result) {
+    onSuccess(formType, result) {
       Session.set('updateVariable', false);
     },
-  }
+  },
 });
 
 Template.UpdateVariable.helpers({
-  deleteBeforeRemove: function() {
+  deleteBeforeRemove() {
     return function (collection, id) {
-      var doc = collection.findOne(id);
-      if (confirm('Really delete "' + doc.name + '"?')) {
-        var studyId = FlowRouter.getParam('studyId');
-        FlowRouter.go('/studies/' + studyId + '/variables');
+      const doc = collection.findOne(id);
+      if (confirm(`Really delete "${doc.name}"?`)) {
+        const studyId = FlowRouter.getParam('studyId');
+        FlowRouter.go(`/studies/${studyId}/variables`);
         this.remove();
       }
     };

@@ -1,42 +1,36 @@
 Template.Variable.onCreated(function() {
-  var self = this;
+  const self = this;
   self.autorun(function() {
-    var studyId = FlowRouter.getParam('studyId');
+    const studyId = FlowRouter.getParam('studyId');
     self.subscribe('studies.single', studyId);
 
-    var variableId = FlowRouter.getParam('variableId');
+    const variableId = FlowRouter.getParam('variableId');
 
     self.subscribe('variables.single', variableId);
     self.subscribe('stimuli.byVariableId', variableId);
 
     stimulus = Stimuli.findOne({});
-    if(stimulus) {
+    if (stimulus) {
       self.subscribe('stimulusfiles.byStimulusId', stimulus._id);
     }
   });
 });
 
 Template.Variable.helpers({
-  variable: () => {
-    return Variables.findOne();
-  },
-  study: () => {
-    return Studies.findOne();
-  },
+  variable: () => Variables.findOne(),
+  study: () => Studies.findOne(),
 });
 
 Template.BreadCrumbs.helpers({
-  variable: () => {
-    return Variables.findOne();
-  },
+  variable: () => Variables.findOne(),
 });
 
 Template.Variable.events({
-  'click .update-variable': function() {
+  'click .update-variable'() {
     Session.set('updateVariable', true);
-  }
+  },
 });
 
-Template.Variable.destroyed = function(){
+Template.Variable.destroyed = function() {
   Session.set('updateVariable', false);
-}
+};

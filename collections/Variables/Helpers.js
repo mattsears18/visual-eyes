@@ -2,9 +2,9 @@ Variables.helpers({
   hasPermission(action) {
     check(action, String);
 
-    if(this.userPermissions) {
+    if (this.userPermissions) {
       userIds = this.userPermissions[action];
-      if(userIds) {
+      if (userIds) {
         return userIds.includes(Meteor.userId());
       }
     }

@@ -1,4 +1,4 @@
-import Jobs from "../../../collections/Jobs/Jobs";
+import Jobs from '../../Jobs/Jobs';
 
 export default function reprocessAnalyses() {
   analyses = Analyses.find({ studyId: this._id });

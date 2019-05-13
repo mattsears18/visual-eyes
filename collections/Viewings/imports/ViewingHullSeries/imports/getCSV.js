@@ -1,12 +1,12 @@
 const json2csv = require('json2csv').parse;
 
 export default function getCSV() {
-  let data = [];
-  let hulls = this.getHulls();
+  const data = [];
+  const hulls = this.getHulls();
 
   hulls.forEach((hull, hi) => {
-    let hullData = {
-      link: Meteor.absoluteUrl() + 'studies/' + this.viewing.analysis().study()._id + '/viewings/' + this.viewing._id,
+    const hullData = {
+      link: `${Meteor.absoluteUrl()}studies/${this.viewing.analysis().study()._id}/viewings/${this.viewing._id}`,
       study: this.viewing.study().name,
       analysis: this.viewing.analysis().name,
       viewingGap: this.viewing.analysis().viewingGap,
@@ -55,27 +55,27 @@ export default function getCSV() {
       averageCoverage: this.getAverageCoverage(),
     };
 
-    if(hi > 0) {
+    if (hi > 0) {
       hullData.centroidDistanceX = (hulls[hi].centroid({}).x - hulls[hi - 1].centroid({}).x);
       hullData.centroidDistanceY = (hulls[hi].centroid({}).y - hulls[hi - 1].centroid({}).y);
       hullData.centroidDistance = Math.sqrt(hullData.centroidDistanceX * hullData.centroidDistanceX + hullData.centroidDistanceY * hullData.centroidDistanceY);
-      if(hullData.timeStep > 0 && hullData.centroidDistance > 0) {
+      if (hullData.timeStep > 0 && hullData.centroidDistance > 0) {
         hullData.centroidVelocity = (hullData.centroidDistance / hullData.timeStep);
         hullData.centroidVelocityX = (hullData.centroidDistanceX / hullData.timeStep);
-        hullData.centroidVelocityY = (hullData.centroidDistanceY / hullData.timeStep)
+        hullData.centroidVelocityY = (hullData.centroidDistanceY / hullData.timeStep);
       }
     }
 
-    data.push(hullData)
+    data.push(hullData);
   });
 
   let csv;
 
   try {
-    csv = json2csv(data)
+    csv = json2csv(data);
   } catch (err) {
-    console.error(err)
+    console.error(err);
   }
 
-  return csv
+  return csv;
 }

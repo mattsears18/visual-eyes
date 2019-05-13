@@ -1,20 +1,20 @@
 Template.Studies.onCreated(function() {
-  var self = this;
+  const self = this;
   self.autorun(function() {
     self.subscribe('studies.all');
   });
 });
 
 Template.Studies.helpers({
-  studies: () => { return Studies.find({}, {sort: {name: 1}}); },
+  studies: () => Studies.find({}, { sort: { name: 1 } }),
 });
 
 Template.Studies.events({
-  'click .new-study': function() {
+  'click .new-study'() {
     Session.set('newStudy', true);
-  }
+  },
 });
 
-Template.Studies.destroyed = function(){
+Template.Studies.destroyed = function() {
   Session.set('newStudy', false);
-}
+};

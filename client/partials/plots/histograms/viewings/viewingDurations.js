@@ -1,26 +1,24 @@
 Template.PlotHistogramViewingDurations.helpers({
-  x: () => { return getX(); },
+  x: () => getX(),
 
-  layout: () => {
-    return {
-      title: 'Viewing Durations',
-      xaxis: {
-        title: 'Duration (ms)',
-        rangemode: 'tozero',
-        autorange: true,
-      },
-      yaxis: {
-        title: 'Frequency',
-      },
-      margin: {
-        l: 60,
-        r: 10,
-        b: 70,
-        t: 50,
-      },
-      bargap: 0.06,
-    };
-  },
+  layout: () => ({
+    title: 'Viewing Durations',
+    xaxis: {
+      title: 'Duration (ms)',
+      rangemode: 'tozero',
+      autorange: true,
+    },
+    yaxis: {
+      title: 'Frequency',
+    },
+    margin: {
+      l: 60,
+      r: 10,
+      b: 70,
+      t: 50,
+    },
+    bargap: 0.06,
+  }),
 });
 
 function getX() {

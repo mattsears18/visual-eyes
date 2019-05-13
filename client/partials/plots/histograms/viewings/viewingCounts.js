@@ -1,25 +1,23 @@
 Template.PlotHistogramViewingCounts.helpers({
-  x: () => {               return getX(); },
+  x: () => getX(),
 
-  layout: () => {
-    return {
-      title: 'Viewing Counts',
-      xaxis: {
-        title: '# of Viewings per Participant per Stimulus',
-        dtick: 1,
-      },
-      yaxis: {
-        title: 'Frequency',
-      },
-      margin: {
-        l: 60,
-        r: 10,
-        b: 70,
-        t: 50,
-      },
-      bargap: 0.06,
-    };
-  },
+  layout: () => ({
+    title: 'Viewing Counts',
+    xaxis: {
+      title: '# of Viewings per Participant per Stimulus',
+      dtick: 1,
+    },
+    yaxis: {
+      title: 'Frequency',
+    },
+    margin: {
+      l: 60,
+      r: 10,
+      b: 70,
+      t: 50,
+    },
+    bargap: 0.06,
+  }),
 });
 
 function getX() {

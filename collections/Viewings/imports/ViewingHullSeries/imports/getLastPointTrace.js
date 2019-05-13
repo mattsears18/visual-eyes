@@ -1,19 +1,19 @@
 export default function getLastPointTrace(opt) {
   opt = opt || {};
-  let initial = opt.initial || false;
-  let hull = this.getHull(opt);
+  const initial = opt.initial || false;
+  const hull = this.getHull(opt);
 
   let name;
 
-  if(this.viewing.study().fixationsOnly) {
-    name = 'Last Fixation'
+  if (this.viewing.study().fixationsOnly) {
+    name = 'Last Fixation';
   } else {
-    name = 'Last Gaze Point'
+    name = 'Last Gaze Point';
   }
 
-  if(initial) {
+  if (initial) {
     return {
-      name: name,
+      name,
       x: [hull.points.slice(-1)[0].x],
       y: [hull.points.slice(-1)[0].y],
       mode: 'markers',
@@ -23,14 +23,13 @@ export default function getLastPointTrace(opt) {
         size: 15,
         line: {
           color: '#63a70a',
-          width: 4
+          width: 4,
         },
       },
-    }
-  } else {
-    return {
-      x: [hull.points.slice(-1)[0].x],
-      y: [hull.points.slice(-1)[0].y],
-    }
+    };
   }
+  return {
+    x: [hull.points.slice(-1)[0].x],
+    y: [hull.points.slice(-1)[0].y],
+  };
 }

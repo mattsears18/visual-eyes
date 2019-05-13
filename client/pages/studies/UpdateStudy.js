@@ -1,5 +1,5 @@
 Template.UpdateStudy.onCreated(function() {
-  var self = this;
+  const self = this;
   self.autorun(function() {
     self.subscribe('datafiles.all');
     self.subscribe('stimuli.all');
@@ -7,24 +7,24 @@ Template.UpdateStudy.onCreated(function() {
 });
 
 Template.UpdateStudy.events({
-  'click .fa-close': function() {
+  'click .fa-close'() {
     Session.set('updateStudy', false);
-  }
+  },
 });
 
 AutoForm.hooks({
   updateStudyForm: {
-    onSuccess: function(formType, result) {
+    onSuccess(formType, result) {
       Session.set('updateStudy', false);
     },
-  }
+  },
 });
 
 Template.UpdateStudy.helpers({
-  deleteBeforeRemove: function() {
+  deleteBeforeRemove() {
     return function (collection, id) {
-      var doc = collection.findOne(id);
-      if (confirm('Really delete "' + doc.name + '"?')) {
+      const doc = collection.findOne(id);
+      if (confirm(`Really delete "${doc.name}"?`)) {
         FlowRouter.go('/studies');
         this.remove();
       }

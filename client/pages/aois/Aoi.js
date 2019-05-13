@@ -1,42 +1,36 @@
 Template.Aoi.onCreated(function() {
-  var self = this;
+  const self = this;
   self.autorun(function() {
-    var studyId = FlowRouter.getParam('studyId');
+    const studyId = FlowRouter.getParam('studyId');
     self.subscribe('studies.single', studyId);
 
-    var aoiId = FlowRouter.getParam('aoiId');
+    const aoiId = FlowRouter.getParam('aoiId');
 
     self.subscribe('aois.single', aoiId);
     self.subscribe('stimuli.byAoiId', aoiId);
 
     stimulus = Stimuli.findOne({});
-    if(stimulus) {
+    if (stimulus) {
       self.subscribe('stimulusfiles.byStimulusId', stimulus._id);
     }
   });
 });
 
 Template.Aoi.helpers({
-  aoi: () => {
-    return Aois.findOne();
-  },
-  study: () => {
-    return Studies.findOne();
-  },
+  aoi: () => Aois.findOne(),
+  study: () => Studies.findOne(),
 });
 
 Template.BreadCrumbs.helpers({
-  aoi: () => {
-    return Aois.findOne();
-  },
+  aoi: () => Aois.findOne(),
 });
 
 Template.Aoi.events({
-  'click .update-aoi': function() {
+  'click .update-aoi'() {
     Session.set('updateAoi', true);
-  }
+  },
 });
 
-Template.Aoi.destroyed = function(){
+Template.Aoi.destroyed = function() {
   Session.set('updateAoi', false);
-}
+};

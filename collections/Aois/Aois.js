@@ -5,7 +5,7 @@ SimpleSchema.extendOptions(['autoform']);
 Aois = new Mongo.Collection('aois');
 
 Aois.allow({
-  insert: function(userId, doc) {
+  insert(userId, doc) {
     return true;
     // if(!Roles.userIsInRole(userId, 'create', 'aois')) {
     //   throw new Meteor.Error('aois.create.unauthorized',
@@ -14,14 +14,14 @@ Aois.allow({
     //   return true;
     // }
   },
-  update: function(userId, doc) {
+  update(userId, doc) {
     return true;
-    aoi = Aois.findOne({_id: doc._id});
+    aoi = Aois.findOne({ _id: doc._id });
     return aoi.hasPermission('update');
   },
-  remove: function(userId, doc) {
+  remove(userId, doc) {
     return true;
-    aoi = Aois.findOne({_id: doc._id});
+    aoi = Aois.findOne({ _id: doc._id });
     return aoi.hasPermission('destroy');
   },
 });
@@ -35,7 +35,7 @@ Schemas.Aoi = new SimpleSchema({
     type: String,
     label: 'Description',
     autoform: {
-      rows: 8
+      rows: 8,
     },
     optional: true,
   },
@@ -43,13 +43,13 @@ Schemas.Aoi = new SimpleSchema({
     type: String,
     autoform: {
       type: 'hidden',
-    }
+    },
   },
   stimulusId: {
     type: String,
     autoform: {
       type: 'hidden',
-    }
+    },
   },
   timestampMin: {
     type: Number,
@@ -75,7 +75,7 @@ Schemas.Aoi = new SimpleSchema({
     },
     optional: true,
   },
-}, {tracker: Tracker});
+}, { tracker: Tracker });
 
 Aois.attachSchema(Schemas.Aoi);
 

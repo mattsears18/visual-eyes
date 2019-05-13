@@ -1,9 +1,9 @@
 export default function getPolygonTrace(opt) {
   opt = opt || {};
-  let initial = opt.initial || false;
-  let hull = this.getHull(opt);
+  const initial = opt.initial || false;
+  const hull = this.getHull(opt);
 
-  if(initial) {
+  if (initial) {
     return {
       name: 'Convex Hull',
       x: hull.polygon({ which: 'x' }),
@@ -14,11 +14,10 @@ export default function getPolygonTrace(opt) {
         color: '#000000',
         width: 2.5,
       },
-    }
-  } else {
-    return {
-      x: hull.polygon({ which: 'x' }),
-      y: hull.polygon({ which: 'y' }),
-    }
+    };
   }
+  return {
+    x: hull.polygon({ which: 'x' }),
+    y: hull.polygon({ which: 'y' }),
+  };
 }

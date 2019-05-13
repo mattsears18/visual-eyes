@@ -1,16 +1,16 @@
 Template.NewVariable.events({
-  'click .fa-close': function() {
+  'click .fa-close'() {
     Session.set('newVariable', false);
-  }
+  },
 });
 
 AutoForm.hooks({
   insertVariableForm: {
-    onSuccess: function(formType, result) {
+    onSuccess(formType, result) {
       Session.set('newVariable', false);
     },
-    onError: function(formType, error) {
+    onError(formType, error) {
       console.log(error);
     },
-  }
+  },
 });

@@ -1,3 +1,3 @@
 export default function allViewingsProcessed() {
-  return this.jobs({ 'status': { $ne: 'completed' }}).count() == 0;
+  return this.jobs({ status: { $ne: 'completed' } }).count() == 0;
 }

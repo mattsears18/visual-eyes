@@ -1,3 +1,3 @@
-let Schemas = {};
+const Schemas = {};
 
 export default Schemas;

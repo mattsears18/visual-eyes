@@ -1,13 +1,13 @@
 Template.NewAoi.events({
-  'click .fa-close': function() {
+  'click .fa-close'() {
     Session.set('newAoi', false);
-  }
+  },
 });
 
 AutoForm.hooks({
   insertAoiForm: {
-    onSuccess: function(formType, result) {
-      FlowRouter.go('/aois/' + result);
+    onSuccess(formType, result) {
+      FlowRouter.go(`/aois/${result}`);
     },
-  }
+  },
 });

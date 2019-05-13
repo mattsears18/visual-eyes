@@ -1,18 +1,18 @@
 const csv = require('csvtojson');
 
 export default function process() {
-  if(!this.study()) throw new Error('noStudy');
+  if (!this.study()) throw new Error('noStudy');
 
   console.log('Create any variables that don\'t already exist');
-  csv({delimiter: "auto"})
+  csv({ delimiter: 'auto' })
     .fromFile(this.path)
     .then(Meteor.bindEnvironment((rows) => {
-      for(upvar in rows[0]) {
-        if(upvar != 'Name' && upvar != 'name') {
+      for (upvar in rows[0]) {
+        if (upvar != 'Name' && upvar != 'name') {
           variable = Variables.findOne({ studyId: study._id, name: upvar });
-          if(!variable) {
+          if (!variable) {
             Variables.insert({ name: upvar, studyId: study._id });
-            console.log('Create ' + upvar);
+            console.log(`Create ${upvar}`);
           }
         }
       }
@@ -20,35 +20,35 @@ export default function process() {
       // Save participant variable values
       console.log('Save participant variable values');
       rows.forEach(function(row) {
-        if(row.name) {
+        if (row.name) {
           participantName = row.name;
-        } else if(row.Name) {
-          participantName=  row.Name;
+        } else if (row.Name) {
+          participantName = row.Name;
         }
 
-        if(typeof(participantName) != 'undefined') {
+        if (typeof (participantName) !== 'undefined') {
           participant = Participants.findOne({
             studyId: study._id,
             name: participantName,
           });
 
-          if(participant) {
+          if (participant) {
             newVariableVals = [];
-            for(upvar in row) {
-              if(upvar != 'Name' && upvar != 'name') {
+            for (upvar in row) {
+              if (upvar != 'Name' && upvar != 'name') {
                 variable = Variables.findOne({ studyId: study._id, name: upvar });
-                if(variable) {
+                if (variable) {
                   // console.log('update participant: ' + participant.name + ', variable: ' + variable.name + ', value: ' + row[upvar]);
                   newVariableVals.push({ variableId: variable._id, value: row[upvar] });
                 }
               }
             }
 
-            if(participant.variableVals) {
+            if (participant.variableVals) {
               variableVals = participant.variableVals.filter(function(variableVal) {
                 hasVar = false;
                 newVariableVals.forEach(function(newVariableVal) {
-                  if(newVariableVal.variableId == variableVal.variableId) {
+                  if (newVariableVal.variableId == variableVal.variableId) {
                     hasVar = true;
                   }
                 });
@@ -67,8 +67,7 @@ export default function process() {
             variableVals = variableVals.concat(newVariableVals);
 
             Participants.update({ _id: participant._id },
-              { $set: { variableVals: variableVals }}
-            );
+              { $set: { variableVals } });
           }
         }
       });

@@ -5,13 +5,13 @@ SimpleSchema.extendOptions(['autoform']);
 Stimuli = new Mongo.Collection('stimuli');
 
 Stimuli.allow({
-  insert: function(userId, doc) {
+  insert(userId, doc) {
     return true;
   },
-  update: function(userId, doc) {
+  update(userId, doc) {
     return true;
   },
-  remove: function(userId, doc) {
+  remove(userId, doc) {
     return true;
   },
 });
@@ -22,7 +22,7 @@ Schemas.Stimulus = new SimpleSchema({
     label: 'Stimulus File',
     autoform: {
       type: 'fileUpload',
-      collection: 'Stimulusfiles'
+      collection: 'Stimulusfiles',
     },
     optional: true,
   },
@@ -34,10 +34,10 @@ Schemas.Stimulus = new SimpleSchema({
     type: String,
     label: 'Study',
     autoform: {
-      value: function() {
+      value() {
         return FlowRouter.getParam('studyId');
       },
-      type: 'hidden'
+      type: 'hidden',
     },
     optional: true,
   },
@@ -48,7 +48,7 @@ Schemas.Stimulus = new SimpleSchema({
     },
     optional: true,
   },
-  "datafileIds.$": {
+  'datafileIds.$': {
     type: String,
   },
   width: {
@@ -59,7 +59,7 @@ Schemas.Stimulus = new SimpleSchema({
     type: Number,
     optional: true,
   },
-}, {tracker: Tracker});
+}, { tracker: Tracker });
 
 Stimuli.attachSchema(Schemas.Stimulus);
 

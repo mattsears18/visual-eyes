@@ -1,11 +1,11 @@
 Stimuli.after.remove(function(userId, stimulus) {
-  if(Meteor.isServer) {
+  if (Meteor.isServer) {
     Aois.remove({ stimulusId: stimulus._id });
     Stimulusfiles.remove({ _id: stimulus.stimulusfileId });
     Gazepoints.remove({ stimulusId: stimulus._id });
 
-    Analyses.update({ studyId: stimulus.studyId }, { $pull: { stimulusIds: stimulus._id }}, { multi: true }, (err, num) => {
-      if(err) {
+    Analyses.update({ studyId: stimulus.studyId }, { $pull: { stimulusIds: stimulus._id } }, { multi: true }, (err, num) => {
+      if (err) {
         console.log(err);
       }
     });
@@ -13,11 +13,11 @@ Stimuli.after.remove(function(userId, stimulus) {
 });
 
 Stimuli.after.update(function(userId, stimulus, fieldNames, modifier, options) {
-  if(
-    this.previous.width   != stimulus.width ||
-    this.previous.height  != stimulus.height
+  if (
+    this.previous.width != stimulus.width
+    || this.previous.height != stimulus.height
   ) {
-    let study = Studies.findOne({ _id: stimulus.studyId });
+    const study = Studies.findOne({ _id: stimulus.studyId });
     study.reprocessAnalyses();
   }
 });

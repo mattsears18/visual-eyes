@@ -5,23 +5,23 @@ SimpleSchema.extendOptions(['autoform']);
 Analyses = new Mongo.Collection('analyses');
 
 Analyses.allow({
-  insert: function(userId, doc) {
+  insert(userId, doc) {
     return true;
-    if(!Roles.userIsInRole(userId, 'create', 'analyses')) {
+    if (!Roles.userIsInRole(userId, 'create', 'analyses')) {
       throw new Meteor.Error('analyses.create.unauthorized',
         'You do not have permission to create analyses.');
     } else {
       return true;
     }
   },
-  update: function(userId, doc) {
+  update(userId, doc) {
     return true;
-    analysis = Analyses.findOne({_id: doc._id});
+    analysis = Analyses.findOne({ _id: doc._id });
     return analysis.hasPermission('update');
   },
-  remove: function(userId, doc) {
+  remove(userId, doc) {
     return true;
-    analysis = Analyses.findOne({_id: doc._id});
+    analysis = Analyses.findOne({ _id: doc._id });
     return analysis.hasPermission('destroy');
   },
 });
@@ -35,7 +35,7 @@ Schemas.Analysis = new SimpleSchema({
     type: String,
     label: 'Description',
     autoform: {
-      rows: 8
+      rows: 8,
     },
     optional: true,
   },
@@ -77,10 +77,10 @@ Schemas.Analysis = new SimpleSchema({
     type: String,
     label: 'Study',
     autoform: {
-  		value: function() {
+  		value() {
   			return FlowRouter.getParam('studyId');
   		},
-  		type: 'hidden'
+  		type: 'hidden',
   	},
   },
   status: {
@@ -90,7 +90,7 @@ Schemas.Analysis = new SimpleSchema({
     },
     optional: true,
   },
-}, {tracker: Tracker});
+}, { tracker: Tracker });
 
 Analyses.attachSchema(Schemas.Analysis);
 

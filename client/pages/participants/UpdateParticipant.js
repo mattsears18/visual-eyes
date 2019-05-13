@@ -1,33 +1,29 @@
 Template.UpdateParticipant.helpers({
-  participant: () => {
-    return Participants.findOne();
-  },
-  variables: () => {
-    return Variables.find();
-  }
+  participant: () => Participants.findOne(),
+  variables: () => Variables.find(),
 });
 
 Template.UpdateParticipant.events({
-  'click .fa-close': function() {
+  'click .fa-close'() {
     Session.set('updateParticipant', false);
-  }
+  },
 });
 
 AutoForm.hooks({
   updateParticipantForm: {
-    onSuccess: function(formType, result) {
+    onSuccess(formType, result) {
       Session.set('updateParticipant', false);
     },
-  }
+  },
 });
 
 Template.UpdateParticipant.helpers({
-  deleteBeforeRemove: function() {
+  deleteBeforeRemove() {
     return function (collection, id) {
-      var doc = collection.findOne(id);
-      if (confirm('Really delete "' + doc.name + '"?')) {
-        var studyId = FlowRouter.getParam('studyId');
-        FlowRouter.go('/studies/' + studyId + '/participants');
+      const doc = collection.findOne(id);
+      if (confirm(`Really delete "${doc.name}"?`)) {
+        const studyId = FlowRouter.getParam('studyId');
+        FlowRouter.go(`/studies/${studyId}/participants`);
         this.remove();
       }
     };

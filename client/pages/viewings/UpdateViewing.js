@@ -1,27 +1,27 @@
 Template.UpdateViewing.events({
-  'click .fa-close': function() {
+  'click .fa-close'() {
     Session.set('updateViewing', false);
-  }
+  },
 });
 
 AutoForm.hooks({
   updateViewingForm: {
-    onSuccess: function(formType, result) {
+    onSuccess(formType, result) {
       Session.set('updateViewing', false);
     },
-  }
+  },
 });
 
 Template.UpdateViewing.helpers({
-  deleteOnSuccess: function() {
+  deleteOnSuccess() {
     return function() {
       FlowRouter.go('/viewings');
-    }
+    };
   },
-  deleteBeforeRemove: function() {
+  deleteBeforeRemove() {
     return function (collection, id) {
-      var doc = collection.findOne(id);
-      if (confirm('Really delete "' + doc.name + '"?')) {
+      const doc = collection.findOne(id);
+      if (confirm(`Really delete "${doc.name}"?`)) {
         this.remove();
       }
     };

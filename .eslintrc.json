@@ -1,6 +1,25 @@
 {
   "env": {
-    "meteor": true
+    "meteor": true,
+    "browser": true,
+    "node": true
   },
-  "extends": "@meteorjs/eslint-config-meteor"
+  "plugins": ["meteor"],
+  "extends": ["plugin:meteor/recommended", "@meteorjs/eslint-config-meteor"],
+  "globals": {
+    "Analyses": true,
+    "Aois": true,
+    "Datafiles": true,
+    "Gazepoints": true,
+    "Jobs": true,
+    "Participants": true,
+    "Stimuli": true,
+    "Stimulusfiles": true,
+    "Studies": true,
+    "Users": true,
+    "Variablefiles": true,
+    "Variables": true,
+    "Viewings": true,
+    "Schemas": true
+  }
 }

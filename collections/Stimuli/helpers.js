@@ -1,4 +1,4 @@
-import Stimulusfiles          from './Stimulusfiles/Stimulusfiles';
+import Stimulusfiles from './Stimulusfiles/Stimulusfiles';
 
 Stimuli.helpers({
   hasPermission(action) {
@@ -8,16 +8,16 @@ Stimuli.helpers({
 
     study = Studies.findOne(this.studyId);
 
-    if(study && study.userPermissions) {
+    if (study && study.userPermissions) {
       userIds = study.userPermissions[action];
-      if(userIds) {
+      if (userIds) {
         return userIds.includes(Meteor.userId());
       }
     }
     return false;
   },
   stimulusfile() {
-    return Stimulusfiles.collection.findOne( this.stimulusfileId );
+    return Stimulusfiles.collection.findOne(this.stimulusfileId);
   },
   area() {
     return (this.height * this.width);
@@ -30,5 +30,5 @@ Stimuli.helpers({
   },
   gazepoints() {
     return Gazepoints.find({ stimulusId: this._id });
-  }
+  },
 });

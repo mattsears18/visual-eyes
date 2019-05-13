@@ -1,16 +1,16 @@
 require('./../../factories.test');
-const expect = require('chai').expect;
+const { expect } = require('chai');
 
 describe('Viewing.getHullseries()', () => {
   it('gets a hullseries', () => {
-    let viewing = Factory.create('viewingWithGazepoints');
-    let hullseries = viewing.getHullseries({
+    const viewing = Factory.create('viewingWithGazepoints');
+    const hullseries = viewing.getHullseries({
       period: 5000,
       timestep: 0,
       includeIncomplete: false,
       pointTrailLength: 10,
     });
 
-    expect(hullseries.getHulls()).is.an('array')
-  })
+    expect(hullseries.getHulls()).is.an('array');
+  });
 });

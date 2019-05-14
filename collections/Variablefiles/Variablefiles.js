@@ -14,7 +14,6 @@ Schemas.Variablefile = Object.assign({}, FilesCollection.schema, {
   },
 });
 
-
 options = {
   collectionName: 'Variablefiles',
   schema: Schemas.Variablefile,
@@ -28,7 +27,9 @@ options = {
 };
 
 path = Meteor.settings.public.uploads;
-if (path) { options.storagePath = `${path}/stimulusfiles`; }
+if (path) {
+  options.storagePath = `${path}/stimulusfiles`;
+}
 
 Variablefiles = new FilesCollection(options);
 

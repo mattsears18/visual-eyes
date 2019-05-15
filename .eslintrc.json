@@ -2,7 +2,8 @@
   "env": {
     "meteor": true,
     "browser": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
   "plugins": ["meteor"],
   "extends": ["plugin:meteor/recommended", "@meteorjs/eslint-config-meteor"],

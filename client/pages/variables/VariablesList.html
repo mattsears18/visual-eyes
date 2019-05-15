@@ -1,41 +1,65 @@
 <template name="VariablesList">
   <h4>
     {{#if study.hasPermission 'update'}}
-      {{#unless $.Session.get 'newVariable'}}
-        {{#unless $.Session.get 'newVariablefile'}}
-          <a class="new-variable btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Variable</a>
-          <a class="new-variablefile btn btn-success"><i class="fa fa-upload"></i>&nbsp;&nbsp;Upload Variables</a>
-        {{/unless}}
-      {{/unless}}
+    {{#unless $.Session.get 'newVariable'}}
+    {{#unless $.Session.get 'newVariablefile'}}
+    <a class="new-variable btn btn-success"
+      ><i class="fa fa-plus"></i>&nbsp;&nbsp;New Variable</a
+    >
+    <a class="new-variablefile btn btn-success"
+      ><i class="fa fa-upload"></i>&nbsp;&nbsp;Upload Variables</a
+    >
+    {{/unless}}
+    {{/unless}}
     {{/if}}
   </h4>
 
   {{#if $.Session.get 'newVariable'}}
-    {{> NewVariable}}
+  {{> NewVariable}}
   {{/if}}
 
   {{#if $.Session.get 'newVariablefile'}}
-    {{> NewVariablefile}}
+  {{> NewVariablefile}}
   {{/if}}
 
   {{#if variables.count}}
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>
-            Name
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each variable in variables}}
-          <tr>
-            <td>
-              <a href="/studies/{{study._id}}/variables/{{variable._id}}" target="_top">{{variable.name}}</a>
-            </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        {{#if study.hasPermission 'update'}}
+        <th>
+          Delete
+        </th>
+        {{/if}}
+      </tr>
+    </thead>
+    <tbody>
+      {{#each variable in variables}}
+      <tr>
+        <td>
+          <a
+            href="/studies/{{ study._id }}/variables/{{ variable._id }}"
+            target="_top"
+            >{{ variable.name }}</a
+          >
+        </td>
+        {{#if study.hasPermission 'update'}}
+        <td>
+          <span class="text-danger">
+            <i
+              class="fa fa-trash delete-variable"
+              data-variableid="{{ variable._id }}"
+              data-variablename="{{ variable.name }}"
+            ></i>
+          </span>
+        </td>
+        {{/if}}
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
   {{/if}}
 </template>

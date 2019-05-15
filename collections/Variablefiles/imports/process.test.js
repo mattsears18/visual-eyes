@@ -1,9 +1,7 @@
-import '../../factories.test';
+require('./../../factories.test');
+const { expect } = require('chai');
 
-import { Factory } from 'meteor/dburles:factory';
-import { expect } from 'chai';
-
-describe('Viewings.getHullseries()', () => {
+describe('Variablefiles.getHullseries()', () => {
   it('gets a hullseries', () => {
     const viewing = Factory.create('viewingWithGazepoints');
     const hullseries = viewing.getHullseries({

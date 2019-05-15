@@ -10,6 +10,11 @@ Template.VariablesList.events({
   'click .new-variablefile'() {
     Session.set('newVariablefile', true);
   },
+  'click .delete-variable'(event) {
+    if (confirm(`Really delete "${event.target.dataset.variablename}"?`)) {
+      Variables.remove({ _id: event.target.dataset.variableid });
+    }
+  },
 });
 
 Template.VariablesList.destroyed = function() {

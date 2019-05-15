@@ -3,6 +3,8 @@ const csv = require('csvtojson');
 export default function process() {
   if (!this.study()) throw new Error('noStudy');
 
+  const study = this.study();
+
   console.log("Create any variables that don't already exist");
   csv({ delimiter: 'auto' })
     .fromFile(this.path)
@@ -10,12 +12,9 @@ export default function process() {
       Meteor.bindEnvironment((rows) => {
         for (upvar in rows[0]) {
           if (upvar != 'Name' && upvar != 'name') {
-            variable = Variables.findOne({
-              studyId: this.study()._id,
-              name: upvar,
-            });
+            variable = Variables.findOne({ studyId: study._id, name: upvar });
             if (!variable) {
-              Variables.insert({ name: upvar, studyId: this.study()._id });
+              Variables.insert({ name: upvar, studyId: study._id });
               console.log(`Create ${upvar}`);
             }
           }
@@ -32,7 +31,7 @@ export default function process() {
 
           if (typeof participantName !== 'undefined') {
             participant = Participants.findOne({
-              studyId: this.study()._id,
+              studyId: study._id,
               name: participantName,
             });
 
@@ -41,10 +40,11 @@ export default function process() {
               for (upvar in row) {
                 if (upvar != 'Name' && upvar != 'name') {
                   variable = Variables.findOne({
-                    studyId: this.study()._id,
+                    studyId: study._id,
                     name: upvar,
                   });
                   if (variable) {
+                    // console.log('update participant: ' + participant.name + ', variable: ' + variable.name + ', value: ' + row[upvar]);
                     newVariableVals.push({
                       variableId: variable._id,
                       value: row[upvar],

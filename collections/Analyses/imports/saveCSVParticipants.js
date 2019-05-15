@@ -1,7 +1,18 @@
 import FileSaver from 'file-saver';
+import fs from 'fs';
 
-export default function saveCSVParticipants() {
+/**
+ *
+ * @param { object } opt
+ */
+export default function saveCSVParticipants(opt) {
+  // eslint-disable-next-line no-param-reassign
+  opt = opt || {};
+
   console.log('balls');
+
+  console.log(opt);
+
   const csvContent = this.getCSVParticipants();
 
   if (Meteor.isServer) {
@@ -19,14 +30,9 @@ export default function saveCSVParticipants() {
 
   if (Meteor.isClient) {
     // Set default file name for organizing later
-    const nameFile = `${this.study().name
-    } - p${
-      this.period
-    }vg${
+    const nameFile = `${this.study().name} - p${this.period}vg${
       this.viewingGap
-    }mvt${
-      this.minViewingTime
-    } - Participants`;
+    }mvt${this.minViewingTime} - Participants`;
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
     // Save file to user's disk
     FileSaver.saveAs(blob, nameFile);

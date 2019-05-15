@@ -3,6 +3,8 @@ Template.Exports.onCreated(function() {
   this.analysisId = ReactiveVar();
   this.analysisSelectorVisible = new ReactiveVar(false);
   this.downloadButtonVisible = new ReactiveVar(false);
+  this.samplingRateVisible = new ReactiveVar(false);
+  this.samplingRate = new ReactiveVar(100);
 
   this.autorun(() => {
     if (this.analysisId.get()) {
@@ -14,12 +16,14 @@ Template.Exports.onCreated(function() {
 Template.Exports.helpers({
   analysisSelectorVisible: () => Template.instance().analysisSelectorVisible.get(),
   downloadButtonVisible: () => Template.instance().downloadButtonVisible.get(),
+  samplingRateVisible: () => Template.instance().samplingRateVisible.get(),
+  samplingRate: () => Template.instance().samplingRate.get(),
 });
 
 Template.Exports.events({
-  'change .export-type': (e, t) => {
-    const exportType = e.target.value;
-    t.exportType.set(e.target.value);
+  'change .export-type': (event, templateInstance) => {
+    const exportType = event.target.value;
+    templateInstance.exportType.set(event.target.value);
 
     if (
       exportType === 'allParticipantsSingle'
@@ -27,33 +31,44 @@ Template.Exports.events({
       || exportType === 'allViewingsSingle'
       || exportType === 'allViewingsIndividual'
     ) {
-      t.analysisSelectorVisible.set(true);
+      templateInstance.analysisSelectorVisible.set(true);
     } else {
-      t.analysisSelectorVisible.set(false);
+      templateInstance.analysisSelectorVisible.set(false);
     }
   },
-  'change .analysis-selector': (e, t) => {
-    const analysisId = e.target.value;
-    t.analysisId.set(analysisId);
+  'change .analysis-selector': (event, templateInstance) => {
+    const analysisId = event.target.value;
+    templateInstance.analysisId.set(analysisId);
 
     if (analysisId) {
-      t.downloadButtonVisible.set(true);
+      templateInstance.downloadButtonVisible.set(true);
+      templateInstance.samplingRateVisible.set(true);
     } else {
-      t.downloadButtonVisible.set(false);
+      templateInstance.downloadButtonVisible.set(false);
+      templateInstance.samplingRateVisible.set(false);
     }
   },
-  'click .download-button': (e, t) => {
-    console.log('balls');
-    console.log(t.exportType.get());
-    if (t.analysisId.get()) {
-      const analysis = Analyses.findOne({ _id: t.analysisId.get() });
+  'change .sampling-rate': (event, templateInstance) => {
+    templateInstance.samplingRate.set(event.target.value);
+  },
+  'click .download-button': (event, templateInstance) => {
+    console.log(templateInstance.exportType.get());
+    if (templateInstance.analysisId.get()) {
+      const analysis = Analyses.findOne({
+        _id: templateInstance.analysisId.get(),
+      });
 
-      if (t.exportType.get() === 'allParticipantsSingle') {
+      if (templateInstance.exportType.get() === 'allParticipantsSingle') {
         console.log('analysis.saveCSVParticipants()');
         analysis.saveCSVParticipants();
-      } else if (t.exportType.get() === 'allParticipantsIndividual') {
+      } else if (
+        templateInstance.exportType.get() === 'allParticipantsIndividual'
+      ) {
         console.log('analysis.saveCSVParticipants({ individual: true })');
-        analysis.saveCSVParticipants();
+        analysis.saveCSVParticipants({
+          individual: true,
+          samplingRate: templateInstance.samplingRate.get(),
+        });
       }
     }
   },

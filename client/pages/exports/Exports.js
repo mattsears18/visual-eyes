@@ -36,16 +36,29 @@ Template.Exports.events({
       templateInstance.analysisSelectorVisible.set(false);
     }
   },
-  'change .analysis-selector': (event, templateInstance) => {
-    const analysisId = event.target.value;
+  'change .analysis-selector, change .export-type': (
+    event,
+    templateInstance,
+  ) => {
+    const analysisId = $('.analysis-selector')
+      ? $('.analysis-selector').val()
+      : undefined;
+
     templateInstance.analysisId.set(analysisId);
 
-    if (analysisId) {
-      templateInstance.downloadButtonVisible.set(true);
+    if (
+      templateInstance.exportType.get() === 'allViewingsSingle'
+      || templateInstance.exportType.get() === 'allViewingsIndividual'
+    ) {
       templateInstance.samplingRateVisible.set(true);
     } else {
-      templateInstance.downloadButtonVisible.set(false);
       templateInstance.samplingRateVisible.set(false);
+    }
+
+    if (templateInstance.analysisId.get()) {
+      templateInstance.downloadButtonVisible.set(true);
+    } else {
+      templateInstance.downloadButtonVisible.set(false);
     }
   },
   'change .sampling-rate': (event, templateInstance) => {
@@ -53,6 +66,7 @@ Template.Exports.events({
   },
   'click .download-button': (event, templateInstance) => {
     console.log(templateInstance.exportType.get());
+
     if (templateInstance.analysisId.get()) {
       const analysis = Analyses.findOne({
         _id: templateInstance.analysisId.get(),
@@ -69,6 +83,12 @@ Template.Exports.events({
           individual: true,
           samplingRate: templateInstance.samplingRate.get(),
         });
+      } else if (templateInstance.exportType.get() === 'allViewingsSingle') {
+        console.log('analysis.saveCSVParticipants()');
+      } else if (
+        templateInstance.exportType.get() === 'allViewingsIndividual'
+      ) {
+        console.log('analysis.saveCSVParticipants({ individua: true })');
       }
     }
   },

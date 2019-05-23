@@ -9,10 +9,6 @@ export default function saveCSVParticipants(opt) {
   // eslint-disable-next-line no-param-reassign
   opt = opt || {};
 
-  console.log('balls');
-
-  console.log(opt);
-
   const csvContent = this.getCSVParticipants();
 
   if (Meteor.isServer) {

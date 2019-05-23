@@ -2,12 +2,17 @@ import { jStat } from 'jStat';
 
 export default function getCSVParticipants() {
   const analysis = this;
-  const participants = Participants.find({ _id: { $in: analysis.participantIds } }).fetch();
+  const participants = Participants.find({
+    _id: { $in: analysis.participantIds },
+  }).fetch();
 
   const data = [];
 
   participants.forEach(function(participant) {
-    const viewings = Viewings.find({ analysisId: analysis._id, participantId: participant._id }).fetch();
+    const viewings = Viewings.find({
+      analysisId: analysis._id,
+      participantId: participant._id,
+    }).fetch();
     const datafiles = Datafiles.find({ _id: { $in: participant.datafileIds } });
 
     const viewingCounts = helpers.getViewingCounts(viewings);
@@ -21,11 +26,12 @@ export default function getCSVParticipants() {
     });
 
     const participantData = {
-      link: `${Meteor.absoluteUrl()}studies/${analysis.study()._id}/participants/${participant._id}`,
+      link: `${Meteor.absoluteUrl()}studies/${
+        analysis.study()._id
+      }/participants/${participant._id}`,
       study: analysis.study().name,
       pointsType: analysis.study().pointsType(),
       analysis: analysis.name,
-      period: analysis.period,
       viewingGap: analysis.viewingGap,
       minViewingTime: analysis.minViewingTime,
       participant: participant.name,
@@ -37,21 +43,19 @@ export default function getCSVParticipants() {
       viewingDurationPerStimulusMean: jStat.mean(viewingDurations),
       viewingDurationPerStimulusMedian: jStat.median(viewingDurations),
       viewingDurationPerParticipant: jStat.sum(viewingDurations),
-      slideHullCoveragePerStimulus: averageSlideHullCoverages,
-      slideHullCoveragePerStimulusMean: jStat.mean(averageSlideHullCoverages),
-      slideHullCoveragePerStimulusMedian: jStat.median(averageSlideHullCoverages),
-      slideHullCoveragePerParticipant: '',
       rawRowCount: jStat.sum(datafiles.map(datafile => datafile.rawRowCount)),
-      gazepointCount: jStat.sum(datafiles.map(datafile => datafile.gazepointCount)),
-      gazepointProportion: (
+      gazepointCount: jStat.sum(
+        datafiles.map(datafile => datafile.gazepointCount),
+      ),
+      gazepointProportion:
         jStat.sum(datafiles.map(datafile => datafile.gazepointCount))
-        / jStat.sum(datafiles.map(datafile => datafile.rawRowCount))
+        / jStat.sum(datafiles.map(datafile => datafile.rawRowCount)),
+      fixationCount: jStat.sum(
+        datafiles.map(datafile => datafile.fixationCount),
       ),
-      fixationCount: jStat.sum(datafiles.map(datafile => datafile.fixationCount)),
-      fixationProportion: (
+      fixationProportion:
         jStat.sum(datafiles.map(datafile => datafile.fixationCount))
-        / jStat.sum(datafiles.map(datafile => datafile.gazepointCount))
-      ),
+        / jStat.sum(datafiles.map(datafile => datafile.gazepointCount)),
     };
 
     participant.variables().forEach(function(variable) {

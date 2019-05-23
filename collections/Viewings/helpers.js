@@ -18,31 +18,33 @@ Viewings.helpers({
     return false;
   },
   datafile() {
-    return Datafiles.findOne(this.datafileId);
+    return this.datafileId ? Datafiles.findOne(this.datafileId) : undefined;
   },
   datafileName() {
     return this.datafile() ? this.datafile().name : undefined;
   },
   participant() {
-    return Participants.findOne(this.participantId);
+    return this.participantId
+      ? Participants.findOne(this.participantId)
+      : undefined;
   },
   participantName() {
     return this.participant() ? this.participant().name : undefined;
   },
   stimulus() {
-    return Stimuli.findOne(this.stimulusId);
+    return this.stimulusId ? Stimuli.findOne(this.stimulusId) : undefined;
   },
   stimulusArea() {
-    return this.stimulus().area();
+    return this.stimulus() ? this.stimulus().area() : undefined;
   },
   stimulusName() {
     return this.stimulus() ? this.stimulus().name : undefined;
   },
   study() {
-    return Studies.findOne({ _id: this.studyId });
+    return this.studyId ? Studies.findOne({ _id: this.studyId }) : undefined;
   },
   analysis() {
-    return Analyses.findOne(this.analysisId);
+    return this.analysisId ? Analyses.findOne(this.analysisId) : undefined;
   },
   aois() {
     if (this.aoiIds && this.aoiIds.length) {

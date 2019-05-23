@@ -40,13 +40,17 @@ Analyses.helpers({
     return false;
   },
   study() {
-    return Studies.findOne({ _id: this.studyId });
+    return this.studyId ? Studies.findOne({ _id: this.studyId }) : undefined;
   },
   stimuli() {
-    return Stimuli.find({ _id: { $in: this.stimulusIds } });
+    return this.stimulusIds
+      ? Stimuli.find({ _id: { $in: this.stimulusIds } })
+      : undefined;
   },
   participants() {
-    return Participants.find({ _id: { $in: this.participantIds } });
+    return this.participantIds
+      ? Participants.find({ _id: { $in: this.participantIds } })
+      : undefined;
   },
   viewings() {
     return Viewings.find({ analysisId: this._id });

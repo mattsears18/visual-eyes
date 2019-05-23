@@ -1,16 +1,7 @@
 Participants.helpers({
   hasPermission(action) {
     check(action, String);
-
     return true;
-
-    if (this.userPermissions) {
-      userIds = this.userPermissions[action];
-      if (userIds) {
-        return userIds.includes(Meteor.userId());
-      }
-    }
-    return false;
   },
   variables() {
     variables = Variables.find({ studyId: this.studyId }).fetch();

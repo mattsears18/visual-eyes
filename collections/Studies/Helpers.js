@@ -33,7 +33,7 @@ Studies.helpers({
   analysesProcessingComplete() {
     return (
       this.analysesCount() > 0
-      && this.analysesProcessedCount() == this.analysesCount()
+      && this.analysesProcessedCount() === this.analysesCount()
     );
   },
   datafilesCount() {
@@ -45,7 +45,7 @@ Studies.helpers({
   datafilesProcessingComplete() {
     return (
       this.datafilesCount() > 0
-      && this.datafilesProcessedCount() == this.datafilesCount()
+      && this.datafilesProcessedCount() === this.datafilesCount()
     );
   },
   stimuli() {
@@ -58,7 +58,7 @@ Studies.helpers({
     }).count();
   },
   stimuliAllHaveImage() {
-    return this.stimuli().count() == this.stimuliWithImageCount();
+    return this.stimuli().count() === this.stimuliWithImageCount();
   },
   pointsType() {
     let pointsType = 'gazepoints';

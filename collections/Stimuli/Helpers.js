@@ -17,10 +17,12 @@ Stimuli.helpers({
     return false;
   },
   stimulusfile() {
-    return Stimulusfiles.collection.findOne(this.stimulusfileId);
+    return this.stimulusfileId
+      ? Stimulusfiles.collection.findOne(this.stimulusfileId)
+      : undefined;
   },
   area() {
-    return (this.height * this.width);
+    return this.height * this.width;
   },
   aoiCount() {
     return Aois.find({ stimulusId: this._id }).fetch().length;

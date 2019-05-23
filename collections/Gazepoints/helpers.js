@@ -11,12 +11,14 @@ Gazepoints.helpers({
     return false;
   },
   participant() {
-    return Participants.findOne(this.participantId);
+    return this.participantId
+      ? Participants.findOne(this.participantId)
+      : undefined;
   },
   participantName() {
-    return this.participant().name;
+    return this.participant() ? this.participant().name : undefined;
   },
   study() {
-    return Studies.find({ _id: this.studyId });
+    return this.studyId ? Studies.find({ _id: this.studyId }) : undefined;
   },
 });

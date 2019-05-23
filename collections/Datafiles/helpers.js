@@ -38,6 +38,6 @@ Datafiles.collection.helpers({
   process,
 
   study() {
-    return Studies.findOne({ _id: this.studyId });
+    return this.studyId ? Studies.findOne({ _id: this.studyId }) : undefined;
   },
 });

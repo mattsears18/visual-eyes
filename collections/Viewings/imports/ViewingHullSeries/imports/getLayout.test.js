@@ -20,12 +20,41 @@ describe('ViewingHullSeries.getLayout()', () => {
   });
 
   it('gets a layout', () => {
+    const viewing = Factory.create('viewingWithGazepoints');
+    viewing.datafileId = Factory.create('imotionsDatafile')._id;
+
     const hullseries = new ViewingHullSeries({
-      viewing: Factory.create('viewingWithGazepoints'),
+      viewing,
       period: 5000,
     });
 
     const layout = hullseries.getLayout();
     expect(layout.height).to.equal(620);
+  });
+
+  it('inverts the y axis for an imotions datafile', () => {
+    const viewing = Factory.create('viewingWithGazepoints');
+    viewing.datafileId = Factory.create('imotionsDatafile')._id;
+
+    const hullseries = new ViewingHullSeries({
+      viewing,
+      period: 5000,
+    });
+
+    expect(hullseries.getLayout().yaxis.range[1]).to.equal(0);
+    expect(hullseries.getLayout().yaxis.range[0]).to.be.gt(0);
+  });
+
+  it('does not invert the y axis for an smi datafile', () => {
+    const viewing = Factory.create('viewingWithGazepoints');
+    viewing.datafileId = Factory.create('smiDatafile')._id;
+
+    const hullseries = new ViewingHullSeries({
+      viewing,
+      period: 5000,
+    });
+
+    expect(hullseries.getLayout().yaxis.range[0]).to.equal(0);
+    expect(hullseries.getLayout().yaxis.range[1]).to.be.gt(0);
   });
 });

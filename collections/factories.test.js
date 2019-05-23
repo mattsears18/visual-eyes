@@ -193,6 +193,7 @@ Factory.define('viewing', Viewings, {
   number: () => faker.random.number({ min: 1, max: 10 }),
   aoiIds: [],
   gazepoints: [],
+  fileFormat: 'imotions',
 });
 
 // viewing with Gazepoints
@@ -218,6 +219,7 @@ for (let i = 0; i < 100; i += 1) {
     participantId: participant._id,
     stimulusId: stimulus._id,
     aoiId: aoi._id,
+    fileFormat: 'imotions',
   });
 
   gazepoints.push(gazepoint);
@@ -233,4 +235,5 @@ Factory.define('viewingWithGazepoints', Viewings, {
   number: () => faker.random.number({ min: 1, max: 10 }),
   aoiIds: [aoi._id],
   gazepoints,
+  fileFormat: 'imotions',
 });

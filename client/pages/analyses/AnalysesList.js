@@ -1,4 +1,3 @@
-
 Template.AnalysesList.onCreated(function() {
   const self = this;
 
@@ -7,7 +6,6 @@ Template.AnalysesList.onCreated(function() {
     self.subscribe('viewings.byStudyId', studyId);
   });
 });
-
 
 Template.AnalysesList.helpers({
   study: () => Studies.findOne(),
@@ -21,6 +19,10 @@ Template.AnalysesList.events({
   'click .reprocess-analyses'() {
     const study = Studies.findOne({ _id: FlowRouter.getParam('studyId') });
     study.reprocessAnalyses();
+  },
+  'click .download-as-csv'() {
+    const study = Studies.findOne();
+    study.saveCSVs();
   },
 });
 

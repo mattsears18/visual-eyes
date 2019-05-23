@@ -78,6 +78,7 @@ describe('Analyses.makeViewings()', () => {
         participantId: participant._id,
         stimulusId: stimulus._id,
         ...point,
+        fileFormat: datafile.fileFormat,
       });
     });
 

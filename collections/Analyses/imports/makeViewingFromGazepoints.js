@@ -5,23 +5,40 @@ export default function makeViewingFromGazepoints({
   startIndex = 0,
   endIndex,
   number = 1,
+  fileFormat,
 }) {
-  if (!participantId) { throw new Error('noParticipantId'); }
+  if (!fileFormat) {
+    throw new Error('noFileFormat');
+  }
+
+  if (!participantId) {
+    throw new Error('noParticipantId');
+  }
   const participant = Participants.findOne({ _id: participantId });
   if (!participant) {
     throw new Error('noParticipantFound');
   }
 
-  if (!stimulusId) { throw new Error('noStimulusId'); }
+  if (!stimulusId) {
+    throw new Error('noStimulusId');
+  }
   const stimulus = Stimuli.findOne({ _id: stimulusId });
   if (!stimulus) {
     throw new Error('noStimulusFound');
   }
 
-  if (!gazepoints.length) { throw new Error('noGazepoints'); }
-  if (!gazepoints[startIndex]) { throw new Error('startIndexOutOfBounds'); }
-  if (!endIndex) { endIndex = gazepoints.length - 1; }
-  if (!gazepoints[endIndex]) { throw new Error('endIndexOutOfBounds'); }
+  if (!gazepoints.length) {
+    throw new Error('noGazepoints');
+  }
+  if (!gazepoints[startIndex]) {
+    throw new Error('startIndexOutOfBounds');
+  }
+  if (!endIndex) {
+    endIndex = gazepoints.length - 1;
+  }
+  if (!gazepoints[endIndex]) {
+    throw new Error('endIndexOutOfBounds');
+  }
 
   const pointsFull = gazepoints.slice(startIndex, endIndex + 1);
   const points = pointsFull.map(point => ({
@@ -38,8 +55,8 @@ export default function makeViewingFromGazepoints({
   let fixationFrequency = 0;
 
   if (duration > 0) {
-    gazepointFrequency = points.length / duration * 1000;
-    fixationFrequency = fixationCount / duration * 1000;
+    gazepointFrequency = (points.length / duration) * 1000;
+    fixationFrequency = (fixationCount / duration) * 1000;
   }
 
   const analysis = this;
@@ -65,5 +82,6 @@ export default function makeViewingFromGazepoints({
     fixationCount,
     fixationFrequency,
     status,
+    fileFormat,
   });
 }

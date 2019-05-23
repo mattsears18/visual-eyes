@@ -75,16 +75,16 @@ Template.Exports.events({
       if (templateInstance.exportType.get() === 'allParticipantsSingle') {
         console.log('analysis.saveCSVParticipants()');
         analysis.saveCSVParticipants();
-      } else if (
-        templateInstance.exportType.get() === 'allParticipantsIndividual'
-      ) {
-        console.log('analysis.saveCSVParticipants({ individual: true })');
-        analysis.saveCSVParticipants({
-          individual: true,
-          samplingRate: templateInstance.samplingRate.get(),
-        });
+        // } else if (
+        //   templateInstance.exportType.get() === 'allParticipantsIndividual'
+        // ) {
+        //   console.log('analysis.saveCSVParticipants({ individual: true })');
+        //   analysis.saveCSVParticipants({
+        //     individual: true,
+        //   });
       } else if (templateInstance.exportType.get() === 'allViewingsSingle') {
         console.log('analysis.saveCSVParticipants()');
+        analysis.saveCSVViewings();
       } else if (
         templateInstance.exportType.get() === 'allViewingsIndividual'
       ) {

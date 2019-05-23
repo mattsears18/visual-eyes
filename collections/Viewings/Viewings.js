@@ -30,6 +30,9 @@ Schemas.Viewing = new SimpleSchema(
     stimulusId: {
       type: String,
     },
+    fileFormat: {
+      type: String,
+    },
     number: {
       type: Number,
       label: 'Number',

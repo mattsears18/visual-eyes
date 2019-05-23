@@ -1,73 +1,84 @@
 <template name="AnalysesList">
   <h4>
     {{#if study.hasPermission 'createAnalyses'}}
-      {{#unless $.Session.get 'newAnalysis'}}
-        <a class="new-analysis btn btn-success pull-left"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Analysis</a>
-        {{#if analyses.count}}
-          {{#if study.datafilesProcessingComplete}}
-            <span class="btn btn-danger pull-right reprocess-analyses m-l-10"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Analyses</span>
-          {{/if}}
-        {{/if}}
-      {{/unless}}
+    {{#unless $.Session.get 'newAnalysis'}}
+    <a class="new-analysis btn btn-success pull-left"
+      ><i class="fa fa-plus"></i>&nbsp;&nbsp;New Analysis</a
+    >
+    {{#if analyses.count}}
+    {{#if study.datafilesProcessingComplete}}
+    <span class="btn btn-danger pull-right reprocess-analyses m-l-10"
+      ><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Analyses</span
+    >
+    <span class="pull-right btn btn-success download-as-csv"
+      ><i class="fa fa-download"></i>&nbsp;Download Analyses as .CSVs</span
+    >
+    {{/if}}
+    {{/if}}
+    {{/unless}}
     {{/if}}
   </h4>
   {{#if $.Session.get 'newAnalysis'}}
-    {{> NewAnalysis}}
+  {{> NewAnalysis}}
   {{/if}}
 
   {{#if analyses.count}}
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>
-            Name
-          </th>
-          <th>
-            Participants
-          </th>
-          <th>
-            Stimuli
-          </th>
-          <th>
-            Viewings
-          </th>
-          <th>
-            Status
-            {{#if study.analysesProcessingComplete}}
-              <span class="label label-success">All Processed</span>
-            {{/if}}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each analysis in analyses}}
-          <tr>
-            <td>
-              <a href="/studies/{{study._id}}/analyses/{{analysis._id}}">{{analysis.name}}</a>
-            </td>
-            <td>
-              {{analysis.participants.count}}
-            </td>
-            <td>
-              {{analysis.stimuli.count}}
-            </td>
-            <td>
-              {{analysis.viewings.count}}
-            </td>
-            <td>
-              {{#if equals analysis.status "needsReprocessing"}}
-                <span class="label label-danger">Needs Reprocessing</span>
-              {{/if}}
-              {{#if equals analysis.status "processing"}}
-                <span class="label label-default">Processing<i class="fa fa-spinner fa-pulse fa-fw m-l-3"></i></span>
-              {{/if}}
-              {{#if equals analysis.status "processed"}}
-                <span class="label label-success">Processed</span>
-              {{/if}}
-            </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Participants
+        </th>
+        <th>
+          Stimuli
+        </th>
+        <th>
+          Viewings
+        </th>
+        <th>
+          Status
+          {{#if study.analysesProcessingComplete}}
+          <span class="label label-success">All Processed</span>
+          {{/if}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each analysis in analyses}}
+      <tr>
+        <td>
+          <a href="/studies/{{ study._id }}/analyses/{{ analysis._id }}">{{
+            analysis.name
+          }}</a>
+        </td>
+        <td>
+          {{ analysis.participants.count }}
+        </td>
+        <td>
+          {{ analysis.stimuli.count }}
+        </td>
+        <td>
+          {{ analysis.viewings.count }}
+        </td>
+        <td>
+          {{#if equals analysis.status "needsReprocessing"}}
+          <span class="label label-danger">Needs Reprocessing</span>
+          {{/if}}
+          {{#if equals analysis.status "processing"}}
+          <span class="label label-default"
+            >Processing<i class="fa fa-spinner fa-pulse fa-fw m-l-3"></i
+          ></span>
+          {{/if}}
+          {{#if equals analysis.status "processed"}}
+          <span class="label label-success">Processed</span>
+          {{/if}}
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
   {{/if}}
 </template>

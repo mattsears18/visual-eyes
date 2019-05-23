@@ -1,14 +1,15 @@
-export default function makeViewings({
-  participantId,
-  stimulusId,
-}) {
-  if (!participantId) { throw new Error('noParticipantId'); }
+export default function makeViewings({ participantId, stimulusId }) {
+  if (!participantId) {
+    throw new Error('noParticipantId');
+  }
   const participant = Participants.findOne({ _id: participantId });
   if (!participant) {
     throw new Error('noParticipantFound');
   }
 
-  if (!stimulusId) { throw new Error('noStimulusId'); }
+  if (!stimulusId) {
+    throw new Error('noStimulusId');
+  }
   const stimulus = Stimuli.findOne({ _id: stimulusId });
   if (!stimulus) {
     throw new Error('noStimulusFound');
@@ -32,55 +33,62 @@ export default function makeViewings({
 
   // console.log('participant: ' + participant.name + ' stimulus: ' + stimulus.name);
 
-  const gazepoints = Gazepoints.find(search, { sort: { timestamp: 1 } });
-  const gazepointsArr = gazepoints.fetch();
+  const allGazepoints = Gazepoints.find(search, { sort: { timestamp: 1 } });
+  const allGazepointsArr = allGazepoints.fetch();
   const viewingIds = [];
 
-  // console.log('gazepoint count: ' + gazepointsArr.length);
+  // console.log(`gazepoint count: ${gazepointsArr.length}`);
 
-  if (gazepointsArr.length) {
-    let startIndex = 0;
-    let number = 1;
+  if (allGazepointsArr.length) {
+    const fileFormatGroups = _.groupBy(allGazepointsArr, 'fileFormat');
 
-    do {
-      let endIndex;
-      try {
-        endIndex = this.getViewingEndIndex({
-          gazepoints: gazepointsArr,
-          startIndex,
-        });
-        // console.log('start: ' + startIndex + ' end: ' + endIndex);
-      } catch (err) {
-        // console.log('start: ' + startIndex + ' end: ' + endIndex);
-        if (err.error == 'minViewingTimeNotMet') {
-          // console.log(err.details);
-          startIndex = err.details.nextIndex;
-        } else {
+    Object.keys(fileFormatGroups).forEach((fileFormat) => {
+      const gazepointsArr = fileFormatGroups[fileFormat];
+
+      let startIndex = 0;
+      let number = 1;
+
+      do {
+        let endIndex;
+        try {
+          endIndex = this.getViewingEndIndex({
+            gazepoints: gazepointsArr,
+            startIndex,
+          });
+          // console.log('start: ' + startIndex + ' end: ' + endIndex);
+        } catch (err) {
+          // console.log('start: ' + startIndex + ' end: ' + endIndex);
+          if (err.error === 'minViewingTimeNotMet') {
+            // console.log(err.details);
+            startIndex = err.details.nextIndex;
+          } else {
+            console.log(err);
+          }
+        }
+
+        if (!endIndex) {
+          continue;
+        }
+
+        try {
+          // console.log('make the viewing!');
+          const viewingId = this.makeViewingFromGazepoints({
+            gazepoints: gazepointsArr,
+            startIndex,
+            endIndex,
+            number: number++,
+            participantId,
+            stimulusId,
+            fileFormat,
+          });
+          viewingIds.push(viewingId);
+        } catch (err) {
           console.log(err);
         }
-      }
 
-      if (!endIndex) {
-        continue;
-      }
-
-      try {
-        // console.log('make the viewing!');
-        const viewingId = this.makeViewingFromGazepoints({
-          gazepoints: gazepointsArr,
-          startIndex,
-          endIndex,
-          number: number++,
-          participantId,
-          stimulusId,
-        });
-        viewingIds.push(viewingId);
-      } catch (err) {
-        console.log(err);
-      }
-
-      startIndex = endIndex + 1;
-    } while (startIndex < gazepointsArr.length - 1);
+        startIndex = endIndex + 1;
+      } while (startIndex < gazepointsArr.length - 1);
+    });
   }
 
   return viewingIds;

@@ -78,8 +78,18 @@ Template.Analysis.helpers({
 });
 
 Template.Analysis.events({
+  'click .download-as-csv'() {
+    const analysis = Analyses.findOne();
+    analysis.saveCSVParticipants();
+  },
+  'click .download-viewings-as-csv'(e, template) {
+    const analysis = Analyses.findOne();
+    analysis.saveCSVViewings();
+  },
   'click .reprocess-analysis'() {
-    const analysis = Analyses.findOne({ _id: FlowRouter.getParam('analysisId') });
+    const analysis = Analyses.findOne({
+      _id: FlowRouter.getParam('analysisId'),
+    });
     analysis.makeViewingJobs();
   },
   'click .update-analysis'() {

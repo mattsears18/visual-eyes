@@ -1,91 +1,124 @@
 <template name="Analysis">
   {{#if $.Session.get 'updateAnalysis'}}
-    {{> UpdateAnalysis analysis=analysis}}
+  {{> UpdateAnalysis analysis=analysis}}
   {{else}}
-    <h3 class="m-t-0">{{analysis.name}}
-      {{#if Template.subscriptionsReady}}
-        {{#if analysis.hasPermission 'update'}}
-          {{#unless $.Session.get 'updateAnalysis'}}
-            &nbsp;<a href="" class="update-analysis"><i class="fa fa-pencil"></i></a>
-          {{/unless}}
-        {{/if}}
-        <span class="btn btn-danger pull-right reprocess-analysis m-l-10"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Analysis</span>
-      {{/if}}
-
-      {{#if equals analysis.status 'processing'}}
-        <span class="label label-default">Creating Viewings {{formatNumber analysis.jobsProgress}}%<i class="fa fa-spinner fa-pulse fa-fw m-l-3"></i></span>
-      {{/if}}
-    </h3>
-
-    <p>{{analysis.desc}}</p>
-
-    {{#if analysis.viewingGap}}
-    <div><strong>Viewing Gap (ms):</strong> {{formatNumber analysis.viewingGap}}</div>
+  <h3 class="m-t-0">
+    {{ analysis.name }}
+    {{#if Template.subscriptionsReady}}
+    {{#if analysis.hasPermission 'update'}}
+    {{#unless $.Session.get 'updateAnalysis'}}
+    &nbsp;<a href="" class="update-analysis"><i class="fa fa-pencil"></i></a>
+    {{/unless}}
+    {{/if}}
+    <span class="btn btn-danger pull-right reprocess-analysis m-l-10"
+      ><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Analysis</span
+    >
+    <span class="pull-right btn btn-success download-as-csv"
+      ><i class="fa fa-download"></i>&nbsp;Download Analysis as .CSV</span
+    >
     {{/if}}
 
-    {{#if analysis.minViewingTime}}
-      <div><strong>Minimum Viewing Time (ms):</strong> {{formatNumber analysis.minViewingTime}}</div>
+    {{#if equals analysis.status 'processing'}}
+    <span class="label label-default"
+      >Creating Viewings {{formatNumber analysis.jobsProgress}}%<i
+        class="fa fa-spinner fa-pulse fa-fw m-l-3"
+      ></i
+    ></span>
     {{/if}}
+  </h3>
 
-    <div class="selector-set">
-      <h4>
-        Participants {{#if participants.count}}({{participants.count}}){{/if}}
-        <button class="label label-primary toggle-all selector participant">Show All</button>
-      </h4>
-      <h4>
-        <div class="well well-sm">
-          {{#each participant in participants}}
-            <button class="label selector participant label-primary" data-id="{{participant._id}}">{{participant.name}}</button>
-          {{/each}}
-        </div>
-      </h4>
-    </div>
+  <p>{{ analysis.desc }}</p>
 
-    <div class="selector-set">
-      <h4>
-        Stimuli {{#if stimuli.count}}({{stimuli.count}}){{/if}}
-        <button class="label label-primary toggle-all selector stimulus">Show All</button>
-      </h4>
-      <h4>
-        <div class="well well-sm">
-          {{#each stimulus in stimuli}}
-            <button class="label selector stimulus label-primary" data-id="{{stimulus._id}}">{{stimulus.name}}</button>
-          {{/each}}
-        </div>
-      </h4>
-    </div>
+  {{#if analysis.viewingGap}}
+  <div>
+    <strong>Viewing Gap (ms):</strong> {{formatNumber analysis.viewingGap}}
+  </div>
+  {{/if}}
 
-    {{#if viewings.count}}
-      <!-- <div class="row">
+  {{#if analysis.minViewingTime}}
+  <div>
+    <strong>Minimum Viewing Time (ms):</strong>
+    {{formatNumber analysis.minViewingTime}}
+  </div>
+  {{/if}}
+
+  <div class="selector-set">
+    <h4>
+      Participants {{#if participants.count}}({{ participants.count }}){{/if}}
+      <button class="label label-primary toggle-all selector participant">
+        Show All
+      </button>
+    </h4>
+    <h4>
+      <div class="well well-sm">
+        {{#each participant in participants}}
+        <button
+          class="label selector participant label-primary"
+          data-id="{{ participant._id }}"
+        >
+          {{ participant.name }}
+        </button>
+        {{/each}}
+      </div>
+    </h4>
+  </div>
+
+  <div class="selector-set">
+    <h4>
+      Stimuli {{#if stimuli.count}}({{ stimuli.count }}){{/if}}
+      <button class="label label-primary toggle-all selector stimulus">
+        Show All
+      </button>
+    </h4>
+    <h4>
+      <div class="well well-sm">
+        {{#each stimulus in stimuli}}
+        <button
+          class="label selector stimulus label-primary"
+          data-id="{{ stimulus._id }}"
+        >
+          {{ stimulus.name }}
+        </button>
+        {{/each}}
+      </div>
+    </h4>
+  </div>
+
+  {{#if viewings.count}}
+  <!-- <div class="row">
         <div class="col-md-6">
           {{> PlotRegression}}
         </div>
       </div> -->
-      <div class="row">
-        <div class="col-md-6">
-          {{> PlotHistogramViewingDurations viewings=viewings}}
-        </div>
-        <div class="col-md-6">
-          {{> PlotHistogramViewingCounts viewings=viewings}}
-        </div>
-      </div>
-      <!-- <div class="row">
+  <div class="row">
+    <div class="col-md-6">
+      {{> PlotHistogramViewingDurations viewings=viewings}}
+    </div>
+    <div class="col-md-6">
+      {{> PlotHistogramViewingCounts viewings=viewings}}
+    </div>
+  </div>
+  <!-- <div class="row">
         <div class="col-md-6">
           {{> PlotHistogramViewingAverageSlideHullCoverages viewings=viewings}}
         </div>
       </div> -->
-    {{/if}}
+  {{/if}}
 
-    {{#if viewings.count}}
-      <h4>
-        Viewings ({{viewings.count}})
+  {{#if viewings.count}}
+  <h4>
+    Viewings ({{ viewings.count }})
 
-        {{#unless analysis.allJobsCompleted}}
-          <span class="label label-default">Creating Viewings {{formatNumber analysis.jobsProgress}}%<i class="fa fa-spinner fa-pulse fa-fw m-l-3"></i></span>
-        {{/unless}}
-      </h4>
+    {{#unless analysis.allJobsCompleted}}
+    <span class="label label-default"
+      >Creating Viewings {{formatNumber analysis.jobsProgress}}%<i
+        class="fa fa-spinner fa-pulse fa-fw m-l-3"
+      ></i
+    ></span>
+    {{/unless}}
+  </h4>
 
-      {{> tabular table=TabularTables.ViewingsByAnalysisId selector=selector class="table table-striped table-bordered"}}
-    {{/if}}
+  {{> tabular table=TabularTables.ViewingsByAnalysisId selector=selector class="table table-striped table-bordered"}}
+  {{/if}}
   {{/if}}
 </template>

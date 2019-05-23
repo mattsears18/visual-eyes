@@ -17,7 +17,7 @@ export default function getLayout(opt) {
 
   let yrange;
 
-  if (this.viewing.datafile().fileFormat === 'imotions') {
+  if (this.viewing.fileFormat === 'imotions') {
     yrange = [this.viewing.stimulus().height, 0];
   } else {
     yrange = [0, this.viewing.stimulus().height];

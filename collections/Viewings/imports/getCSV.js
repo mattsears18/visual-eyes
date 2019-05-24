@@ -22,8 +22,6 @@ export default function getCSV(opt) {
 
   const hulls = hullseries.getHulls();
 
-  console.log(hullseries);
-
   hulls.forEach((hull, hi) => {
     const hullData = {
       link: `${Meteor.absoluteUrl()}studies/${
@@ -36,7 +34,7 @@ export default function getCSV(opt) {
       viewingGap: this.analysis().viewingGap,
       minViewingTime: this.analysis().minViewingTime,
       period: opt.period,
-      timestep: opt.timestep,
+      minTimestep: opt.timestep,
       includeIncomplete: opt.includeIncomplete ? 'true' : 'false',
       participant: this.participant().name,
       stimulus: this.stimulus().name,
@@ -50,55 +48,62 @@ export default function getCSV(opt) {
       endPointIndex: hull.endIndex,
       startTime: hull.startTime(),
       endTime: hull.endTime(),
-      // elapsedTime: hull.endTime() - hullseries.getStartTime(),
-      // elapsedTimeNormalized:
-      //   (hull.endTime() - this.getStartTime()) / this.getDuration(),
-      // startTimeNormalized: hull.startTime({ normalized: true }),
-      // endTimeNormalized: hull.endTime({ normalized: true }),
-      // hullPeriod: hull.period(),
-      // timestep: hull.timestep(),
-      // duration: hull.duration(),
-      // pointCount: hull.getPoints().length,
-      // // pointsX: hull.getPoints('x'),
-      // // pointsY: hull.getPoints('y'),
-      // lastPointX: hull.lastPoint().x,
-      // lastPointY: hull.lastPoint().y,
-      // distance: hull.distance(),
-      // distanceX: hull.distance('x'),
-      // distanceY: hull.distance('y'),
-      // velocity: hull.velocity(),
-      // velocityX: hull.velocity('x'),
-      // velocityY: hull.velocity('y'),
-      // centroidX: hull.centroid().x,
-      // centroidY: hull.centroid().y,
-      // centroidDistance: 0,
-      // centroidDistanceX: 0,
-      // centroidDistanceY: 0,
-      // centroidVelocity: 0,
-      // centroidVelocityX: 0,
-      // centroidVelocityY: 0,
-      // coverage: hull.coverage({
-      //   width: this.stimulus().width,
-      //   height: this.stimulus().height,
-      // }),
-      // coverageDuration: hull.coverageDuration({
-      //   width: this.stimulus().width,
-      //   height: this.stimulus().height,
-      // }),
-      // averageCoverage: this.getAverageCoverage(),
+      elapsedTime: hull.elapsedTime(),
+      elapsedTimeNormalized: hull.elapsedTime() / hullseries.getDuration(),
+      hullPeriod: hull.period(),
+      timestep: hull.timestep(),
+      duration: hull.duration(),
+      pointCount: hull.getPoints().length,
+      lastPointX: hull.lastPoint().x,
+      lastPointY: hull.lastPoint().y,
+      distance: hull.distance(),
+      distanceX: hull.distance('x'),
+      distanceY: hull.distance('y'),
+      velocity: hull.velocity(),
+      velocityX: hull.velocity('x'),
+      velocityY: hull.velocity('y'),
+      centroidX: hull.getCentroid({ which: 'x' }),
+      centroidY: hull.getCentroid({ which: 'y' }),
+      centroidDistance: 0,
+      centroidDistanceX: 0,
+      centroidDistanceY: 0,
+      centroidVelocity: 0,
+      centroidVelocityX: 0,
+      centroidVelocityY: 0,
+      coverage: hull.getCoverage({
+        width: this.stimulus().width,
+        height: this.stimulus().height,
+      }),
+      coverageDuration: hull.coverageDuration({
+        width: this.stimulus().width,
+        height: this.stimulus().height,
+      }),
+      averageCoverage: hullseries.getAverageCoverage(),
+      averageVelocity: hullseries.getAverageVelocity(),
+      averageVelocityX: hullseries.getAverageVelocity({ which: 'x' }),
+      averageVelocityY: hullseries.getAverageVelocity({ which: 'x' }),
+      averageCentroidVelocity: hullseries.getAverageCentroidVelocity(),
+      averageCentroidVelocityX: hullseries.getAverageCentroidVelocity({
+        which: 'x',
+      }),
+      averageCentroidVelocityY: hullseries.getAverageCentroidVelocity({
+        which: 'y',
+      }),
     };
 
     if (hi > 0) {
-      hullData.centroidDistanceX = hulls[hi].centroid({}).x - hulls[hi - 1].centroid({}).x;
-      hullData.centroidDistanceY = hulls[hi].centroid({}).y - hulls[hi - 1].centroid({}).y;
-      hullData.centroidDistance = Math.sqrt(
-        hullData.centroidDistanceX * hullData.centroidDistanceX
-          + hullData.centroidDistanceY * hullData.centroidDistanceY,
-      );
-      if (hullData.timeStep > 0 && hullData.centroidDistance > 0) {
-        hullData.centroidVelocity = hullData.centroidDistance / hullData.timeStep;
-        hullData.centroidVelocityX = hullData.centroidDistanceX / hullData.timeStep;
-        hullData.centroidVelocityY = hullData.centroidDistanceY / hullData.timeStep;
+      hullData.centroidDistanceX = hulls[hi].getCentroid().x - hulls[hi - 1].getCentroid().x;
+      hullData.centroidDistanceY = hulls[hi].getCentroid().y - hulls[hi - 1].getCentroid().y;
+      if (hullData.centroidDistanceX > 0 || hullData.centroidDistanceY > 0) {
+        hullData.centroidDistance = Math.sqrt(
+          hullData.centroidDistanceX * hullData.centroidDistanceX
+            + hullData.centroidDistanceY * hullData.centroidDistanceY,
+        );
+      }
+      if (hullData.timestep > 0 && hullData.centroidDistance > 0) {
+        hullData.centroidVelocity = hullData.centroidDistance / hullData.timestep;
+        hullData.centroidVelocityX = hullData.centroidDistanceX / hullData.timestep;
+        hullData.centroidVelocityY = hullData.centroidDistanceY / hullData.timestep;
       }
     }
 

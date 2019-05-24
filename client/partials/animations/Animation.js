@@ -9,7 +9,11 @@ Template.Animation.onCreated(function() {
 
 Template.Animation.onRendered(function() {
   this.autorun(() => {
-    if (Template.currentData().initialTraces && Template.currentData().layout && Template.currentData().frameSeries) {
+    if (
+      Template.currentData().initialTraces
+      && Template.currentData().layout
+      && Template.currentData().frameSeries
+    ) {
       this.frameSeries.set(Template.currentData().frameSeries);
       this.frames.set(this.frameSeries.get().getFrames());
 
@@ -21,10 +25,7 @@ Template.Animation.onRendered(function() {
   });
 });
 
-function initAnimation({
-  initialTraces,
-  layout,
-}) {
+function initAnimation({ initialTraces, layout }) {
   if (initialTraces && layout) {
     Plotly.purge('PlotArea');
 
@@ -45,20 +46,39 @@ Template.Animation.helpers({
   stimulus: () => Stimuli.findOne(),
   frameIndex: () => Template.instance().frameIndex.get(),
   frameName: () => Template.instance().frameIndex.get() + 1,
-  frameCount: () => (Template.instance().frames.get() ? Template.instance().frames.get().length : 0),
+  frameCount: () => (Template.instance().frames.get()
+    ? Template.instance().frames.get().length
+    : 0),
   timeOffset: () => Template.instance().timeOffset.get(),
   currentTime: () => Template.instance().currentTime.get(),
   playing: () => Template.instance().playing.get(),
   startTime: () => Template.instance().frames.get()[0].name,
-  endTime: () => Template.instance().frames.get()[Template.instance().frames.get().length - 1].name,
+  endTime: () => Template.instance().frames.get()[
+    Template.instance().frames.get().length - 1
+  ].name,
   progressPercent: () => {
     const startTime = Template.instance().frames.get()[0].name;
-    const endTime = Template.instance().frames.get()[Template.instance().frames.get().length - 1].name;
-    return Math.round(Math.min((Template.instance().currentTime.get() - startTime) / (endTime - startTime) * 100, 100));
+    const endTime = Template.instance().frames.get()[
+      Template.instance().frames.get().length - 1
+    ].name;
+    return Math.round(
+      Math.min(
+        ((Template.instance().currentTime.get() - startTime)
+          / (endTime - startTime))
+          * 100,
+        100,
+      ),
+    );
   },
-  progressSliderWidth: () => (Template.currentData().layout ? Template.currentData().layout.width - 206 : undefined),
+  progressSliderWidth: () => (Template.currentData().layout
+    ? Template.currentData().layout.width - 206
+    : undefined),
   currentFrame: () => Template.instance().frames.get()[Template.instance().frameIndex.get()],
-  coverage: () => helpers.formatNumber(Template.instance().frames.get()[Template.instance().frameIndex.get()].coverage() * 100),
+  coverage: () => helpers.formatNumber(
+    Template.instance()
+      .frames.get()
+      [Template.instance().frameIndex.get()].getCoverage() * 100,
+  ),
 });
 
 Template.Animation.events({
@@ -88,7 +108,10 @@ Template.Animation.events({
     plotFrame.bind(template)(index);
   },
   'click .step-forward-animation': (e, template) => {
-    const index = Math.min(template.frameIndex.get() + 1, template.frames.get().length - 1);
+    const index = Math.min(
+      template.frameIndex.get() + 1,
+      template.frames.get().length - 1,
+    );
     template.playing.set(false);
     template.timeOffset.set(0);
     template.frameIndex.set(index);
@@ -104,7 +127,10 @@ Template.Animation.events({
     plotFrame.bind(template)(index);
   },
   'input .slider-animation': (e, template) => {
-    const index = Math.max(parseInt(template.frames.get().length * e.target.value / 100) - 1, 0);
+    const index = Math.max(
+      parseInt((template.frames.get().length * e.target.value) / 100) - 1,
+      0,
+    );
     template.playing.set(false);
     template.timeOffset.set(0);
     template.frameIndex.set(index);
@@ -123,13 +149,19 @@ function playAnimation(timestamp) {
   }
 
   if (this.timeOffset.get() == 0) {
-    this.timeOffset.set(this.frames.get()[this.frameIndex.get()].name - timestamp);
+    this.timeOffset.set(
+      this.frames.get()[this.frameIndex.get()].name - timestamp,
+    );
   }
 
   this.currentTime.set(timestamp + this.timeOffset.get());
 
-  if (this.currentTime.get() > this.frames.get()[this.frameIndex.get() + 1].name) {
-    while (this.frames.get()[this.frameIndex.get() + 1].name < this.currentTime.get()) {
+  if (
+    this.currentTime.get() > this.frames.get()[this.frameIndex.get() + 1].name
+  ) {
+    while (
+      this.frames.get()[this.frameIndex.get() + 1].name < this.currentTime.get()
+    ) {
       this.frameIndex.set(this.frameIndex.get() + 1);
     }
     plotFrame.bind(this)();
@@ -140,7 +172,9 @@ function playAnimation(timestamp) {
       window.requestAnimationFrame(playAnimation.bind(this));
     } else {
       this.playing.set(false);
-      this.currentTime.set(this.frames.get()[this.frames.get().length - 1].name);
+      this.currentTime.set(
+        this.frames.get()[this.frames.get().length - 1].name,
+      );
       this.timeOffset.set(0);
       this.frameIndex.set(this.frames.get().length - 1);
     }
@@ -148,7 +182,9 @@ function playAnimation(timestamp) {
 }
 
 function plotFrame(index) {
-  if (typeof (index) === 'undefined') { index = this.frameIndex.get(); }
+  if (typeof index === 'undefined') {
+    index = this.frameIndex.get();
+  }
   const frame = this.frames.get()[index];
 
   let data;
@@ -161,16 +197,20 @@ function plotFrame(index) {
   }
 
   if (data) {
-    Plotly.animate('PlotArea', {
-      data,
-    }, {
-      transition: {
-        duration: 0,
+    Plotly.animate(
+      'PlotArea',
+      {
+        data,
       },
-      frame: {
-        duration: 0,
-        redraw: false,
+      {
+        transition: {
+          duration: 0,
+        },
+        frame: {
+          duration: 0,
+          redraw: false,
+        },
       },
-    });
+    );
   }
 }

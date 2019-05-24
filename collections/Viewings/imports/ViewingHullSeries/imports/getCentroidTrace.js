@@ -6,8 +6,8 @@ export default function getCentroidTrace(opt) {
   if (initial) {
     return {
       name: 'Centroid',
-      x: [hull.centroid().x],
-      y: [hull.centroid().y],
+      x: [hull.getCentroid().x],
+      y: [hull.getCentroid().y],
       mode: 'markers',
       type: 'scatter',
       marker: {
@@ -21,7 +21,7 @@ export default function getCentroidTrace(opt) {
     };
   }
   return {
-    x: [hull.centroid().x],
-    y: [hull.centroid().y],
+    x: [hull.getCentroid().x],
+    y: [hull.getCentroid().y],
   };
 }

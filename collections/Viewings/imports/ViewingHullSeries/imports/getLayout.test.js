@@ -34,7 +34,7 @@ describe('ViewingHullSeries.getLayout()', () => {
 
   it('inverts the y axis for an imotions datafile', () => {
     const viewing = Factory.create('viewingWithGazepoints');
-    viewing.datafileId = Factory.create('imotionsDatafile')._id;
+    viewing.fileFormat = 'imotions';
 
     const hullseries = new ViewingHullSeries({
       viewing,
@@ -47,7 +47,7 @@ describe('ViewingHullSeries.getLayout()', () => {
 
   it('does not invert the y axis for an smi datafile', () => {
     const viewing = Factory.create('viewingWithGazepoints');
-    viewing.datafileId = Factory.create('smiDatafile')._id;
+    viewing.fileFormat = 'smi';
 
     const hullseries = new ViewingHullSeries({
       viewing,

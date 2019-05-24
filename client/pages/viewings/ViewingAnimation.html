@@ -5,8 +5,17 @@
     {{else}}
       {{#if Template.subscriptionsReady}}
         {{#unless stimulusfile}}
-          <div><span class="label label-danger">No stimulus image associated with {{viewing.stimulus.name}}</span></div>
-          <div class="m-t-5"><a href="/studies/{{viewing.stimulus.studyId}}/stimuli/{{viewing.stimulus._id}}">{{viewing.stimulus.name}}</a></div>
+          <div>
+            <span class="label label-danger"
+              >No stimulus image associated with {{ viewing.stimulus.name }}</span
+            >
+          </div>
+          <div class="m-t-5">
+            <a
+              href="/studies/{{ viewing.stimulus.studyId }}/stimuli/{{viewing.stimulus._id}}"
+              >{{ viewing.stimulus.name }}</a
+            >
+          </div>
         {{/unless}}
       {{else}}
         <div class="m-t-100">

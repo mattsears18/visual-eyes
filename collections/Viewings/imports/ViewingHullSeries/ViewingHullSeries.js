@@ -10,7 +10,6 @@ import getPointTrailTrace from './imports/getPointTrailTrace';
 import getPolygonTrace from './imports/getPolygonTrace';
 import getCentroidTrace from './imports/getCentroidTrace';
 import getFrameData from './imports/getFrameData';
-import getCSV from './imports/getCSV';
 
 export default class ViewingHullSeries extends TimeHullSeries {
   constructor(opt) {
@@ -63,6 +62,4 @@ export default class ViewingHullSeries extends TimeHullSeries {
   getFrameData = getFrameData;
 
   getFrames = this.getHulls;
-
-  getCSV = getCSV;
 }

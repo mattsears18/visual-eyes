@@ -32,7 +32,9 @@ Template.Viewings.onCreated(function() {
           period: parseInt(Template.instance().period.get()),
           timestep: parseInt(Template.instance().timestep.get()),
           includeIncomplete: Template.instance().includeIncomplete.get(),
-          pointTrailLength: parseInt(Template.instance().pointTrailLength.get()),
+          pointTrailLength: parseInt(
+            Template.instance().pointTrailLength.get(),
+          ),
         });
       } else if (parseInt(FlowRouter.getParam('number')) > 1) {
         FlowRouter.setParams({ number: '1' });

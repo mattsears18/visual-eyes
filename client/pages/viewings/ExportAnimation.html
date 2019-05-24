@@ -1,0 +1,57 @@
+<template name="ExportAnimation">
+  <div class="well">
+    <h4>
+      Export Convex Hull Data
+    </h4>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+          <label for="exportType">Export Type</label>
+          <select class="form-control export-type" id="exportType">
+            <option disabled selected>Select...</option>
+            <optgroup label="Convex Hull Details">
+              <option value="detailsCurrent">Current Viewing</option>
+              <option value="detailsAllSingle"
+                >All Viewings in Analysis - Single File</option
+              >
+              <option value="detailsAllIndividual"
+                >All Viewings in Analysis - Individual Files</option
+              >
+            </optgroup>
+            <optgroup label="Convex Hull Summary">
+              <option value="summaryCoverage"
+                >Coverage with Participant Variables</option
+              >
+            </optgroup>
+          </select>
+        </div>
+      </div>
+      {{#if samplingRateVisible}}
+        <div class="col-xs-4 col-md-2">
+          <div class="form-group">
+            <label for="samplingRate" class="control-label">Sampling Rate</label>
+            <div class="input-group">
+              <input
+                type="number"
+                min="0"
+                max="100"
+                class="form-control sampling-rate"
+                placeholder="Sampling Rate (%)"
+                value="{{ samplingRate }}"
+              />
+              <span class="input-group-addon">%</span>
+            </div>
+            <span class="help-block"></span>
+          </div>
+        </div>
+      {{/if}}
+    </div>
+    {{#if downloadButtonVisible}}
+      <div>
+        <button class="btn btn-primary download-button">
+          <i class="fa fa-download"></i> Download .CSV File(s)
+        </button>
+      </div>
+    {{/if}}
+  </div>
+</template>

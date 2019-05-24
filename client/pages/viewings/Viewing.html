@@ -1,6 +1,9 @@
 <template name="Viewing">
   {{#if viewing}}
   {{> ViewingAnimation viewing=viewing hullParams=hullParams}}
+  <div class="m-t-20">
+    {{> ExportAnimation viewing=viewing hullParams=hullParams}}
+  </div>
   {{else}}
   <div class="m-t-100">
     {{> Spinner}}

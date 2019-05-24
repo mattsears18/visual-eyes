@@ -3,10 +3,21 @@ import FileSaver from 'file-saver';
 export default function saveCSV(opt) {
   opt = opt || {};
 
-  const csvContent = this.getHullseries(opt).getCSV();
+  if (typeof opt.period === 'undefined') {
+    throw new Error('noPeriod');
+  }
+
+  if (typeof opt.timestep === 'undefined') {
+    throw new Error('noTimestep');
+  }
+
+  const csvContent = this.getCSV(opt);
+
   if (Meteor.isServer) {
     // Save file on the server with default filename for analysis in R
-    fs.writeFile(`${process.env.PWD}/lastViewing.csv`, csvContent, function(err) {
+    fs.writeFile(`${process.env.PWD}/lastViewingData.csv`, csvContent, function(
+      err,
+    ) {
       if (err) {
         return console.log(err);
       }
@@ -15,14 +26,13 @@ export default function saveCSV(opt) {
 
   if (Meteor.isClient) {
     // Set default file name for organizing later
-    let nameFile = `${this.study().name} - vg${this.analysis().viewingGap}mvt${
-      this.analysis().minViewingTime}p${opt.period}ts${opt.timestep}`;
+    const includeIncomplete = opt.includeIncomplete ? 'True' : 'False';
 
-    if (opt.includeIncomplete) {
-      nameFile += 'incomplete';
-    }
-    nameFile = `${nameFile} - Viewing - ${this.participant().name}`;
-
+    const nameFile = `${this.study().name} - ${this.analysis().name} - p${
+      opt.period
+    }ts${opt.timestep}incomplete${includeIncomplete} - ${
+      this.participant().name
+    } - ${this.stimulus().name} - viewing${this.number}`;
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
     // Save file to user's disk
     FileSaver.saveAs(blob, nameFile);

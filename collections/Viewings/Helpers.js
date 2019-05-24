@@ -1,9 +1,11 @@
 import Jobs from '../Jobs/Jobs';
 import getHullseries from './imports/getHullseries';
+import getCSV from './imports/getCSV';
 import saveCSV from './imports/saveCSV';
 
 Viewings.helpers({
   getHullseries,
+  getCSV,
   saveCSV,
 
   hasPermission(action) {

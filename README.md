@@ -1,4 +1,4 @@
-# visual-eyes
+# Visual Eyes
 
 ![Travis (.org)](https://img.shields.io/travis/mattsears18/visual-eyes.svg)
 ![Coveralls github](https://img.shields.io/coveralls/github/mattsears18/visual-eyes.svg)
@@ -8,17 +8,23 @@ A visualization and statistical analysis web application for eye tracking data
 - Supports the SMI BeGaze and iMotions file formats
 - Compatible with macOS, Windows, and Linux
 
-visual-eyes is a web application, which means that it runs in your internet browser, but all files uploaded to visual-eyes are stored on your machine and all computations are run on your machine.
+Visual Eyes is a web application, which means that it runs in your internet browser, but all files uploaded to Visual Eyes are stored on your machine and all computations are run on your machine.
+
+## Example Animation
+
+The video clip below is an example of the interactive animations that can be produced from eye tracking data.
+
+[![VisualEyes - Eye tracking data visualization](http://img.youtube.com/vi/Ed6oByh5tJw/0.jpg)](http://www.youtube.com/watch?v=Ed6oByh5tJw)
 
 ## Deployment
 
-Rather than installing visual-eyes on your local machine, an instance of visual-eyes can be deployed to Heroku.
+Rather than installing Visual Eyes on your local machine, an instance of Visual Eyes can be deployed to Heroku.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Installation Prerequisites
 
-To install visual-eyes on your local machine, follow the installation instructions for your operating system for each of the following applications:
+To install Visual Eyes on your local machine, follow the installation instructions for your operating system for each of the following applications:
 
 1. Install Node.js (includes NPM): https://nodejs.org
 2. Install Meteor.js: https://www.meteor.com/install
@@ -28,7 +34,7 @@ To install visual-eyes on your local machine, follow the installation instructio
 ## Installation
 
 1. Open your terminal (macOS), cmder (Windows), or Command Line (Windows).
-2. Navigate to the directory where you would like to install visual-eyes. For example:
+2. Navigate to the directory where you would like to install Visual Eyes. For example:
 
 ### macOS
 
@@ -67,7 +73,7 @@ npm start
 
 ## Quick Start
 
-1. After installing visual-eyes (see installation instructions above), launch the app and navigate to: http://localhost:3000
+1. After installing Visual Eyes (see installation instructions above), launch the app and navigate to: http://localhost:3000
 2. Register for an account (top right corner of the app).
 3. Create a `study` with at least one eye tracking data file.
 

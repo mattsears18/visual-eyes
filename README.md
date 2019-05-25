@@ -14,7 +14,7 @@ Visual Eyes is a web application, which means that it runs in your internet brow
 
 The video clip below is an example of the interactive animations that can be produced from eye tracking data.
 
-[![VisualEyes - Eye tracking data visualization](https://raw.githubusercontent.com/mattsears18/visual-eyes/master/public/screenshot1.png)](http://www.youtube.com/watch?v=Ed6oByh5tJw)
+[![VisualEyes - Eye tracking data visualization](https://raw.githubusercontent.com/mattsears18/visual-eyes/master/public/screenshot2.png)](http://www.youtube.com/watch?v=Ed6oByh5tJw)
 
 ## Deployment
 

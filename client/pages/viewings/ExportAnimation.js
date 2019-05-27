@@ -3,12 +3,14 @@ Template.ExportAnimation.onCreated(function() {
   this.exportType = ReactiveVar();
   this.samplingStep = new ReactiveVar(0);
   this.downloadButtonVisible = new ReactiveVar(false);
+  this.metricsButtonVisible = new ReactiveVar(false);
   this.samplingStepVisible = new ReactiveVar(false);
 });
 
 Template.ExportAnimation.helpers({
   samplingStep: () => Template.instance().samplingStep.get(),
   downloadButtonVisible: () => Template.instance().downloadButtonVisible.get(),
+  metricsButtonVisible: () => Template.instance().metricsButtonVisible.get(),
   samplingStepVisible: () => Template.instance().samplingStepVisible.get(),
 });
 

@@ -54,6 +54,12 @@
         <button class="btn btn-primary download-button">
           <i class="fa fa-download"></i> Download .CSV File(s)
         </button>
+      
+        {{#if metricsButtonVisible}}
+          <button class="btn btn-default metrics-button m-l-10">
+            <i class="fa fa-list"></i> Select Metrics
+          </button>
+        {{/if}}
       </div>
     {{/if}}
   </div>

@@ -41,9 +41,11 @@ Template.ExportAnimation.events({
       //   `analysis.saveCSVViewings({samplingRate: ${templateInstance.samplingRate.get()}})`,
       // );
     } else if (templateInstance.exportType.get() === 'detailsAllIndividual') {
-      console.log(
-        `analysis.saveCSVViewings({samplingRate: ${templateInstance.samplingRate.get()}, individual: true})`,
-      );
+      // console.log(
+      //   `analysis.saveCSVViewings({samplingRate: ${templateInstance.samplingRate.get()}, individual: true})`,
+      // );
+    } else if (templateInstance.exportType.get() === 'summaryStats') {
+      console.log('summaryStats');
     }
   },
 });

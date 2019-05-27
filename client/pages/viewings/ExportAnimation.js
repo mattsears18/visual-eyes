@@ -5,6 +5,11 @@ Template.ExportAnimation.onCreated(function() {
   this.downloadButtonVisible = new ReactiveVar(false);
   this.metricsButtonVisible = new ReactiveVar(false);
   this.samplingStepVisible = new ReactiveVar(false);
+
+  this.autorun(() => {
+    const studyId = FlowRouter.getParam('studyId');
+    this.subscribe('variables.byStudyId', studyId);
+  });
 });
 
 Template.ExportAnimation.helpers({
@@ -48,6 +53,14 @@ Template.ExportAnimation.events({
       // );
     } else if (templateInstance.exportType.get() === 'summaryStats') {
       console.log('summaryStats');
+      console.log(
+        Template.currentData()
+          .viewing.analysis()
+          .saveCSVViewingsIndividual({
+            ...Template.currentData().hullParams,
+            samplingStep: templateInstance.samplingStep.get(),
+          }),
+      );
     }
   },
 });

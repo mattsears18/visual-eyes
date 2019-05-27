@@ -1,3 +1,5 @@
+import { template } from 'handlebars';
+
 Template.Viewings.onCreated(function() {
   this.viewing = new ReactiveVar();
   this.period = new ReactiveVar(5000);
@@ -156,13 +158,17 @@ Template.Viewings.destroyed = function() {
 };
 
 Template.Viewings.events({
-  'change .reactive': (e, t) => {
+  'change .reactive': (event, templateInstance) => {
     let value;
-    if (e.target.type == 'checkbox') {
-      value = e.target.checked;
+    if (event.target.type == 'checkbox') {
+      value = event.target.checked;
+    } else if (event.target.value === '') {
+      value = 0;
     } else {
-      value = e.target.value;
+      value = event.target.value;
     }
-    t[e.target.id].set(value);
+
+    templateInstance[event.target.id].set(value);
+    $(`#${event.target.id}`).val(value);
   },
 });

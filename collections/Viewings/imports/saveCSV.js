@@ -1,17 +1,17 @@
 import FileSaver from 'file-saver';
 
+const json2csv = require('json2csv').parse;
+
 export default function saveCSV(opt) {
-  opt = opt || {};
+  const exportData = this.getExportData(opt);
 
-  if (typeof opt.period === 'undefined') {
-    throw new Error('noPeriod');
+  let csvContent;
+
+  try {
+    csvContent = json2csv(exportData);
+  } catch (err) {
+    console.error(err);
   }
-
-  if (typeof opt.timestep === 'undefined') {
-    throw new Error('noTimestep');
-  }
-
-  const csvContent = this.getCSV(opt);
 
   if (Meteor.isServer) {
     // Save file on the server with default filename for analysis in R

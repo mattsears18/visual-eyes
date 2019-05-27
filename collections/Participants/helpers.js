@@ -1,11 +1,13 @@
+import Variables from '../Variables/Variables';
+
 Participants.helpers({
   hasPermission(action) {
     check(action, String);
     return true;
   },
   variables() {
-    variables = Variables.find({ studyId: this.studyId }).fetch();
-    participant = this;
+    const variables = Variables.find({ studyId: this.studyId }).fetch();
+    const participant = this;
 
     if (participant.variableVals) {
       variables.forEach(function(variable) {

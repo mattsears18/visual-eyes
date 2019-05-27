@@ -1,6 +1,6 @@
 import { jStat } from 'jStat';
 
-export default function getCSVParticipants() {
+export default function getCSV(opt) {
   const analysis = this;
   const participants = Participants.find({
     _id: { $in: analysis.participantIds },

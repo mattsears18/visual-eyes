@@ -22,7 +22,9 @@ Template.AnalysesList.events({
   },
   'click .download-as-csv'() {
     const study = Studies.findOne();
-    study.saveCSVs();
+    study.saveCSV({
+      groupBy: 'analysis',
+    });
   },
 });
 

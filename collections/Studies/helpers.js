@@ -1,11 +1,11 @@
 import reprocessAnalyses from './imports/reprocessAnalyses';
 import reprocessDatafiles from './imports/reprocessDatafiles';
-import saveCSVs from './imports/saveCSVs';
+import saveCSV from './imports/saveCSV';
 
 Studies.helpers({
   reprocessAnalyses,
   reprocessDatafiles,
-  saveCSVs,
+  saveCSV,
 
   hasPermission(action) {
     check(action, String);

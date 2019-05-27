@@ -1,14 +1,16 @@
 import Jobs from '../Jobs/Jobs';
 import getHullseries from './imports/getHullseries';
-import getCSV from './imports/getCSV';
+import getExportData from './imports/getExportData';
 import saveCSV from './imports/saveCSV';
 import getSampledData from './imports/getSampledData';
+import getFixationProportion from './imports/getFixationProportion';
 
 Viewings.helpers({
   getHullseries,
-  getCSV,
+  getExportData,
   saveCSV,
   getSampledData,
+  getFixationProportion,
 
   hasPermission(action) {
     check(action, String);

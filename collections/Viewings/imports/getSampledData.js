@@ -1,4 +1,16 @@
 export default function getSampledData(d, step) {
+  if (typeof step === 'undefined') {
+    throw new Error('noStep');
+  }
+
+  if (parseFloat(step) < 0 || parseFloat(step) > 100) {
+    throw new Error('invalidStep');
+  }
+
+  if (parseFloat(step) === 0) {
+    return d;
+  }
+
   const stepPercents = [];
 
   for (let s = 0; s < 100; s += parseFloat(step)) {
@@ -13,10 +25,6 @@ export default function getSampledData(d, step) {
     const index = d.findIndex(function(row) {
       return row.elapsedTimeNormalized >= stepPercents[i];
     });
-
-    // console.log('=====');
-    // console.log(stepPercents[i]);
-    // console.log(d[index].elapsedTimeNormalized);
 
     sampledData.push(d[index]);
   }

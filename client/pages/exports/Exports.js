@@ -3,8 +3,8 @@ Template.Exports.onCreated(function() {
   this.analysisId = ReactiveVar();
   this.analysisSelectorVisible = new ReactiveVar(false);
   this.downloadButtonVisible = new ReactiveVar(false);
-  this.samplingRateVisible = new ReactiveVar(false);
-  this.samplingRate = new ReactiveVar(100);
+  this.samplingStepVisible = new ReactiveVar(false);
+  this.samplingStep = new ReactiveVar(100);
 
   this.autorun(() => {
     if (this.analysisId.get()) {
@@ -16,8 +16,8 @@ Template.Exports.onCreated(function() {
 Template.Exports.helpers({
   analysisSelectorVisible: () => Template.instance().analysisSelectorVisible.get(),
   downloadButtonVisible: () => Template.instance().downloadButtonVisible.get(),
-  samplingRateVisible: () => Template.instance().samplingRateVisible.get(),
-  samplingRate: () => Template.instance().samplingRate.get(),
+  samplingStepVisible: () => Template.instance().samplingStepVisible.get(),
+  samplingStep: () => Template.instance().samplingStep.get(),
 });
 
 Template.Exports.events({
@@ -50,9 +50,9 @@ Template.Exports.events({
       templateInstance.exportType.get() === 'allViewingsSingle'
       || templateInstance.exportType.get() === 'allViewingsIndividual'
     ) {
-      templateInstance.samplingRateVisible.set(true);
+      templateInstance.samplingStepVisible.set(true);
     } else {
-      templateInstance.samplingRateVisible.set(false);
+      templateInstance.samplingStepVisible.set(false);
     }
 
     if (templateInstance.analysisId.get()) {
@@ -62,7 +62,7 @@ Template.Exports.events({
     }
   },
   'change .sampling-rate': (event, templateInstance) => {
-    templateInstance.samplingRate.set(event.target.value);
+    templateInstance.samplingStep.set(event.target.value);
   },
   'click .download-button': (event, templateInstance) => {
     console.log(templateInstance.exportType.get());

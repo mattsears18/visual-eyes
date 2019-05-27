@@ -36,10 +36,10 @@
         {{> AnalysisSelector}}
         {{/if}}
       </div>
-      {{#if samplingRateVisible}}
+      {{#if samplingStepVisible}}
       <div class="col-xs-4 col-md-2">
         <div class="form-group">
-          <label for="samplingRate" class="control-label">Sampling Rate</label>
+          <label for="samplingStep" class="control-label">Sampling Rate</label>
           <div class="input-group">
             <input
               type="number"
@@ -47,7 +47,7 @@
               max="100"
               class="form-control sampling-rate"
               placeholder="Sampling Rate (%)"
-              value="{{ samplingRate }}"
+              value="{{ samplingStep }}"
             />
             <span class="input-group-addon">%</span>
           </div>

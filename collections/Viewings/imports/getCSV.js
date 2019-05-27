@@ -11,9 +11,9 @@ export default function getCSV(opt) {
     throw new Error('noTimestep');
   }
 
-  const samplingRate = typeof opt.samplingRate !== 'undefined' ? opt.samplingRate : 100;
+  const samplingStep = typeof opt.samplingStep !== 'undefined' ? opt.samplingStep : 100;
 
-  const data = [];
+  let data = [];
   const hullseries = this.getHullseries({
     period: opt.period,
     timestep: opt.timestep,
@@ -109,6 +109,10 @@ export default function getCSV(opt) {
 
     data.push(hullData);
   });
+
+  if (samplingStep > 0) {
+    data = this.getSampledData(data, samplingStep);
+  }
 
   let csv;
 

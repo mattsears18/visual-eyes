@@ -19,7 +19,12 @@ export default function saveCSV(opt) {
         viewing.participant().name
       } - ${viewing.stimulus().name} - viewing${viewing.number}.csv`;
 
-      console.log(viewing.participant().name);
+      console.log(
+        `${viewing.participant().name} - ${viewing.stimulus().name} - ${
+          viewing.number
+        }`,
+      );
+
       const csvContent = json2csv(viewing.getExportData(opt));
       zip.file(nameFile, csvContent);
     });

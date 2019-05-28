@@ -1,0 +1,12 @@
+Viewing.saveCSV({ period: 5000 });
+Viewing.saveCSV(); // (no period)
+
+Analysis.saveCSV({ period: 5000, individual: true });
+// Analysis.saveCSV({ groupBy: 'viewing', period: 5000, individual: false });
+Analysis.saveCSV({ individual: true }); //  no period
+// Analysis.saveCSV({ individual: false }); // no period
+
+Analysis.saveCSV({ groupBy: 'participant', period: 5000, individual: true });
+// Analysis.saveCSV({ groupBy: 'participant', period: 5000, individual: false });
+// Analysis.saveCSV({ groupBy: 'participant', individual: true }); //  no period
+Analysis.saveCSV({ groupBy: 'participant', individual: false }); // no period

@@ -46,22 +46,22 @@ Template.ExportAnimation.events({
   'click .download-button': (event, templateInstance) => {
     templateInstance.downloadButtonDisabled.set(true);
 
-    if (templateInstance.exportType.get() === 'detailsCurrent') {
+    const { viewing } = Template.currentData();
+    const { hullParams } = Template.currentData();
+    const samplingStep = templateInstance.samplingStep.get();
+
+    if (templateInstance.exportType.get() === 'viewingsCurrent') {
       Template.currentData().viewing.saveCSV({
         ...Template.currentData().hullParams,
         samplingStep: templateInstance.samplingStep.get(),
       });
 
       templateInstance.downloadButtonDisabled.set(false);
-    } else if (templateInstance.exportType.get() === 'detailsAllSingle') {
+    } else if (templateInstance.exportType.get() === 'viewingsAllSingle') {
       // console.log(
       //   `analysis.saveCSVViewings({samplingStep: ${templateInstance.samplingStep.get()}})`,
       // );
-    } else if (templateInstance.exportType.get() === 'detailsAllIndividual') {
-      const { viewing } = Template.currentData();
-      const { hullParams } = Template.currentData();
-      const samplingStep = templateInstance.samplingStep.get();
-
+    } else if (templateInstance.exportType.get() === 'viewingsAllIndividual') {
       templateInstance.subscribe(
         'viewings.byAnalysisIdWithGazepoints',
         FlowRouter.getParam('analysisId'),
@@ -75,15 +75,30 @@ Template.ExportAnimation.events({
           templateInstance.downloadButtonDisabled.set(false);
         },
       );
-    } else if (templateInstance.exportType.get() === 'summaryStats') {
-      console.log('summaryStats');
-      console.log(
-        Template.currentData()
-          .viewing.analysis()
-          .saveCSVViewingsIndividual({
-            ...Template.currentData().hullParams,
-            samplingStep: templateInstance.samplingStep.get(),
-          }),
+    } else if (templateInstance.exportType.get() === 'participantsAll') {
+      console.log('participantsAll');
+      // console.log(
+      //   Template.currentData()
+      //     .viewing.analysis()
+      //     .saveCSVViewingsIndividual({
+      //       ...Template.currentData().hullParams,
+      //       samplingStep: templateInstance.samplingStep.get(),
+      //     }),
+      // );
+
+      templateInstance.subscribe(
+        'viewings.byAnalysisIdWithGazepoints',
+        FlowRouter.getParam('analysisId'),
+        () => {
+          viewing.analysis().saveCSV({
+            ...hullParams,
+            samplingStep,
+            groupBy: 'participant',
+            individual: 'false',
+          });
+
+          templateInstance.downloadButtonDisabled.set(false);
+        },
       );
     }
   },

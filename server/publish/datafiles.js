@@ -25,12 +25,3 @@ Meteor.publish('datafiles.single', function(id) {
   check(id, String);
   return Datafiles.find({ _id: id }).cursor;
 });
-
-Meteor.publish('datafiles.byAnalysisId', function(analysisId) {
-  check(analysisId, String);
-  analysis = Analyses.findOne({ _id: analysisId });
-  return Datafiles.find(
-    { _id: { $in: analysis.datafileIds } },
-    { sort: { name: 1 } },
-  ).cursor;
-});

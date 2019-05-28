@@ -1,3 +1,5 @@
+import FileSaver from 'file-saver';
+
 const json2csv = require('json2csv').parse;
 const JSZip = require('jszip');
 
@@ -6,14 +8,41 @@ const zip = new JSZip();
 export default function saveCSV(opt) {
   const { individual } = opt || {};
   const { groupBy } = opt || {};
+  const { period } = opt || {};
+  const { timestep } = opt || {};
+  const { type } = opt || {};
 
   if (groupBy === 'participant') {
-    console.log('groupBy participant');
-    console.log(this);
-  } else {
-    // groupBy viewing
-    // eslint-disable-next-line no-lonely-if
-    if (individual) {
+    if (type === 'summary') {
+      const exportData = this.getExportData(opt);
+
+      let csvContent;
+
+      try {
+        csvContent = json2csv(exportData);
+      } catch (err) {
+        console.error(err);
+      }
+
+      // Set default file name for organizing later
+      const includeIncomplete = opt.includeIncomplete ? 'True' : 'False';
+
+      let filename = `${this.study().name} - ${this.name}`;
+
+      if (period) {
+        filename += ` - p${
+          opt.period
+        }ts${timestep}incomplete${includeIncomplete} - participantSummary`;
+      }
+
+      if (Meteor.isClient) {
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
+        FileSaver.saveAs(blob, filename);
+      }
+    }
+  } else if (groupBy === 'viewing') {
+    if (type === 'individualZip') {
+      // eslint-disable-next-line no-lonely-if
       const viewings = Viewings.find({ analysisId: this._id }).fetch();
 
       // Set default file name for organizing later
@@ -46,8 +75,8 @@ export default function saveCSV(opt) {
 
         saveAs(blob, zipName); // 2) trigger the download
       });
-    } else {
-      console.log('make a single file');
+    } else if (type === 'summary') {
+      console.log('make a summary');
     }
   }
 }

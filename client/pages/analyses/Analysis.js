@@ -78,9 +78,12 @@ Template.Analysis.helpers({
 });
 
 Template.Analysis.events({
-  'click .download-as-csv'() {
+  'click .download-as-csv'(event, templateInstance) {
     const analysis = Analyses.findOne();
-    analysis.saveCSVParticipants();
+    analysis.saveCSV({
+      groupBy: 'participant',
+      individual: 'false',
+    });
   },
   'click .download-viewings-as-csv'(e, template) {
     const analysis = Analyses.findOne();

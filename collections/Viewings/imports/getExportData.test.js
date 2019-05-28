@@ -3,12 +3,13 @@ import '../../factories.test';
 import { Factory } from 'meteor/dburles:factory';
 import { expect } from 'chai';
 
-describe.only('Viewing.getExportData()', () => {
+describe('Viewing.getExportData()', () => {
   it('has no period', () => {
     const viewing = Factory.create('viewing');
     const expectedFields = [
       'link',
       'study',
+      'pointsType',
       'analysis',
       'viewingGap',
       'minViewingTime',
@@ -37,6 +38,7 @@ describe.only('Viewing.getExportData()', () => {
     const expectedFields = [
       'link',
       'study',
+      'pointsType',
       'analysis',
       'viewingGap',
       'minViewingTime',

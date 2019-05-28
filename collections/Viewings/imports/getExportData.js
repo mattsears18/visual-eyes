@@ -17,6 +17,7 @@ export default function getExportData(opt) {
       this.number
     }`,
     study: this.study().name,
+    pointsType: this.study().pointsType(),
     analysis: this.analysis().name,
     viewingGap: this.analysis().viewingGap,
     minViewingTime: this.analysis().minViewingTime,

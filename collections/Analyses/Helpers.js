@@ -6,6 +6,7 @@ import getViewingAoiIds from './imports/getViewingAoiIds';
 import makeViewingFromGazepoints from './imports/makeViewingFromGazepoints';
 import makeViewings from './imports/makeViewings';
 import updateStatus from './imports/updateStatus';
+import getExportData from './imports/getExportData';
 import saveCSV from './imports/saveCSV';
 import allViewingsCreated from './imports/allViewingsCreated';
 import allViewingsProcessed from './imports/allViewingsProcessed';
@@ -18,6 +19,7 @@ Analyses.helpers({
   makeViewingFromGazepoints,
   makeViewings,
   updateStatus,
+  getExportData,
   saveCSV,
   allViewingsCreated,
   allViewingsProcessed,

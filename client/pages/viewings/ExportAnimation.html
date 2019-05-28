@@ -11,15 +11,18 @@
             <option disabled selected>Select...</option>
             <optgroup label="Group by Viewing">
               <option value="viewingsCurrent">Current Viewing</option>
-              <option disabled value="viewingsAllSingle"
+              {{!-- <option disabled value="viewingsAllSingle"
                 >All Viewings in Analysis - Single File</option
-              >
-              <option value="viewingsAllIndividual"
+              > --}}
+              <option value="viewingsIndividualZip"
                 >All Viewings in Analysis - Individual Files</option
               >
+              <option value="viewingsSummary">
+                Summary Stats with Participant Variables
+              </option>
             </optgroup>
             <optgroup label="Group by Participant">
-              <option value="participantsAll"
+              <option value="participantsSummary"
                 >Summary Stats with Participant Variables</option
               >
             </optgroup>

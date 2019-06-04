@@ -1,5 +1,5 @@
-require('./../../factories.test');
-const { expect } = require('chai');
+import '../../factories.test';
+import { expect } from 'chai';
 
 describe('Analyses.getViewingEndIndex()', () => {
   it('gets the endIndex', async () => {
@@ -65,7 +65,9 @@ describe('Analyses.getViewingEndIndex()', () => {
       { timestamp: 19000 },
     ];
 
-    expect(() => { analysis.getViewingEndIndex({ gazepoints: points }); }).to.throw('minViewingTimeNotMet');
+    expect(() => {
+      analysis.getViewingEndIndex({ gazepoints: points });
+    }).to.throw('minViewingTimeNotMet');
 
     try {
       analysis.getViewingEndIndex({ gazepoints: points });
@@ -88,6 +90,8 @@ describe('Analyses.getViewingEndIndex()', () => {
       { timestamp: 4000 },
     ];
 
-    expect(() => { analysis.getViewingEndIndex({ gazepoints: points, startIndex: 4 }); }).to.throw('startIndexTooHigh');
+    expect(() => {
+      analysis.getViewingEndIndex({ gazepoints: points, startIndex: 4 });
+    }).to.throw('startIndexTooHigh');
   });
 });

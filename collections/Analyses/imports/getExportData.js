@@ -78,8 +78,6 @@ export default function getExportData(opt) {
     });
 
     if (typeof period !== 'undefined') {
-      console.log('balls');
-
       viewings.forEach((viewing) => {
         const hullseries = viewing.getHullseries({
           period,

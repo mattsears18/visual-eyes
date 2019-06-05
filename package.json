@@ -67,7 +67,7 @@
     "select2-bootstrap-theme": "0.1.0-beta.10",
     "simpl-schema": "1.4.3",
     "stringify-object": "^3.3.0",
-    "time-hulls": "^0.0.99",
+    "time-hulls": "^0.0.106",
     "underscore": "^1.9.1"
   },
   "devDependencies": {

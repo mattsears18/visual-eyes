@@ -6,8 +6,8 @@ export default function getPolygonTrace(opt) {
   if (initial) {
     return {
       name: 'Convex Hull',
-      x: hull.polygon({ which: 'x' }),
-      y: hull.polygon({ which: 'y' }),
+      x: hull.getPolygon({ which: 'x' }),
+      y: hull.getPolygon({ which: 'y' }),
       mode: 'lines',
       type: 'scatter',
       line: {
@@ -17,7 +17,7 @@ export default function getPolygonTrace(opt) {
     };
   }
   return {
-    x: hull.polygon({ which: 'x' }),
-    y: hull.polygon({ which: 'y' }),
+    x: hull.getPolygon({ which: 'x' }),
+    y: hull.getPolygon({ which: 'y' }),
   };
 }

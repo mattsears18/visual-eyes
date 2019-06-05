@@ -93,9 +93,9 @@ export default function getExportData(opt) {
         centroidDistance: 0,
         centroidDistanceX: 0,
         centroidDistanceY: 0,
-        centroidVelocity: 0,
-        centroidVelocityX: 0,
-        centroidVelocityY: 0,
+        // centroidVelocity: 0,
+        // centroidVelocityX: 0,
+        // centroidVelocityY: 0,
         coverage: hull.getCoverage({
           width: this.stimulus().width,
           height: this.stimulus().height,
@@ -105,6 +105,7 @@ export default function getExportData(opt) {
           height: this.stimulus().height,
         }),
         averageCoverage: hullseries.getAverageCoverage(),
+        finalCoverage: hullseries.getFinalCoverage(),
         averageVelocity: hullseries.getAverageVelocity(),
         averageVelocityX: hullseries.getAverageVelocity({ which: 'x' }),
         averageVelocityY: hullseries.getAverageVelocity({ which: 'x' }),
@@ -120,17 +121,20 @@ export default function getExportData(opt) {
       if (hi > 0) {
         hullData.centroidDistanceX = hulls[hi].getCentroid().x - hulls[hi - 1].getCentroid().x;
         hullData.centroidDistanceY = hulls[hi].getCentroid().y - hulls[hi - 1].getCentroid().y;
-        if (hullData.centroidDistanceX > 0 || hullData.centroidDistanceY > 0) {
+        if (
+          hullData.centroidDistanceX !== 0
+          || hullData.centroidDistanceY !== 0
+        ) {
           hullData.centroidDistance = Math.sqrt(
             hullData.centroidDistanceX * hullData.centroidDistanceX
               + hullData.centroidDistanceY * hullData.centroidDistanceY,
           );
         }
-        if (hullData.timestep > 0 && hullData.centroidDistance > 0) {
-          hullData.centroidVelocity = hullData.centroidDistance / hullData.timestep;
-          hullData.centroidVelocityX = hullData.centroidDistanceX / hullData.timestep;
-          hullData.centroidVelocityY = hullData.centroidDistanceY / hullData.timestep;
-        }
+        // if (hullData.timestep > 0 && hullData.centroidDistance > 0) {
+        //   hullData.centroidVelocity = hullData.centroidDistance / hullData.timestep;
+        //   hullData.centroidVelocityX = hullData.centroidDistanceX / hullData.timestep;
+        //   hullData.centroidVelocityY = hullData.centroidDistanceY / hullData.timestep;
+        // }
       }
 
       data.push(hullData);

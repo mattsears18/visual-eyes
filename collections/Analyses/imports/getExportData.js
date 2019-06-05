@@ -1,11 +1,5 @@
 import { jStat } from 'jStat';
 
-import { loadPartialConfig } from '@babel/core';
-import Datafiles from '../../Datafiles/Datafiles';
-import Participants from '../../Participants/Participants';
-import Viewings from '../../Viewings/Viewings';
-import helpers from '../../../lib/helpers';
-
 export default function getExportData(opt) {
   const { groupBy } = opt || {};
 
@@ -45,6 +39,7 @@ export default function getExportData(opt) {
         'fixationFrequency',
         'fixationProportion',
         'averageCoverage',
+        'finalCoverage',
         'averageVelocity',
         'averageVelocityX',
         'averageVelocityY',
@@ -87,6 +82,8 @@ export default function getExportData(opt) {
       };
 
       const durations = pViewings.map(v => v.viewingDuration);
+      const finalCoverages = pViewings.map(v => v.finalCoverage);
+
       const sViewingGroups = _.groupBy(pViewings, 'stimulus');
       const viewingDurationsPerStimulus = [];
       const viewingCountsPerStimulus = [];
@@ -129,6 +126,9 @@ export default function getExportData(opt) {
         averageCoverage:
           jStat.sum(pViewings.map(v => v.viewingDuration * v.averageCoverage))
           / jStat.sum(durations),
+        finalCoverages,
+        finalCoveragesMean: jStat.mean(finalCoverages),
+        finalCoveragesMedian: jStat.median(finalCoverages),
         averageVelocity:
           jStat.sum(pViewings.map(v => v.viewingDuration * v.averageVelocity))
           / jStat.sum(durations),

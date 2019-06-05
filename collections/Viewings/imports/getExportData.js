@@ -4,6 +4,14 @@ export default function getExportData(opt) {
   const includeIncomplete = opt || {};
   let { samplingStep } = opt || {};
 
+  if (Meteor.isClient) {
+    console.log(
+      `viewing.getExportData() ${this.participant().name} - ${
+        this.stimulus().name
+      } - ${this.number}`,
+    );
+  }
+
   if (typeof samplingStep === 'undefined') {
     samplingStep = 0;
   }
@@ -49,20 +57,13 @@ export default function getExportData(opt) {
     // just return basic stats about the viewing
     data = fields;
 
-    console.log(this.participant().variables());
-
     this.participant()
       .variables()
       .forEach(function(variable) {
         data[variable.name] = variable.value;
       });
   } else {
-    const hullseries = this.getHullseries({
-      period,
-      timestep,
-      includeIncomplete: !!includeIncomplete,
-    });
-
+    const hullseries = this.getHullseries(opt);
     const hulls = hullseries.getHulls();
 
     hulls.forEach((hull, hi) => {

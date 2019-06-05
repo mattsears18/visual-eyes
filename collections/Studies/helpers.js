@@ -1,6 +1,7 @@
 import reprocessAnalyses from './imports/reprocessAnalyses';
 import reprocessDatafiles from './imports/reprocessDatafiles';
 import saveCSV from './imports/saveCSV';
+import Variables from '../Variables/Variables';
 
 Studies.helpers({
   reprocessAnalyses,
@@ -66,5 +67,8 @@ Studies.helpers({
       pointsType = 'fixations';
     }
     return pointsType;
+  },
+  variables() {
+    return Variables.find({ studyId: this._id });
   },
 });

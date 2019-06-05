@@ -3,8 +3,6 @@ import FileSaver from 'file-saver';
 const json2csv = require('json2csv').parse;
 
 export default function saveCSV(opt) {
-  console.log(this.participant().name);
-
   const exportData = this.getExportData(opt);
 
   let csvContent;

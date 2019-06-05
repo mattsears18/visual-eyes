@@ -208,7 +208,11 @@ const aoi = Factory.create('aoi', {
   studyId: study._id,
   stimulusId: stimulus._id,
 });
-const analysis = Factory.create('analysis', { studyId: study._id });
+const analysis = Factory.create('analysis', {
+  studyId: study._id,
+  participantIds: [participant._id],
+  stimulusIds: [stimulus._id],
+});
 
 const gazepoints = [];
 
@@ -227,6 +231,21 @@ for (let i = 0; i < 100; i += 1) {
 
 gazepoints.sort((a, b) => a.timestamp - b.timestamp);
 
+let fixationIndex = 1;
+
+for (let i = 0; i < 100; i += 1) {
+  if (faker.random.boolean()) {
+    fixationIndex += 1;
+  }
+  if (faker.random.boolean()) gazepoints[i].fixationIndex = fixationIndex;
+}
+
+const duration = gazepoints[gazepoints.length - 1].timestamp - gazepoints[0].timestamp;
+const fixationIndices = Object.keys(
+  _.groupBy(gazepoints, 'fixationIndex'),
+).filter(indexString => Number.isInteger(parseInt(indexString, 10)));
+const fixationCount = fixationIndices.length;
+
 Factory.define('viewingWithGazepoints', Viewings, {
   analysisId: analysis._id,
   studyId: study._id,
@@ -236,4 +255,11 @@ Factory.define('viewingWithGazepoints', Viewings, {
   aoiIds: [aoi._id],
   gazepoints,
   fileFormat: 'imotions',
+  startTime: gazepoints[0].timestamp,
+  endTime: gazepoints[gazepoints.length - 1].timestamp,
+  duration,
+  gazepointCount: gazepoints.length,
+  gazepointFrequency: gazepoints.length / duration,
+  fixationCount,
+  fixationFrequency: fixationCount / duration,
 });

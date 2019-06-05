@@ -6,77 +6,65 @@ const JSZip = require('jszip');
 const zip = new JSZip();
 
 export default function saveCSV(opt) {
-  const { individual } = opt || {};
   const { groupBy } = opt || {};
   const { period } = opt || {};
   const { timestep } = opt || {};
   const { type } = opt || {};
+  const includeIncompleteText = opt.includeIncomplete ? 'True' : 'False';
 
-  if (groupBy === 'participant') {
-    if (type === 'summary') {
-      const exportData = this.getExportData(opt);
+  if (type === 'individualZip' && groupBy === 'viewing') {
+    // eslint-disable-next-line no-lonely-if
+    const viewings = Viewings.find({ analysisId: this._id }).fetch();
 
-      let csvContent;
+    // Set default file name for organizing later
+    const includeIncomplete = opt.includeIncomplete ? 'True' : 'False';
 
-      try {
-        csvContent = json2csv(exportData);
-      } catch (err) {
-        console.error(err);
-      }
+    viewings.forEach(function(viewing) {
+      const nameFile = `${viewing.study().name} - ${
+        viewing.analysis().name
+      } - p${opt.period}ts${opt.timestep}incomplete${includeIncomplete} - ${
+        viewing.participant().name
+      } - ${viewing.stimulus().name} - viewing${viewing.number}.csv`;
 
-      // Set default file name for organizing later
-      const includeIncomplete = opt.includeIncomplete ? 'True' : 'False';
+      const csvContent = json2csv(viewing.getExportData(opt));
+      zip.file(nameFile, csvContent);
+    });
 
-      let filename = `${this.study().name} - ${this.name}`;
+    zip.generateAsync({ type: 'blob' }).then((blob) => {
+      // 1) generate the zip file
+      const zipName = `${this.study().name} - ${this.name} - p${opt.period}ts${
+        opt.timestep
+      }incomplete${includeIncomplete} - samplingStep${opt.samplingStep}`;
 
-      if (period) {
-        filename += ` - p${
-          opt.period
-        }ts${timestep}incomplete${includeIncomplete} - participantSummary`;
-      }
+      saveAs(blob, zipName); // 2) trigger the download
+    });
+  } else if (type === 'summary') {
+    const exportData = this.getExportData(opt);
 
-      if (Meteor.isClient) {
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
-        FileSaver.saveAs(blob, filename);
-      }
+    let filename = `${this.study().name} - ${this.name}`;
+    let csvContent;
+
+    if (period) {
+      filename += ` - p${period}ts${timestep}incomplete${includeIncompleteText}`;
     }
-  } else if (groupBy === 'viewing') {
-    if (type === 'individualZip') {
-      // eslint-disable-next-line no-lonely-if
-      const viewings = Viewings.find({ analysisId: this._id }).fetch();
 
-      // Set default file name for organizing later
-      const includeIncomplete = opt.includeIncomplete ? 'True' : 'False';
+    if (groupBy === 'viewing') {
+      filename += ' - viewingSummary';
+    } else if (groupBy === 'participant') {
+      filename += ' - participantSummary';
+    }
 
-      viewings.forEach(function(viewing) {
-        const nameFile = `${viewing.study().name} - ${
-          viewing.analysis().name
-        } - p${opt.period}ts${opt.timestep}incomplete${includeIncomplete} - ${
-          viewing.participant().name
-        } - ${viewing.stimulus().name} - viewing${viewing.number}.csv`;
+    try {
+      csvContent = json2csv(exportData);
+    } catch (err) {
+      console.error(err);
+    }
 
-        console.log(
-          `${viewing.participant().name} - ${viewing.stimulus().name} - ${
-            viewing.number
-          }`,
-        );
+    console.log(filename);
 
-        const csvContent = json2csv(viewing.getExportData(opt));
-        zip.file(nameFile, csvContent);
-      });
-
-      zip.generateAsync({ type: 'blob' }).then((blob) => {
-        // 1) generate the zip file
-        const zipName = `${this.study().name} - ${this.name} - p${
-          opt.period
-        }ts${opt.timestep}incomplete${includeIncomplete} - samplingStep${
-          opt.samplingStep
-        }`;
-
-        saveAs(blob, zipName); // 2) trigger the download
-      });
-    } else if (type === 'summary') {
-      console.log('make a summary');
+    if (Meteor.isClient) {
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
+      FileSaver.saveAs(blob, filename);
     }
   }
 }

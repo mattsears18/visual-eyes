@@ -67,7 +67,7 @@
     "select2-bootstrap-theme": "0.1.0-beta.10",
     "simpl-schema": "1.4.3",
     "stringify-object": "^3.3.0",
-    "time-hulls": "^0.0.106",
+    "time-hulls": "latest",
     "underscore": "^1.9.1"
   },
   "devDependencies": {
@@ -91,7 +91,7 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-import-resolver-meteor": "^0.4.0",
-    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-meteor": "^5.1.0",
     "eslint-plugin-react": "^7.13.0",

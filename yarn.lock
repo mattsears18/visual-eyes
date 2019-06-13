@@ -2469,7 +2469,7 @@ eslint-module-utils@^2.4.0:
     debug "^2.6.8"
     pkg-dir "^2.0.0"
 
-eslint-plugin-import@^2.17.2:
+eslint-plugin-import@^2.17.3:
   version "2.17.3"
   resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.17.3.tgz#00548b4434c18faebaba04b24ae6198f280de189"
   integrity sha512-qeVf/UwXFJbeyLbxuY8RgqDyEKCkqV7YC+E5S5uOjAp4tOc8zj01JP3ucoBM8JcEqd1qRasJSg6LLlisirfy0Q==
@@ -6737,10 +6737,10 @@ tildify@^1.2.0:
   dependencies:
     os-homedir "^1.0.0"
 
-time-hulls@^0.0.106:
-  version "0.0.106"
-  resolved "https://registry.yarnpkg.com/time-hulls/-/time-hulls-0.0.106.tgz#0034760f7dde0a779b861f4cb6c2357a2656303b"
-  integrity sha512-W2kpiet1RNyY5ql7h1OCiyZsmDN3IxqPvmHJpMADdlKotzH9i9rMoo2/xiR63bFoNF++C/KtVHzjcwzU1EtMhQ==
+time-hulls@latest:
+  version "0.0.107"
+  resolved "https://registry.yarnpkg.com/time-hulls/-/time-hulls-0.0.107.tgz#3406c331db299c86d442dade54f16c263575b2fc"
+  integrity sha512-qGRp7r88RMs1QfqNWUzqzWhxpxpy56urE9mYGKokAI67WeVCz4cjcxdL4rShUuN+HbKhIgJ/DiObyr0HJD6udw==
   dependencies:
     area-polygon "^1.0.1"
     hull.js "^0.2.11"

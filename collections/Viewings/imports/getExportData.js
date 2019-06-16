@@ -8,7 +8,7 @@ export default function getExportData(opt) {
     console.log(
       `viewing.getExportData() ${this.participant().name} - ${
         this.stimulus().name
-      } - ${this.number}`,
+      } - ${this.number}`
     );
   }
 
@@ -28,7 +28,7 @@ export default function getExportData(opt) {
     pointsType: this.study().pointsType(),
     analysis: this.analysis().name,
     viewingGap: this.analysis().viewingGap,
-    minViewingTime: this.analysis().minViewingTime,
+    minViewingTime: this.analysis().minViewingTime
   };
 
   if (typeof period !== 'undefined') {
@@ -98,36 +98,38 @@ export default function getExportData(opt) {
         // centroidVelocityY: 0,
         coverage: hull.getCoverage({
           width: this.stimulus().width,
-          height: this.stimulus().height,
+          height: this.stimulus().height
         }),
         coverageDuration: hull.coverageDuration({
           width: this.stimulus().width,
-          height: this.stimulus().height,
+          height: this.stimulus().height
         }),
         averageCoverage: hullseries.getAverageCoverage(),
         finalCoverage: hullseries.getFinalCoverage(),
         averageVelocity: hullseries.getAverageVelocity(),
         averageVelocityX: hullseries.getAverageVelocity({ which: 'x' }),
-        averageVelocityY: hullseries.getAverageVelocity({ which: 'x' }),
+        averageVelocityY: hullseries.getAverageVelocity({ which: 'y' }),
         averageCentroidVelocity: hullseries.getAverageCentroidVelocity(),
         averageCentroidVelocityX: hullseries.getAverageCentroidVelocity({
-          which: 'x',
+          which: 'x'
         }),
         averageCentroidVelocityY: hullseries.getAverageCentroidVelocity({
-          which: 'y',
-        }),
+          which: 'y'
+        })
       };
 
       if (hi > 0) {
-        hullData.centroidDistanceX = hulls[hi].getCentroid().x - hulls[hi - 1].getCentroid().x;
-        hullData.centroidDistanceY = hulls[hi].getCentroid().y - hulls[hi - 1].getCentroid().y;
+        hullData.centroidDistanceX =
+          hulls[hi].getCentroid().x - hulls[hi - 1].getCentroid().x;
+        hullData.centroidDistanceY =
+          hulls[hi].getCentroid().y - hulls[hi - 1].getCentroid().y;
         if (
-          hullData.centroidDistanceX !== 0
-          || hullData.centroidDistanceY !== 0
+          hullData.centroidDistanceX !== 0 ||
+          hullData.centroidDistanceY !== 0
         ) {
           hullData.centroidDistance = Math.sqrt(
-            hullData.centroidDistanceX * hullData.centroidDistanceX
-              + hullData.centroidDistanceY * hullData.centroidDistanceY,
+            hullData.centroidDistanceX * hullData.centroidDistanceX +
+              hullData.centroidDistanceY * hullData.centroidDistanceY
           );
         }
         // if (hullData.timestep > 0 && hullData.centroidDistance > 0) {

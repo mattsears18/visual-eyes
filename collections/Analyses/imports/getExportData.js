@@ -10,7 +10,7 @@ export default function getExportData(opt) {
     .fetch()
     .map(variable => variable.name);
 
-  this.viewings().forEach((viewing) => {
+  this.viewings().forEach(viewing => {
     const exportData = viewing.getExportData(opt);
 
     const singleViewingData = {
@@ -45,8 +45,8 @@ export default function getExportData(opt) {
         'averageVelocityY',
         'averageCentroidVelocity',
         'averageCentroidVelocityX',
-        'averageCentroidVelocityY',
-      ]),
+        'averageCentroidVelocityY'
+      ])
     };
 
     viewing
@@ -64,7 +64,7 @@ export default function getExportData(opt) {
 
     const participantData = [];
 
-    Object.keys(groups).forEach((participantName) => {
+    Object.keys(groups).forEach(participantName => {
       const pViewings = groups[participantName];
       let singleParticipantData = {
         ..._.pick(pViewings[0], [
@@ -77,8 +77,8 @@ export default function getExportData(opt) {
           'period',
           'minTimestep',
           'includeIncomplete',
-          'participant',
-        ]),
+          'participant'
+        ])
       };
 
       const durations = pViewings.map(v => v.viewingDuration);
@@ -88,9 +88,9 @@ export default function getExportData(opt) {
       const viewingDurationsPerStimulus = [];
       const viewingCountsPerStimulus = [];
 
-      Object.keys(sViewingGroups).forEach((stimulusName) => {
+      Object.keys(sViewingGroups).forEach(stimulusName => {
         viewingDurationsPerStimulus.push(
-          jStat.sum(sViewingGroups[stimulusName].map(v => v.viewingDuration)),
+          jStat.sum(sViewingGroups[stimulusName].map(v => v.viewingDuration))
         );
 
         viewingCountsPerStimulus.push(sViewingGroups[stimulusName].length);
@@ -99,64 +99,83 @@ export default function getExportData(opt) {
       singleParticipantData = {
         ...singleParticipantData,
         viewingCount: pViewings.length,
-        viewingDurations: durations,
+        viewingDurations: JSON.stringify(durations)
+          .substr(1)
+          .substr(0, JSON.stringify(durations).length - 2),
+        viewingDurationsMin: jStat.min(durations),
+        viewingDurationsMax: jStat.max(durations),
         viewingDurationsSum: jStat.sum(durations),
         viewingDurationsMean: jStat.mean(durations),
         viewingDurationsMedian: jStat.median(durations),
-        viewingDurationsPerStimulus,
+        viewingDurationsPerStimulus: JSON.stringify(viewingDurationsPerStimulus)
+          .substr(1)
+          .substr(0, JSON.stringify(viewingDurationsPerStimulus).length - 2),
+        viewingDurationsPerStimulusMin: jStat.min(viewingDurationsPerStimulus),
+        viewingDurationsPerStimulusMax: jStat.max(viewingDurationsPerStimulus),
         viewingDurationsPerStimulusMean: jStat.mean(
-          viewingDurationsPerStimulus,
+          viewingDurationsPerStimulus
         ),
         viewingDurationsPerStimulusMedian: jStat.median(
-          viewingDurationsPerStimulus,
+          viewingDurationsPerStimulus
         ),
-        viewingCountsPerStimulus,
+        viewingCountsPerStimulus: JSON.stringify(viewingCountsPerStimulus)
+          .substr(1)
+          .substr(0, JSON.stringify(viewingCountsPerStimulus).length - 2),
+        viewingCountsPerStimulusMin:
+          viewingCountsPerStimulus.length < 10
+            ? 0
+            : jStat.min(viewingCountsPerStimulus),
+        viewingCountsPerStimulusMax: jStat.max(viewingCountsPerStimulus),
         viewingCountsPerStimulusMean: jStat.mean(viewingCountsPerStimulus),
         viewingCountsPerStimulusMedian: jStat.median(viewingCountsPerStimulus),
         gazepointCount: jStat.sum(pViewings.map(v => v.gazepointCount)),
         gazepointFrequency:
-          jStat.sum(pViewings.map(v => v.gazepointCount))
-          / jStat.sum(durations),
+          jStat.sum(pViewings.map(v => v.gazepointCount)) /
+          jStat.sum(durations),
         fixationCount: jStat.sum(pViewings.map(v => v.fixationCount)),
         fixationFrequency:
           jStat.sum(pViewings.map(v => v.fixationCount)) / jStat.sum(durations),
         fixationProportion:
-          jStat.sum(pViewings.map(v => v.fixationCount))
-          / jStat.sum(pViewings.map(v => v.gazepointCount)),
+          jStat.sum(pViewings.map(v => v.fixationCount)) /
+          jStat.sum(pViewings.map(v => v.gazepointCount)),
         averageCoverage:
-          jStat.sum(pViewings.map(v => v.viewingDuration * v.averageCoverage))
-          / jStat.sum(durations),
-        finalCoverages,
+          jStat.sum(pViewings.map(v => v.viewingDuration * v.averageCoverage)) /
+          jStat.sum(durations),
+        finalCoverages: JSON.stringify(finalCoverages)
+          .substr(1)
+          .substr(0, JSON.stringify(finalCoverages).length - 2),
+        finalCoveragesMin: jStat.min(finalCoverages),
+        finalCoveragesMax: jStat.max(finalCoverages),
         finalCoveragesMean: jStat.mean(finalCoverages),
         finalCoveragesMedian: jStat.median(finalCoverages),
         averageVelocity:
-          jStat.sum(pViewings.map(v => v.viewingDuration * v.averageVelocity))
-          / jStat.sum(durations),
+          jStat.sum(pViewings.map(v => v.viewingDuration * v.averageVelocity)) /
+          jStat.sum(durations),
         averageVelocityX:
           jStat.sum(
-            pViewings.map(v => v.viewingDuration * v.averageVelocityX),
+            pViewings.map(v => v.viewingDuration * v.averageVelocityX)
           ) / jStat.sum(durations),
         averageVelocityY:
           jStat.sum(
-            pViewings.map(v => v.viewingDuration * v.averageVelocityY),
+            pViewings.map(v => v.viewingDuration * v.averageVelocityY)
           ) / jStat.sum(durations),
         averageCentroidVelocity:
           jStat.sum(
-            pViewings.map(v => v.viewingDuration * v.averageCentroidVelocity),
+            pViewings.map(v => v.viewingDuration * v.averageCentroidVelocity)
           ) / jStat.sum(durations),
         averageCentroidVelocityX:
           jStat.sum(
-            pViewings.map(v => v.viewingDuration * v.averageCentroidVelocityX),
+            pViewings.map(v => v.viewingDuration * v.averageCentroidVelocityX)
           ) / jStat.sum(durations),
         averageCentroidVelocityY:
           jStat.sum(
-            pViewings.map(v => v.viewingDuration * v.averageCentroidVelocityY),
-          ) / jStat.sum(durations),
+            pViewings.map(v => v.viewingDuration * v.averageCentroidVelocityY)
+          ) / jStat.sum(durations)
       };
 
       singleParticipantData = {
         ...singleParticipantData,
-        ..._.pick(pViewings[0], variableNames),
+        ..._.pick(pViewings[0], variableNames)
       };
 
       participantData.push(singleParticipantData);

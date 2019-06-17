@@ -9,7 +9,7 @@ Template.AnalysesList.onCreated(function() {
 
 Template.AnalysesList.helpers({
   study: () => Studies.findOne(),
-  analyses: () => Analyses.find({}, { sort: { createdAt: -1 } }),
+  analyses: () => Analyses.find()
 });
 
 Template.AnalysesList.events({
@@ -23,9 +23,9 @@ Template.AnalysesList.events({
   'click .download-as-csv'() {
     const study = Studies.findOne();
     study.saveCSV({
-      groupBy: 'analysis',
+      groupBy: 'analysis'
     });
-  },
+  }
 });
 
 Template.AnalysesList.destroyed = function() {

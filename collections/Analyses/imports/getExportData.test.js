@@ -32,12 +32,12 @@ describe('Analyses.getExportData()', () => {
       'gazepointFrequency',
       'fixationCount',
       'fixationFrequency',
-      'fixationProportion',
+      'fixationProportion'
     ];
 
     // expect(viewing.analysis().getExportData().length).to.equal(1);
     expect(Object.keys(viewing.analysis().getExportData()[0])).to.eql(
-      expectedFields,
+      expectedFields
     );
   }).timeout(60000);
 
@@ -75,13 +75,13 @@ describe('Analyses.getExportData()', () => {
       'averageVelocityY',
       'averageCentroidVelocity',
       'averageCentroidVelocityX',
-      'averageCentroidVelocityY',
+      'averageCentroidVelocityY'
     ];
 
     expect(
       Object.keys(
-        viewing.analysis().getExportData({ period: 5000, timestep: 0 })[0],
-      ),
+        viewing.analysis().getExportData({ period: 5000, timestep: 0 })[0]
+      )
     ).to.eql(expectedFields);
   }).timeout(60000);
 
@@ -92,14 +92,14 @@ describe('Analyses.getExportData()', () => {
       analysisId: viewing1.analysisId,
       participantId: viewing1.participantId,
       stimulusId: viewing1.stimulusId,
-      number: 2,
+      number: 2
     });
     const viewing3 = Factory.create('viewingWithGazepoints', {
       studyId: viewing1.studyId,
       analysisId: viewing1.analysisId,
       participantId: viewing1.participantId,
       stimulusId: viewing1.stimulusId,
-      number: 3,
+      number: 3
     });
 
     const expectedFields = [
@@ -115,13 +115,19 @@ describe('Analyses.getExportData()', () => {
       'participant',
       'viewingCount',
       'viewingDurations',
+      'viewingDurationsMin',
+      'viewingDurationsMax',
       'viewingDurationsSum',
       'viewingDurationsMean',
       'viewingDurationsMedian',
       'viewingDurationsPerStimulus',
+      'viewingDurationsPerStimulusMin',
+      'viewingDurationsPerStimulusMax',
       'viewingDurationsPerStimulusMean',
       'viewingDurationsPerStimulusMedian',
       'viewingCountsPerStimulus',
+      'viewingCountsPerStimulusMin',
+      'viewingCountsPerStimulusMax',
       'viewingCountsPerStimulusMean',
       'viewingCountsPerStimulusMedian',
       'gazepointCount',
@@ -131,6 +137,8 @@ describe('Analyses.getExportData()', () => {
       'fixationProportion',
       'averageCoverage',
       'finalCoverages',
+      'finalCoveragesMin',
+      'finalCoveragesMax',
       'finalCoveragesMean',
       'finalCoveragesMedian',
       'averageVelocity',
@@ -138,7 +146,7 @@ describe('Analyses.getExportData()', () => {
       'averageVelocityY',
       'averageCentroidVelocity',
       'averageCentroidVelocityX',
-      'averageCentroidVelocityY',
+      'averageCentroidVelocityY'
     ];
 
     expect(
@@ -146,9 +154,9 @@ describe('Analyses.getExportData()', () => {
         viewing1.analysis().getExportData({
           period: 5000,
           timestep: 0,
-          groupBy: 'participant',
-        })[0],
-      ),
+          groupBy: 'participant'
+        })[0]
+      )
     ).to.eql(expectedFields);
   }).timeout(60000);
 });

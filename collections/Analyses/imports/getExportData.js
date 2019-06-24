@@ -110,7 +110,10 @@ export default function getExportData(opt) {
         viewingDurationsPerStimulus: JSON.stringify(viewingDurationsPerStimulus)
           .substr(1)
           .substr(0, JSON.stringify(viewingDurationsPerStimulus).length - 2),
-        viewingDurationsPerStimulusMin: jStat.min(viewingDurationsPerStimulus),
+        viewingDurationsPerStimulusMin:
+          viewingDurationsPerStimulus.length < 10
+            ? 0
+            : jStat.min(viewingDurationsPerStimulus),
         viewingDurationsPerStimulusMax: jStat.max(viewingDurationsPerStimulus),
         viewingDurationsPerStimulusMean: jStat.mean(
           viewingDurationsPerStimulus

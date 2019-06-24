@@ -3,7 +3,6 @@ Template.AnalysesList.onCreated(function() {
 
   self.autorun(function() {
     const studyId = FlowRouter.getParam('studyId');
-    self.subscribe('viewings.byStudyId', studyId);
   });
 });
 

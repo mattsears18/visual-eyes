@@ -61,7 +61,9 @@
           {{ analysis.stimuli.count }}
         </td>
         <td>
-          {{ analysis.viewings.count }}
+          {{#if analysis.viewingCount}}
+          {{ formatNumber analysis.viewingCount }}
+          {{/if}}
         </td>
         <td>
           {{#if equals analysis.status "needsReprocessing"}}

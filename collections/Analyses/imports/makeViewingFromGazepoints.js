@@ -5,7 +5,7 @@ export default function makeViewingFromGazepoints({
   startIndex = 0,
   endIndex,
   number = 1,
-  fileFormat,
+  fileFormat
 }) {
   if (!fileFormat) {
     throw new Error('noFileFormat');
@@ -45,10 +45,11 @@ export default function makeViewingFromGazepoints({
     timestamp: point.timestamp,
     x: point.x,
     y: point.y,
-    fixationIndex: point.fixationIndex,
+    fixationIndex: point.fixationIndex
   }));
 
-  const duration = gazepoints[endIndex].timestamp - gazepoints[startIndex].timestamp;
+  let duration = 0;
+  duration = gazepoints[endIndex].timestamp - gazepoints[startIndex].timestamp;
   const fixationCount = this.getViewingFixationCount(points);
 
   let gazepointFrequency = 0;
@@ -82,6 +83,6 @@ export default function makeViewingFromGazepoints({
     fixationCount,
     fixationFrequency,
     status,
-    fileFormat,
+    fileFormat
   });
 }

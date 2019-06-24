@@ -72,5 +72,5 @@ Analyses.helpers({
   },
   allJobsCompleted() {
     return this.jobsCount() == this.jobsCompletedCount();
-  },
+  }
 });

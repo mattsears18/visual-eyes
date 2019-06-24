@@ -3,7 +3,10 @@ import Jobs from '../../Jobs/Jobs';
 export default function makeViewingJobs() {
   // console.log('analysis.makeViewingJobs() analysisId: ' + this._id);
   this.status = 'processing';
-  Analyses.update({ _id: this._id }, { $set: { status: 'processing' } });
+  Analyses.update(
+    { _id: this._id },
+    { $set: { status: 'processing', viewingCount: undefined } }
+  );
 
   try {
     Meteor.call('analyses.removeViewings', { analysisId: this._id });
@@ -12,24 +15,24 @@ export default function makeViewingJobs() {
     // console.log(err);
   }
 
-  this.participantIds.forEach((participantId) => {
+  this.participantIds.forEach(participantId => {
     const participant = Participants.findOne({ _id: participantId });
     if (!participant) {
       console.log(`no participant found: ${participantId}`);
       Analyses.update(
         { _id: this._id },
-        { $pull: { participantIds: participantId } },
+        { $pull: { participantIds: participantId } }
       );
       return;
     }
 
-    this.stimulusIds.forEach((stimulusId) => {
+    this.stimulusIds.forEach(stimulusId => {
       const stimulus = Stimuli.findOne({ _id: stimulusId });
       if (!stimulus) {
         console.log(`no stimulus found: ${stimulusId}`);
         Analyses.update(
           { _id: this._id },
-          { $pull: { stimulusIds: stimulusId } },
+          { $pull: { stimulusIds: stimulusId } }
         );
         return;
       }
@@ -38,7 +41,7 @@ export default function makeViewingJobs() {
       const job = new Job(Jobs, 'analyses.makeViewings', {
         analysisId: this._id,
         participantId,
-        stimulusId,
+        stimulusId
       });
 
       job
@@ -46,7 +49,7 @@ export default function makeViewingJobs() {
         .retry({
           retries: Jobs.forever,
           wait: 1000,
-          backoff: 'constant', // wait constant amount of time between each retry
+          backoff: 'constant' // wait constant amount of time between each retry
         })
         .save();
     });

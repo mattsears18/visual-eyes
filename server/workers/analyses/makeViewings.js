@@ -14,7 +14,7 @@ export default (queueAnalysesMakeViewings = Jobs.processJobs(
     try {
       const viewingIds = analysis.makeViewings({
         participantId: job.data.participantId,
-        stimulusId: job.data.stimulusId,
+        stimulusId: job.data.stimulusId
       });
       job.done();
       analysis.updateStatus();
@@ -25,5 +25,5 @@ export default (queueAnalysesMakeViewings = Jobs.processJobs(
     }
 
     callback();
-  },
+  }
 ));

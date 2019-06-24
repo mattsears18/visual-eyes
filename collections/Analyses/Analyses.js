@@ -8,8 +8,10 @@ Analyses.allow({
   insert(userId, doc) {
     return true;
     if (!Roles.userIsInRole(userId, 'create', 'analyses')) {
-      throw new Meteor.Error('analyses.create.unauthorized',
-        'You do not have permission to create analyses.');
+      throw new Meteor.Error(
+        'analyses.create.unauthorized',
+        'You do not have permission to create analyses.'
+      );
     } else {
       return true;
     }
@@ -23,74 +25,82 @@ Analyses.allow({
     return true;
     analysis = Analyses.findOne({ _id: doc._id });
     return analysis.hasPermission('destroy');
-  },
+  }
 });
 
-Schemas.Analysis = new SimpleSchema({
-  name: {
-    type: String,
-    label: 'Name',
-  },
-  desc: {
-    type: String,
-    label: 'Description',
-    autoform: {
-      rows: 8,
+Schemas.Analysis = new SimpleSchema(
+  {
+    name: {
+      type: String,
+      label: 'Name'
     },
-    optional: true,
-  },
-  viewingGap: {
-    type: Number,
-    label: 'Viewing Gap (ms)',
-    defaultValue: 5000,
-  },
-  minViewingTime: {
-    type: Number,
-    label: 'Minimum Viewing Time (ms)',
-    defaultValue: 10000,
-  },
-  ignoreOutsideImage: {
-    type: Boolean,
-    label: 'Ignore Gaze Points Outside of Stimulus Areas',
-    defaultValue: true,
-    autoform: {
-      type: 'boolean-checkbox',
+    desc: {
+      type: String,
+      label: 'Description',
+      autoform: {
+        rows: 8
+      },
+      optional: true
     },
-  },
-  participantIds: {
-    type: Array,
-    label: 'Participants to Include',
-    autoform: {
-      type: 'select-checkbox',
+    viewingGap: {
+      type: Number,
+      label: 'Viewing Gap (ms)',
+      defaultValue: 5000
     },
-  },
-  'participantIds.$': String,
-  stimulusIds: {
-    type: Array,
-    label: 'Stimuli to Include',
-    autoform: {
-      type: 'select-checkbox',
+    minViewingTime: {
+      type: Number,
+      label: 'Minimum Viewing Time (ms)',
+      defaultValue: 10000
     },
-  },
-  'stimulusIds.$': String,
-  studyId: {
-    type: String,
-    label: 'Study',
-    autoform: {
-  		value() {
-  			return FlowRouter.getParam('studyId');
-  		},
-  		type: 'hidden',
-  	},
-  },
-  status: {
-    type: String,
-    autoform: {
-      type: 'hidden',
+    ignoreOutsideImage: {
+      type: Boolean,
+      label: 'Ignore Gaze Points Outside of Stimulus Areas',
+      defaultValue: true,
+      autoform: {
+        type: 'boolean-checkbox'
+      }
     },
-    optional: true,
+    participantIds: {
+      type: Array,
+      label: 'Participants to Include',
+      autoform: {
+        type: 'select-checkbox'
+      }
+    },
+    'participantIds.$': String,
+    stimulusIds: {
+      type: Array,
+      label: 'Stimuli to Include',
+      autoform: {
+        type: 'select-checkbox'
+      }
+    },
+    'stimulusIds.$': String,
+    studyId: {
+      type: String,
+      label: 'Study',
+      autoform: {
+        value() {
+          return FlowRouter.getParam('studyId');
+        },
+        type: 'hidden'
+      }
+    },
+    status: {
+      type: String,
+      autoform: {
+        type: 'hidden'
+      },
+      optional: true
+    },
+    viewingCount: {
+      type: Number,
+      label: 'Viewing Count',
+      optional: true
+    }
   },
-}, { tracker: Tracker });
+  { tracker: Tracker }
+);
 
 Analyses.attachSchema(Schemas.Analysis);
 

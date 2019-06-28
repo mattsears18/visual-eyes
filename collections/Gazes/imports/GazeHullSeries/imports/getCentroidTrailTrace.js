@@ -20,7 +20,7 @@ export default function getCentroidTrailTrace(opt) {
   let xs = this.getCentroids({ hull, which: 'x' });
   let ys = this.getCentroids({ hull, which: 'y' });
 
-  if (xs.length == 1 || ys.length == 1) {
+  if (xs.length === 1 || ys.length === 1) {
     xs = [-10, -11];
     ys = [-10, -11];
   }

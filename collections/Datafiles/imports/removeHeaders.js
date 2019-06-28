@@ -3,7 +3,7 @@ export default function removeHeaders() {
 
   const data = fs.readFileSync(this.path, 'utf-8');
   const lines = data.toString().split('\n');
-  if (lines[0].substr(0, 6) == '#Study') {
+  if (lines[0].substr(0, 6) === '#Study') {
     // console.log('Has iMotions header. Remove it.');
 
     // Remove top 5 lines
@@ -14,7 +14,7 @@ export default function removeHeaders() {
     this.fileFormat = 'imotions';
 
     Datafiles.update({ _id: this._id }, { $set: { headersRemoved: true, fileFormat: 'imotions' } });
-  } else if (lines[0].substr(0, 11) == '## [BeGaze]') {
+  } else if (lines[0].substr(0, 11) === '## [BeGaze]') {
     // console.log('Has BeGaze header. Remove it.');
 
     // Remove top 4 lines

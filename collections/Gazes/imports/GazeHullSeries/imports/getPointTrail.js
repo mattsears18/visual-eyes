@@ -7,7 +7,7 @@ export default function getPointTrail(opt) {
     throw new Error('invalidPointTrailLength');
   }
 
-  if (pointTrailLength == 0) { return []; }
+  if (pointTrailLength === 0) { return []; }
 
   const pointsToHull = this.points.slice(0, hull.endIndex + 1);
   const pointTrail = pointsToHull.slice(-pointTrailLength);

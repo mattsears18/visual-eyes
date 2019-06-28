@@ -75,7 +75,7 @@ Template.Gazes.events({
       .fetch()
       .map(p => p._id);
     let index = ids.indexOf(FlowRouter.getParam('participantId'));
-    if (index == ids.length - 1) {
+    if (index === ids.length - 1) {
       index = 0;
     } else {
       index++;
@@ -88,7 +88,7 @@ Template.Gazes.events({
       .fetch()
       .map(p => p._id);
     let index = ids.indexOf(FlowRouter.getParam('participantId'));
-    if (index == 0) {
+    if (index === 0) {
       index = ids.length - 1;
     } else {
       index--;
@@ -101,7 +101,7 @@ Template.Gazes.events({
       .fetch()
       .map(p => p._id);
     let index = ids.indexOf(FlowRouter.getParam('stimulusId'));
-    if (index == ids.length - 1) {
+    if (index === ids.length - 1) {
       index = 0;
     } else {
       index++;
@@ -114,7 +114,7 @@ Template.Gazes.events({
       .fetch()
       .map(p => p._id);
     let index = ids.indexOf(FlowRouter.getParam('stimulusId'));
-    if (index == 0) {
+    if (index === 0) {
       index = ids.length - 1;
     } else {
       index--;
@@ -125,7 +125,7 @@ Template.Gazes.events({
   'click .number.next': () => {
     if (
       parseInt(FlowRouter.getParam('number'))
-      == Gazes.find({
+      === Gazes.find({
         participantId: FlowRouter.getParam('participantId'),
         stimulusId: FlowRouter.getParam('stimulusId'),
       }).count()
@@ -138,7 +138,7 @@ Template.Gazes.events({
     }
   },
   'click .number.previous': () => {
-    if (parseInt(FlowRouter.getParam('number')) == 1) {
+    if (parseInt(FlowRouter.getParam('number')) === 1) {
       FlowRouter.setParams({
         number: Gazes.find({
           participantId: FlowRouter.getParam('participantId'),
@@ -160,7 +160,7 @@ Template.Gazes.destroyed = function() {
 Template.Gazes.events({
   'change .reactive': (event, templateInstance) => {
     let value;
-    if (event.target.type == 'checkbox') {
+    if (event.target.type === 'checkbox') {
       value = event.target.checked;
     } else if (event.target.value === '') {
       value = 0;

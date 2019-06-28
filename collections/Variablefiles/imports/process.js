@@ -59,7 +59,7 @@ export default function process() {
                 ) {
                   hasVar = false;
                   newVariableVals.forEach(function(newVariableVal) {
-                    if (newVariableVal.variableId == variableVal.variableId) {
+                    if (newVariableVal.variableId === variableVal.variableId) {
                       hasVar = true;
                     }
                   });

@@ -27,7 +27,7 @@ Template.Analysis.onCreated(function() {
     stimuliSub = self.subscribe('stimuli.byAnalysisId', analysisId);
 
     const analysis = Analyses.findOne({});
-    if (analysis && analysis.status == 'processing') {
+    if (analysis && analysis.status === 'processing') {
       self.subscribe('jobs.byAnalysisId', analysisId);
     }
 

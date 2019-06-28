@@ -19,7 +19,7 @@ export default async function process() {
   this.removeHeaders();
   await this.setFileFormat();
 
-  if (this.status == 'unrecognizedFileFormat') {
+  if (this.status === 'unrecognizedFileFormat') {
     throw new Error('unrecognizedFileFormat');
   }
 

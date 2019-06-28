@@ -87,18 +87,18 @@ const table = new Tabular.Table({
       title: 'Status',
       render(status, type, row, meta) {
         if (status) {
-          if (status == 'invalidStimulus') {
+          if (status === 'invalidStimulus') {
             return `<div><span class="label label-danger">Invalid Stimulus</span></div><div class="m-t-5"><span class="btn btn-primary upload-stimulusfile" data-stimulusid="${
               row.stimulusId
             }"><i class="fa fa-upload m-r-5"></i>Upload Reference Image</span></div>`;
           }
-          if (status == 'processing') {
+          if (status === 'processing') {
             return '<span class="label label-default">Processing<i class="fa fa-spinner fa-pulse fa-fw m-l-3"></i></span>';
           }
-          if (status == 'processed') {
+          if (status === 'processed') {
             return '<span class="label label-success">Processed</span>';
           }
-          if (status == 'invalidStimulusDimensions') {
+          if (status === 'invalidStimulusDimensions') {
             return '<span class="label label-danger">Invalid Stimulus Dimensions</span>';
           }
         }

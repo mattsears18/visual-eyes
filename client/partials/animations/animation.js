@@ -141,14 +141,14 @@ Template.Animation.events({
 
 function playAnimation(timestamp) {
   if (this.playing.get()) {
-    if (this.frameIndex.get() == this.frames.get().length - 1) {
+    if (this.frameIndex.get() === this.frames.get().length - 1) {
       // reached the end, start over
       this.frameIndex.set(0);
       plotFrame.bind(this)(0);
     }
   }
 
-  if (this.timeOffset.get() == 0) {
+  if (this.timeOffset.get() === 0) {
     this.timeOffset.set(
       this.frames.get()[this.frameIndex.get()].name - timestamp,
     );

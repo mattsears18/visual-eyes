@@ -71,6 +71,6 @@ Analyses.helpers({
     return progress;
   },
   allJobsCompleted() {
-    return this.jobsCount() == this.jobsCompletedCount();
+    return this.jobsCount() === this.jobsCompletedCount();
   }
 });

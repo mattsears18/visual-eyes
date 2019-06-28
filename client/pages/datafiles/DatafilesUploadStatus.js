@@ -50,7 +50,7 @@ Template.DatafilesUploadStatus.events({
 
             uploads = template.currentUploads.get();
             uploads = uploads.filter(function(upload) {
-              return (!(upload.config.fileId == datafileDoc._id));
+              return (!(upload.config.fileId === datafileDoc._id));
             });
 
             template.currentUploads.set(uploads);

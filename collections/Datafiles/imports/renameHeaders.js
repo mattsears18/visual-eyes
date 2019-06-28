@@ -9,7 +9,7 @@ export default function renameHeaders(rows) {
     throw new Error('noCSVData');
   }
 
-  if (this.fileFormat == 'smi') {
+  if (this.fileFormat === 'smi') {
     headers = [
       { original: 'RecordingTime [ms]', new: 'timestamp' },
       { original: 'Time of Day [h:m:s:ms]', new: 'timeOfDay' },
@@ -20,7 +20,7 @@ export default function renameHeaders(rows) {
       { original: 'Stimulus', new: 'stimulusName' },
       { original: 'AOI Name Binocular', new: 'aoiName' },
     ];
-  } else if (this.fileFormat == 'imotions') {
+  } else if (this.fileFormat === 'imotions') {
     headers = [
       { original: 'Timestamp', new: 'timestamp' },
       { original: 'FixationSeq', new: 'fixationIndex' },

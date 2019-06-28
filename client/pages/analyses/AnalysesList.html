@@ -30,6 +30,12 @@
           Name
         </th>
         <th>
+          Minimum Gaze Time (ms)
+        </th>
+        <th>
+          Gaze Gap (ms)
+        </th>
+        <th>
           Participants
         </th>
         <th>
@@ -53,6 +59,12 @@
           <a href="/studies/{{ study._id }}/analyses/{{ analysis._id }}">{{
             analysis.name
           }}</a>
+        </td>
+        <td>
+          {{ analysis.minGazeTime }}
+        </td>
+        <td>
+          {{ analysis.gazeGap }}
         </td>
         <td>
           {{ analysis.participants.count }}

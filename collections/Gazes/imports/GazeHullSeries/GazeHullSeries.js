@@ -17,12 +17,8 @@ export default class GazeHullSeries extends TimeHullSeries {
     if (typeof opt.points === 'undefined') {
       if (typeof opt.gaze !== 'undefined') {
         opt.points = opt.gaze.gazepoints;
-        opt.width = opt.width || opt.gaze.stimulus()
-          ? opt.gaze.stimulus().width
-          : 0;
-        opt.height = opt.height || opt.gaze.stimulus()
-          ? opt.gaze.stimulus().height
-          : 0;
+        opt.width = opt.width || opt.gaze.stimulus() ? opt.gaze.stimulus().width : 0;
+        opt.height = opt.height || opt.gaze.stimulus() ? opt.gaze.stimulus().height : 0;
       }
     }
 
@@ -35,7 +31,7 @@ export default class GazeHullSeries extends TimeHullSeries {
     }
 
     this.pointTrailLength = typeof opt.pointTrailLength === 'number' && opt.pointTrailLength > 0
-      ? parseInt(opt.pointTrailLength)
+      ? parseInt(opt.pointTrailLength, 10)
       : 10;
   }
 

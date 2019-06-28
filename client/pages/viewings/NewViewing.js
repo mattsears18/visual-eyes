@@ -1,13 +1,13 @@
-Template.NewViewing.events({
+Template.NewGlance.events({
   'click .fa-close'() {
-    Session.set('newViewing', false);
+    Session.set('newGlance', false);
   },
 });
 
 AutoForm.hooks({
-  insertViewingForm: {
+  insertGlanceForm: {
     onSuccess(formType, result) {
-      FlowRouter.go(`/viewings/${result}`);
+      FlowRouter.go(`/glances/${result}`);
     },
   },
 });

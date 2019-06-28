@@ -1,18 +1,18 @@
 import Jobs from '../../../collections/Jobs/Jobs';
 
-export default (queueViewingsSaveAverageHullCoverage = Jobs.processJobs(
-  'viewings.saveAverageHullCoverage',
+export default (queueGlancesSaveAverageHullCoverage = Jobs.processJobs(
+  'glances.saveAverageHullCoverage',
   { concurrency: 1 },
   (job, callback) => {
-    const viewing = Viewings.findOne({ _id: job.data.viewingId });
+    const glance = Glances.findOne({ _id: job.data.glanceId });
 
-    if (!viewing) {
-      console.log(`Viewing not found. viewingId: ${job.data.viewingId}`);
+    if (!glance) {
+      console.log(`Glance not found. glanceId: ${job.data.glanceId}`);
       job.cancel();
       job.remove();
     } else {
       try {
-        const avg = viewing.saveAverageHullCoverage({
+        const avg = glance.saveAverageHullCoverage({
           slideStep: job.data.slideStep,
           instantContinuous: job.data.instantContinuous,
         });
@@ -27,7 +27,7 @@ export default (queueViewingsSaveAverageHullCoverage = Jobs.processJobs(
       }
     }
 
-    viewing.updateStatus();
+    glance.updateStatus();
     callback();
   },
 ));

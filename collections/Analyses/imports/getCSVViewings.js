@@ -1,45 +1,45 @@
-// export default function getCSVViewings() {
+// export default function getCSVGlances() {
 //   const analysis = this;
-//   const viewings = Viewings.find({ analysisId: analysis._id }).fetch();
+//   const glances = Glances.find({ analysisId: analysis._id }).fetch();
 
 //   const data = [];
 
-//   viewings.forEach(function(viewing) {
-//     const viewingData = {
-//       link: `${Meteor.absoluteUrl()}studies/${analysis.study()._id}/viewings/${
-//         viewing._id
+//   glances.forEach(function(glance) {
+//     const glanceData = {
+//       link: `${Meteor.absoluteUrl()}studies/${analysis.study()._id}/glances/${
+//         glance._id
 //       }`,
 //       study: analysis.study().name,
 //       analysis: analysis.name,
 //       period: analysis.period,
-//       viewingGap: analysis.viewingGap,
-//       minViewingTime: analysis.minViewingTime,
-//       participant: viewing.participant().name,
-//       stimulus: viewing.stimulus().name,
-//       viewingNumber: viewing.number,
-//       stimulusWidth: viewing.stimulus().width,
-//       stimulusHeight: viewing.stimulus().height,
-//       stimulusArea: viewing.stimulus().area(),
-//       viewingStartTime: viewing.startTime,
-//       viewingEndTime: viewing.endTime,
-//       viewingDuration: viewing.duration,
-//       gazepointCount: viewing.gazepointCount,
-//       gazepointFrequency: viewing.gazepointFrequency,
-//       fixationCount: viewing.fixationCount,
-//       fixationFrequency: viewing.fixationFrequency,
+//       glanceGap: analysis.glanceGap,
+//       minGlanceTime: analysis.minGlanceTime,
+//       participant: glance.participant().name,
+//       stimulus: glance.stimulus().name,
+//       glanceNumber: glance.number,
+//       stimulusWidth: glance.stimulus().width,
+//       stimulusHeight: glance.stimulus().height,
+//       stimulusArea: glance.stimulus().area(),
+//       glanceStartTime: glance.startTime,
+//       glanceEndTime: glance.endTime,
+//       glanceDuration: glance.duration,
+//       gazepointCount: glance.gazepointCount,
+//       gazepointFrequency: glance.gazepointFrequency,
+//       fixationCount: glance.fixationCount,
+//       fixationFrequency: glance.fixationFrequency,
 //       fixationProportion: '',
 //       slideHullCount: '',
 //       firstHullStartTime: '',
 //       lastHullEndTime: '',
 //       slideHullCoveragePerHull: '',
 //       slideHullDurationPerHull: '',
-//       slideHullDurationPerViewing: '',
+//       slideHullDurationPerGlance: '',
 //       slideHullCoverageDurationPerHull: '',
-//       slideHullCoverageDurationPerViewing: '',
-//       averageSlideHullCoveragePerViewing: '',
+//       slideHullCoverageDurationPerGlance: '',
+//       averageSlideHullCoveragePerGlance: '',
 //     };
 
-//     data.push(viewingData);
+//     data.push(glanceData);
 //   });
 
 //   return CSV.unparse(data);

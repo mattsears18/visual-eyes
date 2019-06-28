@@ -1,9 +1,9 @@
-import ViewingHullSeries from '../ViewingHullSeries';
+import GlanceHullSeries from '../GlanceHullSeries';
 
 require('../../../../factories.test');
 const { expect } = require('chai');
 
-describe('ViewingHullSeries.getPointTrailTrace()', () => {
+describe('GlanceHullSeries.getPointTrailTrace()', () => {
   const points = [
     { x: 100, y: 400, timestamp: 0 },
     { x: 200, y: 300, timestamp: 1000 },
@@ -23,8 +23,8 @@ describe('ViewingHullSeries.getPointTrailTrace()', () => {
   ];
 
   it('gets the initial point trail trace', () => {
-    const hullseries = new ViewingHullSeries({
-      viewing: Factory.create('viewing', {
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', {
         studyId: Factory.create('study', { fixationsOnly: false })._id,
         gazepoints: points,
       }),
@@ -39,8 +39,8 @@ describe('ViewingHullSeries.getPointTrailTrace()', () => {
   });
 
   it('gets a point trail trace (not initial)', () => {
-    const hullseries = new ViewingHullSeries({
-      viewing: Factory.create('viewing', {
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', {
         studyId: Factory.create('study', { fixationsOnly: false })._id,
         gazepoints: points,
       }),

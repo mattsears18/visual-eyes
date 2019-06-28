@@ -1,4 +1,4 @@
-export default function getViewingFixationCount(gazepoints) {
+export default function getGlanceFixationCount(gazepoints) {
   const indices = [];
   gazepoints.forEach((point) => {
     if (point.fixationIndex) {

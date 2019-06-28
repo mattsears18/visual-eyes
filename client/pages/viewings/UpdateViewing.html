@@ -1,19 +1,19 @@
-<template name="UpdateViewing">
+<template name="UpdateGlance">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Edit Viewing <i class="fa fa-close pull-right"></i></h3>
+      <h3 class="panel-title">Edit Glance <i class="fa fa-close pull-right"></i></h3>
     </div>
     <div class="panel-body">
-      {{> quickForm collection="Viewings" doc=viewing id="updateViewingForm"
-        type="update" class="update-viewing-form"}}
+      {{> quickForm collection="Glances" doc=glance id="updateGlanceForm"
+        type="update" class="update-glance-form"}}
 
-      <!-- {{> quickForm collection="Viewings" doc=viewing id="updateViewingForm"
-        type="method" meteormethod="viewings.update" class="update-viewing-form"}} -->
+      <!-- {{> quickForm collection="Glances" doc=glance id="updateGlanceForm"
+        type="method" meteormethod="glances.update" class="update-glance-form"}} -->
 
-      {{#if viewing.hasPermission 'destroy'}}
-        {{> quickRemoveButton collection="Viewings" _id=viewing._id
+      {{#if glance.hasPermission 'destroy'}}
+        {{> quickRemoveButton collection="Glances" _id=glance._id
           onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
-          id="destroyViewingform" class="btn btn-danger"}}
+          id="destroyGlanceform" class="btn btn-danger"}}
       {{/if}}
     </div>
   </div>

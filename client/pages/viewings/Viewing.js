@@ -1,25 +1,25 @@
-Template.Viewing.onCreated(function() {
-  this.viewing = new ReactiveVar();
+Template.Glance.onCreated(function() {
+  this.glance = new ReactiveVar();
 
   this.autorun(() => {
-    this.viewing.set();
+    this.glance.set();
     this.subscribe(
-      'viewings.single.withGazepoints',
-      Template.currentData().viewingId,
+      'glances.single.withGazepoints',
+      Template.currentData().glanceId,
     );
 
     if (this.subscriptionsReady()) {
-      const viewing = Viewings.findOne({
-        _id: Template.currentData().viewingId,
+      const glance = Glances.findOne({
+        _id: Template.currentData().glanceId,
       });
-      if (viewing && viewing.gazepoints) {
-        this.viewing.set(viewing);
+      if (glance && glance.gazepoints) {
+        this.glance.set(glance);
       }
     }
   });
 });
 
-Template.Viewing.helpers({
-  viewing: () => Template.instance().viewing.get(),
+Template.Glance.helpers({
+  glance: () => Template.instance().glance.get(),
   hullParams: () => Template.currentData().hullParams,
 });

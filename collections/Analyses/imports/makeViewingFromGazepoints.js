@@ -1,4 +1,4 @@
-export default function makeViewingFromGazepoints({
+export default function makeGlanceFromGazepoints({
   participantId,
   stimulusId,
   gazepoints = [],
@@ -50,7 +50,7 @@ export default function makeViewingFromGazepoints({
 
   let duration = 0;
   duration = gazepoints[endIndex].timestamp - gazepoints[startIndex].timestamp;
-  const fixationCount = this.getViewingFixationCount(points);
+  const fixationCount = this.getGlanceFixationCount(points);
 
   let gazepointFrequency = 0;
   let fixationFrequency = 0;
@@ -67,12 +67,12 @@ export default function makeViewingFromGazepoints({
     status = 'invalidStimulusDimensions';
   }
 
-  return Viewings.insert({
+  return Glances.insert({
     studyId: this.studyId,
     analysisId: analysis._id,
     participantId,
     stimulusId,
-    aoiIds: this.getViewingAoiIds(pointsFull),
+    aoiIds: this.getGlanceAoiIds(pointsFull),
     number,
     startTime: gazepoints[startIndex].timestamp,
     endTime: gazepoints[endIndex].timestamp,

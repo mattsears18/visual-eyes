@@ -1,4 +1,4 @@
-export default function getViewingAoiIds(gazepoints) {
+export default function getGlanceAoiIds(gazepoints) {
   const aoiIds = [];
 
   gazepoints.forEach((point) => {

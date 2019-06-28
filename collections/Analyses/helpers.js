@@ -1,28 +1,28 @@
 import Jobs from '../Jobs/Jobs';
-import getViewingEndIndex from './imports/getViewingEndIndex';
-import makeViewingJobs from './imports/makeViewingJobs';
-import getViewingFixationCount from './imports/getViewingFixationCount';
-import getViewingAoiIds from './imports/getViewingAoiIds';
-import makeViewingFromGazepoints from './imports/makeViewingFromGazepoints';
-import makeViewings from './imports/makeViewings';
+import getGlanceEndIndex from './imports/getGlanceEndIndex';
+import makeGlanceJobs from './imports/makeGlanceJobs';
+import getGlanceFixationCount from './imports/getGlanceFixationCount';
+import getGlanceAoiIds from './imports/getGlanceAoiIds';
+import makeGlanceFromGazepoints from './imports/makeGlanceFromGazepoints';
+import makeGlances from './imports/makeGlances';
 import updateStatus from './imports/updateStatus';
 import getExportData from './imports/getExportData';
 import saveCSV from './imports/saveCSV';
-import allViewingsCreated from './imports/allViewingsCreated';
-import allViewingsProcessed from './imports/allViewingsProcessed';
+import allGlancesCreated from './imports/allGlancesCreated';
+import allGlancesProcessed from './imports/allGlancesProcessed';
 
 Analyses.helpers({
-  getViewingEndIndex,
-  makeViewingJobs,
-  getViewingFixationCount,
-  getViewingAoiIds,
-  makeViewingFromGazepoints,
-  makeViewings,
+  getGlanceEndIndex,
+  makeGlanceJobs,
+  getGlanceFixationCount,
+  getGlanceAoiIds,
+  makeGlanceFromGazepoints,
+  makeGlances,
   updateStatus,
   getExportData,
   saveCSV,
-  allViewingsCreated,
-  allViewingsProcessed,
+  allGlancesCreated,
+  allGlancesProcessed,
 
   hasPermission(action) {
     check(action, String);
@@ -48,8 +48,8 @@ Analyses.helpers({
       ? Participants.find({ _id: { $in: this.participantIds } })
       : undefined;
   },
-  viewings() {
-    return Viewings.find({ analysisId: this._id });
+  glances() {
+    return Glances.find({ analysisId: this._id });
   },
   jobs(search) {
     return Jobs.find({ 'data.analysisId': this._id, ...search });

@@ -1,11 +1,11 @@
 import '../../factories.test';
 import { expect } from 'chai';
 
-describe('Analyses.getViewingEndIndex()', () => {
+describe('Analyses.getGlanceEndIndex()', () => {
   it('gets the endIndex', async () => {
     const analysis = Factory.create('analysis', {
-      minViewingTime: 5000,
-      viewingGap: 5000,
+      minGlanceTime: 5000,
+      glanceGap: 5000,
     });
 
     const points = [
@@ -21,13 +21,13 @@ describe('Analyses.getViewingEndIndex()', () => {
       { timestamp: 9000 },
     ];
 
-    expect(analysis.getViewingEndIndex({ gazepoints: points })).to.equal(9);
+    expect(analysis.getGlanceEndIndex({ gazepoints: points })).to.equal(9);
   });
 
-  it('exceeds the viewingGap', async () => {
+  it('exceeds the glanceGap', async () => {
     const analysis = Factory.create('analysis', {
-      minViewingTime: 3000,
-      viewingGap: 5000,
+      minGlanceTime: 3000,
+      glanceGap: 5000,
     });
 
     const points = [
@@ -43,13 +43,13 @@ describe('Analyses.getViewingEndIndex()', () => {
       { timestamp: 19000 },
     ];
 
-    expect(analysis.getViewingEndIndex({ gazepoints: points })).to.equal(4);
+    expect(analysis.getGlanceEndIndex({ gazepoints: points })).to.equal(4);
   });
 
-  it('does not meet the minViewingTime and has more points', async () => {
+  it('does not meet the minGlanceTime and has more points', async () => {
     const analysis = Factory.create('analysis', {
-      minViewingTime: 10000,
-      viewingGap: 5000,
+      minGlanceTime: 10000,
+      glanceGap: 5000,
     });
 
     const points = [
@@ -66,11 +66,11 @@ describe('Analyses.getViewingEndIndex()', () => {
     ];
 
     expect(() => {
-      analysis.getViewingEndIndex({ gazepoints: points });
-    }).to.throw('minViewingTimeNotMet');
+      analysis.getGlanceEndIndex({ gazepoints: points });
+    }).to.throw('minGlanceTimeNotMet');
 
     try {
-      analysis.getViewingEndIndex({ gazepoints: points });
+      analysis.getGlanceEndIndex({ gazepoints: points });
     } catch (err) {
       expect(err.details.nextIndex).to.equal(5);
     }
@@ -78,8 +78,8 @@ describe('Analyses.getViewingEndIndex()', () => {
 
   it('has has a startIndex that is too high', async () => {
     const analysis = Factory.create('analysis', {
-      minViewingTime: 10000,
-      viewingGap: 5000,
+      minGlanceTime: 10000,
+      glanceGap: 5000,
     });
 
     const points = [
@@ -91,7 +91,7 @@ describe('Analyses.getViewingEndIndex()', () => {
     ];
 
     expect(() => {
-      analysis.getViewingEndIndex({ gazepoints: points, startIndex: 4 });
+      analysis.getGlanceEndIndex({ gazepoints: points, startIndex: 4 });
     }).to.throw('startIndexTooHigh');
   });
 });

@@ -20,7 +20,7 @@ export default function saveCSV(opt) {
     opt.period
   }ts${opt.timestep}incomplete${includeIncomplete} - ${
     this.participant().name
-  } - ${this.stimulus().name} - viewing${this.number}`;
+  } - ${this.stimulus().name} - glance${this.number}`;
 
   if (Meteor.isClient) {
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });

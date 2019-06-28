@@ -1,7 +1,7 @@
 import Jobs from '../../../collections/Jobs/Jobs';
 
-export default (queueAnalysesMakeViewings = Jobs.processJobs(
-  'analyses.makeViewings',
+export default (queueAnalysesMakeGlances = Jobs.processJobs(
+  'analyses.makeGlances',
   { concurrency: 1 },
   (job, callback) => {
     const analysis = Analyses.findOne({ _id: job.data.analysisId });
@@ -12,7 +12,7 @@ export default (queueAnalysesMakeViewings = Jobs.processJobs(
     }
 
     try {
-      const viewingIds = analysis.makeViewings({
+      const glanceIds = analysis.makeGlances({
         participantId: job.data.participantId,
         stimulusId: job.data.stimulusId
       });

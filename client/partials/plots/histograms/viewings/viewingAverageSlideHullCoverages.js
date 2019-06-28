@@ -1,4 +1,4 @@
-Template.PlotHistogramViewingAverageSlideHullCoverages.helpers({
+Template.PlotHistogramGlanceAverageSlideHullCoverages.helpers({
   x: () => getX(),
 
   layout: () => ({
@@ -22,8 +22,8 @@ Template.PlotHistogramViewingAverageSlideHullCoverages.helpers({
 });
 
 function getX() {
-  viewings = Template.currentData().viewings;
-  return viewings.fetch().map(function(viewing) {
-    return viewing.averageSlideHullCoverage;
+  glances = Template.currentData().glances;
+  return glances.fetch().map(function(glance) {
+    return glance.averageSlideHullCoverage;
   });
 }

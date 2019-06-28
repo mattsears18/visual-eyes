@@ -20,7 +20,7 @@
     "Users": true,
     "Variablefiles": true,
     "Variables": true,
-    "Viewings": true,
+    "Glances": true,
     "Schemas": true
   }
 }

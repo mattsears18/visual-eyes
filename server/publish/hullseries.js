@@ -10,7 +10,7 @@ Meteor.publish('hullseries.single', function(id) {
   return Hullseries.find({ _id: id });
 });
 
-Meteor.publish('hullseries.byViewingId', (viewingId) => {
-  check(viewingId, String);
-  return Hullseries.find({ viewingId });
+Meteor.publish('hullseries.byGlanceId', (glanceId) => {
+  check(glanceId, String);
+  return Hullseries.find({ glanceId });
 });

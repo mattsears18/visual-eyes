@@ -1,10 +1,10 @@
-import ViewingHullSeries from './ViewingHullSeries/ViewingHullSeries';
+import GlanceHullSeries from './GlanceHullSeries/GlanceHullSeries';
 
 export default function getHullseries(opt) {
   opt = opt || {};
 
-  return new ViewingHullSeries({
-    viewing: this,
+  return new GlanceHullSeries({
+    glance: this,
     points: this.gazepoints,
     period: opt.period,
     timestep: opt.timestep,

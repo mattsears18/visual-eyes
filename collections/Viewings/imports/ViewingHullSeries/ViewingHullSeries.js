@@ -11,27 +11,27 @@ import getPolygonTrace from './imports/getPolygonTrace';
 import getCentroidTrace from './imports/getCentroidTrace';
 import getFrameData from './imports/getFrameData';
 
-export default class ViewingHullSeries extends TimeHullSeries {
+export default class GlanceHullSeries extends TimeHullSeries {
   constructor(opt) {
     opt = opt || {};
     if (typeof opt.points === 'undefined') {
-      if (typeof opt.viewing !== 'undefined') {
-        opt.points = opt.viewing.gazepoints;
-        opt.width = opt.width || opt.viewing.stimulus()
-          ? opt.viewing.stimulus().width
+      if (typeof opt.glance !== 'undefined') {
+        opt.points = opt.glance.gazepoints;
+        opt.width = opt.width || opt.glance.stimulus()
+          ? opt.glance.stimulus().width
           : 0;
-        opt.height = opt.height || opt.viewing.stimulus()
-          ? opt.viewing.stimulus().height
+        opt.height = opt.height || opt.glance.stimulus()
+          ? opt.glance.stimulus().height
           : 0;
       }
     }
 
     super(opt);
 
-    if (typeof opt.viewing !== 'undefined') {
-      this.viewing = opt.viewing;
+    if (typeof opt.glance !== 'undefined') {
+      this.glance = opt.glance;
     } else {
-      throw new Error('noViewing');
+      throw new Error('noGlance');
     }
 
     this.pointTrailLength = typeof opt.pointTrailLength === 'number' && opt.pointTrailLength > 0

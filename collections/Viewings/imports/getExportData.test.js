@@ -3,25 +3,25 @@ import '../../factories.test';
 import { Factory } from 'meteor/dburles:factory';
 import { expect } from 'chai';
 
-describe('Viewing.getExportData()', () => {
+describe('Glance.getExportData()', () => {
   it('has no period', () => {
-    const viewing = Factory.create('viewing');
+    const glance = Factory.create('glance');
     const expectedFields = [
       'link',
       'study',
       'pointsType',
       'analysis',
-      'viewingGap',
-      'minViewingTime',
+      'glanceGap',
+      'minGlanceTime',
       'participant',
       'stimulus',
-      'viewingNumber',
-      'viewingDuration',
+      'glanceNumber',
+      'glanceDuration',
       'stimulusWidth',
       'stimulusHeight',
       'stimulusArea',
-      'viewingStartTime',
-      'viewingEndTime',
+      'glanceStartTime',
+      'glanceEndTime',
       'gazepointCount',
       'gazepointFrequency',
       'fixationCount',
@@ -29,31 +29,31 @@ describe('Viewing.getExportData()', () => {
       'fixationProportion',
     ];
 
-    expect(Object.keys(viewing.getExportData())).to.eql(expectedFields);
+    expect(Object.keys(glance.getExportData())).to.eql(expectedFields);
   });
 
   it('has a period', () => {
-    const viewing = Factory.create('viewingWithGazepoints');
+    const glance = Factory.create('glanceWithGazepoints');
 
     const expectedFields = [
       'link',
       'study',
       'pointsType',
       'analysis',
-      'viewingGap',
-      'minViewingTime',
+      'glanceGap',
+      'minGlanceTime',
       'period',
       'minTimestep',
       'includeIncomplete',
       'participant',
       'stimulus',
-      'viewingNumber',
-      'viewingDuration',
+      'glanceNumber',
+      'glanceDuration',
       'stimulusWidth',
       'stimulusHeight',
       'stimulusArea',
-      'viewingStartTime',
-      'viewingEndTime',
+      'glanceStartTime',
+      'glanceEndTime',
       'gazepointCount',
       'gazepointFrequency',
       'fixationCount',
@@ -100,7 +100,7 @@ describe('Viewing.getExportData()', () => {
 
     expect(
       Object.keys(
-        viewing.getExportData({
+        glance.getExportData({
           period: 5000,
           timestep: 100,
           includeIncomplete: false,

@@ -1,10 +1,10 @@
-Template.PlotHistogramViewingCounts.helpers({
+Template.PlotHistogramGlanceCounts.helpers({
   x: () => getX(),
 
   layout: () => ({
-    title: 'Viewing Counts',
+    title: 'Glance Counts',
     xaxis: {
-      title: '# of Viewings per Participant per Stimulus',
+      title: '# of Glances per Participant per Stimulus',
       dtick: 1,
     },
     yaxis: {
@@ -21,6 +21,6 @@ Template.PlotHistogramViewingCounts.helpers({
 });
 
 function getX() {
-  viewings = Template.currentData().viewings.fetch();
-  return helpers.getViewingCounts(viewings);
+  glances = Template.currentData().glances.fetch();
+  return helpers.getGlanceCounts(glances);
 }

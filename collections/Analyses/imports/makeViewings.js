@@ -1,4 +1,4 @@
-export default function makeViewings({ participantId, stimulusId }) {
+export default function makeGlances({ participantId, stimulusId }) {
   if (!participantId) {
     throw new Error('noParticipantId');
   }
@@ -35,7 +35,7 @@ export default function makeViewings({ participantId, stimulusId }) {
 
   const allGazepoints = Gazepoints.find(search, { sort: { timestamp: 1 } });
   const allGazepointsArr = allGazepoints.fetch();
-  const viewingIds = [];
+  const glanceIds = [];
 
   // console.log(`gazepoint count: ${gazepointsArr.length}`);
 
@@ -51,14 +51,14 @@ export default function makeViewings({ participantId, stimulusId }) {
       do {
         let endIndex;
         try {
-          endIndex = this.getViewingEndIndex({
+          endIndex = this.getGlanceEndIndex({
             gazepoints: gazepointsArr,
             startIndex,
           });
           // console.log('start: ' + startIndex + ' end: ' + endIndex);
         } catch (err) {
           // console.log('start: ' + startIndex + ' end: ' + endIndex);
-          if (err.error === 'minViewingTimeNotMet') {
+          if (err.error === 'minGlanceTimeNotMet') {
             // console.log(err.details);
             startIndex = err.details.nextIndex;
           } else {
@@ -71,8 +71,8 @@ export default function makeViewings({ participantId, stimulusId }) {
         }
 
         try {
-          // console.log('make the viewing!');
-          const viewingId = this.makeViewingFromGazepoints({
+          // console.log('make the glance!');
+          const glanceId = this.makeGlanceFromGazepoints({
             gazepoints: gazepointsArr,
             startIndex,
             endIndex,
@@ -81,7 +81,7 @@ export default function makeViewings({ participantId, stimulusId }) {
             stimulusId,
             fileFormat,
           });
-          viewingIds.push(viewingId);
+          glanceIds.push(glanceId);
         } catch (err) {
           console.log(err);
         }
@@ -91,5 +91,5 @@ export default function makeViewings({ participantId, stimulusId }) {
     });
   }
 
-  return viewingIds;
+  return glanceIds;
 }

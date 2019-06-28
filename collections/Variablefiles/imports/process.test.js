@@ -3,8 +3,8 @@ const { expect } = require('chai');
 
 describe('Variablefiles.getHullseries()', () => {
   it('gets a hullseries', () => {
-    const viewing = Factory.create('viewingWithGazepoints');
-    const hullseries = viewing.getHullseries({
+    const glance = Factory.create('glanceWithGazepoints');
+    const hullseries = glance.getHullseries({
       period: 5000,
       timestep: 0,
       includeIncomplete: false,

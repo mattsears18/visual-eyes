@@ -1,9 +1,9 @@
-import ViewingHullSeries from '../ViewingHullSeries';
+import GlanceHullSeries from '../GlanceHullSeries';
 
 require('../../../../factories.test');
 const { expect } = require('chai');
 
-describe('ViewingHullSeries.getTraces()', () => {
+describe('GlanceHullSeries.getTraces()', () => {
   const points = [
     { x: 100, y: 400, timestamp: 0 },
     { x: 200, y: 300, timestamp: 1000 },
@@ -31,14 +31,14 @@ describe('ViewingHullSeries.getTraces()', () => {
       width: stimulusfile.fileWidth,
       height: stimulusfile.fileHeight,
     });
-    const viewing = Factory.create('viewing', {
+    const glance = Factory.create('glance', {
       studyId: study._id,
       stimulusId: stimulus._id,
       gazepoints: points,
     });
 
-    const hullseries = new ViewingHullSeries({
-      viewing,
+    const hullseries = new GlanceHullSeries({
+      glance,
       period: 5000,
     });
 
@@ -80,14 +80,14 @@ describe('ViewingHullSeries.getTraces()', () => {
       width: stimulusfile.fileWidth,
       height: stimulusfile.fileHeight,
     });
-    const viewing = Factory.create('viewing', {
+    const glance = Factory.create('glance', {
       studyId: study._id,
       stimulusId: stimulus._id,
       gazepoints: points,
     });
 
-    const hullseries = new ViewingHullSeries({
-      viewing,
+    const hullseries = new GlanceHullSeries({
+      glance,
       period: 5000,
     });
 

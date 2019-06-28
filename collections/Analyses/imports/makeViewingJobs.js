@@ -1,15 +1,15 @@
 import Jobs from '../../Jobs/Jobs';
 
-export default function makeViewingJobs() {
-  // console.log('analysis.makeViewingJobs() analysisId: ' + this._id);
+export default function makeGlanceJobs() {
+  // console.log('analysis.makeGlanceJobs() analysisId: ' + this._id);
   this.status = 'processing';
   Analyses.update(
     { _id: this._id },
-    { $set: { status: 'processing', viewingCount: undefined } }
+    { $set: { status: 'processing', glanceCount: undefined } }
   );
 
   try {
-    Meteor.call('analyses.removeViewings', { analysisId: this._id });
+    Meteor.call('analyses.removeGlances', { analysisId: this._id });
     Meteor.call('analyses.removeJobs', { analysisId: this._id });
   } catch (err) {
     // console.log(err);
@@ -38,7 +38,7 @@ export default function makeViewingJobs() {
       }
 
       // console.log('make job for this._id: ' + this._id + ', participantId: ' + participantId + ', stimulusId: ' + stimulusId);
-      const job = new Job(Jobs, 'analyses.makeViewings', {
+      const job = new Job(Jobs, 'analyses.makeGlances', {
         analysisId: this._id,
         participantId,
         stimulusId

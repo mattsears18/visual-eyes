@@ -16,10 +16,10 @@ Meteor.publish('variables.byStudyId', (studyId) => {
     { sort: { name: 1 } });
 });
 //
-// Meteor.publish('variables.byViewingId', function(viewingId) {
-//   check(viewingId, String);
-//   viewing = Viewings.findOne({_id: viewingId});
-//   return Variables.find({_id: viewing.variableId});
+// Meteor.publish('variables.byGlanceId', function(glanceId) {
+//   check(glanceId, String);
+//   glance = Glances.findOne({_id: glanceId});
+//   return Variables.find({_id: glance.variableId});
 // });
 //
 // Meteor.publish('variables.byAnalysisId', function(analysisId) {

@@ -2,9 +2,9 @@ import SimpleSchema from 'simpl-schema';
 
 SimpleSchema.extendOptions(['autoform']);
 
-Viewings = new Mongo.Collection('viewings');
+Glances = new Mongo.Collection('glances');
 
-Viewings.allow({
+Glances.allow({
   insert() {
     return true;
   },
@@ -16,7 +16,7 @@ Viewings.allow({
   },
 });
 
-Schemas.Viewing = new SimpleSchema(
+Schemas.Glance = new SimpleSchema(
   {
     analysisId: {
       type: String,
@@ -112,9 +112,9 @@ Schemas.Viewing = new SimpleSchema(
   { tracker: Tracker },
 );
 
-Viewings.attachSchema(Schemas.Viewing);
+Glances.attachSchema(Schemas.Glance);
 
 require('./helpers');
 require('./hooks');
 
-export default Viewings;
+export default Glances;

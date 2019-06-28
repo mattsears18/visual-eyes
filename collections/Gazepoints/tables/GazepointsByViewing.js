@@ -3,7 +3,7 @@ import Gazepoints from '../Gazepoints';
 import Studies from '../../Studies/Studies';
 
 new Tabular.Table({
-  name: 'GazepointsByViewing',
+  name: 'GazepointsByGlance',
   collection: Gazepoints,
   extraFields: [
     '_id',

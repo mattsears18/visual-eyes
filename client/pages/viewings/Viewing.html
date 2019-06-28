@@ -1,8 +1,8 @@
-<template name="Viewing">
-  {{#if viewing}}
-  {{> ViewingAnimation viewing=viewing hullParams=hullParams}}
+<template name="Glance">
+  {{#if glance}}
+  {{> GlanceAnimation glance=glance hullParams=hullParams}}
   <div class="m-t-20">
-    {{> ExportAnimation viewing=viewing hullParams=hullParams}}
+    {{> ExportAnimation glance=glance hullParams=hullParams}}
   </div>
   {{else}}
   <div class="m-t-100">

@@ -1,12 +1,12 @@
 export default function getLayout(opt) {
   opt = opt || {};
 
-  if (typeof this.viewing.stimulus().stimulusfile() === 'undefined') {
+  if (typeof this.glance.stimulus().stimulusfile() === 'undefined') {
     throw new Error('noStimulusfile');
   }
 
   const forceHeight = 600;
-  const scale = forceHeight / this.viewing.stimulus().stimulusfile().fileHeight;
+  const scale = forceHeight / this.glance.stimulus().stimulusfile().fileHeight;
   const margin = {
     l: 50,
     r: 10,
@@ -17,15 +17,15 @@ export default function getLayout(opt) {
 
   let yrange;
 
-  if (this.viewing.fileFormat === 'imotions') {
-    yrange = [this.viewing.stimulus().height, 0];
+  if (this.glance.fileFormat === 'imotions') {
+    yrange = [this.glance.stimulus().height, 0];
   } else {
-    yrange = [0, this.viewing.stimulus().height];
+    yrange = [0, this.glance.stimulus().height];
   }
 
   return {
     xaxis: {
-      range: [0, this.viewing.stimulus().width],
+      range: [0, this.glance.stimulus().width],
       showticklabels: true,
     },
     yaxis: {
@@ -34,14 +34,14 @@ export default function getLayout(opt) {
     },
     height: forceHeight + margin.b + margin.t,
     width:
-      this.viewing.stimulus().stimulusfile().fileWidth * scale
+      this.glance.stimulus().stimulusfile().fileWidth * scale
       + margin.l
       + margin.r
       + 146,
     margin,
     images: [
       {
-        source: Stimulusfiles.link(this.viewing.stimulus().stimulusfile()),
+        source: Stimulusfiles.link(this.glance.stimulus().stimulusfile()),
         xref: 'paper',
         yref: 'paper',
         x: 0,

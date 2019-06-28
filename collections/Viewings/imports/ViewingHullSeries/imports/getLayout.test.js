@@ -1,12 +1,12 @@
-import ViewingHullSeries from '../ViewingHullSeries';
+import GlanceHullSeries from '../GlanceHullSeries';
 
 require('../../../../factories.test');
 const { expect } = require('chai');
 
-describe('ViewingHullSeries.getLayout()', () => {
+describe('GlanceHullSeries.getLayout()', () => {
   it('has no stimulusfile', () => {
-    const hullseries = new ViewingHullSeries({
-      viewing: Factory.create('viewingWithGazepoints', {
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glanceWithGazepoints', {
         stimulusId: Factory.create('stimulus', {
           stimulusfileId: '',
         })._id,
@@ -20,11 +20,11 @@ describe('ViewingHullSeries.getLayout()', () => {
   });
 
   it('gets a layout', () => {
-    const viewing = Factory.create('viewingWithGazepoints');
-    viewing.datafileId = Factory.create('imotionsDatafile')._id;
+    const glance = Factory.create('glanceWithGazepoints');
+    glance.datafileId = Factory.create('imotionsDatafile')._id;
 
-    const hullseries = new ViewingHullSeries({
-      viewing,
+    const hullseries = new GlanceHullSeries({
+      glance,
       period: 5000,
     });
 
@@ -33,11 +33,11 @@ describe('ViewingHullSeries.getLayout()', () => {
   });
 
   it('inverts the y axis for an imotions datafile', () => {
-    const viewing = Factory.create('viewingWithGazepoints');
-    viewing.fileFormat = 'imotions';
+    const glance = Factory.create('glanceWithGazepoints');
+    glance.fileFormat = 'imotions';
 
-    const hullseries = new ViewingHullSeries({
-      viewing,
+    const hullseries = new GlanceHullSeries({
+      glance,
       period: 5000,
     });
 
@@ -46,11 +46,11 @@ describe('ViewingHullSeries.getLayout()', () => {
   });
 
   it('does not invert the y axis for an smi datafile', () => {
-    const viewing = Factory.create('viewingWithGazepoints');
-    viewing.fileFormat = 'smi';
+    const glance = Factory.create('glanceWithGazepoints');
+    glance.fileFormat = 'smi';
 
-    const hullseries = new ViewingHullSeries({
-      viewing,
+    const hullseries = new GlanceHullSeries({
+      glance,
       period: 5000,
     });
 

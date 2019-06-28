@@ -1,9 +1,9 @@
-import ViewingHullSeries from '../ViewingHullSeries';
+import GlanceHullSeries from '../GlanceHullSeries';
 
 require('../../../../factories.test');
 const { expect } = require('chai');
 
-describe('ViewingHullSeries.getLastPointTrace()', () => {
+describe('GlanceHullSeries.getLastPointTrace()', () => {
   it('gets the initial last point trace', () => {
     const points = [
       { x: 100, y: 400, timestamp: 0 },
@@ -23,8 +23,8 @@ describe('ViewingHullSeries.getLastPointTrace()', () => {
       { x: 600, y: 100, timestamp: 14000 },
     ];
 
-    const hullseries = new ViewingHullSeries({
-      viewing: Factory.create('viewing', {
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', {
         studyId: Factory.create('study', { fixationsOnly: false })._id,
         gazepoints: points,
       }),
@@ -57,8 +57,8 @@ describe('ViewingHullSeries.getLastPointTrace()', () => {
       { x: 600, y: 100, timestamp: 14000 },
     ];
 
-    const hullseries = new ViewingHullSeries({
-      viewing: Factory.create('viewing', {
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', {
         studyId: Factory.create('study', { fixationsOnly: false })._id,
         gazepoints: points,
       }),
@@ -91,8 +91,8 @@ describe('ViewingHullSeries.getLastPointTrace()', () => {
       { x: 600, y: 100, timestamp: 14000 },
     ];
 
-    const hullseries = new ViewingHullSeries({
-      viewing: Factory.create('viewing', {
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', {
         studyId: Factory.create('study', { fixationsOnly: true })._id,
         gazepoints: points,
       }),

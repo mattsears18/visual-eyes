@@ -1,16 +1,16 @@
-import ViewingHullSeries from './ViewingHullSeries';
+import GlanceHullSeries from './GlanceHullSeries';
 
 require('../../../factories.test');
 const { expect } = require('chai');
 
-describe('ViewingHullSeries', () => {
+describe('GlanceHullSeries', () => {
   it('has no points', () => {
     expect(() => {
-      new ViewingHullSeries();
+      new GlanceHullSeries();
     }).to.throw('noPoints');
   });
 
-  it('has no viewing', () => {
+  it('has no glance', () => {
     const points = [
       { x: 100, y: 400, timestamp: 0 },
       { x: 200, y: 300, timestamp: 1000 },
@@ -19,18 +19,18 @@ describe('ViewingHullSeries', () => {
     ];
 
     expect(() => {
-      new ViewingHullSeries({ points, period: 5000 });
-    }).to.throw('noViewing');
+      new GlanceHullSeries({ points, period: 5000 });
+    }).to.throw('noGlance');
   });
 
-  it('has a viewing with no points', () => {
-    const viewing = Factory.create('viewing');
+  it('has a glance with no points', () => {
+    const glance = Factory.create('glance');
     expect(() => {
-      new ViewingHullSeries({ viewing });
+      new GlanceHullSeries({ glance });
     }).to.throw('noPoints');
   });
 
-  it('has a viewing with points', () => {
+  it('has a glance with points', () => {
     const points = [
       { x: 100, y: 400, timestamp: 0 },
       { x: 200, y: 300, timestamp: 1000 },
@@ -38,8 +38,8 @@ describe('ViewingHullSeries', () => {
       { x: 400, y: 100, timestamp: 3000 },
     ];
 
-    const viewing = Factory.create('viewing', { gazepoints: points });
-    const hullseries = new ViewingHullSeries({ viewing, period: 5000 });
+    const glance = Factory.create('glance', { gazepoints: points });
+    const hullseries = new GlanceHullSeries({ glance, period: 5000 });
 
     expect(hullseries.points).to.eql([
       { x: 100, y: 400, timestamp: 0 },
@@ -49,14 +49,14 @@ describe('ViewingHullSeries', () => {
     ]);
   });
 
-  it('is a ViewingHullSeries', () => {
-    const viewing = Factory.create('viewingWithGazepoints');
-    const hullseries = new ViewingHullSeries({ viewing, period: 5000 });
+  it('is a GlanceHullSeries', () => {
+    const glance = Factory.create('glanceWithGazepoints');
+    const hullseries = new GlanceHullSeries({ glance, period: 5000 });
 
-    expect(hullseries.constructor.name).to.equal('ViewingHullSeries');
+    expect(hullseries.constructor.name).to.equal('GlanceHullSeries');
   });
 
-  it('overrides the viewing points', () => {
+  it('overrides the glance points', () => {
     const points = [
       { x: 100, y: 400, timestamp: 0 },
       { x: 200, y: 300, timestamp: 1000 },
@@ -72,9 +72,9 @@ describe('ViewingHullSeries', () => {
       { x: 200, y: 100, timestamp: 10000 },
     ];
 
-    const viewing = Factory.create('viewing', { gazepoints: points });
-    const hullseries = new ViewingHullSeries({
-      viewing,
+    const glance = Factory.create('glance', { gazepoints: points });
+    const hullseries = new GlanceHullSeries({
+      glance,
       period: 5000,
       points: otherPoints,
     });

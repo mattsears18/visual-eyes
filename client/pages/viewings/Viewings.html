@@ -1,4 +1,4 @@
-<template name="Viewings">
+<template name="Glances">
   {{#if Template.subscriptionsReady}}
   <div class="row">
     <div class="col-md-6 m-b-20">
@@ -41,13 +41,13 @@
           </td>
         </tr>
         <tr>
-          <th>Viewing Number:</th>
+          <th>Glance Number:</th>
           <td class="p-l-10 p-t-5 p-b-5">
             <button class="btn btn-primary number previous">
               <i class="fa fa-chevron-left"></i>
             </button>
           </td>
-          <td class="p-l-10 text-center">{{ number }} of {{ viewingCount }}</td>
+          <td class="p-l-10 text-center">{{ number }} of {{ glanceCount }}</td>
           <td class="p-l-10 p-t-5 p-b-5">
             <button class="btn btn-primary number next">
               <i class="fa fa-chevron-right"></i>
@@ -59,30 +59,30 @@
 
     <div class="col-md-6">
       <div class="well m-b-20">
-        {{#if viewing.duration}}
+        {{#if glance.duration}}
         <table>
           <tr>
             <th>Duration:</th>
             <td class="p-l-10" colspan="2">
-              {{millisecondsToMSMS viewing.duration}}
+              {{millisecondsToMSMS glance.duration}}
             </td>
           </tr>
           <tr>
             <th>Start Time - End Time:</th>
             <td class="p-l-10" colspan="2">
-              {{millisecondsToMSMS viewing.startTime}} -
-              {{millisecondsToMSMS viewing.endTime}}
+              {{millisecondsToMSMS glance.startTime}} -
+              {{millisecondsToMSMS glance.endTime}}
             </td>
           </tr>
           <tr>
             <th>Gaze Point Count (Frequency):</th>
-            <td class="p-l-10">{{ viewing.gazepointCount }}</td>
-            <td>({{formatNumber viewing.gazepointFrequency}}/sec)</td>
+            <td class="p-l-10">{{ glance.gazepointCount }}</td>
+            <td>({{formatNumber glance.gazepointFrequency}}/sec)</td>
           </tr>
           <tr>
             <th>Fixation Count (Frequency):</th>
-            <td class="p-l-10">{{ viewing.fixationCount }}</td>
-            <td>({{formatNumber viewing.fixationFrequency}}/sec)</td>
+            <td class="p-l-10">{{ glance.fixationCount }}</td>
+            <td>({{formatNumber glance.fixationFrequency}}/sec)</td>
           </tr>
         </table>
 
@@ -93,7 +93,7 @@
     </div>
   </div>
 
-  {{#if viewing}}
+  {{#if glance}}
   <form>
     <div class="row">
       <div class="col-md-3 col-xs-6">
@@ -177,7 +177,7 @@
       </div>
     </div>
   </form>
-  {{> Viewing viewingId=viewing._id hullParams=hullParams}}
+  {{> Glance glanceId=glance._id hullParams=hullParams}}
   {{/if}}
   {{else}}
   {{> Spinner}}

@@ -6,7 +6,7 @@ export default function getExportData(opt) {
 
   if (Meteor.isClient) {
     console.log(
-      `viewing.getExportData() ${this.participant().name} - ${
+      `glance.getExportData() ${this.participant().name} - ${
         this.stimulus().name
       } - ${this.number}`
     );
@@ -27,8 +27,8 @@ export default function getExportData(opt) {
     study: this.study().name,
     pointsType: this.study().pointsType(),
     analysis: this.analysis().name,
-    viewingGap: this.analysis().viewingGap,
-    minViewingTime: this.analysis().minViewingTime
+    glanceGap: this.analysis().glanceGap,
+    minGlanceTime: this.analysis().minGlanceTime
   };
 
   if (typeof period !== 'undefined') {
@@ -39,14 +39,14 @@ export default function getExportData(opt) {
 
   fields.participant = this.participant().name;
   fields.stimulus = this.stimulus().name;
-  fields.viewingNumber = this.number;
-  fields.viewingDuration = this.duration;
+  fields.glanceNumber = this.number;
+  fields.glanceDuration = this.duration;
   fields.stimulusWidth = this.stimulus().width;
   fields.stimulusHeight = this.stimulus().height;
   fields.stimulusArea = this.stimulus().area();
-  fields.viewingStartTime = this.startTime;
-  fields.viewingEndTime = this.endTime;
-  fields.viewingDuration = this.duration;
+  fields.glanceStartTime = this.startTime;
+  fields.glanceEndTime = this.endTime;
+  fields.glanceDuration = this.duration;
   fields.gazepointCount = this.gazepointCount;
   fields.gazepointFrequency = this.gazepointFrequency;
   fields.fixationCount = this.fixationCount;
@@ -54,7 +54,7 @@ export default function getExportData(opt) {
   fields.fixationProportion = this.getFixationProportion();
 
   if (typeof period === 'undefined') {
-    // just return basic stats about the viewing
+    // just return basic stats about the glance
     data = fields;
 
     this.participant()

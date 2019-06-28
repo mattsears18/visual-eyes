@@ -1,21 +1,21 @@
-Template.UpdateViewing.events({
+Template.UpdateGlance.events({
   'click .fa-close'() {
-    Session.set('updateViewing', false);
+    Session.set('updateGlance', false);
   },
 });
 
 AutoForm.hooks({
-  updateViewingForm: {
+  updateGlanceForm: {
     onSuccess(formType, result) {
-      Session.set('updateViewing', false);
+      Session.set('updateGlance', false);
     },
   },
 });
 
-Template.UpdateViewing.helpers({
+Template.UpdateGlance.helpers({
   deleteOnSuccess() {
     return function() {
-      FlowRouter.go('/viewings');
+      FlowRouter.go('/glances');
     };
   },
   deleteBeforeRemove() {

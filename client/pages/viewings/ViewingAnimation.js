@@ -1,11 +1,11 @@
-Template.ViewingAnimation.onCreated(function() {
-  this.viewing = new ReactiveVar(Template.instance().data.viewing);
+Template.GlanceAnimation.onCreated(function() {
+  this.glance = new ReactiveVar(Template.instance().data.glance);
   this.stimulusfile = new ReactiveVar();
   this.hullseries = new ReactiveVar();
   this.hullParams = new ReactiveVar(Template.currentData().hullParams);
 
   this.autorun(() => {
-    this.subscribe('stimulusfiles.byViewingId', this.viewing.get()._id);
+    this.subscribe('stimulusfiles.byGlanceId', this.glance.get()._id);
     this.hullseries.set();
     this.hullParams.set({
       period: Template.currentData().hullParams.period,
@@ -16,11 +16,11 @@ Template.ViewingAnimation.onCreated(function() {
 
     if (this.subscriptionsReady()) {
       const stimulusfile = Stimulusfiles.collection.findOne({
-        _id: this.viewing.get().stimulus().stimulusfileId,
+        _id: this.glance.get().stimulus().stimulusfileId,
       });
       if (stimulusfile) {
         this.stimulusfile.set(stimulusfile);
-        const hullseries = this.viewing
+        const hullseries = this.glance
           .get()
           .getHullseries(this.hullParams.get());
 
@@ -33,8 +33,8 @@ Template.ViewingAnimation.onCreated(function() {
   });
 });
 
-Template.ViewingAnimation.helpers({
-  viewing: () => Template.instance().viewing.get(),
+Template.GlanceAnimation.helpers({
+  glance: () => Template.instance().glance.get(),
   stimulusfile: () => Template.instance().hullseries.get(),
   hullseries: () => Template.instance().hullseries.get(),
   layout: () => Template.instance()

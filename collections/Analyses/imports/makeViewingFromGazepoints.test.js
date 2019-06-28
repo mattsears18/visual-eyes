@@ -1,18 +1,18 @@
 require('./../../factories.test');
 const { expect } = require('chai');
 
-describe('Analyses.makeViewingFromGazepoints()', () => {
+describe('Analyses.makeGlanceFromGazepoints()', () => {
   it('has no fileFormat', () => {
     const analysis = Factory.create('analysis');
     expect(() => {
-      analysis.makeViewingFromGazepoints({});
+      analysis.makeGlanceFromGazepoints({});
     }).to.throw('noFileFormat');
   });
 
   it('has no participantId', () => {
     const analysis = Factory.create('analysis');
     expect(() => {
-      analysis.makeViewingFromGazepoints({
+      analysis.makeGlanceFromGazepoints({
         fileFormat: 'imotions',
       });
     }).to.throw('noParticipantId');
@@ -21,7 +21,7 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
   it('has a nonexistent participant', () => {
     const analysis = Factory.create('analysis');
     expect(() => {
-      analysis.makeViewingFromGazepoints({
+      analysis.makeGlanceFromGazepoints({
         fileFormat: 'imotions',
         participantId: 'abc',
       });
@@ -31,7 +31,7 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
   it('has no stimulusId', () => {
     const analysis = Factory.create('analysis');
     expect(() => {
-      analysis.makeViewingFromGazepoints({
+      analysis.makeGlanceFromGazepoints({
         fileFormat: 'imotions',
         participantId: Factory.create('participant')._id,
       });
@@ -41,7 +41,7 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
   it('has a nonexistent stimulus', () => {
     const analysis = Factory.create('analysis');
     expect(() => {
-      analysis.makeViewingFromGazepoints({
+      analysis.makeGlanceFromGazepoints({
         fileFormat: 'imotions',
         participantId: Factory.create('participant')._id,
         stimulusId: 'abc',
@@ -52,7 +52,7 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
   it('has no gazepoints', () => {
     const analysis = Factory.create('analysis');
     expect(() => {
-      analysis.makeViewingFromGazepoints({
+      analysis.makeGlanceFromGazepoints({
         fileFormat: 'imotions',
         participantId: Factory.create('participant')._id,
         stimulusId: Factory.create('stimulus')._id,
@@ -63,7 +63,7 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
   it('has a startIndex that is out of bounds', () => {
     const analysis = Factory.create('analysis');
     expect(() => {
-      analysis.makeViewingFromGazepoints({
+      analysis.makeGlanceFromGazepoints({
         fileFormat: 'imotions',
         participantId: Factory.create('participant')._id,
         stimulusId: Factory.create('stimulus')._id,
@@ -76,7 +76,7 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
   it('has an endIndex that is out of bounds', () => {
     const analysis = Factory.create('analysis');
     expect(() => {
-      analysis.makeViewingFromGazepoints({
+      analysis.makeGlanceFromGazepoints({
         fileFormat: 'imotions',
         participantId: Factory.create('participant')._id,
         stimulusId: Factory.create('stimulus')._id,
@@ -88,31 +88,31 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
 
   it('has an invalid stimulus width', () => {
     const analysis = Factory.create('analysis');
-    const viewingId = analysis.makeViewingFromGazepoints({
+    const glanceId = analysis.makeGlanceFromGazepoints({
       fileFormat: 'imotions',
       participantId: Factory.create('participant')._id,
       stimulusId: Factory.create('stimulus', { width: 0 })._id,
       gazepoints: [{ x: 0.5, y: 0.5, timestamp: 0 }],
     });
 
-    const viewing = Viewings.findOne({ _id: viewingId });
-    expect(viewing.status).to.equal('invalidStimulusDimensions');
+    const glance = Glances.findOne({ _id: glanceId });
+    expect(glance.status).to.equal('invalidStimulusDimensions');
   });
 
   it('has an invalid stimulus height', () => {
     const analysis = Factory.create('analysis');
-    const viewingId = analysis.makeViewingFromGazepoints({
+    const glanceId = analysis.makeGlanceFromGazepoints({
       fileFormat: 'imotions',
       participantId: Factory.create('participant')._id,
       stimulusId: Factory.create('stimulus', { height: 0 })._id,
       gazepoints: [{ x: 0.5, y: 0.5, timestamp: 0 }],
     });
 
-    const viewing = Viewings.findOne({ _id: viewingId });
-    expect(viewing.status).to.equal('invalidStimulusDimensions');
+    const glance = Glances.findOne({ _id: glanceId });
+    expect(glance.status).to.equal('invalidStimulusDimensions');
   });
 
-  it('successfully makes a viewing', async () => {
+  it('successfully makes a glance', async () => {
     const analysis = Factory.create('analysis');
     const participant = Factory.create('participant');
     const stimulus = Factory.create('stimulus');
@@ -141,7 +141,7 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
       { x: 0.5, y: 0.5, timestamp: 11000 },
     ];
 
-    const viewingId = analysis.makeViewingFromGazepoints({
+    const glanceId = analysis.makeGlanceFromGazepoints({
       fileFormat: 'imotions',
       participantId: participant._id,
       stimulusId: stimulus._id,
@@ -151,19 +151,19 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
       number: 7,
     });
 
-    const viewing = Viewings.findOne({ _id: viewingId });
+    const glance = Glances.findOne({ _id: glanceId });
 
-    expect(viewing.analysisId).to.equal(analysis._id);
-    expect(viewing.startTime).to.equal(2000);
-    expect(viewing.endTime).to.equal(6000);
-    expect(viewing.duration).to.equal(4000);
-    expect(viewing.number).to.equal(7);
-    expect(viewing.participantId).to.equal(participant._id);
-    expect(viewing.stimulusId).to.equal(stimulus._id);
-    expect(viewing.aoiIds.length).to.equal(0);
-    expect(viewing.status).to.equal('processed');
+    expect(glance.analysisId).to.equal(analysis._id);
+    expect(glance.startTime).to.equal(2000);
+    expect(glance.endTime).to.equal(6000);
+    expect(glance.duration).to.equal(4000);
+    expect(glance.number).to.equal(7);
+    expect(glance.participantId).to.equal(participant._id);
+    expect(glance.stimulusId).to.equal(stimulus._id);
+    expect(glance.aoiIds.length).to.equal(0);
+    expect(glance.status).to.equal('processed');
 
-    expect(viewing.gazepoints).to.eql([
+    expect(glance.gazepoints).to.eql([
       {
         x: 0.5,
         y: 0.5,
@@ -181,9 +181,9 @@ describe('Analyses.makeViewingFromGazepoints()', () => {
       { x: 0.5, y: 0.5, timestamp: 6000 },
     ]);
 
-    expect(viewing.gazepointCount).to.equal(5);
-    expect(viewing.gazepointFrequency).to.equal(1.25);
-    expect(viewing.fixationCount).to.equal(2);
-    expect(viewing.fixationFrequency).to.equal(0.5);
+    expect(glance.gazepointCount).to.equal(5);
+    expect(glance.gazepointFrequency).to.equal(1.25);
+    expect(glance.fixationCount).to.equal(2);
+    expect(glance.fixationFrequency).to.equal(0.5);
   }).timeout(60000);
 });

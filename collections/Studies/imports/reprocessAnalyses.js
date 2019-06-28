@@ -4,6 +4,6 @@ export default function reprocessAnalyses() {
   analyses = Analyses.find({ studyId: this._id });
 
   analyses.forEach(function(analysis) {
-    analysis.makeGlanceJobs();
+    analysis.makeGazeJobs();
   });
 }

@@ -10,7 +10,7 @@ Analyses.before.insert(function(userId, doc) {
 
 Analyses.after.remove(function(userId, analysis) {
   if (Meteor.isServer) {
-    Glances.remove({ analysisId: analysis._id });
+    Gazes.remove({ analysisId: analysis._id });
     Jobs.remove({
       'data.analysisId': analysis._id,
     });
@@ -19,7 +19,7 @@ Analyses.after.remove(function(userId, analysis) {
 
 Analyses.after.insert(function(userId, analysis) {
   if (Meteor.isServer) {
-    Analyses.findOne({ _id: analysis._id }).makeGlanceJobs();
+    Analyses.findOne({ _id: analysis._id }).makeGazeJobs();
   }
 });
 
@@ -33,15 +33,15 @@ Analyses.after.update(function(
   if (Meteor.isServer) {
     if (
       this.previous.ignoreOutsideImage != analysis.ignoreOutsideImage
-      || this.previous.minGlanceTime != analysis.minGlanceTime
-      || this.previous.glanceGap != analysis.glanceGap
+      || this.previous.minGazeTime != analysis.minGazeTime
+      || this.previous.gazeGap != analysis.gazeGap
       || !helpers.arraysEqual(this.previous.stimulusIds, analysis.stimulusIds)
       || !helpers.arraysEqual(
         this.previous.participantIds,
         analysis.participantIds,
       )
     ) {
-      Analyses.findOne({ _id: analysis._id }).makeGlanceJobs();
+      Analyses.findOne({ _id: analysis._id }).makeGazeJobs();
     }
   }
 });

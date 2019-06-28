@@ -1,0 +1,20 @@
+<template name="UpdateGaze">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Edit Gaze <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Gazes" doc=gaze id="updateGazeForm"
+        type="update" class="update-gaze-form"}}
+
+      <!-- {{> quickForm collection="Gazes" doc=gaze id="updateGazeForm"
+        type="method" meteormethod="gazes.update" class="update-gaze-form"}} -->
+
+      {{#if gaze.hasPermission 'destroy'}}
+        {{> quickRemoveButton collection="Gazes" _id=gaze._id
+          onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
+          id="destroyGazeform" class="btn btn-danger"}}
+      {{/if}}
+    </div>
+  </div>
+</template>

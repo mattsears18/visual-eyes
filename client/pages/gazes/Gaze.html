@@ -1,0 +1,12 @@
+<template name="Gaze">
+  {{#if gaze}}
+  {{> GazeAnimation gaze=gaze hullParams=hullParams}}
+  <div class="m-t-20">
+    {{> ExportAnimation gaze=gaze hullParams=hullParams}}
+  </div>
+  {{else}}
+  <div class="m-t-100">
+    {{> Spinner}}
+  </div>
+  {{/if}}
+</template>

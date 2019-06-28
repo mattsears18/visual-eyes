@@ -20,7 +20,7 @@
 
     {{#if equals analysis.status 'processing'}}
     <span class="label label-default"
-      >Creating Glances {{formatNumber analysis.jobsProgress}}%<i
+      >Creating Gazes {{formatNumber analysis.jobsProgress}}%<i
         class="fa fa-spinner fa-pulse fa-fw m-l-3"
       ></i
     ></span>
@@ -29,16 +29,16 @@
 
   <p>{{ analysis.desc }}</p>
 
-  {{#if analysis.glanceGap}}
+  {{#if analysis.gazeGap}}
   <div>
-    <strong>Glance Gap (ms):</strong> {{formatNumber analysis.glanceGap}}
+    <strong>Gaze Gap (ms):</strong> {{formatNumber analysis.gazeGap}}
   </div>
   {{/if}}
 
-  {{#if analysis.minGlanceTime}}
+  {{#if analysis.minGazeTime}}
   <div>
-    <strong>Minimum Glance Time (ms):</strong>
-    {{formatNumber analysis.minGlanceTime}}
+    <strong>Minimum Gaze Time (ms):</strong>
+    {{formatNumber analysis.minGazeTime}}
   </div>
   {{/if}}
 
@@ -84,7 +84,7 @@
     </h4>
   </div>
 
-  {{#if glances.count}}
+  {{#if gazes.count}}
   <!-- <div class="row">
         <div class="col-md-6">
           {{> PlotRegression}}
@@ -92,33 +92,33 @@
       </div> -->
   <div class="row">
     <div class="col-md-6">
-      {{> PlotHistogramGlanceDurations glances=glances}}
+      {{> PlotHistogramGazeDurations gazes=gazes}}
     </div>
     <div class="col-md-6">
-      {{> PlotHistogramGlanceCounts glances=glances}}
+      {{> PlotHistogramGazeCounts gazes=gazes}}
     </div>
   </div>
   <!-- <div class="row">
         <div class="col-md-6">
-          {{> PlotHistogramGlanceAverageSlideHullCoverages glances=glances}}
+          {{> PlotHistogramGazeAverageSlideHullCoverages gazes=gazes}}
         </div>
       </div> -->
   {{/if}}
 
-  {{#if glances.count}}
+  {{#if gazes.count}}
   <h4>
-    Glances ({{ glances.count }})
+    Gazes ({{ gazes.count }})
 
     {{#unless analysis.allJobsCompleted}}
     <span class="label label-default"
-      >Creating Glances {{formatNumber analysis.jobsProgress}}%<i
+      >Creating Gazes {{formatNumber analysis.jobsProgress}}%<i
         class="fa fa-spinner fa-pulse fa-fw m-l-3"
       ></i
     ></span>
     {{/unless}}
   </h4>
 
-  {{> tabular table=TabularTables.GlancesByAnalysisId selector=selector class="table table-striped table-bordered"}}
+  {{> tabular table=TabularTables.GazesByAnalysisId selector=selector class="table table-striped table-bordered"}}
   {{/if}}
   {{/if}}
 </template>

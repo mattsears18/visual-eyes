@@ -92,7 +92,7 @@ npm start
 
 5) Confirm the `width` and `height` of each `stimulus`. By default, the `width` and `height` are set to the width and height of the uploaded stimulus file (reference image).
 6) If desired, create `variables` for the `participants`, e.g. age, gender, etc.
-7) Create an `analysis`. `Glances` are generated from the `analysis`.
+7) Create an `analysis`. `Gazes` are generated from the `analysis`.
 8) If desired, on the `analysis` page, click "Download Data as .CSV" to download the results of the `analysis` in tabular format, along with the input `participant` `variables`.
-9) On the `analysis` page, scroll down to the `glances` table and click on a `glance`.
-10) Choose "Convex Hull Areas" for the `analysis type` to view the convex hull animation of the `glance`.
+9) On the `analysis` page, scroll down to the `gazes` table and click on a `gaze`.
+10) Choose "Convex Hull Areas" for the `analysis type` to view the convex hull animation of the `gaze`.

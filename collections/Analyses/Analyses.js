@@ -42,14 +42,14 @@ Schemas.Analysis = new SimpleSchema(
       },
       optional: true
     },
-    glanceGap: {
+    gazeGap: {
       type: Number,
-      label: 'Glance Gap (ms)',
+      label: 'Gaze Gap (ms)',
       defaultValue: 5000
     },
-    minGlanceTime: {
+    minGazeTime: {
       type: Number,
-      label: 'Minimum Glance Time (ms)',
+      label: 'Minimum Gaze Time (ms)',
       defaultValue: 10000
     },
     ignoreOutsideImage: {
@@ -93,9 +93,9 @@ Schemas.Analysis = new SimpleSchema(
       },
       optional: true
     },
-    glanceCount: {
+    gazeCount: {
       type: Number,
-      label: 'Glance Count',
+      label: 'Gaze Count',
       optional: true
     }
   },

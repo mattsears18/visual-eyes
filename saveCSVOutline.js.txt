@@ -1,8 +1,8 @@
-Glance.saveCSV({ period: 5000 });
-Glance.saveCSV(); // (no period)
+Gaze.saveCSV({ period: 5000 });
+Gaze.saveCSV(); // (no period)
 
 Analysis.saveCSV({ period: 5000, individual: true });
-// Analysis.saveCSV({ groupBy: 'glance', period: 5000, individual: false });
+// Analysis.saveCSV({ groupBy: 'gaze', period: 5000, individual: false });
 Analysis.saveCSV({ individual: true }); //  no period
 // Analysis.saveCSV({ individual: false }); // no period
 

@@ -1,0 +1,27 @@
+<template name="GazeAnimation">
+  {{#if gaze}}
+    {{#if hullseries}}
+      {{> Animation layout=layout initialTraces=initialTraces frameSeries=hullseries}}
+    {{else}}
+      {{#if Template.subscriptionsReady}}
+        {{#unless stimulusfile}}
+          <div>
+            <span class="label label-danger"
+              >No stimulus image associated with {{ gaze.stimulus.name }}</span
+            >
+          </div>
+          <div class="m-t-5">
+            <a
+              href="/studies/{{ gaze.stimulus.studyId }}/stimuli/{{gaze.stimulus._id}}"
+              >{{ gaze.stimulus.name }}</a
+            >
+          </div>
+        {{/unless}}
+      {{else}}
+        <div class="m-t-100">
+          {{> Spinner}}
+        </div>
+      {{/if}}
+    {{/if}}
+  {{/if}}
+</template>

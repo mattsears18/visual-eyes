@@ -10,24 +10,24 @@ describe('Analyses.getExportData()', () => {
   });
 
   it('has a participant', () => {
-    const glance = Factory.create('glanceWithGazepoints');
+    const gaze = Factory.create('gazeWithGazepoints');
 
     const expectedFields = [
       'link',
       'study',
       'pointsType',
       'analysis',
-      'glanceGap',
-      'minGlanceTime',
+      'gazeGap',
+      'minGazeTime',
       'participant',
       'stimulus',
-      'glanceNumber',
-      'glanceDuration',
+      'gazeNumber',
+      'gazeDuration',
       'stimulusWidth',
       'stimulusHeight',
       'stimulusArea',
-      'glanceStartTime',
-      'glanceEndTime',
+      'gazeStartTime',
+      'gazeEndTime',
       'gazepointCount',
       'gazepointFrequency',
       'fixationCount',
@@ -35,34 +35,34 @@ describe('Analyses.getExportData()', () => {
       'fixationProportion'
     ];
 
-    // expect(glance.analysis().getExportData().length).to.equal(1);
-    expect(Object.keys(glance.analysis().getExportData()[0])).to.eql(
+    // expect(gaze.analysis().getExportData().length).to.equal(1);
+    expect(Object.keys(gaze.analysis().getExportData()[0])).to.eql(
       expectedFields
     );
   }).timeout(60000);
 
   it('has a period', () => {
-    const glance = Factory.create('glanceWithGazepoints');
+    const gaze = Factory.create('gazeWithGazepoints');
 
     const expectedFields = [
       'link',
       'study',
       'pointsType',
       'analysis',
-      'glanceGap',
-      'minGlanceTime',
+      'gazeGap',
+      'minGazeTime',
       'period',
       'minTimestep',
       'includeIncomplete',
       'participant',
       'stimulus',
-      'glanceNumber',
-      'glanceDuration',
+      'gazeNumber',
+      'gazeDuration',
       'stimulusWidth',
       'stimulusHeight',
       'stimulusArea',
-      'glanceStartTime',
-      'glanceEndTime',
+      'gazeStartTime',
+      'gazeEndTime',
       'gazepointCount',
       'gazepointFrequency',
       'fixationCount',
@@ -80,25 +80,25 @@ describe('Analyses.getExportData()', () => {
 
     expect(
       Object.keys(
-        glance.analysis().getExportData({ period: 5000, timestep: 0 })[0]
+        gaze.analysis().getExportData({ period: 5000, timestep: 0 })[0]
       )
     ).to.eql(expectedFields);
   }).timeout(60000);
 
   it('groups by participant', () => {
-    const glance1 = Factory.create('glanceWithGazepoints', { number: 1 });
-    const glance2 = Factory.create('glanceWithGazepoints', {
-      studyId: glance1.studyId,
-      analysisId: glance1.analysisId,
-      participantId: glance1.participantId,
-      stimulusId: glance1.stimulusId,
+    const gaze1 = Factory.create('gazeWithGazepoints', { number: 1 });
+    const gaze2 = Factory.create('gazeWithGazepoints', {
+      studyId: gaze1.studyId,
+      analysisId: gaze1.analysisId,
+      participantId: gaze1.participantId,
+      stimulusId: gaze1.stimulusId,
       number: 2
     });
-    const glance3 = Factory.create('glanceWithGazepoints', {
-      studyId: glance1.studyId,
-      analysisId: glance1.analysisId,
-      participantId: glance1.participantId,
-      stimulusId: glance1.stimulusId,
+    const gaze3 = Factory.create('gazeWithGazepoints', {
+      studyId: gaze1.studyId,
+      analysisId: gaze1.analysisId,
+      participantId: gaze1.participantId,
+      stimulusId: gaze1.stimulusId,
       number: 3
     });
 
@@ -107,29 +107,29 @@ describe('Analyses.getExportData()', () => {
       'study',
       'pointsType',
       'analysis',
-      'glanceGap',
-      'minGlanceTime',
+      'gazeGap',
+      'minGazeTime',
       'period',
       'minTimestep',
       'includeIncomplete',
       'participant',
-      'glanceCount',
-      'glanceDurations',
-      'glanceDurationsMin',
-      'glanceDurationsMax',
-      'glanceDurationsSum',
-      'glanceDurationsMean',
-      'glanceDurationsMedian',
-      'glanceDurationsPerStimulus',
-      'glanceDurationsPerStimulusMin',
-      'glanceDurationsPerStimulusMax',
-      'glanceDurationsPerStimulusMean',
-      'glanceDurationsPerStimulusMedian',
-      'glanceCountsPerStimulus',
-      'glanceCountsPerStimulusMin',
-      'glanceCountsPerStimulusMax',
-      'glanceCountsPerStimulusMean',
-      'glanceCountsPerStimulusMedian',
+      'gazeCount',
+      'gazeDurations',
+      'gazeDurationsMin',
+      'gazeDurationsMax',
+      'gazeDurationsSum',
+      'gazeDurationsMean',
+      'gazeDurationsMedian',
+      'gazeDurationsPerStimulus',
+      'gazeDurationsPerStimulusMin',
+      'gazeDurationsPerStimulusMax',
+      'gazeDurationsPerStimulusMean',
+      'gazeDurationsPerStimulusMedian',
+      'gazeCountsPerStimulus',
+      'gazeCountsPerStimulusMin',
+      'gazeCountsPerStimulusMax',
+      'gazeCountsPerStimulusMean',
+      'gazeCountsPerStimulusMedian',
       'gazepointCount',
       'gazepointFrequency',
       'fixationCount',
@@ -151,7 +151,7 @@ describe('Analyses.getExportData()', () => {
 
     expect(
       Object.keys(
-        glance1.analysis().getExportData({
+        gaze1.analysis().getExportData({
           period: 5000,
           timestep: 0,
           groupBy: 'participant'

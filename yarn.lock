@@ -6737,10 +6737,10 @@ tildify@^1.2.0:
   dependencies:
     os-homedir "^1.0.0"
 
-time-hulls@^0.0.109:
-  version "0.0.109"
-  resolved "https://registry.yarnpkg.com/time-hulls/-/time-hulls-0.0.109.tgz#fa953cdb928200a353080f44220a21365c282845"
-  integrity sha512-liZEDdiiiUbIlPiO4WHxI37lOtY8zE5OLWPtnyFiIRZz2BDA98VC7f6YCqH/s0Ll73bTrnPqq4qS+qMm2ehjdQ==
+time-hulls@^0.0.110:
+  version "0.0.110"
+  resolved "https://registry.yarnpkg.com/time-hulls/-/time-hulls-0.0.110.tgz#c0e066f22c1595ca0284fd0bc360b224dd5c745e"
+  integrity sha512-TqHHl2B4x3WGBfJcIadqJqTMdBw4RC3ChFVhvHlcYEPtdvdTHFAhxDIRnQoUl24xgn0+Qjwo6inGPLbAXM6IQA==
   dependencies:
     area-polygon "^1.0.1"
     hull.js "^0.2.11"

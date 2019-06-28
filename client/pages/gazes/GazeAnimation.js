@@ -20,11 +20,9 @@ Template.GazeAnimation.onCreated(function() {
       });
       if (stimulusfile) {
         this.stimulusfile.set(stimulusfile);
-        const hullseries = this.gaze
-          .get()
-          .getHullseries(this.hullParams.get());
+        const hullseries = this.gaze.get().getHullseries(this.hullParams.get());
 
-        if (hullseries) {
+        if (hullseries && hullseries.getHulls().length) {
           this.hullseries.set(hullseries);
           hullseries.getCentroids();
         }

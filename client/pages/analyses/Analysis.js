@@ -93,7 +93,7 @@ Template.Analysis.events({
     const analysis = Analyses.findOne({
       _id: FlowRouter.getParam('analysisId'),
     });
-    analysis.makeGazeJobs();
+    analysis.makeGazeJobsJob();
   },
   'click .update-analysis'() {
     Session.set('updateAnalysis', true);

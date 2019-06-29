@@ -8,7 +8,7 @@ Template.AnalysesList.onCreated(function() {
 
 Template.AnalysesList.helpers({
   study: () => Studies.findOne(),
-  analyses: () => Analyses.find()
+  analyses: () => Analyses.find(),
 });
 
 Template.AnalysesList.events({
@@ -16,15 +16,16 @@ Template.AnalysesList.events({
     Session.set('newAnalysis', true);
   },
   'click .reprocess-analyses'() {
-    const study = Studies.findOne({ _id: FlowRouter.getParam('studyId') });
-    study.reprocessAnalyses();
+    Meteor.call('studies.reprocessAnalyses', {
+      studyId: FlowRouter.getParam('studyId'),
+    });
   },
   'click .download-as-csv'() {
     const study = Studies.findOne();
     study.saveCSV({
-      groupBy: 'analysis'
+      groupBy: 'analysis',
     });
-  }
+  },
 });
 
 Template.AnalysesList.destroyed = function() {

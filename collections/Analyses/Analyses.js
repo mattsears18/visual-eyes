@@ -1,4 +1,5 @@
 import SimpleSchema from 'simpl-schema';
+import Schemas from '../../lib/schemas';
 
 SimpleSchema.extendOptions(['autoform']);
 
@@ -7,73 +8,61 @@ Analyses = new Mongo.Collection('analyses');
 Analyses.allow({
   insert(userId, doc) {
     return true;
-    if (!Roles.userIsInRole(userId, 'create', 'analyses')) {
-      throw new Meteor.Error(
-        'analyses.create.unauthorized',
-        'You do not have permission to create analyses.'
-      );
-    } else {
-      return true;
-    }
   },
   update(userId, doc) {
     return true;
-    analysis = Analyses.findOne({ _id: doc._id });
-    return analysis.hasPermission('update');
   },
   remove(userId, doc) {
     return true;
-    analysis = Analyses.findOne({ _id: doc._id });
-    return analysis.hasPermission('destroy');
-  }
+  },
 });
 
 Schemas.Analysis = new SimpleSchema(
   {
     name: {
       type: String,
-      label: 'Name'
+      label: 'Name',
     },
     desc: {
       type: String,
       label: 'Description',
       autoform: {
-        rows: 8
+        rows: 8,
       },
-      optional: true
+      optional: true,
     },
     gazeGap: {
       type: Number,
       label: 'Gaze Gap (ms)',
-      defaultValue: 5000
+      defaultValue: 5000,
     },
     minGazeTime: {
       type: Number,
       label: 'Minimum Gaze Time (ms)',
-      defaultValue: 10000
+      defaultValue: 10000,
     },
     ignoreOutsideImage: {
       type: Boolean,
       label: 'Ignore Gaze Points Outside of Stimulus Areas',
       defaultValue: true,
       autoform: {
-        type: 'boolean-checkbox'
-      }
+        type: 'boolean-checkbox',
+      },
     },
     participantIds: {
       type: Array,
       label: 'Participants to Include',
       autoform: {
-        type: 'select-checkbox'
-      }
+        type: 'select-checkbox',
+      },
     },
     'participantIds.$': String,
     stimulusIds: {
       type: Array,
       label: 'Stimuli to Include',
       autoform: {
-        type: 'select-checkbox'
-      }
+        type: 'select-checkbox',
+      },
     },
     'stimulusIds.$': String,
     studyId: {
@@ -83,23 +72,23 @@ Schemas.Analysis = new SimpleSchema(
         value() {
           return FlowRouter.getParam('studyId');
         },
-        type: 'hidden'
-      }
+        type: 'hidden',
+      },
     },
     status: {
       type: String,
       autoform: {
-        type: 'hidden'
+        type: 'hidden',
       },
-      optional: true
+      optional: true,
     },
     gazeCount: {
       type: Number,
       label: 'Gaze Count',
-      optional: true
-    }
+      optional: true,
+    },
   },
-  { tracker: Tracker }
+  { tracker: Tracker },
 );
 
 Analyses.attachSchema(Schemas.Analysis);

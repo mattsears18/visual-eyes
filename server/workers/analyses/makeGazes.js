@@ -14,7 +14,7 @@ export default (queueAnalysesMakeGazes = Jobs.processJobs(
     try {
       const gazeIds = analysis.makeGazes({
         participantId: job.data.participantId,
-        stimulusId: job.data.stimulusId
+        stimulusId: job.data.stimulusId,
       });
       job.done();
       analysis.updateStatus();
@@ -24,6 +24,25 @@ export default (queueAnalysesMakeGazes = Jobs.processJobs(
       job.remove();
     }
 
+    const analyses = Analyses.find({ studyId: analysis.studyId }).fetch();
+
+    const totalJobCount = Jobs.find({
+      type: 'analyses.makeGazes',
+      'data.analysisId': { $in: analyses.map(a => a._id) },
+    }).count();
+
+    const completedJobCount = Jobs.find({
+      type: 'analyses.makeGazes',
+      status: 'completed',
+      'data.analysisId': { $in: analyses.map(a => a._id) },
+    }).count();
+
+    console.log(
+      `makeGazes job completed, ${completedJobCount} of ${totalJobCount} ${helpers.formatNumber(
+        (completedJobCount / totalJobCount) * 100,
+      )}%`,
+    );
+
     callback();
-  }
+  },
 ));

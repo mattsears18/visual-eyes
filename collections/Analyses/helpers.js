@@ -1,6 +1,6 @@
 import Jobs from '../Jobs/Jobs';
 import getGazeEndIndex from './imports/getGazeEndIndex';
-import makeGazeJobs from './imports/makeGazeJobs';
+import makeGazeJobsJob from './imports/makeGazeJobsJob';
 import getGazeFixationCount from './imports/getGazeFixationCount';
 import getGazeAoiIds from './imports/getGazeAoiIds';
 import makeGazeFromGazepoints from './imports/makeGazeFromGazepoints';
@@ -13,7 +13,7 @@ import allGazesProcessed from './imports/allGazesProcessed';
 
 Analyses.helpers({
   getGazeEndIndex,
-  makeGazeJobs,
+  makeGazeJobsJob,
   getGazeFixationCount,
   getGazeAoiIds,
   makeGazeFromGazepoints,
@@ -72,5 +72,5 @@ Analyses.helpers({
   },
   allJobsCompleted() {
     return this.jobsCount() === this.jobsCompletedCount();
-  }
+  },
 });

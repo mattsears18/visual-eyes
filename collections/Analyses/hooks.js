@@ -19,7 +19,7 @@ Analyses.after.remove(function(userId, analysis) {
 
 Analyses.after.insert(function(userId, analysis) {
   if (Meteor.isServer) {
-    Analyses.findOne({ _id: analysis._id }).makeGazeJobs();
+    Analyses.findOne({ _id: analysis._id }).makeGazeJobsJob();
   }
 });
 
@@ -41,7 +41,7 @@ Analyses.after.update(function(
         analysis.participantIds,
       )
     ) {
-      Analyses.findOne({ _id: analysis._id }).makeGazeJobs();
+      Analyses.findOne({ _id: analysis._id }).makeGazeJobsJob();
     }
   }
 });

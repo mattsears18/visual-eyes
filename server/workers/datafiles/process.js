@@ -29,7 +29,26 @@ export default (queueDatafilesProcess = Jobs.processJobs(
       }
     }
 
-    console.log('check if all datafiles processed. if so, reprocess analyses');
+    const study = Studies.findOne({ _id: datafile.studyId });
+
+    const totalJobCount = Jobs.find({
+      type: 'datafiles.process',
+      'data.datafileId': { $in: study.datafiles().map(d => d._id) },
+    }).count();
+
+    const completedJobCount = Jobs.find({
+      type: 'datafiles.process',
+      status: 'completed',
+      'data.datafileId': { $in: study.datafiles().map(d => d._id) },
+    }).count();
+
+    console.log(`${completedJobCount} datafiles processed of ${totalJobCount}`);
+
+    if (totalJobCount > 0 && completedJobCount === totalJobCount) {
+      console.log('finished processing datafiles. reprocess analyses.');
+      study.reprocessAnalyses;
+    }
+
     callback();
   },
 ));

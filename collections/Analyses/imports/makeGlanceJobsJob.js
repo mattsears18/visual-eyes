@@ -1,6 +1,22 @@
+import Jobs from '../../Jobs/Jobs';
+
 export default function() {
-  console.log('balls');
-  // Meteor.call('analyses.makeGlanceJobsJob', {
-  //   analysisId: this._id,
-  // });
+  if (Meteor.isServer) {
+    Jobs.remove({
+      'data.analysisId': this._id,
+    });
+
+    const job = new Job(Jobs, 'analyses.makeGlanceJobs', {
+      analysisId: this._id,
+    });
+
+    job
+      .priority('critical')
+      .retry({
+        retries: Jobs.forever,
+        wait: 1000,
+        backoff: 'constant', // wait constant amount of time between each retry
+      })
+      .save();
+  }
 }

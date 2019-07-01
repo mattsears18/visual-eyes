@@ -5,7 +5,7 @@ Template.DatafilesList.helpers({
 
 Template.DatafilesList.events({
   'click .reprocess-datafiles'() {
-    study.reprocessDatafiles();
+    Meteor.call('studies.reprocessDatafiles', { studyId: study._id });
   },
   'click .upload-datafiles'() {
     Session.set('uploadingDatafiles', true);

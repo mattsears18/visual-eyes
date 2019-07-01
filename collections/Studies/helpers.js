@@ -1,9 +1,12 @@
+import reprocessAnalyses from './imports/reprocessAnalyses';
 import reprocessDatafiles from './imports/reprocessDatafiles';
 import saveCSV from './imports/saveCSV';
 import Variables from '../Variables/Variables';
 
 Studies.helpers({
+  reprocessAnalyses,
   reprocessDatafiles,
+
   saveCSV,
 
   hasPermission(action) {
@@ -22,6 +25,9 @@ Studies.helpers({
   },
   aois() {
     return Aois.find({ studyId: this._id });
+  },
+  analyses() {
+    return Analyses.find({ studyId: this._id });
   },
   analysesCount() {
     return Analyses.find({ studyId: this._id }).count();

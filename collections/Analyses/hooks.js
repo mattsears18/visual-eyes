@@ -17,10 +17,11 @@ Analyses.after.remove(function(userId, analysis) {
   }
 });
 
-Analyses.after.insert(function(userId, analysis) {
-  Meteor.call('analyses.makeGlanceJobsJob', {
-    analysisId: analysis._id,
-  });
+Analyses.after.insert(function(userId, analysisDoc) {
+  if (Meteor.isServer) {
+    const analysis = Analyses.findOne({ _id: analysisDoc._id });
+    analysis.makeGlanceJobsJob();
+  }
 });
 
 Analyses.after.update(function(
@@ -41,9 +42,8 @@ Analyses.after.update(function(
         analysis.participantIds,
       )
     ) {
-      Meteor.call('analyses.makeGlanceJobsJob', {
-        analysisId: analysis._id,
-      });
+      const analysis = Analyses.findOne({ _id: analysis._id });
+      analysis.makeGlanceJobsJob();
     }
   }
 });

@@ -4,6 +4,7 @@ import getGlanceFixationCount from './imports/getGlanceFixationCount';
 import getGlanceAoiIds from './imports/getGlanceAoiIds';
 import makeGlanceFromGazepoints from './imports/makeGlanceFromGazepoints';
 import makeGlances from './imports/makeGlances';
+import makeGlanceJobsJob from './imports/makeGlanceJobsJob';
 import updateStatus from './imports/updateStatus';
 import getExportData from './imports/getExportData';
 import saveCSV from './imports/saveCSV';
@@ -16,6 +17,7 @@ Analyses.helpers({
   getGlanceAoiIds,
   makeGlanceFromGazepoints,
   makeGlances,
+  makeGlanceJobsJob,
   updateStatus,
   getExportData,
   saveCSV,

@@ -1,11 +1,11 @@
-Template.GazeAnimation.onCreated(function() {
-  this.gaze = new ReactiveVar(Template.instance().data.gaze);
+Template.GlanceAnimation.onCreated(function() {
+  this.glance = new ReactiveVar(Template.instance().data.glance);
   this.stimulusfile = new ReactiveVar();
   this.hullseries = new ReactiveVar();
   this.hullParams = new ReactiveVar(Template.currentData().hullParams);
 
   this.autorun(() => {
-    this.subscribe('stimulusfiles.byGazeId', this.gaze.get()._id);
+    this.subscribe('stimulusfiles.byGlanceId', this.glance.get()._id);
     this.hullseries.set();
     this.hullParams.set({
       period: Template.currentData().hullParams.period,
@@ -16,11 +16,11 @@ Template.GazeAnimation.onCreated(function() {
 
     if (this.subscriptionsReady()) {
       const stimulusfile = Stimulusfiles.collection.findOne({
-        _id: this.gaze.get().stimulus().stimulusfileId,
+        _id: this.glance.get().stimulus().stimulusfileId,
       });
       if (stimulusfile) {
         this.stimulusfile.set(stimulusfile);
-        const hullseries = this.gaze.get().getHullseries(this.hullParams.get());
+        const hullseries = this.glance.get().getHullseries(this.hullParams.get());
 
         if (hullseries && hullseries.getHulls().length) {
           this.hullseries.set(hullseries);
@@ -31,8 +31,8 @@ Template.GazeAnimation.onCreated(function() {
   });
 });
 
-Template.GazeAnimation.helpers({
-  gaze: () => Template.instance().gaze.get(),
+Template.GlanceAnimation.helpers({
+  glance: () => Template.instance().glance.get(),
   stimulusfile: () => Template.instance().hullseries.get(),
   hullseries: () => Template.instance().hullseries.get(),
   layout: () => Template.instance()

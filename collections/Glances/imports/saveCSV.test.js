@@ -3,6 +3,6 @@
 // import { Factory } from 'meteor/dburles:factory';
 // import { expect } from 'chai';
 
-// describe('Gaze.saveCSV()', () => {
+// describe('Glance.saveCSV()', () => {
 
 // });

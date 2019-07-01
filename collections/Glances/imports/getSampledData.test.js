@@ -3,7 +3,7 @@ import '../../factories.test';
 import { Factory } from 'meteor/dburles:factory';
 import { expect } from 'chai';
 
-describe('Gaze.getSampledData()', () => {
+describe('Glance.getSampledData()', () => {
   const testRows = [
     { x: 100, y: 400, elapsedTimeNormalized: '0.05' },
     { x: 200, y: 300, elapsedTimeNormalized: '0.1' },
@@ -22,31 +22,31 @@ describe('Gaze.getSampledData()', () => {
     { x: 600, y: 100, elapsedTimeNormalized: '1' },
   ];
   it('has no step', () => {
-    const gaze = Factory.create('gaze');
+    const glance = Factory.create('glance');
     expect(() => {
-      gaze.getSampledData([]);
+      glance.getSampledData([]);
     }).to.throw('noStep');
   });
 
   it('has an invalid step', () => {
-    const gaze = Factory.create('gaze');
+    const glance = Factory.create('glance');
     expect(() => {
-      gaze.getSampledData([], 1337);
+      glance.getSampledData([], 1337);
     }).to.throw('invalidStep');
 
     expect(() => {
-      gaze.getSampledData([], -2);
+      glance.getSampledData([], -2);
     }).to.throw('invalidStep');
   });
 
   it('has a step of zero', () => {
-    const gaze = Factory.create('gaze');
+    const glance = Factory.create('glance');
     const rows = [];
-    expect(gaze.getSampledData(rows, 0)).to.eql(rows);
+    expect(glance.getSampledData(rows, 0)).to.eql(rows);
   });
 
   it('samples the data at 20%', () => {
-    const gaze = Factory.create('gaze');
+    const glance = Factory.create('glance');
 
     const expected = [
       { x: 100, y: 400, elapsedTimeNormalized: '0.05' }, // 0
@@ -57,11 +57,11 @@ describe('Gaze.getSampledData()', () => {
       { x: 600, y: 100, elapsedTimeNormalized: '1' }, //    1
     ];
 
-    expect(gaze.getSampledData(testRows, 20)).to.eql(expected);
+    expect(glance.getSampledData(testRows, 20)).to.eql(expected);
   });
 
   it('samples the data at 10%', () => {
-    const gaze = Factory.create('gaze');
+    const glance = Factory.create('glance');
 
     const expected = [
       { x: 100, y: 400, elapsedTimeNormalized: '0.05' }, // 0
@@ -77,11 +77,11 @@ describe('Gaze.getSampledData()', () => {
       { x: 600, y: 100, elapsedTimeNormalized: '1' }, //    1
     ];
 
-    expect(gaze.getSampledData(testRows, 10)).to.eql(expected);
+    expect(glance.getSampledData(testRows, 10)).to.eql(expected);
   });
 
   it('can sample at any step value', () => {
-    const gaze = Factory.create('gaze');
-    expect(gaze.getSampledData(testRows, 0.5).length).to.equal(201);
+    const glance = Factory.create('glance');
+    expect(glance.getSampledData(testRows, 0.5).length).to.equal(201);
   });
 });

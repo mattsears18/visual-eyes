@@ -1,7 +1,7 @@
 import Jobs from '../../../collections/Jobs/Jobs';
 
-export default (queueAnalysesMakeGazes = Jobs.processJobs(
-  'analyses.makeGazes',
+export default (queueAnalysesMakeGlances = Jobs.processJobs(
+  'analyses.makeGlances',
   { concurrency: 1 },
   (job, callback) => {
     const analysis = Analyses.findOne({ _id: job.data.analysisId });
@@ -12,7 +12,7 @@ export default (queueAnalysesMakeGazes = Jobs.processJobs(
     }
 
     try {
-      const gazeIds = analysis.makeGazes({
+      const glanceIds = analysis.makeGlances({
         participantId: job.data.participantId,
         stimulusId: job.data.stimulusId,
       });
@@ -27,18 +27,18 @@ export default (queueAnalysesMakeGazes = Jobs.processJobs(
     const analyses = Analyses.find({ studyId: analysis.studyId }).fetch();
 
     const totalJobCount = Jobs.find({
-      type: 'analyses.makeGazes',
+      type: 'analyses.makeGlances',
       'data.analysisId': { $in: analyses.map(a => a._id) },
     }).count();
 
     const completedJobCount = Jobs.find({
-      type: 'analyses.makeGazes',
+      type: 'analyses.makeGlances',
       status: 'completed',
       'data.analysisId': { $in: analyses.map(a => a._id) },
     }).count();
 
     console.log(
-      `makeGazes job completed, ${completedJobCount} of ${totalJobCount} ${helpers.formatNumber(
+      `makeGlances job completed, ${completedJobCount} of ${totalJobCount} ${helpers.formatNumber(
         (completedJobCount / totalJobCount) * 100,
       )}%`,
     );

@@ -5,7 +5,7 @@ Aois.before.insert(function (userId, doc) {
 Aois.after.remove(function(userId, aoi) {
   if (Meteor.isServer) {
     Gazepoints.remove({ aoiId: aoi._id });
-    Gazes.update(
+    Glances.update(
       { studyId: aoi.studyId },
       { $pull: { aoiIds: aoi._id } },
       { multi: true },

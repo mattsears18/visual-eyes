@@ -3,18 +3,26 @@ const { expect } = require('chai');
 
 describe('Datafiles.renameHeaders()', () => {
   it('throws a noFileformat error', () => {
-    const datafile = Factory.create('imotionsDatafile', { fileFormat: undefined });
-    expect(() => { datafile.renameHeaders(); }).to.throw('noFileFormat');
+    const datafile = Factory.create('imotionsDatafile', {
+      fileFormat: undefined,
+    });
+    expect(() => {
+      datafile.renameHeaders();
+    }).to.throw('noFileFormat');
   });
 
   it('throws a noCSVData error', () => {
     const datafile = Factory.create('imotionsDatafile');
-    expect(() => { datafile.renameHeaders(); }).to.throw('noCSVData');
+    expect(() => {
+      datafile.renameHeaders();
+    }).to.throw('noCSVData');
   });
 
   it('throws an unrecognizedFileFormat error', () => {
     const datafile = Factory.create('imotionsDatafile', { fileFormat: 'foo' });
-    expect(() => { datafile.renameHeaders([1, 2, 3]); }).to.throw('unrecognizedFileFormat');
+    expect(() => {
+      datafile.renameHeaders([1, 2, 3]);
+    }).to.throw('unrecognizedFileFormat');
   });
 
   it('renames smi headers', () => {

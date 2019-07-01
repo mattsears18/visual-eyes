@@ -1,18 +1,18 @@
 import Jobs from '../../../collections/Jobs/Jobs';
 
-export default (queueGazesSaveAverageHullCoverage = Jobs.processJobs(
-  'gazes.saveAverageHullCoverage',
+export default (queueGlancesSaveAverageHullCoverage = Jobs.processJobs(
+  'glances.saveAverageHullCoverage',
   { concurrency: 1 },
   (job, callback) => {
-    const gaze = Gazes.findOne({ _id: job.data.gazeId });
+    const glance = Glances.findOne({ _id: job.data.glanceId });
 
-    if (!gaze) {
-      console.log(`Gaze not found. gazeId: ${job.data.gazeId}`);
+    if (!glance) {
+      console.log(`Glance not found. glanceId: ${job.data.glanceId}`);
       job.cancel();
       job.remove();
     } else {
       try {
-        const avg = gaze.saveAverageHullCoverage({
+        const avg = glance.saveAverageHullCoverage({
           slideStep: job.data.slideStep,
           instantContinuous: job.data.instantContinuous,
         });
@@ -27,7 +27,7 @@ export default (queueGazesSaveAverageHullCoverage = Jobs.processJobs(
       }
     }
 
-    gaze.updateStatus();
+    glance.updateStatus();
     callback();
   },
 ));

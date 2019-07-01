@@ -11,23 +11,23 @@ import getPolygonTrace from './imports/getPolygonTrace';
 import getCentroidTrace from './imports/getCentroidTrace';
 import getFrameData from './imports/getFrameData';
 
-export default class GazeHullSeries extends TimeHullSeries {
+export default class GlanceHullSeries extends TimeHullSeries {
   constructor(opt) {
     opt = opt || {};
     if (typeof opt.points === 'undefined') {
-      if (typeof opt.gaze !== 'undefined') {
-        opt.points = opt.gaze.gazepoints;
-        opt.width = opt.width || opt.gaze.stimulus() ? opt.gaze.stimulus().width : 0;
-        opt.height = opt.height || opt.gaze.stimulus() ? opt.gaze.stimulus().height : 0;
+      if (typeof opt.glance !== 'undefined') {
+        opt.points = opt.glance.gazepoints;
+        opt.width = opt.width || opt.glance.stimulus() ? opt.glance.stimulus().width : 0;
+        opt.height = opt.height || opt.glance.stimulus() ? opt.glance.stimulus().height : 0;
       }
     }
 
     super(opt);
 
-    if (typeof opt.gaze !== 'undefined') {
-      this.gaze = opt.gaze;
+    if (typeof opt.glance !== 'undefined') {
+      this.glance = opt.glance;
     } else {
-      throw new Error('noGaze');
+      throw new Error('noGlance');
     }
 
     this.pointTrailLength = typeof opt.pointTrailLength === 'number' && opt.pointTrailLength > 0

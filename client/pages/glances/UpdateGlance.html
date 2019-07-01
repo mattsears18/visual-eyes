@@ -1,19 +1,19 @@
-<template name="UpdateGaze">
+<template name="UpdateGlance">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Edit Gaze <i class="fa fa-close pull-right"></i></h3>
+      <h3 class="panel-title">Edit Glance <i class="fa fa-close pull-right"></i></h3>
     </div>
     <div class="panel-body">
-      {{> quickForm collection="Gazes" doc=gaze id="updateGazeForm"
-        type="update" class="update-gaze-form"}}
+      {{> quickForm collection="Glances" doc=glance id="updateGlanceForm"
+        type="update" class="update-glance-form"}}
 
-      <!-- {{> quickForm collection="Gazes" doc=gaze id="updateGazeForm"
-        type="method" meteormethod="gazes.update" class="update-gaze-form"}} -->
+      <!-- {{> quickForm collection="Glances" doc=glance id="updateGlanceForm"
+        type="method" meteormethod="glances.update" class="update-glance-form"}} -->
 
-      {{#if gaze.hasPermission 'destroy'}}
-        {{> quickRemoveButton collection="Gazes" _id=gaze._id
+      {{#if glance.hasPermission 'destroy'}}
+        {{> quickRemoveButton collection="Glances" _id=glance._id
           onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
-          id="destroyGazeform" class="btn btn-danger"}}
+          id="destroyGlanceform" class="btn btn-danger"}}
       {{/if}}
     </div>
   </div>

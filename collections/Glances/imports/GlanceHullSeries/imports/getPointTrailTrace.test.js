@@ -1,9 +1,9 @@
-import GazeHullSeries from '../GazeHullSeries';
+import GlanceHullSeries from '../GlanceHullSeries';
 
 require('../../../../factories.test');
 const { expect } = require('chai');
 
-describe('GazeHullSeries.getPointTrailTrace()', () => {
+describe('GlanceHullSeries.getPointTrailTrace()', () => {
   const points = [
     { x: 100, y: 400, timestamp: 0 },
     { x: 200, y: 300, timestamp: 1000 },
@@ -23,15 +23,18 @@ describe('GazeHullSeries.getPointTrailTrace()', () => {
   ];
 
   it('gets the initial point trail trace', () => {
-    const hullseries = new GazeHullSeries({
-      gaze: Factory.create('gaze', {
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', {
         studyId: Factory.create('study', { fixationsOnly: false })._id,
         gazepoints: points,
       }),
       period: 5000,
     });
 
-    const trace = hullseries.getPointTrailTrace({ initial: true, hullIndex: 7 });
+    const trace = hullseries.getPointTrailTrace({
+      initial: true,
+      hullIndex: 7,
+    });
 
     expect(trace.name).to.equal('Last 10 Gaze Points');
     expect(trace.x).to.eql([400, 500, 600, 700, 800, 900, 100, 200, 300, 400]);
@@ -39,15 +42,18 @@ describe('GazeHullSeries.getPointTrailTrace()', () => {
   });
 
   it('gets a point trail trace (not initial)', () => {
-    const hullseries = new GazeHullSeries({
-      gaze: Factory.create('gaze', {
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', {
         studyId: Factory.create('study', { fixationsOnly: false })._id,
         gazepoints: points,
       }),
       period: 5000,
     });
 
-    const trace = hullseries.getPointTrailTrace({ initial: false, hullIndex: 9 });
+    const trace = hullseries.getPointTrailTrace({
+      initial: false,
+      hullIndex: 9,
+    });
 
     expect(trace.name).to.be.an('undefined');
     expect(trace.x).to.eql([600, 700, 800, 900, 100, 200, 300, 400, 500, 600]);

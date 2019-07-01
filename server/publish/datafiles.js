@@ -15,10 +15,10 @@ Meteor.publish('datafiles.byStudyId', (studyId) => {
   }
 });
 
-Meteor.publish('datafiles.byGazeId', function(gazeId) {
-  check(gazeId, String);
-  const gaze = Gazes.findOne({ _id: gazeId });
-  return Datafiles.find({ _id: gaze.datafileId }).cursor;
+Meteor.publish('datafiles.byGlanceId', function(glanceId) {
+  check(glanceId, String);
+  const glance = Glances.findOne({ _id: glanceId });
+  return Datafiles.find({ _id: glance.datafileId }).cursor;
 });
 
 Meteor.publish('datafiles.single', function(id) {

@@ -3,36 +3,36 @@ import { jStat } from 'jStat';
 export default function getExportData(opt) {
   const { groupBy } = opt || {};
 
-  const gazeData = [];
+  const glanceData = [];
 
   const variableNames = this.study()
     .variables()
     .fetch()
     .map(variable => variable.name);
 
-  this.gazes().forEach(gaze => {
-    const exportData = gaze.getExportData(opt);
+  this.glances().forEach(glance => {
+    const exportData = glance.getExportData(opt);
 
-    const singleGazeData = {
+    const singleGlanceData = {
       ..._.pick(exportData.length ? exportData[0] : exportData, [
         'link',
         'study',
         'pointsType',
         'analysis',
-        'gazeGap',
-        'minGazeTime',
+        'glanceGap',
+        'minGlanceTime',
         'period',
         'minTimestep',
         'includeIncomplete',
         'participant',
         'stimulus',
-        'gazeNumber',
-        'gazeDuration',
+        'glanceNumber',
+        'glanceDuration',
         'stimulusWidth',
         'stimulusHeight',
         'stimulusArea',
-        'gazeStartTime',
-        'gazeEndTime',
+        'glanceStartTime',
+        'glanceEndTime',
         'gazepointCount',
         'gazepointFrequency',
         'fixationCount',
@@ -49,31 +49,31 @@ export default function getExportData(opt) {
       ])
     };
 
-    gaze
+    glance
       .participant()
       .variables()
       .forEach(function(variable) {
-        singleGazeData[variable.name] = variable.value;
+        singleGlanceData[variable.name] = variable.value;
       });
 
-    gazeData.push(singleGazeData);
+    glanceData.push(singleGlanceData);
   });
 
   if (groupBy === 'participant') {
-    const groups = _.groupBy(gazeData, 'participant');
+    const groups = _.groupBy(glanceData, 'participant');
 
     const participantData = [];
 
     Object.keys(groups).forEach(participantName => {
-      const pGazes = groups[participantName];
+      const pGlances = groups[participantName];
       let singleParticipantData = {
-        ..._.pick(pGazes[0], [
+        ..._.pick(pGlances[0], [
           'link',
           'study',
           'pointsType',
           'analysis',
-          'gazeGap',
-          'minGazeTime',
+          'glanceGap',
+          'minGlanceTime',
           'period',
           'minTimestep',
           'includeIncomplete',
@@ -81,68 +81,68 @@ export default function getExportData(opt) {
         ])
       };
 
-      const durations = pGazes.map(v => v.gazeDuration);
-      const finalCoverages = pGazes.map(v => v.finalCoverage);
+      const durations = pGlances.map(v => v.glanceDuration);
+      const finalCoverages = pGlances.map(v => v.finalCoverage);
 
-      const sGazeGroups = _.groupBy(pGazes, 'stimulus');
-      const gazeDurationsPerStimulus = [];
-      const gazeCountsPerStimulus = [];
+      const sGlanceGroups = _.groupBy(pGlances, 'stimulus');
+      const glanceDurationsPerStimulus = [];
+      const glanceCountsPerStimulus = [];
 
-      Object.keys(sGazeGroups).forEach(stimulusName => {
-        gazeDurationsPerStimulus.push(
-          jStat.sum(sGazeGroups[stimulusName].map(v => v.gazeDuration))
+      Object.keys(sGlanceGroups).forEach(stimulusName => {
+        glanceDurationsPerStimulus.push(
+          jStat.sum(sGlanceGroups[stimulusName].map(v => v.glanceDuration))
         );
 
-        gazeCountsPerStimulus.push(sGazeGroups[stimulusName].length);
+        glanceCountsPerStimulus.push(sGlanceGroups[stimulusName].length);
       });
 
       singleParticipantData = {
         ...singleParticipantData,
-        gazeCount: pGazes.length,
-        gazeDurations: JSON.stringify(durations)
+        glanceCount: pGlances.length,
+        glanceDurations: JSON.stringify(durations)
           .substr(1)
           .substr(0, JSON.stringify(durations).length - 2),
-        gazeDurationsMin: jStat.min(durations),
-        gazeDurationsMax: jStat.max(durations),
-        gazeDurationsSum: jStat.sum(durations),
-        gazeDurationsMean: jStat.mean(durations),
-        gazeDurationsMedian: jStat.median(durations),
-        gazeDurationsPerStimulus: JSON.stringify(gazeDurationsPerStimulus)
+        glanceDurationsMin: jStat.min(durations),
+        glanceDurationsMax: jStat.max(durations),
+        glanceDurationsSum: jStat.sum(durations),
+        glanceDurationsMean: jStat.mean(durations),
+        glanceDurationsMedian: jStat.median(durations),
+        glanceDurationsPerStimulus: JSON.stringify(glanceDurationsPerStimulus)
           .substr(1)
-          .substr(0, JSON.stringify(gazeDurationsPerStimulus).length - 2),
-        gazeDurationsPerStimulusMin:
-          gazeDurationsPerStimulus.length < 10
+          .substr(0, JSON.stringify(glanceDurationsPerStimulus).length - 2),
+        glanceDurationsPerStimulusMin:
+          glanceDurationsPerStimulus.length < 10
             ? 0
-            : jStat.min(gazeDurationsPerStimulus),
-        gazeDurationsPerStimulusMax: jStat.max(gazeDurationsPerStimulus),
-        gazeDurationsPerStimulusMean: jStat.mean(
-          gazeDurationsPerStimulus
+            : jStat.min(glanceDurationsPerStimulus),
+        glanceDurationsPerStimulusMax: jStat.max(glanceDurationsPerStimulus),
+        glanceDurationsPerStimulusMean: jStat.mean(
+          glanceDurationsPerStimulus
         ),
-        gazeDurationsPerStimulusMedian: jStat.median(
-          gazeDurationsPerStimulus
+        glanceDurationsPerStimulusMedian: jStat.median(
+          glanceDurationsPerStimulus
         ),
-        gazeCountsPerStimulus: JSON.stringify(gazeCountsPerStimulus)
+        glanceCountsPerStimulus: JSON.stringify(glanceCountsPerStimulus)
           .substr(1)
-          .substr(0, JSON.stringify(gazeCountsPerStimulus).length - 2),
-        gazeCountsPerStimulusMin:
-          gazeCountsPerStimulus.length < 10
+          .substr(0, JSON.stringify(glanceCountsPerStimulus).length - 2),
+        glanceCountsPerStimulusMin:
+          glanceCountsPerStimulus.length < 10
             ? 0
-            : jStat.min(gazeCountsPerStimulus),
-        gazeCountsPerStimulusMax: jStat.max(gazeCountsPerStimulus),
-        gazeCountsPerStimulusMean: jStat.mean(gazeCountsPerStimulus),
-        gazeCountsPerStimulusMedian: jStat.median(gazeCountsPerStimulus),
-        gazepointCount: jStat.sum(pGazes.map(v => v.gazepointCount)),
+            : jStat.min(glanceCountsPerStimulus),
+        glanceCountsPerStimulusMax: jStat.max(glanceCountsPerStimulus),
+        glanceCountsPerStimulusMean: jStat.mean(glanceCountsPerStimulus),
+        glanceCountsPerStimulusMedian: jStat.median(glanceCountsPerStimulus),
+        gazepointCount: jStat.sum(pGlances.map(v => v.gazepointCount)),
         gazepointFrequency:
-          jStat.sum(pGazes.map(v => v.gazepointCount)) /
+          jStat.sum(pGlances.map(v => v.gazepointCount)) /
           jStat.sum(durations),
-        fixationCount: jStat.sum(pGazes.map(v => v.fixationCount)),
+        fixationCount: jStat.sum(pGlances.map(v => v.fixationCount)),
         fixationFrequency:
-          jStat.sum(pGazes.map(v => v.fixationCount)) / jStat.sum(durations),
+          jStat.sum(pGlances.map(v => v.fixationCount)) / jStat.sum(durations),
         fixationProportion:
-          jStat.sum(pGazes.map(v => v.fixationCount)) /
-          jStat.sum(pGazes.map(v => v.gazepointCount)),
+          jStat.sum(pGlances.map(v => v.fixationCount)) /
+          jStat.sum(pGlances.map(v => v.gazepointCount)),
         averageCoverage:
-          jStat.sum(pGazes.map(v => v.gazeDuration * v.averageCoverage)) /
+          jStat.sum(pGlances.map(v => v.glanceDuration * v.averageCoverage)) /
           jStat.sum(durations),
         finalCoverages: JSON.stringify(finalCoverages)
           .substr(1)
@@ -152,33 +152,33 @@ export default function getExportData(opt) {
         finalCoveragesMean: jStat.mean(finalCoverages),
         finalCoveragesMedian: jStat.median(finalCoverages),
         averageVelocity:
-          jStat.sum(pGazes.map(v => v.gazeDuration * v.averageVelocity)) /
+          jStat.sum(pGlances.map(v => v.glanceDuration * v.averageVelocity)) /
           jStat.sum(durations),
         averageVelocityX:
           jStat.sum(
-            pGazes.map(v => v.gazeDuration * v.averageVelocityX)
+            pGlances.map(v => v.glanceDuration * v.averageVelocityX)
           ) / jStat.sum(durations),
         averageVelocityY:
           jStat.sum(
-            pGazes.map(v => v.gazeDuration * v.averageVelocityY)
+            pGlances.map(v => v.glanceDuration * v.averageVelocityY)
           ) / jStat.sum(durations),
         averageCentroidVelocity:
           jStat.sum(
-            pGazes.map(v => v.gazeDuration * v.averageCentroidVelocity)
+            pGlances.map(v => v.glanceDuration * v.averageCentroidVelocity)
           ) / jStat.sum(durations),
         averageCentroidVelocityX:
           jStat.sum(
-            pGazes.map(v => v.gazeDuration * v.averageCentroidVelocityX)
+            pGlances.map(v => v.glanceDuration * v.averageCentroidVelocityX)
           ) / jStat.sum(durations),
         averageCentroidVelocityY:
           jStat.sum(
-            pGazes.map(v => v.gazeDuration * v.averageCentroidVelocityY)
+            pGlances.map(v => v.glanceDuration * v.averageCentroidVelocityY)
           ) / jStat.sum(durations)
       };
 
       singleParticipantData = {
         ...singleParticipantData,
-        ..._.pick(pGazes[0], variableNames)
+        ..._.pick(pGlances[0], variableNames)
       };
 
       participantData.push(singleParticipantData);
@@ -186,5 +186,5 @@ export default function getExportData(opt) {
 
     return participantData;
   }
-  return gazeData;
+  return glanceData;
 }

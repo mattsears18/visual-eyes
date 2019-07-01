@@ -1,9 +1,9 @@
 import Tabular from 'meteor/aldeed:tabular';
-import Gazes from '../Gazes';
+import Glances from '../Glances';
 
 const table = new Tabular.Table({
-  name: 'GazesByAnalysisId',
-  collection: Gazes,
+  name: 'GlancesByAnalysisId',
+  collection: Glances,
   pageLength: 100,
   extraFields: [
     '_id',
@@ -45,7 +45,7 @@ const table = new Tabular.Table({
     },
     {
       data: 'number',
-      title: 'Gaze Number',
+      title: 'Glance Number',
       render(data, type, row, meta) {
         if (data) {
           return `<a href="/studies/${row.studyId}/analyses/${row.analysisId}/${

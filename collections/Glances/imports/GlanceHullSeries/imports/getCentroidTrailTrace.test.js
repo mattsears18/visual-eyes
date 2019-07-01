@@ -1,9 +1,9 @@
-import GazeHullSeries from '../GazeHullSeries';
+import GlanceHullSeries from '../GlanceHullSeries';
 
 require('../../../../factories.test');
 const { expect } = require('chai');
 
-describe('GazeHullSeries.getCentroidTrailTrace()', () => {
+describe('GlanceHullSeries.getCentroidTrailTrace()', () => {
   const points = [
     { x: 100, y: 400, timestamp: 0 },
     { x: 200, y: 300, timestamp: 1000 },
@@ -23,8 +23,8 @@ describe('GazeHullSeries.getCentroidTrailTrace()', () => {
   ];
 
   it('gets the initial centroid trail trace', () => {
-    const hullseries = new GazeHullSeries({
-      gaze: Factory.create('gaze', { gazepoints: points }),
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', { gazepoints: points }),
       period: 5000,
     });
 
@@ -36,8 +36,8 @@ describe('GazeHullSeries.getCentroidTrailTrace()', () => {
   });
 
   it('gets a centroid trail trace (not initial) for the first 5 hulls', () => {
-    const hullseries = new GazeHullSeries({
-      gaze: Factory.create('gaze', { gazepoints: points }),
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', { gazepoints: points }),
       period: 5000,
     });
 
@@ -58,8 +58,8 @@ describe('GazeHullSeries.getCentroidTrailTrace()', () => {
   });
 
   it('gets the centroid trail trace (not initial) for the first hull', () => {
-    const hullseries = new GazeHullSeries({
-      gaze: Factory.create('gaze', { gazepoints: points }),
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', { gazepoints: points }),
       period: 5000,
     });
 

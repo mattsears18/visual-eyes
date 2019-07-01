@@ -5,7 +5,7 @@ import saveCSV from './imports/saveCSV';
 import getSampledData from './imports/getSampledData';
 import getFixationProportion from './imports/getFixationProportion';
 
-Gazes.helpers({
+Glances.helpers({
   getHullseries,
   getExportData,
   saveCSV,
@@ -59,10 +59,10 @@ Gazes.helpers({
     return undefined;
   },
   jobs() {
-    return Jobs.find({ 'data.gazeId': this._id });
+    return Jobs.find({ 'data.glanceId': this._id });
   },
   jobsCompleted() {
-    return Jobs.find({ 'data.gazeId': this._id, status: 'completed' });
+    return Jobs.find({ 'data.glanceId': this._id, status: 'completed' });
   },
   jobsProgress() {
     let progress = 0;

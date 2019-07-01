@@ -1,37 +1,37 @@
 // //////////////////////////////////////////////////////////////////////////////
-// Gazes Publications
+// Glances Publications
 // //////////////////////////////////////////////////////////////////////////////
-Meteor.publish('gazes.all', function() {
-  return Gazes.find({},
+Meteor.publish('glances.all', function() {
+  return Glances.find({},
     { fields: { gazepoints: 0 } });
 });
 
-Meteor.publish('gazes.single', function(id) {
+Meteor.publish('glances.single', function(id) {
   check(id, String);
-  return Gazes.find({ _id: id },
+  return Glances.find({ _id: id },
     { fields: { gazepoints: 0 } });
 });
 
-Meteor.publish('gazes.single.withGazepoints', function(id) {
+Meteor.publish('glances.single.withGazepoints', function(id) {
   check(id, String);
-  return Gazes.find({ _id: id });
+  return Glances.find({ _id: id });
 });
 
-Meteor.publish('gazes.byStudyId', (studyId) => {
+Meteor.publish('glances.byStudyId', (studyId) => {
   check(studyId, String);
-  return Gazes.find({ studyId },
+  return Glances.find({ studyId },
     { fields: { gazepoints: 0 } });
 });
 
-Meteor.publish('gazes.byAnalysisId', (analysisId) => {
+Meteor.publish('glances.byAnalysisId', (analysisId) => {
   check(analysisId, String);
-  return Gazes.find({ analysisId },
+  return Glances.find({ analysisId },
     { fields: { gazepoints: 0 } });
 });
 
-Meteor.publish('gazes.simple.byAnalysisId', (analysisId) => {
+Meteor.publish('glances.simple.byAnalysisId', (analysisId) => {
   check(analysisId, String);
-  return Gazes.find({ analysisId },
+  return Glances.find({ analysisId },
     {
       fields: {
         stimulusId: 1,
@@ -41,7 +41,7 @@ Meteor.publish('gazes.simple.byAnalysisId', (analysisId) => {
     });
 });
 
-Meteor.publish('gazes.simple.byParams', params => Gazes.find(params,
+Meteor.publish('glances.simple.byParams', params => Glances.find(params,
   {
     fields: {
       stimulusId: 1,
@@ -50,22 +50,22 @@ Meteor.publish('gazes.simple.byParams', params => Gazes.find(params,
     },
   }));
 
-Meteor.publish('gazes.byParams.withGazepoints', params => Gazes.find(params));
+Meteor.publish('glances.byParams.withGazepoints', params => Glances.find(params));
 
-Meteor.publish('gazes.byAnalysisIdWithGazepoints', (analysisId) => {
+Meteor.publish('glances.byAnalysisIdWithGazepoints', (analysisId) => {
   check(analysisId, String);
-  return Gazes.find({ analysisId });
+  return Glances.find({ analysisId });
 });
 
-Meteor.publish('gazes.byAnalysisIdAoiId', (analysisId, aoiId) => {
+Meteor.publish('glances.byAnalysisIdAoiId', (analysisId, aoiId) => {
   check(analysisId, String);
   check(aoiId, String);
-  return Gazes.find({ analysisId, aoiId },
+  return Glances.find({ analysisId, aoiId },
     { fields: { gazepoints: 0 } });
 });
 
-Meteor.publish('gazes.byParticipantId', (participantId) => {
+Meteor.publish('glances.byParticipantId', (participantId) => {
   check(participantId, String);
-  return Gazes.find({ participantId },
+  return Glances.find({ participantId },
     { fields: { gazepoints: 0 } });
 });

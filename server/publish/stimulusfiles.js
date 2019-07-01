@@ -24,11 +24,11 @@ Meteor.publish('stimulusfiles.byAoiId', (aoiId) => {
   }
 });
 
-Meteor.publish('stimulusfiles.byGazeId', function(gazeId) {
-  check(gazeId, String);
-  gaze = Gazes.findOne({ _id: gazeId });
-  if (gaze && gaze.stimulus() && gaze.stimulus().stimulusfileId) {
-    return Stimulusfiles.find({ _id: gaze.stimulus().stimulusfileId }).cursor;
+Meteor.publish('stimulusfiles.byGlanceId', function(glanceId) {
+  check(glanceId, String);
+  glance = Glances.findOne({ _id: glanceId });
+  if (glance && glance.stimulus() && glance.stimulus().stimulusfileId) {
+    return Stimulusfiles.find({ _id: glance.stimulus().stimulusfileId }).cursor;
   }
 });
 

@@ -10,7 +10,7 @@ Analyses.before.insert(function(userId, doc) {
 
 Analyses.after.remove(function(userId, analysis) {
   if (Meteor.isServer) {
-    Gazes.remove({ analysisId: analysis._id });
+    Glances.remove({ analysisId: analysis._id });
     Jobs.remove({
       'data.analysisId': analysis._id,
     });
@@ -18,7 +18,7 @@ Analyses.after.remove(function(userId, analysis) {
 });
 
 Analyses.after.insert(function(userId, analysis) {
-  Meteor.call('analyses.makeGazeJobsJob', {
+  Meteor.call('analyses.makeGlanceJobsJob', {
     analysisId: analysis._id,
   });
 });
@@ -33,15 +33,15 @@ Analyses.after.update(function(
   if (Meteor.isServer) {
     if (
       this.previous.ignoreOutsideImage != analysis.ignoreOutsideImage
-      || this.previous.minGazeTime != analysis.minGazeTime
-      || this.previous.gazeGap != analysis.gazeGap
+      || this.previous.minGlanceTime != analysis.minGlanceTime
+      || this.previous.glanceGap != analysis.glanceGap
       || !helpers.arraysEqual(this.previous.stimulusIds, analysis.stimulusIds)
       || !helpers.arraysEqual(
         this.previous.participantIds,
         analysis.participantIds,
       )
     ) {
-      Meteor.call('analyses.makeGazeJobsJob', {
+      Meteor.call('analyses.makeGlanceJobsJob', {
         analysisId: analysis._id,
       });
     }

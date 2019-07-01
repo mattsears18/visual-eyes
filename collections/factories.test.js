@@ -9,7 +9,7 @@ import Aois from './Aois/Aois';
 import Gazepoints from './Gazepoints/Gazepoints';
 import Participants from './Participants/Participants';
 import Analyses from './Analyses/Analyses';
-import Gazes from './Gazes/Gazes';
+import Glances from './Glances/Glances';
 
 StubCollections.stub([
   Datafiles.collection,
@@ -19,7 +19,7 @@ StubCollections.stub([
   Gazepoints,
   Participants,
   Analyses,
-  Gazes,
+  Glances,
 ]);
 
 console.log('stubbed');
@@ -114,8 +114,8 @@ Factory.define('analysis', Analyses, {
   studyId: () => Factory.create('study')._id,
   name: () => faker.lorem.words(),
   desc: () => faker.lorem.paragraph(),
-  gazeGap: 5000,
-  minGazeTime: 10000,
+  glanceGap: 5000,
+  minGlanceTime: 10000,
   ignoreOutsideImage: faker.random.boolean,
   participantIds: [],
   stimulusIds: [],
@@ -188,7 +188,7 @@ Factory.define('gazepoint', Gazepoints, {
   y: () => Math.random() * 1000,
 });
 
-Factory.define('gaze', Gazes, {
+Factory.define('glance', Glances, {
   analysisId: () => Factory.create('analysis')._id,
   studyId: () => Factory.create('study')._id,
   participantId: () => Factory.create('participant')._id,
@@ -199,7 +199,7 @@ Factory.define('gaze', Gazes, {
   fileFormat: 'imotions',
 });
 
-// gaze with Gazepoints
+// glance with Gazepoints
 const study = Factory.create('study');
 const datafile = Factory.create('imotionsDatafile', { studyId: study._id });
 const participant = Factory.create('participant', {
@@ -249,7 +249,7 @@ const fixationIndices = Object.keys(
 ).filter(indexString => Number.isInteger(parseInt(indexString, 10)));
 const fixationCount = fixationIndices.length;
 
-Factory.define('gazeWithGazepoints', Gazes, {
+Factory.define('glanceWithGazepoints', Glances, {
   analysisId: analysis._id,
   studyId: study._id,
   participantId: participant._id,

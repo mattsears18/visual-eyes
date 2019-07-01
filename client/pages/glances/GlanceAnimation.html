@@ -1,5 +1,5 @@
-<template name="GazeAnimation">
-  {{#if gaze}}
+<template name="GlanceAnimation">
+  {{#if glance}}
     {{#if hullseries}}
       {{> Animation layout=layout initialTraces=initialTraces frameSeries=hullseries}}
     {{else}}
@@ -7,13 +7,13 @@
         {{#unless stimulusfile}}
           <div>
             <span class="label label-danger"
-              >No stimulus image associated with {{ gaze.stimulus.name }}</span
+              >No stimulus image associated with {{ glance.stimulus.name }}</span
             >
           </div>
           <div class="m-t-5">
             <a
-              href="/studies/{{ gaze.stimulus.studyId }}/stimuli/{{gaze.stimulus._id}}"
-              >{{ gaze.stimulus.name }}</a
+              href="/studies/{{ glance.stimulus.studyId }}/stimuli/{{glance.stimulus._id}}"
+              >{{ glance.stimulus.name }}</a
             >
           </div>
         {{/unless}}

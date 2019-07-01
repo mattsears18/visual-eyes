@@ -1,11 +1,11 @@
-export default function makeGazeFromGazepoints({
+export default function makeGlanceFromGazepoints({
   participantId,
   stimulusId,
   gazepoints = [],
   startIndex = 0,
   endIndex,
   number = 1,
-  fileFormat
+  fileFormat,
 }) {
   if (!fileFormat) {
     throw new Error('noFileFormat');
@@ -45,12 +45,12 @@ export default function makeGazeFromGazepoints({
     timestamp: point.timestamp,
     x: point.x,
     y: point.y,
-    fixationIndex: point.fixationIndex
+    fixationIndex: point.fixationIndex,
   }));
 
   let duration = 0;
   duration = gazepoints[endIndex].timestamp - gazepoints[startIndex].timestamp;
-  const fixationCount = this.getGazeFixationCount(points);
+  const fixationCount = this.getGlanceFixationCount(points);
 
   let gazepointFrequency = 0;
   let fixationFrequency = 0;
@@ -67,12 +67,12 @@ export default function makeGazeFromGazepoints({
     status = 'invalidStimulusDimensions';
   }
 
-  return Gazes.insert({
+  return Glances.insert({
     studyId: this.studyId,
     analysisId: analysis._id,
     participantId,
     stimulusId,
-    aoiIds: this.getGazeAoiIds(pointsFull),
+    aoiIds: this.getGlanceAoiIds(pointsFull),
     number,
     startTime: gazepoints[startIndex].timestamp,
     endTime: gazepoints[endIndex].timestamp,
@@ -83,6 +83,6 @@ export default function makeGazeFromGazepoints({
     fixationCount,
     fixationFrequency,
     status,
-    fileFormat
+    fileFormat,
   });
 }

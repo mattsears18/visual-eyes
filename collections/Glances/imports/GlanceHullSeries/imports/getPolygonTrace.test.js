@@ -1,9 +1,9 @@
-import GazeHullSeries from '../GazeHullSeries';
+import GlanceHullSeries from '../GlanceHullSeries';
 
 require('../../../../factories.test');
 const { expect } = require('chai');
 
-describe('GazeHullSeries.getPolygonTrace()', () => {
+describe('GlanceHullSeries.getPolygonTrace()', () => {
   const points = [
     { x: 100, y: 400, timestamp: 0 },
     { x: 200, y: 300, timestamp: 1000 },
@@ -23,8 +23,8 @@ describe('GazeHullSeries.getPolygonTrace()', () => {
   ];
 
   it('gets the initial polygon trace', () => {
-    const hullseries = new GazeHullSeries({
-      gaze: Factory.create('gaze', {
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', {
         studyId: Factory.create('study', { fixationsOnly: false })._id,
         gazepoints: points,
       }),
@@ -39,8 +39,8 @@ describe('GazeHullSeries.getPolygonTrace()', () => {
   });
 
   it('gets a polygon trace (not initial)', () => {
-    const hullseries = new GazeHullSeries({
-      gaze: Factory.create('gaze', {
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', {
         studyId: Factory.create('study', { fixationsOnly: false })._id,
         gazepoints: points,
       }),

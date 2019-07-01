@@ -3,25 +3,25 @@ import '../../factories.test';
 import { Factory } from 'meteor/dburles:factory';
 import { expect } from 'chai';
 
-describe('Gaze.getExportData()', () => {
+describe('Glance.getExportData()', () => {
   it('has no period', () => {
-    const gaze = Factory.create('gaze');
+    const glance = Factory.create('glance');
     const expectedFields = [
       'link',
       'study',
       'pointsType',
       'analysis',
-      'gazeGap',
-      'minGazeTime',
+      'glanceGap',
+      'minGlanceTime',
       'participant',
       'stimulus',
-      'gazeNumber',
-      'gazeDuration',
+      'glanceNumber',
+      'glanceDuration',
       'stimulusWidth',
       'stimulusHeight',
       'stimulusArea',
-      'gazeStartTime',
-      'gazeEndTime',
+      'glanceStartTime',
+      'glanceEndTime',
       'gazepointCount',
       'gazepointFrequency',
       'fixationCount',
@@ -29,31 +29,31 @@ describe('Gaze.getExportData()', () => {
       'fixationProportion',
     ];
 
-    expect(Object.keys(gaze.getExportData())).to.eql(expectedFields);
+    expect(Object.keys(glance.getExportData())).to.eql(expectedFields);
   });
 
   it('has a period', () => {
-    const gaze = Factory.create('gazeWithGazepoints');
+    const glance = Factory.create('glanceWithGazepoints');
 
     const expectedFields = [
       'link',
       'study',
       'pointsType',
       'analysis',
-      'gazeGap',
-      'minGazeTime',
+      'glanceGap',
+      'minGlanceTime',
       'period',
       'minTimestep',
       'includeIncomplete',
       'participant',
       'stimulus',
-      'gazeNumber',
-      'gazeDuration',
+      'glanceNumber',
+      'glanceDuration',
       'stimulusWidth',
       'stimulusHeight',
       'stimulusArea',
-      'gazeStartTime',
-      'gazeEndTime',
+      'glanceStartTime',
+      'glanceEndTime',
       'gazepointCount',
       'gazepointFrequency',
       'fixationCount',
@@ -100,7 +100,7 @@ describe('Gaze.getExportData()', () => {
 
     expect(
       Object.keys(
-        gaze.getExportData({
+        glance.getExportData({
           period: 5000,
           timestep: 100,
           includeIncomplete: false,

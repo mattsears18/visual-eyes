@@ -8,7 +8,7 @@ Template.Exports.onCreated(function() {
 
   this.autorun(() => {
     if (this.analysisId.get()) {
-      this.subscribe('gazes.byAnalysisId', this.analysisId.get());
+      this.subscribe('glances.byAnalysisId', this.analysisId.get());
     }
   });
 });
@@ -28,8 +28,8 @@ Template.Exports.events({
     if (
       exportType === 'allParticipantsSingle'
       || exportType === 'allParticipantsIndividual'
-      || exportType === 'allGazesSingle'
-      || exportType === 'allGazesIndividual'
+      || exportType === 'allGlancesSingle'
+      || exportType === 'allGlancesIndividual'
     ) {
       templateInstance.analysisSelectorVisible.set(true);
     } else {
@@ -47,8 +47,8 @@ Template.Exports.events({
     templateInstance.analysisId.set(analysisId);
 
     if (
-      templateInstance.exportType.get() === 'allGazesSingle'
-      || templateInstance.exportType.get() === 'allGazesIndividual'
+      templateInstance.exportType.get() === 'allGlancesSingle'
+      || templateInstance.exportType.get() === 'allGlancesIndividual'
     ) {
       templateInstance.samplingStepVisible.set(true);
     } else {
@@ -82,11 +82,11 @@ Template.Exports.events({
         //   analysis.saveCSVParticipants({
         //     individual: true,
         //   });
-      } else if (templateInstance.exportType.get() === 'allGazesSingle') {
+      } else if (templateInstance.exportType.get() === 'allGlancesSingle') {
         console.log('analysis.saveCSVParticipants()');
-        analysis.saveCSVGazes();
+        analysis.saveCSVGlances();
       } else if (
-        templateInstance.exportType.get() === 'allGazesIndividual'
+        templateInstance.exportType.get() === 'allGlancesIndividual'
       ) {
         console.log('analysis.saveCSVParticipants({ individua: true })');
       }

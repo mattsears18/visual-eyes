@@ -1,12 +1,12 @@
-import GazeHullSeries from '../GazeHullSeries';
+import GlanceHullSeries from '../GlanceHullSeries';
 
 require('../../../../factories.test');
 const { expect } = require('chai');
 
-describe('GazeHullSeries.getLayout()', () => {
+describe('GlanceHullSeries.getLayout()', () => {
   it('has no stimulusfile', () => {
-    const hullseries = new GazeHullSeries({
-      gaze: Factory.create('gazeWithGazepoints', {
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glanceWithGazepoints', {
         stimulusId: Factory.create('stimulus', {
           stimulusfileId: '',
         })._id,
@@ -20,11 +20,11 @@ describe('GazeHullSeries.getLayout()', () => {
   });
 
   it('gets a layout', () => {
-    const gaze = Factory.create('gazeWithGazepoints');
-    gaze.datafileId = Factory.create('imotionsDatafile')._id;
+    const glance = Factory.create('glanceWithGazepoints');
+    glance.datafileId = Factory.create('imotionsDatafile')._id;
 
-    const hullseries = new GazeHullSeries({
-      gaze,
+    const hullseries = new GlanceHullSeries({
+      glance,
       period: 5000,
     });
 
@@ -33,11 +33,11 @@ describe('GazeHullSeries.getLayout()', () => {
   });
 
   it('inverts the y axis for an imotions datafile', () => {
-    const gaze = Factory.create('gazeWithGazepoints');
-    gaze.fileFormat = 'imotions';
+    const glance = Factory.create('glanceWithGazepoints');
+    glance.fileFormat = 'imotions';
 
-    const hullseries = new GazeHullSeries({
-      gaze,
+    const hullseries = new GlanceHullSeries({
+      glance,
       period: 5000,
     });
 
@@ -46,11 +46,11 @@ describe('GazeHullSeries.getLayout()', () => {
   });
 
   it('does not invert the y axis for an smi datafile', () => {
-    const gaze = Factory.create('gazeWithGazepoints');
-    gaze.fileFormat = 'smi';
+    const glance = Factory.create('glanceWithGazepoints');
+    glance.fileFormat = 'smi';
 
-    const hullseries = new GazeHullSeries({
-      gaze,
+    const hullseries = new GlanceHullSeries({
+      glance,
       period: 5000,
     });
 

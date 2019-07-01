@@ -19,10 +19,10 @@ Meteor.publish('stimuli.byAoiId', function(aoiId) {
   return Stimuli.find({ _id: aoi.stimulusId });
 });
 
-Meteor.publish('stimuli.byGazeId', function(gazeId) {
-  check(gazeId, String);
-  gaze = Gazes.findOne({ _id: gazeId });
-  return Stimuli.find({ _id: gaze.stimulusId });
+Meteor.publish('stimuli.byGlanceId', function(glanceId) {
+  check(glanceId, String);
+  glance = Glances.findOne({ _id: glanceId });
+  return Stimuli.find({ _id: glance.stimulusId });
 });
 
 Meteor.publish('stimuli.byAnalysisId', function(analysisId) {

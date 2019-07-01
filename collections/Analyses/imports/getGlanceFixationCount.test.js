@@ -1,7 +1,7 @@
 require('./../../factories.test');
 const { expect } = require('chai');
 
-describe('Analyses.getGazeFixationCount()', () => {
+describe('Analyses.getGlanceFixationCount()', () => {
   it('dose not have fixations', () => {
     const analysis = Factory.create('analysis');
     const points = [
@@ -12,7 +12,7 @@ describe('Analyses.getGazeFixationCount()', () => {
       { timestamp: 4000 },
     ];
 
-    expect(analysis.getGazeFixationCount(points)).to.equal(0);
+    expect(analysis.getGlanceFixationCount(points)).to.equal(0);
   });
 
   it('has duplicate fixation indices', () => {
@@ -25,7 +25,7 @@ describe('Analyses.getGazeFixationCount()', () => {
       { timestamp: 4000 },
     ];
 
-    expect(analysis.getGazeFixationCount(points)).to.equal(1);
+    expect(analysis.getGlanceFixationCount(points)).to.equal(1);
   });
 
   it('has fixations', () => {
@@ -38,6 +38,6 @@ describe('Analyses.getGazeFixationCount()', () => {
       { timestamp: 4000 },
     ];
 
-    expect(analysis.getGazeFixationCount(points)).to.equal(3);
+    expect(analysis.getGlanceFixationCount(points)).to.equal(3);
   });
 });

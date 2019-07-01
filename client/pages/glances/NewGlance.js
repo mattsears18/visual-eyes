@@ -1,13 +1,13 @@
-Template.NewGaze.events({
+Template.NewGlance.events({
   'click .fa-close'() {
-    Session.set('newGaze', false);
+    Session.set('newGlance', false);
   },
 });
 
 AutoForm.hooks({
-  insertGazeForm: {
+  insertGlanceForm: {
     onSuccess(formType, result) {
-      FlowRouter.go(`/gazes/${result}`);
+      FlowRouter.go(`/glances/${result}`);
     },
   },
 });

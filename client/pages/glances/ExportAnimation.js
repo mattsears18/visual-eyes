@@ -32,9 +32,9 @@ Template.ExportAnimation.events({
 
     if (
       [
-        'gazesCurrent',
-        'gazesAllSingle',
-        'gazesIndividualZip',
+        'glancesCurrent',
+        'glancesAllSingle',
+        'glancesIndividualZip',
       ].includes(templateInstance.exportType.get())
     ) {
       templateInstance.samplingStepVisible.set(true);
@@ -48,49 +48,49 @@ Template.ExportAnimation.events({
   'click .download-button': (event, templateInstance) => {
     templateInstance.downloadButtonDisabled.set(true);
 
-    const { gaze } = Template.currentData();
+    const { glance } = Template.currentData();
     const { hullParams } = Template.currentData();
     const samplingStep = templateInstance.samplingStep.get();
 
-    if (templateInstance.exportType.get() === 'gazesCurrent') {
-      Template.currentData().gaze.saveCSV({
+    if (templateInstance.exportType.get() === 'glancesCurrent') {
+      Template.currentData().glance.saveCSV({
         ...Template.currentData().hullParams,
         samplingStep: templateInstance.samplingStep.get(),
       });
 
       templateInstance.downloadButtonDisabled.set(false);
-    } else if (templateInstance.exportType.get() === 'gazesAllSingle') {
+    } else if (templateInstance.exportType.get() === 'glancesAllSingle') {
       // console.log(
-      //   `analysis.saveCSVGazes({samplingStep: ${templateInstance.samplingStep.get()}})`,
+      //   `analysis.saveCSVGlances({samplingStep: ${templateInstance.samplingStep.get()}})`,
       // );
-    } else if (templateInstance.exportType.get() === 'gazesIndividualZip') {
+    } else if (templateInstance.exportType.get() === 'glancesIndividualZip') {
       templateInstance.subscribe(
-        'gazes.byAnalysisIdWithGazepoints',
+        'glances.byAnalysisIdWithGazepoints',
         FlowRouter.getParam('analysisId'),
         () => {
-          gaze.analysis().saveCSV({
+          glance.analysis().saveCSV({
             ...hullParams,
             samplingStep,
-            groupBy: 'gaze',
+            groupBy: 'glance',
             type: 'individualZip',
           });
 
           templateInstance.downloadButtonDisabled.set(false);
         },
       );
-    } else if (templateInstance.exportType.get() === 'gazesSummary') {
+    } else if (templateInstance.exportType.get() === 'glancesSummary') {
       templateInstance.subscribe(
         'datafiles.byStudyId',
         FlowRouter.getParam('studyId'),
         () => {
           templateInstance.subscribe(
-            'gazes.byAnalysisIdWithGazepoints',
+            'glances.byAnalysisIdWithGazepoints',
             FlowRouter.getParam('analysisId'),
             () => {
-              gaze.analysis().saveCSV({
+              glance.analysis().saveCSV({
                 ...hullParams,
                 samplingStep,
-                groupBy: 'gaze',
+                groupBy: 'glance',
                 type: 'summary',
               });
 
@@ -105,10 +105,10 @@ Template.ExportAnimation.events({
         FlowRouter.getParam('studyId'),
         () => {
           templateInstance.subscribe(
-            'gazes.byAnalysisIdWithGazepoints',
+            'glances.byAnalysisIdWithGazepoints',
             FlowRouter.getParam('analysisId'),
             () => {
-              gaze.analysis().saveCSV({
+              glance.analysis().saveCSV({
                 ...hullParams,
                 samplingStep,
                 groupBy: 'participant',

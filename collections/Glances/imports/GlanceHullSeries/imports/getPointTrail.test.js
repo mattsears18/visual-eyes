@@ -1,9 +1,9 @@
-import GazeHullSeries from '../GazeHullSeries';
+import GlanceHullSeries from '../GlanceHullSeries';
 
 require('../../../../factories.test');
 const { expect } = require('chai');
 
-describe('GazeHullSeries.pointTrail()', () => {
+describe('GlanceHullSeries.pointTrail()', () => {
   const points = [
     { x: 100, y: 400, timestamp: 0 },
     { x: 200, y: 300, timestamp: 1000 },
@@ -23,8 +23,8 @@ describe('GazeHullSeries.pointTrail()', () => {
   ];
 
   it('gets a point trail with default length (10)', () => {
-    const hullseries = new GazeHullSeries({
-      gaze: Factory.create('gaze', { gazepoints: points }),
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', { gazepoints: points }),
       period: 5000,
     });
 
@@ -46,8 +46,8 @@ describe('GazeHullSeries.pointTrail()', () => {
   });
 
   it('gets the x coordinates of a trail', () => {
-    const hullseries = new GazeHullSeries({
-      gaze: Factory.create('gaze', { gazepoints: points }),
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', { gazepoints: points }),
       period: 5000,
     });
 
@@ -67,8 +67,8 @@ describe('GazeHullSeries.pointTrail()', () => {
   });
 
   it('gets the y coordinates of a trail', () => {
-    const hullseries = new GazeHullSeries({
-      gaze: Factory.create('gaze', { gazepoints: points }),
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', { gazepoints: points }),
       period: 5000,
     });
 
@@ -88,8 +88,8 @@ describe('GazeHullSeries.pointTrail()', () => {
   });
 
   it('requests a trail longer than the points', () => {
-    const hullseries = new GazeHullSeries({
-      gaze: Factory.create('gaze', { gazepoints: points }),
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', { gazepoints: points }),
       period: 5000,
     });
 
@@ -115,8 +115,8 @@ describe('GazeHullSeries.pointTrail()', () => {
   });
 
   it('has an invalid point trail length', () => {
-    const hullseries = new GazeHullSeries({
-      gaze: Factory.create('gaze', { gazepoints: points }),
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', { gazepoints: points }),
       period: 5000,
     });
 
@@ -126,8 +126,8 @@ describe('GazeHullSeries.pointTrail()', () => {
   });
 
   it('requests a zero length point trail', () => {
-    const hullseries = new GazeHullSeries({
-      gaze: Factory.create('gaze', { gazepoints: points }),
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', { gazepoints: points }),
       period: 5000,
     });
 

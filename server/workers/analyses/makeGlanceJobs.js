@@ -1,8 +1,8 @@
 import Jobs from '../../../collections/Jobs/Jobs';
 import Analyses from '../../../collections/Analyses/Analyses';
 
-export default (queueAnalysesMakeGazeJobs = Jobs.processJobs(
-  'analyses.makeGazeJobs',
+export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
+  'analyses.makeGlanceJobs',
   { concurrency: 1 },
   (job, callback) => {
     const analysis = Analyses.findOne({ _id: job.data.analysisId });
@@ -15,11 +15,11 @@ export default (queueAnalysesMakeGazeJobs = Jobs.processJobs(
     try {
       Analyses.update(
         { _id: analysis._id },
-        { $set: { status: 'processing' }, $unset: { gazeCount: 1 } },
+        { $set: { status: 'processing' }, $unset: { glanceCount: 1 } },
       );
 
       try {
-        Meteor.call('analyses.removeGazes', { analysisId: analysis._id });
+        Meteor.call('analyses.removeGlances', { analysisId: analysis._id });
         Meteor.call('analyses.removeJobs', { analysisId: analysis._id });
       } catch (err) {
         // console.log(err);
@@ -48,7 +48,7 @@ export default (queueAnalysesMakeGazeJobs = Jobs.processJobs(
           }
 
           // console.log('make job for analysis._id: ' + analysis._id + ', participantId: ' + participantId + ', stimulusId: ' + stimulusId);
-          const job = new Job(Jobs, 'analyses.makeGazes', {
+          const job = new Job(Jobs, 'analyses.makeGlances', {
             analysisId: analysis._id,
             participantId,
             stimulusId,
@@ -68,30 +68,30 @@ export default (queueAnalysesMakeGazeJobs = Jobs.processJobs(
       job.done();
 
       const jobCount = Jobs.find({
-        type: 'analyses.makeGazes',
+        type: 'analyses.makeGlances',
         'data.analysisId': analysis._id,
       }).count();
 
       const analyses = Analyses.find({ studyId: analysis.studyId }).fetch();
 
       const totalJobCount = Jobs.find({
-        type: 'analyses.makeGazes',
+        type: 'analyses.makeGlances',
         'data.analysisId': { $in: analyses.map(a => a._id) },
       }).count();
 
       const totalJobsJobCount = Jobs.find({
-        type: 'analyses.makeGazeJobs',
+        type: 'analyses.makeGlanceJobs',
         'data.analysisId': { $in: analyses.map(a => a._id) },
       }).count();
 
       const completedJobsJobCount = Jobs.find({
-        type: 'analyses.makeGazeJobs',
+        type: 'analyses.makeGlanceJobs',
         status: 'completed',
         'data.analysisId': { $in: analyses.map(a => a._id) },
       }).count();
 
       console.log(
-        `makeGazeJobs job completed, (${completedJobsJobCount} of ${totalJobsJobCount}), made ${jobCount} gazeJobs (${totalJobCount}  total) for analysisId: ${
+        `makeGlanceJobs job completed, (${completedJobsJobCount} of ${totalJobsJobCount}), made ${jobCount} glanceJobs (${totalJobCount}  total) for analysisId: ${
           analysis._id
         }`,
       );

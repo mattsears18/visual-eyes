@@ -1,26 +1,26 @@
 import Jobs from '../Jobs/Jobs';
-import getGazeEndIndex from './imports/getGazeEndIndex';
-import getGazeFixationCount from './imports/getGazeFixationCount';
-import getGazeAoiIds from './imports/getGazeAoiIds';
-import makeGazeFromGazepoints from './imports/makeGazeFromGazepoints';
-import makeGazes from './imports/makeGazes';
+import getGlanceEndIndex from './imports/getGlanceEndIndex';
+import getGlanceFixationCount from './imports/getGlanceFixationCount';
+import getGlanceAoiIds from './imports/getGlanceAoiIds';
+import makeGlanceFromGazepoints from './imports/makeGlanceFromGazepoints';
+import makeGlances from './imports/makeGlances';
 import updateStatus from './imports/updateStatus';
 import getExportData from './imports/getExportData';
 import saveCSV from './imports/saveCSV';
-import allGazesCreated from './imports/allGazesCreated';
-import allGazesProcessed from './imports/allGazesProcessed';
+import allGlancesCreated from './imports/allGlancesCreated';
+import allGlancesProcessed from './imports/allGlancesProcessed';
 
 Analyses.helpers({
-  getGazeEndIndex,
-  getGazeFixationCount,
-  getGazeAoiIds,
-  makeGazeFromGazepoints,
-  makeGazes,
+  getGlanceEndIndex,
+  getGlanceFixationCount,
+  getGlanceAoiIds,
+  makeGlanceFromGazepoints,
+  makeGlances,
   updateStatus,
   getExportData,
   saveCSV,
-  allGazesCreated,
-  allGazesProcessed,
+  allGlancesCreated,
+  allGlancesProcessed,
 
   hasPermission(action) {
     check(action, String);
@@ -46,8 +46,8 @@ Analyses.helpers({
       ? Participants.find({ _id: { $in: this.participantIds } })
       : undefined;
   },
-  gazes() {
-    return Gazes.find({ analysisId: this._id });
+  glances() {
+    return Glances.find({ analysisId: this._id });
   },
   jobs(search) {
     return Jobs.find({ 'data.analysisId': this._id, ...search });

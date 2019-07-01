@@ -1,4 +1,4 @@
-export default function getGazeEndIndex({
+export default function getGlanceEndIndex({
   gazepoints,
   startIndex = 0,
 }) {
@@ -10,7 +10,7 @@ export default function getGazeEndIndex({
   let endIndex = parseInt(startIndex);
 
   for (i = startIndex + 1; i < gazepoints.length; i++) {
-    if (gazepoints[i].timestamp - gazepoints[i - 1].timestamp > this.gazeGap) {
+    if (gazepoints[i].timestamp - gazepoints[i - 1].timestamp > this.glanceGap) {
       break;
     }
     endIndex++;
@@ -18,8 +18,8 @@ export default function getGazeEndIndex({
 
   // console.log('points length: ' + gazepoints.length + ' startIndex: ' + startIndex + ' endIndex: ' + endIndex);
 
-  if ((gazepoints[endIndex].timestamp - gazepoints[startIndex].timestamp) < this.minGazeTime) {
-    throw new Meteor.Error('minGazeTimeNotMet', null, { nextIndex: endIndex + 1 });
+  if ((gazepoints[endIndex].timestamp - gazepoints[startIndex].timestamp) < this.minGlanceTime) {
+    throw new Meteor.Error('minGlanceTimeNotMet', null, { nextIndex: endIndex + 1 });
   }
 
   return endIndex;

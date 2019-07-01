@@ -1,21 +1,21 @@
-Template.UpdateGaze.events({
+Template.UpdateGlance.events({
   'click .fa-close'() {
-    Session.set('updateGaze', false);
+    Session.set('updateGlance', false);
   },
 });
 
 AutoForm.hooks({
-  updateGazeForm: {
+  updateGlanceForm: {
     onSuccess(formType, result) {
-      Session.set('updateGaze', false);
+      Session.set('updateGlance', false);
     },
   },
 });
 
-Template.UpdateGaze.helpers({
+Template.UpdateGlance.helpers({
   deleteOnSuccess() {
     return function() {
-      FlowRouter.go('/gazes');
+      FlowRouter.go('/glances');
     };
   },
   deleteBeforeRemove() {

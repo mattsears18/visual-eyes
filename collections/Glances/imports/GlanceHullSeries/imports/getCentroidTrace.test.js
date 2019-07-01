@@ -1,9 +1,9 @@
-import GazeHullSeries from '../GazeHullSeries';
+import GlanceHullSeries from '../GlanceHullSeries';
 
 require('../../../../factories.test');
 const { expect } = require('chai');
 
-describe('GazeHullSeries.getCentroidTrace()', () => {
+describe('GlanceHullSeries.getCentroidTrace()', () => {
   const points = [
     { x: 100, y: 400, timestamp: 0 },
     { x: 200, y: 300, timestamp: 1000 },
@@ -23,8 +23,8 @@ describe('GazeHullSeries.getCentroidTrace()', () => {
   ];
 
   it('gets the initial centroid trace', () => {
-    const hullseries = new GazeHullSeries({
-      gaze: Factory.create('gaze', { gazepoints: points }),
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', { gazepoints: points }),
       period: 5000,
     });
 
@@ -36,8 +36,8 @@ describe('GazeHullSeries.getCentroidTrace()', () => {
   });
 
   it('gets a centroid trace (not initial)', () => {
-    const hullseries = new GazeHullSeries({
-      gaze: Factory.create('gaze', { gazepoints: points }),
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', { gazepoints: points }),
       period: 5000,
     });
 

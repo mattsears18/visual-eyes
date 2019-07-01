@@ -1,3 +1,3 @@
-export default function allGazesCreated() {
-  return this.jobs({ type: 'analyses.makeGazes', status: { $ne: 'completed' } }).count() === 0;
+export default function allGlancesCreated() {
+  return this.jobs({ type: 'analyses.makeGlances', status: { $ne: 'completed' } }).count() === 0;
 }

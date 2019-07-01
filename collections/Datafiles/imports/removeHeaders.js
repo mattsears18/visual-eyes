@@ -13,7 +13,10 @@ export default function removeHeaders() {
     this.headersRemoved = true;
     this.fileFormat = 'imotions';
 
-    Datafiles.update({ _id: this._id }, { $set: { headersRemoved: true, fileFormat: 'imotions' } });
+    Datafiles.update(
+      { _id: this._id },
+      { $set: { headersRemoved: true, fileFormat: 'imotions' } }
+    );
   } else if (lines[0].substr(0, 11) === '## [BeGaze]') {
     // console.log('Has BeGaze header. Remove it.');
 
@@ -24,7 +27,10 @@ export default function removeHeaders() {
     this.headersRemoved = true;
     this.fileFormat = 'smi';
 
-    Datafiles.update({ _id: this._id }, { $set: { headersRemoved: true, fileFormat: 'smi' } });
+    Datafiles.update(
+      { _id: this._id },
+      { $set: { headersRemoved: true, fileFormat: 'smi' } }
+    );
   } else {
     // console.log('Does not have iMotions header or BeGaze header. Assume it has no header at all...');
     this.headersRemoved = true;

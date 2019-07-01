@@ -16,10 +16,10 @@ Meteor.publish('aois.byStudyId', (studyId) => {
     { sort: { name: 1 } });
 });
 
-Meteor.publish('aois.byGazeId', function(gazeId) {
-  check(gazeId, String);
-  gaze = Gazes.findOne({ _id: gazeId });
-  return Aois.find({ _id: { $in: gaze.aoiIds } });
+Meteor.publish('aois.byGlanceId', function(glanceId) {
+  check(glanceId, String);
+  glance = Glances.findOne({ _id: glanceId });
+  return Aois.find({ _id: { $in: glance.aoiIds } });
 });
 
 Meteor.publish('aois.byAnalysisId', function(analysisId) {

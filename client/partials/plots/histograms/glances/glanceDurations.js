@@ -1,8 +1,8 @@
-Template.PlotHistogramGazeDurations.helpers({
+Template.PlotHistogramGlanceDurations.helpers({
   x: () => getX(),
 
   layout: () => ({
-    title: 'Gaze Durations',
+    title: 'Glance Durations',
     xaxis: {
       title: 'Duration (ms)',
       rangemode: 'tozero',
@@ -22,8 +22,8 @@ Template.PlotHistogramGazeDurations.helpers({
 });
 
 function getX() {
-  gazes = Template.currentData().gazes;
-  return gazes.fetch().map(function(gaze) {
-    return gaze.duration;
+  glances = Template.currentData().glances;
+  return glances.fetch().map(function(glance) {
+    return glance.duration;
   });
 }

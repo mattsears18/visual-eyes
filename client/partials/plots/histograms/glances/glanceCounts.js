@@ -1,10 +1,10 @@
-Template.PlotHistogramGazeCounts.helpers({
+Template.PlotHistogramGlanceCounts.helpers({
   x: () => getX(),
 
   layout: () => ({
-    title: 'Gaze Counts',
+    title: 'Glance Counts',
     xaxis: {
-      title: '# of Gazes per Participant per Stimulus',
+      title: '# of Glances per Participant per Stimulus',
       dtick: 1,
     },
     yaxis: {
@@ -21,6 +21,6 @@ Template.PlotHistogramGazeCounts.helpers({
 });
 
 function getX() {
-  gazes = Template.currentData().gazes.fetch();
-  return helpers.getGazeCounts(gazes);
+  glances = Template.currentData().glances.fetch();
+  return helpers.getGlanceCounts(glances);
 }

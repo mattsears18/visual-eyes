@@ -5,7 +5,7 @@ export default function getLastPointTrace(opt) {
 
   let name;
 
-  if (this.gaze.study().fixationsOnly) {
+  if (this.glance.study().fixationsOnly) {
     name = 'Last Fixation';
   } else {
     name = 'Last Gaze Point';

@@ -1,4 +1,4 @@
-export default function makeGazes({ participantId, stimulusId }) {
+export default function makeGlances({ participantId, stimulusId }) {
   if (!participantId) {
     throw new Error('noParticipantId');
   }
@@ -35,7 +35,7 @@ export default function makeGazes({ participantId, stimulusId }) {
 
   const allGazepoints = Gazepoints.find(search, { sort: { timestamp: 1 } });
   const allGazepointsArr = allGazepoints.fetch();
-  const gazeIds = [];
+  const glanceIds = [];
 
   // console.log(`gazepoint count: ${gazepointsArr.length}`);
 
@@ -51,14 +51,14 @@ export default function makeGazes({ participantId, stimulusId }) {
       do {
         let endIndex;
         try {
-          endIndex = this.getGazeEndIndex({
+          endIndex = this.getGlanceEndIndex({
             gazepoints: gazepointsArr,
             startIndex,
           });
           // console.log('start: ' + startIndex + ' end: ' + endIndex);
         } catch (err) {
           // console.log('start: ' + startIndex + ' end: ' + endIndex);
-          if (err.error === 'minGazeTimeNotMet') {
+          if (err.error === 'minGlanceTimeNotMet') {
             // console.log(err.details);
             startIndex = err.details.nextIndex;
           } else {
@@ -71,8 +71,8 @@ export default function makeGazes({ participantId, stimulusId }) {
         }
 
         try {
-          // console.log('make the gaze!');
-          const gazeId = this.makeGazeFromGazepoints({
+          // console.log('make the glance!');
+          const glanceId = this.makeGlanceFromGazepoints({
             gazepoints: gazepointsArr,
             startIndex,
             endIndex,
@@ -81,7 +81,7 @@ export default function makeGazes({ participantId, stimulusId }) {
             stimulusId,
             fileFormat,
           });
-          gazeIds.push(gazeId);
+          glanceIds.push(glanceId);
         } catch (err) {
           console.log(err);
         }
@@ -91,5 +91,5 @@ export default function makeGazes({ participantId, stimulusId }) {
     });
   }
 
-  return gazeIds;
+  return glanceIds;
 }

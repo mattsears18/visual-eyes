@@ -10,7 +10,7 @@ export default function getPointTrailTrace(opt) {
   if (initial) {
     let name;
 
-    if (this.gaze.study().fixationsOnly) {
+    if (this.glance.study().fixationsOnly) {
       name = `Last ${data.x.length} Fixations`;
     } else {
       name = `Last ${data.x.length} Gaze Points`;

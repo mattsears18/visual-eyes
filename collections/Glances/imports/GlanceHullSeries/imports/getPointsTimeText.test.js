@@ -1,9 +1,9 @@
-import GazeHullSeries from '../GazeHullSeries';
+import GlanceHullSeries from '../GlanceHullSeries';
 
 require('../../../../factories.test');
 const { expect } = require('chai');
 
-describe('GazeHullSeries.getPointsTimeText()', () => {
+describe('GlanceHullSeries.getPointsTimeText()', () => {
   it('gets the hull points time as text', () => {
     const points = [
       { x: 100, y: 400, timestamp: 0 },
@@ -23,8 +23,8 @@ describe('GazeHullSeries.getPointsTimeText()', () => {
       { x: 600, y: 100, timestamp: 14000 },
     ];
 
-    const hullseries = new GazeHullSeries({
-      gaze: Factory.create('gaze', { gazepoints: points }),
+    const hullseries = new GlanceHullSeries({
+      glance: Factory.create('glance', { gazepoints: points }),
       period: 5000,
     });
 

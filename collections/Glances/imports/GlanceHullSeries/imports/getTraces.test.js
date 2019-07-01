@@ -1,9 +1,9 @@
-import GazeHullSeries from '../GazeHullSeries';
+import GlanceHullSeries from '../GlanceHullSeries';
 
 require('../../../../factories.test');
 const { expect } = require('chai');
 
-describe('GazeHullSeries.getTraces()', () => {
+describe('GlanceHullSeries.getTraces()', () => {
   const points = [
     { x: 100, y: 400, timestamp: 0 },
     { x: 200, y: 300, timestamp: 1000 },
@@ -31,14 +31,14 @@ describe('GazeHullSeries.getTraces()', () => {
       width: stimulusfile.fileWidth,
       height: stimulusfile.fileHeight,
     });
-    const gaze = Factory.create('gaze', {
+    const glance = Factory.create('glance', {
       studyId: study._id,
       stimulusId: stimulus._id,
       gazepoints: points,
     });
 
-    const hullseries = new GazeHullSeries({
-      gaze,
+    const hullseries = new GlanceHullSeries({
+      glance,
       period: 5000,
     });
 
@@ -80,14 +80,14 @@ describe('GazeHullSeries.getTraces()', () => {
       width: stimulusfile.fileWidth,
       height: stimulusfile.fileHeight,
     });
-    const gaze = Factory.create('gaze', {
+    const glance = Factory.create('glance', {
       studyId: study._id,
       stimulusId: stimulus._id,
       gazepoints: points,
     });
 
-    const hullseries = new GazeHullSeries({
-      gaze,
+    const hullseries = new GlanceHullSeries({
+      glance,
       period: 5000,
     });
 

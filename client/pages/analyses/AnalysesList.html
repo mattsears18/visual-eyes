@@ -30,10 +30,10 @@
           Name
         </th>
         <th>
-          Minimum Gaze Time (ms)
+          Minimum Glance Time (ms)
         </th>
         <th>
-          Gaze Gap (ms)
+          Glance Gap (ms)
         </th>
         <th>
           Participants
@@ -42,7 +42,7 @@
           Stimuli
         </th>
         <th>
-          Gazes
+          Glances
         </th>
         <th>
           Status
@@ -61,10 +61,10 @@
           }}</a>
         </td>
         <td>
-          {{ analysis.minGazeTime }}
+          {{ analysis.minGlanceTime }}
         </td>
         <td>
-          {{ analysis.gazeGap }}
+          {{ analysis.glanceGap }}
         </td>
         <td>
           {{ analysis.participants.count }}
@@ -73,8 +73,8 @@
           {{ analysis.stimuli.count }}
         </td>
         <td>
-          {{#if analysis.gazeCount}}
-          {{ formatNumber analysis.gazeCount }}
+          {{#if analysis.glanceCount}}
+          {{ formatNumber analysis.glanceCount }}
           {{/if}}
         </td>
         <td>

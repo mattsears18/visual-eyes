@@ -1,6 +1,5 @@
 import Jobs from '../Jobs/Jobs';
 import getGazeEndIndex from './imports/getGazeEndIndex';
-import makeGazeJobsJob from './imports/makeGazeJobsJob';
 import getGazeFixationCount from './imports/getGazeFixationCount';
 import getGazeAoiIds from './imports/getGazeAoiIds';
 import makeGazeFromGazepoints from './imports/makeGazeFromGazepoints';
@@ -13,7 +12,6 @@ import allGazesProcessed from './imports/allGazesProcessed';
 
 Analyses.helpers({
   getGazeEndIndex,
-  makeGazeJobsJob,
   getGazeFixationCount,
   getGazeAoiIds,
   makeGazeFromGazepoints,

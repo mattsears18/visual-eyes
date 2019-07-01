@@ -19,7 +19,7 @@ StubCollections.stub([
   Gazepoints,
   Participants,
   Analyses,
-  Gazes
+  Gazes,
 ]);
 
 console.log('stubbed');
@@ -27,7 +27,7 @@ console.log('stubbed');
 Factory.define('study', Studies, {
   name: () => faker.lorem.words(),
   desc: () => faker.lorem.paragraph(),
-  fixationsOnly: faker.random.boolean
+  fixationsOnly: faker.random.boolean,
 });
 
 const baseDatafile = {
@@ -48,7 +48,7 @@ const baseDatafile = {
   isText: true,
   isJSON: false,
   isPDF: false,
-  public: false
+  public: false,
 };
 
 const imotionsFields = {
@@ -61,10 +61,10 @@ const imotionsFields = {
         '/Users/matthewsears/code/visual-eyes/testFiles/realFile/imotionsWael.txt',
       size: 2452899,
       type: 'text/plain',
-      extension: 'txt'
-    }
+      extension: 'txt',
+    },
   },
-  _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/'
+  _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/',
 };
 
 const smiFields = {
@@ -76,10 +76,10 @@ const smiFields = {
         '/Users/matthewsears/code/visual-eyes/testFiles/realFile/smiWael.txt',
       size: 4519224,
       type: 'text/plain',
-      extension: 'txt'
-    }
+      extension: 'txt',
+    },
   },
-  _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/'
+  _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/',
 };
 
 const unrecognizedFields = {
@@ -91,23 +91,23 @@ const unrecognizedFields = {
         '/Users/matthewsears/code/visual-eyes/testFiles/realFile/unrecognizedWael.txt',
       size: 4519224,
       type: 'text/plain',
-      extension: 'txt'
-    }
+      extension: 'txt',
+    },
   },
-  _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/'
+  _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/',
 };
 
 Factory.define('imotionsDatafile', Datafiles.collection, {
   ...baseDatafile,
-  ...imotionsFields
+  ...imotionsFields,
 });
 Factory.define('smiDatafile', Datafiles.collection, {
   ...baseDatafile,
-  ...smiFields
+  ...smiFields,
 });
 Factory.define('unrecognizedDatafile', Datafiles.collection, {
   ...baseDatafile,
-  ...unrecognizedFields
+  ...unrecognizedFields,
 });
 
 Factory.define('analysis', Analyses, {
@@ -118,13 +118,13 @@ Factory.define('analysis', Analyses, {
   minGazeTime: 10000,
   ignoreOutsideImage: faker.random.boolean,
   participantIds: [],
-  stimulusIds: []
+  stimulusIds: [],
 });
 
 Factory.define('participant', Participants, {
   name: () => faker.lorem.words(),
   studyId: () => Factory.create('study')._id,
-  datafileIds: []
+  datafileIds: [],
 });
 
 Factory.define('stimulusfile', Stimulusfiles.collection, {
@@ -157,10 +157,10 @@ Factory.define('stimulusfile', Stimulusfiles.collection, {
         '/Users/matthewsears/code/visual-eyes/testFiles/stimulusfiles/DWG01.png',
       size: 185427,
       type: 'image/png',
-      extension: 'png'
-    }
+      extension: 'png',
+    },
   },
-  _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/stimulusfiles/'
+  _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/stimulusfiles/',
 });
 
 Factory.define('stimulus', Stimuli, {
@@ -168,14 +168,13 @@ Factory.define('stimulus', Stimuli, {
   studyId: () => Factory.create('study')._id,
   width: () => faker.random.number({ min: 100, max: 3000 }),
   height: () => faker.random.number({ min: 100, max: 3000 }),
-  stimulusfileId: () =>
-    Factory.create('stimulusfile', { stimulusId: 'dummyId' })._id
+  stimulusfileId: () => Factory.create('stimulusfile', { stimulusId: 'dummyId' })._id,
 });
 
 Factory.define('aoi', Aois, {
   name: () => faker.lorem.words(),
   studyId: () => Factory.create('study')._id,
-  stimulusId: () => Factory.create('stimulus')._id
+  stimulusId: () => Factory.create('stimulus')._id,
 });
 
 Factory.define('gazepoint', Gazepoints, {
@@ -186,7 +185,7 @@ Factory.define('gazepoint', Gazepoints, {
   aoiId: () => Factory.create('aoi')._id,
   timestamp: () => Math.floor(Math.random() * 100000),
   x: () => Math.random() * 1000,
-  y: () => Math.random() * 1000
+  y: () => Math.random() * 1000,
 });
 
 Factory.define('gaze', Gazes, {
@@ -197,7 +196,7 @@ Factory.define('gaze', Gazes, {
   number: () => faker.random.number({ min: 1, max: 10 }),
   aoiIds: [],
   gazepoints: [],
-  fileFormat: 'imotions'
+  fileFormat: 'imotions',
 });
 
 // gaze with Gazepoints
@@ -205,17 +204,17 @@ const study = Factory.create('study');
 const datafile = Factory.create('imotionsDatafile', { studyId: study._id });
 const participant = Factory.create('participant', {
   studyId: study._id,
-  datafileIds: [datafile._id]
+  datafileIds: [datafile._id],
 });
 const stimulus = Factory.create('stimulus', { studyId: study._id });
 const aoi = Factory.create('aoi', {
   studyId: study._id,
-  stimulusId: stimulus._id
+  stimulusId: stimulus._id,
 });
 const analysis = Factory.create('analysis', {
   studyId: study._id,
   participantIds: [participant._id],
-  stimulusIds: [stimulus._id]
+  stimulusIds: [stimulus._id],
 });
 
 const gazepoints = [];
@@ -227,7 +226,7 @@ for (let i = 0; i < 100; i += 1) {
     participantId: participant._id,
     stimulusId: stimulus._id,
     aoiId: aoi._id,
-    fileFormat: 'imotions'
+    fileFormat: 'imotions',
   });
 
   gazepoints.push(gazepoint);
@@ -244,10 +243,9 @@ for (let i = 0; i < 100; i += 1) {
   if (faker.random.boolean()) gazepoints[i].fixationIndex = fixationIndex;
 }
 
-const duration =
-  gazepoints[gazepoints.length - 1].timestamp - gazepoints[0].timestamp;
+const duration = gazepoints[gazepoints.length - 1].timestamp - gazepoints[0].timestamp;
 const fixationIndices = Object.keys(
-  _.groupBy(gazepoints, 'fixationIndex')
+  _.groupBy(gazepoints, 'fixationIndex'),
 ).filter(indexString => Number.isInteger(parseInt(indexString, 10)));
 const fixationCount = fixationIndices.length;
 
@@ -266,5 +264,5 @@ Factory.define('gazeWithGazepoints', Gazes, {
   gazepointCount: gazepoints.length,
   gazepointFrequency: gazepoints.length / duration,
   fixationCount,
-  fixationFrequency: fixationCount / duration
+  fixationFrequency: fixationCount / duration,
 });

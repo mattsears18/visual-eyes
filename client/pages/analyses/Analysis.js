@@ -90,10 +90,9 @@ Template.Analysis.events({
     analysis.saveCSVGazes();
   },
   'click .reprocess-analysis'() {
-    const analysis = Analyses.findOne({
-      _id: FlowRouter.getParam('analysisId'),
+    Meteor.call('analyses.makeGazeJobsJob', {
+      analysisId: FlowRouter.getParam('analysisId'),
     });
-    analysis.makeGazeJobsJob();
   },
   'click .update-analysis'() {
     Session.set('updateAnalysis', true);

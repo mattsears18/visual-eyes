@@ -18,9 +18,9 @@ Analyses.after.remove(function(userId, analysis) {
 });
 
 Analyses.after.insert(function(userId, analysis) {
-  if (Meteor.isServer) {
-    Analyses.findOne({ _id: analysis._id }).makeGazeJobsJob();
-  }
+  Meteor.call('analyses.makeGazeJobsJob', {
+    analysisId: analysis._id,
+  });
 });
 
 Analyses.after.update(function(
@@ -41,7 +41,9 @@ Analyses.after.update(function(
         analysis.participantIds,
       )
     ) {
-      Analyses.findOne({ _id: analysis._id }).makeGazeJobsJob();
+      Meteor.call('analyses.makeGazeJobsJob', {
+        analysisId: analysis._id,
+      });
     }
   }
 });

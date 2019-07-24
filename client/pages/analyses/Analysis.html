@@ -29,16 +29,17 @@
 
   <p>{{ analysis.desc }}</p>
 
-  {{#if analysis.glanceGap}}
+  {{#if analysis.minGlanceTime}}
   <div>
-    <strong>Glance Gap (ms):</strong> {{formatNumber analysis.glanceGap}}
+    <strong>Minimum Glance Duration (ms):</strong>
+    {{formatNumber analysis.minGlanceTime}}
   </div>
   {{/if}}
 
-  {{#if analysis.minGlanceTime}}
+  {{#if analysis.glanceGap}}
   <div>
-    <strong>Minimum Glance Time (ms):</strong>
-    {{formatNumber analysis.minGlanceTime}}
+    <strong>Maximum Glance Gap Duration (ms):</strong>
+    {{formatNumber analysis.glanceGap}}
   </div>
   {{/if}}
 

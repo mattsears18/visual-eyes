@@ -1,23 +1,25 @@
 <template name="NewAnalysis">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">New Analysis <i class="fa fa-close pull-right"></i></h3>
+      <h3 class="panel-title">
+        New Analysis <i class="fa fa-close pull-right"></i>
+      </h3>
     </div>
     <div class="panel-body">
       {{#autoForm collection="Analyses" id="insertAnalysisForm" type="insert"
         class="insert-analysis-form"}}
-        {{> afQuickField name="name"}}
-        {{> afQuickField name="desc"}}
-        {{> afQuickField name="glanceGap"}}
-        {{> afQuickField name="minGlanceTime"}}
-        <!-- {{> afQuickField name="ignoreAoiNoName"}} -->
-        {{> afQuickField name="ignoreOutsideImage"}}
-        {{> afQuickField name="studyId"}}
-        {{> afQuickField name="participantIds" options=participantOptions value=participantIds}}
-        {{> afQuickField name="stimulusIds" options=stimulusOptions value=stimulusIds}}
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
+      {{> afQuickField name="name"}}
+      {{> afQuickField name="desc"}}
+      {{> afQuickField name="minGlanceTime"}}
+      {{> afQuickField name="glanceGap"}}
+      <!-- {{> afQuickField name="ignoreAoiNoName"}} -->
+      {{> afQuickField name="ignoreOutsideImage"}}
+      {{> afQuickField name="studyId"}}
+      {{> afQuickField name="participantIds" options=participantOptions value=participantIds}}
+      {{> afQuickField name="stimulusIds" options=stimulusOptions value=stimulusIds}}
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
       {{/autoForm}}
     </div>
   </div>

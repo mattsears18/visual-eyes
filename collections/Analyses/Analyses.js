@@ -22,6 +22,7 @@ Schemas.Analysis = new SimpleSchema(
     name: {
       type: String,
       label: 'Name',
+      defaultValue: 'Analysis',
     },
     desc: {
       type: String,
@@ -31,15 +32,15 @@ Schemas.Analysis = new SimpleSchema(
       },
       optional: true,
     },
-    glanceGap: {
-      type: Number,
-      label: 'Glance Gap (ms)',
-      defaultValue: 5000,
-    },
     minGlanceTime: {
       type: Number,
-      label: 'Minimum Glance Time (ms)',
+      label: 'Minimum Glance Duration (ms)',
       defaultValue: 10000,
+    },
+    glanceGap: {
+      type: Number,
+      label: 'Maximum Glance Gap Duration (ms)',
+      defaultValue: 5000,
     },
     ignoreOutsideImage: {
       type: Boolean,

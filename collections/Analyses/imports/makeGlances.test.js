@@ -45,8 +45,8 @@ describe('Analyses.makeGlances()', () => {
       studyId: study._id,
       participantIds: [participant._id],
       stimulusIds: [stimulus._id],
-      glanceGap: 2000,
-      minGlanceTime: 5000,
+      maxGlanceGapDuration: 2000,
+      minGlanceDuration: 5000,
       ignoreOutsideImage: false,
     });
 
@@ -56,8 +56,8 @@ describe('Analyses.makeGlances()', () => {
       { timestamp: 2000, fixationIndex: 1 },
       { timestamp: 3000 },
       { timestamp: 5000, fixationIndex: 2 }, // end glance 1
-      { timestamp: 8000 }, // exceeded glanceGap - end glance
-      { timestamp: 9000 }, // next point exceeds glance gap but minglanceTime not met, so no glance
+      { timestamp: 8000 }, // exceeded maxGlanceGapDuration - end glance
+      { timestamp: 9000 }, // next point exceeds glance gap but minGlanceDuration not met, so no glance
       { timestamp: 14000 }, // start glance 2
       { timestamp: 15000 },
       { timestamp: 16000 },

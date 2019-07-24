@@ -9,7 +9,7 @@ export default function getGlanceEndIndex({ gazepoints, startIndex = 0 }) {
   for (i = startIndex + 1; i < gazepoints.length; i++) {
     if (
       gazepoints[i].timestamp - gazepoints[i - 1].timestamp
-      > this.glanceGap
+      > this.maxGlanceGapDuration
     ) {
       break;
     }
@@ -20,9 +20,9 @@ export default function getGlanceEndIndex({ gazepoints, startIndex = 0 }) {
 
   if (
     gazepoints[endIndex].timestamp - gazepoints[startIndex].timestamp
-    < this.minGlanceTime
+    < this.minGlanceDuration
   ) {
-    throw new Meteor.Error('minGlanceTimeNotMet', null, {
+    throw new Meteor.Error('minGlanceDurationNotMet', null, {
       nextIndex: endIndex + 1,
     });
   }

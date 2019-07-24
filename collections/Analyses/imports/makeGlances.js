@@ -58,7 +58,7 @@ export default function makeGlances({ participantId, stimulusId }) {
           // console.log('start: ' + startIndex + ' end: ' + endIndex);
         } catch (err) {
           // console.log('start: ' + startIndex + ' end: ' + endIndex);
-          if (err.error === 'minGlanceTimeNotMet') {
+          if (err.error === 'minGlanceDurationNotMet') {
             // console.log(err.details);
             startIndex = err.details.nextIndex;
           } else {

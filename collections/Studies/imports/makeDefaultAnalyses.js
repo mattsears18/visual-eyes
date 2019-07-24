@@ -1,5 +1,5 @@
 export default function makeDefaultAnalyses() {
-  const maxGlanceGapDurations = [120, 250, 500, 1000, 2000, 3000, 4000, 5000];
+  const maxGlanceGapDurationDurations = [120, 250, 500, 1000, 2000, 3000, 4000, 5000];
   const minGlanceDurations = [
     120,
     250,
@@ -15,12 +15,12 @@ export default function makeDefaultAnalyses() {
   ];
 
   minGlanceDurations.forEach((minGlanceDuration) => {
-    maxGlanceGapDurations.forEach((maxGlanceGapDuration) => {
+    maxGlanceGapDurationDurations.forEach((maxGlanceGapDurationDuration) => {
       Analyses.insert({
         studyId: this._id,
         name: 'Analysis',
-        glanceGap: maxGlanceGapDuration,
-        minGlanceTime: minGlanceDuration,
+        maxGlanceGapDuration: maxGlanceGapDurationDuration,
+        minGlanceDuration: minGlanceDuration,
         ignoreOutsideImage: true,
         participantIds: this.participants().map(participant => participant._id),
         stimulusIds: this.stimuli().map(stimulus => stimulus._id),

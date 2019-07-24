@@ -33,8 +33,8 @@ Analyses.after.update(function(
   if (Meteor.isServer) {
     if (
       this.previous.ignoreOutsideImage != analysis.ignoreOutsideImage
-      || this.previous.minGlanceTime != analysis.minGlanceTime
-      || this.previous.glanceGap != analysis.glanceGap
+      || this.previous.minGlanceDuration != analysis.minGlanceDuration
+      || this.previous.maxGlanceGapDuration != analysis.maxGlanceGapDuration
       || !helpers.arraysEqual(this.previous.stimulusIds, analysis.stimulusIds)
       || !helpers.arraysEqual(
         this.previous.participantIds,

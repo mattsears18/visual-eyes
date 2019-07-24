@@ -27,8 +27,8 @@ export default function getExportData(opt) {
     study: this.study().name,
     pointsType: this.study().pointsType(),
     analysis: this.analysis().name,
-    glanceGap: this.analysis().glanceGap,
-    minGlanceTime: this.analysis().minGlanceTime,
+    maxGlanceGapDuration: this.analysis().maxGlanceGapDuration,
+    minGlanceDuration: this.analysis().minGlanceDuration,
   };
 
   if (typeof period !== 'undefined') {

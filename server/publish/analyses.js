@@ -14,7 +14,7 @@ Meteor.publish('analyses.byStudyId', studyId => {
   check(studyId, String);
   return Analyses.find(
     { studyId },
-    { sort: { minGlanceTime: 1, glanceGap: 1, name: 1 } }
+    { sort: { minGlanceDuration: 1, maxGlanceGapDuration: 1, name: 1 } }
   );
 });
 

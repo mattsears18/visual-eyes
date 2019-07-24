@@ -32,12 +32,12 @@ Schemas.Analysis = new SimpleSchema(
       },
       optional: true,
     },
-    minGlanceTime: {
+    minGlanceDuration: {
       type: Number,
       label: 'Minimum Glance Duration (ms)',
       defaultValue: 10000,
     },
-    glanceGap: {
+    maxGlanceGapDuration: {
       type: Number,
       label: 'Maximum Glance Gap Duration (ms)',
       defaultValue: 5000,

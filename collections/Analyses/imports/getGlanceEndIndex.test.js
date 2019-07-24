@@ -4,8 +4,8 @@ import { expect } from 'chai';
 describe('Analyses.getGlanceEndIndex()', () => {
   it('gets the endIndex', async () => {
     const analysis = Factory.create('analysis', {
-      minGlanceTime: 5000,
-      glanceGap: 5000,
+      minGlanceDuration: 5000,
+      maxGlanceGapDuration: 5000,
     });
 
     const points = [
@@ -24,10 +24,10 @@ describe('Analyses.getGlanceEndIndex()', () => {
     expect(analysis.getGlanceEndIndex({ gazepoints: points })).to.equal(9);
   });
 
-  it('exceeds the glanceGap', async () => {
+  it('exceeds the maxGlanceGapDuration', async () => {
     const analysis = Factory.create('analysis', {
-      minGlanceTime: 3000,
-      glanceGap: 5000,
+      minGlanceDuration: 3000,
+      maxGlanceGapDuration: 5000,
     });
 
     const points = [
@@ -46,10 +46,10 @@ describe('Analyses.getGlanceEndIndex()', () => {
     expect(analysis.getGlanceEndIndex({ gazepoints: points })).to.equal(4);
   });
 
-  it('does not meet the minGlanceTime and has more points', async () => {
+  it('does not meet the minGlanceDuration and has more points', async () => {
     const analysis = Factory.create('analysis', {
-      minGlanceTime: 10000,
-      glanceGap: 5000,
+      minGlanceDuration: 10000,
+      maxGlanceGapDuration: 5000,
     });
 
     const points = [
@@ -67,7 +67,7 @@ describe('Analyses.getGlanceEndIndex()', () => {
 
     expect(() => {
       analysis.getGlanceEndIndex({ gazepoints: points });
-    }).to.throw('minGlanceTimeNotMet');
+    }).to.throw('minGlanceDurationNotMet');
 
     try {
       analysis.getGlanceEndIndex({ gazepoints: points });
@@ -78,8 +78,8 @@ describe('Analyses.getGlanceEndIndex()', () => {
 
   it('has has a startIndex that is too high', async () => {
     const analysis = Factory.create('analysis', {
-      minGlanceTime: 10000,
-      glanceGap: 5000,
+      minGlanceDuration: 10000,
+      maxGlanceGapDuration: 5000,
     });
 
     const points = [

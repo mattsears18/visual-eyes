@@ -1,12 +1,15 @@
 import reprocessAnalyses from './imports/reprocessAnalyses';
 import reprocessDatafiles from './imports/reprocessDatafiles';
+import getExportData from './imports/getExportData';
 import saveCSV from './imports/saveCSV';
 import makeDefaultAnalyses from './imports/makeDefaultAnalyses';
 import Variables from '../Variables/Variables';
+import Participants from '../Participants/Participants';
 
 Studies.helpers({
   reprocessAnalyses,
   reprocessDatafiles,
+  getExportData,
   saveCSV,
   makeDefaultAnalyses,
 
@@ -56,6 +59,9 @@ Studies.helpers({
   },
   stimuli() {
     return Stimuli.find({ studyId: this._id });
+  },
+  participants() {
+    return Participants.find({ studyId: this._id });
   },
   stimuliWithImageCount() {
     return Stimuli.find({

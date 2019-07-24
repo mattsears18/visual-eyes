@@ -85,8 +85,24 @@ Schemas.Analysis = new SimpleSchema(
     },
     glanceCount: {
       type: Number,
-      label: 'Glance Count',
       optional: true,
+      autoform: {
+        type: 'hidden',
+      },
+    },
+    glanceDurationMean: {
+      type: Number,
+      optional: true,
+      autoform: {
+        type: 'hidden',
+      },
+    },
+    glanceDurationMedian: {
+      type: Number,
+      optional: true,
+      autoform: {
+        type: 'hidden',
+      },
     },
   },
   { tracker: Tracker },

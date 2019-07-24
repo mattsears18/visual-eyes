@@ -34,12 +34,10 @@ Template.Exports.events({
       templateInstance.analysisSelectorVisible.set(true);
     } else {
       templateInstance.analysisSelectorVisible.set(false);
+      templateInstance.downloadButtonVisible.set(true);
     }
   },
-  'change .analysis-selector, change .export-type': (
-    event,
-    templateInstance,
-  ) => {
+  'change .analysis-selector': (event, templateInstance) => {
     const analysisId = $('.analysis-selector')
       ? $('.analysis-selector').val()
       : undefined;
@@ -65,8 +63,6 @@ Template.Exports.events({
     templateInstance.samplingStep.set(event.target.value);
   },
   'click .download-button': (event, templateInstance) => {
-    console.log(templateInstance.exportType.get());
-
     if (templateInstance.analysisId.get()) {
       const analysis = Analyses.findOne({
         _id: templateInstance.analysisId.get(),
@@ -75,21 +71,14 @@ Template.Exports.events({
       if (templateInstance.exportType.get() === 'allParticipantsSingle') {
         console.log('analysis.saveCSVParticipants()');
         analysis.saveCSVParticipants();
-        // } else if (
-        //   templateInstance.exportType.get() === 'allParticipantsIndividual'
-        // ) {
-        //   console.log('analysis.saveCSVParticipants({ individual: true })');
-        //   analysis.saveCSVParticipants({
-        //     individual: true,
-        //   });
       } else if (templateInstance.exportType.get() === 'allGlancesSingle') {
         console.log('analysis.saveCSVParticipants()');
         analysis.saveCSVGlances();
-      } else if (
-        templateInstance.exportType.get() === 'allGlancesIndividual'
-      ) {
+      } else if (templateInstance.exportType.get() === 'allGlancesIndividual') {
         console.log('analysis.saveCSVParticipants({ individua: true })');
       }
+    } else if (templateInstance.exportType.get() === 'allAnalysesSingle') {
+      study.saveCSV({ type: 'allAnalysesSingle' });
     }
   },
 });

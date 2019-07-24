@@ -32,7 +32,7 @@ Template.AnalysesList.events({
     }
   },
   'click .make-default-analyses'(e, template) {
-    console.log(study.makeDefaultAnalyses());
+    study.makeDefaultAnalyses();
   },
 });
 

@@ -35,7 +35,15 @@
             >
               <i class="fa fa-file"></i>&nbsp;&nbsp;Data Files
               {{#if datafiles.count}}({{ datafiles.count }}){{/if}}
-              {{#if datafiles.count}}{{#unless study.datafilesProcessingComplete
+              {{#if datafiles.count
+
+
+
+              }}{{#unless study.datafilesProcessingComplete
+
+
+
+
               }}<i class="fa fa-exclamation m-l-3"></i>{{/unless}}{{/if}}
             </span>
           </a>
@@ -56,7 +64,15 @@
             >
               <i class="fa fa-image"></i>&nbsp;&nbsp;Stimuli
               {{#if stimuli.count}}({{ stimuli.count }}){{/if}}
-              {{#if stimuli.count}}{{#unless study.stimuliAllHaveImage
+              {{#if stimuli.count
+
+
+
+              }}{{#unless study.stimuliAllHaveImage
+
+
+
+
               }}<i class="fa fa-exclamation m-l-3"></i>{{/unless}}{{/if}}
             </span>
           </a>
@@ -79,20 +95,28 @@
             >
               <i class="fa fa-area-chart"></i>&nbsp;&nbsp;Analyses
               {{#if analyses.count}}({{ analyses.count }}){{/if}}
-              {{#if analyses.count}}{{#unless study.analysesProcessingComplete
+              {{#if analyses.count
+
+
+
+              }}{{#unless study.analysesProcessingComplete
+
+
+
+
               }}<i class="fa fa-exclamation m-l-3"></i>{{/unless}}{{/if}}
             </span>
           </a>
         </li>
         {{/if}}
         {{/if}}
-        <!-- {{#if analyses.count}}
-              <li class="{{#if isActivePath regex='export'}} active {{/if}}">
-                <a href="/studies/{{study._id}}/exports">
-                  <i class="fa fa-share-square-o"></i>&nbsp;&nbsp;Export Data
-                </a>
-              </li>
-            {{/if}} -->
+        {{#if analyses.count}}
+        <li class="{{#if isActivePath regex='export'}} active {{/if}}">
+          <a href="/studies/{{ study._id }}/exports">
+            <i class="fa fa-share-square-o"></i>&nbsp;&nbsp;Export Results
+          </a>
+        </li>
+        {{/if}}
       </ul>
     </div>
 

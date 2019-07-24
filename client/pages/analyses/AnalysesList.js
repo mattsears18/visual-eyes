@@ -26,6 +26,14 @@ Template.AnalysesList.events({
       groupBy: 'analysis',
     });
   },
+  'click .delete-analysis'(e, template) {
+    if (confirm(`Really delete "${e.target.dataset.analysisname}"?`)) {
+      Analyses.remove({ _id: e.target.dataset.analysisid });
+    }
+  },
+  'click .make-default-analyses'(e, template) {
+    console.log(study.makeDefaultAnalyses());
+  },
 });
 
 Template.AnalysesList.destroyed = function() {

@@ -2,9 +2,12 @@
   <h4>
     {{#if study.hasPermission 'createAnalyses'}}
     {{#unless $.Session.get 'newAnalysis'}}
-    <a class="new-analysis btn btn-success pull-left"
-      ><i class="fa fa-plus"></i>&nbsp;&nbsp;New Analysis</a
-    >
+    <a class="new-analysis btn btn-success pull-left">
+      <i class="fa fa-plus"></i>&nbsp;&nbsp;New Analysis
+    </a>
+    <a class="m-l-5 make-default-analyses btn btn-warning">
+      <i class="fa fa-plus"></i>&nbsp;&nbsp;Make Default Analyses
+    </a>
     {{#if analyses.count}}
     {{#if study.datafilesProcessingComplete}}
     <span class="btn btn-danger pull-right reprocess-analyses m-l-10"
@@ -50,6 +53,10 @@
           <span class="label label-success">All Processed</span>
           {{/if}}
         </th>
+        {{#if analysis.hasPermission 'update'}}
+        <th>Delete</th>
+        {{/if}}
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -90,6 +97,17 @@
           <span class="label label-success">Processed</span>
           {{/if}}
         </td>
+        {{#if study.hasPermission 'update'}}
+        <td>
+          <span class="text-danger">
+            <i
+              class="fa fa-trash delete-analysis"
+              data-analysisid="{{ analysis._id }}"
+              data-analysisname="{{ analysis.name }}"
+            ></i>
+          </span>
+        </td>
+        {{/if}}
       </tr>
       {{/each}}
     </tbody>

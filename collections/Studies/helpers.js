@@ -1,13 +1,14 @@
 import reprocessAnalyses from './imports/reprocessAnalyses';
 import reprocessDatafiles from './imports/reprocessDatafiles';
 import saveCSV from './imports/saveCSV';
+import makeDefaultAnalyses from './imports/makeDefaultAnalyses';
 import Variables from '../Variables/Variables';
 
 Studies.helpers({
   reprocessAnalyses,
   reprocessDatafiles,
-
   saveCSV,
+  makeDefaultAnalyses,
 
   hasPermission(action) {
     check(action, String);

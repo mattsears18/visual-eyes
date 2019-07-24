@@ -15,7 +15,14 @@ export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
     try {
       Analyses.update(
         { _id: analysis._id },
-        { $set: { status: 'processing' }, $unset: { glanceCount: 1 } },
+        {
+          $unset: {
+            glanceCount: 1,
+            status: 1,
+            glanceDurationMean: 1,
+            glanceDurationMedian: 1,
+          },
+        },
       );
 
       try {
@@ -91,8 +98,8 @@ export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
       }).count();
 
       console.log(
-        `makeGlanceJobs job completed, (${completedJobsJobCount} of ${totalJobsJobCount}), made ${jobCount} glanceJobs (${totalJobCount}  total) for analysisId: ${
-          analysis._id
+        `makeGlanceJobs job completed, (${completedJobsJobCount} of ${totalJobsJobCount}), made ${jobCount} glanceJobs (${totalJobCount}  total) for studyId: ${
+          analysis.studyId
         }`,
       );
     } catch (err) {

@@ -30,6 +30,9 @@ export default function updateStatus() {
     );
   } else {
     const glanceCount = this.glances().count();
-    Analyses.update({ _id: this._id }, { $set: { glanceCount } });
+    Analyses.update(
+      { _id: this._id },
+      { $set: { status: 'processing', glanceCount } },
+    );
   }
 }

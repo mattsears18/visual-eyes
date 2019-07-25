@@ -5,11 +5,10 @@
     <a class="new-analysis btn btn-success pull-left">
       <i class="fa fa-plus"></i>&nbsp;&nbsp;New Analysis
     </a>
-    {{#unless analyses.count}}
     <a class="m-l-5 make-default-analyses btn btn-warning">
       <i class="fa fa-plus"></i>&nbsp;&nbsp;Make Default Analyses
     </a>
-    {{/unless}}
+
     {{#if analyses.count}}
     {{#if study.datafilesProcessingComplete}}
     <span class="btn btn-danger pull-right reprocess-analyses m-l-10"

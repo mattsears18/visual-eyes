@@ -17,8 +17,8 @@ describe('Analyses.getExportData()', () => {
       'study',
       'pointsType',
       'analysis',
-      'maxGlanceGapDuration',
       'minGlanceDuration',
+      'maxGlanceGapDuration',
       'participant',
       'stimulus',
       'glanceNumber',
@@ -32,12 +32,12 @@ describe('Analyses.getExportData()', () => {
       'gazepointFrequency',
       'fixationCount',
       'fixationFrequency',
-      'fixationProportion'
+      'fixationProportion',
     ];
 
     // expect(glance.analysis().getExportData().length).to.equal(1);
     expect(Object.keys(glance.analysis().getExportData()[0])).to.eql(
-      expectedFields
+      expectedFields,
     );
   }).timeout(60000);
 
@@ -49,8 +49,8 @@ describe('Analyses.getExportData()', () => {
       'study',
       'pointsType',
       'analysis',
-      'maxGlanceGapDuration',
       'minGlanceDuration',
+      'maxGlanceGapDuration',
       'period',
       'minTimestep',
       'includeIncomplete',
@@ -75,13 +75,13 @@ describe('Analyses.getExportData()', () => {
       'averageVelocityY',
       'averageCentroidVelocity',
       'averageCentroidVelocityX',
-      'averageCentroidVelocityY'
+      'averageCentroidVelocityY',
     ];
 
     expect(
       Object.keys(
-        glance.analysis().getExportData({ period: 5000, timestep: 0 })[0]
-      )
+        glance.analysis().getExportData({ period: 5000, timestep: 0 })[0],
+      ),
     ).to.eql(expectedFields);
   }).timeout(60000);
 
@@ -92,14 +92,14 @@ describe('Analyses.getExportData()', () => {
       analysisId: glance1.analysisId,
       participantId: glance1.participantId,
       stimulusId: glance1.stimulusId,
-      number: 2
+      number: 2,
     });
     const glance3 = Factory.create('glanceWithGazepoints', {
       studyId: glance1.studyId,
       analysisId: glance1.analysisId,
       participantId: glance1.participantId,
       stimulusId: glance1.stimulusId,
-      number: 3
+      number: 3,
     });
 
     const expectedFields = [
@@ -107,8 +107,8 @@ describe('Analyses.getExportData()', () => {
       'study',
       'pointsType',
       'analysis',
-      'maxGlanceGapDuration',
       'minGlanceDuration',
+      'maxGlanceGapDuration',
       'period',
       'minTimestep',
       'includeIncomplete',
@@ -146,7 +146,7 @@ describe('Analyses.getExportData()', () => {
       'averageVelocityY',
       'averageCentroidVelocity',
       'averageCentroidVelocityX',
-      'averageCentroidVelocityY'
+      'averageCentroidVelocityY',
     ];
 
     expect(
@@ -154,9 +154,9 @@ describe('Analyses.getExportData()', () => {
         glance1.analysis().getExportData({
           period: 5000,
           timestep: 0,
-          groupBy: 'participant'
-        })[0]
-      )
+          groupBy: 'participant',
+        })[0],
+      ),
     ).to.eql(expectedFields);
   }).timeout(60000);
 });

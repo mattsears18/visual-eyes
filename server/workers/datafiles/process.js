@@ -46,7 +46,7 @@ export default (queueDatafilesProcess = Jobs.processJobs(
 
     if (totalJobCount > 0 && completedJobCount === totalJobCount) {
       console.log('finished processing datafiles. reprocess analyses.');
-      study.reprocessAnalyses;
+      study.reprocessAnalyses();
     }
 
     callback();

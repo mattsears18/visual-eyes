@@ -8,6 +8,6 @@ describe('Study.makeDefaultAnalyses()', () => {
     const study = Factory.create('study');
     study.makeDefaultAnalyses();
 
-    expect(study.analyses().count()).to.eql(88);
+    expect(study.analyses().count()).to.eql(96);
   });
 });

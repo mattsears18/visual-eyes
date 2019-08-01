@@ -45,8 +45,8 @@ describe('Analyses.makeGlances()', () => {
       studyId: study._id,
       participantIds: [participant._id],
       stimulusIds: [stimulus._id],
-      maxGlanceGapDuration: 2000,
       minGlanceDuration: 5000,
+      maxGlanceGapDuration: 2000,
       ignoreOutsideImage: false,
     });
 

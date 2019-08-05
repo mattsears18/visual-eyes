@@ -20,7 +20,7 @@ export default function makeDefaultAnalyses() {
     // 8.33333,
     // 16.66667, // no good in our experiement
     20,
-    // 30,
+    30,
     40,
     45,
     50,
@@ -30,7 +30,7 @@ export default function makeDefaultAnalyses() {
     // 75,
     80,
     85,
-    // 90,
+    90,
     95,
     100,
     110,

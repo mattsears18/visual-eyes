@@ -17,7 +17,10 @@ export default function getLayout(opt) {
 
   let yrange;
 
-  if (this.glance.fileFormat === 'imotions') {
+  if (
+    this.glance.fileFormat === 'imotions'
+    || this.glance.fileFormat === 'smi'
+  ) {
     yrange = [this.glance.stimulus().height, 0];
   } else {
     yrange = [0, this.glance.stimulus().height];

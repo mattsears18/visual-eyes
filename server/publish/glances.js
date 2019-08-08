@@ -20,9 +20,27 @@ Meteor.publish('glances.byStudyId', (studyId) => {
   return Glances.find({ studyId }, { fields: { gazepoints: 0 } });
 });
 
+// Meteor.publish('glances.byAnalysisId', (analysisId) => {
+//   check(analysisId, String);
+//   return Glances.find({ analysisId }, { fields: { gazepoints: 0 } });
+// });
+
 Meteor.publish('glances.byAnalysisId', (analysisId) => {
   check(analysisId, String);
-  return Glances.find({ analysisId }, { fields: { gazepoints: 0 } });
+  return Glances.find(
+    { analysisId },
+    {
+      fields: {
+        _id: 1,
+        participantId: 1,
+        stimulusId: 1,
+        number: 1,
+        aoiIds: 1,
+        duration: 1,
+        status: 1,
+      },
+    },
+  );
 });
 
 Meteor.publish('glances.simple.byAnalysisId', (analysisId) => {

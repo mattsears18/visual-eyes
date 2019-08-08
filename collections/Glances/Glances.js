@@ -129,7 +129,12 @@ if (Meteor.isServer) {
   );
 
   Glances.rawCollection().createIndex(
-    { analysisId: 1, participantId: 1, stimulusId: 1 },
+    {
+      analysisId: 1,
+      participantId: 1,
+      stimulusId: 1,
+      duration: 1,
+    },
     (err, result) => {
       if (err) {
         console.log(err);

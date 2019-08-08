@@ -54,7 +54,6 @@ Template.Analysis.helpers({
     stimulusIds = template.selector.get('stimulusIds');
 
     selector = {
-      analysisId: FlowRouter.getParam('analysisId'),
       participantId: { $in: participantIds },
       stimulusId: { $in: stimulusIds },
     };

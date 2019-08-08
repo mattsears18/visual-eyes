@@ -45,7 +45,7 @@ describe('GlanceHullSeries.getLayout()', () => {
     expect(hullseries.getLayout().yaxis.range[0]).to.be.gt(0);
   });
 
-  it('does not invert the y axis for an smi datafile', () => {
+  it('inverts the y axis for an smi datafile', () => {
     const glance = Factory.create('glanceWithGazepoints');
     glance.fileFormat = 'smi';
 
@@ -54,7 +54,7 @@ describe('GlanceHullSeries.getLayout()', () => {
       period: 5000,
     });
 
-    expect(hullseries.getLayout().yaxis.range[0]).to.equal(0);
-    expect(hullseries.getLayout().yaxis.range[1]).to.be.gt(0);
+    expect(hullseries.getLayout().yaxis.range[1]).to.equal(0);
+    expect(hullseries.getLayout().yaxis.range[0]).to.be.gt(0);
   });
 });

@@ -32,15 +32,29 @@ Schemas.Analysis = new SimpleSchema(
       },
       optional: true,
     },
+    type: {
+      type: String,
+      label: 'Type of Analysis',
+      optional: true,
+      autoform: {
+        options: [
+          { label: 'ISO 15007 Standard', value: 'iso15007' },
+          { label: 'Custom', value: 'custom' },
+        ],
+        defaultValue: 'iso15007',
+      },
+    },
     minGlanceDuration: {
       type: Number,
       label: 'Minimum Glance Duration (ms)',
-      defaultValue: 10000,
+      optional: true,
+      defaultValue: 120,
     },
     maxGlanceGapDuration: {
       type: Number,
       label: 'Maximum Glance Gap Duration (ms)',
-      defaultValue: 5000,
+      optional: true,
+      defaultValue: 120,
     },
     ignoreOutsideImage: {
       type: Boolean,

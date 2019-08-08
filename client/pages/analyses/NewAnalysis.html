@@ -10,8 +10,19 @@
         class="insert-analysis-form"}}
       {{> afQuickField name="name"}}
       {{> afQuickField name="desc"}}
-      {{> afQuickField name="minGlanceDuration"}}
-      {{> afQuickField name="maxGlanceGapDuration"}}
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          {{> afQuickField name="type" class="typeSelector"}}
+        </div>
+        {{#if showDurationFields}}
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            {{> afQuickField name="minGlanceDuration"}}
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            {{> afQuickField name="maxGlanceGapDuration"}}
+          </div>
+        {{/if}}
+      </div>
       <!-- {{> afQuickField name="ignoreAoiNoName"}} -->
       {{> afQuickField name="ignoreOutsideImage"}}
       {{> afQuickField name="studyId"}}

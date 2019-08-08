@@ -1,17 +1,17 @@
 import Jobs from '../../../collections/Jobs/Jobs';
 import Analyses from '../../../collections/Analyses/Analyses';
 
-export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
+export default queueAnalysesMakeGlanceJobs = Jobs.processJobs(
   'analyses.makeGlanceJobs',
   { concurrency: 1 },
   (job, callback) => {
+    console.log('worker: analyses.makeGlanceJobs()');
+
     const analysis = Analyses.findOne({ _id: job.data.analysisId });
 
     if (!analysis) {
       console.log(
-        `Analysis not found. analysisId: ${
-          job.data.analysisId
-        } Remove all jobs for this analysis.`,
+        `Analysis not found. analysisId: ${job.data.analysisId} Remove all jobs for this analysis.`,
       );
 
       Jobs.remove({ 'data.analysisId': job.data.analysisId });
@@ -30,8 +30,24 @@ export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
         );
 
         try {
-          Meteor.call('analyses.removeGlances', { analysisId: analysis._id });
-          Meteor.call('analyses.removeJobs', { analysisId: analysis._id });
+          Meteor.call(
+            'analyses.removeGlances',
+            { analysisId: analysis._id },
+            (err) => {
+              if (err) {
+                console.log(err);
+              }
+            },
+          );
+          Meteor.call(
+            'analyses.removeJobs',
+            { analysisId: analysis._id },
+            (err) => {
+              if (err) {
+                console.log(err);
+              }
+            },
+          );
         } catch (err) {
           // console.log(err);
         }
@@ -47,33 +63,35 @@ export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
             return;
           }
 
-          analysis.stimulusIds.forEach((stimulusId) => {
-            const stimulus = Stimuli.findOne({ _id: stimulusId });
-            if (!stimulus) {
-              console.log(`no stimulus found: ${stimulusId}`);
-              Analyses.update(
-                { _id: analysis._id },
-                { $pull: { stimulusIds: stimulusId } },
-              );
-              return;
-            }
+          const stimulusId = null;
 
-            // console.log('make job for analysis._id: ' + analysis._id + ', participantId: ' + participantId + ', stimulusId: ' + stimulusId);
-            const job = new Job(Jobs, 'analyses.makeGlances', {
+          if (analysis.type !== null && analysis.type === 'iso15007') {
+            makeJob({
               analysisId: analysis._id,
+              analysisType: analysis.type,
               participantId,
               stimulusId,
             });
+          } else {
+            analysis.stimulusIds.forEach((stimulusId) => {
+              const stimulus = Stimuli.findOne({ _id: stimulusId });
+              if (!stimulus) {
+                console.log(`no stimulus found: ${stimulusId}`);
+                Analyses.update(
+                  { _id: analysis._id },
+                  { $pull: { stimulusIds: stimulusId } },
+                );
+                return;
+              }
 
-            job
-              .priority('normal')
-              .retry({
-                retries: Jobs.forever,
-                wait: 1000,
-                backoff: 'constant', // wait constant amount of time between each retry
-              })
-              .save();
-          });
+              makeJob({
+                analysisId: analysis._id,
+                analysisType: analysis.type,
+                participantId,
+                stimulusId,
+              });
+            });
+          }
         });
 
         job.done();
@@ -102,9 +120,7 @@ export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
         }).count();
 
         console.log(
-          `makeGlanceJobs job completed, (${completedJobsJobCount} of ${totalJobsJobCount}), made ${jobCount} glanceJobs (${totalJobCount}  total) for studyId: ${
-            analysis.studyId
-          }`,
+          `makeGlanceJobs job completed, (${completedJobsJobCount} of ${totalJobsJobCount}), made ${jobCount} glanceJobs (${totalJobCount}  total) for studyId: ${analysis.studyId}`,
         );
       } catch (err) {
         console.log(err);
@@ -115,4 +131,20 @@ export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
 
     callback();
   },
-));
+);
+
+function makeJob(args) {
+  console.log(
+    `make job for analysis._id: ${args.analysisId}, analysisType: ${args.analysisType}, participantId: ${args.participantId}, stimulusId: ${args.stimulusId}`,
+  );
+  const job = new Job(Jobs, 'analyses.makeGlances', args);
+
+  job
+    .priority('normal')
+    .retry({
+      retries: Jobs.forever,
+      wait: 1000,
+      backoff: 'constant', // wait constant amount of time between each retry
+    })
+    .save();
+}

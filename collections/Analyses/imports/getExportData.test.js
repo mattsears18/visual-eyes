@@ -1,7 +1,6 @@
 import '../../factories.test';
 import { expect } from 'chai';
 import { Factory } from 'meteor/dburles:factory';
-// import Analyses from '../Analyses';
 
 describe('Analyses.getExportData()', () => {
   it('has no participants', () => {
@@ -87,14 +86,14 @@ describe('Analyses.getExportData()', () => {
 
   it('groups by participant', () => {
     const glance1 = Factory.create('glanceWithGazepoints', { number: 1 });
-    const glance2 = Factory.create('glanceWithGazepoints', {
+    Factory.create('glanceWithGazepoints', {
       studyId: glance1.studyId,
       analysisId: glance1.analysisId,
       participantId: glance1.participantId,
       stimulusId: glance1.stimulusId,
       number: 2,
     });
-    const glance3 = Factory.create('glanceWithGazepoints', {
+    Factory.create('glanceWithGazepoints', {
       studyId: glance1.studyId,
       analysisId: glance1.analysisId,
       participantId: glance1.participantId,

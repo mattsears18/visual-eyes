@@ -3,6 +3,7 @@ import reprocessDatafiles from './imports/reprocessDatafiles';
 import getExportData from './imports/getExportData';
 import saveCSV from './imports/saveCSV';
 import makeDefaultAnalysesThatDontExist from './imports/makeDefaultAnalysesThatDontExist';
+import removeIncompleteAnalyses from './imports/removeIncompleteAnalyses';
 import Variables from '../Variables/Variables';
 import Participants from '../Participants/Participants';
 
@@ -12,6 +13,7 @@ Studies.helpers({
   getExportData,
   saveCSV,
   makeDefaultAnalysesThatDontExist,
+  removeIncompleteAnalyses,
 
   hasPermission(action) {
     check(action, String);

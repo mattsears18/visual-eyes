@@ -1,6 +1,17 @@
+Template.NewAnalysis.onCreated(function() {
+  this.showDurationFields = ReactiveVar(false);
+});
+
 Template.NewAnalysis.events({
   'click .fa-close'() {
     Session.set('newAnalysis', false);
+  },
+  'change .typeSelector'(event, templateInstance) {
+    if (event.target.value === 'custom') {
+      templateInstance.showDurationFields.set(true);
+    } else {
+      templateInstance.showDurationFields.set(false);
+    }
   },
 });
 
@@ -35,10 +46,7 @@ Template.NewAnalysis.helpers({
   },
   stimulusOptions() {
     studyId = FlowRouter.getParam('studyId');
-    stimuli = Stimuli.find(
-      { studyId },
-      { $sort: { name: 1 } },
-    ).fetch();
+    stimuli = Stimuli.find({ studyId }, { $sort: { name: 1 } }).fetch();
     return stimuli.map(function(stimulus) {
       return { label: stimulus.name, value: stimulus._id };
     });
@@ -49,4 +57,5 @@ Template.NewAnalysis.helpers({
     ids = stimuli.map(stimulus => stimulus._id);
     return ids.join(',');
   },
+  showDurationFields: () => Template.instance().showDurationFields.get(),
 });

@@ -1,4 +1,10 @@
 export default function makeGlances({ participantId, stimulusId }) {
+  const analysisType = this.type !== null && this.type === 'iso15007' ? 'iso15007' : 'custom';
+
+  console.log(analysisType);
+  console.log(participantId);
+  console.log(stimulusId);
+
   if (!participantId) {
     throw new Error('noParticipantId');
   }
@@ -7,89 +13,93 @@ export default function makeGlances({ participantId, stimulusId }) {
     throw new Error('noParticipantFound');
   }
 
-  if (!stimulusId) {
-    throw new Error('noStimulusId');
-  }
-  const stimulus = Stimuli.findOne({ _id: stimulusId });
-  if (!stimulus) {
-    throw new Error('noStimulusFound');
+  if (analysisType === 'custom') {
+    if (!stimulusId) {
+      throw new Error('noStimulusId');
+    }
+    const stimulus = Stimuli.findOne({ _id: stimulusId });
+    if (!stimulus) {
+      throw new Error('noStimulusFound');
+    }
   }
 
   const search = { participantId, stimulusId };
 
-  if (this.ignoreOutsideImage) {
-    if (stimulus.width) {
-      search.x = { $gte: 0, $lte: stimulus.width };
-    } else {
-      search.x = { $gte: 0 };
-    }
+  console.log(`search: ${search}`);
 
-    if (stimulus.height) {
-      search.y = { $gte: 0, $lte: stimulus.height };
-    } else {
-      search.y = { $gte: 0 };
-    }
-  }
+  // if (this.ignoreOutsideImage) {
+  //   if (stimulus.width) {
+  //     search.x = { $gte: 0, $lte: stimulus.width };
+  //   } else {
+  //     search.x = { $gte: 0 };
+  //   }
 
-  // console.log('participant: ' + participant.name + ' stimulus: ' + stimulus.name);
+  //   if (stimulus.height) {
+  //     search.y = { $gte: 0, $lte: stimulus.height };
+  //   } else {
+  //     search.y = { $gte: 0 };
+  //   }
+  // }
 
-  const allGazepoints = Gazepoints.find(search, { sort: { timestamp: 1 } });
-  const allGazepointsArr = allGazepoints.fetch();
-  const glanceIds = [];
+  // // console.log('participant: ' + participant.name + ' stimulus: ' + stimulus.name);
 
-  // console.log(`gazepoint count: ${gazepointsArr.length}`);
+  // const allGazepoints = Gazepoints.find(search, { sort: { timestamp: 1 } });
+  // const allGazepointsArr = allGazepoints.fetch();
+  // const glanceIds = [];
 
-  if (allGazepointsArr.length) {
-    const fileFormatGroups = _.groupBy(allGazepointsArr, 'fileFormat');
+  // // console.log(`gazepoint count: ${gazepointsArr.length}`);
 
-    Object.keys(fileFormatGroups).forEach((fileFormat) => {
-      const gazepointsArr = fileFormatGroups[fileFormat];
+  // if (allGazepointsArr.length) {
+  //   const fileFormatGroups = _.groupBy(allGazepointsArr, 'fileFormat');
 
-      let startIndex = 0;
-      let number = 1;
+  //   Object.keys(fileFormatGroups).forEach((fileFormat) => {
+  //     const gazepointsArr = fileFormatGroups[fileFormat];
 
-      do {
-        let endIndex;
-        try {
-          endIndex = this.getGlanceEndIndex({
-            gazepoints: gazepointsArr,
-            startIndex,
-          });
-          // console.log('start: ' + startIndex + ' end: ' + endIndex);
-        } catch (err) {
-          // console.log('start: ' + startIndex + ' end: ' + endIndex);
-          if (err.error === 'minGlanceDurationNotMet') {
-            // console.log(err.details);
-            startIndex = err.details.nextIndex;
-          } else {
-            console.log(err);
-          }
-        }
+  //     let startIndex = 0;
+  //     let number = 1;
 
-        if (!endIndex) {
-          continue;
-        }
+  //     do {
+  //       let endIndex;
+  //       try {
+  //         endIndex = this.getGlanceEndIndex({
+  //           gazepoints: gazepointsArr,
+  //           startIndex,
+  //         });
+  //         // console.log('start: ' + startIndex + ' end: ' + endIndex);
+  //       } catch (err) {
+  //         // console.log('start: ' + startIndex + ' end: ' + endIndex);
+  //         if (err.error === 'minGlanceDurationNotMet') {
+  //           // console.log(err.details);
+  //           startIndex = err.details.nextIndex;
+  //         } else {
+  //           console.log(err);
+  //         }
+  //       }
 
-        try {
-          // console.log('make the glance!');
-          const glanceId = this.makeGlanceFromGazepoints({
-            gazepoints: gazepointsArr,
-            startIndex,
-            endIndex,
-            number: number++,
-            participantId,
-            stimulusId,
-            fileFormat,
-          });
-          glanceIds.push(glanceId);
-        } catch (err) {
-          console.log(err);
-        }
+  //       if (!endIndex) {
+  //         continue;
+  //       }
 
-        startIndex = endIndex + 1;
-      } while (startIndex < gazepointsArr.length - 1);
-    });
-  }
+  //       try {
+  //         // console.log('make the glance!');
+  //         const glanceId = this.makeGlanceFromGazepoints({
+  //           gazepoints: gazepointsArr,
+  //           startIndex,
+  //           endIndex,
+  //           number: number++,
+  //           participantId,
+  //           stimulusId,
+  //           fileFormat,
+  //         });
+  //         glanceIds.push(glanceId);
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
 
-  return glanceIds;
+  //       startIndex = endIndex + 1;
+  //     } while (startIndex < gazepointsArr.length - 1);
+  //   });
+  // }
+
+  // return glanceIds;
 }

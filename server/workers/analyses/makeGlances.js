@@ -1,15 +1,13 @@
 import Jobs from '../../../collections/Jobs/Jobs';
 
-export default (queueAnalysesMakeGlances = Jobs.processJobs(
+export default queueAnalysesMakeGlances = Jobs.processJobs(
   'analyses.makeGlances',
   { concurrency: 1 },
   (job, callback) => {
     const analysis = Analyses.findOne({ _id: job.data.analysisId });
     if (!analysis) {
       console.log(
-        `Analysis not found. analysisId: ${
-          job.data.analysisId
-        } Remove all jobs for this analysis.`,
+        `Analysis not found. analysisId: ${job.data.analysisId} Remove all jobs for this analysis.`,
       );
 
       Jobs.remove({ 'data.analysisId': job.data.analysisId });
@@ -49,4 +47,4 @@ export default (queueAnalysesMakeGlances = Jobs.processJobs(
 
     callback();
   },
-));
+);

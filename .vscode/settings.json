@@ -8,5 +8,14 @@
     "html.format.wrapLineLength": 100,
     "editor.wordWrapColumn": 100,
     "editor.wordWrap": "wordWrapColumn",
-    "search.usePCRE2": true
+    "search.usePCRE2": true,
+    "cSpell.ignoreWords": [
+        "analyses",
+        "datafiles",
+        "default",
+        "dont",
+        "exist",
+        "make",
+        "that"
+    ]
 }

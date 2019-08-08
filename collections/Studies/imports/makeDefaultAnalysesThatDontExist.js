@@ -1,4 +1,7 @@
-export default function makeDefaultAnalyses() {
+export default function makeDefaultAnalysesThatDontExist() {
+  if (Meteor.isServer) {
+    console.log('study.makeDefaultAnalysesThatDontExist');
+  }
   const minGlanceDurations = [
     60,
     80,

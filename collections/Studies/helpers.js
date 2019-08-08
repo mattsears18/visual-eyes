@@ -2,7 +2,7 @@ import reprocessAnalyses from './imports/reprocessAnalyses';
 import reprocessDatafiles from './imports/reprocessDatafiles';
 import getExportData from './imports/getExportData';
 import saveCSV from './imports/saveCSV';
-import makeDefaultAnalyses from './imports/makeDefaultAnalyses';
+import makeDefaultAnalysesThatDontExist from './imports/makeDefaultAnalysesThatDontExist';
 import Variables from '../Variables/Variables';
 import Participants from '../Participants/Participants';
 
@@ -11,7 +11,7 @@ Studies.helpers({
   reprocessDatafiles,
   getExportData,
   saveCSV,
-  makeDefaultAnalyses,
+  makeDefaultAnalysesThatDontExist,
 
   hasPermission(action) {
     check(action, String);

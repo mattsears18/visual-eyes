@@ -32,7 +32,8 @@ Template.AnalysesList.events({
     }
   },
   'click .make-default-analyses'(e, template) {
-    study.makeDefaultAnalyses();
+    const study = Studies.findOne();
+    Meteor.call('studies.makeDefaultAnalyses', { studyId: study._id });
   },
 });
 

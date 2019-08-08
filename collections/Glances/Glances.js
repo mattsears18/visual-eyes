@@ -117,4 +117,44 @@ Glances.attachSchema(Schemas.Glance);
 require('./helpers');
 require('./hooks');
 
+Glances.rawCollection().createIndex(
+  { studyId: 1, participantId: 1, stimulusId: 1 },
+  (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log(`Glances indexed: ${result}`);
+  },
+);
+
+Glances.rawCollection().createIndex(
+  { analysisId: 1, participantId: 1, stimulusId: 1 },
+  (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log(`Glances indexed: ${result}`);
+  },
+);
+
+Glances.rawCollection().createIndex(
+  { participantId: 1, stimulusId: 1, number: 1 },
+  (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log(`Glances indexed: ${result}`);
+  },
+);
+
+Glances.rawCollection().createIndex(
+  { analysisId: 1, aoiId: 1 },
+  (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log(`Glances indexed: ${result}`);
+  },
+);
+
 export default Glances;

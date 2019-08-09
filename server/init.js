@@ -1,5 +1,6 @@
 import jst from 'jStat'; // can't write import jStat from 'jStat' as it would override the jStat variable on the client and set it to undefined
 import Jobs from '../collections/Jobs/Jobs';
+import dbCleanup from './dbCleanup';
 
 const os = require('os');
 
@@ -15,6 +16,8 @@ Meteor.startup(() => {
     job = Jobs.getJob(jobDoc._id);
     job.fail('server restarted');
   });
+
+  dbCleanup();
 });
 
 if (Meteor.isServer) {

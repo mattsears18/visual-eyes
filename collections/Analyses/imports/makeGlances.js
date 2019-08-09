@@ -49,8 +49,8 @@ export default function makeGlances({ participantId, stimulusId }) {
     fields: {
       _id: 1,
       fileFormat: 1,
+      stimulusId: 1,
       timestamp: 1,
-      aoiId: 1,
       x: 1,
       y: 1,
       fixationIndex: 1,

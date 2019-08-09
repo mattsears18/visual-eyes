@@ -1,3 +1,7 @@
+import Participants from '../../Participants/Participants';
+import Stimuli from '../../Stimuli/Stimuli';
+import Glances from '../../Glances/Glances';
+
 export default function makeGlanceFromGazepoints({
   participantId,
   stimulusId,
@@ -19,12 +23,15 @@ export default function makeGlanceFromGazepoints({
     throw new Error('noParticipantFound');
   }
 
-  if (!stimulusId) {
-    throw new Error('noStimulusId');
-  }
-  const stimulus = Stimuli.findOne({ _id: stimulusId });
-  if (!stimulus) {
-    throw new Error('noStimulusFound');
+  let stimulus;
+  if (this.type === 'custom') {
+    if (!stimulusId) {
+      throw new Error('noStimulusId');
+    }
+    stimulus = Stimuli.findOne({ _id: stimulusId });
+    if (!stimulus) {
+      throw new Error('noStimulusFound');
+    }
   }
 
   if (!gazepoints.length) {
@@ -33,14 +40,14 @@ export default function makeGlanceFromGazepoints({
   if (!gazepoints[startIndex]) {
     throw new Error('startIndexOutOfBounds');
   }
-  if (!endIndex) {
-    endIndex = gazepoints.length - 1;
-  }
-  if (!gazepoints[endIndex]) {
+
+  const _endIndex = endIndex || gazepoints.length - 1;
+
+  if (!gazepoints[_endIndex]) {
     throw new Error('endIndexOutOfBounds');
   }
 
-  const pointsFull = gazepoints.slice(startIndex, endIndex + 1);
+  const pointsFull = gazepoints.slice(startIndex, _endIndex + 1);
   const points = pointsFull.map(point => ({
     timestamp: point.timestamp,
     x: point.x,
@@ -49,7 +56,7 @@ export default function makeGlanceFromGazepoints({
   }));
 
   let duration = 0;
-  duration = gazepoints[endIndex].timestamp - gazepoints[startIndex].timestamp;
+  duration = gazepoints[_endIndex].timestamp - gazepoints[startIndex].timestamp;
   const fixationCount = this.getGlanceFixationCount(points);
 
   let gazepointFrequency = 0;
@@ -75,7 +82,7 @@ export default function makeGlanceFromGazepoints({
     aoiIds: this.getGlanceAoiIds(pointsFull),
     number,
     startTime: gazepoints[startIndex].timestamp,
-    endTime: gazepoints[endIndex].timestamp,
+    endTime: gazepoints[_endIndex].timestamp,
     duration,
     gazepoints: points,
     gazepointCount: points.length,

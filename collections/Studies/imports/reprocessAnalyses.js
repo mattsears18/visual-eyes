@@ -1,4 +1,5 @@
 import Jobs from '../../Jobs/Jobs';
+import Analyses from '../../Analyses/Analyses';
 
 export default function reprocessAnalyses() {
   if (Meteor.isServer) {
@@ -11,6 +12,17 @@ export default function reprocessAnalyses() {
     });
 
     analyses.forEach(function(analysis, ai) {
+      Analyses.update(
+        { _id: analysis._id },
+        {
+          $unset: {
+            status: 1,
+            glanceCount: 1,
+            glanceDurationMean: 1,
+            glanceDurationMedian: 1,
+          },
+        },
+      );
       Meteor.call('analyses.makeGlanceJobsJob', {
         analysisId: analysis._id,
       });

@@ -1,22 +1,25 @@
 import Jobs from '../../../collections/Jobs/Jobs';
 import Analyses from '../../../collections/Analyses/Analyses';
+import Participants from '../../../collections/Participants/Participants';
 
 export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
   'analyses.makeGlanceJobs',
   { concurrency: 1 },
-  (job, callback) => {
+  (analysisGlanceJob, callback) => {
     console.log('worker: analyses.makeGlanceJobs()');
 
-    const analysis = Analyses.findOne({ _id: job.data.analysisId });
+    const analysis = Analyses.findOne({
+      _id: analysisGlanceJob.data.analysisId,
+    });
 
     if (!analysis) {
       console.log(
         `Analysis not found. analysisId: ${
-          job.data.analysisId
+          analysisGlanceJob.data.analysisId
         } Remove all jobs for this analysis.`,
       );
 
-      Jobs.remove({ 'data.analysisId': job.data.analysisId });
+      Jobs.remove({ 'data.analysisId': analysisGlanceJob.data.analysisId });
     } else {
       try {
         Analyses.update(
@@ -51,7 +54,7 @@ export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
             },
           );
         } catch (err) {
-          // console.log(err);
+          console.log(err);
         }
 
         if (analysis.type === null) {
@@ -70,36 +73,28 @@ export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
             return;
           }
 
-          const stimulusId = null;
+          console.log(
+            `make job for analysis._id: ${
+              analysis._id
+            }, participantId: ${participantId}`,
+          );
 
-          if (analysis.type === 'iso15007') {
-            makeJob({
-              analysisId: analysis._id,
-              participantId,
-              stimulusId,
-            });
-          } else {
-            analysis.stimulusIds.forEach((stimulusId) => {
-              const stimulus = Stimuli.findOne({ _id: stimulusId });
-              if (!stimulus) {
-                console.log(`no stimulus found: ${stimulusId}`);
-                Analyses.update(
-                  { _id: analysis._id },
-                  { $pull: { stimulusIds: stimulusId } },
-                );
-                return;
-              }
+          const participantGlanceJob = new Job(Jobs, 'analyses.makeGlances', {
+            analysisId: analysis._id,
+            participantId,
+          });
 
-              makeJob({
-                analysisId: analysis._id,
-                participantId,
-                stimulusId,
-              });
-            });
-          }
+          participantGlanceJob
+            .priority('normal')
+            .retry({
+              retries: Jobs.forever,
+              wait: 1000,
+              backoff: 'constant', // wait constant amount of time between each retry
+            })
+            .save();
         });
 
-        job.done();
+        analysisGlanceJob.done();
 
         const jobCount = Jobs.find({
           type: 'analyses.makeGlances',
@@ -131,29 +126,11 @@ export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
         );
       } catch (err) {
         console.log(err);
-        job.cancel();
-        job.remove();
+        analysisGlanceJob.cancel();
+        analysisGlanceJob.remove();
       }
     }
 
     callback();
   },
 ));
-
-function makeJob(args) {
-  console.log(
-    `make job for analysis._id: ${args.analysisId}, participantId: ${
-      args.participantId
-    }, stimulusId: ${args.stimulusId}`,
-  );
-  const job = new Job(Jobs, 'analyses.makeGlances', args);
-
-  job
-    .priority('normal')
-    .retry({
-      retries: Jobs.forever,
-      wait: 1000,
-      backoff: 'constant', // wait constant amount of time between each retry
-    })
-    .save();
-}

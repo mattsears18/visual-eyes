@@ -22,5 +22,9 @@
     // "Variables": true,
     // "Glances": true,
     // "Schemas": true
+  },
+  "rules": {
+    "no-underscore-dangle": 0,
+    "no-use-before-define": "off"
   }
 }

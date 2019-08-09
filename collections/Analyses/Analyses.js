@@ -35,7 +35,6 @@ Schemas.Analysis = new SimpleSchema(
     type: {
       type: String,
       label: 'Type of Analysis',
-      optional: true,
       autoform: {
         options: [
           { label: 'ISO 15007 Standard', value: 'iso15007' },

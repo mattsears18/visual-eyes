@@ -1,22 +1,52 @@
 import Jobs from '../../../collections/Jobs/Jobs';
+import Gazepoints from '../../../collections/Gazepoints/Gazepoints';
+import Analyses from '../../../collections/Analyses/Analyses';
 
-export default queueAnalysesMakeGlances = Jobs.processJobs(
+const gazepointCache = {};
+
+const queueAnalysesMakeGlances = Jobs.processJobs(
   'analyses.makeGlances',
   { concurrency: 1 },
   (job, callback) => {
     const analysis = Analyses.findOne({ _id: job.data.analysisId });
+
     if (!analysis) {
       console.log(
-        `Analysis not found. analysisId: ${job.data.analysisId} Remove all jobs for this analysis.`,
+        `Analysis not found. analysisId: ${
+          job.data.analysisId
+        } Remove all jobs for this analysis.`,
       );
 
       Jobs.remove({ 'data.analysisId': job.data.analysisId });
     } else {
       try {
+        console.log(job.data.participantId);
+        if (!(job.data.participantId in gazepointCache)) {
+          console.log('participant gazepoints not cached. get em');
+
+          gazepointCache[job.data.participantId] = Gazepoints.find(
+            { participantId: job.data.participantId },
+            {
+              fields: {
+                _id: 1,
+                fileFormat: 1,
+                stimulusId: 1,
+                timestamp: 1,
+                x: 1,
+                y: 1,
+                fixationIndex: 1,
+                category: 1,
+              },
+              sort: { timestamp: 1 },
+            },
+          ).fetch();
+        }
+
         const glanceIds = analysis.makeGlances({
           participantId: job.data.participantId,
-          stimulusId: job.data.stimulusId,
+          points: gazepointCache[job.data.participantId],
         });
+
         job.done();
         analysis.updateStatus();
       } catch (err) {
@@ -48,3 +78,5 @@ export default queueAnalysesMakeGlances = Jobs.processJobs(
     callback();
   },
 );
+
+export default queueAnalysesMakeGlances;

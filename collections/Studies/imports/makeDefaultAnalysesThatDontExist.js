@@ -62,6 +62,7 @@ export default function makeDefaultAnalysesThatDontExist() {
           name: 'Analysis',
           minGlanceDuration,
           maxGlanceGapDuration,
+          type: 'custom',
           ignoreOutsideImage: true,
           participantIds: this.participants().map(
             participant => participant._id,

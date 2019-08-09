@@ -2,7 +2,7 @@ import Participants from '../../Participants/Participants';
 import Stimuli from '../../Stimuli/Stimuli';
 import Gazepoints from '../../Gazepoints/Gazepoints';
 
-export default function makeGlances({ participantId, stimulusId }) {
+export default function makeGlances({ participantId, points }) {
   if (!participantId) {
     throw new Error('noParticipantId');
   }
@@ -12,103 +12,87 @@ export default function makeGlances({ participantId, stimulusId }) {
     throw new Error('noParticipantFound');
   }
 
-  let stimulus;
-  if (this.type === 'custom') {
-    if (!stimulusId) {
-      throw new Error('noStimulusId');
-    }
-    stimulus = Stimuli.findOne({ _id: stimulusId });
-    if (!stimulus) {
-      throw new Error('noStimulusFound');
-    }
+  if (!points || !points.length) {
+    throw new Error('noPoints!');
   }
 
-  const search = { participantId };
-  if (stimulus) {
-    search.stimulusId = stimulusId;
-  }
+  const allGazepoints = points
+    || Gazepoints.find(
+      { participantId },
+      {
+        fields: {
+          _id: 1,
+          fileFormat: 1,
+          stimulusId: 1,
+          timestamp: 1,
+          x: 1,
+          y: 1,
+          fixationIndex: 1,
+          category: 1,
+        },
+        sort: { timestamp: 1 },
+      },
+    ).fetch();
 
-  if (stimulus) {
-    if (this.ignoreOutsideImage) {
-      if (stimulus.width) {
-        search.x = { $gte: 0, $lte: stimulus.width };
-      } else {
-        search.x = { $gte: 0 };
-      }
-      if (stimulus.height) {
-        search.y = { $gte: 0, $lte: stimulus.height };
-      } else {
-        search.y = { $gte: 0 };
-      }
-    }
-  }
-
-  // console.log('participant: ' + participant.name + ' stimulus: ' + stimulus.name);
-
-  const allGazepoints = Gazepoints.find(search, {
-    fields: {
-      _id: 1,
-      fileFormat: 1,
-      stimulusId: 1,
-      timestamp: 1,
-      x: 1,
-      y: 1,
-      fixationIndex: 1,
-      category: 1,
-    },
-    sort: { timestamp: 1 },
-  });
-  const allGazepointsArr = allGazepoints.fetch();
   const glanceIds = [];
 
-  console.log(`gazepoint count: ${allGazepointsArr.length}`);
-  console.log('pick back up here!');
-  // TODO pick back up here
+  console.log(`gazepoint count: ${allGazepoints.length}`);
 
-  if (allGazepointsArr.length) {
-    const fileFormatGroups = _.groupBy(allGazepointsArr, 'fileFormat');
+  if (allGazepoints.length) {
+    const fileFormatGroups = _.groupBy(allGazepoints, 'fileFormat');
     Object.keys(fileFormatGroups).forEach((fileFormat) => {
-      const gazepointsArr = fileFormatGroups[fileFormat];
-      let startIndex = 0;
-      let number = 1;
-      do {
-        let endIndex;
-        try {
-          endIndex = this.getGlanceEndIndex({
-            gazepoints: gazepointsArr,
-            startIndex,
-          });
-        } catch (err) {
-          if (err.error === 'minGlanceDurationNotMet') {
-            console.log(err.details);
-            startIndex = err.details.nextIndex;
-          } else {
-            console.log(err);
-          }
-        } finally {
-          console.log(`start: ${startIndex} end: ${endIndex}`);
-        }
+      const gazepoints = fileFormatGroups[fileFormat];
+      const startIndex = 0;
+      const number = 1;
 
-        if (endIndex) {
-          try {
-            console.log('make the glance!');
-            const glanceId = this.makeGlanceFromGazepoints({
-              gazepoints: gazepointsArr,
-              startIndex,
-              endIndex,
-              number: (number += 1),
-              participantId,
-              stimulusId,
-              fileFormat,
-            });
-            glanceIds.push(glanceId);
-          } catch (err) {
-            console.log(err);
-          }
-        }
+      console.log(this.type);
 
-        startIndex = endIndex + 1;
-      } while (startIndex < gazepointsArr.length - 1);
+      // do {
+      //   let endIndex;
+      //   try {
+      //     endIndex = this.getGlanceEndIndex({
+      //       gazepoints: gazepointsArr,
+      //       startIndex,
+      //     });
+
+      //     console.log(`startIndex: ${startIndex} endIndex: ${endIndex}`);
+
+      //     if (endIndex) {
+      //       try {
+      //         console.log('make the glance!');
+      //         const glanceId = '555';
+      //         // const glanceId = this.makeGlanceFromGazepoints({
+      //         //   gazepoints: gazepointsArr,
+      //         //   startIndex,
+      //         //   endIndex,
+      //         //   number: (number += 1),
+      //         //   participantId,
+      //         //   stimulusId,
+      //         //   fileFormat,
+      //         // });
+      //         glanceIds.push(glanceId);
+      //         console.log(`glance number: ${number} created!`);
+
+      //         startIndex = endIndex + 1;
+
+      //         console.log(
+      //           `endIndex: ${endIndex} nextStartIndex: ${startIndex}`,
+      //         );
+      //       } catch (err) {
+      //         console.log(err);
+      //       }
+      //     }
+      //   } catch (err) {
+      //     console.log('no glance generated');
+      //     if (err.error === 'minGlanceDurationNotMet') {
+      //       // console.log(err.details);
+      //       startIndex = err.details.nextIndex;
+      //       console.log(`endIndex: ${endIndex} nextStartIndex: ${startIndex}`);
+      //     } else {
+      //       console.log(err);
+      //     }
+      //   }
+      // } while (startIndex < gazepointsArr.length - 1);
     });
   }
 

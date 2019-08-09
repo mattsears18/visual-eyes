@@ -1,4 +1,8 @@
 Template.UpdateAnalysis.onCreated(function() {
+  this.showMGGDField = ReactiveVar(false);
+});
+
+Template.UpdateAnalysis.onCreated(function() {
   const self = this;
   self.autorun(function() {
     const studyId = FlowRouter.getParam('studyId');
@@ -15,6 +19,13 @@ Template.UpdateAnalysis.events({
   'click .fa-close'() {
     Session.set('updateAnalysis', false);
   },
+  'change .typeSelector'(event, templateInstance) {
+    if (event.target.value === 'custom') {
+      templateInstance.showMGGDField.set(true);
+    } else {
+      templateInstance.showMGGDField.set(false);
+    }
+  },
 });
 
 AutoForm.hooks({
@@ -27,7 +38,7 @@ AutoForm.hooks({
 
 Template.UpdateAnalysis.helpers({
   deleteBeforeRemove() {
-    return function (collection, id) {
+    return function(collection, id) {
       const doc = collection.findOne(id);
       if (confirm(`Really delete "${doc.name}"?`)) {
         const studyId = FlowRouter.getParam('studyId');
@@ -36,18 +47,22 @@ Template.UpdateAnalysis.helpers({
       }
     };
   },
-  participantOptions () {
+  participantOptions() {
     studyId = FlowRouter.getParam('studyId');
-    participants = Participants.find({ studyId }, { $sort: { name: 1 } }).fetch();
+    participants = Participants.find(
+      { studyId },
+      { $sort: { name: 1 } },
+    ).fetch();
     return participants.map(function(participant) {
       return { label: participant.name, value: participant._id };
     });
   },
-  stimulusOptions () {
+  stimulusOptions() {
     studyId = FlowRouter.getParam('studyId');
     stimuli = Stimuli.find({ studyId }, { $sort: { name: 1 } }).fetch();
     return stimuli.map(function(stimulus) {
       return { label: stimulus.name, value: stimulus._id };
     });
   },
+  showMGGDField: () => Template.instance().showMGGDField.get(),
 });

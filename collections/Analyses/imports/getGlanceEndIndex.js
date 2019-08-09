@@ -1,5 +1,7 @@
+import { start } from 'repl';
+
 export default function getGlanceEndIndex({ gazepoints, startIndex = 0 }) {
-  return gazepoints.length;
+  return Math.min(gazepoints.length, startIndex + 100);
 
   // if (startIndex > gazepoints.length - 2) {
   //   throw new Error('startIndexTooHigh');

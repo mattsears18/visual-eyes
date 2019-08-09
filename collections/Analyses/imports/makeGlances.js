@@ -1,5 +1,4 @@
 import Participants from '../../Participants/Participants';
-import Stimuli from '../../Stimuli/Stimuli';
 import Gazepoints from '../../Gazepoints/Gazepoints';
 
 export default function makeGlances({ participantId, points }) {
@@ -36,63 +35,67 @@ export default function makeGlances({ participantId, points }) {
 
   const glanceIds = [];
 
-  console.log(`gazepoint count: ${allGazepoints.length}`);
+  console.log(
+    `participantId: ${participantId}, total gazepoint count: ${
+      allGazepoints.length
+    }`,
+  );
 
   if (allGazepoints.length) {
     const fileFormatGroups = _.groupBy(allGazepoints, 'fileFormat');
     Object.keys(fileFormatGroups).forEach((fileFormat) => {
       const gazepoints = fileFormatGroups[fileFormat];
-      const startIndex = 0;
-      const number = 1;
+      let startIndex = 0;
+      let number = 1;
 
       console.log(this.type);
 
-      // do {
-      //   let endIndex;
-      //   try {
-      //     endIndex = this.getGlanceEndIndex({
-      //       gazepoints: gazepointsArr,
-      //       startIndex,
-      //     });
+      do {
+        let endIndex = null;
+        try {
+          endIndex = this.getGlanceEndIndex({
+            gazepoints,
+            startIndex,
+          });
+          console.log(`startIndex: ${startIndex} endIndex: ${endIndex}`);
 
-      //     console.log(`startIndex: ${startIndex} endIndex: ${endIndex}`);
+          if (endIndex) {
+            try {
+              console.log('make the glance!');
+              number += 1;
+              const glanceId = '555';
 
-      //     if (endIndex) {
-      //       try {
-      //         console.log('make the glance!');
-      //         const glanceId = '555';
-      //         // const glanceId = this.makeGlanceFromGazepoints({
-      //         //   gazepoints: gazepointsArr,
-      //         //   startIndex,
-      //         //   endIndex,
-      //         //   number: (number += 1),
-      //         //   participantId,
-      //         //   stimulusId,
-      //         //   fileFormat,
-      //         // });
-      //         glanceIds.push(glanceId);
-      //         console.log(`glance number: ${number} created!`);
+              // const glanceId = this.makeGlanceFromGazepoints({
+              //   gazepoints: gazepointsArr,
+              //   startIndex,
+              //   endIndex,
+              //   number: (number += 1),
+              //   participantId,
+              //   stimulusId,
+              //   fileFormat,
+              // });
 
-      //         startIndex = endIndex + 1;
-
-      //         console.log(
-      //           `endIndex: ${endIndex} nextStartIndex: ${startIndex}`,
-      //         );
-      //       } catch (err) {
-      //         console.log(err);
-      //       }
-      //     }
-      //   } catch (err) {
-      //     console.log('no glance generated');
-      //     if (err.error === 'minGlanceDurationNotMet') {
-      //       // console.log(err.details);
-      //       startIndex = err.details.nextIndex;
-      //       console.log(`endIndex: ${endIndex} nextStartIndex: ${startIndex}`);
-      //     } else {
-      //       console.log(err);
-      //     }
-      //   }
-      // } while (startIndex < gazepointsArr.length - 1);
+              glanceIds.push(glanceId);
+              console.log(`glance number: ${number} created!`);
+              startIndex = endIndex + 1;
+              console.log(
+                `endIndex: ${endIndex} nextStartIndex: ${startIndex}`,
+              );
+            } catch (err) {
+              console.log(err);
+            }
+          }
+        } catch (err) {
+          console.log('no glance generated');
+          if (err.error === 'minGlanceDurationNotMet') {
+            // console.log(err.details);
+            startIndex = err.details.nextIndex;
+            console.log(`endIndex: ${endIndex} nextStartIndex: ${startIndex}`);
+          } else {
+            console.log(err);
+          }
+        }
+      } while (startIndex < allGazepoints.length - 1);
     });
   }
 

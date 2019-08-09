@@ -93,7 +93,10 @@
             >
               <i class="fa fa-area-chart"></i>&nbsp;&nbsp;Analyses
               {{#if analyses.count}}
-                ({{ analyses.count }})
+                ({{ analyses.count }} 
+                  {{#unless study.analysesProcessingComplete}}
+                    - {{formatNumber analysesProcessedPercent}}%
+                  {{/unless}})
               {{/if}}
               {{#if analyses.count}}
                 {{#unless study.analysesProcessingComplete}}

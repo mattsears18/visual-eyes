@@ -25,6 +25,8 @@ Template.StudyLayout.helpers({
   stimulusfiles: () => Stimulusfiles.find(),
   variables: () => Variables.find(),
   analyses: () => Analyses.find(),
+  analysesProcessedPercent: () => (Analyses.find({ status: 'processed' }).count() / Analyses.find().count())
+    * 100,
 });
 
 Template.StudyLayout.events({

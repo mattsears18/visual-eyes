@@ -7,6 +7,8 @@ const os = require('os');
 require('../devSettings');
 
 Meteor.startup(() => {
+  dbCleanup();
+
   Jobs.startJobServer();
   // Start the myJobs queue running
   // force fail any jobs with "running" status
@@ -16,8 +18,6 @@ Meteor.startup(() => {
     job = Jobs.getJob(jobDoc._id);
     job.fail('server restarted');
   });
-
-  dbCleanup();
 });
 
 if (Meteor.isServer) {

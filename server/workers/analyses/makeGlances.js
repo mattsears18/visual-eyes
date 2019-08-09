@@ -20,7 +20,6 @@ const queueAnalysesMakeGlances = Jobs.processJobs(
       Jobs.remove({ 'data.analysisId': job.data.analysisId });
     } else {
       try {
-        console.log(job.data.participantId);
         if (!(job.data.participantId in gazepointCache)) {
           console.log('participant gazepoints not cached. get em');
 

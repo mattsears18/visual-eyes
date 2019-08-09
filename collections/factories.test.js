@@ -114,6 +114,7 @@ Factory.define('analysis', Analyses, {
   studyId: () => Factory.create('study')._id,
   name: () => faker.lorem.words(),
   desc: () => faker.lorem.paragraph(),
+  type: 'custom',
   maxGlanceGapDuration: 5000,
   minGlanceDuration: 10000,
   ignoreOutsideImage: faker.random.boolean,

@@ -15,7 +15,7 @@ export default function makeGlances({ participantId, points }) {
     throw new Error('noPoints!');
   }
 
-  const allGazepoints = points
+  const allGazepoints = points.slice()
     || Gazepoints.find(
       { participantId },
       {
@@ -46,7 +46,7 @@ export default function makeGlances({ participantId, points }) {
     Object.keys(fileFormatGroups).forEach((fileFormat) => {
       const gazepoints = fileFormatGroups[fileFormat];
       let startIndex = 0;
-      let number = 1;
+      let number = 0;
 
       do {
         let endIndex = null;
@@ -55,13 +55,15 @@ export default function makeGlances({ participantId, points }) {
             gazepoints,
             startIndex,
           });
-          console.log(`startIndex: ${startIndex} endIndex: ${endIndex}`);
 
           if (endIndex) {
             try {
-              console.log('make the glance!');
               number += 1;
-              const glanceId = '555';
+              console.log(
+                `Save glance. Number: ${number} [${startIndex} : ${endIndex}] (Duration: ${gazepoints[
+                  endIndex
+                ].timestamp - gazepoints[startIndex].timestamp}ms)`,
+              );
 
               // const glanceId = this.makeGlanceFromGazepoints({
               //   gazepoints: gazepoints,
@@ -74,21 +76,21 @@ export default function makeGlances({ participantId, points }) {
               // });
 
               glanceIds.push(glanceId);
-              console.log(`glance number: ${number} created!`);
+              // console.log(`glance number: ${number} created!`);
               startIndex = endIndex + 1;
-              console.log(
-                `endIndex: ${endIndex} nextStartIndex: ${startIndex}`,
-              );
+              // console.log(
+              //   `endIndex: ${endIndex} nextStartIndex: ${startIndex}`,
+              // );
             } catch (err) {
               console.log(err);
             }
           }
         } catch (err) {
-          console.log('no glance generated');
+          // console.log('no glance generated');
           if (err.error === 'minGlanceDurationNotMet') {
             // console.log(err.details);
             startIndex = err.details.nextIndex;
-            console.log(`endIndex: ${endIndex} nextStartIndex: ${startIndex}`);
+            // console.log(`endIndex: ${endIndex} nextStartIndex: ${startIndex}`);
           } else {
             console.log(err);
           }

@@ -1,5 +1,5 @@
 Template.NewAnalysis.onCreated(function() {
-  this.showDurationFields = ReactiveVar(false);
+  this.showMGGDField = ReactiveVar(false);
 });
 
 Template.NewAnalysis.events({
@@ -8,9 +8,9 @@ Template.NewAnalysis.events({
   },
   'change .typeSelector'(event, templateInstance) {
     if (event.target.value === 'custom') {
-      templateInstance.showDurationFields.set(true);
+      templateInstance.showMGGDField.set(true);
     } else {
-      templateInstance.showDurationFields.set(false);
+      templateInstance.showMGGDField.set(false);
     }
   },
 });
@@ -57,5 +57,5 @@ Template.NewAnalysis.helpers({
     ids = stimuli.map(stimulus => stimulus._id);
     return ids.join(',');
   },
-  showDurationFields: () => Template.instance().showDurationFields.get(),
+  showMGGDField: () => Template.instance().showMGGDField.get(),
 });

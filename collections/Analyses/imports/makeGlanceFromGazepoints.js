@@ -23,15 +23,15 @@ export default function makeGlanceFromGazepoints({
     throw new Error('noParticipantFound');
   }
 
-  let stimulus;
-  if (this.type === 'custom') {
-    if (!stimulusId) {
-      throw new Error('noStimulusId');
-    }
-    stimulus = Stimuli.findOne({ _id: stimulusId });
-    if (!stimulus) {
-      throw new Error('noStimulusFound');
-    }
+  const stimulus = Stimuli.findOne({ _id: stimulusId });
+  if (!stimulusId) {
+    throw new Error('noStimulusId');
+  }
+  if (!stimulus) {
+    throw new Error('noStimulusFound');
+  }
+  if (!stimulus.width || !stimulus.height) {
+    status = 'invalidStimulusDimensions';
   }
 
   if (!gazepoints.length) {
@@ -69,10 +69,6 @@ export default function makeGlanceFromGazepoints({
 
   const analysis = this;
   let status = 'processed';
-
-  if (!stimulus.width || !stimulus.height) {
-    status = 'invalidStimulusDimensions';
-  }
 
   return Glances.insert({
     studyId: this.studyId,

@@ -11,156 +11,184 @@ import Glances from '../collections/Glances/Glances';
 import Variables from '../collections/Variables/Variables';
 
 export default function dbCleanup() {
-  const validStudyIds = Studies.find({}, { fields: { _id: 1 } })
-    .fetch()
-    .map(doc => doc._id);
+  if (Meteor.isServer) {
+    const validStudyIds = Studies.find({}, { fields: { _id: 1 } })
+      .fetch()
+      .map(doc => doc._id);
 
-  Datafiles.remove({ studyId: { $nin: validStudyIds } }, (err, num) => {
-    if (err && err.error !== 404) {
-      console.log(err);
+    // //////////////////////////////////////////////////////////////////////////////
+    let query = { studyId: { $nin: validStudyIds } };
+    if (Datafiles.find(query).count()) {
+      console.log('removing orphaned Datafiles...');
+      Datafiles.remove(query, (err, num) => {
+        if (err && err.error !== 404) {
+          console.log(err);
+        }
+        if (num) {
+          console.log(`${num} orphaned Datafiles removed.`);
+        }
+      });
     }
-    if (num) {
-      console.log(`${num} orphaned Datafiles removed.`);
+
+    const validDatafileIds = Datafiles.find({}, { fields: { _id: 1 } })
+      .fetch()
+      .map(doc => doc._id);
+
+    // //////////////////////////////////////////////////////////////////////////////
+    query = { 'meta.studyId': { $nin: validStudyIds } };
+    if (Stimulusfiles.find(query).count()) {
+      console.log('removing orphaned Stimulusfiles...');
+      Stimulusfiles.remove(query, (err, num) => {
+        if (err && err.error !== 404) {
+          console.log(err);
+        }
+        if (num) {
+          console.log(`${num} orphaned Stimulusfiles removed.`);
+        }
+      });
     }
-  });
 
-  const validDatafileIds = Datafiles.find({}, { fields: { _id: 1 } })
-    .fetch()
-    .map(doc => doc._id);
-
-  Stimulusfiles.remove(
-    { 'meta.studyId': { $nin: validStudyIds } },
-    (err, num) => {
-      if (err && err.error !== 404) {
-        console.log(err);
-      }
-      if (num) {
-        console.log(`${num} orphaned Stimulusfiles removed.`);
-      }
-    },
-  );
-
-  const validStimulusfileIds = Stimulusfiles.find({}, { fields: { _id: 1 } })
-    .fetch()
-    .map(doc => doc._id);
-
-  Stimuli.remove(
-    { stimulusfileId: { $nin: validStimulusfileIds } },
-    (err, num) => {
-      if (err && err.error !== 404) {
-        console.log(err);
-      }
-      if (num) {
-        console.log(`${num} orphaned Stimuli removed.`);
-      }
-    },
-  );
-
-  const validStimulusIds = Stimuli.find({}, { fields: { _id: 1 } })
-    .fetch()
-    .map(doc => doc._id);
-
-  Participants.remove({ studyId: { $nin: validStudyIds } }, (err, num) => {
-    if (err && err.error !== 404) {
-      console.log(err);
+    // //////////////////////////////////////////////////////////////////////////////
+    query = { studyId: { $nin: validStudyIds } };
+    if (Stimuli.find(query).count()) {
+      console.log('removing orphaned Stimuli...');
+      Stimuli.remove(query, (err, num) => {
+        if (err && err.error !== 404) {
+          console.log(err);
+        }
+        if (num) {
+          console.log(`${num} orphaned Stimuli removed.`);
+        }
+      });
     }
-    if (num) {
-      console.log(`${num} orphaned Participants removed.`);
-    }
-  });
 
-  const validParticipantIds = Participants.find({}, { fields: { _id: 1 } })
-    .fetch()
-    .map(doc => doc._id);
+    const validStimulusIds = Stimuli.find({}, { fields: { _id: 1 } })
+      .fetch()
+      .map(doc => doc._id);
 
-  Aois.remove({ stimulusId: { $nin: validStimulusIds } }, (err, num) => {
-    if (err && err.error !== 404) {
-      console.log(err);
+    // //////////////////////////////////////////////////////////////////////////////
+    query = { studyId: { $nin: validStudyIds } };
+    if (Participants.find(query).count()) {
+      console.log('removing orphaned Participants...');
+      Participants.remove(query, (err, num) => {
+        if (err && err.error !== 404) {
+          console.log(err);
+        }
+        if (num) {
+          console.log(`${num} orphaned Participants removed.`);
+        }
+      });
     }
-    if (num) {
-      console.log(`${num} orphaned Aois removed.`);
-    }
-  });
 
-  const validAoiIds = Aois.find({}, { fields: { _id: 1 } })
-    .fetch()
-    .map(doc => doc._id);
+    const validParticipantIds = Participants.find({}, { fields: { _id: 1 } })
+      .fetch()
+      .map(doc => doc._id);
 
-  Variablefiles.remove({ studyId: { $nin: validStudyIds } }, (err, num) => {
-    if (err && err.error !== 404) {
-      console.log(err);
+    // //////////////////////////////////////////////////////////////////////////////
+    query = { stimulusId: { $nin: validStimulusIds } };
+    if (Aois.find(query).count()) {
+      console.log('removing orphaned Aois...');
+      Aois.remove(query, (err, num) => {
+        if (err && err.error !== 404) {
+          console.log(err);
+        }
+        if (num) {
+          console.log(`${num} orphaned Aois removed.`);
+        }
+      });
     }
-    if (num) {
-      console.log(`${num} orphaned Variablefiles removed.`);
-    }
-  });
 
-  Variables.remove({ studyId: { $nin: validStudyIds } }, (err, num) => {
-    if (err && err.error !== 404) {
-      console.log(err);
-    }
-    if (num) {
-      console.log(`${num} orphaned Variables removed.`);
-    }
-  });
+    const validAoiIds = Aois.find({}, { fields: { _id: 1 } })
+      .fetch()
+      .map(doc => doc._id);
 
-  Analyses.remove({ studyId: { $nin: validStudyIds } }, (err, num) => {
-    if (err && err.error !== 404) {
-      console.log(err);
+    // //////////////////////////////////////////////////////////////////////////////
+    query = { studyId: { $nin: validStudyIds } };
+    if (Variablefiles.find(query).count()) {
+      console.log('removing orphaned Variablefiles...');
+      Variablefiles.remove(query, (err, num) => {
+        if (err && err.error !== 404) {
+          console.log(err);
+        }
+        if (num) {
+          console.log(`${num} orphaned Variablefiles removed.`);
+        }
+      });
     }
-    if (num) {
-      console.log(`${num} orphaned Analyses removed.`);
+
+    // //////////////////////////////////////////////////////////////////////////////
+    query = { studyId: { $nin: validStudyIds } };
+    if (Variables.find(query).count()) {
+      console.log('removing orphaned Variables...');
+      Variables.remove(query, (err, num) => {
+        if (err && err.error !== 404) {
+          console.log(err);
+        }
+        if (num) {
+          console.log(`${num} orphaned Variables removed.`);
+        }
+      });
     }
-  });
 
-  const validAnalysisIds = Analyses.find({}, { fields: { _id: 1 } })
-    .fetch()
-    .map(doc => doc._id);
+    // //////////////////////////////////////////////////////////////////////////////
+    query = { studyId: { $nin: validStudyIds } };
+    if (Analyses.find(query).count()) {
+      console.log('removing orphaned Analyses...');
+      Analyses.remove(query, (err, num) => {
+        if (err && err.error !== 404) {
+          console.log(err);
+        }
+        if (num) {
+          console.log(`${num} orphaned Analyses removed.`);
+        }
+      });
+    }
 
-  Gazepoints.remove(
-    {
+    const validAnalysisIds = Analyses.find({}, { fields: { _id: 1 } })
+      .fetch()
+      .map(doc => doc._id);
+
+    // //////////////////////////////////////////////////////////////////////////////
+    query = {
       $or: [
         { datafileId: { $nin: validDatafileIds } },
         { stimulusId: { $nin: validStimulusIds } },
         { participantId: { $nin: validParticipantIds } },
       ],
-    },
-    (err, num) => {
-      if (err && err.error !== 404) {
-        console.log(err);
-      }
-      if (num) {
-        console.log(`${num} orphaned Gazepoints removed.`);
-      }
-    },
-  );
+    };
+    if (Gazepoints.find(query).count()) {
+      console.log('removing orphaned Gazepoints...');
+      Gazepoints.remove(query, (err, num) => {
+        if (err && err.error !== 404) {
+          console.log(err);
+        }
+        if (num) {
+          console.log(`${num} orphaned Gazepoints removed.`);
+        }
+      });
+    }
 
-  Glances.remove(
-    {
+    // //////////////////////////////////////////////////////////////////////////////
+    query = {
       $or: [
         { studyId: { $nin: validStudyIds } },
         { analysisId: { $nin: validAnalysisIds } },
         { stimulusId: { $nin: validStimulusIds } },
         { participantId: { $nin: validParticipantIds } },
       ],
-    },
-    (err, num) => {
-      if (err && err.error !== 404) {
-        console.log(err);
-      }
-      if (num) {
-        console.log(`${num} orphaned Glances removed.`);
-      }
-    },
-  );
+    };
+    if (Glances.find(query).count()) {
+      console.log('removing orphaned Glances...');
+      Glances.remove(query, (err, num) => {
+        if (err && err.error !== 404) {
+          console.log(err);
+        }
+        if (num) {
+          console.log(`${num} orphaned Glances removed.`);
+        }
+      });
+    }
 
-  // Analyses.remove({ studyId: { $nin: validStudyIds } }, (err, num) => {
-  //   if (err && err.error !== 404) {
-  //     console.log(err);
-  //   }
-  //   if (num) {
-  //     console.log(`${num} orphaned Analyses removed.`);
-  //   }
-  // });
-  //
+    console.log('finished cleaning database');
+  }
 }

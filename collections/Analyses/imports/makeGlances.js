@@ -48,8 +48,6 @@ export default function makeGlances({ participantId, points }) {
       let startIndex = 0;
       let number = 1;
 
-      console.log(this.type);
-
       do {
         let endIndex = null;
         try {
@@ -66,7 +64,7 @@ export default function makeGlances({ participantId, points }) {
               const glanceId = '555';
 
               // const glanceId = this.makeGlanceFromGazepoints({
-              //   gazepoints: gazepointsArr,
+              //   gazepoints: gazepoints,
               //   startIndex,
               //   endIndex,
               //   number: (number += 1),
@@ -95,7 +93,7 @@ export default function makeGlances({ participantId, points }) {
             console.log(err);
           }
         }
-      } while (startIndex < allGazepoints.length - 1);
+      } while (startIndex < gazepoints.length - 1);
     });
   }
 

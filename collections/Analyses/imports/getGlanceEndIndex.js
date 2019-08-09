@@ -5,41 +5,68 @@ export default function getGlanceEndIndex({ gazepoints, startIndex = 0 }) {
 
   let endIndex = parseInt(startIndex, 10);
 
-  if (this.type === 'custom') {
-    for (i = startIndex + 1; i < gazepoints.length - 1; i++) {
-      // TODO pick back up here
-      console.log('pick back up here');
-      console.log('need to account for changing stimulusIds!!!!');
+  const { stimulusId } = gazepoints[startIndex];
+  const stimulus = Stimuli.findOne({ _id: stimulusId });
+  let lastIndexOnStimulus;
 
-      if (
-        gazepoints[i].timestamp - gazepoints[i - 1].timestamp
-        > this.maxGlanceGapDuration
-      ) {
+  for (i = startIndex + 1; i < gazepoints.length - 1; i++) {
+    // TODO pick back up here
+    console.log('pick back up here');
+    console.log(
+      'run unit tests instead of running on real data (real data is too long)',
+    );
+
+    if (gazepoints[i].stimulusId !== stimulusId) {
+      lastIndexOnStimulus = i - 1;
+      console.log(
+        `stimulus changed! timestamp: ${
+          gazepoints[lastIndexOnStimulus].timestamp
+        }`,
+      );
+
+      const newStimulus = Stimuli.findOne({ _id: gazepoints[i].stimulusId });
+      console.log(`previous: ${stimulus.name} new: ${newStimulus.name}`);
+
+      if (this.type === 'custom') {
+        console.log('allow stimulus change if it doesnt exceed the MGGD');
+        const glanceGap = gazepoints[i].timestamp - gazepoints[lastIndexOnStimulus].timestamp;
+        if (glanceGap > this.maxGlanceGapDuration) {
+          console.log('glance gap exceeded!');
+        }
+        break;
+      } else {
+        console.log('no stimulus change allowed!');
         break;
       }
-      endIndex++;
     }
-
-    // console.log(
-    //   `startTime: ${gazepoints[startIndex].timestamp} endTime: ${
-    //     gazepoints[endIndex].timestamp
-    //   } potential glance duration: ${gazepoints[endIndex].timestamp
-    //     - gazepoints[startIndex].timestamp}`,
-    // );
-    // console.log(`minGlanceDuration: ${this.minGlanceDuration}`);
 
     if (
-      gazepoints[endIndex].timestamp - gazepoints[startIndex].timestamp
-      < this.minGlanceDuration
+      gazepoints[i].timestamp - gazepoints[i - 1].timestamp
+      > this.maxGlanceGapDuration
     ) {
-      // console.log('min glance duration not met');
-      throw new Meteor.Error('minGlanceDurationNotMet', null, {
-        nextIndex: endIndex + 1,
-      });
+      break;
     }
-  } else if (this.type === 'iso15007') {
-    endIndex = startIndex + 100;
+    endIndex++;
   }
+
+  // console.log(
+  //   `startTime: ${gazepoints[startIndex].timestamp} endTime: ${
+  //     gazepoints[endIndex].timestamp
+  //   } potential glance duration: ${gazepoints[endIndex].timestamp
+  //     - gazepoints[startIndex].timestamp}`,
+  // );
+  // console.log(`minGlanceDuration: ${this.minGlanceDuration}`);
+
+  if (
+    gazepoints[endIndex].timestamp - gazepoints[startIndex].timestamp
+    < this.minGlanceDuration
+  ) {
+    // console.log('min glance duration not met');
+    throw new Meteor.Error('minGlanceDurationNotMet', null, {
+      nextIndex: endIndex + 1,
+    });
+  }
+
   return endIndex;
 }
 

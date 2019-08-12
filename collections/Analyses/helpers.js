@@ -7,6 +7,7 @@ import makeGlances from './imports/makeGlances';
 import makeGlanceJobsJob from './imports/makeGlanceJobsJob';
 import updateStatus from './imports/updateStatus';
 import getExportData from './imports/getExportData';
+import getType from './imports/getType';
 import saveCSV from './imports/saveCSV';
 import allGlancesCreated from './imports/allGlancesCreated';
 import allGlancesProcessed from './imports/allGlancesProcessed';
@@ -23,6 +24,7 @@ Analyses.helpers({
   saveCSV,
   allGlancesCreated,
   allGlancesProcessed,
+  getType,
 
   hasPermission(action) {
     check(action, String);

@@ -1,6 +1,6 @@
 import '../../factories.test';
-import { expect } from 'chai';
 import { Factory } from 'meteor/dburles:factory';
+import { expect } from 'chai';
 
 describe('Analyses.getExportData()', () => {
   it('has no participants', () => {

@@ -1,5 +1,6 @@
-require('./../../factories.test');
-const { expect } = require('chai');
+import '../../factories.test';
+import { Factory } from 'meteor/dburles:factory';
+import { expect } from 'chai';
 
 describe('Analyses.makeGlanceFromGazepoints()', () => {
   it('has no fileFormat', () => {

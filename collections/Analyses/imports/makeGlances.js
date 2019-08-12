@@ -4,7 +4,7 @@ import Gazepoints from '../../Gazepoints/Gazepoints';
 export default function makeGlances({ participantId, points }) {
   const glanceIds = [];
 
-  if (this.type === 'custom') {
+  if (this.getType() === 'custom') {
     if (!participantId) {
       throw new Error('noParticipantId');
     }
@@ -37,9 +37,7 @@ export default function makeGlances({ participantId, points }) {
       ).fetch();
 
     console.log(
-      `participantId: ${participantId}, total gazepoint count: ${
-        allGazepoints.length
-      }`,
+      `participantId: ${participantId}, total gazepoint count: ${allGazepoints.length}`,
     );
 
     if (allGazepoints.length) {

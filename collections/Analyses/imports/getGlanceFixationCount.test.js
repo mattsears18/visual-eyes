@@ -1,7 +1,6 @@
+import '../../factories.test';
 import { Factory } from 'meteor/dburles:factory';
-
-require('./../../factories.test');
-const { expect } = require('chai');
+import { expect } from 'chai';
 
 describe('Analyses.getGlanceFixationCount()', () => {
   it('dose not have fixations', () => {

@@ -2,7 +2,7 @@ import Jobs from '../../../collections/Jobs/Jobs';
 import Analyses from '../../../collections/Analyses/Analyses';
 import Participants from '../../../collections/Participants/Participants';
 
-export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
+export default queueAnalysesMakeGlanceJobs = Jobs.processJobs(
   'analyses.makeGlanceJobs',
   { concurrency: 1 },
   (analysisGlanceJob, callback) => {
@@ -14,9 +14,7 @@ export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
 
     if (!analysis) {
       console.log(
-        `Analysis not found. analysisId: ${
-          analysisGlanceJob.data.analysisId
-        } Remove all jobs for this analysis.`,
+        `Analysis not found. analysisId: ${analysisGlanceJob.data.analysisId} Remove all jobs for this analysis.`,
       );
 
       Jobs.remove({ 'data.analysisId': analysisGlanceJob.data.analysisId });
@@ -57,11 +55,6 @@ export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
           console.log(err);
         }
 
-        if (analysis.type === null) {
-          analysis.type = 'custom';
-          Analyses.update({ _id: this._id }, { $set: { type: 'custom' } });
-        }
-
         analysis.participantIds.forEach((participantId) => {
           const participant = Participants.findOne({ _id: participantId });
           if (!participant) {
@@ -74,9 +67,7 @@ export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
           }
 
           console.log(
-            `make job for analysis._id: ${
-              analysis._id
-            }, participantId: ${participantId}`,
+            `make job for analysis._id: ${analysis._id}, participantId: ${participantId}`,
           );
 
           const participantGlanceJob = new Job(Jobs, 'analyses.makeGlances', {
@@ -120,9 +111,7 @@ export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
         }).count();
 
         console.log(
-          `makeGlanceJobs job completed, (${completedJobsJobCount} of ${totalJobsJobCount}), made ${jobCount} glanceJobs (${totalJobCount}  total) for studyId: ${
-            analysis.studyId
-          }`,
+          `makeGlanceJobs job completed, (${completedJobsJobCount} of ${totalJobsJobCount}), made ${jobCount} glanceJobs (${totalJobCount}  total) for studyId: ${analysis.studyId}`,
         );
       } catch (err) {
         console.log(err);
@@ -133,4 +122,4 @@ export default (queueAnalysesMakeGlanceJobs = Jobs.processJobs(
 
     callback();
   },
-));
+);

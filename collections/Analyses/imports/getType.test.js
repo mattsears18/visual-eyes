@@ -3,7 +3,7 @@ import { Factory } from 'meteor/dburles:factory';
 import { expect } from 'chai';
 import Analyses from '../Analyses';
 
-describe.only('Analyses.getType()', () => {
+describe('Analyses.getType()', () => {
   it('has no type', async () => {
     const analysis = Factory.create('analysis');
     expect(analysis.getType()).to.equal('custom');

@@ -6,7 +6,9 @@ export default async function getAllGazepoints({
   data = null,
   saveStats = false,
 }) {
-  if (!data) { data = await this.getRenamedRows(); }
+  if (!data) {
+    data = await this.getRenamedRows();
+  }
 
   this.rawRowCount = parseInt(data.length);
 
@@ -29,15 +31,18 @@ export default async function getAllGazepoints({
   this.gazepointCount = parseInt(allGazepoints.length);
 
   if (saveStats) {
-    Datafiles.update({ _id: this._id }, {
-      $set: {
-        rawRowCount: this.rawRowCount,
-        integerRowCount: this.integerRowCount,
-        visualRowCount: this.visualRowCount,
-        dupGazepointCount: this.dupGazepointCount,
-        gazepointCount: this.gazepointCount,
+    Datafiles.update(
+      { _id: this._id },
+      {
+        $set: {
+          rawRowCount: this.rawRowCount,
+          integerRowCount: this.integerRowCount,
+          visualRowCount: this.visualRowCount,
+          dupGazepointCount: this.dupGazepointCount,
+          gazepointCount: this.gazepointCount,
+        },
       },
-    });
+    );
   }
 
   return allGazepoints;

@@ -3,42 +3,41 @@ export default function getGlanceEndIndex({ gazepoints, startIndex = 0 }) {
     throw new Error('startIndexTooHigh');
   }
 
+  const { stimulusId } = gazepoints[startIndex];
+
+  if (stimulusId == null) {
+    throw new Error('noStimulusId');
+  }
+
+  console.log(stimulusId);
+
   let endIndex = parseInt(startIndex, 10);
 
-  const { stimulusId } = gazepoints[startIndex];
   const stimulus = Stimuli.findOne({ _id: stimulusId });
   let lastIndexOnStimulus;
 
-  for (i = startIndex + 1; i < gazepoints.length; i++) {
-    if (gazepoints[i].stimulusId !== stimulusId) {
-      lastIndexOnStimulus = i - 1;
-      console.log(
-        `stimulus changed! timestamp: ${gazepoints[lastIndexOnStimulus].timestamp}`,
-      );
+  if (this.getType() === 'custom') {
+    for (i = startIndex + 1; i < gazepoints.length; i++) {
+      if (gazepoints[i].stimulusId !== stimulusId) {
+        lastIndexOnStimulus = i - 1;
+        console.log(
+          `stimulus changed! timestamp: ${gazepoints[lastIndexOnStimulus].timestamp}`,
+        );
 
-      const newStimulus = Stimuli.findOne({ _id: gazepoints[i].stimulusId });
-      console.log(`previous: ${stimulus.name} new: ${newStimulus.name}`);
+        const newStimulus = Stimuli.findOne({ _id: gazepoints[i].stimulusId });
+        console.log(`previous: ${stimulus.name} new: ${newStimulus.name}`);
+      }
 
-      if (this.getType() === 'custom') {
-        console.log('allow stimulus change if it doesnt exceed the MGGD');
-        const glanceGap = gazepoints[i].timestamp - gazepoints[lastIndexOnStimulus].timestamp;
-        if (glanceGap > this.maxGlanceGapDuration) {
-          console.log('glance gap exceeded!');
-        }
-        break;
-      } else {
-        console.log('no stimulus change allowed!');
+      if (
+        gazepoints[i].timestamp - gazepoints[i - 1].timestamp
+        > this.maxGlanceGapDuration
+      ) {
         break;
       }
+      endIndex++;
     }
-
-    if (
-      gazepoints[i].timestamp - gazepoints[i - 1].timestamp
-      > this.maxGlanceGapDuration
-    ) {
-      break;
-    }
-    endIndex++;
+  } else {
+    console.log('not custom type');
   }
 
   // console.log(

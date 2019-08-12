@@ -2,7 +2,7 @@ import '../../factories.test';
 import { Factory } from 'meteor/dburles:factory';
 import { expect } from 'chai';
 
-describe('Analyses.getGlanceEndIndex()', () => {
+describe.only('Analyses.getGlanceEndIndex()', () => {
   it('gets the endIndex', async () => {
     const analysis = Factory.create('analysis', {
       minGlanceDuration: 5000,

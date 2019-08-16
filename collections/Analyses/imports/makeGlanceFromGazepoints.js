@@ -30,8 +30,12 @@ export default function makeGlanceFromGazepoints({
   if (!stimulus) {
     throw new Error('noStimulusFound');
   }
+
+  let status;
   if (!stimulus.width || !stimulus.height) {
     status = 'invalidStimulusDimensions';
+  } else {
+    status = 'processed';
   }
 
   if (!gazepoints.length) {
@@ -68,7 +72,6 @@ export default function makeGlanceFromGazepoints({
   }
 
   const analysis = this;
-  let status = 'processed';
 
   return Glances.insert({
     studyId: this.studyId,

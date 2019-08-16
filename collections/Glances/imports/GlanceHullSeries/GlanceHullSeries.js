@@ -18,7 +18,9 @@ export default class GlanceHullSeries extends TimeHullSeries {
       if (typeof opt.glance !== 'undefined') {
         opt.points = opt.glance.gazepoints;
         opt.width = opt.width || opt.glance.stimulus() ? opt.glance.stimulus().width : 0;
-        opt.height = opt.height || opt.glance.stimulus() ? opt.glance.stimulus().height : 0;
+        opt.height = opt.height || opt.glance.stimulus()
+          ? opt.glance.stimulus().height
+          : 0;
       }
     }
 

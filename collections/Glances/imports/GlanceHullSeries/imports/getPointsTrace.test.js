@@ -1,3 +1,4 @@
+import { Factory } from 'meteor/dburles:factory';
 import GlanceHullSeries from '../GlanceHullSeries';
 
 require('../../../../factories.test');
@@ -25,7 +26,7 @@ describe('GlanceHullSeries.getPointsTrace()', () => {
   it('gets fixations', () => {
     const hullseries = new GlanceHullSeries({
       glance: Factory.create('glanceWithGazepoints', {
-        studyId: Factory.create('study', { fixationsOnly: true })._id,
+        analysisId: Factory.create('analysis', { fixationsOnly: true })._id,
       }),
       period: 5000,
     });

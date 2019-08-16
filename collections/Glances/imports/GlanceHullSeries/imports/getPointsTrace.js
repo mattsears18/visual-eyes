@@ -5,7 +5,7 @@ export default function getPointsTrace(opt) {
 
   let name;
 
-  if (this.glance.study().fixationsOnly) {
+  if (this.glance.analysis().fixationsOnly) {
     name = 'Fixations';
   } else {
     name = 'Gaze Points';

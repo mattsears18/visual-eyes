@@ -10,27 +10,27 @@ export default async function getAllGazepoints({
     data = await this.getRenamedRows();
   }
 
-  console.log(data);
+  // console.log(data);
 
-  this.rawRowCount = parseInt(data.length);
+  this.rawRowCount = parseInt(data.length, 10);
 
   const integerRows = await this.getNumericPositiveCoordinatesOnly(data);
-  this.integerRowCount = parseInt(integerRows.length);
+  this.integerRowCount = parseInt(integerRows.length, 10);
 
   let visualRows = integerRows;
   if (helpers.keyInArray('category', integerRows)) {
     visualRows = await this.getVisualIntakesOnly(integerRows);
   }
-  this.visualRowCount = parseInt(visualRows.length);
+  this.visualRowCount = parseInt(visualRows.length, 10);
 
   let dupGazepoints = visualRows;
   if (helpers.keyInArray('stimulusName', visualRows)) {
     dupGazepoints = await this.getStimuliOnly(visualRows);
   }
-  this.dupGazepointCount = parseInt(dupGazepoints.length);
+  this.dupGazepointCount = parseInt(dupGazepoints.length, 10);
 
   const allGazepoints = this.getNonDuplicateCoordinatesOnly(dupGazepoints);
-  this.gazepointCount = parseInt(allGazepoints.length);
+  this.gazepointCount = parseInt(allGazepoints.length, 10);
 
   if (saveStats) {
     Datafiles.update(

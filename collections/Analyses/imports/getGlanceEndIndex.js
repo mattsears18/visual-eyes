@@ -3,56 +3,69 @@ export default function getGlanceEndIndex({ gazepoints, startIndex = 0 }) {
     throw new Error('startIndexTooHigh');
   }
 
-  const { stimulusId } = gazepoints[startIndex];
+  const initialStimulusId = gazepoints[startIndex].stimulusId;
 
-  if (stimulusId == null) {
+  if (initialStimulusId == null) {
     throw new Error('noStimulusId');
   }
 
-  console.log(stimulusId);
+  let endIndex;
 
-  let endIndex = parseInt(startIndex, 10);
-
-  const stimulus = Stimuli.findOne({ _id: stimulusId });
+  const initialStimulus = Stimuli.findOne({ _id: initialStimulusId });
   let lastIndexOnStimulus;
 
   if (this.getType() === 'custom') {
-    for (i = startIndex + 1; i < gazepoints.length; i++) {
-      if (gazepoints[i].stimulusId !== stimulusId) {
+    // console.log('type: custom');
+
+    for (let i = parseInt(startIndex, 10) + 1; i < gazepoints.length; i += 1) {
+      // console.log(`i: ${i}`);
+
+      if (gazepoints[i].stimulusId !== initialStimulusId) {
         lastIndexOnStimulus = i - 1;
         console.log(
           `stimulus changed! timestamp: ${gazepoints[lastIndexOnStimulus].timestamp}`,
         );
 
         const newStimulus = Stimuli.findOne({ _id: gazepoints[i].stimulusId });
-        console.log(`previous: ${stimulus.name} new: ${newStimulus.name}`);
+        console.log(
+          `previous: ${initialStimulus.name} new: ${newStimulus.name}`,
+        );
+      } else {
+        // console.log('same stimulus!');
       }
 
       if (
         gazepoints[i].timestamp - gazepoints[i - 1].timestamp
         > this.maxGlanceGapDuration
       ) {
+        // console.log('exceeded MGGD!');
         break;
+      } else {
+        // console.log('did not exceed MGGD');
       }
-      endIndex++;
+      endIndex = i;
     }
+
+    // console.log(`endIndex: ${endIndex}`);
   } else {
-    console.log('not custom type');
+    // console.log('not custom type');
   }
 
-  // console.log(
-  //   `startTime: ${gazepoints[startIndex].timestamp} endTime: ${
-  //     gazepoints[endIndex].timestamp
-  //   } potential glance duration: ${gazepoints[endIndex].timestamp
-  //     - gazepoints[startIndex].timestamp}`,
-  // );
-  // console.log(`minGlanceDuration: ${this.minGlanceDuration}`);
+  console.log(
+    `indices: [${startIndex}:${endIndex}] startTime: ${
+      gazepoints[startIndex].timestamp
+    } endTime: ${
+      gazepoints[endIndex].timestamp
+    } potential glance duration: ${gazepoints[endIndex].timestamp
+      - gazepoints[startIndex].timestamp}`,
+  );
+  console.log(`minGlanceDuration: ${this.minGlanceDuration}`);
 
   if (
     gazepoints[endIndex].timestamp - gazepoints[startIndex].timestamp
     < this.minGlanceDuration
   ) {
-    // console.log('min glance duration not met');
+    console.log('min glance duration not met');
     throw new Meteor.Error('minGlanceDurationNotMet', null, {
       nextIndex: endIndex + 1,
     });

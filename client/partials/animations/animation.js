@@ -128,7 +128,7 @@ Template.Animation.events({
   },
   'input .slider-animation': (e, template) => {
     const index = Math.max(
-      parseInt((template.frames.get().length * e.target.value) / 100) - 1,
+      parseInt((template.frames.get().length * e.target.value) / 100, 10) - 1,
       0,
     );
     template.playing.set(false);

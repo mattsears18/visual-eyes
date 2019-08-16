@@ -25,20 +25,21 @@ Template.Glances.onCreated(function() {
       const glance = Glances.findOne({
         participantId: FlowRouter.getParam('participantId'),
         stimulusId: FlowRouter.getParam('stimulusId'),
-        number: parseInt(FlowRouter.getParam('number')),
+        number: parseInt(FlowRouter.getParam('number'), 10),
       });
 
       if (glance) {
         this.glance.set(glance);
         this.hullParams.set({
-          period: parseInt(Template.instance().period.get()),
-          timestep: parseInt(Template.instance().timestep.get()),
+          period: parseInt(Template.instance().period.get(), 10),
+          timestep: parseInt(Template.instance().timestep.get(), 10),
           includeIncomplete: Template.instance().includeIncomplete.get(),
           pointTrailLength: parseInt(
             Template.instance().pointTrailLength.get(),
+            10,
           ),
         });
-      } else if (parseInt(FlowRouter.getParam('number')) > 1) {
+      } else if (parseInt(FlowRouter.getParam('number'), 10) > 1) {
         FlowRouter.setParams({ number: '1' });
       }
     }
@@ -53,7 +54,7 @@ Template.Glances.helpers({
   }).count(),
   participant: () => Participants.findOne({ _id: FlowRouter.getParam('participantId') }),
   stimulus: () => Stimuli.findOne({ _id: FlowRouter.getParam('stimulusId') }),
-  number: () => parseInt(FlowRouter.getParam('number')),
+  number: () => parseInt(FlowRouter.getParam('number'), 10),
   period: () => Template.instance().period.get(),
   timestep: () => Template.instance().timestep.get(),
   includeIncomplete: () => Template.instance().includeIncomplete.get(),
@@ -124,7 +125,7 @@ Template.Glances.events({
   },
   'click .number.next': () => {
     if (
-      parseInt(FlowRouter.getParam('number'))
+      parseInt(FlowRouter.getParam('number'), 10)
       === Glances.find({
         participantId: FlowRouter.getParam('participantId'),
         stimulusId: FlowRouter.getParam('stimulusId'),
@@ -133,12 +134,12 @@ Template.Glances.events({
       FlowRouter.setParams({ number: 1 });
     } else {
       FlowRouter.setParams({
-        number: parseInt(FlowRouter.getParam('number')) + 1,
+        number: parseInt(FlowRouter.getParam('number'), 10) + 1,
       });
     }
   },
   'click .number.previous': () => {
-    if (parseInt(FlowRouter.getParam('number')) === 1) {
+    if (parseInt(FlowRouter.getParam('number'), 10) === 1) {
       FlowRouter.setParams({
         number: Glances.find({
           participantId: FlowRouter.getParam('participantId'),
@@ -147,7 +148,7 @@ Template.Glances.events({
       });
     } else {
       FlowRouter.setParams({
-        number: parseInt(FlowRouter.getParam('number')) - 1,
+        number: parseInt(FlowRouter.getParam('number'), 10) - 1,
       });
     }
   },

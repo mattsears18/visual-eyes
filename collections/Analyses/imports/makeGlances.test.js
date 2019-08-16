@@ -3,21 +3,12 @@ import { Factory } from 'meteor/dburles:factory';
 import { expect } from 'chai';
 
 describe('Analyses.makeGlances()', () => {
-  const dummyPoints = [
-    {
-      timestamp: 0,
-      timestamp: 1000,
-      timestamp: 2000,
-      timestamp: 3000,
-    },
-  ];
   it('has no participantId', () => {
     const analysis = Factory.create('analysis');
     expect(() => {
       analysis.makeGlances({});
     }).to.throw('noParticipantId');
   });
-
   it('has a nonexistent participant', () => {
     const analysis = Factory.create('analysis');
     expect(() => {
@@ -25,17 +16,26 @@ describe('Analyses.makeGlances()', () => {
     }).to.throw('noParticipantFound');
   });
 
+  // TODO - move this to getGlanceEndIndex()
   // it('has no stimulusId', () => {
   //   const analysis = Factory.create('analysis');
+
+  //   const points = [
+  //     { timestamp: 0 },
+  //     { timestamp: 1000 },
+  //     { timestamp: 2000 },
+  //     { timestamp: 3000 },
+  //   ];
 
   //   expect(() => {
   //     analysis.makeGlances({
   //       participantId: Factory.create('participant')._id,
-  //       points: dummyPoints,
+  //       points,
   //     });
   //   }).to.throw('noStimulusId');
   // });
 
+  // TODO - move this to getGlanceEndIndex()
   // it('has a nonexistent stimulus', () => {
   //   const analysis = Factory.create('analysis');
   //   expect(() => {
@@ -63,23 +63,110 @@ describe('Analyses.makeGlances()', () => {
     });
 
     const points = [
-      { timestamp: 0 }, // start glance 1
-      { timestamp: 1000 },
-      { timestamp: 2000, fixationIndex: 1 },
-      { timestamp: 3000 },
-      { timestamp: 5000, fixationIndex: 2 }, // end glance 1
-      { timestamp: 8000 }, // exceeded maxGlanceGapDuration - end glance
-      { timestamp: 9000 }, // next point exceeds glance gap but minGlanceDuration not met, so no glance
-      { timestamp: 14000 }, // start glance 2
-      { timestamp: 15000 },
-      { timestamp: 16000 },
-      { timestamp: 17000 },
-      { timestamp: 18000 },
-      { timestamp: 19000 },
-      { timestamp: 20000 },
-      { timestamp: 21000 },
-      { timestamp: 22000 },
-      { timestamp: 23000 }, // end glance 2
+      {
+        x: 1,
+        y: 1,
+        timestamp: 0,
+        stimulusId: stimulus._id,
+      }, // start glance 1
+      {
+        x: 1,
+        y: 1,
+        timestamp: 1000,
+        stimulusId: stimulus._id,
+      },
+      {
+        x: 1,
+        y: 1,
+        timestamp: 2000,
+        stimulusId: stimulus._id,
+        fixationIndex: 1,
+      },
+      {
+        x: 1,
+        y: 1,
+        timestamp: 3000,
+        stimulusId: stimulus._id,
+      },
+      {
+        x: 1,
+        y: 1,
+        timestamp: 5000,
+        stimulusId: stimulus._id,
+        fixationIndex: 2,
+      }, // end glance 1
+      {
+        x: 1,
+        y: 1,
+        timestamp: 8000,
+        stimulusId: stimulus._id,
+      }, // exceeded maxGlanceGapDuration - end glance
+      {
+        x: 1,
+        y: 1,
+        timestamp: 9000,
+        stimulusId: stimulus._id,
+      }, // next point exceeds glance gap but minGlanceDuration not met, so no glance
+      {
+        x: 1,
+        y: 1,
+        timestamp: 14000,
+        stimulusId: stimulus._id,
+      }, // start glance 2
+      {
+        x: 1,
+        y: 1,
+        timestamp: 15000,
+        stimulusId: stimulus._id,
+      },
+      {
+        x: 1,
+        y: 1,
+        timestamp: 16000,
+        stimulusId: stimulus._id,
+      },
+      {
+        x: 1,
+        y: 1,
+        timestamp: 17000,
+        stimulusId: stimulus._id,
+      },
+      {
+        x: 1,
+        y: 1,
+        timestamp: 18000,
+        stimulusId: stimulus._id,
+      },
+      {
+        x: 1,
+        y: 1,
+        timestamp: 19000,
+        stimulusId: stimulus._id,
+      },
+      {
+        x: 1,
+        y: 1,
+        timestamp: 20000,
+        stimulusId: stimulus._id,
+      },
+      {
+        x: 1,
+        y: 1,
+        timestamp: 21000,
+        stimulusId: stimulus._id,
+      },
+      {
+        x: 1,
+        y: 1,
+        timestamp: 22000,
+        stimulusId: stimulus._id,
+      },
+      {
+        x: 1,
+        y: 1,
+        timestamp: 23000,
+        stimulusId: stimulus._id,
+      }, // end glance 2
     ];
 
     points.forEach((point) => {

@@ -93,7 +93,14 @@ describe('Analyses.makeGlanceFromGazepoints()', () => {
       fileFormat: 'imotions',
       participantId: Factory.create('participant')._id,
       stimulusId: Factory.create('stimulus', { width: 0 })._id,
-      gazepoints: [{ x: 0.5, y: 0.5, timestamp: 0 }],
+      gazepoints: [
+        {
+          x: 0.5,
+          y: 0.5,
+          timestamp: 0,
+          stimulusId: 'iGotAFakeIdDoe',
+        },
+      ],
     });
 
     const glance = Glances.findOne({ _id: glanceId });
@@ -106,7 +113,14 @@ describe('Analyses.makeGlanceFromGazepoints()', () => {
       fileFormat: 'imotions',
       participantId: Factory.create('participant')._id,
       stimulusId: Factory.create('stimulus', { height: 0 })._id,
-      gazepoints: [{ x: 0.5, y: 0.5, timestamp: 0 }],
+      gazepoints: [
+        {
+          x: 0.5,
+          y: 0.5,
+          timestamp: 0,
+          stimulusId: 'iGotAFakeIdDoe',
+        },
+      ],
     });
 
     const glance = Glances.findOne({ _id: glanceId });

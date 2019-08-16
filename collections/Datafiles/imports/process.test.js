@@ -5,7 +5,9 @@ if (Meteor.isServer) {
   describe('Datafiles.process()', () => {
     it('processes an SMI datafile', async () => {
       const study = Factory.create('study');
-      const datafile = Factory.create('imotionsDatafile', { studyId: study._id });
+      const datafile = Factory.create('imotionsDatafile', {
+        studyId: study._id,
+      });
 
       await datafile.process();
 
@@ -29,13 +31,20 @@ if (Meteor.isServer) {
 
     it('creates one participant from two datafiles', async () => {
       const study = Factory.create('study');
-      const datafile1 = Factory.create('imotionsDatafile', { studyId: study._id });
+      const datafile1 = Factory.create('imotionsDatafile', {
+        studyId: study._id,
+      });
       await datafile1.process();
 
-      const datafile2 = Factory.create('imotionsDatafile', { studyId: study._id, name: datafile1.name });
+      const datafile2 = Factory.create('imotionsDatafile', {
+        studyId: study._id,
+        name: datafile1.name,
+      });
       await datafile2.process();
 
-      const participant = Participants.findOne({ _id: datafile1.participantId });
+      const participant = Participants.findOne({
+        _id: datafile1.participantId,
+      });
 
       expect(datafile1.participantId).to.equal(datafile2.participantId);
       expect(participant.datafileIds).to.eql([datafile1._id, datafile2._id]);

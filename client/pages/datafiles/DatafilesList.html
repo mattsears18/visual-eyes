@@ -22,26 +22,13 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>
-          Name
-        </th>
-        <th>
-          File Format
-        </th>
-        <th>
-          {{#if study.fixationsOnly}}
-          Fixations
-          {{else}}
-          Gaze Points
-          {{/if}}
-        </th>
-        <th>
-          Status
-        </th>
+        <th>Name</th>
+        <th>File Format</th>
+        <th>Gaze Points</th>
+        <th>Fixations</th>
+        <th>Status</th>
         {{#if study.hasPermission 'update'}}
-        <th>
-          Delete
-        </th>
+        <th>Delete</th>
         {{/if}}
       </tr>
     </thead>
@@ -64,11 +51,10 @@
           {{/if}}
         </td>
         <td class="p-l-10">
-          {{#if study.fixationsOnly}}
-          {{formatNumber datafile.fixationCount}}
-          {{else}}
           {{formatNumber datafile.gazepointCount}}
-          {{/if}}
+        </td>
+        <td class="p-l-10">
+          {{formatNumber datafile.fixationCount}}
         </td>
         <td class="p-l-10">
           {{#if equals datafile.status 'needsProcessing'}}

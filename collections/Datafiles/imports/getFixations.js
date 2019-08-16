@@ -1,6 +1,6 @@
 export default async function getFixations({ data = null, saveStats = false }) {
   if (!data) {
-    data = await this.getAllGazepoints({ saveStats });
+    data = await this.getGazepoints({ saveStats });
   }
 
   const goodRows = [];

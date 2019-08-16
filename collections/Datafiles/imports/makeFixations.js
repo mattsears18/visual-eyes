@@ -5,7 +5,7 @@
 //   saveStats = false,
 // }) {
 //   if (!data) {
-//     const gazepoints = await this.getAllGazepoints({ saveStats });
+//     const gazepoints = await this.getGazepoints({ saveStats });
 //   }
 
 //   const sdPairs = [];

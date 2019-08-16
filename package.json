@@ -8,9 +8,8 @@
     "start": "meteor --settings settings.json",
     "production": "meteor --settings settings.json --production",
     "debug": "meteor run --inspect-brk=9229",
-    "test": "meteor test --driver-package meteortesting:mocha --port 3002",
-    "test-debug": "meteor test --inspect --driver-package=meteortesting:mocha --port 3002",
-    "watch": "TEST_WATCH=1 npm test",
+    "test": "TEST_WATCH=1 meteor test --driver-package meteortesting:mocha --port 3002",
+    "test-debug": "TEST_WATCH=1 meteor test --inspect --driver-package=meteortesting:mocha --port 3002",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix"
   },

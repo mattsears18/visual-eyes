@@ -1,4 +1,5 @@
-require('../../../lib/helpers');
+import helpers from '../../../lib/helpers';
+
 fs = require('fs');
 const { parse } = require('json2csv');
 
@@ -9,8 +10,6 @@ export default async function getGazepoints({
   if (!data) {
     data = await this.getRenamedRows();
   }
-
-  // console.log(data);
 
   this.rawRowCount = parseInt(data.length, 10);
 
@@ -23,13 +22,10 @@ export default async function getGazepoints({
   }
   this.visualRowCount = parseInt(visualRows.length, 10);
 
-  let dupGazepoints = visualRows;
+  let allGazepoints = visualRows;
   if (helpers.keyInArray('stimulusName', visualRows)) {
-    dupGazepoints = await this.getStimuliOnly(visualRows);
+    allGazepoints = await this.getStimuliOnly(visualRows);
   }
-  this.dupGazepointCount = parseInt(dupGazepoints.length, 10);
-
-  const allGazepoints = this.getNonDuplicateCoordinatesOnly(dupGazepoints);
   this.gazepointCount = parseInt(allGazepoints.length, 10);
 
   if (saveStats) {
@@ -40,12 +36,11 @@ export default async function getGazepoints({
           rawRowCount: this.rawRowCount,
           integerRowCount: this.integerRowCount,
           visualRowCount: this.visualRowCount,
-          dupGazepointCount: this.dupGazepointCount,
           gazepointCount: this.gazepointCount,
         },
       },
     );
   }
 
-  return dupGazepoints;
+  return allGazepoints;
 }

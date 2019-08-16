@@ -1,3 +1,5 @@
+import helpers from '../../../lib/helpers';
+
 Template.Animation.onCreated(function() {
   this.playing = new ReactiveVar(false);
   this.frameIndex = new ReactiveVar(0);

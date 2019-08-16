@@ -18,7 +18,6 @@ if (Meteor.isServer) {
       expect(datafile.rawRowCount).to.exist;
       expect(datafile.integerRowCount).to.exist;
       expect(datafile.visualRowCount).to.exist;
-      expect(datafile.dupGazepointCount).to.exist;
       expect(datafile.gazepointCount).to.exist;
       expect(datafile.fixationCount).to.exist;
 

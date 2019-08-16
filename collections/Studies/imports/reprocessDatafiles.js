@@ -26,7 +26,6 @@ export default function reprocessDatafiles() {
             integerRowCount: 1,
             visualRowCount: 1,
             gazepointCount: 1,
-            dupGazepointCount: 1,
             fixationCount: 1,
           },
         },

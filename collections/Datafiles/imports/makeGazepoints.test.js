@@ -2,7 +2,7 @@ require('./../../factories.test');
 const { expect } = require('chai');
 
 if (Meteor.isServer) {
-  describe.only('Datafiles.makeGazepoints()', () => {
+  describe('Datafiles.makeGazepoints()', () => {
     it('saves the fixation count even though study.fixationsOnly === false', async () => {
       const study = Factory.create('study', { fixationsOnly: false });
       const datafile = Factory.create('imotionsDatafile', {

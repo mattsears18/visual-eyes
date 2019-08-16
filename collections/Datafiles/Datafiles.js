@@ -42,10 +42,6 @@ Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
     type: Number,
     optional: true,
   },
-  dupGazepointCount: {
-    type: Number,
-    optional: true,
-  },
   gazepointCount: {
     type: Number,
     optional: true,
@@ -64,7 +60,9 @@ options = {
 };
 
 uploadPath = Meteor.settings.public.uploads;
-if (uploadPath) { options.storagePath = `${uploadPath}/datafiles`; }
+if (uploadPath) {
+  options.storagePath = `${uploadPath}/datafiles`;
+}
 
 Datafiles = new FilesCollection(options);
 

@@ -1,5 +1,6 @@
 import { jStat } from 'jStat';
 import Jobs from '../../../collections/Jobs/Jobs';
+import helpers from '../../../lib/helpers';
 
 let participantSub;
 let stimuliSub;

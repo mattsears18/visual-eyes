@@ -10,7 +10,6 @@ import getRenamedRows from './imports/getRenamedRows';
 import getNumericPositiveCoordinatesOnly from './imports/getNumericPositiveCoordinatesOnly';
 import getVisualIntakesOnly from './imports/getVisualIntakesOnly';
 import getStimuliOnly from './imports/getStimuliOnly';
-import getNonDuplicateCoordinatesOnly from './imports/getNonDuplicateCoordinatesOnly';
 import getGazepoints from './imports/getGazepoints';
 import getFixations from './imports/getFixations';
 import makeGazepoints from './imports/makeGazepoints';
@@ -29,7 +28,6 @@ Datafiles.collection.helpers({
   getNumericPositiveCoordinatesOnly,
   getVisualIntakesOnly,
   getStimuliOnly,
-  getNonDuplicateCoordinatesOnly,
   getGazepoints,
   getFixations,
   makeGazepoints,

@@ -11,7 +11,6 @@ export default async function process() {
   delete this.fileFormat;
   delete this.rawRowCount;
   delete this.gazepointCount;
-  delete this.dupGazepointCount;
   delete this.fixationCount;
 
   Datafiles.update({ _id: this._id }, { $set: { status: 'preprocessing' } });

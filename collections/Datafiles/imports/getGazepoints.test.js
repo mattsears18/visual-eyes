@@ -1,4 +1,5 @@
 import { Factory } from 'meteor/dburles:factory';
+import helpers from '../../../lib/helpers';
 
 require('../../factories.test');
 const { expect } = require('chai');
@@ -115,12 +116,46 @@ if (Meteor.isServer) {
           category: 'Visual Intake',
         }, // good
         {
+          timestamp: '4',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName',
+          category: 'Visual Intake',
+        }, // duplicate
+        {
+          timestamp: '5',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName',
+          category: 'Visual Intake',
+        }, // duplicate
+        {
+          timestamp: '9',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName',
+          category: 'Visual Intake',
+        }, // duplicate
+        {
+          timestamp: '10',
+          x: '100',
+          y: '100',
+          category: 'Visual Intake',
+        }, // no stimulus
+        {
           timestamp: '11',
           x: '100',
           y: '100',
           stimulusName: 'someName1',
           category: 'Visual Intake',
         }, // good
+        {
+          timestamp: '12',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName1',
+          category: 'Visual Intake',
+        }, // duplicate
         {
           timestamp: '13',
           x: '100',
@@ -137,8 +172,7 @@ if (Meteor.isServer) {
       const expectedRawRowCount = 12271; // verified in MS Excel
       const expectedIntegerRowCount = 9115; // verified in MS Excel
       const expectedVisualRowCount = 9115; // verified in MS Excel
-      const expectedDupGazepointCount = 3218; // verified in MS Excel
-      const expectedGazepointCount = 1223; // verified in MS Excel
+      const expectedGazepointCount = 3218; // verified in MS Excel
 
       it(`gets ${helpers.formatNumber(
         expectedGazepointCount,
@@ -162,7 +196,6 @@ if (Meteor.isServer) {
         expect(datafile.rawRowCount).to.equal(expectedRawRowCount);
         expect(datafile.integerRowCount).to.equal(expectedIntegerRowCount);
         expect(datafile.visualRowCount).to.equal(expectedVisualRowCount);
-        expect(datafile.dupGazepointCount).to.equal(expectedDupGazepointCount);
         expect(datafile.gazepointCount).to.equal(expectedGazepointCount);
       });
 
@@ -178,9 +211,6 @@ if (Meteor.isServer) {
         expect(dbDatafile.rawRowCount).to.equal(expectedRawRowCount);
         expect(dbDatafile.integerRowCount).to.equal(expectedIntegerRowCount);
         expect(dbDatafile.visualRowCount).to.equal(expectedVisualRowCount);
-        expect(dbDatafile.dupGazepointCount).to.equal(
-          expectedDupGazepointCount,
-        );
         expect(dbDatafile.gazepointCount).to.equal(expectedGazepointCount);
       });
 
@@ -196,7 +226,6 @@ if (Meteor.isServer) {
         expect(dbDatafile.rawRowCount).to.be.an('undefined');
         expect(dbDatafile.integerRowCount).to.be.an('undefined');
         expect(dbDatafile.visualRowCount).to.be.an('undefined');
-        expect(dbDatafile.dupGazepointCount).to.be.an('undefined');
         expect(dbDatafile.gazepointCount).to.be.an('undefined');
       });
     });
@@ -205,8 +234,7 @@ if (Meteor.isServer) {
       const expectedRawRowCount = 12742; // verified in MS Excel
       const expectedIntegerRowCount = 10289; // verified in MS Excel
       const expectedVisualRowCount = 7513; // verified in MS Excel
-      const expectedDupGazepointCount = 2948; // verified in MS Excel
-      const expectedGazepointCount = 205; // verified in MS Excel
+      const expectedGazepointCount = 2948; // verified in MS Excel
 
       it(`gets ${helpers.formatNumber(
         expectedGazepointCount,
@@ -226,7 +254,6 @@ if (Meteor.isServer) {
         expect(datafile.rawRowCount).to.equal(expectedRawRowCount);
         expect(datafile.integerRowCount).to.equal(expectedIntegerRowCount);
         expect(datafile.visualRowCount).to.equal(expectedVisualRowCount);
-        expect(datafile.dupGazepointCount).to.equal(expectedDupGazepointCount);
         expect(datafile.gazepointCount).to.equal(expectedGazepointCount);
       });
 
@@ -240,9 +267,6 @@ if (Meteor.isServer) {
         expect(dbDatafile.rawRowCount).to.equal(expectedRawRowCount);
         expect(dbDatafile.integerRowCount).to.equal(expectedIntegerRowCount);
         expect(dbDatafile.visualRowCount).to.equal(expectedVisualRowCount);
-        expect(dbDatafile.dupGazepointCount).to.equal(
-          expectedDupGazepointCount,
-        );
         expect(dbDatafile.gazepointCount).to.equal(expectedGazepointCount);
       });
 
@@ -256,7 +280,6 @@ if (Meteor.isServer) {
         expect(dbDatafile.rawRowCount).to.be.an('undefined');
         expect(dbDatafile.integerRowCount).to.be.an('undefined');
         expect(dbDatafile.visualRowCount).to.be.an('undefined');
-        expect(dbDatafile.dupGazepointCount).to.be.an('undefined');
         expect(dbDatafile.gazepointCount).to.be.an('undefined');
       });
     });

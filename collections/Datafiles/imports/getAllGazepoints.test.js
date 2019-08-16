@@ -7,62 +7,130 @@ if (Meteor.isServer) {
       const datafile = Factory.create('imotionsDatafile');
       const rows = [
         {
-          timestamp: '1', x: '-3', y: '100', stimulusName: 'someName', category: 'Visual Intake',
+          timestamp: '1',
+          x: '-3',
+          y: '100',
+          stimulusName: 'someName',
+          category: 'Visual Intake',
         }, // negative
         {
-          timestamp: '2', x: '100', y: 'dsfdgry', stimulusName: 'someName', category: 'Visual Intake',
+          timestamp: '2',
+          x: '100',
+          y: 'dsfdgry',
+          stimulusName: 'someName',
+          category: 'Visual Intake',
         }, // non numeric
         {
-          timestamp: '3', x: '100', y: '100', stimulusName: 'someName', category: 'Visual Intake',
+          timestamp: '3',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName',
+          category: 'Visual Intake',
         }, // good
         {
-          timestamp: '4', x: '100', y: '100', stimulusName: 'someName', category: 'Visual Intake',
+          timestamp: '4',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName',
+          category: 'Visual Intake',
         }, // duplicate
         {
-          timestamp: '5', x: '100', y: '100', stimulusName: 'someName', category: 'Visual Intake',
+          timestamp: '5',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName',
+          category: 'Visual Intake',
         }, // duplicate
         {
-          timestamp: '6', x: '100', y: '100', stimulusName: 'someName', category: 'Saccade',
+          timestamp: '6',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName',
+          category: 'Saccade',
         }, // non visual intake
         {
-          timestamp: '7', x: '100', y: '100', stimulusName: 'someName', category: 'Event',
+          timestamp: '7',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName',
+          category: 'Event',
         }, // non visual intake
         {
-          timestamp: '8', x: '100', y: '100', stimulusName: 'someName', category: 'Something Else',
+          timestamp: '8',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName',
+          category: 'Something Else',
         }, // non visual intake
         {
-          timestamp: '9', x: '100', y: '100', stimulusName: 'someName', category: 'Visual Intake',
+          timestamp: '9',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName',
+          category: 'Visual Intake',
         }, // duplicate
         {
-          timestamp: '10', x: '100', y: '100', category: 'Visual Intake',
+          timestamp: '10',
+          x: '100',
+          y: '100',
+          category: 'Visual Intake',
         }, // no stimulus
         {
-          timestamp: '11', x: '100', y: '100', stimulusName: 'someName1', category: 'Visual Intake',
+          timestamp: '11',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName1',
+          category: 'Visual Intake',
         }, // good
         {
-          timestamp: '12', x: '100', y: '100', stimulusName: 'someName1', category: 'Visual Intake',
+          timestamp: '12',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName1',
+          category: 'Visual Intake',
         }, // duplicate
         {
-          timestamp: '13', x: '100', y: '100', stimulusName: 'someName', category: 'Visual Intake',
+          timestamp: '13',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName',
+          category: 'Visual Intake',
         }, // good
         {
-          timestamp: '14', x: '100', y: '100', stimulusName: 'someName',
+          timestamp: '14',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName',
         }, // no category
       ];
 
       const expectedRows = [
         {
-          timestamp: '3', x: '100', y: '100', stimulusName: 'someName', category: 'Visual Intake',
+          timestamp: '3',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName',
+          category: 'Visual Intake',
         }, // good
         {
-          timestamp: '11', x: '100', y: '100', stimulusName: 'someName1', category: 'Visual Intake',
+          timestamp: '11',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName1',
+          category: 'Visual Intake',
         }, // good
         {
-          timestamp: '13', x: '100', y: '100', stimulusName: 'someName', category: 'Visual Intake',
+          timestamp: '13',
+          x: '100',
+          y: '100',
+          stimulusName: 'someName',
+          category: 'Visual Intake',
         }, // good
       ];
 
-      expect(await datafile.getAllGazepoints({ data: rows })).to.eql(expectedRows);
+      expect(await datafile.getAllGazepoints({ data: rows })).to.eql(
+        expectedRows,
+      );
     });
 
     describe('iMotions', () => {
@@ -72,9 +140,13 @@ if (Meteor.isServer) {
       const expectedDupGazepointCount = 3218; // verified in MS Excel
       const expectedGazepointCount = 1223; // verified in MS Excel
 
-      it(`gets ${helpers.formatNumber(expectedGazepointCount)} real iMotions gazepoints`, async () => {
+      it(`gets ${helpers.formatNumber(
+        expectedGazepointCount,
+      )} real iMotions gazepoints`, async () => {
         const study = Factory.create('study', { fixationsOnly: false });
-        const datafile = Factory.create('imotionsDatafile', { studyId: study._id });
+        const datafile = Factory.create('imotionsDatafile', {
+          studyId: study._id,
+        });
 
         const points = await datafile.getAllGazepoints({});
         expect(points.length).to.equal(expectedGazepointCount);
@@ -82,7 +154,9 @@ if (Meteor.isServer) {
 
       it('sets the point stats on the datafile instance', async () => {
         const study = Factory.create('study', { fixationsOnly: false });
-        const datafile = Factory.create('imotionsDatafile', { studyId: study._id });
+        const datafile = Factory.create('imotionsDatafile', {
+          studyId: study._id,
+        });
 
         const points = await datafile.getAllGazepoints({});
         expect(datafile.rawRowCount).to.equal(expectedRawRowCount);
@@ -94,7 +168,9 @@ if (Meteor.isServer) {
 
       it('saves the point stats to the database', async () => {
         const study = Factory.create('study', { fixationsOnly: false });
-        const datafile = Factory.create('imotionsDatafile', { studyId: study._id });
+        const datafile = Factory.create('imotionsDatafile', {
+          studyId: study._id,
+        });
 
         const points = await datafile.getAllGazepoints({ saveStats: true });
         const dbDatafile = Datafiles.findOne({ _id: datafile._id });
@@ -102,13 +178,17 @@ if (Meteor.isServer) {
         expect(dbDatafile.rawRowCount).to.equal(expectedRawRowCount);
         expect(dbDatafile.integerRowCount).to.equal(expectedIntegerRowCount);
         expect(dbDatafile.visualRowCount).to.equal(expectedVisualRowCount);
-        expect(dbDatafile.dupGazepointCount).to.equal(expectedDupGazepointCount);
+        expect(dbDatafile.dupGazepointCount).to.equal(
+          expectedDupGazepointCount,
+        );
         expect(dbDatafile.gazepointCount).to.equal(expectedGazepointCount);
       });
 
       it('does NOT save the point stats to the database', async () => {
         const study = Factory.create('study', { fixationsOnly: false });
-        const datafile = Factory.create('imotionsDatafile', { studyId: study._id });
+        const datafile = Factory.create('imotionsDatafile', {
+          studyId: study._id,
+        });
 
         const points = await datafile.getAllGazepoints({});
         const dbDatafile = Datafiles.findOne({ _id: datafile._id });
@@ -128,7 +208,9 @@ if (Meteor.isServer) {
       const expectedDupGazepointCount = 2948; // verified in MS Excel
       const expectedGazepointCount = 205; // verified in MS Excel
 
-      it(`gets ${helpers.formatNumber(expectedGazepointCount)} real SMI gazepoints`, async () => {
+      it(`gets ${helpers.formatNumber(
+        expectedGazepointCount,
+      )} real SMI gazepoints`, async () => {
         const study = Factory.create('study', { fixationsOnly: false });
         const datafile = Factory.create('smiDatafile', { studyId: study._id });
 
@@ -158,7 +240,9 @@ if (Meteor.isServer) {
         expect(dbDatafile.rawRowCount).to.equal(expectedRawRowCount);
         expect(dbDatafile.integerRowCount).to.equal(expectedIntegerRowCount);
         expect(dbDatafile.visualRowCount).to.equal(expectedVisualRowCount);
-        expect(dbDatafile.dupGazepointCount).to.equal(expectedDupGazepointCount);
+        expect(dbDatafile.dupGazepointCount).to.equal(
+          expectedDupGazepointCount,
+        );
         expect(dbDatafile.gazepointCount).to.equal(expectedGazepointCount);
       });
 

@@ -2,7 +2,7 @@ import '../../factories.test';
 import { Factory } from 'meteor/dburles:factory';
 import { expect } from 'chai';
 
-describe.only('Analyses.getGlanceEndIndex()', () => {
+describe('Analyses.getGlanceEndIndex()', () => {
   it('has no stimulusId', async () => {
     const analysis = Factory.create('analysis', {
       minGlanceDuration: 5000,

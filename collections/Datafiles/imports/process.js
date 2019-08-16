@@ -32,37 +32,45 @@ export default async function process() {
   Gazepoints.remove({ datafileId: this._id });
 
   // console.log('pull datafileId from any old stimuli');
-  Stimuli.update({},
-    { $pull: { datafileIds: this._id } },
-    { multi: true });
+  Stimuli.update({}, { $pull: { datafileIds: this._id } }, { multi: true });
 
   // console.log('pull datafileId from any old participants');
-  Participants.update({},
+  Participants.update(
+    {},
     { $pull: { datafileIds: this._id } },
-    { multi: true });
+    { multi: true },
+  );
 
   this.participantId = helpers.findOrInsert('participants', {
     name: this.getName(),
     studyId: this.studyId,
   });
 
-  Participants.update({ _id: this.participantId }, {
-    $addToSet: { datafileIds: this._id },
-  });
-
-  Datafiles.update({ _id: this._id }, {
-    $set: {
-      participantId: this.participantId,
+  Participants.update(
+    { _id: this.participantId },
+    {
+      $addToSet: { datafileIds: this._id },
     },
-  }, (err, num) => {
-    if (err) {
-      console.log(err);
-    }
-  });
+  );
+
+  Datafiles.update(
+    { _id: this._id },
+    {
+      $set: {
+        participantId: this.participantId,
+      },
+    },
+    (err, num) => {
+      if (err) {
+        console.log(err);
+      }
+    },
+  );
 
   Datafiles.update({ _id: this._id }, { $set: { status: 'processing' } });
 
   const gazepoints = await this.makeGazepoints({ saveStats: true });
+  // const fixations = await this.makeFixations({ saveStats: true });
   // console.log('made ' + helpers.formatNumber(gazepoints.count()) + ' gazepoints');
 
   this.status = 'processed';

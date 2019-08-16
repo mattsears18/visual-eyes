@@ -10,6 +10,8 @@ export default async function getAllGazepoints({
     data = await this.getRenamedRows();
   }
 
+  console.log(data);
+
   this.rawRowCount = parseInt(data.length);
 
   const integerRows = await this.getNumericPositiveCoordinatesOnly(data);
@@ -45,5 +47,5 @@ export default async function getAllGazepoints({
     );
   }
 
-  return allGazepoints;
+  return dupGazepoints;
 }

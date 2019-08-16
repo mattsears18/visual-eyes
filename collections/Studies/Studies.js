@@ -31,14 +31,6 @@ Schemas.Study = new SimpleSchema(
       },
       optional: true,
     },
-    fixationsOnly: {
-      type: Boolean,
-      label: 'Use Fixations Instead of Gaze Points (Faster)',
-      defaultValue: false,
-      autoform: {
-        type: 'boolean-checkbox',
-      },
-    },
   },
   { tracker: Tracker },
 );

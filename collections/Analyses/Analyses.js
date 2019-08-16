@@ -43,9 +43,24 @@ Schemas.Analysis = new SimpleSchema(
         defaultValue: 'iso15007',
       },
     },
+    fixationsOnly: {
+      type: Boolean,
+      label:
+        'Use Fixations Instead of Gaze Points (Faster, ISO 15007 Compliant)',
+      defaultValue: false,
+      autoform: {
+        type: 'boolean-checkbox',
+      },
+    },
+    minFixationDuration: {
+      type: Number,
+      label: 'Minimum Glance Duration (ms) (ISO 15007 Standard = 120ms)',
+      optional: true,
+      defaultValue: 120,
+    },
     minGlanceDuration: {
       type: Number,
-      label: 'Minimum Glance Duration (ms)',
+      label: 'Minimum Glance Duration (ms) (ISO 15007 Standard = 120ms)',
       optional: true,
       defaultValue: 120,
     },

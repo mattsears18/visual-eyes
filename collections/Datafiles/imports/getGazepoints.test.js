@@ -105,6 +105,27 @@ if (Meteor.isServer) {
           y: '100',
           stimulusName: 'someName',
         }, // no category
+        {
+          timestamp: '15',
+          x: '100',
+          y: '100',
+          stimulusName: '',
+          category: 'Visual Intake',
+        }, // blank stimulus name
+        {
+          timestamp: '16',
+          x: '100',
+          y: '100',
+          stimulusName: '.avi',
+          category: 'Visual Intake',
+        }, // video stimulus
+        {
+          timestamp: '17',
+          x: '100',
+          y: '100',
+          stimulusName: 'smiGlasses',
+          category: 'Visual Intake',
+        }, // glasses stimulus
       ];
 
       const expectedRows = [
@@ -163,6 +184,13 @@ if (Meteor.isServer) {
           stimulusName: 'someName',
           category: 'Visual Intake',
         }, // good
+        {
+          timestamp: '15',
+          x: '100',
+          y: '100',
+          stimulusName: '',
+          category: 'Visual Intake',
+        }, // blank stimulus name
       ];
 
       expect(await datafile.getGazepoints({ data: rows })).to.eql(expectedRows);
@@ -170,8 +198,7 @@ if (Meteor.isServer) {
 
     describe('iMotions', () => {
       const expectedRawRowCount = 12271; // verified in MS Excel
-      const expectedIntegerRowCount = 9115; // verified in MS Excel
-      const expectedVisualRowCount = 9115; // verified in MS Excel
+      const expectedIntegerRowCount = 3218; // verified in MS Excel
       const expectedGazepointCount = 3218; // verified in MS Excel
 
       it(`gets ${helpers.formatNumber(
@@ -182,7 +209,7 @@ if (Meteor.isServer) {
           studyId: study._id,
         });
 
-        const points = await datafile.getGazepoints({});
+        const points = await datafile.getGazepoints();
         expect(points.length).to.equal(expectedGazepointCount);
       });
 
@@ -192,10 +219,9 @@ if (Meteor.isServer) {
           studyId: study._id,
         });
 
-        const points = await datafile.getGazepoints({});
+        const points = await datafile.getGazepoints();
         expect(datafile.rawRowCount).to.equal(expectedRawRowCount);
         expect(datafile.integerRowCount).to.equal(expectedIntegerRowCount);
-        expect(datafile.visualRowCount).to.equal(expectedVisualRowCount);
         expect(datafile.gazepointCount).to.equal(expectedGazepointCount);
       });
 
@@ -205,35 +231,18 @@ if (Meteor.isServer) {
           studyId: study._id,
         });
 
-        const points = await datafile.getGazepoints({ saveStats: true });
+        const points = await datafile.getGazepoints();
         const dbDatafile = Datafiles.findOne({ _id: datafile._id });
 
         expect(dbDatafile.rawRowCount).to.equal(expectedRawRowCount);
         expect(dbDatafile.integerRowCount).to.equal(expectedIntegerRowCount);
-        expect(dbDatafile.visualRowCount).to.equal(expectedVisualRowCount);
         expect(dbDatafile.gazepointCount).to.equal(expectedGazepointCount);
-      });
-
-      it('does NOT save the point stats to the database', async () => {
-        const study = Factory.create('study', { fixationsOnly: false });
-        const datafile = Factory.create('imotionsDatafile', {
-          studyId: study._id,
-        });
-
-        const points = await datafile.getGazepoints({});
-        const dbDatafile = Datafiles.findOne({ _id: datafile._id });
-
-        expect(dbDatafile.rawRowCount).to.be.an('undefined');
-        expect(dbDatafile.integerRowCount).to.be.an('undefined');
-        expect(dbDatafile.visualRowCount).to.be.an('undefined');
-        expect(dbDatafile.gazepointCount).to.be.an('undefined');
       });
     });
 
     describe('SMI', () => {
       const expectedRawRowCount = 12742; // verified in MS Excel
-      const expectedIntegerRowCount = 10289; // verified in MS Excel
-      const expectedVisualRowCount = 7513; // verified in MS Excel
+      const expectedIntegerRowCount = 4326; // verified in MS Excel
       const expectedGazepointCount = 2948; // verified in MS Excel
 
       it(`gets ${helpers.formatNumber(
@@ -242,7 +251,7 @@ if (Meteor.isServer) {
         const study = Factory.create('study', { fixationsOnly: false });
         const datafile = Factory.create('smiDatafile', { studyId: study._id });
 
-        const points = await datafile.getGazepoints({});
+        const points = await datafile.getGazepoints();
         expect(points.length).to.equal(expectedGazepointCount);
       });
 
@@ -250,10 +259,9 @@ if (Meteor.isServer) {
         const study = Factory.create('study', { fixationsOnly: false });
         const datafile = Factory.create('smiDatafile', { studyId: study._id });
 
-        const points = await datafile.getGazepoints({});
+        const points = await datafile.getGazepoints();
         expect(datafile.rawRowCount).to.equal(expectedRawRowCount);
         expect(datafile.integerRowCount).to.equal(expectedIntegerRowCount);
-        expect(datafile.visualRowCount).to.equal(expectedVisualRowCount);
         expect(datafile.gazepointCount).to.equal(expectedGazepointCount);
       });
 
@@ -261,26 +269,12 @@ if (Meteor.isServer) {
         const study = Factory.create('study', { fixationsOnly: false });
         const datafile = Factory.create('smiDatafile', { studyId: study._id });
 
-        const points = await datafile.getGazepoints({ saveStats: true });
+        const points = await datafile.getGazepoints();
         const dbDatafile = Datafiles.findOne({ _id: datafile._id });
 
         expect(dbDatafile.rawRowCount).to.equal(expectedRawRowCount);
         expect(dbDatafile.integerRowCount).to.equal(expectedIntegerRowCount);
-        expect(dbDatafile.visualRowCount).to.equal(expectedVisualRowCount);
         expect(dbDatafile.gazepointCount).to.equal(expectedGazepointCount);
-      });
-
-      it('does NOT save the point stats to the database', async () => {
-        const study = Factory.create('study', { fixationsOnly: false });
-        const datafile = Factory.create('smiDatafile', { studyId: study._id });
-
-        const points = await datafile.getGazepoints({});
-        const dbDatafile = Datafiles.findOne({ _id: datafile._id });
-
-        expect(dbDatafile.rawRowCount).to.be.an('undefined');
-        expect(dbDatafile.integerRowCount).to.be.an('undefined');
-        expect(dbDatafile.visualRowCount).to.be.an('undefined');
-        expect(dbDatafile.gazepointCount).to.be.an('undefined');
       });
     });
   });

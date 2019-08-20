@@ -1,4 +1,6 @@
-require('./../../factories.test');
+import { Factory } from 'meteor/dburles:factory';
+
+require('../../factories.test');
 const { expect } = require('chai');
 
 if (Meteor.isServer) {
@@ -17,9 +19,7 @@ if (Meteor.isServer) {
 
       expect(datafile.rawRowCount).to.exist;
       expect(datafile.integerRowCount).to.exist;
-      expect(datafile.visualRowCount).to.exist;
       expect(datafile.gazepointCount).to.exist;
-      expect(datafile.fixationCount).to.exist;
 
       expect(datafile.status).to.equal('processed');
 

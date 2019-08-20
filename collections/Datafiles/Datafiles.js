@@ -38,10 +38,6 @@ Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
     type: Number,
     optional: true,
   },
-  visualRowCount: {
-    type: Number,
-    optional: true,
-  },
   gazepointCount: {
     type: Number,
     optional: true,

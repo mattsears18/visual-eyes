@@ -24,7 +24,6 @@ export default function reprocessDatafiles() {
             fileFormat: 1,
             rawRowCount: 1,
             integerRowCount: 1,
-            visualRowCount: 1,
             gazepointCount: 1,
             fixationCount: 1,
           },

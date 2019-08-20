@@ -1,25 +1,17 @@
 import helpers from '../../../lib/helpers';
 
-export default async function makeGazepoints({
-  data = null,
-  saveStats = false,
-}) {
-  if (!data) {
-    data = await this.getGazepoints({ saveStats });
-  }
-
-  if (saveStats && !this.study().fixationsOnly) {
-    // save the fixationCount
-    const fixations = await this.getFixations({ saveStats });
-  }
+export default async function makeGazepoints(opts) {
+  const _data = opts && opts.data ? [...opts.data] : await this.getGazepoints();
 
   const sdPairs = [];
 
-  data.forEach((point) => {
+  _data.forEach((p) => {
+    const point = Object.assign({}, p);
     point.datafileId = this._id;
     point.fileFormat = this.fileFormat;
+    point.studyId = this.studyId;
+    point.participantId = this.participantId;
 
-    (point.studyId = this.studyId), (point.participantId = this.participantId);
     if (!point.participantId) {
       point.participantId = helpers.findOrInsert('participants', {
         name: this.getName(),

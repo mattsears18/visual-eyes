@@ -1,11 +1,10 @@
 // import helpers from '../../../lib/helpers';
 
 // export default async function makeFixations({
-//   data = null,
-//   saveStats = false,
+//   data = null
 // }) {
 //   if (!data) {
-//     const gazepoints = await this.getGazepoints({ saveStats });
+//     const gazepoints = await this.getGazepoints();
 //   }
 
 //   const sdPairs = [];

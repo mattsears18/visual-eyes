@@ -3,9 +3,6 @@ import helpers from '../../../lib/helpers';
 const csv = require('csvtojson');
 
 export default async function process() {
-  // console.log('================================================================================');
-  // console.log('datafiles.process - datafileId: ' + this._id);
-
   this.status = 'needsProcessing';
   delete this.headersRemoved;
   delete this.fileFormat;
@@ -68,8 +65,8 @@ export default async function process() {
 
   Datafiles.update({ _id: this._id }, { $set: { status: 'processing' } });
 
-  const gazepoints = await this.makeGazepoints({ saveStats: true });
-  // const fixations = await this.makeFixations({ saveStats: true });
+  const gazepoints = await this.makeGazepoints();
+  // const fixations = await this.makeFixations();
   // console.log('made ' + helpers.formatNumber(gazepoints.count()) + ' gazepoints');
 
   this.status = 'processed';

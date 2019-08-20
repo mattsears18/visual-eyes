@@ -1,3 +1,4 @@
+import { Factory } from 'meteor/dburles:factory';
 import helpers from '../../../lib/helpers';
 
 require('./../../factories.test');
@@ -56,22 +57,10 @@ describe('Datafiles.getFixations()', () => {
           studyId: study._id,
         });
 
-        const points = await datafile.getFixations({ saveStats: true });
+        const points = await datafile.getFixations();
         const dbDatafile = Datafiles.findOne({ _id: datafile._id });
 
         expect(dbDatafile.fixationCount).to.equal(expectedFixationCount);
-      });
-
-      it('does NOT save the fixation count to the database', async () => {
-        const study = Factory.create('study', { fixationsOnly: true });
-        const datafile = Factory.create('imotionsDatafile', {
-          studyId: study._id,
-        });
-
-        const points = await datafile.getFixations({});
-        const dbDatafile = Datafiles.findOne({ _id: datafile._id });
-
-        expect(dbDatafile.fixationCount).to.be.an('undefined');
       });
     });
 

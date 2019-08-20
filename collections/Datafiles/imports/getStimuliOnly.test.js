@@ -1,4 +1,6 @@
-require('./../../factories.test');
+import { Factory } from 'meteor/dburles:factory';
+
+require('../../factories.test');
 const { expect } = require('chai');
 
 describe('Datafiles.getStimuliOnly()', () => {
@@ -8,7 +10,7 @@ describe('Datafiles.getStimuliOnly()', () => {
     expect(await datafile.getStimuliOnly(rows)).to.eql(rows);
   });
 
-  it('removes rows with stimulus name that contains \'.avi\'', async () => {
+  it("removes rows with stimulus name that contains '.avi'", async () => {
     const datafile = Factory.create('imotionsDatafile');
     const rows = [
       { stimulusName: '.avi', x: 1 },
@@ -18,13 +20,11 @@ describe('Datafiles.getStimuliOnly()', () => {
       { stimulusName: 'someName', x: 5 },
     ];
 
-    const expectedRows = [
-      { stimulusName: 'someName', x: 5 },
-    ];
+    const expectedRows = [{ stimulusName: 'someName', x: 5 }];
     expect(await datafile.getStimuliOnly(rows)).to.eql(expectedRows);
   });
 
-  it('removes rows with stimulus name that contains \'smiGlasses\'', async () => {
+  it("removes rows with stimulus name that contains 'smiGlasses'", async () => {
     const datafile = Factory.create('imotionsDatafile');
     const rows = [
       { stimulusName: 'smiGlasses', x: 1 },
@@ -34,13 +34,11 @@ describe('Datafiles.getStimuliOnly()', () => {
       { stimulusName: 'someName', x: 5 },
     ];
 
-    const expectedRows = [
-      { stimulusName: 'someName', x: 5 },
-    ];
+    const expectedRows = [{ stimulusName: 'someName', x: 5 }];
     expect(await datafile.getStimuliOnly(rows)).to.eql(expectedRows);
   });
 
-  it('removes rows with blank or undefined stimulusName', async () => {
+  it('does not remove rows with blank or undefined stimulusName', async () => {
     const datafile = Factory.create('imotionsDatafile');
     const rows = [
       { x: 1 },
@@ -48,11 +46,18 @@ describe('Datafiles.getStimuliOnly()', () => {
       { stimulusName: '', x: 3 },
       { stimulusName: undefined, x: 4 },
       { stimulusName: 'someName', x: 5 },
+      { stimulusName: null, x: 6 },
     ];
 
     const expectedRows = [
+      { x: 1 },
+      { x: 2 },
+      { stimulusName: '', x: 3 },
+      { stimulusName: undefined, x: 4 },
       { stimulusName: 'someName', x: 5 },
+      { stimulusName: null, x: 6 },
     ];
+
     expect(await datafile.getStimuliOnly(rows)).to.eql(expectedRows);
   });
 });

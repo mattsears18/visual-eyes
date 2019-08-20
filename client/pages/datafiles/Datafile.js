@@ -7,11 +7,11 @@ Template.Datafile.onCreated(function() {
 });
 
 Template.BreadCrumbs.helpers({
-  datafile: () => Datafiles.collection.findOne(),
+  datafile: () => Datafiles.collection.findOne({ _id: FlowRouter.getParam('datafileId') }),
 });
 
 Template.Datafile.helpers({
-  datafile: () => Datafiles.collection.findOne(),
+  datafile: () => Datafiles.collection.findOne({ _id: FlowRouter.getParam('datafileId') }),
 });
 
 Template.Datafile.events({

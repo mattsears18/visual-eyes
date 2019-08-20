@@ -91,6 +91,10 @@ export default function makeGlances({ participantId, points }) {
             // console.log(err.details);
             startIndex = err.details.nextIndex;
             // console.log(`endIndex: ${endIndex} nextStartIndex: ${startIndex}`);
+          } else if (err.error === 'noStimulusFound') {
+            console.log(
+              'stimulus not found - delete all gazepoints with this stimulusId',
+            );
           } else {
             console.log(err);
           }

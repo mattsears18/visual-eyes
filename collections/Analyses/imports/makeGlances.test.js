@@ -16,37 +16,6 @@ describe('Analyses.makeGlances()', () => {
     }).to.throw('noParticipantFound');
   });
 
-  // TODO - move this to getGlanceEndIndex()
-  // it('has no stimulusId', () => {
-  //   const analysis = Factory.create('analysis');
-
-  //   const points = [
-  //     { timestamp: 0 },
-  //     { timestamp: 1000 },
-  //     { timestamp: 2000 },
-  //     { timestamp: 3000 },
-  //   ];
-
-  //   expect(() => {
-  //     analysis.makeGlances({
-  //       participantId: Factory.create('participant')._id,
-  //       points,
-  //     });
-  //   }).to.throw('noStimulusId');
-  // });
-
-  // TODO - move this to getGlanceEndIndex()
-  // it('has a nonexistent stimulus', () => {
-  //   const analysis = Factory.create('analysis');
-  //   expect(() => {
-  //     analysis.makeGlances({
-  //       participantId: Factory.create('participant')._id,
-  //       stimulusId: 'abc',
-  //       points: dummyPoints,
-  //     });
-  //   }).to.throw('noStimulusFound');
-  // });
-
   it('makes 2 glances', () => {
     const study = Factory.create('study');
     const datafile = Factory.create('imotionsDatafile', { studyId: study._id });

@@ -2,7 +2,7 @@ import '../../factories.test';
 import { Factory } from 'meteor/dburles:factory';
 import { expect } from 'chai';
 
-describe('Analyses.getGlanceEndIndex()', () => {
+describe.only('Analyses.getGlanceEndIndex()', () => {
   it('has has a startIndex that is too high', async () => {
     const analysis = Factory.create('analysis', {
       minGlanceDuration: 10000,
@@ -58,30 +58,29 @@ describe('Analyses.getGlanceEndIndex()', () => {
     }).to.throw('noStimulusFound');
   });
 
-  it('gets the endIndex', async () => {
-    const analysis = Factory.create('analysis', {
-      minGlanceDuration: 5000,
-      maxGlanceGapDuration: 5000,
+  describe('type !== iso15007', () => {
+    it('gets the endIndex', async () => {
+      const analysis = Factory.create('analysis', {
+        minGlanceDuration: 5000,
+        maxGlanceGapDuration: 5000,
+      });
+
+      const stimulus = Factory.create('stimulus');
+
+      const points = [
+        { timestamp: 0, stimulusId: stimulus._id },
+        { timestamp: 1000, stimulusId: stimulus._id },
+        { timestamp: 2000, stimulusId: stimulus._id },
+        { timestamp: 3000, stimulusId: stimulus._id },
+        { timestamp: 4000, stimulusId: stimulus._id },
+        { timestamp: 5000, stimulusId: stimulus._id },
+        { timestamp: 6000, stimulusId: stimulus._id },
+        { timestamp: 7000, stimulusId: stimulus._id },
+        { timestamp: 8000, stimulusId: stimulus._id },
+        { timestamp: 9000, stimulusId: stimulus._id },
+      ];
+      expect(analysis.getGlanceEndIndex({ gazepoints: points })).to.equal(9);
     });
-
-    const stimulus = Factory.create('stimulus');
-
-    const points = [
-      { timestamp: 0, stimulusId: stimulus._id },
-      { timestamp: 1000, stimulusId: stimulus._id },
-      { timestamp: 2000, stimulusId: stimulus._id },
-      { timestamp: 3000, stimulusId: stimulus._id },
-      { timestamp: 4000, stimulusId: stimulus._id },
-      { timestamp: 5000, stimulusId: stimulus._id },
-      { timestamp: 6000, stimulusId: stimulus._id },
-      { timestamp: 7000, stimulusId: stimulus._id },
-      { timestamp: 8000, stimulusId: stimulus._id },
-      { timestamp: 9000, stimulusId: stimulus._id },
-    ];
-    expect(analysis.getGlanceEndIndex({ gazepoints: points })).to.equal(9);
-  });
-
-  describe('type === custom', () => {
     it('exceeds the maxGlanceGapDuration', async () => {
       const analysis = Factory.create('analysis', {
         type: 'custom',
@@ -160,6 +159,7 @@ describe('Analyses.getGlanceEndIndex()', () => {
       expect(analysis.getGlanceEndIndex({ gazepoints: points })).to.equal(4);
     });
   });
+
   describe('type === iso15007', () => {
     it('has a large glance gap but thats okay!', () => {
       const analysis = Factory.create('analysis', {
@@ -209,7 +209,7 @@ describe('Analyses.getGlanceEndIndex()', () => {
       expect(analysis.getGlanceEndIndex({ gazepoints: points })).to.equal(4);
     });
 
-    it.only('ends when a gazepoint does not have a stimulus', () => {
+    it('ends when a gazepoint does not have a stimulus', () => {
       const analysis = Factory.create('analysis', {
         type: 'iso15007',
         minGlanceDuration: 1000,

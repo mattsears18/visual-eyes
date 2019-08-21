@@ -34,10 +34,10 @@
           Name
         </th>
         <th>
-          Minimum Glance Duration (ms)
+          Minimum Visit Duration (ms)
         </th>
         <th>
-          Maximum Glance Gap Duration (ms)
+          Maximum Visit Gap Duration (ms)
         </th>
         <th>
           Participants
@@ -46,7 +46,7 @@
           Stimuli
         </th>
         <th>
-          Glances
+          Visits
         </th>
         <th>
           Status
@@ -69,10 +69,10 @@
           }}</a>
         </td>
         <td>
-          {{ analysis.minGlanceDuration }}
+          {{ analysis.minVisitDuration }}
         </td>
         <td>
-          {{ analysis.maxGlanceGapDuration }}
+          {{ analysis.maxVisitGapDuration }}
         </td>
         <td>
           {{ analysis.participants.count }}
@@ -81,8 +81,8 @@
           {{ analysis.stimuli.count }}
         </td>
         <td>
-          {{#if analysis.glanceCount}}
-          {{ formatNumber analysis.glanceCount }}
+          {{#if analysis.visitCount}}
+          {{ formatNumber analysis.visitCount }}
           {{/if}}
         </td>
         <td>
@@ -103,8 +103,8 @@
           <span class="text-danger">
             <i
               class="fa fa-trash delete-analysis"
-              data-analysisid="{{ analysis._id }}"
-              data-analysisname="{{ analysis.name }}"
+              data-analysisId="{{ analysis._id }}"
+              data-analysisName="{{ analysis.name }}"
             ></i>
           </span>
         </td>

@@ -7,7 +7,7 @@ import Stimuli from '../collections/Stimuli/Stimuli';
 import Aois from '../collections/Aois/Aois';
 import Gazepoints from '../collections/Gazepoints/Gazepoints';
 import Participants from '../collections/Participants/Participants';
-import Glances from '../collections/Glances/Glances';
+import Visits from '../collections/Visits/Visits';
 import Variables from '../collections/Variables/Variables';
 
 export default function dbCleanup() {
@@ -177,14 +177,14 @@ export default function dbCleanup() {
         { participantId: { $nin: validParticipantIds } },
       ],
     };
-    if (Glances.find(query).count()) {
-      console.log('removing orphaned Glances...');
-      Glances.remove(query, (err, num) => {
+    if (Visits.find(query).count()) {
+      console.log('removing orphaned Visits...');
+      Visits.remove(query, (err, num) => {
         if (err && err.error !== 404) {
           console.log(err);
         }
         if (num) {
-          console.log(`${num} orphaned Glances removed.`);
+          console.log(`${num} orphaned Visits removed.`);
         }
       });
     }

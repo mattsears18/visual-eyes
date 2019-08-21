@@ -1,25 +1,25 @@
-Template.UpdateGlance.events({
+Template.UpdateVisit.events({
   'click .fa-close'() {
-    Session.set('updateGlance', false);
+    Session.set('updateVisit', false);
   },
 });
 
 AutoForm.hooks({
-  updateGlanceForm: {
+  updateVisitForm: {
     onSuccess(formType, result) {
-      Session.set('updateGlance', false);
+      Session.set('updateVisit', false);
     },
   },
 });
 
-Template.UpdateGlance.helpers({
+Template.UpdateVisit.helpers({
   deleteOnSuccess() {
     return function() {
-      FlowRouter.go('/glances');
+      FlowRouter.go('/visits');
     };
   },
   deleteBeforeRemove() {
-    return function (collection, id) {
+    return function(collection, id) {
       const doc = collection.findOne(id);
       if (confirm(`Really delete "${doc.name}"?`)) {
         this.remove();

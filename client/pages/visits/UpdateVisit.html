@@ -1,0 +1,20 @@
+<template name="UpdateVisit">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Edit Visit <i class="fa fa-close pull-right"></i></h3>
+    </div>
+    <div class="panel-body">
+      {{> quickForm collection="Visits" doc=visit id="updateVisitForm"
+        type="update" class="update-visit-form"}}
+
+      <!-- {{> quickForm collection="Visits" doc=visit id="updateVisitForm"
+        type="method" meteormethod="visits.update" class="update-visit-form"}} -->
+
+      {{#if visit.hasPermission 'destroy'}}
+        {{> quickRemoveButton collection="Visits" _id=visit._id
+          onSuccess=deleteOnSuccess beforeRemove=deleteBeforeRemove
+          id="destroyVisitform" class="btn btn-danger"}}
+      {{/if}}
+    </div>
+  </div>
+</template>

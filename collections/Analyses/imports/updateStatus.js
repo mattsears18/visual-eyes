@@ -1,22 +1,22 @@
 import { jStat } from 'jStat';
 
 export default function updateStatus() {
-  if (this.allGlancesProcessed() && this.status != 'processed') {
-    const glances = this.glances().fetch();
-    const glanceCount = glances.length;
-    let glanceDurationMean = 0;
-    let glanceDurationMedian = 0;
+  if (this.allVisitsProcessed() && this.status != 'processed') {
+    const visits = this.visits().fetch();
+    const visitCount = visits.length;
+    let visitDurationMean = 0;
+    let visitDurationMedian = 0;
 
-    if (glanceCount > 0) {
-      glanceDurationMean = jStat.mean(
-        glances.map(function(glance) {
-          return glance.duration;
+    if (visitCount > 0) {
+      visitDurationMean = jStat.mean(
+        visits.map(function(visit) {
+          return visit.duration;
         }),
       );
 
-      glanceDurationMedian = jStat.median(
-        glances.map(function(glance) {
-          return glance.duration;
+      visitDurationMedian = jStat.median(
+        visits.map(function(visit) {
+          return visit.duration;
         }),
       );
     }
@@ -26,17 +26,17 @@ export default function updateStatus() {
       {
         $set: {
           status: 'processed',
-          glanceCount,
-          glanceDurationMean,
-          glanceDurationMedian,
+          visitCount,
+          visitDurationMean,
+          visitDurationMedian,
         },
       },
     );
   } else {
-    const glanceCount = this.glances().count();
+    const visitCount = this.visits().count();
     Analyses.update(
       { _id: this._id },
-      { $set: { status: 'processing', glanceCount } },
+      { $set: { status: 'processing', visitCount } },
     );
   }
 }

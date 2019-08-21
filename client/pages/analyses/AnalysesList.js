@@ -27,8 +27,8 @@ Template.AnalysesList.events({
     });
   },
   'click .delete-analysis'(e, template) {
-    if (confirm(`Really delete "${e.target.dataset.analysisname}"?`)) {
-      Analyses.remove({ _id: e.target.dataset.analysisid });
+    if (confirm(`Really delete "${e.target.dataset.analysisName}"?`)) {
+      Analyses.remove({ _id: e.target.dataset.analysisId });
     }
   },
   'click .make-default-analyses'(e, template) {

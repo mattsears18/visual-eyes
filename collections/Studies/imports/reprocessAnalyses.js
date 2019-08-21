@@ -17,18 +17,18 @@ export default function reprocessAnalyses() {
         {
           $unset: {
             status: 1,
-            glanceCount: 1,
-            glanceDurationMean: 1,
-            glanceDurationMedian: 1,
+            visitCount: 1,
+            visitDurationMean: 1,
+            visitDurationMedian: 1,
           },
         },
       );
-      Meteor.call('analyses.makeGlanceJobsJob', {
+      Meteor.call('analyses.makeVisitJobsJob', {
         analysisId: analysis._id,
       });
 
       console.log(
-        `made glanceJobsJob for analysis: ${ai + 1} of ${analyses.length}`,
+        `made visitJobsJob for analysis: ${ai + 1} of ${analyses.length}`,
       );
     });
   }

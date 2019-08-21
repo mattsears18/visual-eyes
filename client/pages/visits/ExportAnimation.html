@@ -1,0 +1,76 @@
+<template name="ExportAnimation">
+  <div class="well">
+    <h4>
+      Export Convex Hull Data
+    </h4>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+          <label for="exportType">Export Type</label>
+          <select class="form-control export-type" id="exportType">
+            <option disabled selected>Select...</option>
+            <optgroup label="Group by Visit">
+              <option value="visitsCurrent">Current Visit</option>
+              {{!-- <option disabled value="visitsAllSingle"
+                >All Visits in Analysis - Single File</option
+              > --}}
+              <option value="visitsIndividualZip"
+                >All Visits in Analysis - Individual Files</option
+              >
+              <option value="visitsSummary">
+                Summary Stats with Participant Variables
+              </option>
+            </optgroup>
+            <optgroup label="Group by Participant">
+              <option value="participantsSummary"
+                >Summary Stats with Participant Variables</option
+              >
+            </optgroup>
+          </select>
+        </div>
+      </div>
+      {{#if samplingStepVisible}}
+        <div class="col-xs-4 col-md-2">
+          <div class="form-group">
+            <label for="samplingStep" class="control-label">Sampling Step
+            <a href="">
+              <span class="glyphicon glyphicon-question-sign"></span>
+            </a></label>
+            <div class="input-group">
+              <input
+                type="number"
+                min="0"
+                max="100"
+                class="form-control sampling-rate"
+                placeholder="Sampling Rate (%)"
+                value="{{ samplingStep }}"
+              />
+              <span class="input-group-addon">%</span>
+            </div>
+            <span class="help-block"></span>
+          </div>
+        </div>
+      {{/if}}
+    </div>
+    {{#if downloadButtonVisible}}
+      <div>
+        {{#if downloadButtonDisabled}}
+          <button class="btn btn-primary download-button" disabled>
+            <i class="fa fa-download"></i> Download .CSV File(s)
+            <i class="fa fa-spinner fa-spin"></i>
+          </button>
+        {{else}}
+          <button class="btn btn-primary download-button">
+            <i class="fa fa-download"></i> Download .CSV File(s)
+          </button>
+        {{/if}}
+      
+        {{#if metricsButtonVisible}}
+          <button class="btn btn-default metrics-button m-l-10">
+            <i class="fa fa-list"></i> Select Metrics
+          </button>
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+</template>

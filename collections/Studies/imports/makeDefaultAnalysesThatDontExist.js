@@ -2,7 +2,7 @@ export default function makeDefaultAnalysesThatDontExist() {
   if (Meteor.isServer) {
     console.log('study.makeDefaultAnalysesThatDontExist');
   }
-  const minGlanceDurations = [
+  const minVisitDurations = [
     60,
     80,
     100,
@@ -19,9 +19,9 @@ export default function makeDefaultAnalysesThatDontExist() {
     // 20000,
     // 30000,
   ];
-  const maxGlanceGapDurationDurations = [
+  const maxVisitGapDurationDurations = [
     // 8.33333,
-    // 16.66667, // no good in our experiement
+    // 16.66667, // no good in our experiment
     20,
     30,
     40,
@@ -49,19 +49,19 @@ export default function makeDefaultAnalysesThatDontExist() {
 
   const existingAnalyses = Analyses.find({ studyId: this._id }).fetch();
 
-  minGlanceDurations.forEach((minGlanceDuration) => {
-    maxGlanceGapDurationDurations.forEach((maxGlanceGapDuration) => {
+  minVisitDurations.forEach((minVisitDuration) => {
+    maxVisitGapDurationDurations.forEach((maxVisitGapDuration) => {
       const matches = existingAnalyses.find(
-        analysis => analysis.minGlanceDuration === minGlanceDuration
-          && analysis.maxGlanceGapDuration === maxGlanceGapDuration,
+        analysis => analysis.minVisitDuration === minVisitDuration
+          && analysis.maxVisitGapDuration === maxVisitGapDuration,
       );
 
       if (typeof matches === 'undefined') {
         Analyses.insert({
           studyId: this._id,
           name: 'Analysis',
-          minGlanceDuration,
-          maxGlanceGapDuration,
+          minVisitDuration,
+          maxVisitGapDuration,
           type: 'custom',
           ignoreOutsideImage: true,
           participantIds: this.participants().map(

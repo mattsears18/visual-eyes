@@ -12,21 +12,21 @@ export default function saveCSV(opt) {
   const { type } = opt || {};
   const includeIncompleteText = opt.includeIncomplete ? 'True' : 'False';
 
-  if (type === 'individualZip' && groupBy === 'glance') {
+  if (type === 'individualZip' && groupBy === 'visit') {
     // eslint-disable-next-line no-lonely-if
-    const glances = Glances.find({ analysisId: this._id }).fetch();
+    const visits = Visits.find({ analysisId: this._id }).fetch();
 
     // Set default file name for organizing later
     const includeIncomplete = opt.includeIncomplete ? 'True' : 'False';
 
-    glances.forEach(function(glance) {
-      const nameFile = `${glance.study().name} - ${
-        glance.analysis().name
+    visits.forEach(function(visit) {
+      const nameFile = `${visit.study().name} - ${
+        visit.analysis().name
       } - p${opt.period}ts${opt.timestep}incomplete${includeIncomplete} - ${
-        glance.participant().name
-      } - ${glance.stimulus().name} - glance${glance.number}.csv`;
+        visit.participant().name
+      } - ${visit.stimulus().name} - visit${visit.number}.csv`;
 
-      const csvContent = json2csv(glance.getExportData(opt));
+      const csvContent = json2csv(visit.getExportData(opt));
       zip.file(nameFile, csvContent);
     });
 
@@ -48,8 +48,8 @@ export default function saveCSV(opt) {
       filename += ` - p${period}ts${timestep}incomplete${includeIncompleteText}`;
     }
 
-    if (groupBy === 'glance') {
-      filename += ' - glanceSummary';
+    if (groupBy === 'visit') {
+      filename += ' - visitSummary';
     } else if (groupBy === 'participant') {
       filename += ' - participantSummary';
     }

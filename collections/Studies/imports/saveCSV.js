@@ -18,7 +18,7 @@ export default function saveCSV(opt) {
   }
 
   if (exportData) {
-    const filename = `${this.name} - glance statistics summary`;
+    const filename = `${this.name} - visit statistics summary`;
     let csvContent;
 
     try {

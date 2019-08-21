@@ -1,29 +1,29 @@
 import Jobs from '../Jobs/Jobs';
-import getGlanceEndIndex from './imports/getGlanceEndIndex';
-import getGlanceFixationCount from './imports/getGlanceFixationCount';
-import getGlanceAoiIds from './imports/getGlanceAoiIds';
-import makeGlanceFromGazepoints from './imports/makeGlanceFromGazepoints';
-import makeGlances from './imports/makeGlances';
-import makeGlanceJobsJob from './imports/makeGlanceJobsJob';
+import getVisitEndIndex from './imports/getVisitEndIndex';
+import getVisitFixationCount from './imports/getVisitFixationCount';
+import getVisitAoiIds from './imports/getVisitAoiIds';
+import makeVisitFromGazepoints from './imports/makeVisitFromGazepoints';
+import makeVisits from './imports/makeVisits';
+import makeVisitJobsJob from './imports/makeVisitJobsJob';
 import updateStatus from './imports/updateStatus';
 import getExportData from './imports/getExportData';
 import getType from './imports/getType';
 import saveCSV from './imports/saveCSV';
-import allGlancesCreated from './imports/allGlancesCreated';
-import allGlancesProcessed from './imports/allGlancesProcessed';
+import allVisitsCreated from './imports/allVisitsCreated';
+import allVisitsProcessed from './imports/allVisitsProcessed';
 
 Analyses.helpers({
-  getGlanceEndIndex,
-  getGlanceFixationCount,
-  getGlanceAoiIds,
-  makeGlanceFromGazepoints,
-  makeGlances,
-  makeGlanceJobsJob,
+  getVisitEndIndex,
+  getVisitFixationCount,
+  getVisitAoiIds,
+  makeVisitFromGazepoints,
+  makeVisits,
+  makeVisitJobsJob,
   updateStatus,
   getExportData,
   saveCSV,
-  allGlancesCreated,
-  allGlancesProcessed,
+  allVisitsCreated,
+  allVisitsProcessed,
   getType,
 
   hasPermission(action) {
@@ -50,8 +50,8 @@ Analyses.helpers({
       ? Participants.find({ _id: { $in: this.participantIds } })
       : undefined;
   },
-  glances() {
-    return Glances.find({ analysisId: this._id });
+  visits() {
+    return Visits.find({ analysisId: this._id });
   },
   jobs(search) {
     return Jobs.find({ 'data.analysisId': this._id, ...search });

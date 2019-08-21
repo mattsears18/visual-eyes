@@ -1,7 +1,9 @@
 import { template } from 'handlebars';
 
-Template.Glances.onCreated(function() {
-  this.glance = new ReactiveVar();
+const { FlowRouter } = require('meteor/kadira:flow-router');
+
+Template.Visits.onCreated(function() {
+  this.visit = new ReactiveVar();
   this.period = new ReactiveVar(5000);
   this.timestep = new ReactiveVar(0);
   this.includeIncomplete = new ReactiveVar(false);
@@ -17,19 +19,19 @@ Template.Glances.onCreated(function() {
     this.subscribe('participants.byAnalysisId', analysisId);
     this.subscribe('stimuli.byAnalysisId', analysisId);
 
-    this.subscribe('glances.simple.byParams', {
+    this.subscribe('visits.simple.byParams', {
       analysisId: FlowRouter.getParam('analysisId'),
     });
 
-    if (this.subscriptionsReady() && Glances.find().count()) {
-      const glance = Glances.findOne({
+    if (this.subscriptionsReady() && Visits.find().count()) {
+      const visit = Visits.findOne({
         participantId: FlowRouter.getParam('participantId'),
         stimulusId: FlowRouter.getParam('stimulusId'),
         number: parseInt(FlowRouter.getParam('number'), 10),
       });
 
-      if (glance) {
-        this.glance.set(glance);
+      if (visit) {
+        this.visit.set(visit);
         this.hullParams.set({
           period: parseInt(Template.instance().period.get(), 10),
           timestep: parseInt(Template.instance().timestep.get(), 10),
@@ -46,9 +48,9 @@ Template.Glances.onCreated(function() {
   });
 });
 
-Template.Glances.helpers({
-  glance: () => Template.instance().glance.get(),
-  glanceCount: () => Glances.find({
+Template.Visits.helpers({
+  visit: () => Template.instance().visit.get(),
+  visitCount: () => Visits.find({
     participantId: FlowRouter.getParam('participantId'),
     stimulusId: FlowRouter.getParam('stimulusId'),
   }).count(),
@@ -67,9 +69,9 @@ Template.BreadCrumbs.helpers({
   analysis: () => Analyses.findOne(),
 });
 
-Template.Glances.events({
-  'click .update-glance': () => {
-    Session.set('updateGlance', true);
+Template.Visits.events({
+  'click .update-visit': () => {
+    Session.set('updateVisit', true);
   },
   'click .participant.next': (e, t) => {
     const ids = Participants.find()
@@ -126,7 +128,7 @@ Template.Glances.events({
   'click .number.next': () => {
     if (
       parseInt(FlowRouter.getParam('number'), 10)
-      === Glances.find({
+      === Visits.find({
         participantId: FlowRouter.getParam('participantId'),
         stimulusId: FlowRouter.getParam('stimulusId'),
       }).count()
@@ -141,7 +143,7 @@ Template.Glances.events({
   'click .number.previous': () => {
     if (parseInt(FlowRouter.getParam('number'), 10) === 1) {
       FlowRouter.setParams({
-        number: Glances.find({
+        number: Visits.find({
           participantId: FlowRouter.getParam('participantId'),
           stimulusId: FlowRouter.getParam('stimulusId'),
         }).count(),
@@ -154,11 +156,11 @@ Template.Glances.events({
   },
 });
 
-Template.Glances.destroyed = function() {
-  Session.set('updateGlance', false);
+Template.Visits.destroyed = function() {
+  Session.set('updateVisit', false);
 };
 
-Template.Glances.events({
+Template.Visits.events({
   'change .reactive': (event, templateInstance) => {
     let value;
     if (event.target.type === 'checkbox') {

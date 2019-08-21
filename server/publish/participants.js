@@ -25,8 +25,8 @@ Meteor.publish('participants.byAnalysisId', function(analysisId) {
   }
 });
 
-Meteor.publish('participants.byGlanceId', function(glanceId) {
-  check(glanceId, String);
-  glance = Glances.findOne({ _id: glanceId });
-  return Participants.find({ _id: glance.participantId });
+Meteor.publish('participants.byVisitId', function(visitId) {
+  check(visitId, String);
+  visit = Visits.findOne({ _id: visitId });
+  return Participants.find({ _id: visit.participantId });
 });

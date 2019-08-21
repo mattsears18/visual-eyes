@@ -8,7 +8,7 @@ Template.Exports.onCreated(function() {
 
   this.autorun(() => {
     if (this.analysisId.get()) {
-      this.subscribe('glances.byAnalysisId', this.analysisId.get());
+      this.subscribe('visits.byAnalysisId', this.analysisId.get());
     }
   });
 });
@@ -28,8 +28,8 @@ Template.Exports.events({
     if (
       exportType === 'allParticipantsSingle'
       || exportType === 'allParticipantsIndividual'
-      || exportType === 'allGlancesSingle'
-      || exportType === 'allGlancesIndividual'
+      || exportType === 'allVisitsSingle'
+      || exportType === 'allVisitsIndividual'
     ) {
       templateInstance.analysisSelectorVisible.set(true);
     } else {
@@ -45,8 +45,8 @@ Template.Exports.events({
     templateInstance.analysisId.set(analysisId);
 
     if (
-      templateInstance.exportType.get() === 'allGlancesSingle'
-      || templateInstance.exportType.get() === 'allGlancesIndividual'
+      templateInstance.exportType.get() === 'allVisitsSingle'
+      || templateInstance.exportType.get() === 'allVisitsIndividual'
     ) {
       templateInstance.samplingStepVisible.set(true);
     } else {
@@ -71,11 +71,11 @@ Template.Exports.events({
       if (templateInstance.exportType.get() === 'allParticipantsSingle') {
         console.log('analysis.saveCSVParticipants()');
         analysis.saveCSVParticipants();
-      } else if (templateInstance.exportType.get() === 'allGlancesSingle') {
+      } else if (templateInstance.exportType.get() === 'allVisitsSingle') {
         console.log('analysis.saveCSVParticipants()');
-        analysis.saveCSVGlances();
-      } else if (templateInstance.exportType.get() === 'allGlancesIndividual') {
-        console.log('analysis.saveCSVParticipants({ individua: true })');
+        analysis.saveCSVVisits();
+      } else if (templateInstance.exportType.get() === 'allVisitsIndividual') {
+        console.log('analysis.saveCSVParticipants({ individual: true })');
       }
     } else if (templateInstance.exportType.get() === 'allAnalysesSingle') {
       study.saveCSV({ type: 'allAnalysesSingle' });

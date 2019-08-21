@@ -1,6 +1,6 @@
 import { jStat } from 'jStat';
 
 export default function getExportData(opt) {
-  // const glanceData = this.analyses().fetch();
-  // return glanceData;
+  // const visitData = this.analyses().fetch();
+  // return visitData;
 }

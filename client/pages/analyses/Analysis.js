@@ -23,7 +23,7 @@ Template.Analysis.onCreated(function() {
 
     const analysisId = FlowRouter.getParam('analysisId');
     self.subscribe('analyses.single', analysisId);
-    self.subscribe('glances.byAnalysisId', analysisId);
+    self.subscribe('visits.byAnalysisId', analysisId);
     participantSub = self.subscribe('participants.byAnalysisId', analysisId);
     stimuliSub = self.subscribe('stimuli.byAnalysisId', analysisId);
 
@@ -49,7 +49,7 @@ Template.BreadCrumbs.helpers({
 
 Template.Analysis.helpers({
   analysis: () => Analyses.findOne(),
-  glances: () => {
+  visits: () => {
     template = Template.instance();
     participantIds = template.selector.get('participantIds');
     stimulusIds = template.selector.get('stimulusIds');
@@ -61,7 +61,7 @@ Template.Analysis.helpers({
 
     template.selector.set('selector', selector);
 
-    return Glances.find(selector);
+    return Visits.find(selector);
   },
   study: () => Studies.findOne(),
   stimuli: () => Stimuli.find(),
@@ -85,12 +85,12 @@ Template.Analysis.events({
       individual: 'false',
     });
   },
-  'click .download-glances-as-csv'(e, template) {
+  'click .download-visits-as-csv'(e, template) {
     const analysis = Analyses.findOne();
-    analysis.saveCSVGlances();
+    analysis.saveCSVVisits();
   },
   'click .reprocess-analysis'() {
-    Meteor.call('analyses.makeGlanceJobsJob', {
+    Meteor.call('analyses.makeVisitJobsJob', {
       analysisId: FlowRouter.getParam('analysisId'),
     });
   },
@@ -127,7 +127,7 @@ Template.Analysis.destroyed = function() {
   Session.set('updateAnalysis', false);
 };
 
-function getGlancesJobsProgress() {
+function getVisitsJobsProgress() {
   progress = 0;
 
   jobsCount = Jobs.find().count();

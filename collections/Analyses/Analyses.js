@@ -54,19 +54,19 @@ Schemas.Analysis = new SimpleSchema(
     },
     minFixationDuration: {
       type: Number,
-      label: 'Minimum Glance Duration (ms) (ISO 15007 Standard = 120ms)',
+      label: 'Minimum Visit Duration (ms) (ISO 15007 Standard = 120ms)',
       optional: true,
       defaultValue: 120,
     },
-    minGlanceDuration: {
+    minVisitDuration: {
       type: Number,
-      label: 'Minimum Glance Duration (ms) (ISO 15007 Standard = 120ms)',
+      label: 'Minimum Visit Duration (ms) (ISO 15007 Standard = 120ms)',
       optional: true,
       defaultValue: 120,
     },
-    maxGlanceGapDuration: {
+    maxVisitGapDuration: {
       type: Number,
-      label: 'Maximum Glance Gap Duration (ms)',
+      label: 'Maximum Visit Gap Duration (ms)',
       optional: true,
       defaultValue: 120,
     },
@@ -111,21 +111,21 @@ Schemas.Analysis = new SimpleSchema(
       },
       optional: true,
     },
-    glanceCount: {
+    visitCount: {
       type: Number,
       optional: true,
       autoform: {
         type: 'hidden',
       },
     },
-    glanceDurationMean: {
+    visitDurationMean: {
       type: Number,
       optional: true,
       autoform: {
         type: 'hidden',
       },
     },
-    glanceDurationMedian: {
+    visitDurationMedian: {
       type: Number,
       optional: true,
       autoform: {

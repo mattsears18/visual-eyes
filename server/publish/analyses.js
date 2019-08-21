@@ -14,14 +14,14 @@ Meteor.publish('analyses.byStudyId', (studyId) => {
   check(studyId, String);
   return Analyses.find(
     { studyId },
-    { sort: { minGlanceDuration: 1, maxGlanceGapDuration: 1, name: 1 } },
+    { sort: { minVisitDuration: 1, maxVisitGapDuration: 1, name: 1 } },
   );
 });
 
-Meteor.publish('analyses.byGlanceId', function(glanceId) {
-  check(glanceId, String);
-  glance = Glances.findOne({ _id: glanceId });
-  return Analyses.find({ _id: glance.analysisId });
+Meteor.publish('analyses.byVisitId', function(visitId) {
+  check(visitId, String);
+  visit = Visits.findOne({ _id: visitId });
+  return Analyses.find({ _id: visit.analysisId });
 });
 
 Meteor.publish('analyses.byParticipantId', (participantId) => {

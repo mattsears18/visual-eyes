@@ -27,13 +27,41 @@ export default async function makeEyeevents() {
   // sort rows by timestamp
   rows = this.filterSortFloat('timestamp', rows);
 
-  const saccades = [];
-  const blinks = [];
-  const gazepoints = [];
-  const fixations = [];
+  rows = assignStimuli(rows);
+  rows = assignAois(rows); // TODO pick back up here 2019-08-22
+
+  const saccades = 0;
+  const blinks = 0;
+  const gazepoints = 0;
+  const fixations = 0;
+
+  let lastEvent = '';
+  const lastAoi = '';
 
   for (let i = 0; i < rows.length; i += 1) {
-    // console.log(rows[i]);
+    if (!rows[i].stimulusId) {
+      console.log(rows[i].stimulusId);
+    }
+    switch (rows[i].category) {
+      case 'Visual Intake':
+        // console.log('visual intake');
+        lastEvent = 'visualIntake';
+        break;
+      case 'Saccade':
+        // console.log('Saccade!');
+        lastEvent = 'saccade';
+        break;
+      case 'Blink':
+        lastEvent = 'blink';
+        break;
+      case 'User Event':
+        break;
+      case '-':
+        break;
+
+      default:
+        console.log('invalid recorded row category');
+    }
   }
 
   // if (helpers.keyInArray('category', _data)) {
@@ -55,17 +83,6 @@ export default async function makeEyeevents() {
   //   row.fileFormat = this.fileFormat;
   //   row.studyId = this.studyId;
 
-  //   if (!this.participantId) {
-  //     const participantId = helpers.findOrInsert('participants', {
-  //       name: this.getName(),
-  //       studyId: this.studyId,
-  //     });
-
-  //     this.participantId = participantId;
-  //     Datafiles.update({ participantId });
-  //   }
-  //   row.participantId = this.participantId;
-
   //   row.aoiName = row.aoiName || '-';
 
   //   row.stimulusId = helpers.findOrInsert('stimuli', {
@@ -73,25 +90,25 @@ export default async function makeEyeevents() {
   //     studyId: this.studyId,
   //   });
 
-  //   // if (
-  //   //   !sdPairs.some(
-  //   //     el => el.stimulusId === row.stimulusId
-  //   //       && el.datafileId === row.datafileId,
-  //   //   )
-  //   // ) {
-  //   //   sdPairs.push({
-  //   //     stimulusId: row.stimulusId,
-  //   //     datafileId: row.datafileId,
-  //   //   });
-  //   // }
+  // if (
+  //   !sdPairs.some(
+  //     el => el.stimulusId === row.stimulusId
+  //       && el.datafileId === row.datafileId,
+  //   )
+  // ) {
+  //   sdPairs.push({
+  //     stimulusId: row.stimulusId,
+  //     datafileId: row.datafileId,
+  //   });
+  // }
 
-  //   // row.aoiId = helpers.findOrInsert('aois', {
-  //   //   name: row.aoiName,
-  //   //   stimulusId: row.stimulusId,
-  //   //   studyId: row.studyId,
-  //   // });
+  // row.aoiId = helpers.findOrInsert('aois', {
+  //   name: row.aoiName,
+  //   stimulusId: row.stimulusId,
+  //   studyId: row.studyId,
+  // });
 
-  //   // Gazepoints.insert(row);
+  // Gazepoints.insert(row);
   // });
 
   // TODO improve by adding all datafileIds to set at once, too many DB calls as-is
@@ -107,4 +124,36 @@ export default async function makeEyeevents() {
   // });
 
   return Eyeevents.find({ datafileId: this._id });
+}
+
+function assignStimuli(data) {
+  console.log('assign stimuli');
+  const rows = [...data];
+
+  const stimuli = Stimuli.find({ studyId: this.studyId }).fetch();
+
+  for (let i = 0; i < rows.length; i += 1) {
+    const stimulus = stimuli.find(row => row.name === rows[i].stimulusName);
+
+    if (typeof stimulus === 'undefined') {
+      console.log(`make new stimulus for name: ${rows[i].stimulusName}`);
+      const newStimulusId = helpers.findOrInsert('stimuli', {
+        name: rows[i].stimulusName,
+        studyId: this.studyId,
+      });
+
+      stimuli.push({ name: rows[i].stimulusName, _id: newStimulusId });
+      rows[i].stimulusId = newStimulusId;
+    } else {
+      rows[i].stimulusId = stimulus._id;
+    }
+  }
+
+  return rows;
+}
+
+function assignAois(data) {
+  const rows = [...data];
+
+  return rows;
 }

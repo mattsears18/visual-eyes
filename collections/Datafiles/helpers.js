@@ -11,8 +11,8 @@ import getNumericPositiveCoordinatesOnly from './imports/getNumericPositiveCoord
 import getVisualIntakesOnly from './imports/getVisualIntakesOnly';
 import getStimuliOnly from './imports/getStimuliOnly';
 import getGazepoints from './imports/getGazepoints';
-import getFixations from './imports/getFixations';
 import makeGazepoints from './imports/makeGazepoints';
+import makeEyeevents from './imports/makeEyeevents';
 import process from './imports/process';
 
 Datafiles.collection.helpers({
@@ -29,8 +29,8 @@ Datafiles.collection.helpers({
   getVisualIntakesOnly,
   getStimuliOnly,
   getGazepoints,
-  getFixations,
   makeGazepoints,
+  makeEyeevents,
   process,
 
   study() {

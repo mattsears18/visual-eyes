@@ -87,7 +87,10 @@ export default function makeVisits({ participantId, points }) {
           startIndex = endIndex + 1;
         } catch (err) {
           // console.log('no visit generated');
-          if (err.error === 'minVisitDurationNotMet') {
+          if (
+            err.error === 'minVisitDurationNotMet'
+            || err.error === 'endIndexNotFound'
+          ) {
             // console.log(err.details);
             startIndex = err.details.nextIndex;
             // console.log(`endIndex: ${endIndex} nextStartIndex: ${startIndex}`);

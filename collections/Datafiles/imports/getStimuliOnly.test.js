@@ -47,6 +47,7 @@ describe('Datafiles.getStimuliOnly()', () => {
       { stimulusName: undefined, x: 4 },
       { stimulusName: 'someName', x: 5 },
       { stimulusName: null, x: 6 },
+      { stimulusName: '-', x: 7 },
     ];
 
     const expectedRows = [
@@ -56,6 +57,7 @@ describe('Datafiles.getStimuliOnly()', () => {
       { stimulusName: undefined, x: 4 },
       { stimulusName: 'someName', x: 5 },
       { stimulusName: null, x: 6 },
+      { stimulusName: '-', x: 7 },
     ];
 
     expect(await datafile.getStimuliOnly(rows)).to.eql(expectedRows);

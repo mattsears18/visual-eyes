@@ -66,8 +66,12 @@ export default async function process() {
   Datafiles.update({ _id: this._id }, { $set: { status: 'processing' } });
 
   const gazepoints = await this.makeGazepoints();
-  // const fixations = await this.makeFixations();
-  // console.log('made ' + helpers.formatNumber(gazepoints.count()) + ' gazepoints');
+  const eyeevents = await this.makeEyeevents();
+  console.log(
+    `made ${helpers.formatNumber(
+      gazepoints.count(),
+    )} gazepoints and ${helpers.formatNumber(eyeevents.count())} eyeevents`,
+  );
 
   this.status = 'processed';
   Datafiles.update({ _id: this._id }, { $set: { status: 'processed' } });

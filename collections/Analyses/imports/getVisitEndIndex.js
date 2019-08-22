@@ -1,3 +1,5 @@
+// TODO HAVE TO REFACTOR THIS TO WORK WITH FIXATIONS NOT GAZEPOINTS!
+
 export default function getVisitEndIndex({ gazepoints, startIndex = 0 }) {
   const _gazepoints = [...gazepoints];
 
@@ -19,15 +21,14 @@ export default function getVisitEndIndex({ gazepoints, startIndex = 0 }) {
     throw new Error('noStimulusFound');
   }
 
-  let lastIndexOnStimulus;
+  console.log(`gazepoint count: ${_gazepoints.length}`);
 
   for (let i = parseInt(startIndex, 10) + 1; i < _gazepoints.length; i += 1) {
-    console.log(`i: ${i}`);
+    console.log(`i: ${i} of ${_gazepoints.length}`);
 
     if (_gazepoints[i].stimulusId !== initialStimulusId) {
-      lastIndexOnStimulus = i - 1;
       console.log(
-        `stimulus changed! timestamp: ${_gazepoints[lastIndexOnStimulus].timestamp}`,
+        `stimulus changed! timestamp: ${_gazepoints[i - 1].timestamp}`,
       );
 
       if (this.type === 'iso15007') {
@@ -56,6 +57,13 @@ export default function getVisitEndIndex({ gazepoints, startIndex = 0 }) {
     }
 
     endIndex = i;
+  }
+
+  if (!endIndex) {
+    console.log('no endIndex found, try next gazepoint');
+    throw new Meteor.Error('endIndexNotFound', null, {
+      nextIndex: startIndex + 1,
+    });
   }
 
   console.log(`endIndex: ${endIndex}`);

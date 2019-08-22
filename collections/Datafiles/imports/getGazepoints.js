@@ -5,12 +5,14 @@ fs = require('fs');
 export default async function getGazepoints(opts) {
   const _data = opts && opts.data ? [...opts.data] : await this.getRenamedRows();
 
-  this.rawRowCount = parseInt(_data.length, 10);
+  this.rawRowCount = _data.length;
 
   let stimulusRows = [..._data];
   if (helpers.keyInArray('stimulusName', stimulusRows)) {
     stimulusRows = await this.getStimuliOnly(stimulusRows);
   }
+
+  this.stimulusRowCount = stimulusRows.length;
 
   const integerRows = await this.getNumericPositiveCoordinatesOnly(
     stimulusRows,
@@ -28,6 +30,7 @@ export default async function getGazepoints(opts) {
     {
       $set: {
         rawRowCount: this.rawRowCount,
+        stimulusRowCount: this.stimulusRowCount,
         integerRowCount: this.integerRowCount,
         gazepointCount: this.gazepointCount,
       },

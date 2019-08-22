@@ -82,6 +82,22 @@ const smiFields = {
   _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/',
 };
 
+const smiPipeFields = {
+  fileFormat: 'smi',
+  path:
+    '/Users/matthewsears/code/visual-eyes/testFiles/realFile/Participant03.csv',
+  versions: {
+    original: {
+      path:
+        '/Users/matthewsears/code/visual-eyes/testFiles/realFile/Participant03.csv',
+      size: 11369165,
+      type: 'text/plain',
+      extension: 'txt',
+    },
+  },
+  _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/',
+};
+
 const unrecognizedFields = {
   path:
     '/Users/matthewsears/code/visual-eyes/testFiles/realFile/unrecognizedWael.txt',
@@ -104,6 +120,10 @@ Factory.define('imotionsDatafile', Datafiles.collection, {
 Factory.define('smiDatafile', Datafiles.collection, {
   ...baseDatafile,
   ...smiFields,
+});
+Factory.define('smiPipeDatafile', Datafiles.collection, {
+  ...baseDatafile,
+  ...smiPipeFields,
 });
 Factory.define('unrecognizedDatafile', Datafiles.collection, {
   ...baseDatafile,

@@ -4,13 +4,13 @@ require('../../factories.test');
 const { expect } = require('chai');
 
 describe('Datafiles.getStimuliOnly()', () => {
-  it('returns empty array when passed empty array', async () => {
+  it('returns empty array when passed empty array', () => {
     const datafile = Factory.create('imotionsDatafile');
     const rows = [];
-    expect(await datafile.getStimuliOnly(rows)).to.eql(rows);
+    expect(datafile.getStimuliOnly(rows)).to.eql(rows);
   });
 
-  it("removes rows with stimulus name that contains '.avi'", async () => {
+  it("removes rows with stimulus name that contains '.avi'", () => {
     const datafile = Factory.create('imotionsDatafile');
     const rows = [
       { stimulusName: '.avi', x: 1 },
@@ -21,10 +21,10 @@ describe('Datafiles.getStimuliOnly()', () => {
     ];
 
     const expectedRows = [{ stimulusName: 'someName', x: 5 }];
-    expect(await datafile.getStimuliOnly(rows)).to.eql(expectedRows);
+    expect(datafile.getStimuliOnly(rows)).to.eql(expectedRows);
   });
 
-  it("removes rows with stimulus name that contains 'smiGlasses'", async () => {
+  it("removes rows with stimulus name that contains 'smiGlasses'", () => {
     const datafile = Factory.create('imotionsDatafile');
     const rows = [
       { stimulusName: 'smiGlasses', x: 1 },
@@ -35,10 +35,10 @@ describe('Datafiles.getStimuliOnly()', () => {
     ];
 
     const expectedRows = [{ stimulusName: 'someName', x: 5 }];
-    expect(await datafile.getStimuliOnly(rows)).to.eql(expectedRows);
+    expect(datafile.getStimuliOnly(rows)).to.eql(expectedRows);
   });
 
-  it('does not remove rows with blank or undefined stimulusName', async () => {
+  it('does not remove rows with blank or undefined stimulusName', () => {
     const datafile = Factory.create('imotionsDatafile');
     const rows = [
       { x: 1 },
@@ -60,6 +60,6 @@ describe('Datafiles.getStimuliOnly()', () => {
       { stimulusName: '-', x: 7 },
     ];
 
-    expect(await datafile.getStimuliOnly(rows)).to.eql(expectedRows);
+    expect(datafile.getStimuliOnly(rows)).to.eql(expectedRows);
   });
 });

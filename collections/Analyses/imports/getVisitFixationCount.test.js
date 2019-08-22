@@ -20,8 +20,8 @@ describe('Analyses.getVisitFixationCount()', () => {
     const analysis = Factory.create('analysis');
     const points = [
       { timestamp: 0 },
-      { timestamp: 1000, fixationIndex: 1 },
-      { timestamp: 2000, fixationIndex: 1 },
+      { timestamp: 1000, eventIndex: 1 },
+      { timestamp: 2000, eventIndex: 1 },
       { timestamp: 3000 },
       { timestamp: 4000 },
     ];
@@ -33,9 +33,9 @@ describe('Analyses.getVisitFixationCount()', () => {
     const analysis = Factory.create('analysis');
     const points = [
       { timestamp: 0 },
-      { timestamp: 1000, fixationIndex: 1 },
-      { timestamp: 2000, fixationIndex: 2 },
-      { timestamp: 3000, fixationIndex: 3 },
+      { timestamp: 1000, eventIndex: 1 },
+      { timestamp: 2000, eventIndex: 2 },
+      { timestamp: 3000, eventIndex: 3 },
       { timestamp: 4000 },
     ];
 

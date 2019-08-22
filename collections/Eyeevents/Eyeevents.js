@@ -87,6 +87,7 @@ if (Meteor.isServer) {
   Eyeevents.rawCollection().createIndex(
     {
       datafileId: 1,
+      type: 1,
       index: 1,
     },
     (err, result) => {

@@ -49,7 +49,7 @@ describe('Analyses.makeVisits()', () => {
         y: 1,
         timestamp: 2000,
         stimulusId: stimulus._id,
-        fixationIndex: 1,
+        eventIndex: 1,
       },
       {
         x: 1,
@@ -62,7 +62,7 @@ describe('Analyses.makeVisits()', () => {
         y: 1,
         timestamp: 5000,
         stimulusId: stimulus._id,
-        fixationIndex: 2,
+        eventIndex: 2,
       }, // end visit 1
       {
         x: 1,

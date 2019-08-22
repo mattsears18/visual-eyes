@@ -7,6 +7,8 @@ export default async function process() {
   delete this.headersRemoved;
   delete this.fileFormat;
   delete this.rawRowCount;
+  delete this.stimulusRowCount;
+  delete this.integerRowCount;
   delete this.gazepointCount;
   delete this.fixationCount;
 
@@ -65,13 +67,15 @@ export default async function process() {
 
   Datafiles.update({ _id: this._id }, { $set: { status: 'processing' } });
 
-  const gazepoints = await this.makeGazepoints();
+  // const gazepoints = await this.makeGazepoints();
   const eyeevents = await this.makeEyeevents();
-  console.log(
-    `made ${helpers.formatNumber(
-      gazepoints.count(),
-    )} gazepoints and ${helpers.formatNumber(eyeevents.count())} eyeevents`,
-  );
+  // const fixations = await this.makeFixations();
+
+  // console.log(
+  //   `made ${helpers.formatNumber(
+  //     gazepoints.count(),
+  //   )} gazepoints and ${helpers.formatNumber(eyeevents.count())} eyeevents`,
+  // );
 
   this.status = 'processed';
   Datafiles.update({ _id: this._id }, { $set: { status: 'processed' } });

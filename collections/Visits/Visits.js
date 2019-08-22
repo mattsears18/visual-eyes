@@ -74,7 +74,7 @@ Schemas.Visit = new SimpleSchema(
       type: Array,
     },
     'gazepoints.$': Object,
-    'gazepoints.$.fixationIndex': {
+    'gazepoints.$.eventIndex': {
       type: Number,
       optional: true,
     },

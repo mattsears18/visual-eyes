@@ -1,9 +1,9 @@
 export default function getVisitFixationCount(gazepoints) {
   const indices = [];
   gazepoints.forEach((point) => {
-    if (point.fixationIndex) {
-      if (!indices.includes(point.fixationIndex)) {
-        indices.push(point.fixationIndex);
+    if (point.eventIndex) {
+      if (!indices.includes(point.eventIndex)) {
+        indices.push(point.eventIndex);
       }
     }
   });

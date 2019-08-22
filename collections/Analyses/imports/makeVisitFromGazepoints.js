@@ -56,7 +56,7 @@ export default function makeVisitFromGazepoints({
     timestamp: point.timestamp,
     x: point.x,
     y: point.y,
-    fixationIndex: point.fixationIndex,
+    eventIndex: point.eventIndex,
   }));
 
   let duration = 0;

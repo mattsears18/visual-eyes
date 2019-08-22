@@ -82,14 +82,14 @@ const smiFields = {
   _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/',
 };
 
-const smiPipeFields = {
+const smiMultiFields = {
   fileFormat: 'smi',
   path:
-    '/Users/matthewsears/code/visual-eyes/testFiles/realFile/Participant03.csv',
+    '/Users/matthewsears/code/visual-eyes/testFiles/realFile/smiMultiParticipant03.csv',
   versions: {
     original: {
       path:
-        '/Users/matthewsears/code/visual-eyes/testFiles/realFile/Participant03.csv',
+        '/Users/matthewsears/code/visual-eyes/testFiles/realFile/smiMultiParticipant03.csv',
       size: 11369165,
       type: 'text/plain',
       extension: 'txt',
@@ -121,9 +121,9 @@ Factory.define('smiDatafile', Datafiles.collection, {
   ...baseDatafile,
   ...smiFields,
 });
-Factory.define('smiPipeDatafile', Datafiles.collection, {
+Factory.define('smiMultiDatafile', Datafiles.collection, {
   ...baseDatafile,
-  ...smiPipeFields,
+  ...smiMultiFields,
 });
 Factory.define('unrecognizedDatafile', Datafiles.collection, {
   ...baseDatafile,
@@ -255,19 +255,19 @@ for (let i = 0; i < 100; i += 1) {
 
 gazepoints.sort((a, b) => a.timestamp - b.timestamp);
 
-let fixationIndex = 1;
+let eventIndex = 1;
 
 for (let i = 0; i < 100; i += 1) {
   if (faker.random.boolean()) {
-    fixationIndex += 1;
+    eventIndex += 1;
   }
-  if (faker.random.boolean()) gazepoints[i].fixationIndex = fixationIndex;
+  if (faker.random.boolean()) gazepoints[i].eventIndex = eventIndex;
 }
 
 const duration = gazepoints[gazepoints.length - 1].timestamp - gazepoints[0].timestamp;
-const fixationIndices = Object.keys(
-  _.groupBy(gazepoints, 'fixationIndex'),
-).filter(indexString => Number.isInteger(parseInt(indexString, 10)));
+const fixationIndices = Object.keys(_.groupBy(gazepoints, 'eventIndex')).filter(
+  indexString => Number.isInteger(parseInt(indexString, 10)),
+);
 const fixationCount = fixationIndices.length;
 
 Factory.define('visitWithGazepoints', Visits, {

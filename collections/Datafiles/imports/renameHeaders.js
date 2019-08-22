@@ -14,7 +14,7 @@ export default function renameHeaders(rows) {
       { original: 'RecordingTime [ms]', new: 'timestamp' },
       { original: 'Time of Day [h:m:s:ms]', new: 'timeOfDay' },
       { original: 'Category Binocular', new: 'category' },
-      { original: 'Index Binocular', new: 'fixationIndex' },
+      { original: 'Index Binocular', new: 'eventIndex' },
       { original: 'Point of Regard Binocular X [px]', new: 'x' },
       { original: 'Point of Regard Binocular Y [px]', new: 'y' },
       { original: 'Stimulus', new: 'stimulusName' },
@@ -23,7 +23,7 @@ export default function renameHeaders(rows) {
   } else if (this.fileFormat === 'imotions') {
     headers = [
       { original: 'Timestamp', new: 'timestamp' },
-      { original: 'FixationSeq', new: 'fixationIndex' },
+      { original: 'FixationSeq', new: 'eventIndex' },
       { original: 'GazeX', new: 'x' },
       { original: 'GazeY', new: 'y' },
       { original: 'StimulusName', new: 'stimulusName' },

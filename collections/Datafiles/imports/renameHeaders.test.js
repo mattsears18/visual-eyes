@@ -65,7 +65,7 @@ describe('Datafiles.renameHeaders()', () => {
         timestamp: '2554850.7630',
         timeOfDay: '03:55:34:894',
         category: 'Saccade',
-        fixationIndex: '5',
+        eventIndex: '5',
         x: '592.7510',
         y: '-216.5275',
         stimulusName: 'wael-5-recording.avi',
@@ -75,7 +75,7 @@ describe('Datafiles.renameHeaders()', () => {
         timestamp: '2554867.2940',
         timeOfDay: '03:55:34:910',
         category: 'Saccade',
-        fixationIndex: '5',
+        eventIndex: '5',
         x: '589.2836',
         y: '-214.0377',
         stimulusName: 'wael-5-recording.avi',
@@ -85,7 +85,7 @@ describe('Datafiles.renameHeaders()', () => {
         timestamp: '2554883.9200',
         timeOfDay: '03:55:34:927',
         category: 'Visual Intake',
-        fixationIndex: '6',
+        eventIndex: '6',
         x: '590.3164',
         y: '-212.6354',
         stimulusName: 'wael-5-recording.avi',
@@ -128,7 +128,7 @@ describe('Datafiles.renameHeaders()', () => {
     const expectedRows = [
       {
         timestamp: '597',
-        fixationIndex: '1',
+        eventIndex: '1',
         x: '506',
         y: '94',
         stimulusName: 'smiGlasses',
@@ -136,7 +136,7 @@ describe('Datafiles.renameHeaders()', () => {
       },
       {
         timestamp: '614',
-        fixationIndex: '1',
+        eventIndex: '1',
         x: '509',
         y: '93',
         stimulusName: 'smiGlasses',
@@ -144,7 +144,7 @@ describe('Datafiles.renameHeaders()', () => {
       },
       {
         timestamp: '630',
-        fixationIndex: '1',
+        eventIndex: '1',
         x: '508',
         y: '95',
         stimulusName: 'smiGlasses',

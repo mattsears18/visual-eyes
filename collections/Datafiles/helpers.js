@@ -13,6 +13,7 @@ import getStimuliOnly from './imports/getStimuliOnly';
 import getGazepoints from './imports/getGazepoints';
 import makeGazepoints from './imports/makeGazepoints';
 import makeEyeevents from './imports/makeEyeevents';
+import recomputeTimestamps from './imports/recomputeTimestamps';
 import process from './imports/process';
 
 Datafiles.collection.helpers({
@@ -31,6 +32,7 @@ Datafiles.collection.helpers({
   getGazepoints,
   makeGazepoints,
   makeEyeevents,
+  recomputeTimestamps,
   process,
 
   study() {

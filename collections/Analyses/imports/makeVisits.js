@@ -28,7 +28,7 @@ export default function makeVisits({ participantId, points }) {
           timestamp: 1,
           x: 1,
           y: 1,
-          fixationIndex: 1,
+          eventIndex: 1,
           category: 1,
         },
         sort: { timestamp: 1 },

@@ -8,8 +8,6 @@ import 'datatables.net-bs/css/dataTables.bootstrap.css';
 dataTablesBootstrap(window, $);
 
 // Make helpers available on Templates
-for (helper in helpers) {
-  Template.registerHelper(
-    helper, helpers[helper],
-  );
+for (const helper in helpers) {
+  Template.registerHelper(helper, helpers[helper]);
 }

@@ -10,7 +10,7 @@ export default function process() {
     .fromFile(this.path)
     .then(
       Meteor.bindEnvironment((rows) => {
-        for (upvar in rows[0]) {
+        for (const upvar in rows[0]) {
           if (upvar != 'Name' && upvar != 'name') {
             variable = Variables.findOne({ studyId: study._id, name: upvar });
             if (!variable) {
@@ -37,7 +37,7 @@ export default function process() {
 
             if (participant) {
               newVariableVals = [];
-              for (upvar in row) {
+              for (const upvar in row) {
                 if (upvar != 'Name' && upvar != 'name') {
                   variable = Variables.findOne({
                     studyId: study._id,

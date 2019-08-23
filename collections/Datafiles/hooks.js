@@ -21,6 +21,13 @@ Datafiles.collection.after.remove(function(userId, datafile) {
     { multi: true },
   );
 
+  // Update Aoi.datafileIds
+  Aois.update(
+    { studyId: datafile.studyId },
+    { $pull: { datafileIds: datafile._id } },
+    { multi: true },
+  );
+
   // Update Participant.datafileIds
   Participants.update(
     { studyId: datafile.studyId },

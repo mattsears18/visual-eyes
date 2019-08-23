@@ -28,7 +28,7 @@ export default async function makeEyeevents() {
   rows = this.filterSortFloat('timestamp', rows);
 
   rows = this.assignStimuli(rows);
-  rows = assignAois(rows); // TODO pick back up here 2019-08-22
+  rows = this.assignAois(rows);
 
   const saccades = 0;
   const blinks = 0;
@@ -63,19 +63,6 @@ export default async function makeEyeevents() {
         console.log('invalid recorded row category');
     }
   }
-
-  // if (helpers.keyInArray('category', _data)) {
-  //   console.log('has events');
-  //   console.log(_data);
-  // } else {
-  //   console.log('does not have events');
-  // }
-
-  // make fixations
-  // make blinks
-  // make saccades
-  // make visits
-  // make glances
 
   // _data.forEach((r) => {
   //   const row = Object.assign({}, r);

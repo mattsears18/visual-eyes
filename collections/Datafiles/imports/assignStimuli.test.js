@@ -17,7 +17,7 @@ if (Meteor.isServer) {
         'bar',
       ];
 
-      existingStimulusNames.forEach((name, i) => {
+      existingStimulusNames.forEach((name) => {
         Factory.create('stimulus', {
           name,
           studyId: datafile.studyId,
@@ -133,6 +133,78 @@ if (Meteor.isServer) {
 
       // only creates the one new stimulus
       expect(finalStimulusCount).to.equal(1);
+    });
+
+    it('adds the datafileId to a new stimulus', () => {
+      const datafile = Factory.create('imotionsDatafile');
+      const stimulus = Factory.create('stimulus', {
+        name: 'foo',
+        studyId: datafile.studyId,
+      });
+
+      const rows = [
+        { stimulusName: 'foo' },
+        { stimulusName: 'foo' },
+        { stimulusName: 'foo' },
+        { stimulusName: 'foo' },
+        { stimulusName: 'foo' },
+        { stimulusName: 'foo' },
+      ];
+
+      datafile.assignStimuli(rows);
+
+      const finalStimulus = Stimuli.findOne({ _id: stimulus._id });
+      expect(finalStimulus.datafileIds).to.eql([datafile._id]);
+    });
+
+    it('adds the datafileId to an existing set of datafileIds', () => {
+      const datafile = Factory.create('imotionsDatafile');
+      const stimulus = Factory.create('stimulus', {
+        name: 'foo',
+        studyId: datafile.studyId,
+        datafileIds: ['existingDatafile1', 'existingDatafile2'],
+      });
+
+      const rows = [
+        { stimulusName: 'foo' },
+        { stimulusName: 'foo' },
+        { stimulusName: 'foo' },
+        { stimulusName: 'foo' },
+        { stimulusName: 'foo' },
+        { stimulusName: 'foo' },
+      ];
+
+      datafile.assignStimuli(rows);
+
+      const finalStimulus = Stimuli.findOne({ _id: stimulus._id });
+      expect(finalStimulus.datafileIds).to.eql([
+        'existingDatafile1',
+        'existingDatafile2',
+        datafile._id,
+      ]);
+    });
+
+    it('does not add any datafileIds', () => {
+      const datafile = Factory.create('imotionsDatafile');
+      const stimulus = Factory.create('stimulus', {
+        name: 'foo',
+        studyId: datafile.studyId,
+        datafileIds: [datafile._id],
+      });
+
+      const rows = [
+        { stimulusName: 'foo' },
+        { stimulusName: 'foo' },
+        { stimulusName: 'foo' },
+        { stimulusName: 'foo' },
+        { stimulusName: 'foo' },
+        { stimulusName: 'foo' },
+      ];
+
+      datafile.assignStimuli(rows);
+
+      const finalStimulus = Stimuli.findOne({ _id: stimulus._id });
+      expect(finalStimulus.datafileIds).to.eql([datafile._id]);
     });
   });
 }

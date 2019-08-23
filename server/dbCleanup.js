@@ -103,6 +103,23 @@ export default function dbCleanup() {
       .map(doc => doc._id);
 
     // //////////////////////////////////////////////////////////////////////////////
+    query = {
+      $or: [{ datafileIds: { $exists: false } }, { datafileIds: { $size: 0 } }],
+    };
+
+    if (Aois.find(query).count()) {
+      console.log('removing Aois with no Datafile...');
+      Aois.remove(query, (err, num) => {
+        if (err && err.error !== 404) {
+          console.log(err);
+        }
+        if (num) {
+          console.log(`${num} Aois without datafiles removed.`);
+        }
+      });
+    }
+
+    // //////////////////////////////////////////////////////////////////////////////
     query = { studyId: { $nin: validStudyIds } };
     if (Variablefiles.find(query).count()) {
       console.log('removing orphaned Variablefiles...');

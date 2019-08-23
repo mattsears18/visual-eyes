@@ -1,4 +1,4 @@
-export default async function prepareToProcess() {
+export default async function preProcess() {
   console.log('prepare to process');
 
   this.status = 'needsProcessing';
@@ -29,6 +29,8 @@ export default async function prepareToProcess() {
 
   // console.log('pull datafileId from any old stimuli');
   Stimuli.update({}, { $pull: { datafileIds: this._id } }, { multi: true });
+
+  Aois.update({}, { $pull: { datafileIds: this._id } }, { multi: true });
 
   // console.log('pull datafileId from any old participants');
   Participants.update(

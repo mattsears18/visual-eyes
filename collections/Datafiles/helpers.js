@@ -1,3 +1,4 @@
+import assignAois from './imports/assignAois';
 import assignStimuli from './imports/assignStimuli';
 import detectFileFormat from './imports/detectFileFormat';
 import filterSortFloat from './imports/filterSortFloat';
@@ -11,7 +12,7 @@ import getVisualIntakesOnly from './imports/getVisualIntakesOnly';
 import makeEyeevents from './imports/makeEyeevents';
 import makeGazepoints from './imports/makeGazepoints';
 import makeProcessJob from './imports/makeProcessJob';
-import prepareToProcess from './imports/prepareToProcess';
+import preProcess from './imports/preProcess';
 import process from './imports/process';
 import recomputeTimestamps from './imports/recomputeTimestamps';
 import removeHeaders from './imports/removeHeaders';
@@ -19,6 +20,7 @@ import renameHeaders from './imports/renameHeaders';
 import setFileFormat from './imports/setFileFormat';
 
 Datafiles.collection.helpers({
+  assignAois,
   assignStimuli,
   detectFileFormat,
   filterSortFloat,
@@ -32,7 +34,7 @@ Datafiles.collection.helpers({
   makeEyeevents,
   makeGazepoints,
   makeProcessJob,
-  prepareToProcess,
+  preProcess,
   process,
   recomputeTimestamps,
   removeHeaders,

@@ -37,7 +37,11 @@ Template.StimuliList.events({
           if (err) {
             console.log(err);
           } else {
-            template.subscribe('stimulusfiles.byStudyId', FlowRouter.getParam('studyId'), Math.random());
+            template.subscribe(
+              'stimulusfiles.byStudyId',
+              FlowRouter.getParam('studyId'),
+              Math.random(),
+            );
           }
         });
       }

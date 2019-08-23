@@ -27,7 +27,7 @@ export default async function makeEyeevents() {
   // sort rows by timestamp
   rows = this.filterSortFloat('timestamp', rows);
 
-  rows = assignStimuli(rows);
+  rows = this.assignStimuli(rows);
   rows = assignAois(rows); // TODO pick back up here 2019-08-22
 
   const saccades = 0;
@@ -124,32 +124,6 @@ export default async function makeEyeevents() {
   // });
 
   return Eyeevents.find({ datafileId: this._id });
-}
-
-function assignStimuli(data) {
-  console.log('assign stimuli');
-  const rows = [...data];
-
-  const stimuli = Stimuli.find({ studyId: this.studyId }).fetch();
-
-  for (let i = 0; i < rows.length; i += 1) {
-    const stimulus = stimuli.find(row => row.name === rows[i].stimulusName);
-
-    if (typeof stimulus === 'undefined') {
-      console.log(`make new stimulus for name: ${rows[i].stimulusName}`);
-      const newStimulusId = helpers.findOrInsert('stimuli', {
-        name: rows[i].stimulusName,
-        studyId: this.studyId,
-      });
-
-      stimuli.push({ name: rows[i].stimulusName, _id: newStimulusId });
-      rows[i].stimulusId = newStimulusId;
-    } else {
-      rows[i].stimulusId = stimulus._id;
-    }
-  }
-
-  return rows;
 }
 
 function assignAois(data) {

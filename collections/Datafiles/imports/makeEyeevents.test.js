@@ -2,7 +2,7 @@ require('../../factories.test');
 const { expect } = require('chai');
 
 if (Meteor.isServer) {
-  describe.only('Datafiles.makeEyeevents()', () => {
+  describe('Datafiles.makeEyeevents()', () => {
     it('makes eyeevents', async () => {
       const study = Factory.create('study');
       const datafile = Factory.create('smiMultiDatafile', {

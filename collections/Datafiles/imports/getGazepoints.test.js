@@ -158,12 +158,6 @@ if (Meteor.isServer) {
           category: 'Visual Intake',
         }, // duplicate
         {
-          timestamp: '10',
-          x: '100',
-          y: '100',
-          category: 'Visual Intake',
-        }, // no stimulus
-        {
           timestamp: '11',
           x: '100',
           y: '100',
@@ -184,13 +178,6 @@ if (Meteor.isServer) {
           stimulusName: 'someName',
           category: 'Visual Intake',
         }, // good
-        {
-          timestamp: '15',
-          x: '100',
-          y: '100',
-          stimulusName: '',
-          category: 'Visual Intake',
-        }, // blank stimulus name
       ];
 
       expect(await datafile.getGazepoints({ data: rows })).to.eql(expectedRows);

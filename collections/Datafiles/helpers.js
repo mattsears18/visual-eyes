@@ -1,39 +1,43 @@
-import makeProcessJob from './imports/makeProcessJob';
-import getName from './imports/getName';
-import filterSortFloat from './imports/filterSortFloat';
-import removeHeaders from './imports/removeHeaders';
-import getRawCSV from './imports/getRawCSV';
+import assignStimuli from './imports/assignStimuli';
 import detectFileFormat from './imports/detectFileFormat';
-import setFileFormat from './imports/setFileFormat';
-import renameHeaders from './imports/renameHeaders';
-import getRenamedRows from './imports/getRenamedRows';
-import getNumericPositiveCoordinatesOnly from './imports/getNumericPositiveCoordinatesOnly';
-import getVisualIntakesOnly from './imports/getVisualIntakesOnly';
-import getStimuliOnly from './imports/getStimuliOnly';
+import filterSortFloat from './imports/filterSortFloat';
 import getGazepoints from './imports/getGazepoints';
-import makeGazepoints from './imports/makeGazepoints';
+import getName from './imports/getName';
+import getNumericPositiveCoordinatesOnly from './imports/getNumericPositiveCoordinatesOnly';
+import getRawCSV from './imports/getRawCSV';
+import getRenamedRows from './imports/getRenamedRows';
+import getStimuliOnly from './imports/getStimuliOnly';
+import getVisualIntakesOnly from './imports/getVisualIntakesOnly';
 import makeEyeevents from './imports/makeEyeevents';
-import recomputeTimestamps from './imports/recomputeTimestamps';
+import makeGazepoints from './imports/makeGazepoints';
+import makeProcessJob from './imports/makeProcessJob';
+import prepareToProcess from './imports/prepareToProcess';
 import process from './imports/process';
+import recomputeTimestamps from './imports/recomputeTimestamps';
+import removeHeaders from './imports/removeHeaders';
+import renameHeaders from './imports/renameHeaders';
+import setFileFormat from './imports/setFileFormat';
 
 Datafiles.collection.helpers({
-  makeProcessJob,
-  getName,
-  filterSortFloat,
-  removeHeaders,
-  getRawCSV,
+  assignStimuli,
   detectFileFormat,
-  setFileFormat,
-  renameHeaders,
-  getRenamedRows,
-  getNumericPositiveCoordinatesOnly,
-  getVisualIntakesOnly,
-  getStimuliOnly,
+  filterSortFloat,
   getGazepoints,
-  makeGazepoints,
+  getName,
+  getNumericPositiveCoordinatesOnly,
+  getRawCSV,
+  getRenamedRows,
+  getStimuliOnly,
+  getVisualIntakesOnly,
   makeEyeevents,
-  recomputeTimestamps,
+  makeGazepoints,
+  makeProcessJob,
+  prepareToProcess,
   process,
+  recomputeTimestamps,
+  removeHeaders,
+  renameHeaders,
+  setFileFormat,
 
   study() {
     return this.studyId ? Studies.findOne({ _id: this.studyId }) : undefined;

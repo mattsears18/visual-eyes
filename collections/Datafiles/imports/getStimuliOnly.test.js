@@ -38,7 +38,7 @@ describe('Datafiles.getStimuliOnly()', () => {
     expect(datafile.getStimuliOnly(rows)).to.eql(expectedRows);
   });
 
-  it('does not remove rows with blank or undefined stimulusName', () => {
+  it('removes rows with blank or undefined stimulusName', () => {
     const datafile = Factory.create('imotionsDatafile');
     const rows = [
       { x: 1 },
@@ -46,20 +46,9 @@ describe('Datafiles.getStimuliOnly()', () => {
       { stimulusName: '', x: 3 },
       { stimulusName: undefined, x: 4 },
       { stimulusName: 'someName', x: 5 },
-      { stimulusName: null, x: 6 },
-      { stimulusName: '-', x: 7 },
     ];
 
-    const expectedRows = [
-      { x: 1 },
-      { x: 2 },
-      { stimulusName: '', x: 3 },
-      { stimulusName: undefined, x: 4 },
-      { stimulusName: 'someName', x: 5 },
-      { stimulusName: null, x: 6 },
-      { stimulusName: '-', x: 7 },
-    ];
-
+    const expectedRows = [{ stimulusName: 'someName', x: 5 }];
     expect(datafile.getStimuliOnly(rows)).to.eql(expectedRows);
   });
 });

@@ -18,7 +18,6 @@ import preProcess from './imports/preProcess';
 import process from './imports/process';
 import recomputeTimestamps from './imports/recomputeTimestamps';
 import removeHeaders from './imports/removeHeaders';
-import renameHeaders from './imports/renameHeaders';
 import setFileFormat from './imports/setFileFormat';
 
 Datafiles.collection.helpers({
@@ -42,7 +41,6 @@ Datafiles.collection.helpers({
   process,
   recomputeTimestamps,
   removeHeaders,
-  renameHeaders,
   setFileFormat,
 
   study() {

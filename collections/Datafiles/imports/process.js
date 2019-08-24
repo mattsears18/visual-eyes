@@ -3,9 +3,11 @@ import helpers from '../../../lib/helpers';
 const csv = require('csvtojson');
 
 export default async function process() {
-  await this.preProcess();
+  const rawCsvData = await this.getRawCSV();
 
-  const eyeevents = await this.makeEyeevents();
+  this.preProcess(rawCSVData);
+
+  const eyeevents = this.makeEyeevents(rawCSVData);
   // const gazepoints = await this.makeGazepoints();
   // const fixations = await this.makeFixations();
 

@@ -1,7 +1,13 @@
-export default async function preProcess() {
-  console.log('prepare to process');
+import helpers from '../../../lib/helpers';
 
-  this.status = 'needsProcessing';
+export default function preProcess(rawCsvData) {
+  console.log('Datafile.preProcess()');
+
+  const study = Studies.findOne({ _id: this.studyId });
+  if (!study) {
+    throw new Error('noStudy');
+  }
+
   delete this.headersRemoved;
   delete this.fileFormat;
   delete this.rawRowCount;
@@ -10,18 +16,14 @@ export default async function preProcess() {
   delete this.gazepointCount;
   delete this.fixationCount;
 
+  this.status = 'preprocessing';
   Datafiles.update({ _id: this._id }, { $set: { status: 'preprocessing' } });
 
   this.removeHeaders();
-  await this.setFileFormat();
+  this.setFileFormat(rawCsvData);
 
   if (this.status === 'unrecognizedFileFormat') {
     throw new Error('unrecognizedFileFormat');
-  }
-
-  const study = Studies.findOne({ _id: this.studyId });
-  if (!study) {
-    throw new Error('noStudy');
   }
 
   // console.log('remove any old gazepoints');
@@ -36,34 +38,35 @@ export default async function preProcess() {
   Participants.update(
     {},
     { $pull: { datafileIds: this._id } },
-    { multi: true },
+    { multi: true }
   );
 
   this.participantId = helpers.findOrInsert('participants', {
     name: this.getName(),
-    studyId: this.studyId,
+    studyId: this.studyId
   });
 
   Participants.update(
     { _id: this.participantId },
     {
-      $addToSet: { datafileIds: this._id },
-    },
+      $addToSet: { datafileIds: this._id }
+    }
   );
 
   Datafiles.update(
     { _id: this._id },
     {
       $set: {
-        participantId: this.participantId,
-      },
+        participantId: this.participantId
+      }
     },
     (err, num) => {
       if (err) {
         console.log(err);
       }
-    },
+    }
   );
 
+  this.status = 'processing';
   Datafiles.update({ _id: this._id }, { $set: { status: 'processing' } });
 }

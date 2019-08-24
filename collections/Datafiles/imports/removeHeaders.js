@@ -1,5 +1,5 @@
 export default function removeHeaders() {
-  // console.log('remove datafile headers');
+  console.log('Datafile.removeHeaders()');
 
   const data = fs.readFileSync(this.path, 'utf-8');
   const lines = data.toString().split('\n');

@@ -1,12 +1,12 @@
 import helpers from '../../../lib/helpers';
 
-export default async function getAssignedRows() {
+export default async function getAssignedRows(rawCsvData) {
   let rows = [...(await this.getRenamedRows())];
   this.rawRowCount = rows.length;
 
   Datafiles.update(
     { _id: this._id },
-    { $set: { rawRowCount: this.rawRowCount } },
+    { $set: { rawRowCount: this.rawRowCount } }
   );
 
   rows = this.getStimuliOnly(rows);
@@ -14,7 +14,7 @@ export default async function getAssignedRows() {
 
   Datafiles.update(
     { _id: this._id },
-    { $set: { stimulusRowCount: this.stimulusRowCount } },
+    { $set: { stimulusRowCount: this.stimulusRowCount } }
   );
 
   // recompute timestamps from timeOfDay (required for SMI files)

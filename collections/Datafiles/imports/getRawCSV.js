@@ -1,8 +1,7 @@
 const csv = require('csvtojson');
 
 async function getRawCSV() {
-  const data = await csv({ delimiter: 'auto' }).fromFile(this.path);
-  return data;
+  return csv({ delimiter: 'auto' }).fromFile(this.path);
 }
 
 export default getRawCSV;

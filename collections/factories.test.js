@@ -52,7 +52,7 @@ const baseDatafile = {
 };
 
 const imotionsFields = {
-  fileFormat: 'imotions',
+  // fileFormat: 'imotions',
   path:
     '/Users/matthewsears/code/visual-eyes/testFiles/realFile/imotionsWael.txt',
   versions: {
@@ -68,7 +68,7 @@ const imotionsFields = {
 };
 
 const smiFields = {
-  fileFormat: 'smi',
+  // fileFormat: 'smi',
   path: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/smiWael.txt',
   versions: {
     original: {
@@ -83,7 +83,7 @@ const smiFields = {
 };
 
 const smiMultiFields = {
-  fileFormat: 'smi',
+  // fileFormat: 'smi',
   path:
     '/Users/matthewsears/code/visual-eyes/testFiles/realFile/smiMultiParticipant03.csv',
   versions: {
@@ -113,6 +113,10 @@ const unrecognizedFields = {
   _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/',
 };
 
+const blankFields = {
+  path: '/',
+};
+
 Factory.define('imotionsDatafile', Datafiles.collection, {
   ...baseDatafile,
   ...imotionsFields,
@@ -128,6 +132,10 @@ Factory.define('smiMultiDatafile', Datafiles.collection, {
 Factory.define('unrecognizedDatafile', Datafiles.collection, {
   ...baseDatafile,
   ...unrecognizedFields,
+});
+Factory.define('emptyDatafile', Datafiles.collection, {
+  ...baseDatafile,
+  ...blankFields,
 });
 
 Factory.define('analysis', Analyses, {

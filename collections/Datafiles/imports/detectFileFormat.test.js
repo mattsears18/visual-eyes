@@ -1,21 +1,33 @@
+import { Factory } from 'meteor/dburles:factory';
+
 require('./../../factories.test');
 const { expect } = require('chai');
 
 if (Meteor.isServer) {
   describe('Datafiles.detectFileFormat()', () => {
+    it('does not supply the raw CSV data', () => {
+      const datafile = Factory.create('imotionsDatafile');
+      expect(() => {
+        datafile.detectFileFormat();
+      }).to.throw('noRawCSVData');
+    });
+
     it('detects the imotions file format', async () => {
       const datafile = Factory.create('imotionsDatafile');
-      expect(await datafile.detectFileFormat()).to.equal('imotions');
+      const rawCSVData = await datafile.getRawCSV();
+      expect(datafile.detectFileFormat(rawCSVData)).to.equal('imotions');
     });
 
     it('detects the smi file format', async () => {
       const datafile = Factory.create('smiDatafile');
-      expect(await datafile.detectFileFormat()).to.equal('smi');
+      const rawCSVData = await datafile.getRawCSV();
+      expect(datafile.detectFileFormat(rawCSVData)).to.equal('smi');
     });
 
     it('does not detect a fileFormat', async () => {
       const datafile = Factory.create('unrecognizedDatafile');
-      expect(await datafile.detectFileFormat()).to.be.an('undefined');
+      const rawCSVData = await datafile.getRawCSV();
+      expect(datafile.detectFileFormat(rawCSVData)).to.be.an('undefined');
     });
   });
 }

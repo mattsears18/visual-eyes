@@ -1,10 +1,19 @@
-export default async function detectFileFormat() {
-  let fileFormat;
-  const rows = await this.getRawCSV();
+export default function detectFileFormat(rawCsvData) {
+  if (!rawCsvData || !rawCsvData.length) {
+    throw Error('noRawCSVData');
+  }
 
-  if (rows[0].hasOwnProperty('Point of Regard Binocular X [px]')) {
+  const rows = [...rawCsvData];
+  let fileFormat;
+
+  if (
+    Object.prototype.hasOwnProperty.call(
+      rows[0],
+      'Point of Regard Binocular X [px]',
+    )
+  ) {
     fileFormat = 'smi';
-  } else if (rows[0].hasOwnProperty('GazeX')) {
+  } else if (Object.prototype.hasOwnProperty.call(rows[0], 'GazeX')) {
     fileFormat = 'imotions';
   }
 

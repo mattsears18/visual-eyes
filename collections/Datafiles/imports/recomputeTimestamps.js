@@ -1,8 +1,8 @@
 const moment = require('moment');
 
-export default function recomputeTimestamps(inputRows) {
-  // console.log('recompute timestamps');
-  const rows = [...inputRows];
+export default function recomputeTimestamps(renamedRows) {
+  console.log('recompute timestamps');
+  const rows = [...renamedRows];
 
   // sort by timeOfDay (in place)
   rows.sort((a, b) => {

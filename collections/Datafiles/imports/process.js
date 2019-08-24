@@ -6,7 +6,6 @@ export default async function process() {
   const rawCsvData = await this.getRawCSV();
 
   this.preProcess(rawCSVData);
-
   const eyeevents = this.makeEyeevents(rawCSVData);
   // const gazepoints = await this.makeGazepoints();
   // const fixations = await this.makeFixations();

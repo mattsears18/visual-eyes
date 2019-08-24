@@ -1,5 +1,5 @@
-export default function getStimuliOnly(data) {
-  return [...data].filter(
-    row => row.stimulusName && !row.stimulusName.match(/\.avi|smiGlasses/),
+export default function getStimuliOnly(renamedRows) {
+  return [...renamedRows].filter(
+    row => row.stimulusName && !row.stimulusName.match(/\.avi|smiGlasses/)
   );
 }

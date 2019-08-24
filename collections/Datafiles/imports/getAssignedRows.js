@@ -1,32 +1,33 @@
 import helpers from '../../../lib/helpers';
 
-export default async function getAssignedRows(rawCsvData) {
-  let rows = [...(await this.getRenamedRows())];
-  this.rawRowCount = rows.length;
+export default function getAssignedRows(rawCsvData) {
+  let renamedRows = this.getRenamedRows(rawCsvData);
+
+  this.rawRowCount = renamedRows.length;
 
   Datafiles.update(
     { _id: this._id },
-    { $set: { rawRowCount: this.rawRowCount } }
+    { $set: { rawRowCount: this.rawRowCount } },
   );
 
-  rows = this.getStimuliOnly(rows);
-  this.stimulusRowCount = rows.length;
+  renamedRows = this.getStimuliOnly(renamedRows);
+  this.stimulusRowCount = renamedRows.length;
 
   Datafiles.update(
     { _id: this._id },
-    { $set: { stimulusRowCount: this.stimulusRowCount } }
+    { $set: { stimulusRowCount: this.stimulusRowCount } },
   );
 
   // recompute timestamps from timeOfDay (required for SMI files)
-  if (helpers.keyInArray('timeOfDay', rows)) {
-    rows = this.recomputeTimestamps(rows);
+  if (helpers.keyInArray('timeOfDay', renamedRows)) {
+    renamedRows = this.recomputeTimestamps(renamedRows);
   }
 
-  // sort rows by timestamp
-  rows = this.filterSortFloat('timestamp', rows);
+  // sort renamedRows by timestamp
+  const sortedRows = this.filterSortFloat('timestamp', renamedRows);
 
-  rows = this.assignStimuli(rows);
-  rows = this.assignAois(rows);
+  const rowsWithStimuli = this.assignStimuli(sortedRows);
+  const rowsWithAois = this.assignAois(rowsWithStimuli);
 
-  return rows;
+  return rowsWithAois;
 }

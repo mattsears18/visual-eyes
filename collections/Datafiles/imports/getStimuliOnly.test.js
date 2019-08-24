@@ -17,7 +17,7 @@ describe('Datafiles.getStimuliOnly()', () => {
       { stimulusName: 'adsfegrhfb.avi', x: 2 },
       { stimulusName: 'dsfdgf.avisfdgfb', x: 3 },
       { stimulusName: '.aviadfsdgfh', x: 4 },
-      { stimulusName: 'someName', x: 5 },
+      { stimulusName: 'someName', x: 5 }
     ];
 
     const expectedRows = [{ stimulusName: 'someName', x: 5 }];
@@ -31,7 +31,7 @@ describe('Datafiles.getStimuliOnly()', () => {
       { stimulusName: 'adsfegrhfbsmiGlasses', x: 2 },
       { stimulusName: 'dsfdgfsmiGlassessfdgfb', x: 3 },
       { stimulusName: 'smiGlassesadfsdgfh', x: 4 },
-      { stimulusName: 'someName', x: 5 },
+      { stimulusName: 'someName', x: 5 }
     ];
 
     const expectedRows = [{ stimulusName: 'someName', x: 5 }];
@@ -45,7 +45,7 @@ describe('Datafiles.getStimuliOnly()', () => {
       { x: 2 },
       { stimulusName: '', x: 3 },
       { stimulusName: undefined, x: 4 },
-      { stimulusName: 'someName', x: 5 },
+      { stimulusName: 'someName', x: 5 }
     ];
 
     const expectedRows = [{ stimulusName: 'someName', x: 5 }];

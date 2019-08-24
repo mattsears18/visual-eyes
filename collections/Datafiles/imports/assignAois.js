@@ -1,8 +1,8 @@
 import helpers from '../../../lib/helpers';
 
-export default function assignAois(inputRows) {
-  // console.log('assign aois');
-  const rows = [...inputRows];
+export default function assignAois(rowsWithStimuli) {
+  console.log('Datafile.assignAois()');
+  const rows = [...rowsWithStimuli];
 
   let aois = Aois.find({ studyId: this.studyId }).fetch();
 

@@ -13,7 +13,7 @@ if (Meteor.isServer) {
         { timestamp: 0, timeOfDay: '03:41:18:261' },
         { timestamp: 0, timeOfDay: '03:41:18:278' },
         { timestamp: 0, timeOfDay: '03:41:18:294' },
-        { timestamp: 0, timeOfDay: '03:41:18:311' },
+        { timestamp: 0, timeOfDay: '03:41:18:311' }
       ];
 
       const expectedRows = [
@@ -22,7 +22,7 @@ if (Meteor.isServer) {
         { originalTimestamp: 0, timestamp: 33, timeOfDay: '03:41:18:261' },
         { originalTimestamp: 0, timestamp: 50, timeOfDay: '03:41:18:278' },
         { originalTimestamp: 0, timestamp: 66, timeOfDay: '03:41:18:294' },
-        { originalTimestamp: 0, timestamp: 83, timeOfDay: '03:41:18:311' },
+        { originalTimestamp: 0, timestamp: 83, timeOfDay: '03:41:18:311' }
       ];
 
       expect(datafile.recomputeTimestamps(rows)).to.eql(expectedRows);
@@ -36,7 +36,7 @@ if (Meteor.isServer) {
         { timestamp: 867564, timeOfDay: '03:41:18:228' },
         { timestamp: 2435, timeOfDay: '03:41:18:245' },
         { timestamp: 3240, timeOfDay: '03:41:18:261' },
-        { timestamp: 0, timeOfDay: '03:41:18:294' },
+        { timestamp: 0, timeOfDay: '03:41:18:294' }
       ];
 
       const expectedRows = [
@@ -48,8 +48,8 @@ if (Meteor.isServer) {
         {
           originalTimestamp: 3124354,
           timestamp: 83,
-          timeOfDay: '03:41:18:311',
-        },
+          timeOfDay: '03:41:18:311'
+        }
       ];
 
       expect(datafile.recomputeTimestamps(rows)).to.eql(expectedRows);
@@ -64,7 +64,7 @@ if (Meteor.isServer) {
         { timestamp: 0, timeOfDay: '01:00:01:338' },
         { timestamp: 0, timeOfDay: '01:01:01:338' },
         { timestamp: 0, timeOfDay: '02:01:01:338' },
-        { timestamp: 0, timeOfDay: '02:01:01:339' },
+        { timestamp: 0, timeOfDay: '02:01:01:339' }
       ];
 
       const expectedRows = [
@@ -73,7 +73,7 @@ if (Meteor.isServer) {
         { originalTimestamp: 0, timestamp: 1001, timeOfDay: '01:00:01:338' },
         { originalTimestamp: 0, timestamp: 61001, timeOfDay: '01:01:01:338' },
         { originalTimestamp: 0, timestamp: 3661001, timeOfDay: '02:01:01:338' },
-        { originalTimestamp: 0, timestamp: 3661002, timeOfDay: '02:01:01:339' },
+        { originalTimestamp: 0, timestamp: 3661002, timeOfDay: '02:01:01:339' }
       ];
 
       expect(datafile.recomputeTimestamps(rows)).to.eql(expectedRows);
@@ -81,9 +81,13 @@ if (Meteor.isServer) {
 
     it('recomputes timestamps on a real smi file with multiple stimuli', async () => {
       const datafile = Factory.create('smiMultiDatafile');
-      const rows = datafile.getStimuliOnly(await datafile.getRenamedRows());
+      datafile.fileFormat = 'smi';
+      const rawCSVData = await datafile.getRawCSV();
+      const renamedRows = datafile.getStimuliOnly(
+        datafile.getRenamedRows(rawCSVData)
+      );
 
-      const recomputed = datafile.recomputeTimestamps(rows);
+      const recomputed = datafile.recomputeTimestamps(renamedRows);
       expect(recomputed[0].timestamp).to.equal(0);
       expect(recomputed[recomputed.length - 1].timestamp).to.equal(142783);
       // this is the actual duration verified in excel from "timeOfDay"

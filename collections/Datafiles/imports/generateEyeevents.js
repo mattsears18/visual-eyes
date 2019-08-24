@@ -14,8 +14,6 @@ export default function generateEyeevents(inputRows) {
   const lastAoiId = '';
   const lastStimulusId = '';
 
-  // TODO pick back up here 2019-08-23
-
   for (let i = 0; i < rows.length; i += 1) {
     if (!rows[i].stimulusId) {
       // console.log(rows[i].stimulusId);

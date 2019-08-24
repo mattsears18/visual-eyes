@@ -1,8 +1,8 @@
 import helpers from '../../../lib/helpers';
 
-export default function assignStimuli(rawRows) {
-  // console.log('assign stimuli');
-  const rows = [...rawRows];
+export default function assignStimuli(sortedRows) {
+  console.log('Datafile.assignStimuli()');
+  const rows = [...sortedRows];
 
   let stimuli = Stimuli.find({ studyId: this.studyId }).fetch();
 
@@ -30,8 +30,6 @@ export default function assignStimuli(rawRows) {
       stimuli = Stimuli.find({ studyId: this.studyId }).fetch();
     }
   }
-
-  // console.log('finished assigning stimuli');
 
   return rows;
 }

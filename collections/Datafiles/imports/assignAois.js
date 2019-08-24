@@ -40,7 +40,7 @@ export default function assignAois(inputRows) {
     }
   }
 
-  console.log('finished assigning aois');
+  // console.log('finished assigning aois');
 
   return rows;
 }

@@ -2,6 +2,8 @@ import assignAois from './imports/assignAois';
 import assignStimuli from './imports/assignStimuli';
 import detectFileFormat from './imports/detectFileFormat';
 import filterSortFloat from './imports/filterSortFloat';
+import generateEyeevents from './imports/generateEyeevents';
+import getAssignedRows from './imports/getAssignedRows';
 import getGazepoints from './imports/getGazepoints';
 import getName from './imports/getName';
 import getNumericPositiveCoordinatesOnly from './imports/getNumericPositiveCoordinatesOnly';
@@ -24,6 +26,8 @@ Datafiles.collection.helpers({
   assignStimuli,
   detectFileFormat,
   filterSortFloat,
+  generateEyeevents,
+  getAssignedRows,
   getGazepoints,
   getName,
   getNumericPositiveCoordinatesOnly,

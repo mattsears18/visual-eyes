@@ -1,0 +1,18 @@
+# Steps to Process raw Datafiles
+
+- Datafiles.process() (async)
+  - .preProcess() (async)
+    - .removeHeaders()
+    - .setFileFormat() (async)
+      - .detectFileFormat() (async)
+        - .getRawCSV() (async)
+  - .makeEyeevents() (async)
+    - .getAssignedRows() (async)
+      - .getRenamedRows() (async)
+        - .getRawCSV() (async)
+      - .getStimuliOnly()
+      - .recomputeTimestamps()
+      - .filterSortFloat()
+      - .assignStimuli()
+      - .assignAois()
+    - .generateEyeevents()

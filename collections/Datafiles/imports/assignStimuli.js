@@ -31,7 +31,7 @@ export default function assignStimuli(rawRows) {
     }
   }
 
-  console.log('finished assigning stimuli');
+  // console.log('finished assigning stimuli');
 
   return rows;
 }

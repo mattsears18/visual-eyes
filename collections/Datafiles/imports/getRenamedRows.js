@@ -21,7 +21,7 @@ export default function getRenamedRows(rawCsvData) {
       { original: 'Point of Regard Binocular X [px]', new: 'x' },
       { original: 'Point of Regard Binocular Y [px]', new: 'y' },
       { original: 'Stimulus', new: 'stimulusName' },
-      { original: 'AOI Name Binocular', new: 'aoiName' }
+      { original: 'AOI Name Binocular', new: 'aoiName' },
     ];
   } else if (this.fileFormat === 'imotions') {
     headers = [
@@ -30,7 +30,7 @@ export default function getRenamedRows(rawCsvData) {
       { original: 'GazeX', new: 'x' },
       { original: 'GazeY', new: 'y' },
       { original: 'StimulusName', new: 'stimulusName' },
-      { original: 'GazeAOI', new: 'aoiName' }
+      { original: 'GazeAOI', new: 'aoiName' },
     ];
   } else {
     throw new Error('unrecognizedFileFormat');
@@ -40,13 +40,20 @@ export default function getRenamedRows(rawCsvData) {
 
   for (let i = 0; i < rows.length; i += 1) {
     const renamedRow = {};
-    headers.forEach(header => {
+    headers.forEach((header) => {
       if ({}.hasOwnProperty.call(rows[i], header.original)) {
         renamedRow[header.new] = rows[i][header.original];
       }
     });
 
     renamedRows.push(renamedRow);
+  }
+
+  // imotions doesn't have categories so just add 'Visual Intake' to every row
+  if (this.fileFormat === 'imotions') {
+    for (let i = 0; i < renamedRows.length; i += 1) {
+      renamedRows[i].category = 'Visual Intake';
+    }
   }
 
   return renamedRows;

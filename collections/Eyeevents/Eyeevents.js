@@ -51,7 +51,7 @@ Schemas.Eyeevent = new SimpleSchema(
       type: String,
       optional: true,
     },
-    startTimestamp: {
+    timestamp: {
       type: Number,
       label: 'Timestamp',
     },

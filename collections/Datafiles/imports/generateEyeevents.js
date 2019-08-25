@@ -1,34 +1,56 @@
-export default function generateEyeevents(inputRows) {
+export default function generateEyeevents(assignedRows) {
   // assume rows have already been sorted by timestamp
   // assume all rows have a stimulusId
-  const rows = inputRows ? [...inputRows] : this.getAssignedRows();
 
-  return rows;
+  if (!assignedRows || !assignedRows.length) {
+    throw Error('noAssignedRows');
+  }
+
+  const rows = [...assignedRows];
 
   const saccades = [];
   const blinks = [];
   const gazepoints = [];
   const fixations = [];
 
-  let lastEvent = '';
+  let lastEvent;
   const lastAoiId = '';
   const lastStimulusId = '';
 
-  for (let i = 0; i < rows.length; i += 1) {
-    if (!rows[i].stimulusId) {
-      // console.log(rows[i].stimulusId);
-    }
+  let currentFixation;
 
+  for (let i = 0; i < rows.length; i += 1) {
     switch (rows[i].category) {
       case 'Visual Intake':
         gazepoints.push(rows[i]);
+        if (rows[i].eventIndex) {
+          if (
+            !currentFixation
+            || currentFixation.index !== rows[i].eventIndex
+          ) {
+            // new fixation!
+            if (currentFixation) {
+              // save the old fixation
+              fixations.push(currentFixation);
+            }
+            currentFixation = {
+              timestamp: rows[i].timestamp,
+              index: rows[i].eventIndex,
+            };
+          } else {
+            // continue fixation!
+            // update the duration, etc.
+          }
+        }
+
         lastEvent = 'visualIntake';
         break;
       case 'Saccade':
-        console.log('Saccade!');
+        saccades.push(rows[i]);
         lastEvent = 'saccade';
         break;
       case 'Blink':
+        blinks.push(rows[i]);
         lastEvent = 'blink';
         break;
       case 'User Event':
@@ -38,9 +60,13 @@ export default function generateEyeevents(inputRows) {
 
       default:
         console.log('invalid recorded row category');
+        console.log(rows[i]);
     }
+  }
 
-    // console.log(lastEvent);
+  if (currentFixation) {
+    // end the last fixation
+    fixations.push(currentFixation);
   }
 
   // _data.forEach((r) => {

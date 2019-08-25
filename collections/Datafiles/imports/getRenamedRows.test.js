@@ -34,7 +34,7 @@ describe('Datafiles.getRenamedRows()', () => {
         'Point of Regard Binocular X [px]': '592.7510',
         'Point of Regard Binocular Y [px]': '-216.5275',
         Stimulus: 'wael-5-recording.avi',
-        'AOI Name Binocular': '-'
+        'AOI Name Binocular': '-',
       },
       {
         'RecordingTime [ms]': '2554867.2940',
@@ -44,7 +44,7 @@ describe('Datafiles.getRenamedRows()', () => {
         'Point of Regard Binocular X [px]': '589.2836',
         'Point of Regard Binocular Y [px]': '-214.0377',
         Stimulus: 'wael-5-recording.avi',
-        'AOI Name Binocular': '-'
+        'AOI Name Binocular': '-',
       },
       {
         'RecordingTime [ms]': '2554883.9200',
@@ -54,8 +54,8 @@ describe('Datafiles.getRenamedRows()', () => {
         'Point of Regard Binocular X [px]': '590.3164',
         'Point of Regard Binocular Y [px]': '-212.6354',
         Stimulus: 'wael-5-recording.avi',
-        'AOI Name Binocular': '-'
-      }
+        'AOI Name Binocular': '-',
+      },
     ];
     const expectedRows = [
       {
@@ -66,7 +66,7 @@ describe('Datafiles.getRenamedRows()', () => {
         x: '592.7510',
         y: '-216.5275',
         stimulusName: 'wael-5-recording.avi',
-        aoiName: '-'
+        aoiName: '-',
       },
       {
         timestamp: '2554867.2940',
@@ -76,7 +76,7 @@ describe('Datafiles.getRenamedRows()', () => {
         x: '589.2836',
         y: '-214.0377',
         stimulusName: 'wael-5-recording.avi',
-        aoiName: '-'
+        aoiName: '-',
       },
       {
         timestamp: '2554883.9200',
@@ -86,8 +86,8 @@ describe('Datafiles.getRenamedRows()', () => {
         x: '590.3164',
         y: '-212.6354',
         stimulusName: 'wael-5-recording.avi',
-        aoiName: '-'
-      }
+        aoiName: '-',
+      },
     ];
     expect(datafile.getRenamedRows(rows)).to.eql(expectedRows);
   });
@@ -101,7 +101,7 @@ describe('Datafiles.getRenamedRows()', () => {
         GazeX: '506',
         GazeY: '94',
         StimulusName: 'smiGlasses',
-        GazeAOI: ''
+        GazeAOI: '',
       },
       {
         Timestamp: '614',
@@ -109,7 +109,7 @@ describe('Datafiles.getRenamedRows()', () => {
         GazeX: '509',
         GazeY: '93',
         StimulusName: 'smiGlasses',
-        GazeAOI: ''
+        GazeAOI: '',
       },
       {
         Timestamp: '630',
@@ -117,8 +117,8 @@ describe('Datafiles.getRenamedRows()', () => {
         GazeX: '508',
         GazeY: '95',
         StimulusName: 'smiGlasses',
-        GazeAOI: ''
-      }
+        GazeAOI: '',
+      },
     ];
     const expectedRows = [
       {
@@ -127,7 +127,8 @@ describe('Datafiles.getRenamedRows()', () => {
         x: '506',
         y: '94',
         stimulusName: 'smiGlasses',
-        aoiName: ''
+        aoiName: '',
+        category: 'Visual Intake',
       },
       {
         timestamp: '614',
@@ -135,7 +136,8 @@ describe('Datafiles.getRenamedRows()', () => {
         x: '509',
         y: '93',
         stimulusName: 'smiGlasses',
-        aoiName: ''
+        aoiName: '',
+        category: 'Visual Intake',
       },
       {
         timestamp: '630',
@@ -143,8 +145,9 @@ describe('Datafiles.getRenamedRows()', () => {
         x: '508',
         y: '95',
         stimulusName: 'smiGlasses',
-        aoiName: ''
-      }
+        aoiName: '',
+        category: 'Visual Intake',
+      },
     ];
     expect(datafile.getRenamedRows(rows)).to.eql(expectedRows);
   });

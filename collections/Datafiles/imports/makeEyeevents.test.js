@@ -1,23 +1,34 @@
-// require('../../factories.test');
-// const { expect } = require('chai');
+import Eyeevents from '../../Eyeevents/Eyeevents';
 
-// if (Meteor.isServer) {
-//   describe('Datafiles.makeEyeevents()', () => {
-//     it('makes eyeevents', async () => {
-//       const study = Factory.create('study');
-//       const datafile = Factory.create('smiMultiDatafile', {
-//         studyId: study._id,
-//       });
+require('../../factories.test');
+const { expect } = require('chai');
 
-//       const eyeevents = await datafile.makeEyeevents();
-//       console.log(`${eyeevents.count()} eyeevents created`);
-//     }).timeout(60000);
+if (Meteor.isServer) {
+  describe('Datafiles.makeEyeevents()', () => {
+    it('does not make any eyeevents for imotions datafiles', () => {
+      const datafile = Factory.create('imotionsDatafile');
+      datafile.fileFormat = 'imotions';
 
-//     // it('does not have eye events (no blinks, no saccades, etc. because its an imotions file)', async () => {
-//     //   const datafile = Factory.create('imotionsDatafile');
+      const newEyeevents = datafile.makeEyeevents();
+      expect(newEyeevents.count()).to.equal(0);
+    });
 
-//     //   const eyeevents = await datafile.makeEyeevents();
-//     //   console.log(`${eyeevents.count()} eyeevents created`);
-//     // });
-//   });
-// }
+    it('makes eyeevents for a real smi datafile', async () => {
+      const datafile = Factory.create('smiDatafile');
+      datafile.fileFormat = 'smi';
+      const rawCSVData = await datafile.getRawCSV();
+
+      datafile.makeEyeevents(rawCSVData);
+
+      expect(
+        Eyeevents.find({ datafileId: datafile._id, type: 'saccade' }).count(),
+      ).to.equal(283); // imotions report saccades
+      expect(
+        Eyeevents.find({ datafileId: datafile._id, type: 'blink' }).count(),
+      ).to.equal(20); // imotions doesn't report blinks
+      expect(
+        Eyeevents.find({ datafileId: datafile._id, type: 'fixation' }).count(),
+      ).to.equal(305);
+    });
+  });
+}

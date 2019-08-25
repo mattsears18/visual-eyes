@@ -89,7 +89,7 @@ describe('Datafiles.generateEyeevents', () => {
       fixations,
     } = datafile.generateEyeevents(groupedRows[4].rows); // Spool 4
 
-    console.log(fixations);
+    // console.log(fixations);
 
     console.log(`saccades:   ${saccades.length}`);
     console.log(`blinks:     ${blinks.length}`);

@@ -60,6 +60,12 @@ export default function generateEyeevents(assignedRows) {
   }
 
   for (let i = 0; i < rows.length; i += 1) {
+    console.log(
+      `     i: ${i} of ${rows.length
+        - 1}   lastEvent: ${lastEvent} current category: ${
+        rows[i].category
+      } timestamp: ${rows[i].timestamp}`,
+    );
     switch (rows[i].category) {
       case 'Visual Intake':
         if (lastEvent && lastEvent !== 'fixation') {
@@ -162,9 +168,9 @@ export default function generateEyeevents(assignedRows) {
         events.push(lastEvent);
         break;
       case '-':
-        if (lastEvent === 'fixation' && currentFixation) {
-          terminateLastEvent(i);
-        }
+        // if (lastEvent === 'fixation' && currentFixation) {
+        //   terminateLastEvent(i);
+        // }
         break;
 
       default:

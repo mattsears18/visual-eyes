@@ -1,6 +1,6 @@
 export default function generateEyeevents(assignedRows) {
   // assume rows have already been sorted by timestamp
-  // assume all rows have a stimulusId
+  // assume all rows belong to same stimulus
 
   if (!assignedRows || !assignedRows.length) {
     throw Error('noAssignedRows');
@@ -8,20 +8,64 @@ export default function generateEyeevents(assignedRows) {
 
   const rows = [...assignedRows];
 
-  const saccades = [];
-  const blinks = [];
+  console.log(rows[0]);
+
+  const saccades = []; // FUTURE!!
+  const blinks = []; // FUTURE!!
   const gazepoints = [];
   const fixations = [];
 
+  const events = [];
   let lastEvent;
+
   const lastAoiId = '';
-  const lastStimulusId = '';
 
   let currentFixation;
+  let currentSaccade;
+  let currentBlink;
+
+  function terminateLastEvent(nextEventIndex) {
+    const i = nextEventIndex;
+
+    console.log('     ');
+
+    if (lastEvent === 'fixation') {
+      if (rows[i] && currentFixation) {
+        console.log(`${rows[i].timestamp} end fixation`);
+
+        currentFixation.duration = rows[i].timestamp - currentFixation.timestamp;
+        fixations.push(currentFixation);
+
+        currentFixation = null;
+      }
+    } else if (lastEvent === 'saccade') {
+      if (rows[i - 1] && currentSaccade) {
+        console.log(`${rows[i - 1].timestamp} end saccade`);
+
+        currentSaccade.duration = rows[i - 1].timestamp - currentSaccade.timestamp;
+        saccades.push(currentSaccade);
+
+        currentSaccade = null;
+      }
+    } else if (lastEvent === 'blink') {
+      if (rows[i] && currentBlink) {
+        console.log(`${rows[i].timestamp} end blink`);
+
+        currentBlink.duration = rows[i].timestamp - currentBlink.timestamp;
+        blinks.push(currentBlink);
+
+        currentBlink = null;
+      }
+    }
+  }
 
   for (let i = 0; i < rows.length; i += 1) {
     switch (rows[i].category) {
       case 'Visual Intake':
+        if (lastEvent && lastEvent !== 'fixation') {
+          terminateLastEvent(i);
+        }
+
         gazepoints.push(rows[i]);
         if (rows[i].eventIndex) {
           if (
@@ -30,39 +74,97 @@ export default function generateEyeevents(assignedRows) {
           ) {
             // new fixation!
             if (currentFixation) {
-              // save the old fixation
-              fixations.push(currentFixation);
+              terminateLastEvent(i);
             }
 
+            // SMI
+            // Fixation begins on the timestamp of the previous row if previous event was saccade
+            // Fixation begins on the timestamp of its first row if previous event was blink
+
             currentFixation = {
-              timestamp: rows[i].timestamp,
+              timestamp:
+                lastEvent === 'saccade'
+                  ? rows[i - 1].timestamp
+                  : rows[i].timestamp,
               index: rows[i].eventIndex,
               x: this.fileFormat === 'imotions' ? rows[i].fixationX : rows[i].x,
               y: this.fileFormat === 'imotions' ? rows[i].fixationY : rows[i].y,
               duration:
                 this.fileFormat === 'imotions' ? rows[i].fixationDuration : 0,
             };
-          } else {
-            // continue fixation!
-            if (this.fileFormat !== 'imotions') {
-              currentFixation.duration = rows[i].timestamp - currentFixation.timestamp;
-            }
+
+            console.log(`${currentFixation.timestamp} begin fixation`);
           }
         }
 
-        lastEvent = 'visualIntake';
+        if (lastEvent !== 'fixation') {
+          lastEvent = 'fixation';
+          events.push(lastEvent);
+        }
+
         break;
       case 'Saccade':
-        saccades.push(rows[i]);
+        if (lastEvent && lastEvent !== 'saccade') {
+          terminateLastEvent(i);
+        }
+
+        if (rows[i].eventIndex) {
+          if (!currentSaccade || currentSaccade.index !== rows[i].eventIndex) {
+            // new saccade!
+            if (currentSaccade) {
+              terminateLastEvent(i);
+            }
+
+            currentSaccade = {
+              timestamp: rows[i].timestamp,
+              index: rows[i].eventIndex,
+              x: rows[i].x,
+              y: rows[i].y,
+              duration: 0,
+            };
+
+            console.log(`${currentSaccade.timestamp} begin saccade`);
+          }
+        }
+
         lastEvent = 'saccade';
+        events.push(lastEvent);
         break;
       case 'Blink':
-        blinks.push(rows[i]);
+        if (lastEvent && lastEvent !== 'blink') {
+          terminateLastEvent(i);
+        }
+
+        if (rows[i].eventIndex) {
+          if (!currentBlink || currentBlink.index !== rows[i].eventIndex) {
+            // new saccade!
+            if (currentBlink) {
+              terminateLastEvent(i);
+            }
+
+            currentBlink = {
+              timestamp: rows[i].timestamp,
+              index: rows[i].eventIndex,
+              x: rows[i].x,
+              y: rows[i].y,
+              duration: 0,
+            };
+
+            console.log(`${currentBlink.timestamp} begin blink`);
+          }
+        }
+
         lastEvent = 'blink';
+        events.push(lastEvent);
         break;
       case 'User Event':
+        lastEvent = 'userEvent';
+        events.push(lastEvent);
         break;
       case '-':
+        if (lastEvent === 'fixation' && currentFixation) {
+          terminateLastEvent(i);
+        }
         break;
 
       default:
@@ -71,56 +173,7 @@ export default function generateEyeevents(assignedRows) {
     }
   }
 
-  if (currentFixation) {
-    // end the last fixation
-    fixations.push(currentFixation);
-  }
-
-  // _data.forEach((r) => {
-  //   const row = Object.assign({}, r);
-  //   row.datafileId = this._id;
-  //   row.fileFormat = this.fileFormat;
-  //   row.studyId = this.studyId;
-
-  //   row.aoiName = row.aoiName || '-';
-
-  //   row.stimulusId = helpers.findOrInsert('stimuli', {
-  //     name: row.stimulusName,
-  //     studyId: this.studyId,
-  //   });
-
-  // if (
-  //   !sdPairs.some(
-  //     el => el.stimulusId === row.stimulusId
-  //       && el.datafileId === row.datafileId,
-  //   )
-  // ) {
-  //   sdPairs.push({
-  //     stimulusId: row.stimulusId,
-  //     datafileId: row.datafileId,
-  //   });
-  // }
-
-  // row.aoiId = helpers.findOrInsert('aois', {
-  //   name: row.aoiName,
-  //   stimulusId: row.stimulusId,
-  //   studyId: row.studyId,
-  // });
-
-  // Gazepoints.insert(row);
-  // });
-
-  // TODO improve by adding all datafileIds to set at once, too many DB calls as-is
-  // sdPairs.forEach((pair) => {
-  //   Stimuli.update(
-  //     { _id: pair.stimulusId },
-  //     {
-  //       $addToSet: {
-  //         datafileIds: pair.datafileId,
-  //       },
-  //     },
-  //   );
-  // });
+  terminateLastEvent(rows.length - 1);
 
   return {
     saccades,

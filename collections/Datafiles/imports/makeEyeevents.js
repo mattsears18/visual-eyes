@@ -6,13 +6,15 @@ export default function makeEyeevents(rawCSVData) {
 
     const groupedRows = this.groupRowsByStimulus(assignedRows);
 
-    // for each stimulus... generateEyeevents...
-
-    // const {
-    //   saccades, blinks, gazepoints, fixations,
-    // } = this.generateEyeevents(
-    //   assignedRows,
-    // );
+    groupedRows.forEach((group) => {
+      console.log(group.rows);
+      // const {
+      //   saccades,
+      //   blinks,
+      //   gazepoints,
+      //   fixations,
+      // } = this.generateEyeevents(assignedRows);
+    });
   }
 
   return Eyeevents.find({ datafileId: this._id });

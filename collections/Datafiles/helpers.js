@@ -11,12 +11,12 @@ import getRawCSV from './imports/getRawCSV';
 import getRenamedRows from './imports/getRenamedRows';
 import getStimuliOnly from './imports/getStimuliOnly';
 import getVisualIntakesOnly from './imports/getVisualIntakesOnly';
+import groupRowsByStimulus from './imports/groupRowsByStimulus';
 import makeEyeevents from './imports/makeEyeevents';
 import makeGazepoints from './imports/makeGazepoints';
 import makeProcessJob from './imports/makeProcessJob';
 import preProcess from './imports/preProcess';
 import process from './imports/process';
-import recomputeTimestamps from './imports/recomputeTimestamps';
 import removeHeaders from './imports/removeHeaders';
 import setFileFormat from './imports/setFileFormat';
 
@@ -34,12 +34,12 @@ Datafiles.collection.helpers({
   getRenamedRows,
   getStimuliOnly,
   getVisualIntakesOnly,
+  groupRowsByStimulus,
   makeEyeevents,
   makeGazepoints,
   makeProcessJob,
   preProcess,
   process,
-  recomputeTimestamps,
   removeHeaders,
   setFileFormat,
 

@@ -18,11 +18,6 @@ export default function getAssignedRows(rawCsvData) {
     { $set: { stimulusRowCount: this.stimulusRowCount } },
   );
 
-  // recompute timestamps from timeOfDay (required for SMI files)
-  if (helpers.keyInArray('timeOfDay', renamedRows)) {
-    renamedRows = this.recomputeTimestamps(renamedRows);
-  }
-
   // sort renamedRows by timestamp
   const sortedRows = this.filterSortFloat('timestamp', renamedRows);
 

@@ -29,6 +29,9 @@ export default function preProcess(rawCsvData) {
   // console.log('remove any old gazepoints');
   Gazepoints.remove({ datafileId: this._id });
 
+  // TODO
+  console.log('TODO - remove all old eyeevents');
+
   // console.log('pull datafileId from any old stimuli');
   Stimuli.update({}, { $pull: { datafileIds: this._id } }, { multi: true });
 
@@ -38,33 +41,33 @@ export default function preProcess(rawCsvData) {
   Participants.update(
     {},
     { $pull: { datafileIds: this._id } },
-    { multi: true }
+    { multi: true },
   );
 
   this.participantId = helpers.findOrInsert('participants', {
     name: this.getName(),
-    studyId: this.studyId
+    studyId: this.studyId,
   });
 
   Participants.update(
     { _id: this.participantId },
     {
-      $addToSet: { datafileIds: this._id }
-    }
+      $addToSet: { datafileIds: this._id },
+    },
   );
 
   Datafiles.update(
     { _id: this._id },
     {
       $set: {
-        participantId: this.participantId
-      }
+        participantId: this.participantId,
+      },
     },
     (err, num) => {
       if (err) {
         console.log(err);
       }
-    }
+    },
   );
 
   this.status = 'processing';

@@ -11,7 +11,7 @@
     - [x] .getAssignedRows(rawCSVData)
       - [x] .getRenamedRows(rawCSVData)
       - [x] .getStimuliOnly(renamedRows)
-      - [x] .recomputeTimestamps(renamedRows)
+      - [ ] .recomputeTimestamps(renamedRows) - currently not correct!!!
       - [x] .filterSortFloat(field, data)
       - [x] .assignStimuli(sortedRows)
       - [x] .assignAois(rowsWithStimuli)

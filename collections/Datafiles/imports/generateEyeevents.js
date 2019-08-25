@@ -33,13 +33,20 @@ export default function generateEyeevents(assignedRows) {
               // save the old fixation
               fixations.push(currentFixation);
             }
+
             currentFixation = {
               timestamp: rows[i].timestamp,
               index: rows[i].eventIndex,
+              x: this.fileFormat === 'imotions' ? rows[i].fixationX : rows[i].x,
+              y: this.fileFormat === 'imotions' ? rows[i].fixationY : rows[i].y,
+              duration:
+                this.fileFormat === 'imotions' ? rows[i].fixationDuration : 0,
             };
           } else {
             // continue fixation!
-            // update the duration, etc.
+            if (this.fileFormat !== 'imotions') {
+              currentFixation.duration = rows[i].timestamp - currentFixation.timestamp;
+            }
           }
         }
 

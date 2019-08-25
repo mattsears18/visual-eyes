@@ -29,6 +29,9 @@ export default function getRenamedRows(rawCsvData) {
       { original: 'FixationSeq', new: 'eventIndex' },
       { original: 'GazeX', new: 'x' },
       { original: 'GazeY', new: 'y' },
+      { original: 'FixationX', new: 'fixationX' },
+      { original: 'FixationY', new: 'fixationY' },
+      { original: 'FixationDuration', new: 'fixationDuration' },
       { original: 'StimulusName', new: 'stimulusName' },
       { original: 'GazeAOI', new: 'aoiName' },
     ];
@@ -37,12 +40,25 @@ export default function getRenamedRows(rawCsvData) {
   }
 
   const renamedRows = [];
+  const numberHeaders = [
+    'timestamp',
+    'eventIndex',
+    'x',
+    'y',
+    'fixationX',
+    'fixationY',
+    'fixationDuration',
+  ];
 
   for (let i = 0; i < rows.length; i += 1) {
     const renamedRow = {};
     headers.forEach((header) => {
       if ({}.hasOwnProperty.call(rows[i], header.original)) {
-        renamedRow[header.new] = rows[i][header.original];
+        if (numberHeaders.includes(header.new)) {
+          renamedRow[header.new] = Math.round(rows[i][header.original]);
+        } else {
+          renamedRow[header.new] = rows[i][header.original];
+        }
       }
     });
 

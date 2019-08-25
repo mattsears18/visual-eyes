@@ -2,6 +2,14 @@ const moment = require('moment');
 
 export default function recomputeTimestamps(renamedRows) {
   console.log('recompute timestamps');
+
+  console.log('this is fucked! redo!');
+  console.log(
+    'the smi timestamps and timeOfDay values depend on the stimulus and overlap! these are calculated incorrectly as-is',
+  );
+
+  // TODO pick back up here! 2019-08-24
+
   const rows = [...renamedRows];
 
   // sort by timeOfDay (in place)

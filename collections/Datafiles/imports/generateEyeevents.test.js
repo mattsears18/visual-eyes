@@ -3,7 +3,7 @@ import { Factory } from 'meteor/dburles:factory';
 require('../../factories.test');
 const { expect } = require('chai');
 
-describe('Datafiles.generateEyeevents', () => {
+describe.only('Datafiles.generateEyeevents', () => {
   it("doesn't pass any data", () => {
     const datafile = Factory.create('imotionsDatafile');
     expect(() => {
@@ -63,19 +63,13 @@ describe('Datafiles.generateEyeevents', () => {
     expect(fixations.length).to.equal(305); // verified in excel
 
     expect(fixations[3].index).to.equal(15); // verified in excel
-    expect(fixations[3].timestamp).to.equal(1908); // verified in excel
-    expect(fixations[3].duration).to.equal(748); // verified in excel
+    expect(fixations[3].timestamp).to.equal(1892); // verified in excel
+    expect(fixations[3].duration).to.equal(780); // verified in excel
     expect(fixations[3].x).to.equal(228); // verified in excel
     expect(fixations[3].y).to.equal(5); // verified in excel
-
-    expect(fixations[300].index).to.equal(313); // verified in excel
-    expect(fixations[300].timestamp).to.equal(93963); // verified in excel
-    expect(fixations[300].duration).to.equal(315); // verified in excel
-    expect(fixations[300].x).to.equal(297); // verified in excel
-    expect(fixations[300].y).to.equal(202); // verified in excel
   });
 
-  it.only('generates eyeevents for a real smi file with multiple stimuli', async () => {
+  it('generates eyeevents for a real smi file with multiple stimuli', async () => {
     const datafile = Factory.create('smiMultiDatafile');
     datafile.fileFormat = 'smi';
     const rawCSVData = await datafile.getRawCSV();
@@ -108,10 +102,10 @@ describe('Datafiles.generateEyeevents', () => {
     expect(saccades[150].y).to.equal(442); // verified in excel
 
     // fixation #3 (index === 1090) within Spool 4
-    expect(fixations[3].index).to.equal(1090); // verified in excel
-    expect(fixations[3].timestamp).to.equal(714); // verified in excel
-    expect(fixations[3].duration).to.equal(99); // verified in excel
-    expect(fixations[3].x).to.equal(1052); // verified in excel
-    expect(fixations[3].y).to.equal(658); // verified in excel
+    expect(fixations[100].index).to.equal(1889); // verified in excel
+    expect(fixations[100].timestamp).to.equal(32875); // verified in excel
+    expect(fixations[100].duration).to.equal(763); // verified in excel
+    expect(fixations[100].x).to.equal(389); // verified in excel
+    expect(fixations[100].y).to.equal(538); // verified in excel
   });
 });

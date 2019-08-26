@@ -52,7 +52,6 @@ const baseDatafile = {
 };
 
 const imotionsFields = {
-  // fileFormat: 'imotions',
   path:
     '/Users/matthewsears/code/visual-eyes/testFiles/realFile/imotionsWael.txt',
   versions: {
@@ -67,8 +66,22 @@ const imotionsFields = {
   _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/',
 };
 
+const imotionsWithHeadersFields = {
+  path:
+    '/Users/matthewsears/code/visual-eyes/testFiles/realFile/imotionsWaelWithHeaders.txt',
+  versions: {
+    original: {
+      path:
+        '/Users/matthewsears/code/visual-eyes/testFiles/realFile/imotionsWaelWithHeaders.txt',
+      size: 2452899,
+      type: 'text/plain',
+      extension: 'txt',
+    },
+  },
+  _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/',
+};
+
 const smiFields = {
-  // fileFormat: 'smi',
   path: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/smiWael.txt',
   versions: {
     original: {
@@ -82,8 +95,22 @@ const smiFields = {
   _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/',
 };
 
+const smiWithHeadersFields = {
+  path:
+    '/Users/matthewsears/code/visual-eyes/testFiles/realFile/smiWaelWithHeaders.txt',
+  versions: {
+    original: {
+      path:
+        '/Users/matthewsears/code/visual-eyes/testFiles/realFile/smiWaelWithHeaders.txt',
+      size: 4519224,
+      type: 'text/plain',
+      extension: 'txt',
+    },
+  },
+  _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/',
+};
+
 const smiMultiFields = {
-  // fileFormat: 'smi',
   path:
     '/Users/matthewsears/code/visual-eyes/testFiles/realFile/smiMultiParticipant03.csv',
   versions: {
@@ -121,9 +148,18 @@ Factory.define('imotionsDatafile', Datafiles.collection, {
   ...baseDatafile,
   ...imotionsFields,
 });
+Factory.define('imotionsDatafileWithHeaders', Datafiles.collection, {
+  ...baseDatafile,
+  ...imotionsWithHeadersFields,
+});
 Factory.define('smiDatafile', Datafiles.collection, {
   ...baseDatafile,
   ...smiFields,
+});
+
+Factory.define('smiDatafileWithHeaders', Datafiles.collection, {
+  ...baseDatafile,
+  ...smiWithHeadersFields,
 });
 Factory.define('smiMultiDatafile', Datafiles.collection, {
   ...baseDatafile,

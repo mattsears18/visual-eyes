@@ -40,7 +40,5 @@ export default function assignAois(rowsWithStimuli) {
     }
   }
 
-  // console.log('finished assigning aois');
-
   return rows;
 }

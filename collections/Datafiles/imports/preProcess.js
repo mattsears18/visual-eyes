@@ -1,4 +1,5 @@
 import helpers from '../../../lib/helpers';
+import Eyeevents from '../../Eyeevents/Eyeevents';
 
 export default function preProcess(rawCsvData) {
   console.log('Datafile.preProcess()');
@@ -29,17 +30,24 @@ export default function preProcess(rawCsvData) {
   // console.log('remove any old gazepoints');
   Gazepoints.remove({ datafileId: this._id });
 
-  // TODO
-  console.log('TODO - remove all old eyeevents');
+  Eyeevents.remove({ datafileId: this._id });
 
   // console.log('pull datafileId from any old stimuli');
-  Stimuli.update({}, { $pull: { datafileIds: this._id } }, { multi: true });
+  Stimuli.update(
+    { datafileIds: this._id },
+    { $pull: { datafileIds: this._id } },
+    { multi: true },
+  );
 
-  Aois.update({}, { $pull: { datafileIds: this._id } }, { multi: true });
+  Aois.update(
+    { datafileIds: this._id },
+    { $pull: { datafileIds: this._id } },
+    { multi: true },
+  );
 
   // console.log('pull datafileId from any old participants');
   Participants.update(
-    {},
+    { datafileIds: this._id },
     { $pull: { datafileIds: this._id } },
     { multi: true },
   );

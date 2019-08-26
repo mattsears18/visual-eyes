@@ -24,20 +24,18 @@ describe('Datafiles.generateImotionsEyeevents', () => {
       fixations,
     } = datafile.generateImotionsEyeevents(assignedRows);
 
-    console.log(fixations);
-
     expect(saccades.length).to.equal(0); // imotions report saccades
     expect(blinks.length).to.equal(0); // imotions doesn't report blinks
     expect(gazepoints.length).to.equal(5290); // verified in excel
     expect(fixations.length).to.equal(155); // verified in excel
 
-    expect(fixations[3].index).to.equal(4); // verified in excel
+    expect(fixations[3].eventIndex).to.equal(4); // verified in excel
     expect(fixations[3].timestamp).to.equal(10538); // verified in excel
     expect(fixations[3].duration).to.equal(216); // verified in excel
     expect(fixations[3].x).to.equal(202); // verified in excel
     expect(fixations[3].y).to.equal(188); // verified in excel
 
-    expect(fixations[100].index).to.equal(101); // verified in excel
+    expect(fixations[100].eventIndex).to.equal(101); // verified in excel
     expect(fixations[100].timestamp).to.equal(62282); // verified in excel
     expect(fixations[100].duration).to.equal(166); // verified in excel
     expect(fixations[100].x).to.equal(162); // verified in excel

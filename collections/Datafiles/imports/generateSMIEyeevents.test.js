@@ -31,7 +31,7 @@ describe('Datafiles.generateSMIEyeevents', () => {
     expect(gazepoints.length).to.equal(4239); // verified in excel
     expect(fixations.length).to.equal(305); // verified in excel
 
-    expect(fixations[3].index).to.equal(15); // verified in excel
+    expect(fixations[3].eventIndex).to.equal(15); // verified in excel
     expect(fixations[3].timestamp).to.equal(1892); // verified in excel
     expect(fixations[3].duration).to.equal(780); // verified in excel
     expect(fixations[3].x).to.equal(228); // verified in excel
@@ -64,14 +64,14 @@ describe('Datafiles.generateSMIEyeevents', () => {
     expect(gazepoints.length).to.equal(3256); // verified in excel
     expect(fixations.length).to.equal(198); // verified in excel
 
-    expect(saccades[150].index).to.equal(151); // verified in excel
+    expect(saccades[150].eventIndex).to.equal(151); // verified in excel
     expect(saccades[150].timestamp).to.equal(57220); // verified in excel
     expect(saccades[150].duration).to.equal(50); // verified in excel
     expect(saccades[150].x).to.equal(301); // verified in excel
     expect(saccades[150].y).to.equal(442); // verified in excel
 
-    // fixation #3 (index === 1090) within Spool 4
-    expect(fixations[100].index).to.equal(1889); // verified in excel
+    // fixation #3 within Spool 4
+    expect(fixations[100].eventIndex).to.equal(1889); // verified in excel
     expect(fixations[100].timestamp).to.equal(32875); // verified in excel
     expect(fixations[100].duration).to.equal(763); // verified in excel
     expect(fixations[100].x).to.equal(389); // verified in excel

@@ -3,8 +3,6 @@ import SimpleSchema from 'simpl-schema';
 import { FilesCollection } from 'meteor/ostrio:files';
 import Schemas from '../../lib/schemas';
 
-const path = require('path');
-
 Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
   studyId: {
     type: String,
@@ -34,15 +32,19 @@ Schemas.Datafile = Object.assign({}, FilesCollection.schema, {
     type: Number,
     optional: true,
   },
-  integerRowCount: {
-    type: Number,
-    optional: true,
-  },
   gazepointCount: {
     type: Number,
     optional: true,
   },
   fixationCount: {
+    type: Number,
+    optional: true,
+  },
+  saccadeCount: {
+    type: Number,
+    optional: true,
+  },
+  blinkCount: {
     type: Number,
     optional: true,
   },

@@ -60,6 +60,9 @@
           {{#if equals datafile.status 'needsProcessing'}}
           <span class="label label-danger">Needs Processing</span>
           {{/if}}
+          {{#if equals datafile.status 'failed'}}
+          <span class="label label-danger">Failed</span>
+          {{/if}}
           {{#if equals datafile.status 'needsReprocessing'}}
           <span class="label label-danger">Needs Reprocessing</span>
           {{/if}}

@@ -1,4 +1,5 @@
 import Eyeevents from '../../Eyeevents/Eyeevents';
+import Gazepoints from '../../Gazepoints/Gazepoints';
 
 export default function makeEyeevents(rawCSVData) {
   console.log('Datafile.makeEyeevents()');
@@ -6,7 +7,8 @@ export default function makeEyeevents(rawCSVData) {
   const assignedRows = this.getAssignedRows(rawCSVData);
   const groupedRows = this.groupRowsByStimulus(assignedRows);
 
-  const newEyeevents = [];
+  const bulkEvents = Eyeevents.rawCollection().initializeUnorderedBulkOp();
+  const bulkGazepoints = Gazepoints.rawCollection().initializeUnorderedBulkOp();
 
   groupedRows.forEach((group) => {
     const {
@@ -17,7 +19,7 @@ export default function makeEyeevents(rawCSVData) {
 
     if (saccades.length) {
       saccades.forEach((event) => {
-        newEyeevents.push({
+        bulkEvents.insert({
           ...event,
           type: 'saccade',
           stimulusId: group.stimulusId,
@@ -30,7 +32,7 @@ export default function makeEyeevents(rawCSVData) {
 
     if (blinks.length) {
       blinks.forEach((event) => {
-        newEyeevents.push({
+        bulkEvents.insert({
           ...event,
           type: 'blink',
           stimulusId: group.stimulusId,
@@ -43,7 +45,7 @@ export default function makeEyeevents(rawCSVData) {
 
     if (fixations.length) {
       fixations.forEach((event) => {
-        newEyeevents.push({
+        bulkEvents.insert({
           ...event,
           type: 'fixation',
           stimulusId: group.stimulusId,
@@ -53,13 +55,23 @@ export default function makeEyeevents(rawCSVData) {
         });
       });
     }
+
+    if (gazepoints.length) {
+      gazepoints.forEach((gazepoint) => {
+        bulkGazepoints.insert({
+          ...gazepoint,
+          fileFormat: this.fileFormat,
+          stimulusId: group.stimulusId,
+          datafileId: this._id,
+          studyId: this.studyId,
+          participantId: this.participantId,
+        });
+      });
+    }
   });
 
-  const bulk = Eyeevents.rawCollection().initializeUnorderedBulkOp();
-
-  newEyeevents.forEach((event) => {
-    bulk.insert(event);
-  });
-
-  return bulk.execute();
+  return {
+    eyeeventsStatus: bulkEvents.execute(),
+    gazepointsStatus: bulkGazepoints.execute(),
+  };
 }

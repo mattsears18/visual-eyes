@@ -19,10 +19,10 @@ export default function generateImotionsEyeevents(assignedRows) {
     gazepoints.push(rows[i]);
 
     if (rows[i].eventIndex) {
-      if (!lastFixation || lastFixation.index !== rows[i].eventIndex) {
+      if (!lastFixation || lastFixation.eventIndex !== rows[i].eventIndex) {
         lastFixation = {
           timestamp: rows[i].timestamp,
-          index: rows[i].eventIndex,
+          eventIndex: rows[i].eventIndex,
           x: rows[i].fixationX,
           y: rows[i].fixationY,
           duration: rows[i].fixationDuration,

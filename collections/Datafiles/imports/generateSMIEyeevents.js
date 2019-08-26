@@ -76,7 +76,7 @@ export default function generateSMIEyeevents(assignedRows) {
         if (rows[i].eventIndex) {
           if (
             !currentFixation
-            || currentFixation.index !== rows[i].eventIndex
+            || currentFixation.eventIndex !== rows[i].eventIndex
           ) {
             // new fixation!
             if (currentFixation) {
@@ -92,7 +92,7 @@ export default function generateSMIEyeevents(assignedRows) {
                 lastEvent === 'saccade'
                   ? rows[i - 1].timestamp
                   : rows[i].timestamp,
-              index: rows[i].eventIndex,
+              eventIndex: rows[i].eventIndex,
               x: rows[i].x,
               y: rows[i].y,
               duration: 0,
@@ -116,7 +116,10 @@ export default function generateSMIEyeevents(assignedRows) {
         }
 
         if (rows[i].eventIndex) {
-          if (!currentSaccade || currentSaccade.index !== rows[i].eventIndex) {
+          if (
+            !currentSaccade
+            || currentSaccade.eventIndex !== rows[i].eventIndex
+          ) {
             // new saccade!
             if (currentSaccade) {
               terminateLastEvent(i);
@@ -124,7 +127,7 @@ export default function generateSMIEyeevents(assignedRows) {
 
             currentSaccade = {
               timestamp: rows[i].timestamp,
-              index: rows[i].eventIndex,
+              eventIndex: rows[i].eventIndex,
               x: rows[i].x,
               y: rows[i].y,
               duration: 0,
@@ -143,7 +146,7 @@ export default function generateSMIEyeevents(assignedRows) {
         }
 
         if (rows[i].eventIndex) {
-          if (!currentBlink || currentBlink.index !== rows[i].eventIndex) {
+          if (!currentBlink || currentBlink.eventIndex !== rows[i].eventIndex) {
             // new saccade!
             if (currentBlink) {
               terminateLastEvent(i);
@@ -151,7 +154,7 @@ export default function generateSMIEyeevents(assignedRows) {
 
             currentBlink = {
               timestamp: rows[i].timestamp,
-              index: rows[i].eventIndex,
+              eventIndex: rows[i].eventIndex,
               x: rows[i].x,
               y: rows[i].y,
               duration: 0,

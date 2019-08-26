@@ -1,63 +1,63 @@
-import helpers from '../../../lib/helpers';
+// import helpers from '../../../lib/helpers';
 
-export default async function makeGazepoints(opts) {
-  const _data = opts && opts.data ? [...opts.data] : await this.getGazepoints();
+// export default async function makeGazepoints(opts) {
+//   const _data = opts && opts.data ? [...opts.data] : await this.getGazepoints();
 
-  const sdPairs = [];
+//   const sdPairs = [];
 
-  _data.forEach((p) => {
-    const point = Object.assign({}, p);
-    point.datafileId = this._id;
-    point.fileFormat = this.fileFormat;
-    point.studyId = this.studyId;
-    point.participantId = this.participantId;
+//   _data.forEach((p) => {
+//     const point = Object.assign({}, p);
+//     point.datafileId = this._id;
+//     point.fileFormat = this.fileFormat;
+//     point.studyId = this.studyId;
+//     point.participantId = this.participantId;
 
-    if (!point.participantId) {
-      point.participantId = helpers.findOrInsert('participants', {
-        name: this.getName(),
-        studyId: this.studyId,
-      });
-    }
+//     if (!point.participantId) {
+//       point.participantId = helpers.findOrInsert('participants', {
+//         name: this.getName(),
+//         studyId: this.studyId,
+//       });
+//     }
 
-    point.aoiName = point.aoiName || '-';
+//     point.aoiName = point.aoiName || '-';
 
-    point.stimulusId = helpers.findOrInsert('stimuli', {
-      name: point.stimulusName,
-      studyId: this.studyId,
-    });
+//     point.stimulusId = helpers.findOrInsert('stimuli', {
+//       name: point.stimulusName,
+//       studyId: this.studyId,
+//     });
 
-    if (
-      !sdPairs.some(
-        el => el.stimulusId === point.stimulusId
-          && el.datafileId === point.datafileId,
-      )
-    ) {
-      sdPairs.push({
-        stimulusId: point.stimulusId,
-        datafileId: point.datafileId,
-      });
-    }
+//     if (
+//       !sdPairs.some(
+//         el => el.stimulusId === point.stimulusId
+//           && el.datafileId === point.datafileId,
+//       )
+//     ) {
+//       sdPairs.push({
+//         stimulusId: point.stimulusId,
+//         datafileId: point.datafileId,
+//       });
+//     }
 
-    point.aoiId = helpers.findOrInsert('aois', {
-      name: point.aoiName,
-      stimulusId: point.stimulusId,
-      studyId: point.studyId,
-    });
+//     point.aoiId = helpers.findOrInsert('aois', {
+//       name: point.aoiName,
+//       stimulusId: point.stimulusId,
+//       studyId: point.studyId,
+//     });
 
-    Gazepoints.insert(point);
-  });
+//     Gazepoints.insert(point);
+//   });
 
-  // TODO improve by adding all datafileIds to set at once, too many DB calls as-is
-  sdPairs.forEach((pair) => {
-    Stimuli.update(
-      { _id: pair.stimulusId },
-      {
-        $addToSet: {
-          datafileIds: pair.datafileId,
-        },
-      },
-    );
-  });
+//   // TODO improve by adding all datafileIds to set at once, too many DB calls as-is
+//   sdPairs.forEach((pair) => {
+//     Stimuli.update(
+//       { _id: pair.stimulusId },
+//       {
+//         $addToSet: {
+//           datafileIds: pair.datafileId,
+//         },
+//       },
+//     );
+//   });
 
-  return Gazepoints.find({ datafileId: this._id });
-}
+//   return Gazepoints.find({ datafileId: this._id });
+// }

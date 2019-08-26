@@ -5,7 +5,7 @@ import filterSortFloat from './imports/filterSortFloat';
 import generateImotionsEyeevents from './imports/generateImotionsEyeevents';
 import generateSMIEyeevents from './imports/generateSMIEyeevents';
 import getAssignedRows from './imports/getAssignedRows';
-import getGazepoints from './imports/getGazepoints';
+// import getGazepoints from './imports/getGazepoints';
 import getName from './imports/getName';
 import getNumericPositiveCoordinatesOnly from './imports/getNumericPositiveCoordinatesOnly';
 import getRawCSV from './imports/getRawCSV';
@@ -14,7 +14,7 @@ import getStimuliOnly from './imports/getStimuliOnly';
 import getVisualIntakesOnly from './imports/getVisualIntakesOnly';
 import groupRowsByStimulus from './imports/groupRowsByStimulus';
 import makeEyeevents from './imports/makeEyeevents';
-import makeGazepoints from './imports/makeGazepoints';
+// import makeGazepoints from './imports/makeGazepoints';
 import makeProcessJob from './imports/makeProcessJob';
 import preProcess from './imports/preProcess';
 import process from './imports/process';
@@ -29,7 +29,7 @@ Datafiles.collection.helpers({
   generateImotionsEyeevents,
   generateSMIEyeevents,
   getAssignedRows,
-  getGazepoints,
+  // getGazepoints,
   getName,
   getNumericPositiveCoordinatesOnly,
   getRawCSV,
@@ -38,7 +38,7 @@ Datafiles.collection.helpers({
   getVisualIntakesOnly,
   groupRowsByStimulus,
   makeEyeevents,
-  makeGazepoints,
+  // makeGazepoints,
   makeProcessJob,
   preProcess,
   process,
@@ -47,5 +47,11 @@ Datafiles.collection.helpers({
 
   study() {
     return this.studyId ? Studies.findOne({ _id: this.studyId }) : undefined;
+  },
+  getPathFilename() {
+    if (Meteor.isDevelopment) {
+      return this.path;
+    }
+    return `${this._storagePath}/${this._id}`;
   },
 });

@@ -15,4 +15,4 @@
       - [x] .assignStimuli(sortedRows)
       - [x] .assignAois(rowsWithStimuli)
     - [x] .groupRowsByStimulus(assignedRows)
-    - [ ] .generateEyeevents(groupedRows)
+    - [ ] .generateSMIEyeevents(groupedRows)

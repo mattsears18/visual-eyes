@@ -65,12 +65,5 @@ export default function getRenamedRows(rawCsvData) {
     renamedRows.push(renamedRow);
   }
 
-  // imotions doesn't have categories so just add 'Visual Intake' to every row
-  if (this.fileFormat === 'imotions') {
-    for (let i = 0; i < renamedRows.length; i += 1) {
-      renamedRows[i].category = 'Visual Intake';
-    }
-  }
-
   return renamedRows;
 }

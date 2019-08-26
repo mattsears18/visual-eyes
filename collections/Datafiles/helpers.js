@@ -2,7 +2,7 @@ import assignAois from './imports/assignAois';
 import assignStimuli from './imports/assignStimuli';
 import detectFileFormat from './imports/detectFileFormat';
 import filterSortFloat from './imports/filterSortFloat';
-import generateEyeevents from './imports/generateEyeevents';
+import generateSMIEyeevents from './imports/generateSMIEyeevents';
 import getAssignedRows from './imports/getAssignedRows';
 import getGazepoints from './imports/getGazepoints';
 import getName from './imports/getName';
@@ -25,7 +25,7 @@ Datafiles.collection.helpers({
   assignStimuli,
   detectFileFormat,
   filterSortFloat,
-  generateEyeevents,
+  generateSMIEyeevents,
   getAssignedRows,
   getGazepoints,
   getName,

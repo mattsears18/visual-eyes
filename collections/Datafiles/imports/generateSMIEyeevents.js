@@ -1,4 +1,4 @@
-export default function generateEyeevents(assignedRows) {
+export default function generateSMIEyeevents(assignedRows) {
   // assume rows have already been sorted by timestamp
   // assume all rows belong to same stimulus
 
@@ -7,8 +7,6 @@ export default function generateEyeevents(assignedRows) {
   }
 
   const rows = [...assignedRows];
-
-  console.log(rows[0]);
 
   const saccades = []; // FUTURE!!
   const blinks = []; // FUTURE!!
@@ -27,11 +25,11 @@ export default function generateEyeevents(assignedRows) {
   function terminateLastEvent(nextEventIndex) {
     const i = nextEventIndex;
 
-    console.log('     ');
+    // console.log('     ');
 
     if (lastEvent === 'fixation') {
       if (rows[i] && currentFixation) {
-        console.log(`${rows[i].timestamp} end fixation`);
+        // console.log(`${rows[i].timestamp} end fixation`);
 
         currentFixation.duration = rows[i].timestamp - currentFixation.timestamp;
         fixations.push(currentFixation);
@@ -40,7 +38,7 @@ export default function generateEyeevents(assignedRows) {
       }
     } else if (lastEvent === 'saccade') {
       if (rows[i - 1] && currentSaccade) {
-        console.log(`${rows[i - 1].timestamp} end saccade`);
+        // console.log(`${rows[i - 1].timestamp} end saccade`);
 
         currentSaccade.duration = rows[i - 1].timestamp - currentSaccade.timestamp;
         saccades.push(currentSaccade);
@@ -49,7 +47,7 @@ export default function generateEyeevents(assignedRows) {
       }
     } else if (lastEvent === 'blink') {
       if (rows[i] && currentBlink) {
-        console.log(`${rows[i].timestamp} end blink`);
+        // console.log(`${rows[i].timestamp} end blink`);
 
         currentBlink.duration = rows[i].timestamp - currentBlink.timestamp;
         blinks.push(currentBlink);
@@ -60,12 +58,12 @@ export default function generateEyeevents(assignedRows) {
   }
 
   for (let i = 0; i < rows.length; i += 1) {
-    console.log(
-      `     i: ${i} of ${rows.length
-        - 1}   lastEvent: ${lastEvent} current category: ${
-        rows[i].category
-      } timestamp: ${rows[i].timestamp}`,
-    );
+    // console.log(
+    //   `     i: ${i} of ${rows.length
+    //     - 1}   lastEvent: ${lastEvent} current category: ${
+    //     rows[i].category
+    //   } timestamp: ${rows[i].timestamp}`,
+    // );
     switch (rows[i].category) {
       case 'Visual Intake':
         if (lastEvent && lastEvent !== 'fixation') {
@@ -93,13 +91,12 @@ export default function generateEyeevents(assignedRows) {
                   ? rows[i - 1].timestamp
                   : rows[i].timestamp,
               index: rows[i].eventIndex,
-              x: this.fileFormat === 'imotions' ? rows[i].fixationX : rows[i].x,
-              y: this.fileFormat === 'imotions' ? rows[i].fixationY : rows[i].y,
-              duration:
-                this.fileFormat === 'imotions' ? rows[i].fixationDuration : 0,
+              x: rows[i].x,
+              y: rows[i].y,
+              duration: 0,
             };
 
-            console.log(`${currentFixation.timestamp} begin fixation`);
+            // console.log(`${currentFixation.timestamp} begin fixation`);
           }
         }
 
@@ -129,7 +126,7 @@ export default function generateEyeevents(assignedRows) {
               duration: 0,
             };
 
-            console.log(`${currentSaccade.timestamp} begin saccade`);
+            // console.log(`${currentSaccade.timestamp} begin saccade`);
           }
         }
 
@@ -156,7 +153,7 @@ export default function generateEyeevents(assignedRows) {
               duration: 0,
             };
 
-            console.log(`${currentBlink.timestamp} begin blink`);
+            // console.log(`${currentBlink.timestamp} begin blink`);
           }
         }
 

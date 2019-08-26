@@ -13,7 +13,7 @@ export default function makeEyeevents(rawCSVData) {
       //   blinks,
       //   gazepoints,
       //   fixations,
-      // } = this.generateEyeevents(assignedRows);
+      // } = this.generateSMIEyeevents(assignedRows);
     });
   }
 

@@ -8,8 +8,8 @@ export default function generateSMIEyeevents(assignedRows) {
 
   const rows = [...assignedRows];
 
-  const saccades = []; // FUTURE!!
-  const blinks = []; // FUTURE!!
+  const saccades = [];
+  const blinks = [];
   const gazepoints = [];
   const fixations = [];
 
@@ -42,6 +42,8 @@ export default function generateSMIEyeevents(assignedRows) {
 
         currentSaccade.duration = rows[i - 1].timestamp - currentSaccade.timestamp;
         saccades.push(currentSaccade);
+
+        // TODO need to save fromAoiId and toAoiId
 
         currentSaccade = null;
       }
@@ -95,6 +97,8 @@ export default function generateSMIEyeevents(assignedRows) {
               y: rows[i].y,
               duration: 0,
             };
+
+            // TODO save aoiId!!!
 
             // console.log(`${currentFixation.timestamp} begin fixation`);
           }

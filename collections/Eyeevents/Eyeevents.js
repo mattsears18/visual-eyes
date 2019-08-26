@@ -24,9 +24,6 @@ Schemas.Eyeevent = new SimpleSchema(
     datafileId: {
       type: String,
     },
-    fileFormat: {
-      type: String,
-    },
     type: {
       type: String, // fixation, saccade, or blink
     },

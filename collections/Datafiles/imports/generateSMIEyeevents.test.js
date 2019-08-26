@@ -3,7 +3,7 @@ import { Factory } from 'meteor/dburles:factory';
 require('../../factories.test');
 const { expect } = require('chai');
 
-describe.only('Datafiles.generateSMIEyeevents', () => {
+describe('Datafiles.generateSMIEyeevents', () => {
   it("doesn't pass any data", () => {
     const datafile = Factory.create('smiDatafile');
     expect(() => {

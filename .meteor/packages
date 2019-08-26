@@ -8,6 +8,7 @@ aldeed:collection2-core@2.0.0
 dburles:collection-helpers
 dburles:mongo-collection-instances
 matb33:collection-hooks
+mikowals:batch-insert
 vsivsi:job-collection
 
 meteor-base@1.4.0                   # Packages every Meteor app needs to have

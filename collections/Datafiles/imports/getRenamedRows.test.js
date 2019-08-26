@@ -128,6 +128,20 @@ describe('Datafiles.getRenamedRows()', () => {
         FixationY: '94',
         FixationDuration: '33',
       },
+      {
+        Timestamp: '645',
+        GazeX: '345',
+        GazeY: '876',
+        StimulusName: 'Spool 3',
+        GazeAOI: '',
+      },
+      {
+        Timestamp: '660',
+        GazeX: '324',
+        GazeY: '87',
+        StimulusName: 'Spool 3',
+        GazeAOI: '',
+      },
     ];
     const expectedRows = [
       {
@@ -137,7 +151,6 @@ describe('Datafiles.getRenamedRows()', () => {
         y: 94,
         stimulusName: 'Spool 3',
         aoiName: '',
-        category: 'Visual Intake',
         fixationX: 506,
         fixationY: 94,
         fixationDuration: 33,
@@ -149,7 +162,6 @@ describe('Datafiles.getRenamedRows()', () => {
         y: 93,
         stimulusName: 'Spool 3',
         aoiName: '',
-        category: 'Visual Intake',
         fixationX: 506,
         fixationY: 94,
         fixationDuration: 33,
@@ -161,10 +173,23 @@ describe('Datafiles.getRenamedRows()', () => {
         y: 95,
         stimulusName: 'Spool 3',
         aoiName: '',
-        category: 'Visual Intake',
         fixationX: 506,
         fixationY: 94,
         fixationDuration: 33,
+      },
+      {
+        timestamp: 645,
+        x: 345,
+        y: 876,
+        stimulusName: 'Spool 3',
+        aoiName: '',
+      },
+      {
+        timestamp: 660,
+        x: 324,
+        y: 87,
+        stimulusName: 'Spool 3',
+        aoiName: '',
       },
     ];
     expect(datafile.getRenamedRows(rows)).to.eql(expectedRows);

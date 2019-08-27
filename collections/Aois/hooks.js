@@ -15,7 +15,6 @@ Aois.after.remove(function(userId, aoi) {
 
 Aois.after.update(function(userId, doc) {
   if (!doc.datafileIds || !doc.datafileIds.length) {
-    console.log(`delete AOI! ${doc._id}`);
     Aois.remove({ _id: doc._id });
   }
 });

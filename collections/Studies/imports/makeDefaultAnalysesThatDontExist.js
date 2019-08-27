@@ -1,6 +1,6 @@
 export default function makeDefaultAnalysesThatDontExist() {
   if (Meteor.isServer) {
-    console.log('study.makeDefaultAnalysesThatDontExist');
+    console.log('Study.makeDefaultAnalysesThatDontExist()');
   }
   const minVisitDurations = [
     60,

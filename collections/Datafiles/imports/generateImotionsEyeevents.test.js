@@ -14,8 +14,21 @@ describe('Datafiles.generateImotionsEyeevents', () => {
   it('generates eyeevents for a real imotions file', async () => {
     const datafile = Factory.create('imotionsDatafile');
     datafile.fileFormat = 'imotions';
-    const rawCSVData = await datafile.getRawCSV();
-    const assignedRows = datafile.getAssignedRows(rawCSVData);
+    const rawCsvData = await datafile.getRawCSV();
+
+    const stimulus = Factory.create('stimulus', {
+      name: 'Mapping 1',
+      studyId: datafile.studyId,
+      datafileIds: [datafile._id],
+    });
+    const aoi = Factory.create('aoi', {
+      name: '-',
+      studyId: datafile.studyId,
+      datafileIds: [datafile._id],
+      stimulusId: stimulus._id,
+    });
+
+    const assignedRows = datafile.getAssignedRows(rawCsvData);
 
     const {
       saccades,
@@ -34,11 +47,13 @@ describe('Datafiles.generateImotionsEyeevents', () => {
     expect(fixations[3].duration).to.equal(216); // verified in excel
     expect(fixations[3].x).to.equal(202); // verified in excel
     expect(fixations[3].y).to.equal(188); // verified in excel
+    expect(fixations[3].aoiId).to.equal(aoi._id); // verified in excel
 
     expect(fixations[100].eventIndex).to.equal(101); // verified in excel
     expect(fixations[100].timestamp).to.equal(62282); // verified in excel
     expect(fixations[100].duration).to.equal(166); // verified in excel
     expect(fixations[100].x).to.equal(162); // verified in excel
     expect(fixations[100].y).to.equal(320); // verified in excel
+    expect(fixations[100].aoiId).to.equal(aoi._id); // verified in excel
   });
 });

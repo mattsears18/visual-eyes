@@ -32,10 +32,10 @@ export default async function process() {
       datafileId: this._id,
     }).count();
 
-    console.log(`blinks: ${blinkCount}`);
-    console.log(`saccades: ${saccadeCount}`);
-    console.log(`fixations: ${fixationCount}`);
-    console.log(`gazepoints: ${gazepointCount}`);
+    // console.log(`blinks: ${blinkCount}`);
+    // console.log(`saccades: ${saccadeCount}`);
+    // console.log(`fixations: ${fixationCount}`);
+    // console.log(`gazepoints: ${gazepointCount}`);
 
     Datafiles.update(
       { _id: this._id },

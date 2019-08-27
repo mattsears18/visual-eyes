@@ -26,6 +26,7 @@ export default function generateImotionsEyeevents(assignedRows) {
           x: rows[i].fixationX,
           y: rows[i].fixationY,
           duration: rows[i].fixationDuration,
+          aoiId: rows[i].aoiId,
         };
 
         fixations.push(lastFixation);

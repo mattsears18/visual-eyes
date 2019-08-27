@@ -9,8 +9,6 @@ export default function saveCSV(opt) {
   const { type } = opt || {};
   const { groupBy } = opt || {};
 
-  console.log(type);
-
   let exportData;
 
   if (type === 'allAnalysesSingle') {

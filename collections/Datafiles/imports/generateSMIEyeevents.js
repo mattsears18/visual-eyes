@@ -72,7 +72,14 @@ export default function generateSMIEyeevents(assignedRows) {
           terminateLastEvent(i);
         }
 
-        gazepoints.push(rows[i]);
+        gazepoints.push({
+          timestamp: rows[i].timestamp,
+          fixationIndex: rows[i].eventIndex,
+          x: rows[i].x,
+          y: rows[i].y,
+          aoiId: rows[i].aoiId,
+        });
+
         if (rows[i].eventIndex) {
           if (
             !currentFixation
@@ -96,9 +103,8 @@ export default function generateSMIEyeevents(assignedRows) {
               x: rows[i].x,
               y: rows[i].y,
               duration: 0,
+              aoiId: rows[i].aoiId,
             };
-
-            // TODO save aoiId!!!
 
             // console.log(`${currentFixation.timestamp} begin fixation`);
           }
@@ -131,6 +137,9 @@ export default function generateSMIEyeevents(assignedRows) {
               x: rows[i].x,
               y: rows[i].y,
               duration: 0,
+              // fromAoiId: 'todo',
+              // toAoiId: 'todo',
+              // TODO
             };
 
             // console.log(`${currentSaccade.timestamp} begin saccade`);
@@ -158,6 +167,7 @@ export default function generateSMIEyeevents(assignedRows) {
               x: rows[i].x,
               y: rows[i].y,
               duration: 0,
+              aoiId: rows[i].aoiId,
             };
 
             // console.log(`${currentBlink.timestamp} begin blink`);

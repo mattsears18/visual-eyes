@@ -35,9 +35,9 @@ export default function makeVisits({ participantId, points }) {
       },
     ).fetch();
 
-  console.log(
-    `participantId: ${participantId}, total gazepoint count: ${allGazepoints.length}`,
-  );
+  // console.log(
+  //   `participantId: ${participantId}, total gazepoint count: ${allGazepoints.length}`,
+  // );
 
   if (allGazepoints.length) {
     const fileFormatGroups = _.groupBy(allGazepoints, 'fileFormat');
@@ -57,11 +57,11 @@ export default function makeVisits({ participantId, points }) {
           if (endIndex && gazepoints[endIndex]) {
             try {
               number += 1;
-              console.log(
-                `Save visit. Number: ${number} [${startIndex} : ${endIndex}] (Duration: ${gazepoints[
-                  endIndex
-                ].timestamp - gazepoints[startIndex].timestamp}ms)`,
-              );
+              // console.log(
+              //   `Save visit. Number: ${number} [${startIndex} : ${endIndex}] (Duration: ${gazepoints[
+              //     endIndex
+              //   ].timestamp - gazepoints[startIndex].timestamp}ms)`,
+              // );
 
               const visitId = this.makeVisitFromGazepoints({
                 gazepoints,

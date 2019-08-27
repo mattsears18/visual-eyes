@@ -5,11 +5,11 @@ export default function getExportData(opt) {
   let { samplingStep } = opt || {};
 
   if (Meteor.isClient) {
-    console.log(
-      `visit.getExportData() ${this.participant().name} - ${
-        this.stimulus().name
-      } - ${this.number}`,
-    );
+    // console.log(
+    //   `visit.getExportData() ${this.participant().name} - ${
+    //     this.stimulus().name
+    //   } - ${this.number}`,
+    // );
   }
 
   if (typeof samplingStep === 'undefined') {

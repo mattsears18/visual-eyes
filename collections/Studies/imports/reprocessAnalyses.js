@@ -3,7 +3,7 @@ import Analyses from '../../Analyses/Analyses';
 
 export default function reprocessAnalyses() {
   if (Meteor.isServer) {
-    console.log(`study.reprocessAnalyses() studyId: ${this._id}`);
+    console.log(`Study.reprocessAnalyses() studyId: ${this._id}`);
 
     const analyses = Analyses.find({ studyId: this._id }).fetch();
 

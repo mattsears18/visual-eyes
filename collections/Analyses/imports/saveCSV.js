@@ -20,9 +20,9 @@ export default function saveCSV(opt) {
     const includeIncomplete = opt.includeIncomplete ? 'True' : 'False';
 
     visits.forEach(function(visit) {
-      const nameFile = `${visit.study().name} - ${
-        visit.analysis().name
-      } - p${opt.period}ts${opt.timestep}incomplete${includeIncomplete} - ${
+      const nameFile = `${visit.study().name} - ${visit.analysis().name} - p${
+        opt.period
+      }ts${opt.timestep}incomplete${includeIncomplete} - ${
         visit.participant().name
       } - ${visit.stimulus().name} - visit${visit.number}.csv`;
 
@@ -59,8 +59,6 @@ export default function saveCSV(opt) {
     } catch (err) {
       console.error(err);
     }
-
-    console.log(filename);
 
     if (Meteor.isClient) {
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });

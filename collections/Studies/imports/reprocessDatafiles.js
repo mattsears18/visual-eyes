@@ -3,7 +3,7 @@ import Datafiles from '../../Datafiles/Datafiles';
 
 export default function reprocessDatafiles() {
   if (Meteor.isServer) {
-    console.log(`study.reprocessDatafiles() studyId: ${this._id}`);
+    console.log(`Study.reprocessDatafiles() studyId: ${this._id}`);
 
     const datafiles = Datafiles.find({ studyId: this._id }).fetch();
 

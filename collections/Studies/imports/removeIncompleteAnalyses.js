@@ -2,7 +2,7 @@ import Analyses from '../../Analyses/Analyses';
 
 export default function removeIncompleteAnayses() {
   if (Meteor.isServer) {
-    console.log('study.removeIncompleteAnalyses()');
+    console.log('Study.removeIncompleteAnalyses()');
 
     Analyses.remove(
       {

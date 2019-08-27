@@ -5,7 +5,6 @@ export default function process() {
 
   const study = this.study();
 
-  console.log("Create any variables that don't already exist");
   csv({ delimiter: 'auto' })
     .fromFile(this.path)
     .then(
@@ -20,8 +19,6 @@ export default function process() {
           }
         }
 
-        // Save participant variable values
-        console.log('Save participant variable values');
         rows.forEach(function(row) {
           if (row.name) {
             participantName = row.name;

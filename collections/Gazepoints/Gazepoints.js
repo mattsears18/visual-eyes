@@ -51,7 +51,7 @@ Schemas.Gazepoint = new SimpleSchema(
       label: 'Category',
       optional: true,
     },
-    eventIndex: {
+    fixationIndex: {
       type: String,
       label: 'Index',
       optional: true,

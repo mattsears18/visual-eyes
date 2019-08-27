@@ -1,6 +1,6 @@
 # Steps to Process raw Datafiles
 
-- [ ] Datafiles.process() (async)
+- [x] Datafiles.process() (async)
   - [x] .getRawCSV() (async)
   - [x] .preProcess(rawCsvData)
     - [x] .removeHeaders()
@@ -8,7 +8,7 @@
     - [x] .setFileFormat(rawCsvData)
       - [x] .detectFileFormat(rawCsvData)
     - [x] .getName()
-  - [ ] .makeEyeevents(rawCsvData) (async) (bulk insert is async)
+  - [x] .makeEyeevents(rawCsvData) (async) (bulk insert is async)
     - [x] .getAssignedRows(rawCsvData)
       - [x] .getRenamedRows(rawCsvData)
       - [x] .getStimuliOnly(renamedRows)
@@ -17,5 +17,5 @@
       - [x] .assignStimuli(sortedRows)
       - [x] .assignAois(rowsWithStimuli)
     - [x] .groupRowsByStimulus(assignedRows)
-    - [ ] .generateImotionsEyeevents(groupedRows) - need to save aoiIds for fixations
-    - [ ] .generateSMIEyeevents(groupedRows) - need to save aoiIds for fixations and saccades
+    - [x] .generateImotionsEyeevents(groupedRows)
+    - [x] .generateSMIEyeevents(groupedRows)

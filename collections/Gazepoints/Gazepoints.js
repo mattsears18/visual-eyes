@@ -77,6 +77,7 @@ if (Meteor.isServer) {
   Gazepoints.rawCollection().createIndex(
     {
       datafileId: 1,
+      stimulusId: 1,
       timestamp: 1,
     },
     (err, result) => {
@@ -100,13 +101,6 @@ if (Meteor.isServer) {
       console.log(`Gazepoints indexed: ${result} `);
     },
   );
-
-  Gazepoints.rawCollection().createIndex({ timestamp: 1 }, (err, result) => {
-    if (err) {
-      console.log(err);
-    }
-    console.log(`Gazepoints indexed: ${result} `);
-  });
 }
 
 export default Gazepoints;

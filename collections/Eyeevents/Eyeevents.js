@@ -83,9 +83,10 @@ Eyeevents.attachSchema(Schemas.Eyeevent);
 if (Meteor.isServer) {
   Eyeevents.rawCollection().createIndex(
     {
-      datafileId: 1,
+      participantId: 1,
+      stimulusId: 1,
       type: 1,
-      index: 1,
+      eventIndex: 1,
     },
     (err, result) => {
       if (err) {
@@ -99,7 +100,35 @@ if (Meteor.isServer) {
     {
       participantId: 1,
       stimulusId: 1,
-      index: 1,
+      eventIndex: 1,
+    },
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(`Eyeevents indexed: ${result} `);
+    },
+  );
+  Eyeevents.rawCollection().createIndex(
+    {
+      datafileId: 1,
+      stimulusId: 1,
+      type: 1,
+      eventIndex: 1,
+    },
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(`Eyeevents indexed: ${result} `);
+    },
+  );
+
+  Eyeevents.rawCollection().createIndex(
+    {
+      datafileId: 1,
+      stimulusId: 1,
+      eventIndex: 1,
     },
     (err, result) => {
       if (err) {

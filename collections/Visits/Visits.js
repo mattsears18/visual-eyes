@@ -152,16 +152,6 @@ if (Meteor.isServer) {
       console.log(`Visits indexed: ${result}`);
     },
   );
-
-  Visits.rawCollection().createIndex(
-    { analysisId: 1, aoiId: 1 },
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      }
-      console.log(`Visits indexed: ${result}`);
-    },
-  );
 }
 
 export default Visits;

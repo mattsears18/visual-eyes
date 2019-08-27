@@ -1,8 +1,10 @@
 import Jobs from '../../../collections/Jobs/Jobs';
 import Gazepoints from '../../../collections/Gazepoints/Gazepoints';
 import Analyses from '../../../collections/Analyses/Analyses';
+import Eyeevents from '../../../collections/Eyeevents/Eyeevents';
 
-const gazepointCache = {};
+// const gazepointCache = {};
+const fixationCache = {};
 
 const queueAnalysesMakeVisits = Jobs.processJobs(
   'analyses.makeVisits',
@@ -12,42 +14,66 @@ const queueAnalysesMakeVisits = Jobs.processJobs(
 
     if (!analysis) {
       console.log(
-        `Analysis not found. analysisId: ${
-          job.data.analysisId
-        } Remove all jobs for this analysis.`,
+        `Analysis not found. analysisId: ${job.data.analysisId} Remove all jobs for this analysis.`,
       );
 
       Jobs.remove({ 'data.analysisId': job.data.analysisId });
     } else {
       try {
-        if (!(job.data.participantId in gazepointCache)) {
-          console.log('participant gazepoints not cached. get em');
+        // if (!(job.data.participantId in gazepointCache)) {
+        //   console.log('participant gazepoints not cached. get em');
 
-          gazepointCache[job.data.participantId] = Gazepoints.find(
-            { participantId: job.data.participantId },
+        //   gazepointCache[job.data.participantId] = Gazepoints.find(
+        //     { participantId: job.data.participantId },
+        //     {
+        //       fields: {
+        //         _id: 1,
+        //         fileFormat: 1,
+        //         stimulusId: 1,
+        //         timestamp: 1,
+        //         x: 1,
+        //         y: 1,
+        //         eventIndex: 1,
+        //         category: 1,
+        //       },
+        //       sort: { timestamp: 1 },
+        //     },
+        //   ).fetch();
+        // }
+
+        if (!(job.data.participantId in fixationCache)) {
+          console.log('participant fixations not cached. get em');
+
+          fixationCache[job.data.participantId] = Eyeevents.find(
+            { participantId: job.data.participantId, type: 'fixation' },
             {
               fields: {
                 _id: 1,
-                fileFormat: 1,
-                stimulusId: 1,
                 timestamp: 1,
+                datafileId: 1,
+                stimulusId: 1,
+                aoiId: 1,
                 x: 1,
                 y: 1,
                 eventIndex: 1,
-                category: 1,
+                duration: 1,
               },
-              sort: { timestamp: 1 },
+              sort: { datafileId: 1, stimulusId: 1, eventIndex: 1 },
             },
           ).fetch();
         }
 
-        const visitIds = analysis.makeVisits({
-          participantId: job.data.participantId,
-          points: gazepointCache[job.data.participantId],
-        });
+        try {
+          analysis.makeVisits({
+            participantId: job.data.participantId,
+            fixations: fixationCache[job.data.participantId],
+          });
 
-        job.done();
-        analysis.updateStatus();
+          job.done();
+          analysis.updateStatus();
+        } catch (err) {
+          console.log(err);
+        }
       } catch (err) {
         console.log(err);
         job.cancel();

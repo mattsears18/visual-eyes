@@ -54,7 +54,7 @@ Schemas.Eyeevent = new SimpleSchema(
     },
     duration: {
       type: Number,
-      label: 'Timestamp',
+      label: 'Duration',
     },
     timestampEnd: {
       type: Number,
@@ -118,6 +118,21 @@ if (Meteor.isServer) {
       datafileId: 1,
       stimulusId: 1,
       type: 1,
+      eventIndex: 1,
+    },
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(`Eyeevents indexed: ${result} `);
+    },
+  );
+
+  Eyeevents.rawCollection().createIndex(
+    {
+      type: 1,
+      datafileId: 1,
+      stimulusId: 1,
       eventIndex: 1,
     },
     (err, result) => {

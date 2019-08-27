@@ -7,6 +7,7 @@ import Stimuli from './Stimuli/Stimuli';
 import Stimulusfiles from './Stimuli/Stimulusfiles/Stimulusfiles';
 import Aois from './Aois/Aois';
 import Gazepoints from './Gazepoints/Gazepoints';
+import Eyeevents from './Eyeevents/Eyeevents';
 import Participants from './Participants/Participants';
 import Analyses from './Analyses/Analyses';
 import Visits from './Visits/Visits';
@@ -17,6 +18,7 @@ StubCollections.stub([
   Stimuli,
   Aois,
   Gazepoints,
+  Eyeevents,
   Participants,
   Analyses,
   Visits,
@@ -265,13 +267,13 @@ Factory.define('visit', Visits, {
 });
 
 // visit with Gazepoints
-const study = Factory.create('study');
-const datafile = Factory.create('imotionsDatafile', { studyId: study._id });
-const participant = Factory.create('participant', {
+let study = Factory.create('study');
+let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
+let participant = Factory.create('participant', {
   studyId: study._id,
   datafileIds: [datafile._id],
 });
-const stimulus = Factory.create('stimulus', { studyId: study._id });
+let stimulus = Factory.create('stimulus', { studyId: study._id });
 const aoi = Factory.create('aoi', {
   studyId: study._id,
   stimulusId: stimulus._id,
@@ -330,4 +332,27 @@ Factory.define('visitWithGazepoints', Visits, {
   gazepointFrequency: gazepoints.length / duration,
   fixationCount,
   fixationFrequency: fixationCount / duration,
+});
+
+let time1;
+let time2;
+
+Factory.define('fixation', Eyeevents, {
+  studyId: (study = Factory.create('study'))._id,
+  type: 'fixation',
+  participantId: (participant = Factory.create('participant', {
+    studyId: study._id,
+  }))._id,
+  datafileId: (datafile = Factory.create('smiDatafile', {
+    studyId: study._id,
+    participantId: participant._id,
+  }))._id,
+  stimulusId: (stimulus = Factory.create('stimulus', { studyId: study._id }))
+    ._id,
+  timestamp: (time1 = faker.random.number),
+  duration: (time2 = faker.random.number),
+  timestampEnd: () => time1() + time2(),
+  eventIndex: faker.random.number,
+  x: faker.random.number,
+  y: faker.random.number,
 });

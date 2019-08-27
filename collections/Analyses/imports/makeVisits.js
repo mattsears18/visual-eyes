@@ -1,8 +1,15 @@
 import Participants from '../../Participants/Participants';
 import Gazepoints from '../../Gazepoints/Gazepoints';
 
-export default function makeVisits({ participantId, points }) {
-  const visitIds = [];
+export default function makeVisits(opts) {
+  const { participantId } = opts || {};
+  const { fixations } = opts || {};
+
+  if (!fixations || !fixations.length) {
+    throw new Error('noFixations');
+  }
+
+  const _fixations = fixations.slice();
 
   if (!participantId) {
     throw new Error('noParticipantId');
@@ -13,31 +20,11 @@ export default function makeVisits({ participantId, points }) {
     throw new Error('noParticipantFound');
   }
 
-  if (!points || !points.length) {
-    throw new Error('noPoints!');
-  }
-
-  const allGazepoints = points.slice()
-    || Gazepoints.find(
-      { participantId },
-      {
-        fields: {
-          _id: 1,
-          fileFormat: 1,
-          stimulusId: 1,
-          timestamp: 1,
-          x: 1,
-          y: 1,
-          eventIndex: 1,
-          category: 1,
-        },
-        sort: { timestamp: 1 },
-      },
-    ).fetch();
-
   // console.log(
   //   `participantId: ${participantId}, total gazepoint count: ${allGazepoints.length}`,
   // );
+
+  const visitIds = [];
 
   if (allGazepoints.length) {
     const fileFormatGroups = _.groupBy(allGazepoints, 'fileFormat');

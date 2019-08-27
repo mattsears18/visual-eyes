@@ -9,5 +9,5 @@ describe('Study.makeDefaultAnalysesThatDontExist()', () => {
     study.makeDefaultAnalysesThatDontExist();
 
     expect(study.analyses().count()).to.eql(128);
-  });
+  }).timeout(10000);
 });

@@ -16,21 +16,21 @@ Datafiles.collection.after.insert(function(userId, doc) {
 Datafiles.collection.after.remove(function(userId, datafile) {
   // Update Stimuli.datafileIds
   Stimuli.update(
-    { studyId: datafile.studyId },
+    { studyId: datafile.studyId, datafileIds: datafile._id },
     { $pull: { datafileIds: datafile._id } },
     { multi: true },
   );
 
   // Update Aoi.datafileIds
   Aois.update(
-    { studyId: datafile.studyId },
+    { studyId: datafile.studyId, datafileIds: datafile._id },
     { $pull: { datafileIds: datafile._id } },
     { multi: true },
   );
 
   // Update Participant.datafileIds
   Participants.update(
-    { studyId: datafile.studyId },
+    { studyId: datafile.studyId, datafileIds: datafile._id },
     { $pull: { datafileIds: datafile._id } },
     { multi: true },
   );

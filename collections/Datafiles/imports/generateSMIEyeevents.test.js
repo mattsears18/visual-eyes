@@ -50,6 +50,7 @@ describe('Datafiles.generateSMIEyeevents', () => {
     expect(fixations[3].x).to.equal(228); // verified in excel
     expect(fixations[3].y).to.equal(5); // verified in excel
     expect(fixations[3].aoiId).to.equal(aoi._id); // verified in excel
+    expect(fixations[3].timestampEnd).to.equal(2672); // verified in excel
   });
 
   it('generates eyeevents for a real smi file with multiple stimuli', async () => {
@@ -96,6 +97,7 @@ describe('Datafiles.generateSMIEyeevents', () => {
     expect(saccades[150].duration).to.equal(50); // verified in excel
     expect(saccades[150].x).to.equal(301); // verified in excel
     expect(saccades[150].y).to.equal(442); // verified in excel
+    expect(saccades[150].timestampEnd).to.equal(57270);
     // expect(saccades[150].fromAoiId).to.equal(aoi._id); // verified in excel
     // expect(saccades[150].toAoiId).to.equal(aoi._id); // verified in excel
     // TODO save the "fromAoiId" and "toAoiId"
@@ -106,6 +108,7 @@ describe('Datafiles.generateSMIEyeevents', () => {
     expect(blinks[1].x).to.equal(444); // verified in excel
     expect(blinks[1].y).to.equal(297); // verified in excel
     expect(blinks[1].aoiId).to.equal(aoi._id); // verified in excel
+    expect(blinks[1].timestampEnd).to.equal(39479);
 
     // fixation #3 within Spool 4
     expect(fixations[100].eventIndex).to.equal(1889); // verified in excel
@@ -114,6 +117,7 @@ describe('Datafiles.generateSMIEyeevents', () => {
     expect(fixations[100].x).to.equal(389); // verified in excel
     expect(fixations[100].y).to.equal(538); // verified in excel
     expect(fixations[100].aoiId).to.equal(aoi._id); // verified in excel
+    expect(fixations[100].timestampEnd).to.equal(33638);
 
     expect(gazepoints[1000].fixationIndex).to.equal(1532); // verified in excel
     expect(gazepoints[1000].timestamp).to.equal(21093); // verified in excel

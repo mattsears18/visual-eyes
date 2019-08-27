@@ -48,6 +48,7 @@ describe('Datafiles.generateImotionsEyeevents', () => {
     expect(fixations[3].x).to.equal(202); // verified in excel
     expect(fixations[3].y).to.equal(188); // verified in excel
     expect(fixations[3].aoiId).to.equal(aoi._id); // verified in excel
+    expect(fixations[3].timestampEnd).to.equal(10754);
 
     expect(fixations[100].eventIndex).to.equal(101); // verified in excel
     expect(fixations[100].timestamp).to.equal(62282); // verified in excel
@@ -55,5 +56,6 @@ describe('Datafiles.generateImotionsEyeevents', () => {
     expect(fixations[100].x).to.equal(162); // verified in excel
     expect(fixations[100].y).to.equal(320); // verified in excel
     expect(fixations[100].aoiId).to.equal(aoi._id); // verified in excel
+    expect(fixations[100].timestampEnd).to.equal(62448);
   });
 });

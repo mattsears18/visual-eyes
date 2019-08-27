@@ -32,6 +32,7 @@ export default function generateSMIEyeevents(assignedRows) {
         // console.log(`${rows[i].timestamp} end fixation`);
 
         currentFixation.duration = rows[i].timestamp - currentFixation.timestamp;
+        currentFixation.timestampEnd = currentFixation.timestamp + currentFixation.duration;
         fixations.push(currentFixation);
 
         currentFixation = null;
@@ -41,6 +42,7 @@ export default function generateSMIEyeevents(assignedRows) {
         // console.log(`${rows[i - 1].timestamp} end saccade`);
 
         currentSaccade.duration = rows[i - 1].timestamp - currentSaccade.timestamp;
+        currentSaccade.timestampEnd = currentSaccade.timestamp + currentSaccade.duration;
         saccades.push(currentSaccade);
 
         // TODO need to save fromAoiId and toAoiId
@@ -52,6 +54,7 @@ export default function generateSMIEyeevents(assignedRows) {
         // console.log(`${rows[i].timestamp} end blink`);
 
         currentBlink.duration = rows[i].timestamp - currentBlink.timestamp;
+        currentBlink.timestampEnd = currentBlink.timestamp + currentBlink.duration;
         blinks.push(currentBlink);
 
         currentBlink = null;
@@ -60,12 +63,6 @@ export default function generateSMIEyeevents(assignedRows) {
   }
 
   for (let i = 0; i < rows.length; i += 1) {
-    // console.log(
-    //   `     i: ${i} of ${rows.length
-    //     - 1}   lastEvent: ${lastEvent} current category: ${
-    //     rows[i].category
-    //   } timestamp: ${rows[i].timestamp}`,
-    // );
     switch (rows[i].category) {
       case 'Visual Intake':
         if (lastEvent && lastEvent !== 'fixation') {

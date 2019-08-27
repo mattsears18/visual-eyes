@@ -1,10 +1,10 @@
 import Eyeevents from '../../Eyeevents/Eyeevents';
 import Gazepoints from '../../Gazepoints/Gazepoints';
 
-export default function makeEyeevents(rawCSVData) {
+export default function makeEyeevents(rawCsvData) {
   console.log('Datafile.makeEyeevents()');
 
-  const assignedRows = this.getAssignedRows(rawCSVData);
+  const assignedRows = this.getAssignedRows(rawCsvData);
   const groupedRows = this.groupRowsByStimulus(assignedRows);
 
   const bulkEvents = Eyeevents.rawCollection().initializeUnorderedBulkOp();

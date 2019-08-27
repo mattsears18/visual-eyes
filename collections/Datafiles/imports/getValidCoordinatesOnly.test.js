@@ -1,11 +1,13 @@
-require('./../../factories.test');
+import { Factory } from 'meteor/dburles:factory';
+
+require('../../factories.test');
 const { expect } = require('chai');
 
-describe('Datafiles.getNumericPositiveCoordinatesOnly()', () => {
+describe('Datafiles.getValidCoordinatesOnly()', () => {
   it('returns empty array when passed empty array', async () => {
     const datafile = Factory.create('imotionsDatafile');
     const rows = [];
-    expect(await datafile.getNumericPositiveCoordinatesOnly(rows)).to.eql(rows);
+    expect(await datafile.getValidCoordinatesOnly(rows)).to.eql(rows);
   });
 
   it('removes negative coordinate values', async () => {
@@ -17,10 +19,8 @@ describe('Datafiles.getNumericPositiveCoordinatesOnly()', () => {
       { x: '100', y: '-0.71' },
       { x: '100', y: '-1.3' },
     ];
-    const expectedRows = [
-      { x: '100', y: '500' },
-    ];
-    expect(await datafile.getNumericPositiveCoordinatesOnly(rows)).to.eql(expectedRows);
+    const expectedRows = [{ x: '100', y: '500' }];
+    expect(await datafile.getValidCoordinatesOnly(rows)).to.eql(expectedRows);
   });
 
   it('removes blanks', async () => {
@@ -30,10 +30,8 @@ describe('Datafiles.getNumericPositiveCoordinatesOnly()', () => {
       { x: '', y: '500' },
       { x: '100', y: '' },
     ];
-    const expectedRows = [
-      { x: '100', y: '500' },
-    ];
-    expect(await datafile.getNumericPositiveCoordinatesOnly(rows)).to.eql(expectedRows);
+    const expectedRows = [{ x: '100', y: '500' }];
+    expect(await datafile.getValidCoordinatesOnly(rows)).to.eql(expectedRows);
   });
 
   it('removes dashes', async () => {
@@ -43,9 +41,7 @@ describe('Datafiles.getNumericPositiveCoordinatesOnly()', () => {
       { x: '-', y: '500' },
       { x: '100', y: '-' },
     ];
-    const expectedRows = [
-      { x: '100', y: '500' },
-    ];
-    expect(await datafile.getNumericPositiveCoordinatesOnly(rows)).to.eql(expectedRows);
+    const expectedRows = [{ x: '100', y: '500' }];
+    expect(await datafile.getValidCoordinatesOnly(rows)).to.eql(expectedRows);
   });
 });

@@ -39,10 +39,10 @@ describe('Datafiles.generateSMIEyeevents', () => {
       fixations,
     } = datafile.generateSMIEyeevents(assignedRows);
 
-    expect(saccades.length).to.equal(283); // verified in excel
-    expect(blinks.length).to.equal(20); // verified in excel
-    expect(gazepoints.length).to.equal(4239); // verified in excel
-    expect(fixations.length).to.equal(305); // verified in excel
+    expect(saccades.length).to.equal(190); // verified in excel
+    expect(blinks.length).to.equal(13); // verified in excel
+    expect(gazepoints.length).to.equal(2948); // verified in excel
+    expect(fixations.length).to.equal(205); // verified in excel
 
     expect(fixations[3].eventIndex).to.equal(15); // verified in excel
     expect(fixations[3].timestamp).to.equal(1892); // verified in excel

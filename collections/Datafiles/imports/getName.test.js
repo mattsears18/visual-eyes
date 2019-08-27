@@ -1,9 +1,13 @@
+import { Factory } from 'meteor/dburles:factory';
+
 require('./../../factories.test');
 const { expect } = require('chai');
 
 describe('Datafiles.getName()', () => {
   it('removes the file extension', async () => {
-    const datafile = Factory.create('imotionsDatafile', { name: '018_aaron.txt' });
+    const datafile = Factory.create('imotionsDatafile', {
+      name: '018_aaron.txt',
+    });
     expect(datafile.getName()).to.equal('018_aaron');
   });
 

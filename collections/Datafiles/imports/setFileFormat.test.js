@@ -5,14 +5,14 @@ if (Meteor.isServer) {
   describe('Datafiles.setFileFormat()', () => {
     it('sets the imotions fileFormat', async () => {
       const datafile = Factory.create('imotionsDatafile');
-      const rawCSVData = await datafile.getRawCSV();
-      expect(datafile.setFileFormat(rawCSVData)).to.equal('imotions');
+      const rawCsvData = await datafile.getRawCSV();
+      expect(datafile.setFileFormat(rawCsvData)).to.equal('imotions');
     });
 
     it('sets the smi fileFormat', async () => {
       const datafile = Factory.create('smiDatafile');
-      const rawCSVData = await datafile.getRawCSV();
-      expect(datafile.setFileFormat(rawCSVData)).to.equal('smi');
+      const rawCsvData = await datafile.getRawCSV();
+      expect(datafile.setFileFormat(rawCsvData)).to.equal('smi');
     });
 
     it('is not a text file', async () => {

@@ -4,7 +4,7 @@ require('../../factories.test');
 const { expect } = require('chai');
 
 describe('Datafiles.getRenamedRows()', () => {
-  it('supplies no rawCSVData', () => {
+  it('supplies no rawCsvData', () => {
     const datafile = Factory.create('imotionsDatafile');
     expect(() => {
       datafile.getRenamedRows();

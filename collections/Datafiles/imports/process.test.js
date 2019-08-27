@@ -19,7 +19,7 @@ if (Meteor.isServer) {
       expect(datafile.rawRowCount).to.equal(12271);
       expect(datafile.blinkCount).to.equal(0);
       expect(datafile.saccadeCount).to.equal(0);
-      expect(datafile.gazepointCount).to.equal(5290);
+      expect(datafile.gazepointCount).to.equal(3218);
       expect(datafile.fixationCount).to.equal(155);
       expect(datafile.status).to.equal('processed');
 
@@ -38,10 +38,10 @@ if (Meteor.isServer) {
       expect(datafile.participantId).to.exist;
       expect(datafile.fileFormat).to.equal('smi');
       expect(datafile.rawRowCount).to.equal(12742);
-      expect(datafile.blinkCount).to.equal(20);
-      expect(datafile.saccadeCount).to.equal(283);
-      expect(datafile.gazepointCount).to.equal(4239);
-      expect(datafile.fixationCount).to.equal(305);
+      expect(datafile.blinkCount).to.equal(13);
+      expect(datafile.saccadeCount).to.equal(190);
+      expect(datafile.gazepointCount).to.equal(2948);
+      expect(datafile.fixationCount).to.equal(205);
       expect(datafile.status).to.equal('processed');
 
       const participant = Participants.findOne({ _id: datafile.participantId });
@@ -60,9 +60,9 @@ if (Meteor.isServer) {
       expect(datafile.fileFormat).to.equal('smi');
       expect(datafile.rawRowCount).to.equal(146558);
       expect(datafile.blinkCount).to.equal(14);
-      expect(datafile.saccadeCount).to.equal(1558);
-      expect(datafile.gazepointCount).to.equal(32332);
-      expect(datafile.fixationCount).to.equal(1823);
+      expect(datafile.saccadeCount).to.equal(1551);
+      expect(datafile.gazepointCount).to.equal(32231);
+      expect(datafile.fixationCount).to.equal(1813);
       expect(datafile.status).to.equal('processed');
 
       const participant = Participants.findOne({ _id: datafile.participantId });

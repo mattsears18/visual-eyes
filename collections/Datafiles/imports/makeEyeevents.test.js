@@ -19,7 +19,7 @@ if (Meteor.isServer) {
       const gazepointsStatus = await statuses.gazepointsStatus;
 
       expect(eyeeventsStatus.nInserted).to.equal(155);
-      expect(gazepointsStatus.nInserted).to.equal(5290);
+      expect(gazepointsStatus.nInserted).to.equal(3218);
 
       expect(
         Eyeevents.find({ datafileId: datafile._id, type: 'saccade' }).count(),
@@ -31,7 +31,7 @@ if (Meteor.isServer) {
         Eyeevents.find({ datafileId: datafile._id, type: 'fixation' }).count(),
       ).to.equal(155);
       expect(Gazepoints.find({ datafileId: datafile._id }).count()).to.equal(
-        5290,
+        3218,
       );
     });
 
@@ -47,20 +47,20 @@ if (Meteor.isServer) {
       const eyeeventsStatus = await statuses.eyeeventsStatus;
       const gazepointsStatus = await statuses.gazepointsStatus;
 
-      expect(eyeeventsStatus.nInserted).to.equal(608);
-      expect(gazepointsStatus.nInserted).to.equal(4239);
+      expect(eyeeventsStatus.nInserted).to.equal(408);
+      expect(gazepointsStatus.nInserted).to.equal(2948);
 
       expect(
         Eyeevents.find({ datafileId: datafile._id, type: 'saccade' }).count(),
-      ).to.equal(283); // imotions report saccades
+      ).to.equal(190); // imotions report saccades
       expect(
         Eyeevents.find({ datafileId: datafile._id, type: 'blink' }).count(),
-      ).to.equal(20); // imotions doesn't report blinks
+      ).to.equal(13); // imotions doesn't report blinks
       expect(
         Eyeevents.find({ datafileId: datafile._id, type: 'fixation' }).count(),
-      ).to.equal(305);
+      ).to.equal(205);
       expect(Gazepoints.find({ datafileId: datafile._id }).count()).to.equal(
-        4239,
+        2948,
       );
     });
 
@@ -76,20 +76,20 @@ if (Meteor.isServer) {
       const eyeeventsStatus = await statuses.eyeeventsStatus;
       const gazepointsStatus = await statuses.gazepointsStatus;
 
-      expect(eyeeventsStatus.nInserted).to.equal(3395);
-      expect(gazepointsStatus.nInserted).to.equal(32332);
+      expect(eyeeventsStatus.nInserted).to.equal(3378);
+      expect(gazepointsStatus.nInserted).to.equal(32231);
 
       expect(
         Eyeevents.find({ datafileId: datafile._id, type: 'saccade' }).count(),
-      ).to.equal(1558); // imotions report saccades
+      ).to.equal(1551); // imotions report saccades
       expect(
         Eyeevents.find({ datafileId: datafile._id, type: 'blink' }).count(),
       ).to.equal(14); // imotions doesn't report blinks
       expect(
         Eyeevents.find({ datafileId: datafile._id, type: 'fixation' }).count(),
-      ).to.equal(1823);
+      ).to.equal(1813);
       expect(Gazepoints.find({ datafileId: datafile._id }).count()).to.equal(
-        32332,
+        32231,
       );
     }).timeout(10000);
   });

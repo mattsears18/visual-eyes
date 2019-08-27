@@ -13,7 +13,7 @@ describe('Datafiles.preProcess()', () => {
       datafile.preProcess();
     }).to.throw('noStudy');
   });
-  it("doesn't provide the rawCSVData", async () => {
+  it("doesn't provide the rawCsvData", async () => {
     const datafile = Factory.create('imotionsDatafile');
 
     // error thrown from Datafile.detectFileFormat()

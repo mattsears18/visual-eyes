@@ -11,15 +11,11 @@ export default function getAssignedRows(rawCsvData) {
   );
 
   renamedRows = this.getStimuliOnly(renamedRows);
-  this.stimulusRowCount = renamedRows.length;
 
-  Datafiles.update(
-    { _id: this._id },
-    { $set: { stimulusRowCount: this.stimulusRowCount } },
-  );
+  const validCoordinateRows = this.getValidCoordinatesOnly(renamedRows);
 
   // sort renamedRows by timestamp
-  const sortedRows = this.filterSortFloat('timestamp', renamedRows);
+  const sortedRows = this.filterSortFloat('timestamp', validCoordinateRows);
 
   const rowsWithStimuli = this.assignStimuli(sortedRows);
   const rowsWithAois = this.assignAois(rowsWithStimuli);

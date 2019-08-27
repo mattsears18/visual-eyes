@@ -39,7 +39,7 @@ describe('Datafiles.generateImotionsEyeevents', () => {
 
     expect(saccades.length).to.equal(0); // imotions report saccades
     expect(blinks.length).to.equal(0); // imotions doesn't report blinks
-    expect(gazepoints.length).to.equal(5290); // verified in excel
+    expect(gazepoints.length).to.equal(3218); // verified in excel
     expect(fixations.length).to.equal(155); // verified in excel
 
     expect(fixations[3].eventIndex).to.equal(4); // verified in excel

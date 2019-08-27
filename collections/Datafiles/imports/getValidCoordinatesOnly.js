@@ -1,9 +1,6 @@
 import helpers from '../../../lib/helpers';
 
-export default async function getNumericPositiveCoordinatesOnly(data) {
-  if (!data) {
-    data = await this.getRenamedRows();
-  }
+export default function getValidCoordinatesOnly(data) {
   return data.filter(
     row => helpers.isFloaty(parseFloat(row.x))
       && helpers.isFloaty(parseFloat(row.y))

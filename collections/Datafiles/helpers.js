@@ -7,7 +7,7 @@ import generateSMIEyeevents from './imports/generateSMIEyeevents';
 import getAssignedRows from './imports/getAssignedRows';
 // import getGazepoints from './imports/getGazepoints';
 import getName from './imports/getName';
-import getNumericPositiveCoordinatesOnly from './imports/getNumericPositiveCoordinatesOnly';
+import getValidCoordinatesOnly from './imports/getValidCoordinatesOnly';
 import getRawCSV from './imports/getRawCSV';
 import getRenamedRows from './imports/getRenamedRows';
 import getStimuliOnly from './imports/getStimuliOnly';
@@ -31,7 +31,7 @@ Datafiles.collection.helpers({
   getAssignedRows,
   // getGazepoints,
   getName,
-  getNumericPositiveCoordinatesOnly,
+  getValidCoordinatesOnly,
   getRawCSV,
   getRenamedRows,
   getStimuliOnly,

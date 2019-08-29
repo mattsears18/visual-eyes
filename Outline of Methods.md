@@ -2,7 +2,7 @@
 
 - [ ] .makeVisits()
   - [x] .getVisitEndIndex() - need to revise how gap duration is calculated
-  - [ ] .makeVisit()
+  - [x] .makeVisit()
 
 # Datafiles
 

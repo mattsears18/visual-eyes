@@ -1,9 +1,7 @@
 import Jobs from '../../../collections/Jobs/Jobs';
-import Gazepoints from '../../../collections/Gazepoints/Gazepoints';
 import Analyses from '../../../collections/Analyses/Analyses';
 import Eyeevents from '../../../collections/Eyeevents/Eyeevents';
 
-// const gazepointCache = {};
 const fixationCache = {};
 
 const queueAnalysesMakeVisits = Jobs.processJobs(
@@ -20,27 +18,6 @@ const queueAnalysesMakeVisits = Jobs.processJobs(
       Jobs.remove({ 'data.analysisId': job.data.analysisId });
     } else {
       try {
-        // if (!(job.data.participantId in gazepointCache)) {
-        //   console.log('participant gazepoints not cached. get em');
-
-        //   gazepointCache[job.data.participantId] = Gazepoints.find(
-        //     { participantId: job.data.participantId },
-        //     {
-        //       fields: {
-        //         _id: 1,
-        //         fileFormat: 1,
-        //         stimulusId: 1,
-        //         timestamp: 1,
-        //         x: 1,
-        //         y: 1,
-        //         eventIndex: 1,
-        //         category: 1,
-        //       },
-        //       sort: { timestamp: 1 },
-        //     },
-        //   ).fetch();
-        // }
-
         if (!(job.data.participantId in fixationCache)) {
           console.log('participant fixations not cached. get em');
 

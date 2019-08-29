@@ -13,4 +13,4 @@
 
 4. Provide the ability to set a minimum fixation duration, which allows you to filter out short fixations, even if the original fixation filter used a shorter minimum fixation duration.
 
-5. Change all Chai expect().to.throw() checks to use regular expressions instead of text strings. As-is, the text strings are used as regular expressions, so they match too many possible errors https://www.chaijs.com/api/bdd/#method_throw
+5. probably need to change all references to stimulus to aoi when creating visits

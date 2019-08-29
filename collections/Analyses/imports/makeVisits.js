@@ -1,5 +1,4 @@
 import Participants from '../../Participants/Participants';
-import Gazepoints from '../../Gazepoints/Gazepoints';
 
 export default function makeVisits(opts) {
   const { participantId } = opts || {};
@@ -9,7 +8,7 @@ export default function makeVisits(opts) {
     throw new Error('noFixations');
   }
 
-  const allFixations = fixations.slice();
+  const allFixations = [...fixations];
 
   if (!participantId) {
     throw new Error('noParticipantId');
@@ -25,17 +24,26 @@ export default function makeVisits(opts) {
   let startIndex = 0;
   let number = 0;
 
+  // console.log(`startIndex: ${startIndex}`);
+
   do {
     let endIndex = null;
+    // console.log(`endIndex: ${endIndex}`);
     try {
+      // console.log('try to get endIndex');
       endIndex = this.getVisitEndIndex({
         fixations: allFixations,
         startIndex,
       });
 
+      // console.log(`endIndex: ${endIndex}`);
+
       if (endIndex && allFixations[endIndex]) {
         try {
           number += 1;
+
+          // console.log('make a visit!');
+          // console.log(`number: ${number}, [${startIndex}:${endIndex}]`);
 
           const visitId = this.makeVisit({
             fixations: allFixations,

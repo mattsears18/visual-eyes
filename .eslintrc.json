@@ -11,6 +11,7 @@
     "Analyses": true,
     "Aois": true,
     "Datafiles": true,
+    "Eyeevents": true,
     "Gazepoints": true,
     "Jobs": true,
     "Participants": true,

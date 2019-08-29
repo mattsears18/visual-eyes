@@ -30,33 +30,21 @@ Schemas.Visit = new SimpleSchema(
     stimulusId: {
       type: String,
     },
-    fileFormat: {
-      type: String,
-    },
     number: {
       type: Number,
       label: 'Number',
     },
-    aoiIds: {
-      type: Array,
-    },
-    'aoiIds.$': {
-      type: String,
-      autoform: {
-        type: 'hidden',
-      },
-    },
-    startTime: {
+    timestamp: {
       type: Number,
-      label: 'First Gazepoint Timestamp',
+      label: 'First Fixation Timestamp',
       optional: true,
       autoform: {
         type: 'hidden',
       },
     },
-    endTime: {
+    timestampEnd: {
       type: Number,
-      label: 'Last Gazepoint Timestamp',
+      label: 'Last Fixation Timestamp End',
       optional: true,
       autoform: {
         type: 'hidden',
@@ -70,17 +58,14 @@ Schemas.Visit = new SimpleSchema(
         type: 'hidden',
       },
     },
-    gazepoints: {
+    fixations: {
       type: Array,
     },
-    'gazepoints.$': Object,
-    'gazepoints.$.eventIndex': {
-      type: Number,
-      optional: true,
-    },
-    'gazepoints.$.timestamp': Number,
-    'gazepoints.$.x': Number,
-    'gazepoints.$.y': Number,
+    'fixations.$': Object,
+    'fixations.$.timestamp': Number,
+    'fixations.$.timestampEnd': Number,
+    'fixations.$.x': Number,
+    'fixations.$.y': Number,
     averageSlideHullCoverage: {
       type: Number,
       optional: true,
@@ -88,24 +73,12 @@ Schemas.Visit = new SimpleSchema(
         type: 'hidden',
       },
     },
-    gazepointCount: {
-      type: Number,
-      optional: true,
-    },
-    gazepointFrequency: {
-      type: Number,
-      optional: true,
-    },
     fixationCount: {
       type: Number,
       optional: true,
     },
     fixationFrequency: {
       type: Number,
-      optional: true,
-    },
-    status: {
-      type: String,
       optional: true,
     },
   },

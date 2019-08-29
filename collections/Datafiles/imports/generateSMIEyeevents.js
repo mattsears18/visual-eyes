@@ -31,8 +31,7 @@ export default function generateSMIEyeevents(assignedRows) {
       if (rows[i] && currentFixation) {
         // console.log(`${rows[i].timestamp} end fixation`);
 
-        currentFixation.duration = rows[i].timestamp - currentFixation.timestamp;
-        currentFixation.timestampEnd = currentFixation.timestamp + currentFixation.duration;
+        currentFixation.timestampEnd = rows[i].timestamp;
         fixations.push(currentFixation);
 
         currentFixation = null;
@@ -41,8 +40,7 @@ export default function generateSMIEyeevents(assignedRows) {
       if (rows[i - 1] && currentSaccade) {
         // console.log(`${rows[i - 1].timestamp} end saccade`);
 
-        currentSaccade.duration = rows[i - 1].timestamp - currentSaccade.timestamp;
-        currentSaccade.timestampEnd = currentSaccade.timestamp + currentSaccade.duration;
+        currentSaccade.timestampEnd = rows[i - 1].timestamp;
         saccades.push(currentSaccade);
 
         // TODO need to save fromAoiId and toAoiId
@@ -53,8 +51,7 @@ export default function generateSMIEyeevents(assignedRows) {
       if (rows[i] && currentBlink) {
         // console.log(`${rows[i].timestamp} end blink`);
 
-        currentBlink.duration = rows[i].timestamp - currentBlink.timestamp;
-        currentBlink.timestampEnd = currentBlink.timestamp + currentBlink.duration;
+        currentBlink.timestampEnd = rows[i].timestamp;
         blinks.push(currentBlink);
 
         currentBlink = null;
@@ -99,7 +96,6 @@ export default function generateSMIEyeevents(assignedRows) {
               eventIndex: rows[i].eventIndex,
               x: rows[i].x,
               y: rows[i].y,
-              duration: 0,
               aoiId: rows[i].aoiId,
             };
 
@@ -133,7 +129,6 @@ export default function generateSMIEyeevents(assignedRows) {
               eventIndex: rows[i].eventIndex,
               x: rows[i].x,
               y: rows[i].y,
-              duration: 0,
               // fromAoiId: 'todo',
               // toAoiId: 'todo',
               // TODO
@@ -163,7 +158,6 @@ export default function generateSMIEyeevents(assignedRows) {
               eventIndex: rows[i].eventIndex,
               x: rows[i].x,
               y: rows[i].y,
-              duration: 0,
               aoiId: rows[i].aoiId,
             };
 

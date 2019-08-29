@@ -13,14 +13,14 @@ import Analyses from './Analyses/Analyses';
 import Visits from './Visits/Visits';
 
 StubCollections.stub([
-  Datafiles.collection,
-  Studies,
-  Stimuli,
-  Aois,
-  Gazepoints,
-  Eyeevents,
-  Participants,
   Analyses,
+  Aois,
+  Datafiles.collection,
+  Eyeevents,
+  Gazepoints,
+  Participants,
+  Stimuli,
+  Studies,
   Visits,
 ]);
 
@@ -334,8 +334,7 @@ Factory.define('visitWithGazepoints', Visits, {
   fixationFrequency: fixationCount / duration,
 });
 
-let time1;
-let time2;
+const time1 = faker.random.number();
 
 Factory.define('fixation', Eyeevents, {
   studyId: (study = Factory.create('study'))._id,
@@ -349,9 +348,8 @@ Factory.define('fixation', Eyeevents, {
   }))._id,
   stimulusId: (stimulus = Factory.create('stimulus', { studyId: study._id }))
     ._id,
-  timestamp: (time1 = faker.random.number),
-  duration: (time2 = faker.random.number),
-  timestampEnd: () => time1() + time2(),
+  timestamp: time1,
+  timestampEnd: () => time1 + faker.random.number(),
   eventIndex: faker.random.number,
   x: faker.random.number,
   y: faker.random.number,

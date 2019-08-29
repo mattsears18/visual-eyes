@@ -1,8 +1,12 @@
 # Analyses
 
+- [ ] .makeVisits()
+  - [x] .getVisitEndIndex() - need to revise how gap duration is calculated
+  - [ ] .makeVisit()
+
 # Datafiles
 
-- [x] Datafiles.process() (async)
+- [x] .process() (async)
   - [x] .getRawCSV() (async)
   - [x] .preProcess(rawCsvData)
     - [x] .removeHeaders()

@@ -177,37 +177,32 @@ describe('Analyses.makeVisits()', () => {
       }, // end visit 2
     ];
 
-    // fixations.forEach((fixation) => {
-    //   Factory.create('fixation', {
-    //     studyId: study._id,
-    //     datafileId: datafile._id,
-    //     aoiId: aoi._id,
-    //     participantId: participant._id,
-    //     stimulusId: stimulus._id,
-    //     ...fixation,
-    //     duration: fixation.timestamp - fixation.timestampEnd,
-    //   });
-    // });
+    fixations.forEach((fixation) => {
+      Factory.create('fixation', {
+        studyId: study._id,
+        datafileId: datafile._id,
+        aoiId: aoi._id,
+        participantId: participant._id,
+        stimulusId: stimulus._id,
+        ...fixation,
+      });
+    });
 
-    // console.log(Eyeevents.find({ type: 'fixation' }).fetch());
-    // console.log(Factory.create('fixation'));
+    const visitIds = analysis.makeVisits({
+      participantId: participant._id,
+      fixations,
+    });
 
-    // const visitIds = analysis.makeVisits({
-    //   participantId: participant._id,
-    //   stimulusId: stimulus._id,
-    //   points,
-    // });
+    const visits = Visits.find({ analysisId: analysis._id }).fetch();
 
-    // const visits = Visits.find({ analysisId: analysis._id }).fetch();
+    expect(visits.length).to.equal(2);
 
-    // expect(visits.length).to.equal(2);
+    expect(visits[0].startTime).to.equal(0);
+    expect(visits[0].endTime).to.equal(5000);
+    expect(visits[0].number).to.equal(1);
 
-    // expect(visits[0].startTime).to.equal(0);
-    // expect(visits[0].endTime).to.equal(5000);
-    // expect(visits[0].number).to.equal(1);
-
-    // expect(visits[1].startTime).to.equal(14000);
-    // expect(visits[1].endTime).to.equal(23000);
-    // expect(visits[1].number).to.equal(2);
-  }).timeout(60000);
+    expect(visits[1].startTime).to.equal(14000);
+    expect(visits[1].endTime).to.equal(23000);
+    expect(visits[1].number).to.equal(2);
+  });
 });

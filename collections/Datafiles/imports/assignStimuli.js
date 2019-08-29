@@ -1,7 +1,7 @@
 import helpers from '../../../lib/helpers';
 
 export default function assignStimuli(sortedRows) {
-  console.log('Datafile.assignStimuli()');
+  if (!Meteor.isTest) console.log('Datafile.assignStimuli()');
   const rows = [...sortedRows];
 
   let stimuli = Stimuli.find({ studyId: this.studyId }).fetch();

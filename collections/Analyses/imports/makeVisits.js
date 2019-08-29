@@ -9,7 +9,7 @@ export default function makeVisits(opts) {
     throw new Error('noFixations');
   }
 
-  const _fixations = fixations.slice();
+  const allFixations = fixations.slice();
 
   if (!participantId) {
     throw new Error('noParticipantId');
@@ -20,78 +20,60 @@ export default function makeVisits(opts) {
     throw new Error('noParticipantFound');
   }
 
-  // console.log(
-  //   `participantId: ${participantId}, total gazepoint count: ${allGazepoints.length}`,
-  // );
-
   const visitIds = [];
 
-  if (allGazepoints.length) {
-    const fileFormatGroups = _.groupBy(allGazepoints, 'fileFormat');
-    Object.keys(fileFormatGroups).forEach((fileFormat) => {
-      const gazepoints = fileFormatGroups[fileFormat];
-      let startIndex = 0;
-      let number = 0;
+  let startIndex = 0;
+  let number = 0;
 
-      do {
-        let endIndex = null;
+  do {
+    let endIndex = null;
+    try {
+      endIndex = this.getVisitEndIndex({
+        fixations: allFixations,
+        startIndex,
+      });
+
+      if (endIndex && allFixations[endIndex]) {
         try {
-          endIndex = this.getVisitEndIndex({
-            gazepoints,
+          number += 1;
+
+          const visitId = this.makeVisit({
+            fixations: allFixations,
             startIndex,
+            endIndex,
+            number,
           });
 
-          if (endIndex && gazepoints[endIndex]) {
-            try {
-              number += 1;
-              // console.log(
-              //   `Save visit. Number: ${number} [${startIndex} : ${endIndex}] (Duration: ${gazepoints[
-              //     endIndex
-              //   ].timestamp - gazepoints[startIndex].timestamp}ms)`,
-              // );
+          visitIds.push(visitId);
+          // console.log(`visit number: ${number} created!`);
 
-              const visitId = this.makeVisitFromGazepoints({
-                gazepoints,
-                startIndex,
-                endIndex,
-                number,
-                participantId,
-                stimulusId: gazepoints[startIndex].stimulusId,
-                fileFormat,
-              });
-
-              visitIds.push(visitId);
-              // console.log(`visit number: ${number} created!`);
-
-              // console.log(
-              //   `endIndex: ${endIndex} nextStartIndex: ${startIndex}`,
-              // );
-            } catch (err) {
-              console.log(err);
-            }
-          }
-
-          startIndex = endIndex + 1;
+          // console.log(
+          //   `endIndex: ${endIndex} nextStartIndex: ${startIndex}`,
+          // );
         } catch (err) {
-          // console.log('no visit generated');
-          if (
-            err.error === 'minVisitDurationNotMet'
-            || err.error === 'endIndexNotFound'
-          ) {
-            // console.log(err.details);
-            startIndex = err.details.nextIndex;
-            // console.log(`endIndex: ${endIndex} nextStartIndex: ${startIndex}`);
-          } else if (err.error === 'noStimulusFound') {
-            console.log(
-              'stimulus not found - delete all gazepoints with this stimulusId',
-            );
-          } else {
-            console.log(err);
-          }
+          console.log(err);
         }
-      } while (startIndex < gazepoints.length - 1);
-    });
-  }
+      }
+
+      startIndex = endIndex + 1;
+    } catch (err) {
+      // console.log('no visit generated');
+      if (
+        err.error === 'minVisitDurationNotMet'
+        || err.error === 'endIndexNotFound'
+      ) {
+        // console.log(err.details);
+        startIndex = err.details.nextIndex;
+        // console.log(`endIndex: ${endIndex} nextStartIndex: ${startIndex}`);
+      } else if (err.error === 'noStimulusFound') {
+        console.log(
+          'stimulus not found - need to delete all eyeevents and gazepoints with this stimulusId',
+        );
+      } else {
+        console.log(err);
+      }
+    }
+  } while (startIndex < allFixations.length - 1);
 
   return visitIds;
 }

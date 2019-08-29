@@ -2,7 +2,7 @@ import SimpleSchema from 'simpl-schema';
 
 SimpleSchema.extendOptions(['autoform']);
 
-const Eyeevents = new Mongo.Collection('eyeevents');
+Eyeevents = new Mongo.Collection('eyeevents');
 
 Eyeevents.allow({
   insert() {
@@ -52,10 +52,6 @@ Schemas.Eyeevent = new SimpleSchema(
       type: Number,
       label: 'Timestamp',
     },
-    duration: {
-      type: Number,
-      label: 'Duration',
-    },
     timestampEnd: {
       type: Number,
       label: 'Timestamp End',
@@ -81,7 +77,7 @@ Schemas.Eyeevent = new SimpleSchema(
 
 Eyeevents.attachSchema(Schemas.Eyeevent);
 
-// require('./helpers');
+require('./helpers');
 // require('./hooks');
 
 if (Meteor.isServer) {

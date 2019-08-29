@@ -1,7 +1,7 @@
 import helpers from '../../../lib/helpers';
 
 export default function assignAois(rowsWithStimuli) {
-  console.log('Datafile.assignAois()');
+  if (!Meteor.isTest) console.log('Datafile.assignAois()');
   const rows = [...rowsWithStimuli];
 
   let aois = Aois.find({ studyId: this.studyId }).fetch();

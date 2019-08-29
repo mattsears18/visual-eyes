@@ -70,10 +70,10 @@ Schemas.Analysis = new SimpleSchema(
       optional: true,
       defaultValue: 120,
     },
-    ignoreOutsideImage: {
+    includeOutsideImage: {
       type: Boolean,
-      label: 'Ignore Gaze Points Outside of Stimulus Areas',
-      defaultValue: true,
+      label: 'Include Fixations Outside of Stimulus Areas',
+      defaultValue: false,
       autoform: {
         type: 'boolean-checkbox',
       },

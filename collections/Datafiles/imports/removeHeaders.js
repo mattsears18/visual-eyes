@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 export default function removeHeaders() {
-  console.log('Datafile.removeHeaders()');
+  if (!Meteor.isTest) console.log('Datafile.removeHeaders()');
 
   const data = fs.readFileSync(this.getPathFilename(), 'utf-8');
   const lines = data.toString().split('\n');

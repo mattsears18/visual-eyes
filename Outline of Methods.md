@@ -15,18 +15,16 @@
 
 # Visits
 
-- [ ] .getExportData()
-- [ ] .getFixationProportion()
-- [ ] .getHullSeries()
-- [ ] .getSampleData()
-- [ ] .saveCSV()
+- [x] .getExportData()
+- [x] .getHullSeries()
+- [x] .getSampleData()
 
 # Analyses
 
 - [x] .makeVisits()
   - [x] .getVisitEndIndex()
   - [x] .makeVisit()
-- [ ] .getExportData()
+- [x] .getExportData()
 
 # Datafiles
 

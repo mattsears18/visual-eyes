@@ -3,13 +3,7 @@ export default function getLastPointTrace(opt) {
   const initial = opt.initial || false;
   const hull = this.getHull(opt);
 
-  let name;
-
-  if (this.visit.study().fixationsOnly) {
-    name = 'Last Fixation';
-  } else {
-    name = 'Last Gaze Point';
-  }
+  const name = 'Last Fixation';
 
   if (initial) {
     return {

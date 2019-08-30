@@ -259,80 +259,98 @@ Factory.define('visit', Visits, {
   analysisId: () => Factory.create('analysis')._id,
   studyId: () => Factory.create('study')._id,
   participantId: () => Factory.create('participant')._id,
-  stimulusId: () => Factory.create('stimulus')._id,
+  aoiId: () => Factory.create('aoi')._id,
   number: () => faker.random.number({ min: 1, max: 10 }),
-  aoiIds: [],
-  gazepoints: [],
+  fixations: [
+    {
+      timestamp: 0,
+      timestampEnd: 100,
+      x: 1,
+      y: 1,
+    },
+    {
+      timestamp: 200,
+      timestampEnd: 300,
+      x: 1,
+      y: 1,
+    },
+    {
+      timestamp: 400,
+      timestampEnd: 500,
+      x: 1,
+      y: 1,
+    },
+  ],
   fileFormat: 'imotions',
 });
 
 // visit with Gazepoints
-let study = Factory.create('study');
-let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
-let participant = Factory.create('participant', {
-  studyId: study._id,
-  datafileIds: [datafile._id],
-});
-let stimulus = Factory.create('stimulus', { studyId: study._id });
-const aoi = Factory.create('aoi', {
-  studyId: study._id,
-  stimulusId: stimulus._id,
-});
-const analysis = Factory.create('analysis', {
-  studyId: study._id,
-  participantIds: [participant._id],
-  stimulusIds: [stimulus._id],
-});
+// let study = Factory.create('study');
+// let datafile = Factory.create('imotionsDatafile', { studyId: study._id });
+// let participant = Factory.create('participant', {
+//   studyId: study._id,
+//   datafileIds: [datafile._id],
+// });
+// let stimulus = Factory.create('stimulus', { studyId: study._id });
+// const aoi = Factory.create('aoi', {
+//   studyId: study._id,
+//   stimulusId: stimulus._id,
+// });
+// const analysis = Factory.create('analysis', {
+//   studyId: study._id,
+//   participantIds: [participant._id],
+//   stimulusIds: [stimulus._id],
+// });
 
-const gazepoints = [];
+// const gazepoints = [];
 
-for (let i = 0; i < 100; i += 1) {
-  const gazepoint = Factory.create('gazepoint', {
-    studyId: study._id,
-    datafileId: datafile._id,
-    participantId: participant._id,
-    stimulusId: stimulus._id,
-    aoiId: aoi._id,
-    fileFormat: 'imotions',
-  });
+// for (let i = 0; i < 100; i += 1) {
+//   const gazepoint = Factory.create('gazepoint', {
+//     studyId: study._id,
+//     datafileId: datafile._id,
+//     participantId: participant._id,
+//     stimulusId: stimulus._id,
+//     aoiId: aoi._id,
+//     fileFormat: 'imotions',
+//   });
 
-  gazepoints.push(gazepoint);
-}
+//   gazepoints.push(gazepoint);
+// }
 
-gazepoints.sort((a, b) => a.timestamp - b.timestamp);
+// gazepoints.sort((a, b) => a.timestamp - b.timestamp);
 
-let eventIndex = 1;
+// let eventIndex = 1;
 
-for (let i = 0; i < 100; i += 1) {
-  if (faker.random.boolean()) {
-    eventIndex += 1;
-  }
-  if (faker.random.boolean()) gazepoints[i].eventIndex = eventIndex;
-}
+// for (let i = 0; i < 100; i += 1) {
+//   if (faker.random.boolean()) {
+//     eventIndex += 1;
+//   }
+//   if (faker.random.boolean()) gazepoints[i].eventIndex = eventIndex;
+// }
 
-const duration = gazepoints[gazepoints.length - 1].timestamp - gazepoints[0].timestamp;
-const fixationIndices = Object.keys(_.groupBy(gazepoints, 'eventIndex')).filter(
-  indexString => Number.isInteger(parseInt(indexString, 10)),
-);
-const fixationCount = fixationIndices.length;
+// const duration = gazepoints[gazepoints.length - 1].timestamp - gazepoints[0].timestamp;
+// const fixationIndices = Object.keys(_.groupBy(gazepoints, 'eventIndex')).filter(
+//   indexString => Number.isInteger(parseInt(indexString, 10)),
+// );
+// const fixationCount = fixationIndices.length;
 
-Factory.define('visitWithGazepoints', Visits, {
-  analysisId: analysis._id,
-  studyId: study._id,
-  participantId: participant._id,
-  stimulusId: stimulus._id,
-  number: () => faker.random.number({ min: 1, max: 10 }),
-  aoiIds: [aoi._id],
-  gazepoints,
-  fileFormat: 'imotions',
-  startTime: gazepoints[0].timestamp,
-  endTime: gazepoints[gazepoints.length - 1].timestamp,
-  duration,
-  gazepointCount: gazepoints.length,
-  gazepointFrequency: gazepoints.length / duration,
-  fixationCount,
-  fixationFrequency: fixationCount / duration,
-});
+// Factory.define('visitWithGazepoints', Visits, {
+//   analysisId: analysis._id,
+//   studyId: study._id,
+//   participantId: participant._id,
+//   stimulusId: stimulus._id,
+//   number: () => faker.random.number({ min: 1, max: 10 }),
+//   aoiIds: [aoi._id],
+//   gazepoints,
+//   fileFormat: 'imotions',
+//   startTime: gazepoints[0].timestamp,
+//   endTime: gazepoints[gazepoints.length - 1].timestamp,
+//   duration,
+//   gazepointCount: gazepoints.length,
+//   gazepointFrequency: gazepoints.length / duration,
+//   fixationCount,
+//   fixationFrequency: fixationCount / duration,
+// });
 
 const time1 = faker.random.number();
 

@@ -1,6 +1,6 @@
-export default function getFrameData(opt) {
-  opt = opt || {};
-  opt.hullIndex = opt.hullIndex || opt.index;
-  const hull = this.getHull(opt);
+export default function getFrameData(opts) {
+  opts = opts || {};
+  opts.hullIndex = opts.hullIndex || opts.index;
+  const hull = this.getHull(opts);
   return this.getTraces({ hull });
 }

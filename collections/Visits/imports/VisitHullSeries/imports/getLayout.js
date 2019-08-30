@@ -1,5 +1,5 @@
-export default function getLayout(opt) {
-  opt = opt || {};
+export default function getLayout(opts) {
+  opts = opts || {};
 
   if (typeof this.visit.stimulus().stimulusfile() === 'undefined') {
     throw new Error('noStimulusfile');
@@ -17,10 +17,7 @@ export default function getLayout(opt) {
 
   let yrange;
 
-  if (
-    this.visit.fileFormat === 'imotions'
-    || this.visit.fileFormat === 'smi'
-  ) {
+  if (this.visit.fileFormat === 'imotions' || this.visit.fileFormat === 'smi') {
     yrange = [this.visit.stimulus().height, 0];
   } else {
     yrange = [0, this.visit.stimulus().height];

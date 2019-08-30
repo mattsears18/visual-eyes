@@ -1,27 +1,11 @@
+import { Factory } from 'meteor/dburles:factory';
 import VisitHullSeries from '../VisitHullSeries';
+import defaultTestFixations from '../../../defaultTestFixations';
 
 require('../../../../factories.test');
 const { expect } = require('chai');
 
 describe('VisitHullSeries.getTraces()', () => {
-  const points = [
-    { x: 100, y: 400, timestamp: 0 },
-    { x: 200, y: 300, timestamp: 1000 },
-    { x: 300, y: 200, timestamp: 2000 },
-    { x: 400, y: 100, timestamp: 3000 },
-    { x: 500, y: 700, timestamp: 4000 },
-    { x: 600, y: 600, timestamp: 5000 },
-    { x: 700, y: 500, timestamp: 6000 },
-    { x: 800, y: 400, timestamp: 7000 },
-    { x: 900, y: 300, timestamp: 8000 },
-    { x: 100, y: 200, timestamp: 9000 },
-    { x: 200, y: 100, timestamp: 10000 },
-    { x: 300, y: 400, timestamp: 11000 },
-    { x: 400, y: 300, timestamp: 12000 },
-    { x: 500, y: 200, timestamp: 13000 },
-    { x: 600, y: 100, timestamp: 14000 },
-  ];
-
   it('gets the initial traces', () => {
     const study = Factory.create('study', { fixationsOnly: false });
     const stimulusfile = Factory.create('stimulusfile', { studyId: study._id });
@@ -34,7 +18,7 @@ describe('VisitHullSeries.getTraces()', () => {
     const visit = Factory.create('visit', {
       studyId: study._id,
       stimulusId: stimulus._id,
-      gazepoints: points,
+      fixations: defaultTestFixations,
     });
 
     const hullseries = new VisitHullSeries({
@@ -46,7 +30,7 @@ describe('VisitHullSeries.getTraces()', () => {
 
     expect(traces.data.length).to.equal(6);
 
-    expect(traces.data[0].name).to.equal('Gaze Points');
+    expect(traces.data[0].name).to.equal('Fixations');
     expect(traces.data[0].x).to.eql([100, 200, 300, 400, 500, 600]);
     expect(traces.data[0].y).to.eql([400, 300, 200, 100, 700, 600]);
 
@@ -66,7 +50,7 @@ describe('VisitHullSeries.getTraces()', () => {
     expect(traces.data[4].x).to.eql([375]);
     expect(traces.data[4].y).to.eql([416 + 2 / 3]);
 
-    expect(traces.data[5].name).to.equal('Last Gaze Point');
+    expect(traces.data[5].name).to.equal('Last Fixation');
     expect(traces.data[5].x).to.eql([600]);
     expect(traces.data[5].y).to.eql([600]);
   });
@@ -83,7 +67,7 @@ describe('VisitHullSeries.getTraces()', () => {
     const visit = Factory.create('visit', {
       studyId: study._id,
       stimulusId: stimulus._id,
-      gazepoints: points,
+      fixations: defaultTestFixations,
     });
 
     const hullseries = new VisitHullSeries({

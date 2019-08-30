@@ -17,7 +17,6 @@ export default function getExportData(opt) {
       ..._.pick(exportData.length ? exportData[0] : exportData, [
         'link',
         'study',
-        'pointsType',
         'analysis',
         'minVisitDuration',
         'maxVisitGapDuration',
@@ -33,11 +32,8 @@ export default function getExportData(opt) {
         'stimulusArea',
         'visitStartTime',
         'visitEndTime',
-        'gazepointCount',
-        'gazepointFrequency',
         'fixationCount',
         'fixationFrequency',
-        'fixationProportion',
         'averageCoverage',
         'finalCoverage',
         'averageVelocity',
@@ -70,7 +66,7 @@ export default function getExportData(opt) {
         ..._.pick(pVisits[0], [
           'link',
           'study',
-          'pointsType',
+          // 'pointsType',
           'analysis',
           'maxVisitGapDuration',
           'minVisitDuration',
@@ -129,15 +125,15 @@ export default function getExportData(opt) {
         visitCountsPerStimulusMax: jStat.max(visitCountsPerStimulus),
         visitCountsPerStimulusMean: jStat.mean(visitCountsPerStimulus),
         visitCountsPerStimulusMedian: jStat.median(visitCountsPerStimulus),
-        gazepointCount: jStat.sum(pVisits.map(v => v.gazepointCount)),
-        gazepointFrequency:
-          jStat.sum(pVisits.map(v => v.gazepointCount)) / jStat.sum(durations),
+        // gazepointCount: jStat.sum(pVisits.map(v => v.gazepointCount)),
+        // gazepointFrequency:
+        //   jStat.sum(pVisits.map(v => v.gazepointCount)) / jStat.sum(durations),
         fixationCount: jStat.sum(pVisits.map(v => v.fixationCount)),
         fixationFrequency:
           jStat.sum(pVisits.map(v => v.fixationCount)) / jStat.sum(durations),
-        fixationProportion:
-          jStat.sum(pVisits.map(v => v.fixationCount))
-          / jStat.sum(pVisits.map(v => v.gazepointCount)),
+        // fixationProportion:
+        //   jStat.sum(pVisits.map(v => v.fixationCount))
+        //   / jStat.sum(pVisits.map(v => v.gazepointCount)),
         averageCoverage:
           jStat.sum(pVisits.map(v => v.visitDuration * v.averageCoverage))
           / jStat.sum(durations),

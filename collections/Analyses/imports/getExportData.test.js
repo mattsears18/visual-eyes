@@ -1,6 +1,7 @@
 import '../../factories.test';
 import { Factory } from 'meteor/dburles:factory';
 import { expect } from 'chai';
+import defaultTestFixations from '../../Visits/defaultTestFixations';
 
 describe('Analyses.getExportData()', () => {
   it('has no participants', () => {
@@ -9,12 +10,11 @@ describe('Analyses.getExportData()', () => {
   });
 
   it('has a participant', () => {
-    const visit = Factory.create('visitWithGazepoints');
+    const visit = Factory.create('visit');
 
     const expectedFields = [
       'link',
       'study',
-      'pointsType',
       'analysis',
       'minVisitDuration',
       'maxVisitGapDuration',
@@ -27,26 +27,22 @@ describe('Analyses.getExportData()', () => {
       'stimulusArea',
       'visitStartTime',
       'visitEndTime',
-      'gazepointCount',
-      'gazepointFrequency',
       'fixationCount',
       'fixationFrequency',
-      'fixationProportion',
+      // 'fixationProportion',
     ];
 
-    // expect(visit.analysis().getExportData().length).to.equal(1);
     expect(Object.keys(visit.analysis().getExportData()[0])).to.eql(
       expectedFields,
     );
-  }).timeout(60000);
+  });
 
   it('has a period', () => {
-    const visit = Factory.create('visitWithGazepoints');
+    const visit = Factory.create('visit', { fixations: defaultTestFixations });
 
     const expectedFields = [
       'link',
       'study',
-      'pointsType',
       'analysis',
       'minVisitDuration',
       'maxVisitGapDuration',
@@ -62,11 +58,8 @@ describe('Analyses.getExportData()', () => {
       'stimulusArea',
       'visitStartTime',
       'visitEndTime',
-      'gazepointCount',
-      'gazepointFrequency',
       'fixationCount',
       'fixationFrequency',
-      'fixationProportion',
       'averageCoverage',
       'finalCoverage',
       'averageVelocity',
@@ -82,29 +75,33 @@ describe('Analyses.getExportData()', () => {
         visit.analysis().getExportData({ period: 5000, timestep: 0 })[0],
       ),
     ).to.eql(expectedFields);
-  }).timeout(60000);
+  });
 
   it('groups by participant', () => {
-    const visit1 = Factory.create('visitWithGazepoints', { number: 1 });
-    Factory.create('visitWithGazepoints', {
+    const visit1 = Factory.create('visit', {
+      number: 1,
+      fixations: defaultTestFixations,
+    });
+    Factory.create('visit', {
       studyId: visit1.studyId,
       analysisId: visit1.analysisId,
       participantId: visit1.participantId,
       stimulusId: visit1.stimulusId,
       number: 2,
+      fixations: defaultTestFixations,
     });
-    Factory.create('visitWithGazepoints', {
+    Factory.create('visit', {
       studyId: visit1.studyId,
       analysisId: visit1.analysisId,
       participantId: visit1.participantId,
       stimulusId: visit1.stimulusId,
       number: 3,
+      fixations: defaultTestFixations,
     });
 
     const expectedFields = [
       'link',
       'study',
-      'pointsType',
       'analysis',
       'maxVisitGapDuration',
       'minVisitDuration',
@@ -129,11 +126,8 @@ describe('Analyses.getExportData()', () => {
       'visitCountsPerStimulusMax',
       'visitCountsPerStimulusMean',
       'visitCountsPerStimulusMedian',
-      'gazepointCount',
-      'gazepointFrequency',
       'fixationCount',
       'fixationFrequency',
-      'fixationProportion',
       'averageCoverage',
       'finalCoverages',
       'finalCoveragesMin',
@@ -157,5 +151,5 @@ describe('Analyses.getExportData()', () => {
         })[0],
       ),
     ).to.eql(expectedFields);
-  }).timeout(60000);
+  });
 });

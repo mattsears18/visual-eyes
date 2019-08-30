@@ -12,28 +12,28 @@ import getCentroidTrace from './imports/getCentroidTrace';
 import getFrameData from './imports/getFrameData';
 
 export default class VisitHullSeries extends TimeHullSeries {
-  constructor(opt) {
-    opt = opt || {};
-    if (typeof opt.points === 'undefined') {
-      if (typeof opt.visit !== 'undefined') {
-        opt.points = opt.visit.gazepoints;
-        opt.width = opt.width || opt.visit.stimulus() ? opt.visit.stimulus().width : 0;
-        opt.height = opt.height || opt.visit.stimulus()
-          ? opt.visit.stimulus().height
+  constructor(opts) {
+    opts = opts || {};
+    if (typeof opts.points === 'undefined') {
+      if (typeof opts.visit !== 'undefined') {
+        opts.points = opts.visit.fixations;
+        opts.width = opts.width || opts.visit.stimulus() ? opts.visit.stimulus().width : 0;
+        opts.height = opts.height || opts.visit.stimulus()
+          ? opts.visit.stimulus().height
           : 0;
       }
     }
 
-    super(opt);
+    super(opts);
 
-    if (typeof opt.visit !== 'undefined') {
-      this.visit = opt.visit;
+    if (typeof opts.visit !== 'undefined') {
+      this.visit = opts.visit;
     } else {
       throw new Error('noVisit');
     }
 
-    this.pointTrailLength = typeof opt.pointTrailLength === 'number' && opt.pointTrailLength > 0
-      ? parseInt(opt.pointTrailLength, 10)
+    this.pointTrailLength = typeof opts.pointTrailLength === 'number' && opts.pointTrailLength > 0
+      ? parseInt(opts.pointTrailLength, 10)
       : 10;
   }
 

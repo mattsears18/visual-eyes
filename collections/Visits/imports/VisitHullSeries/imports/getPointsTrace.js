@@ -3,13 +3,8 @@ export default function getPointsTrace(opt) {
   const hull = this.getHull(opt);
   const initial = opt.initial || false;
 
-  let name;
-
-  if (this.visit.analysis().fixationsOnly) {
-    name = 'Fixations';
-  } else {
-    name = 'Gaze Points';
-  }
+  const name = 'Fixations';
+  // TODO maybe allow for gazepoints instead of fixations
 
   if (initial) {
     return {

@@ -3,14 +3,14 @@ import getHullseries from './imports/getHullseries';
 import getExportData from './imports/getExportData';
 import saveCSV from './imports/saveCSV';
 import getSampledData from './imports/getSampledData';
-import getFixationProportion from './imports/getFixationProportion';
+// import getFixationProportion from './imports/getFixationProportion';
 
 Visits.helpers({
   getHullseries,
   getExportData,
   saveCSV,
   getSampledData,
-  getFixationProportion,
+  // getFixationProportion,
 
   hasPermission(action) {
     check(action, String);
@@ -37,8 +37,11 @@ Visits.helpers({
   participantName() {
     return this.participant() ? this.participant().name : undefined;
   },
+  aoi() {
+    return this.aoiId ? Aois.findOne(this.aoiId) : undefined;
+  },
   stimulus() {
-    return this.stimulusId ? Stimuli.findOne(this.stimulusId) : undefined;
+    return this.aoi() && this.aoi().stimulusId && this.aoi().stimulus();
   },
   stimulusArea() {
     return this.stimulus() ? this.stimulus().area() : undefined;
@@ -51,12 +54,6 @@ Visits.helpers({
   },
   analysis() {
     return this.analysisId ? Analyses.findOne(this.analysisId) : undefined;
-  },
-  aois() {
-    if (this.aoiIds && this.aoiIds.length) {
-      return Aois.find({ _id: { $in: this.aoiIds } }, { sort: { name: 1 } });
-    }
-    return undefined;
   },
   jobs() {
     return Jobs.find({ 'data.visitId': this._id });

@@ -2,6 +2,7 @@ import '../../factories.test';
 
 import { Factory } from 'meteor/dburles:factory';
 import { expect } from 'chai';
+import defaultTestFixations from '../defaultTestFixations';
 
 describe('Visit.getExportData()', () => {
   it('has no period', () => {
@@ -9,7 +10,6 @@ describe('Visit.getExportData()', () => {
     const expectedFields = [
       'link',
       'study',
-      'pointsType',
       'analysis',
       'maxVisitGapDuration',
       'minVisitDuration',
@@ -22,23 +22,20 @@ describe('Visit.getExportData()', () => {
       'stimulusArea',
       'visitStartTime',
       'visitEndTime',
-      'gazepointCount',
-      'gazepointFrequency',
       'fixationCount',
       'fixationFrequency',
-      'fixationProportion',
+      // 'fixationProportion',
     ];
 
     expect(Object.keys(visit.getExportData())).to.eql(expectedFields);
   });
 
   it('has a period', () => {
-    const visit = Factory.create('visitWithGazepoints');
+    const visit = Factory.create('visit', { fixations: defaultTestFixations });
 
     const expectedFields = [
       'link',
       'study',
-      'pointsType',
       'analysis',
       'maxVisitGapDuration',
       'minVisitDuration',
@@ -54,11 +51,9 @@ describe('Visit.getExportData()', () => {
       'stimulusArea',
       'visitStartTime',
       'visitEndTime',
-      'gazepointCount',
-      'gazepointFrequency',
       'fixationCount',
       'fixationFrequency',
-      'fixationProportion',
+      // 'fixationProportion',
       'hullNumber',
       'startPointIndex',
       'endPointIndex',
@@ -83,9 +78,6 @@ describe('Visit.getExportData()', () => {
       'centroidDistance',
       'centroidDistanceX',
       'centroidDistanceY',
-      // 'centroidVelocity',
-      // 'centroidVelocityX',
-      // 'centroidVelocityY',
       'coverage',
       'coverageDuration',
       'averageCoverage',

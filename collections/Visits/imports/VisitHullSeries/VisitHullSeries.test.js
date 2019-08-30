@@ -1,3 +1,4 @@
+import { Factory } from 'meteor/dburles:factory';
 import VisitHullSeries from './VisitHullSeries';
 
 require('../../../factories.test');
@@ -24,7 +25,7 @@ describe('VisitHullSeries', () => {
   });
 
   it('has a visit with no points', () => {
-    const visit = Factory.create('visit');
+    const visit = Factory.create('visit', { fixations: [] });
     expect(() => {
       new VisitHullSeries({ visit });
     }).to.throw('noPoints');
@@ -32,47 +33,132 @@ describe('VisitHullSeries', () => {
 
   it('has a visit with points', () => {
     const points = [
-      { x: 100, y: 400, timestamp: 0 },
-      { x: 200, y: 300, timestamp: 1000 },
-      { x: 300, y: 200, timestamp: 2000 },
-      { x: 400, y: 100, timestamp: 3000 },
+      {
+        x: 100,
+        y: 400,
+        timestamp: 0,
+        timestampEnd: 500,
+      },
+      {
+        x: 200,
+        y: 300,
+        timestamp: 1000,
+        timestampEnd: 1500,
+      },
+      {
+        x: 300,
+        y: 200,
+        timestamp: 2000,
+        timestampEnd: 2500,
+      },
+      {
+        x: 400,
+        y: 100,
+        timestamp: 3000,
+        timestampEnd: 3500,
+      },
     ];
 
-    const visit = Factory.create('visit', { gazepoints: points });
+    const visit = Factory.create('visit', { fixations: points });
     const hullseries = new VisitHullSeries({ visit, period: 5000 });
 
     expect(hullseries.points).to.eql([
-      { x: 100, y: 400, timestamp: 0 },
-      { x: 200, y: 300, timestamp: 1000 },
-      { x: 300, y: 200, timestamp: 2000 },
-      { x: 400, y: 100, timestamp: 3000 },
+      {
+        x: 100,
+        y: 400,
+        timestamp: 0,
+        timestampEnd: 500,
+      },
+      {
+        x: 200,
+        y: 300,
+        timestamp: 1000,
+        timestampEnd: 1500,
+      },
+      {
+        x: 300,
+        y: 200,
+        timestamp: 2000,
+        timestampEnd: 2500,
+      },
+      {
+        x: 400,
+        y: 100,
+        timestamp: 3000,
+        timestampEnd: 3500,
+      },
     ]);
   });
 
   it('is a VisitHullSeries', () => {
-    const visit = Factory.create('visitWithGazepoints');
+    const visit = Factory.create('visit');
     const hullseries = new VisitHullSeries({ visit, period: 5000 });
 
     expect(hullseries.constructor.name).to.equal('VisitHullSeries');
   });
 
-  it('overrides the gaze points', () => {
+  it('overrides the points', () => {
     const points = [
-      { x: 100, y: 400, timestamp: 0 },
-      { x: 200, y: 300, timestamp: 1000 },
-      { x: 300, y: 200, timestamp: 2000 },
-      { x: 400, y: 100, timestamp: 3000 },
+      {
+        x: 100,
+        y: 400,
+        timestamp: 0,
+        timestampEnd: 500,
+      },
+      {
+        x: 200,
+        y: 300,
+        timestamp: 1000,
+        timestampEnd: 1500,
+      },
+      {
+        x: 300,
+        y: 200,
+        timestamp: 2000,
+        timestampEnd: 2500,
+      },
+      {
+        x: 400,
+        y: 100,
+        timestamp: 3000,
+        timestampEnd: 3500,
+      },
     ];
 
     const otherPoints = [
-      { x: 700, y: 500, timestamp: 6000 },
-      { x: 800, y: 400, timestamp: 7000 },
-      { x: 900, y: 300, timestamp: 8000 },
-      { x: 100, y: 200, timestamp: 9000 },
-      { x: 200, y: 100, timestamp: 10000 },
+      {
+        x: 700,
+        y: 500,
+        timestamp: 6000,
+        timestampEnd: 6500,
+      },
+      {
+        x: 800,
+        y: 400,
+        timestamp: 7000,
+        timestampEnd: 7500,
+      },
+      {
+        x: 900,
+        y: 300,
+        timestamp: 8000,
+        timestampEnd: 8500,
+      },
+      {
+        x: 100,
+        y: 200,
+        timestamp: 9000,
+        timestampEnd: 9500,
+      },
+      {
+        x: 200,
+        y: 100,
+        timestamp: 10000,
+        timestampEnd: 10500,
+      },
     ];
 
-    const visit = Factory.create('visit', { gazepoints: points });
+    const visit = Factory.create('visit', { fixations: points });
     const hullseries = new VisitHullSeries({
       visit,
       period: 5000,
@@ -80,11 +166,36 @@ describe('VisitHullSeries', () => {
     });
 
     expect(hullseries.points).to.eql([
-      { x: 700, y: 500, timestamp: 6000 },
-      { x: 800, y: 400, timestamp: 7000 },
-      { x: 900, y: 300, timestamp: 8000 },
-      { x: 100, y: 200, timestamp: 9000 },
-      { x: 200, y: 100, timestamp: 10000 },
+      {
+        x: 700,
+        y: 500,
+        timestamp: 6000,
+        timestampEnd: 6500,
+      },
+      {
+        x: 800,
+        y: 400,
+        timestamp: 7000,
+        timestampEnd: 7500,
+      },
+      {
+        x: 900,
+        y: 300,
+        timestamp: 8000,
+        timestampEnd: 8500,
+      },
+      {
+        x: 100,
+        y: 200,
+        timestamp: 9000,
+        timestampEnd: 9500,
+      },
+      {
+        x: 200,
+        y: 100,
+        timestamp: 10000,
+        timestampEnd: 10500,
+      },
     ]);
   });
 });

@@ -1,8 +1,32 @@
+# VisitHullSeries
+
+- [x] new VisitHullSeries()
+  - [x] .getCentroidTrace()
+  - [x] .getCentroidTrailTrace()
+  - [x] .getFrameData()
+  - [x] .getLastPointTrace()
+  - [x] .getLayout()
+  - [x] .getPointsTimeText()
+  - [x] .getPointsTrace()
+  - [x] .getPointTrail()
+  - [x] .getPointTrailTrace()
+  - [x] .getPolygonTrace()
+  - [x] .getTraces()
+
+# Visits
+
+- [ ] .getExportData()
+- [ ] .getFixationProportion()
+- [ ] .getHullSeries()
+- [ ] .getSampleData()
+- [ ] .saveCSV()
+
 # Analyses
 
-- [ ] .makeVisits() - NEED TO REVISE ALL OF THESE TO USE aoiId instead of stimulusId
+- [x] .makeVisits()
   - [x] .getVisitEndIndex()
   - [x] .makeVisit()
+- [ ] .getExportData()
 
 # Datafiles
 

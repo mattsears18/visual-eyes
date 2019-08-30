@@ -1,3 +1,4 @@
+import { Factory } from 'meteor/dburles:factory';
 import VisitHullSeries from '../VisitHullSeries';
 
 require('../../../../factories.test');
@@ -5,12 +6,16 @@ const { expect } = require('chai');
 
 describe('VisitHullSeries.getLayout()', () => {
   it('has no stimulusfile', () => {
+    const stimulus = Factory.create('stimulus', {
+      stimulusfileId: 'abc',
+    });
+    const aoi = Factory.create('aoi', { stimulusId: stimulus._id });
+    const visit = Factory.create('visit', {
+      aoiId: aoi._id,
+    });
+
     const hullseries = new VisitHullSeries({
-      visit: Factory.create('visitWithGazepoints', {
-        stimulusId: Factory.create('stimulus', {
-          stimulusfileId: '',
-        })._id,
-      }),
+      visit,
       period: 5000,
     });
 
@@ -20,7 +25,7 @@ describe('VisitHullSeries.getLayout()', () => {
   });
 
   it('gets a layout', () => {
-    const visit = Factory.create('visitWithGazepoints');
+    const visit = Factory.create('visit');
     visit.datafileId = Factory.create('imotionsDatafile')._id;
 
     const hullseries = new VisitHullSeries({
@@ -33,7 +38,7 @@ describe('VisitHullSeries.getLayout()', () => {
   });
 
   it('inverts the y axis for an imotions datafile', () => {
-    const visit = Factory.create('visitWithGazepoints');
+    const visit = Factory.create('visit');
     visit.fileFormat = 'imotions';
 
     const hullseries = new VisitHullSeries({
@@ -46,7 +51,7 @@ describe('VisitHullSeries.getLayout()', () => {
   });
 
   it('inverts the y axis for an smi datafile', () => {
-    const visit = Factory.create('visitWithGazepoints');
+    const visit = Factory.create('visit');
     visit.fileFormat = 'smi';
 
     const hullseries = new VisitHullSeries({

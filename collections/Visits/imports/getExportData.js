@@ -1,16 +1,8 @@
 export default function getExportData(opt) {
   const { period } = opt || {};
   const { timestep } = opt || {};
-  const includeIncomplete = opt || {};
+  const { includeIncomplete } = opt || {};
   let { samplingStep } = opt || {};
-
-  if (Meteor.isClient) {
-    // console.log(
-    //   `visit.getExportData() ${this.participant().name} - ${
-    //     this.stimulus().name
-    //   } - ${this.number}`,
-    // );
-  }
 
   if (typeof samplingStep === 'undefined') {
     samplingStep = 0;
@@ -25,7 +17,6 @@ export default function getExportData(opt) {
       this.number
     }`,
     study: this.study().name,
-    pointsType: this.study().pointsType(),
     analysis: this.analysis().name,
     maxVisitGapDuration: this.analysis().maxVisitGapDuration,
     minVisitDuration: this.analysis().minVisitDuration,
@@ -47,11 +38,9 @@ export default function getExportData(opt) {
   fields.visitStartTime = this.startTime;
   fields.visitEndTime = this.endTime;
   fields.visitDuration = this.duration;
-  fields.gazepointCount = this.gazepointCount;
-  fields.gazepointFrequency = this.gazepointFrequency;
   fields.fixationCount = this.fixationCount;
   fields.fixationFrequency = this.fixationFrequency;
-  fields.fixationProportion = this.getFixationProportion();
+  // fields.fixationProportion = this.getFixationProportion();
 
   if (typeof period === 'undefined') {
     // just return basic stats about the visit
@@ -93,9 +82,6 @@ export default function getExportData(opt) {
         centroidDistance: 0,
         centroidDistanceX: 0,
         centroidDistanceY: 0,
-        // centroidVelocity: 0,
-        // centroidVelocityX: 0,
-        // centroidVelocityY: 0,
         coverage: hull.getCoverage({
           width: this.stimulus().width,
           height: this.stimulus().height,
@@ -130,11 +116,6 @@ export default function getExportData(opt) {
               + hullData.centroidDistanceY * hullData.centroidDistanceY,
           );
         }
-        // if (hullData.timestep > 0 && hullData.centroidDistance > 0) {
-        //   hullData.centroidVelocity = hullData.centroidDistance / hullData.timestep;
-        //   hullData.centroidVelocityX = hullData.centroidDistanceX / hullData.timestep;
-        //   hullData.centroidVelocityY = hullData.centroidDistanceY / hullData.timestep;
-        // }
       }
 
       data.push(hullData);

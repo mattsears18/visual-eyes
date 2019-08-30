@@ -4,7 +4,7 @@ Template.Visit.onCreated(function() {
   this.autorun(() => {
     this.visit.set();
     this.subscribe(
-      'visits.single.withGazepoints',
+      'visits.single.withFixations',
       Template.currentData().visitId,
     );
 

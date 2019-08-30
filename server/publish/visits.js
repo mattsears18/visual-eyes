@@ -10,7 +10,7 @@ Meteor.publish('visits.single', function(id) {
   return Visits.find({ _id: id }, { fields: { gazepoints: 0 } });
 });
 
-Meteor.publish('visits.single.withGazepoints', function(id) {
+Meteor.publish('visits.single.withFixations', function(id) {
   check(id, String);
   return Visits.find({ _id: id });
 });
@@ -60,6 +60,7 @@ Meteor.publish('visits.simple.byParams', params => Visits.find(params, {
   fields: {
     participantId: 1,
     stimulusId: 1,
+    aoiId: 1,
     number: 1,
   },
 }));

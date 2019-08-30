@@ -5,6 +5,7 @@ Aois.before.insert(function(userId, doc) {
 Aois.after.remove(function(userId, aoi) {
   if (Meteor.isServer) {
     Gazepoints.remove({ aoiId: aoi._id });
+    Eyeevents.remove({ aoiId: aoi._id });
     Visits.remove({ aoiId: aoi._id });
   }
 });

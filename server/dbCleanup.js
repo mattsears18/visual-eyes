@@ -191,6 +191,7 @@ export default function dbCleanup() {
       $or: [
         { datafileId: { $nin: validDatafileIds } },
         { stimulusId: { $nin: validStimulusIds } },
+        { aoiId: { $nin: validAoiIds } },
         { participantId: { $nin: validParticipantIds } },
       ],
     };

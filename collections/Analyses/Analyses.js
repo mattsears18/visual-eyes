@@ -54,13 +54,13 @@ Schemas.Analysis = new SimpleSchema(
     },
     minFixationDuration: {
       type: Number,
-      label: 'Minimum Visit Duration (ms) (ISO 15007 Standard = 120ms)',
+      label: 'Minimum Fixation Duration (ms)',
       optional: true,
       defaultValue: 120,
     },
     minVisitDuration: {
       type: Number,
-      label: 'Minimum Visit Duration (ms) (ISO 15007 Standard = 120ms)',
+      label: 'Minimum Visit Duration (ms)',
       optional: true,
       defaultValue: 120,
     },

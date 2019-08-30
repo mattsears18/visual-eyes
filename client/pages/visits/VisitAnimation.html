@@ -1,27 +1,29 @@
 <template name="VisitAnimation">
   {{#if visit}}
-    {{#if hullseries}}
-      {{> Animation layout=layout initialTraces=initialTraces frameSeries=hullseries}}
-    {{else}}
-      {{#if Template.subscriptionsReady}}
-        {{#unless stimulusfile}}
-          <div>
-            <span class="label label-danger"
-              >No stimulus image associated with {{ visit.stimulus.name }}</span
-            >
-          </div>
-          <div class="m-t-5">
-            <a
-              href="/studies/{{ visit.stimulus.studyId }}/stimuli/{{visit.stimulus._id}}"
-              >{{ visit.stimulus.name }}</a
-            >
-          </div>
-        {{/unless}}
-      {{else}}
-        <div class="m-t-100">
-          {{> Spinner}}
-        </div>
-      {{/if}}
-    {{/if}}
+  {{#if hullseries}}
+  {{> Animation layout=layout initialTraces=initialTraces frameSeries=hullseries}}
+  {{else}}
+  {{#if Template.subscriptionsReady}}
+  {{#unless stimulusfile}}
+  <div>
+    <span class="label label-danger"
+      >No stimulus image associated with {{ visit.stimulus.name }}</span
+    >
+  </div>
+  <div class="m-t-5">
+    <a
+      href="/studies/{{ visit.stimulus.studyId }}/stimuli/{{
+        visit.stimulus._id
+      }}"
+      >{{ visit.stimulus.name }}</a
+    >
+  </div>
+  {{/unless}}
+  {{else}}
+  <div class="m-t-100">
+    {{> Spinner}}
+  </div>
+  {{/if}}
+  {{/if}}
   {{/if}}
 </template>

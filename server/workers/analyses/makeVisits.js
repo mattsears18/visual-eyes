@@ -27,6 +27,7 @@ const queueAnalysesMakeVisits = Jobs.processJobs(
               fields: {
                 _id: 1,
                 timestamp: 1,
+                timestampEnd: 1,
                 datafileId: 1,
                 stimulusId: 1,
                 aoiId: 1,

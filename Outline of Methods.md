@@ -45,5 +45,6 @@
       - [x] .assignStimuli(sortedRows)
       - [x] .assignAois(rowsWithStimuli)
     - [x] .groupRowsByStimulus(assignedRows)
+    - [ ] .groupRowsByAoi(assignedRows)
     - [x] .generateImotionsEyeevents(groupedRows)
     - [x] .generateSMIEyeevents(groupedRows)

@@ -6,6 +6,7 @@ import Analyses from '../collections/Analyses/Analyses';
 import Stimuli from '../collections/Stimuli/Stimuli';
 import Aois from '../collections/Aois/Aois';
 import Gazepoints from '../collections/Gazepoints/Gazepoints';
+import Eyeevents from '../collections/Eyeevents/Eyeevents';
 import Participants from '../collections/Participants/Participants';
 import Visits from '../collections/Visits/Visits';
 import Variables from '../collections/Variables/Variables';
@@ -181,6 +182,26 @@ export default function dbCleanup() {
         }
         if (num) {
           console.log(`${num} orphaned Gazepoints removed.`);
+        }
+      });
+    }
+
+    // //////////////////////////////////////////////////////////////////////////////
+    query = {
+      $or: [
+        { datafileId: { $nin: validDatafileIds } },
+        { stimulusId: { $nin: validStimulusIds } },
+        { participantId: { $nin: validParticipantIds } },
+      ],
+    };
+    if (Eyeevents.find(query).count()) {
+      console.log('removing orphaned Eyeevents...');
+      Eyeevents.remove(query, (err, num) => {
+        if (err && err.error !== 404) {
+          console.log(err);
+        }
+        if (num) {
+          console.log(`${num} orphaned Eyeevents removed.`);
         }
       });
     }

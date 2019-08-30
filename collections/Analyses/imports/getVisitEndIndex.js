@@ -14,16 +14,16 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
     throw new Error('missingTimestampOrTimestampEnd');
   }
 
-  const initialStimulusId = _fixations[startIndex].stimulusId;
+  const initialAoiId = _fixations[startIndex].aoiId;
 
-  if (initialStimulusId == null) {
-    throw new Error('noStimulusId');
+  if (initialAoiId == null) {
+    throw new Error('noAoiId');
   }
 
-  const initialStimulus = Stimuli.findOne({ _id: initialStimulusId });
+  const initialAoi = Aois.findOne({ _id: initialAoiId });
 
-  if (!initialStimulus) {
-    throw new Error('noStimulusFound');
+  if (!initialAoi) {
+    throw new Error('noAoiFound');
   }
 
   let potentialEndIndex = startIndex;
@@ -31,8 +31,8 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
 
   if (this.type === 'iso15007') {
     for (let i = parseInt(startIndex, 10) + 1; i < _fixations.length; i += 1) {
-      // Check matching stimulus
-      if (_fixations[i].stimulusId !== initialStimulusId) {
+      // Check matching aoi
+      if (_fixations[i].aoiId !== initialAoiId) {
         nextIndex = i;
         break;
       }
@@ -42,8 +42,8 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
   } else {
     for (let i = parseInt(startIndex, 10) + 1; i < _fixations.length; i += 1) {
       // console.log(`'${i} of ${_fixations.length}`);
-      // Check matching stimulus
-      if (_fixations[i].stimulusId === initialStimulusId) {
+      // Check matching aoi
+      if (_fixations[i].aoiId === initialAoiId) {
         // Check MVGD
         if (
           _fixations[i].timestamp - _fixations[potentialEndIndex].timestampEnd
@@ -55,7 +55,7 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
 
         potentialEndIndex = i;
       } else {
-        // Stimulus doesn't match
+        // Aoi doesn't match
         nextIndex = nextIndex || i;
         // console.log('nextIndex: ${nextIndex}');
       }

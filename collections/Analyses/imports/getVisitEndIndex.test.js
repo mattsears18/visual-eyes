@@ -50,7 +50,7 @@ describe('Analyses.getVisitEndIndex()', () => {
     }).to.throw(/^missingTimestampOrTimestampEnd$/);
   });
 
-  it('has no stimulusId', async () => {
+  it('has no aoiId', async () => {
     const analysis = Factory.create('analysis', {
       minVisitDuration: 5000,
       maxVisitGapDuration: 5000,
@@ -65,27 +65,27 @@ describe('Analyses.getVisitEndIndex()', () => {
     ];
     expect(() => {
       analysis.getVisitEndIndex({ fixations });
-    }).to.throw(/^noStimulusId$/);
+    }).to.throw(/^noAoiId$/);
   });
 
-  it('has a nonexistent stimulus', () => {
+  it('has a nonexistent aoi', () => {
     const analysis = Factory.create('analysis', {
       minVisitDuration: 5000,
       maxVisitGapDuration: 5000,
     });
 
     const fixations = [
-      { timestamp: 0, timestampEnd: 500, stimulusId: 'iGotAFakeIdDoe' },
-      { timestamp: 1000, timestampEnd: 1500, stimulusId: 'iGotAFakeIdDoe' },
-      { timestamp: 2000, timestampEnd: 2500, stimulusId: 'iGotAFakeIdDoe' },
-      { timestamp: 3000, timestampEnd: 3500, stimulusId: 'iGotAFakeIdDoe' },
-      { timestamp: 4000, timestampEnd: 4500, stimulusId: 'iGotAFakeIdDoe' },
-      { timestamp: 5000, timestampEnd: 5500, stimulusId: 'iGotAFakeIdDoe' },
+      { timestamp: 0, timestampEnd: 500, aoiId: 'iGotAFakeIdDoe' },
+      { timestamp: 1000, timestampEnd: 1500, aoiId: 'iGotAFakeIdDoe' },
+      { timestamp: 2000, timestampEnd: 2500, aoiId: 'iGotAFakeIdDoe' },
+      { timestamp: 3000, timestampEnd: 3500, aoiId: 'iGotAFakeIdDoe' },
+      { timestamp: 4000, timestampEnd: 4500, aoiId: 'iGotAFakeIdDoe' },
+      { timestamp: 5000, timestampEnd: 5500, aoiId: 'iGotAFakeIdDoe' },
     ];
 
     expect(() => {
       analysis.getVisitEndIndex({ fixations });
-    }).to.throw(/^noStimulusFound$/);
+    }).to.throw(/^noAoiFound$/);
   });
 
   describe('type !== iso15007', () => {
@@ -95,19 +95,19 @@ describe('Analyses.getVisitEndIndex()', () => {
         maxVisitGapDuration: 5000,
       });
 
-      const stimulus = Factory.create('stimulus');
+      const aoi = Factory.create('aoi');
 
       const fixations = [
-        { timestamp: 0, timestampEnd: 500, stimulusId: stimulus._id },
-        { timestamp: 1000, timestampEnd: 1500, stimulusId: stimulus._id },
-        { timestamp: 2000, timestampEnd: 2500, stimulusId: stimulus._id },
-        { timestamp: 3000, timestampEnd: 3500, stimulusId: stimulus._id },
-        { timestamp: 4000, timestampEnd: 4500, stimulusId: stimulus._id },
-        { timestamp: 5000, timestampEnd: 5500, stimulusId: stimulus._id },
-        { timestamp: 6000, timestampEnd: 6500, stimulusId: stimulus._id },
-        { timestamp: 7000, timestampEnd: 7500, stimulusId: stimulus._id },
-        { timestamp: 8000, timestampEnd: 8500, stimulusId: stimulus._id },
-        { timestamp: 9000, timestampEnd: 9500, stimulusId: stimulus._id },
+        { timestamp: 0, timestampEnd: 500, aoiId: aoi._id },
+        { timestamp: 1000, timestampEnd: 1500, aoiId: aoi._id },
+        { timestamp: 2000, timestampEnd: 2500, aoiId: aoi._id },
+        { timestamp: 3000, timestampEnd: 3500, aoiId: aoi._id },
+        { timestamp: 4000, timestampEnd: 4500, aoiId: aoi._id },
+        { timestamp: 5000, timestampEnd: 5500, aoiId: aoi._id },
+        { timestamp: 6000, timestampEnd: 6500, aoiId: aoi._id },
+        { timestamp: 7000, timestampEnd: 7500, aoiId: aoi._id },
+        { timestamp: 8000, timestampEnd: 8500, aoiId: aoi._id },
+        { timestamp: 9000, timestampEnd: 9500, aoiId: aoi._id },
       ];
       expect(analysis.getVisitEndIndex({ fixations })).to.equal(9);
     });
@@ -118,16 +118,16 @@ describe('Analyses.getVisitEndIndex()', () => {
         maxVisitGapDuration: 5000,
       });
 
-      const stimulus = Factory.create('stimulus');
+      const aoi = Factory.create('aoi');
 
       const fixations = [
-        { timestamp: 0, timestampEnd: 500, stimulusId: stimulus._id },
-        { timestamp: 1000, timestampEnd: 1500, stimulusId: stimulus._id },
-        { timestamp: 2000, timestampEnd: 2500, stimulusId: stimulus._id },
-        { timestamp: 3000, timestampEnd: 3500, stimulusId: stimulus._id },
-        { timestamp: 4000, timestampEnd: 4500, stimulusId: stimulus._id },
-        { timestamp: 15000, timestampEnd: 5500, stimulusId: stimulus._id }, // 10500 ms gap!
-        { timestamp: 16000, timestampEnd: 6500, stimulusId: stimulus._id },
+        { timestamp: 0, timestampEnd: 500, aoiId: aoi._id },
+        { timestamp: 1000, timestampEnd: 1500, aoiId: aoi._id },
+        { timestamp: 2000, timestampEnd: 2500, aoiId: aoi._id },
+        { timestamp: 3000, timestampEnd: 3500, aoiId: aoi._id },
+        { timestamp: 4000, timestampEnd: 4500, aoiId: aoi._id },
+        { timestamp: 15000, timestampEnd: 5500, aoiId: aoi._id }, // 10500 ms gap!
+        { timestamp: 16000, timestampEnd: 6500, aoiId: aoi._id },
       ];
       expect(analysis.getVisitEndIndex({ fixations })).to.equal(4);
     });
@@ -138,16 +138,16 @@ describe('Analyses.getVisitEndIndex()', () => {
         maxVisitGapDuration: 5000,
       });
 
-      const stimulus = Factory.create('stimulus');
+      const aoi = Factory.create('aoi');
 
       const fixations = [
-        { timestamp: 0, timestampEnd: 500, stimulusId: stimulus._id },
-        { timestamp: 1000, timestampEnd: 1500, stimulusId: stimulus._id },
-        { timestamp: 2000, timestampEnd: 2500, stimulusId: stimulus._id },
-        { timestamp: 3000, timestampEnd: 3500, stimulusId: stimulus._id },
-        { timestamp: 4000, timestampEnd: 4500, stimulusId: stimulus._id },
-        { timestamp: 15000, timestampEnd: 15500, stimulusId: stimulus._id }, // exceeds MVGD
-        { timestamp: 16000, timestampEnd: 16500, stimulusId: stimulus._id },
+        { timestamp: 0, timestampEnd: 500, aoiId: aoi._id },
+        { timestamp: 1000, timestampEnd: 1500, aoiId: aoi._id },
+        { timestamp: 2000, timestampEnd: 2500, aoiId: aoi._id },
+        { timestamp: 3000, timestampEnd: 3500, aoiId: aoi._id },
+        { timestamp: 4000, timestampEnd: 4500, aoiId: aoi._id },
+        { timestamp: 15000, timestampEnd: 15500, aoiId: aoi._id }, // exceeds MVGD
+        { timestamp: 16000, timestampEnd: 16500, aoiId: aoi._id },
       ];
 
       expect(() => {
@@ -160,99 +160,99 @@ describe('Analyses.getVisitEndIndex()', () => {
       }
     });
 
-    it('ends on the last fixation matching the initial stimulus when the stimulus changes', async () => {
+    it('ends on the last fixation matching the initial aoi when the aoi changes', async () => {
       const analysis = Factory.create('analysis', {
         type: 'custom',
         minVisitDuration: 3000,
         maxVisitGapDuration: 5000,
       });
 
-      const stimulus = Factory.create('stimulus');
-      const stimulus2 = Factory.create('stimulus');
+      const aoi = Factory.create('aoi');
+      const aoi2 = Factory.create('aoi');
 
       const fixations = [
-        { timestamp: 0, timestampEnd: 500, stimulusId: stimulus._id },
-        { timestamp: 1000, timestampEnd: 1500, stimulusId: stimulus._id },
-        { timestamp: 2000, timestampEnd: 2500, stimulusId: stimulus._id },
-        { timestamp: 3000, timestampEnd: 3500, stimulusId: stimulus._id },
-        { timestamp: 4000, timestampEnd: 4500, stimulusId: stimulus._id },
-        // stimulus changed and never went back
-        { timestamp: 5000, timestampEnd: 5500, stimulusId: stimulus2._id },
-        { timestamp: 6000, timestampEnd: 6500, stimulusId: stimulus2._id },
-        { timestamp: 7000, timestampEnd: 7500, stimulusId: stimulus2._id },
+        { timestamp: 0, timestampEnd: 500, aoiId: aoi._id },
+        { timestamp: 1000, timestampEnd: 1500, aoiId: aoi._id },
+        { timestamp: 2000, timestampEnd: 2500, aoiId: aoi._id },
+        { timestamp: 3000, timestampEnd: 3500, aoiId: aoi._id },
+        { timestamp: 4000, timestampEnd: 4500, aoiId: aoi._id },
+        // aoi changed and never went back
+        { timestamp: 5000, timestampEnd: 5500, aoiId: aoi2._id },
+        { timestamp: 6000, timestampEnd: 6500, aoiId: aoi2._id },
+        { timestamp: 7000, timestampEnd: 7500, aoiId: aoi2._id },
       ];
       expect(analysis.getVisitEndIndex({ fixations })).to.equal(4);
     });
 
-    it('can have a gap with fixations from another stimulus', async () => {
+    it('can have a gap with fixations from another aoi', async () => {
       const analysis = Factory.create('analysis', {
         type: 'custom',
         minVisitDuration: 3000,
         maxVisitGapDuration: 5000,
       });
 
-      const stimulus = Factory.create('stimulus');
-      const stimulus2 = Factory.create('stimulus');
+      const aoi = Factory.create('aoi');
+      const aoi2 = Factory.create('aoi');
 
       const fixations = [
-        { timestamp: 0, timestampEnd: 500, stimulusId: stimulus._id },
-        { timestamp: 1000, timestampEnd: 1500, stimulusId: stimulus._id },
-        { timestamp: 2000, timestampEnd: 2500, stimulusId: stimulus._id },
-        { timestamp: 3000, timestampEnd: 3500, stimulusId: stimulus._id },
-        { timestamp: 4000, timestampEnd: 4500, stimulusId: stimulus._id },
-        { timestamp: 5000, timestampEnd: 5500, stimulusId: stimulus2._id }, // 3500 ms gap
-        { timestamp: 6000, timestampEnd: 6500, stimulusId: stimulus2._id }, // 3500 ms gap
-        { timestamp: 7000, timestampEnd: 7500, stimulusId: stimulus2._id }, // 3500 ms gap
-        { timestamp: 8000, timestampEnd: 8500, stimulusId: stimulus._id },
-        { timestamp: 9000, timestampEnd: 9500, stimulusId: stimulus._id },
+        { timestamp: 0, timestampEnd: 500, aoiId: aoi._id },
+        { timestamp: 1000, timestampEnd: 1500, aoiId: aoi._id },
+        { timestamp: 2000, timestampEnd: 2500, aoiId: aoi._id },
+        { timestamp: 3000, timestampEnd: 3500, aoiId: aoi._id },
+        { timestamp: 4000, timestampEnd: 4500, aoiId: aoi._id },
+        { timestamp: 5000, timestampEnd: 5500, aoiId: aoi2._id }, // 3500 ms gap
+        { timestamp: 6000, timestampEnd: 6500, aoiId: aoi2._id }, // 3500 ms gap
+        { timestamp: 7000, timestampEnd: 7500, aoiId: aoi2._id }, // 3500 ms gap
+        { timestamp: 8000, timestampEnd: 8500, aoiId: aoi._id },
+        { timestamp: 9000, timestampEnd: 9500, aoiId: aoi._id },
       ];
       expect(analysis.getVisitEndIndex({ fixations })).to.equal(9);
     });
 
-    it('looks at another stimulus too long', async () => {
+    it('looks at another aoi too long', async () => {
       const analysis = Factory.create('analysis', {
         type: 'custom',
         minVisitDuration: 3000,
         maxVisitGapDuration: 3000,
       });
 
-      const stimulus = Factory.create('stimulus');
-      const stimulus2 = Factory.create('stimulus');
+      const aoi = Factory.create('aoi');
+      const aoi2 = Factory.create('aoi');
 
       const fixations = [
-        { timestamp: 0, timestampEnd: 500, stimulusId: stimulus._id },
-        { timestamp: 1000, timestampEnd: 1500, stimulusId: stimulus._id },
-        { timestamp: 2000, timestampEnd: 2500, stimulusId: stimulus._id },
-        { timestamp: 3000, timestampEnd: 3500, stimulusId: stimulus._id },
-        { timestamp: 4000, timestampEnd: 4500, stimulusId: stimulus._id },
-        { timestamp: 5000, timestampEnd: 5500, stimulusId: stimulus2._id }, // 3500 ms gap
-        { timestamp: 6000, timestampEnd: 6500, stimulusId: stimulus2._id }, // 3500 ms gap
-        { timestamp: 7000, timestampEnd: 7500, stimulusId: stimulus2._id }, // 3500 ms gap
-        { timestamp: 8000, timestampEnd: 8500, stimulusId: stimulus._id },
-        { timestamp: 9000, timestampEnd: 9500, stimulusId: stimulus._id },
+        { timestamp: 0, timestampEnd: 500, aoiId: aoi._id },
+        { timestamp: 1000, timestampEnd: 1500, aoiId: aoi._id },
+        { timestamp: 2000, timestampEnd: 2500, aoiId: aoi._id },
+        { timestamp: 3000, timestampEnd: 3500, aoiId: aoi._id },
+        { timestamp: 4000, timestampEnd: 4500, aoiId: aoi._id },
+        { timestamp: 5000, timestampEnd: 5500, aoiId: aoi2._id }, // 3500 ms gap
+        { timestamp: 6000, timestampEnd: 6500, aoiId: aoi2._id }, // 3500 ms gap
+        { timestamp: 7000, timestampEnd: 7500, aoiId: aoi2._id }, // 3500 ms gap
+        { timestamp: 8000, timestampEnd: 8500, aoiId: aoi._id },
+        { timestamp: 9000, timestampEnd: 9500, aoiId: aoi._id },
       ];
       expect(analysis.getVisitEndIndex({ fixations })).to.equal(4);
     });
 
-    it('does not end if a fixation does not have a stimulus', () => {
+    it('does not end if a fixation does not have a aoi', () => {
       const analysis = Factory.create('analysis', {
         type: 'custom',
         minVisitDuration: 1000,
       });
 
-      const stimulus1 = Factory.create('stimulus');
+      const aoi1 = Factory.create('aoi');
 
       const fixations = [
-        { timestamp: 0, timestampEnd: 500, stimulusId: stimulus1._id },
-        { timestamp: 1000, timestampEnd: 1500, stimulusId: stimulus1._id },
-        { timestamp: 2000, timestampEnd: 2500, stimulusId: stimulus1._id },
-        { timestamp: 3000, timestampEnd: 3500, stimulusId: stimulus1._id },
-        { timestamp: 4000, timestampEnd: 4500, stimulusId: stimulus1._id },
+        { timestamp: 0, timestampEnd: 500, aoiId: aoi1._id },
+        { timestamp: 1000, timestampEnd: 1500, aoiId: aoi1._id },
+        { timestamp: 2000, timestampEnd: 2500, aoiId: aoi1._id },
+        { timestamp: 3000, timestampEnd: 3500, aoiId: aoi1._id },
+        { timestamp: 4000, timestampEnd: 4500, aoiId: aoi1._id },
         { timestamp: 5000, timestampEnd: 5500 },
-        { timestamp: 6000, timestampEnd: 6500, stimulusId: stimulus1._id },
-        { timestamp: 7000, timestampEnd: 7500, stimulusId: stimulus1._id },
-        { timestamp: 8000, timestampEnd: 8500, stimulusId: stimulus1._id },
-        { timestamp: 9000, timestampEnd: 9500, stimulusId: stimulus1._id },
+        { timestamp: 6000, timestampEnd: 6500, aoiId: aoi1._id },
+        { timestamp: 7000, timestampEnd: 7500, aoiId: aoi1._id },
+        { timestamp: 8000, timestampEnd: 8500, aoiId: aoi1._id },
+        { timestamp: 9000, timestampEnd: 9500, aoiId: aoi1._id },
       ];
 
       expect(analysis.getVisitEndIndex({ fixations })).to.equal(9);
@@ -266,67 +266,67 @@ describe('Analyses.getVisitEndIndex()', () => {
         minVisitDuration: 10000,
       });
 
-      const stimulus = Factory.create('stimulus');
+      const aoi = Factory.create('aoi');
 
       const fixations = [
-        { timestamp: 0, timestampEnd: 500, stimulusId: stimulus._id },
-        { timestamp: 1000, timestampEnd: 1500, stimulusId: stimulus._id },
-        { timestamp: 2000, timestampEnd: 2500, stimulusId: stimulus._id },
-        { timestamp: 3000, timestampEnd: 3500, stimulusId: stimulus._id },
-        { timestamp: 4000, timestampEnd: 4500, stimulusId: stimulus._id },
-        { timestamp: 15000, timestampEnd: 15500, stimulusId: stimulus._id }, // 10,500ms gap - OK
-        { timestamp: 16000, timestampEnd: 16500, stimulusId: stimulus._id },
-        { timestamp: 17000, timestampEnd: 17500, stimulusId: stimulus._id },
-        { timestamp: 18000, timestampEnd: 18500, stimulusId: stimulus._id },
-        { timestamp: 19000, timestampEnd: 19500, stimulusId: stimulus._id },
+        { timestamp: 0, timestampEnd: 500, aoiId: aoi._id },
+        { timestamp: 1000, timestampEnd: 1500, aoiId: aoi._id },
+        { timestamp: 2000, timestampEnd: 2500, aoiId: aoi._id },
+        { timestamp: 3000, timestampEnd: 3500, aoiId: aoi._id },
+        { timestamp: 4000, timestampEnd: 4500, aoiId: aoi._id },
+        { timestamp: 15000, timestampEnd: 15500, aoiId: aoi._id }, // 10,500ms gap - OK
+        { timestamp: 16000, timestampEnd: 16500, aoiId: aoi._id },
+        { timestamp: 17000, timestampEnd: 17500, aoiId: aoi._id },
+        { timestamp: 18000, timestampEnd: 18500, aoiId: aoi._id },
+        { timestamp: 19000, timestampEnd: 19500, aoiId: aoi._id },
       ];
 
       expect(analysis.getVisitEndIndex({ fixations })).to.equal(9);
     });
-    it('ends when the stimulus changes', () => {
+    it('ends when the aoi changes', () => {
       const analysis = Factory.create('analysis', {
         type: 'iso15007',
         minVisitDuration: 1000,
       });
 
-      const stimulus1 = Factory.create('stimulus');
-      const stimulus2 = Factory.create('stimulus');
+      const aoi1 = Factory.create('aoi');
+      const aoi2 = Factory.create('aoi');
 
       const fixations = [
-        { timestamp: 0, timestampEnd: 500, stimulusId: stimulus1._id },
-        { timestamp: 1000, timestampEnd: 1500, stimulusId: stimulus1._id },
-        { timestamp: 2000, timestampEnd: 2500, stimulusId: stimulus1._id },
-        { timestamp: 3000, timestampEnd: 3500, stimulusId: stimulus1._id },
-        { timestamp: 4000, timestampEnd: 4500, stimulusId: stimulus1._id },
-        { timestamp: 5000, timestampEnd: 5500, stimulusId: stimulus2._id },
-        { timestamp: 6000, timestampEnd: 6500, stimulusId: stimulus1._id },
-        { timestamp: 7000, timestampEnd: 7500, stimulusId: stimulus1._id },
-        { timestamp: 8000, timestampEnd: 8500, stimulusId: stimulus1._id },
-        { timestamp: 9000, timestampEnd: 9500, stimulusId: stimulus1._id },
+        { timestamp: 0, timestampEnd: 500, aoiId: aoi1._id },
+        { timestamp: 1000, timestampEnd: 1500, aoiId: aoi1._id },
+        { timestamp: 2000, timestampEnd: 2500, aoiId: aoi1._id },
+        { timestamp: 3000, timestampEnd: 3500, aoiId: aoi1._id },
+        { timestamp: 4000, timestampEnd: 4500, aoiId: aoi1._id },
+        { timestamp: 5000, timestampEnd: 5500, aoiId: aoi2._id },
+        { timestamp: 6000, timestampEnd: 6500, aoiId: aoi1._id },
+        { timestamp: 7000, timestampEnd: 7500, aoiId: aoi1._id },
+        { timestamp: 8000, timestampEnd: 8500, aoiId: aoi1._id },
+        { timestamp: 9000, timestampEnd: 9500, aoiId: aoi1._id },
       ];
 
       expect(analysis.getVisitEndIndex({ fixations })).to.equal(4);
     });
 
-    it('ends when a fixation does not have a stimulus', () => {
+    it('ends when a fixation does not have a aoi', () => {
       const analysis = Factory.create('analysis', {
         type: 'iso15007',
         minVisitDuration: 1000,
       });
 
-      const stimulus1 = Factory.create('stimulus');
+      const aoi1 = Factory.create('aoi');
 
       const fixations = [
-        { timestamp: 0, timestampEnd: 500, stimulusId: stimulus1._id },
-        { timestamp: 1000, timestampEnd: 1500, stimulusId: stimulus1._id },
-        { timestamp: 2000, timestampEnd: 2500, stimulusId: stimulus1._id },
-        { timestamp: 3000, timestampEnd: 3500, stimulusId: stimulus1._id },
-        { timestamp: 4000, timestampEnd: 4500, stimulusId: stimulus1._id },
+        { timestamp: 0, timestampEnd: 500, aoiId: aoi1._id },
+        { timestamp: 1000, timestampEnd: 1500, aoiId: aoi1._id },
+        { timestamp: 2000, timestampEnd: 2500, aoiId: aoi1._id },
+        { timestamp: 3000, timestampEnd: 3500, aoiId: aoi1._id },
+        { timestamp: 4000, timestampEnd: 4500, aoiId: aoi1._id },
         { timestamp: 5000, timestampEnd: 5500 },
-        { timestamp: 6000, timestampEnd: 6500, stimulusId: stimulus1._id },
-        { timestamp: 7000, timestampEnd: 7500, stimulusId: stimulus1._id },
-        { timestamp: 8000, timestampEnd: 8500, stimulusId: stimulus1._id },
-        { timestamp: 9000, timestampEnd: 9500, stimulusId: stimulus1._id },
+        { timestamp: 6000, timestampEnd: 6500, aoiId: aoi1._id },
+        { timestamp: 7000, timestampEnd: 7500, aoiId: aoi1._id },
+        { timestamp: 8000, timestampEnd: 8500, aoiId: aoi1._id },
+        { timestamp: 9000, timestampEnd: 9500, aoiId: aoi1._id },
       ];
 
       expect(analysis.getVisitEndIndex({ fixations })).to.equal(4);

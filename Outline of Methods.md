@@ -1,8 +1,8 @@
 # Analyses
 
 - [ ] .makeVisits() - NEED TO REVISE ALL OF THESE TO USE aoiId instead of stimulusId
-  - [ ] .getVisitEndIndex()
-  - [ ] .makeVisit()
+  - [x] .getVisitEndIndex()
+  - [x] .makeVisit()
 
 # Datafiles
 

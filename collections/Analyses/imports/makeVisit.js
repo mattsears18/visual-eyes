@@ -1,5 +1,5 @@
 import Participants from '../../Participants/Participants';
-import Stimuli from '../../Stimuli/Stimuli';
+import Aois from '../../Aois/Aois';
 import Visits from '../../Visits/Visits';
 
 export default function makeVisit(opts) {
@@ -39,14 +39,14 @@ export default function makeVisit(opts) {
     throw new Error('noParticipantFound');
   }
 
-  const { stimulusId } = allFixations[startIndex];
-  if (!stimulusId) {
-    throw new Error('noStimulusId');
+  const { aoiId } = allFixations[startIndex];
+  if (!aoiId) {
+    throw new Error('noAoiId');
   }
 
-  const stimulus = Stimuli.findOne({ _id: stimulusId });
-  if (!stimulus) {
-    throw new Error('noStimulusFound');
+  const aoi = Aois.findOne({ _id: aoiId });
+  if (!aoi) {
+    throw new Error('noAoiFound');
   }
 
   const { timestamp } = allFixations[startIndex];
@@ -55,7 +55,7 @@ export default function makeVisit(opts) {
 
   let fixationsToSave = fixations
     .slice(startIndex, endIndex + 1)
-    .filter(fixation => fixation.stimulusId === stimulusId);
+    .filter(fixation => fixation.aoiId === aoiId);
 
   fixationsToSave = fixationsToSave.map(fixation => ({
     timestamp: fixation.timestamp,
@@ -76,7 +76,7 @@ export default function makeVisit(opts) {
     studyId: this.studyId,
     analysisId: this._id,
     participantId,
-    stimulusId,
+    aoiId,
     number,
     timestamp,
     timestampEnd,

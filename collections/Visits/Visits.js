@@ -27,7 +27,7 @@ Schemas.Visit = new SimpleSchema(
     participantId: {
       type: String,
     },
-    stimulusId: {
+    aoiId: {
       type: String,
     },
     number: {

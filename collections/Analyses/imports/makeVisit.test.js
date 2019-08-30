@@ -101,7 +101,7 @@ describe('Analyses.makeVisit()', () => {
     }).to.throw('noParticipantFound');
   });
 
-  it('has no stimulusId', () => {
+  it('has no aoiId', () => {
     const analysis = Factory.create('analysis');
     const participant = Factory.create('participant');
 
@@ -114,36 +114,36 @@ describe('Analyses.makeVisit()', () => {
         startIndex: 0,
         endIndex: 1,
       });
-    }).to.throw('noStimulusId');
+    }).to.throw('noAoiId');
   });
 
-  it('has a nonexistent stimulus', () => {
+  it('has a nonexistent aoi', () => {
     const analysis = Factory.create('analysis');
     const participant = Factory.create('participant');
 
     expect(() => {
       analysis.makeVisit({
         fixations: [
-          { timestamp: 0, participantId: participant._id, stimulusId: 'abc' },
+          { timestamp: 0, participantId: participant._id, aoiId: 'abc' },
           { timestamp: 100 },
         ],
         startIndex: 0,
         endIndex: 1,
       });
-    }).to.throw('noStimulusFound');
+    }).to.throw('noAoiFound');
   });
 
   it('successfully makes a visit', async () => {
     const analysis = Factory.create('analysis');
     const participant = Factory.create('participant');
-    const stimulus = Factory.create('stimulus');
+    const aoi = Factory.create('aoi');
     const fixations = [
       {
         x: 0.5,
         y: 0.5,
         timestamp: 0,
         timestampEnd: 500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -151,7 +151,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 1000,
         timestampEnd: 1500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -160,7 +160,7 @@ describe('Analyses.makeVisit()', () => {
         timestamp: 2000,
         timestampEnd: 2500,
         eventIndex: 1,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -168,7 +168,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 3000,
         timestampEnd: 3500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -176,7 +176,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 4000,
         timestampEnd: 4500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -185,7 +185,7 @@ describe('Analyses.makeVisit()', () => {
         timestamp: 5000,
         timestampEnd: 5500,
         eventIndex: 2,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -193,7 +193,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 6000,
         timestampEnd: 6500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -201,7 +201,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 7000,
         timestampEnd: 7500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -209,7 +209,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 8000,
         timestampEnd: 8500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -217,7 +217,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 9000,
         timestampEnd: 9500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -225,7 +225,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 10000,
         timestampEnd: 10500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -233,7 +233,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 11000,
         timestampEnd: 11500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
     ];
@@ -253,7 +253,7 @@ describe('Analyses.makeVisit()', () => {
     expect(visit.duration).to.equal(4500);
     expect(visit.number).to.equal(7);
     expect(visit.participantId).to.equal(participant._id);
-    expect(visit.stimulusId).to.equal(stimulus._id);
+    expect(visit.aoiId).to.equal(aoi._id);
 
     expect(visit.fixations).to.eql([
       {
@@ -292,18 +292,18 @@ describe('Analyses.makeVisit()', () => {
     expect(visit.fixationFrequency).to.equal(5 / 4.5);
   });
 
-  it('makes a visit with other stimuli in the middle', async () => {
+  it('makes a visit with other aois in the middle', async () => {
     const analysis = Factory.create('analysis');
     const participant = Factory.create('participant');
-    const stimulus = Factory.create('stimulus');
-    const stimulus2 = Factory.create('stimulus');
+    const aoi = Factory.create('aoi');
+    const aoi2 = Factory.create('aoi');
     const fixations = [
       {
         x: 0.5,
         y: 0.5,
         timestamp: 0,
         timestampEnd: 500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -311,7 +311,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 1000,
         timestampEnd: 1500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -320,7 +320,7 @@ describe('Analyses.makeVisit()', () => {
         timestamp: 2000,
         timestampEnd: 2500,
         eventIndex: 1,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -328,7 +328,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 3000,
         timestampEnd: 3500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -336,7 +336,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 4000,
         timestampEnd: 4500,
-        stimulusId: stimulus2._id,
+        aoiId: aoi2._id,
         participantId: participant._id,
       },
       {
@@ -345,7 +345,7 @@ describe('Analyses.makeVisit()', () => {
         timestamp: 5000,
         timestampEnd: 5500,
         eventIndex: 2,
-        stimulusId: stimulus2._id,
+        aoiId: aoi2._id,
         participantId: participant._id,
       },
       {
@@ -353,7 +353,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 6000,
         timestampEnd: 6500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -361,7 +361,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 7000,
         timestampEnd: 7500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -369,7 +369,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 8000,
         timestampEnd: 8500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -377,7 +377,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 9000,
         timestampEnd: 9500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -385,7 +385,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 10000,
         timestampEnd: 10500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
       {
@@ -393,7 +393,7 @@ describe('Analyses.makeVisit()', () => {
         y: 0.5,
         timestamp: 11000,
         timestampEnd: 11500,
-        stimulusId: stimulus._id,
+        aoiId: aoi._id,
         participantId: participant._id,
       },
     ];
@@ -413,7 +413,7 @@ describe('Analyses.makeVisit()', () => {
     expect(visit.duration).to.equal(4500);
     expect(visit.number).to.equal(7);
     expect(visit.participantId).to.equal(participant._id);
-    expect(visit.stimulusId).to.equal(stimulus._id);
+    expect(visit.aoiId).to.equal(aoi._id);
 
     expect(visit.fixations).to.eql([
       {

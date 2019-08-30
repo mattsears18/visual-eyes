@@ -54,110 +54,23 @@ describe('Analyses.makeVisits()', () => {
     });
 
     const rows = [
-      {
-        x: 1,
-        y: 1,
-        timestamp: 0,
-        timestampEnd: 100,
-      }, // start visit 1
-      {
-        x: 1,
-        y: 1,
-        timestamp: 1000,
-        timestampEnd: 1100,
-      },
-      {
-        x: 1,
-        y: 1,
-        timestamp: 2000,
-        eventIndex: 1,
-        timestampEnd: 2100,
-      },
-      {
-        x: 1,
-        y: 1,
-        timestamp: 3000,
-        timestampEnd: 3100,
-      },
-      {
-        x: 1,
-        y: 1,
-        timestamp: 5000,
-        eventIndex: 2,
-        timestampEnd: 5100,
-      }, // next fixation exceeds maxVisitGapDuration, end visit 1
-      {
-        x: 1,
-        y: 1,
-        timestamp: 8000,
-        timestampEnd: 8100,
-      }, // exceeded maxVisitGapDuration
-      {
-        x: 1,
-        y: 1,
-        timestamp: 9000,
-        timestampEnd: 9100,
-      }, // next fixation exceeds maxVisitGapDuration but minVisitDuration not met, so no visit
-      {
-        x: 1,
-        y: 1,
-        timestamp: 14000,
-        timestampEnd: 14100,
-      }, // start visit 2
-      {
-        x: 1,
-        y: 1,
-        timestamp: 15000,
-        timestampEnd: 15100,
-      },
-      {
-        x: 1,
-        y: 1,
-        timestamp: 16000,
-        timestampEnd: 16100,
-      },
-      {
-        x: 1,
-        y: 1,
-        timestamp: 17000,
-        timestampEnd: 17100,
-      },
-      {
-        x: 1,
-        y: 1,
-        timestamp: 18000,
-        timestampEnd: 18100,
-      },
-      {
-        x: 1,
-        y: 1,
-        timestamp: 19000,
-        timestampEnd: 19100,
-      },
-      {
-        x: 1,
-        y: 1,
-        timestamp: 20000,
-        timestampEnd: 20100,
-      },
-      {
-        x: 1,
-        y: 1,
-        timestamp: 21000,
-        timestampEnd: 21100,
-      },
-      {
-        x: 1,
-        y: 1,
-        timestamp: 22000,
-        timestampEnd: 22100,
-      },
-      {
-        x: 1,
-        y: 1,
-        timestamp: 23000,
-        timestampEnd: 23100,
-      }, // end visit 2
+      { timestamp: 0, timestampEnd: 100 }, // start visit 1
+      { timestamp: 1000, timestampEnd: 1100 },
+      { timestamp: 2000, timestampEnd: 2100 },
+      { timestamp: 3000, timestampEnd: 3100 },
+      { timestamp: 5000, timestampEnd: 5100 }, // next fixation exceeds maxVisitGapDuration, end visit 1
+      { timestamp: 8000, timestampEnd: 8100 }, // exceeded maxVisitGapDuration
+      { timestamp: 9000, timestampEnd: 9100 }, // next fixation exceeds maxVisitGapDuration but minVisitDuration not met, so no visit
+      { timestamp: 14000, timestampEnd: 14100 }, // start visit 2
+      { timestamp: 15000, timestampEnd: 15100 },
+      { timestamp: 16000, timestampEnd: 16100 },
+      { timestamp: 17000, timestampEnd: 17100 },
+      { timestamp: 18000, timestampEnd: 18100 },
+      { timestamp: 19000, timestampEnd: 19100 },
+      { timestamp: 20000, timestampEnd: 20100 },
+      { timestamp: 21000, timestampEnd: 21100 },
+      { timestamp: 22000, timestampEnd: 22100 },
+      { timestamp: 23000, timestampEnd: 23100 }, // end visit 2
     ];
 
     rows.forEach((row) => {

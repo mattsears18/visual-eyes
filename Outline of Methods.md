@@ -1,8 +1,8 @@
 # Analyses
 
-- [ ] .makeVisits()
-  - [x] .getVisitEndIndex() - need to revise how gap duration is calculated
-  - [x] .makeVisit()
+- [ ] .makeVisits() - NEED TO REVISE ALL OF THESE TO USE aoiId instead of stimulusId
+  - [ ] .getVisitEndIndex()
+  - [ ] .makeVisit()
 
 # Datafiles
 

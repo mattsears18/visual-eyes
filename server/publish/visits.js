@@ -33,11 +33,10 @@ Meteor.publish('visits.byAnalysisId', (analysisId) => {
       fields: {
         _id: 1,
         participantId: 1,
+        aoiId: 1,
         stimulusId: 1,
         number: 1,
-        aoiIds: 1,
         duration: 1,
-        status: 1,
       },
     },
   );

@@ -30,6 +30,9 @@ Schemas.Visit = new SimpleSchema(
     aoiId: {
       type: String,
     },
+    stimulusId: {
+      type: String,
+    },
     number: {
       type: Number,
       label: 'Number',

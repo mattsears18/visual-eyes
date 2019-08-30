@@ -49,6 +49,11 @@ export default function makeVisit(opts) {
     throw new Error('noAoiFound');
   }
 
+  const { stimulusId } = allFixations[startIndex];
+  if (!stimulusId) {
+    throw new Error('noStimulusId');
+  }
+
   const { timestamp } = allFixations[startIndex];
   const { timestampEnd } = allFixations[endIndex];
   const duration = timestampEnd - timestamp;
@@ -77,6 +82,7 @@ export default function makeVisit(opts) {
     analysisId: this._id,
     participantId,
     aoiId,
+    stimulusId,
     number,
     timestamp,
     timestampEnd,

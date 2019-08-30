@@ -260,6 +260,7 @@ Factory.define('visit', Visits, {
   studyId: () => Factory.create('study')._id,
   participantId: () => Factory.create('participant')._id,
   aoiId: () => Factory.create('aoi')._id,
+  stimulusId: () => Factory.create('stimulus')._id,
   number: () => faker.random.number({ min: 1, max: 10 }),
   fixations: [
     {

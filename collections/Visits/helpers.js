@@ -3,6 +3,7 @@ import getHullseries from './imports/getHullseries';
 import getExportData from './imports/getExportData';
 import saveCSV from './imports/saveCSV';
 import getSampledData from './imports/getSampledData';
+import Stimuli from '../Stimuli/Stimuli';
 // import getFixationProportion from './imports/getFixationProportion';
 
 Visits.helpers({
@@ -41,7 +42,7 @@ Visits.helpers({
     return this.aoiId ? Aois.findOne(this.aoiId) : undefined;
   },
   stimulus() {
-    return this.aoi() && this.aoi().stimulusId && this.aoi().stimulus();
+    return this.stimulusId ? Stimuli.findOne(this.stimulusId) : undefined;
   },
   stimulusArea() {
     return this.stimulus() ? this.stimulus().area() : undefined;

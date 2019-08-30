@@ -10,6 +10,7 @@ import getValidCoordinatesOnly from './imports/getValidCoordinatesOnly';
 import getRawCSV from './imports/getRawCSV';
 import getRenamedRows from './imports/getRenamedRows';
 import getStimuliOnly from './imports/getStimuliOnly';
+import groupRowsByAoi from './imports/groupRowsByAoi';
 import groupRowsByStimulus from './imports/groupRowsByStimulus';
 import makeEyeevents from './imports/makeEyeevents';
 import makeProcessJob from './imports/makeProcessJob';
@@ -31,6 +32,7 @@ Datafiles.collection.helpers({
   getRawCSV,
   getRenamedRows,
   getStimuliOnly,
+  groupRowsByAoi,
   groupRowsByStimulus,
   makeEyeevents,
   makeProcessJob,

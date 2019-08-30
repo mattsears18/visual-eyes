@@ -5,7 +5,6 @@ Template.PlotHistogramVisitCounts.helpers({
     title: 'Visit Counts',
     xaxis: {
       title: '# of Visits per Participant per Stimulus',
-      dtick: 1,
     },
     yaxis: {
       title: 'Frequency',

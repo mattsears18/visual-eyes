@@ -35,6 +35,7 @@ const queueAnalysesMakeVisits = Jobs.processJobs(
                 y: 1,
                 eventIndex: 1,
                 duration: 1,
+                participantId: 1,
               },
               sort: { datafileId: 1, stimulusId: 1, eventIndex: 1 },
             },

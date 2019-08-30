@@ -65,7 +65,7 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
   // console.log(`potentialEndIndex: ${potentialEndIndex}`);
 
   if (potentialEndIndex === startIndex) {
-    throw new Meteor.Error('noEndIndexFound', null, {
+    throw new Meteor.Error('endIndexNotFound', null, {
       nextIndex: nextIndex || startIndex + 1,
     });
   } else {

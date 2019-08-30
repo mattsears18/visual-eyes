@@ -5,7 +5,7 @@ import { expect } from 'chai';
 
 describe('Visits.getHullseries()', () => {
   it('gets a hullseries', () => {
-    const visit = Factory.create('visitWithGazepoints');
+    const visit = Factory.create('visit');
     const hullseries = visit.getHullseries({
       period: 5000,
       timestep: 0,

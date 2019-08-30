@@ -1,9 +1,11 @@
+import { Factory } from 'meteor/dburles:factory';
+
 require('./../../factories.test');
 const { expect } = require('chai');
 
 describe('Variablefiles.getHullseries()', () => {
   it('gets a hullseries', () => {
-    const visit = Factory.create('visitWithGazepoints');
+    const visit = Factory.create('visit');
     const hullseries = visit.getHullseries({
       period: 5000,
       timestep: 0,

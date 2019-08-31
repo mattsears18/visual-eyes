@@ -239,9 +239,9 @@ Factory.define('stimulus', Stimuli, {
 });
 
 Factory.define('aoi', Aois, {
-  name: () => faker.lorem.words(),
-  studyId: () => Factory.create('study')._id,
-  stimulusId: () => Factory.create('stimulus')._id,
+  name: faker.lorem.words(),
+  studyId: Factory.create('study')._id,
+  stimulusId: Factory.create('stimulus')._id,
 });
 
 Factory.define('gazepoint', Gazepoints, {

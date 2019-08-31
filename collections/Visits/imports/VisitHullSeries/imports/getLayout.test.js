@@ -6,12 +6,12 @@ const { expect } = require('chai');
 
 describe('VisitHullSeries.getLayout()', () => {
   it('has no stimulusfile', () => {
-    const stimulus = Factory.create('stimulus', {
-      stimulusfileId: 'abc',
-    });
-    const aoi = Factory.create('aoi', { stimulusId: stimulus._id });
+    const stimulus = Factory.create('stimulus', { stimulusfileId: 'abc' });
+
+    const aoi = Factory.create('aoi');
     const visit = Factory.create('visit', {
       aoiId: aoi._id,
+      stimulusId: stimulus._id,
     });
 
     const hullseries = new VisitHullSeries({

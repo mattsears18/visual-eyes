@@ -21,67 +21,77 @@ export default function makeVisits(opts) {
 
   const visitIds = [];
 
-  let startIndex = 0;
-  let number = 0;
+  this.stimulusIds.forEach((stimulusId) => {
+    // console.log(stimulusId);
 
-  // console.log(`startIndex: ${startIndex}`);
+    const stimulusFixations = allFixations.filter(
+      fixation => fixation.stimulusId === stimulusId,
+    );
 
-  do {
-    let endIndex = null;
-    // console.log(`endIndex: ${endIndex}`);
-    try {
-      // console.log('try to get endIndex');
-      endIndex = this.getVisitEndIndex({
-        fixations: allFixations,
-        startIndex,
-      });
+    // console.log(`fixation count: ${stimulusFixations.length}`);
 
+    let startIndex = 0;
+    let number = 0;
+
+    // console.log(`startIndex: ${startIndex}`);
+
+    do {
+      let endIndex = null;
       // console.log(`endIndex: ${endIndex}`);
+      try {
+        // console.log('try to get endIndex');
+        endIndex = this.getVisitEndIndex({
+          fixations: stimulusFixations,
+          startIndex,
+        });
 
-      if (endIndex && allFixations[endIndex]) {
-        try {
-          number += 1;
+        // console.log(`endIndex: ${endIndex}`);
 
-          // console.log('make a visit!');
-          // console.log(`number: ${number}, [${startIndex}:${endIndex}]`);
+        if (endIndex && stimulusFixations[endIndex]) {
+          try {
+            number += 1;
 
-          const visitId = this.makeVisit({
-            fixations: allFixations,
-            startIndex,
-            endIndex,
-            number,
-          });
+            // console.log('make a visit!');
+            // console.log(`number: ${number}, [${startIndex}:${endIndex}]`);
 
-          visitIds.push(visitId);
-          // console.log(`visit number: ${number} created!`);
+            const visitId = this.makeVisit({
+              fixations: stimulusFixations,
+              startIndex,
+              endIndex,
+              number,
+            });
 
-          // console.log(
-          //   `endIndex: ${endIndex} nextStartIndex: ${startIndex}`,
-          // );
-        } catch (err) {
+            visitIds.push(visitId);
+            // console.log(`visit number: ${number} created!`);
+
+            // console.log(
+            //   `endIndex: ${endIndex} nextStartIndex: ${startIndex}`,
+            // );
+          } catch (err) {
+            console.log(err);
+          }
+        }
+
+        startIndex = endIndex + 1;
+      } catch (err) {
+        // console.log('no visit generated');
+        if (
+          err.error === 'minVisitDurationNotMet'
+          || err.error === 'endIndexNotFound'
+        ) {
+          // console.log(err.details);
+          startIndex = err.details.nextIndex;
+          // console.log(`endIndex: ${endIndex} nextStartIndex: ${startIndex}`);
+        } else if (err.error === 'noStimulusFound') {
+          console.log(
+            'stimulus not found - need to delete all eyeevents and gazepoints with this stimulusId',
+          );
+        } else {
           console.log(err);
         }
       }
-
-      startIndex = endIndex + 1;
-    } catch (err) {
-      // console.log('no visit generated');
-      if (
-        err.error === 'minVisitDurationNotMet'
-        || err.error === 'endIndexNotFound'
-      ) {
-        // console.log(err.details);
-        startIndex = err.details.nextIndex;
-        // console.log(`endIndex: ${endIndex} nextStartIndex: ${startIndex}`);
-      } else if (err.error === 'noStimulusFound') {
-        console.log(
-          'stimulus not found - need to delete all eyeevents and gazepoints with this stimulusId',
-        );
-      } else {
-        console.log(err);
-      }
-    }
-  } while (startIndex < allFixations.length - 1);
+    } while (startIndex < stimulusFixations.length - 1);
+  });
 
   return visitIds;
 }

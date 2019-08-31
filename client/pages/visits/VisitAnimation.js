@@ -20,7 +20,9 @@ Template.VisitAnimation.onCreated(function() {
       });
       if (stimulusfile) {
         this.stimulusfile.set(stimulusfile);
-        const hullseries = this.visit.get().getHullseries(this.hullParams.get());
+        const hullseries = this.visit
+          .get()
+          .getHullseries(this.hullParams.get());
 
         if (hullseries && hullseries.getHulls().length) {
           this.hullseries.set(hullseries);
@@ -33,7 +35,7 @@ Template.VisitAnimation.onCreated(function() {
 
 Template.VisitAnimation.helpers({
   visit: () => Template.instance().visit.get(),
-  stimulusfile: () => Template.instance().hullseries.get(),
+  stimulusfile: () => Template.instance().stimulusfile.get(),
   hullseries: () => Template.instance().hullseries.get(),
   layout: () => Template.instance()
     .hullseries.get()

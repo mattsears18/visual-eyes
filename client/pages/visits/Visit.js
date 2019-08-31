@@ -12,7 +12,8 @@ Template.Visit.onCreated(function() {
       const visit = Visits.findOne({
         _id: Template.currentData().visitId,
       });
-      if (visit && visit.gazepoints) {
+
+      if (visit) {
         this.visit.set(visit);
       }
     }

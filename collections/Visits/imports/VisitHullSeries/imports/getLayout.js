@@ -15,13 +15,8 @@ export default function getLayout(opts) {
     pad: 4,
   };
 
-  let yrange;
-
-  if (this.visit.fileFormat === 'imotions' || this.visit.fileFormat === 'smi') {
-    yrange = [this.visit.stimulus().height, 0];
-  } else {
-    yrange = [0, this.visit.stimulus().height];
-  }
+  // TODO check whether Tobii uses the same coordinates
+  const yrange = [this.visit.stimulus().height, 0];
 
   return {
     xaxis: {

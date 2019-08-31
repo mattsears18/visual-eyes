@@ -1,3 +1,4 @@
+import { Random } from 'meteor/random';
 import Eyeevents from '../../Eyeevents/Eyeevents';
 import Gazepoints from '../../Gazepoints/Gazepoints';
 
@@ -21,6 +22,7 @@ export default function makeEyeevents(rawCsvData) {
       saccades.forEach((event) => {
         bulkEvents.insert({
           ...event,
+          _id: Random.id(),
           type: 'saccade',
           stimulusId: group.stimulusId,
           datafileId: this._id,
@@ -34,6 +36,7 @@ export default function makeEyeevents(rawCsvData) {
       blinks.forEach((event) => {
         bulkEvents.insert({
           ...event,
+          _id: Random.id(),
           type: 'blink',
           stimulusId: group.stimulusId,
           datafileId: this._id,
@@ -47,6 +50,7 @@ export default function makeEyeevents(rawCsvData) {
       fixations.forEach((event) => {
         bulkEvents.insert({
           ...event,
+          _id: Random.id(),
           type: 'fixation',
           stimulusId: group.stimulusId,
           datafileId: this._id,
@@ -60,6 +64,7 @@ export default function makeEyeevents(rawCsvData) {
       gazepoints.forEach((gazepoint) => {
         bulkGazepoints.insert({
           ...gazepoint,
+          _id: Random.id(),
           fileFormat: this.fileFormat,
           stimulusId: group.stimulusId,
           datafileId: this._id,

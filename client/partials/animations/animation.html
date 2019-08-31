@@ -6,8 +6,13 @@
   <div id="Animation" class="m-t-30">
     <div id="PlotArea" class="m-t-30"></div>
   </div>
-  <div class="m-t-10 m-l-50" style="width: {{progressSliderWidth}}px;">
-    <input type="range" class="form-control-range slider-animation" id="slider-animation" value="{{progressPercent}}">
+  <div class="m-t-10 m-l-50" style="width: {{ progressSliderWidth }}px;">
+    <input
+      type="range"
+      class="form-control-range slider-animation"
+      id="slider-animation"
+      value="{{ progressPercent }}"
+    />
   </div>
   <div class="m-t-10 m-l-50">
     <button class="btn btn-primary beginning-animation">
@@ -16,7 +21,9 @@
     <button class="btn btn-primary step-backward-animation">
       <i class="fa fa-step-backward"></i>
     </button>
-    <button class="btn btn-primary {{#if playing}}pause-animation{{else}}play-animation{{/if}}">
+    <button
+      class="btn btn-primary {{#if playing}}pause-animation{{else}}play-animation{{/if}}"
+    >
       <i class="fa {{#if playing}}fa-pause{{else}}fa-play{{/if}}"></i>
     </button>
     <button class="btn btn-primary step-forward-animation">
@@ -26,17 +33,18 @@
       <i class="fa fa-fast-forward"></i>
     </button>
     <span>
-      <!-- <span>{{millisecondsToHMSMS startTime}}</span> -->
       <span class="m-l-10 m-r-5">{{millisecondsToHMSMS currentTime}}</span>
       of
       <span class="m-l-5 m-r-10">{{millisecondsToHMSMS endTime}}</span>
-      <span class="m-l-10 m-r-10">[Convex Hull {{frameName}} of {{frameCount}}]</span>
-      <span><strong>{{progressPercent}}%</strong></span>
+      <span class="m-l-10 m-r-10"
+        >[Convex Hull {{ frameName }} of {{ frameCount }}]</span
+      >
+      <span
+        ><strong>{{ progressPercent }}%</strong></span
+      >
     </span>
   </div>
-  <div class="m-t-20 m-l-50">
-    <strong>Coverage:</strong> {{coverage}}%
-  </div>
+  <div class="m-t-20 m-l-50"><strong>Coverage:</strong> {{ coverage }}%</div>
   <!-- <div>playing: {{json playing}}</div>
   <div>framesTimes: {{json frameTimes}}</div>
   <div>frameIndex: {{json frameIndex}}</div>

@@ -41,6 +41,9 @@ Visits.helpers({
   aoi() {
     return this.aoiId ? Aois.findOne(this.aoiId) : undefined;
   },
+  aoiName() {
+    return this.aoi() ? this.aoi().name : '';
+  },
   stimulus() {
     return this.stimulusId ? Stimuli.findOne(this.stimulusId) : undefined;
   },

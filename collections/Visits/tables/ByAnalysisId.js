@@ -10,7 +10,7 @@ const table = new Tabular.Table({
     'studyId',
     'participantId',
     'stimulusId',
-    'aois',
+    'aoiId',
     'stimulusId',
     'analysisId',
   ],
@@ -43,6 +43,17 @@ const table = new Tabular.Table({
       render(data, type, row, meta) {
         if (data) {
           return `<a href="/studies/${row.studyId}/analyses/${row.analysisId}/${row.participantId}/${row.stimulusId}/${row.number}">${data}</a>`;
+        }
+      },
+    },
+    {
+      data: {
+        _: 'aoiName()',
+      },
+      title: 'Area of Interest',
+      render(data, type, row, meta) {
+        if (data) {
+          return `<a href="/studies/${row.studyId}/stimuli/${row.stimulusId}">${data}</a>`;
         }
       },
     },

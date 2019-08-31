@@ -16,6 +16,7 @@ Template.Visits.onCreated(function() {
     this.subscribe('analyses.single', analysisId);
     this.subscribe('participants.byAnalysisId', analysisId);
     this.subscribe('stimuli.byAnalysisId', analysisId);
+    this.subscribe('aois.byAnalysisId', analysisId);
 
     this.subscribe('visits.simple.byParams', {
       analysisId: FlowRouter.getParam('analysisId'),
@@ -55,6 +56,7 @@ Template.Visits.helpers({
   participant: () => Participants.findOne({ _id: FlowRouter.getParam('participantId') }),
   stimulus: () => Stimuli.findOne({ _id: FlowRouter.getParam('stimulusId') }),
   number: () => parseInt(FlowRouter.getParam('number'), 10),
+
   period: () => Template.instance().period.get(),
   timestep: () => Template.instance().timestep.get(),
   includeIncomplete: () => Template.instance().includeIncomplete.get(),

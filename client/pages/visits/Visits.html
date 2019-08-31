@@ -54,6 +54,16 @@
             </button>
           </td>
         </tr>
+        <tr>
+          <th>Area of Interest:</th>
+          <td class="p-l-10 p-t-5 p-b-5">
+            <div class="no-btn"></div>
+          </td>
+          <td class="p-l-10 text-center">
+            {{ visit.aoi.name }}
+          </td>
+          <td class="p-l-10 p-t-5 p-b-5"></td>
+        </tr>
       </table>
     </div>
 
@@ -70,14 +80,9 @@
           <tr>
             <th>Start Time - End Time:</th>
             <td class="p-l-10" colspan="2">
-              {{millisecondsToMSMS visit.startTime}} -
-              {{millisecondsToMSMS visit.endTime}}
+              {{millisecondsToMSMS visit.timestamp}} -
+              {{millisecondsToMSMS visit.timestampEnd}}
             </td>
-          </tr>
-          <tr>
-            <th>Gaze Point Count (Frequency):</th>
-            <td class="p-l-10">{{ visit.gazepointCount }}</td>
-            <td>({{formatNumber visit.gazepointFrequency}}/sec)</td>
           </tr>
           <tr>
             <th>Fixation Count (Frequency):</th>

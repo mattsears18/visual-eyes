@@ -12,8 +12,7 @@ Meteor.publish('aois.single', function(id) {
 
 Meteor.publish('aois.byStudyId', (studyId) => {
   check(studyId, String);
-  return Aois.find({ studyId },
-    { sort: { name: 1 } });
+  return Aois.find({ studyId }, { sort: { name: 1 } });
 });
 
 Meteor.publish('aois.byVisitId', function(visitId) {
@@ -25,12 +24,13 @@ Meteor.publish('aois.byVisitId', function(visitId) {
 Meteor.publish('aois.byAnalysisId', function(analysisId) {
   check(analysisId, String);
   analysis = Analyses.findOne({ _id: analysisId });
-  return Aois.find({ stimulusId: { $in: analysis.stimulusIds } },
-    { sort: { name: 1 } });
+  return Aois.find(
+    { stimulusId: { $in: analysis.stimulusIds } },
+    { sort: { name: 1 } },
+  );
 });
 
 Meteor.publish('aois.byStimulusId', function(stimulusId) {
   check(stimulusId, String);
-  return Aois.find({ stimulusId },
-    { sort: { name: 1 } });
+  return Aois.find({ stimulusId }, { sort: { name: 1 } });
 });

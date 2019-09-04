@@ -1,6 +1,6 @@
 import { Factory } from 'meteor/dburles:factory';
 import VisitHullSeries from '../VisitHullSeries';
-import defaultTestFixations from '../../../defaultTestFixations';
+import defaultTestFixations from '../../../../defaultTestFixations';
 
 require('../../../../factories.test');
 const { expect } = require('chai');

@@ -2,7 +2,7 @@ import '../../factories.test';
 
 import { Factory } from 'meteor/dburles:factory';
 import { expect } from 'chai';
-import defaultTestFixations from '../defaultTestFixations';
+import defaultTestFixations from '../../defaultTestFixations';
 
 describe('Visit.getExportData()', () => {
   it('has no period', () => {

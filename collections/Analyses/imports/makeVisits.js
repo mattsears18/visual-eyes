@@ -8,8 +8,6 @@ export default function makeVisits(opts) {
     throw new Error('noFixations');
   }
 
-  const allFixations = [...fixations];
-
   if (!participantId) {
     throw new Error('noParticipantId');
   }
@@ -18,6 +16,12 @@ export default function makeVisits(opts) {
   if (!participant) {
     throw new Error('noParticipantFound');
   }
+
+  // Filter the fixations by minimum duration
+  const allFixations = this.filterFixationsByDuration(
+    fixations,
+    this.minFixationDuration,
+  );
 
   const visitIds = [];
 

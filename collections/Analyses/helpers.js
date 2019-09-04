@@ -1,4 +1,5 @@
 import Jobs from '../Jobs/Jobs';
+import filterFixationsByDuration from './imports/filterFixationsByDuration';
 import getVisitEndIndex from './imports/getVisitEndIndex';
 import getVisitFixationCount from './imports/getVisitFixationCount';
 import getVisitAoiIds from './imports/getVisitAoiIds';
@@ -13,6 +14,7 @@ import allVisitsCreated from './imports/allVisitsCreated';
 import allVisitsProcessed from './imports/allVisitsProcessed';
 
 Analyses.helpers({
+  filterFixationsByDuration,
   getVisitEndIndex,
   getVisitFixationCount,
   getVisitAoiIds,

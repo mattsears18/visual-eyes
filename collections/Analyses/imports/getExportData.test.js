@@ -1,7 +1,7 @@
 import '../../factories.test';
 import { Factory } from 'meteor/dburles:factory';
 import { expect } from 'chai';
-import defaultTestFixations from '../../Visits/defaultTestFixations';
+import defaultTestFixations from '../../defaultTestFixations';
 
 describe('Analyses.getExportData()', () => {
   it('has no participants', () => {

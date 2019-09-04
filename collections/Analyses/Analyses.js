@@ -68,7 +68,6 @@ Schemas.Analysis = new SimpleSchema(
       type: Number,
       label: 'Maximum Visit Gap Duration (ms)',
       optional: true,
-      defaultValue: 120,
     },
     includeOutsideImage: {
       type: Boolean,

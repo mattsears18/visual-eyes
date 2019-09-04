@@ -77,4 +77,12 @@ Analyses.helpers({
   allJobsCompleted() {
     return this.jobsCount() === this.jobsCompletedCount();
   },
+  typeText() {
+    if (this.type) {
+      if (this.type === 'iso15007') {
+        return 'ISO 15007';
+      }
+      return 'Custom';
+    }
+  },
 });

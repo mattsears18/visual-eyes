@@ -6,6 +6,7 @@ let participantSub;
 let stimuliSub;
 
 Template.Analysis.onCreated(function() {
+  const analysisId = FlowRouter.getParam('analysisId');
   const self = this;
 
   self.selector = new ReactiveDict();
@@ -14,6 +15,8 @@ Template.Analysis.onCreated(function() {
   self.selector.set('stimulusIds', []);
   self.selector.set('selector', {});
 
+  self.subscribe('visits.byAnalysisId', analysisId);
+
   self.autorun(function() {
     const studyId = FlowRouter.getParam('studyId');
     self.subscribe('studies.single', studyId);
@@ -21,9 +24,8 @@ Template.Analysis.onCreated(function() {
     self.subscribe('variables.byStudyId', studyId);
     self.subscribe('datafiles.byStudyId', studyId);
 
-    const analysisId = FlowRouter.getParam('analysisId');
     self.subscribe('analyses.single', analysisId);
-    self.subscribe('visits.byAnalysisId', analysisId);
+
     participantSub = self.subscribe('participants.byAnalysisId', analysisId);
     stimuliSub = self.subscribe('stimuli.byAnalysisId', analysisId);
 
@@ -55,6 +57,7 @@ Template.Analysis.helpers({
     stimulusIds = template.selector.get('stimulusIds');
 
     selector = {
+      analysisId: FlowRouter.getParam('analysisId'),
       participantId: { $in: participantIds },
       stimulusId: { $in: stimulusIds },
     };

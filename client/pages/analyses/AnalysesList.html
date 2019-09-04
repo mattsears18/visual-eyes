@@ -34,6 +34,12 @@
           Name
         </th>
         <th>
+          Type
+        </th>
+        <th>
+          Minimum Fixation Duration (ms)
+        </th>
+        <th>
           Minimum Visit Duration (ms)
         </th>
         <th>
@@ -67,6 +73,12 @@
           <a href="/studies/{{ study._id }}/analyses/{{ analysis._id }}">{{
             analysis.name
           }}</a>
+        </td>
+        <td>
+          {{ analysis.typeText }}
+        </td>
+        <td>
+          {{ analysis.minFixationDuration }}
         </td>
         <td>
           {{ analysis.minVisitDuration }}

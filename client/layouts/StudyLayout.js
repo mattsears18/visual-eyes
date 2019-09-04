@@ -38,3 +38,7 @@ Template.StudyLayout.events({
 Template.StudyLayout.destroyed = function() {
   Session.set('updateStudy', false);
 };
+
+Template.BreadCrumbs.helpers({
+  study: () => Studies.findOne(),
+});

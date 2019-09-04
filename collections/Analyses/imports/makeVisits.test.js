@@ -50,6 +50,7 @@ describe('Analyses.makeVisits()', () => {
       studyId: study._id,
       participantIds: [participant._id],
       stimulusIds: [stimulus._id],
+      minFixationDuration: null,
       minVisitDuration: 5000,
       maxVisitGapDuration: 2000,
       ignoreOutsideImage: false,

@@ -9,7 +9,7 @@ import getAssignedRows from './imports/getAssignedRows';
 import getName from './imports/getName';
 import getValidCoordinatesOnly from './imports/getValidCoordinatesOnly';
 import getRawCSV from './imports/getRawCSV';
-import getRenamedRows from './imports/getRenamedRows';
+import renameRows from './imports/renameRows';
 import getStimuliOnly from './imports/getStimuliOnly';
 import groupRowsByAoi from './imports/groupRowsByAoi';
 import groupRowsByStimulus from './imports/groupRowsByStimulus';
@@ -32,7 +32,7 @@ Datafiles.collection.helpers({
   getName,
   getValidCoordinatesOnly,
   getRawCSV,
-  getRenamedRows,
+  renameRows,
   getStimuliOnly,
   groupRowsByAoi,
   groupRowsByStimulus,

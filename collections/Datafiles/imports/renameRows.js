@@ -1,4 +1,4 @@
-export default function getRenamedRows(rawCsvData) {
+export default function renameRows(rawCsvData) {
   // assume this.fileFormat is already set
   if (!rawCsvData || !rawCsvData.length) {
     throw Error('noRawCsvData');

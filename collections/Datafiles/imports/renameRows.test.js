@@ -3,23 +3,23 @@ import { Factory } from 'meteor/dburles:factory';
 require('../../factories.test');
 const { expect } = require('chai');
 
-describe('Datafiles.getRenamedRows()', () => {
+describe('Datafiles.renameRows()', () => {
   it('supplies no rawCsvData', () => {
     const datafile = Factory.create('imotionsDatafile');
     expect(() => {
-      datafile.getRenamedRows();
+      datafile.renameRows();
     }).to.throw('noRawCsvData');
   });
   it('has no fileFormat', () => {
     const datafile = Factory.create('imotionsDatafile');
     expect(() => {
-      datafile.getRenamedRows([1, 2, 3]);
+      datafile.renameRows([1, 2, 3]);
     }).to.throw('noFileFormat');
   });
   it('has an unrecognized fileFormat', () => {
     const datafile = Factory.create('imotionsDatafile', { fileFormat: 'foo' });
     expect(() => {
-      datafile.getRenamedRows([1, 2, 3]);
+      datafile.renameRows([1, 2, 3]);
     }).to.throw('unrecognizedFileFormat');
   });
   it('renames smi headers', () => {
@@ -89,7 +89,7 @@ describe('Datafiles.getRenamedRows()', () => {
         aoiName: '-',
       },
     ];
-    expect(datafile.getRenamedRows(rows)).to.eql(expectedRows);
+    expect(datafile.renameRows(rows)).to.eql(expectedRows);
   });
   it('renames imotions headers', () => {
     const datafile = Factory.create('imotionsDatafile');
@@ -192,6 +192,6 @@ describe('Datafiles.getRenamedRows()', () => {
         aoiName: '',
       },
     ];
-    expect(datafile.getRenamedRows(rows)).to.eql(expectedRows);
+    expect(datafile.renameRows(rows)).to.eql(expectedRows);
   });
 });

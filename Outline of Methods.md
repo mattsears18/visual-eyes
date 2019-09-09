@@ -38,7 +38,7 @@
     - [x] .getName()
   - [x] .makeEyeevents(rawCsvData) (async) (bulk insert is async)
     - [x] .getAssignedRows(rawCsvData)
-      - [x] .getRenamedRows(rawCsvData)
+      - [x] .renameRows(rawCsvData)
       - [x] .getStimuliOnly(renamedRows)
       - [x] .getValidCoordinatesOnly(renamedRows)
       - [x] .filterSortFloat(field, data)

@@ -48,7 +48,7 @@ if (Meteor.isServer) {
       expect(participant.datafileIds).to.eql([datafile._id]);
     });
 
-    it('processes an SMI datafile with multiple stimnuli', async () => {
+    it('processes an SMI datafile with multiple stimuli', async () => {
       const study = Factory.create('study');
       let datafile = Factory.create('smiMultiDatafile', {
         studyId: study._id,

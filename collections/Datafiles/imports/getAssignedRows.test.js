@@ -8,7 +8,7 @@ describe('Datafiles.getAssignedRows()', () => {
     const datafile = Factory.create('imotionsDatafile');
     expect(() => {
       datafile.getAssignedRows();
-    }).to.throw('noRawData');
+    }).to.throw('noData');
   });
 
   it('assigns stimuli and aois to each row in a real imotions file', async () => {
@@ -21,7 +21,8 @@ describe('Datafiles.getAssignedRows()', () => {
     expect(rawData[rawData.length - 1].stimulusId).to.be.undefined;
     expect(rawData[rawData.length - 1].aoiId).to.be.undefined;
 
-    const assignedRows = datafile.getAssignedRows(rawData);
+    const renamedRows = datafile.renameRows(rawData);
+    const assignedRows = datafile.getAssignedRows(renamedRows);
 
     expect(assignedRows.length).to.equal(3218); // verified in excel
 

@@ -1,20 +1,22 @@
 import helpers from '../../../lib/helpers';
 import Eyeevents from '../../Eyeevents/Eyeevents';
 
-const csv = require('csvtojson');
-
 export default async function process() {
+  delete this.fileFormat;
+
   const rawData = await this.getRawData();
 
-  this.preProcess(rawData);
+  this.preProcess();
 
-  let statuses;
+  let timestampedData;
   if (this.fileFormat === 'smi') {
-    const timedData = this.assignVideoTimes(rawData);
-    statuses = this.makeEyeevents(timedData);
+    timestampedData = this.assignVideoTimes(rawData);
   } else {
-    statuses = this.makeEyeevents(rawData);
+    timestampedData = rawData;
   }
+
+  const renamedRows = this.renameRows(timestampedData);
+  const statuses = this.makeEyeevents(renamedRows);
 
   const eyeeventsStatus = await statuses.eyeeventsStatus;
   const gazepointsStatus = await statuses.gazepointsStatus;

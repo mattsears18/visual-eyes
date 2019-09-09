@@ -3,7 +3,7 @@
 // const { expect } = require('chai');
 // const testRows = require('../../../testFiles/shortFile/smiVideoTimeMatchRandomTestRows.json');
 
-// describe.only('Datafiles.getRowVideoTime()', () => {
+// describe('Datafiles.getRowVideoTime()', () => {
 //   it("doesn't provide a stimulus row", async () => {
 //     const datafile = Factory.create('smiDatafile');
 

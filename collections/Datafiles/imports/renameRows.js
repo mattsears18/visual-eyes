@@ -65,5 +65,12 @@ export default function renameRows(rawData) {
     renamedRows.push(renamedRow);
   }
 
+  this.rawRowCount = renamedRows.length;
+
+  Datafiles.update(
+    { _id: this._id },
+    { $set: { rawRowCount: this.rawRowCount } },
+  );
+
   return renamedRows;
 }

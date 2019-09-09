@@ -13,21 +13,13 @@ describe('Datafiles.preProcess()', () => {
       datafile.preProcess();
     }).to.throw('noStudy');
   });
-  it("doesn't provide the rawData", async () => {
-    const datafile = Factory.create('imotionsDatafile');
-
-    // error thrown from Datafile.detectFileFormat()
-    expect(() => {
-      datafile.preProcess();
-    }).to.throw('noRawData');
-  });
 
   it('preProcesses a file', async () => {
     const datafile = Factory.create('imotionsDatafile');
 
     expect(datafile.status).to.equal('needsProcessing');
-    const rawData = await datafile.getRawData();
-    datafile.preProcess(rawData);
+
+    datafile.preProcess();
     expect(datafile.status).to.equal('processing');
   });
 });

@@ -8,19 +8,25 @@ export default function assignVideoTimes(rawData) {
     throw Error('noRawData');
   }
 
-  const allRows = [...rawData];
+  const allRows = [...rawData]; // clone (not reference)
 
-  const stimulusIntakes = allRows.filter(
-    row => !row.Stimulus.includes('.avi')
-      && row['Category Binocular'] === 'Visual Intake',
-  );
+  const stimulusIntakes = [];
+  for (let i = 0; i < allRows.length; i += 1) {
+    if (
+      !allRows[i].Stimulus.includes('.avi')
+      && allRows[i]['Category Binocular'] === 'Visual Intake'
+    ) {
+      // TODO only get the necessary fields
+      stimulusIntakes.push({ rawDataIndex: i, ...allRows[i] });
+    }
+  }
 
   const orderedStimulusIntakes = _.orderBy(stimulusIntakes, [
     'Index Binocular',
     'RecordingTime [ms]',
   ]);
 
-  const stimulusIntakeIndices = Array.from(
+  const binocularIndices = Array.from(
     new Set(
       orderedStimulusIntakes.map(intake => intake['Index Binocular'] * 1),
     ),
@@ -31,14 +37,14 @@ export default function assignVideoTimes(rawData) {
       && row['Category Binocular'] === 'Visual Intake',
   );
 
-  const videoIntakes = allVideoIntakes.filter(row => stimulusIntakeIndices.includes(row['Index Binocular'] * 1));
+  const videoIntakes = allVideoIntakes.filter(row => binocularIndices.includes(row['Index Binocular'] * 1));
 
   const orderedVideoIntakes = _.orderBy(videoIntakes, [
     'Index Binocular',
     'RecordingTime [ms]',
   ]);
 
-  stimulusIntakeIndices.forEach((index) => {
+  binocularIndices.forEach((index) => {
     const stimulusRows = orderedStimulusIntakes.filter(
       row => row['Index Binocular'] * 1 === index,
     );
@@ -48,22 +54,30 @@ export default function assignVideoTimes(rawData) {
     );
 
     if (stimulusRows.length !== videoRows.length) {
-      throw new Error('intakeMismatch');
+      // throw new Error('intakeMismatch');
+      console.log(
+        `intake mismatch! binocular index: ${index} video row count: ${videoRows.length} stimulus row count: ${stimulusRows.length}`,
+      );
     }
+    //
+
+    // console.log('');
+    // console.log(`binocular index:    ${index}`);
+    // console.log(`video row count:    ${videoRows.length}`);
+    // console.log(`stimulus row count: ${videoRows.length}`);
 
     for (let i = 0; i < stimulusRows.length; i += 1) {
-      stimulusRows[i]['Video Time [h:m:s:ms]'] = videoRows[i]['Video Time [h:m:s:ms]'];
+      // console.log(stimulusRows[i]);
+      // console.log(
+      //   `original video time: ${
+      //     allRows[stimulusRows[i].rawDataIndex]['Video Time [h:m:s:ms]']
+      //   }`,
+      // );
+      // console.log(`new video time: ${videoRows[i]['Video Time [h:m:s:ms]']}`);
 
-      // TODO pick back up here 2019-09-06 - find the original (raw) stimulus row in allRows and save the video time to it!!
-
-      // TODO then in Datafiles.getRenamesRows() set the timestamp to the video time instead of the 'recordingTime' - of course, have to convert the video times to [ms]
-
-      // const realRow = allRows.find();
-
-      // console.log('real row:');
-      // console.log(realRow);
+      allRows[stimulusRows[i].rawDataIndex]['Video Time [h:m:s:ms]'] = videoRows[i]['Video Time [h:m:s:ms]'];
     }
   });
-  // return stimulusRows;
+
   return allRows;
 }

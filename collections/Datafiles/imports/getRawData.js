@@ -8,6 +8,10 @@ async function getRawData(opts) {
     this.getPathFilename(),
   );
 
+  if (!this.fileFormat) {
+    this.setFileFormat(rawData);
+  }
+
   const basicColumns = [
     'RecordingTime [ms]', // smi
     'Video Time [h:m:s:ms]', // smi

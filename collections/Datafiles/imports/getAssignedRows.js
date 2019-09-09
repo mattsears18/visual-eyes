@@ -1,18 +1,13 @@
 import helpers from '../../../lib/helpers';
 
-export default function getAssignedRows(rawData) {
-  let renamedRows = this.renameRows(rawData);
+export default function getAssignedRows(renamedRows) {
+  if (!renamedRows || !renamedRows.length) {
+    throw new Error('noData');
+  }
 
-  this.rawRowCount = renamedRows.length;
+  const rows = this.getStimuliOnly(renamedRows);
 
-  Datafiles.update(
-    { _id: this._id },
-    { $set: { rawRowCount: this.rawRowCount } },
-  );
-
-  renamedRows = this.getStimuliOnly(renamedRows);
-
-  const validCoordinateRows = this.getValidCoordinatesOnly(renamedRows);
+  const validCoordinateRows = this.getValidCoordinatesOnly(rows);
 
   // sort renamedRows by timestamp
   const sortedRows = this.filterSortFloat('timestamp', validCoordinateRows);

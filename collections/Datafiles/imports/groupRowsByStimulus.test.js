@@ -7,8 +7,8 @@ describe('Datafiles.groupRowsByStimulus()', () => {
   it('groups by imotions stimuli (single stimulus)', async () => {
     const datafile = Factory.create('imotionsDatafile');
     datafile.fileFormat = 'imotions';
-    const rawCsvData = await datafile.getRawCSV();
-    const assignedRows = datafile.getAssignedRows(rawCsvData);
+    const rawData = await datafile.getRawData();
+    const assignedRows = datafile.getAssignedRows(rawData);
     const groupedByStimulus = datafile.groupRowsByStimulus(assignedRows);
 
     expect(groupedByStimulus.length).to.equal(1);
@@ -19,8 +19,8 @@ describe('Datafiles.groupRowsByStimulus()', () => {
   it('groups by smi stimuli (multiple stimuli)', async () => {
     const datafile = Factory.create('smiMultiDatafile');
     datafile.fileFormat = 'smi';
-    const rawCsvData = await datafile.getRawCSV();
-    const assignedRows = datafile.getAssignedRows(rawCsvData);
+    const rawData = await datafile.getRawData();
+    const assignedRows = datafile.getAssignedRows(rawData);
     const groupedByStimulus = datafile.groupRowsByStimulus(assignedRows);
 
     expect(groupedByStimulus.length).to.equal(10);

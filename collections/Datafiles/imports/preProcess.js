@@ -1,7 +1,7 @@
 import helpers from '../../../lib/helpers';
 import Eyeevents from '../../Eyeevents/Eyeevents';
 
-export default function preProcess(rawCsvData) {
+export default function preProcess(rawData) {
   if (!Meteor.isTest) console.log('Datafile.preProcess()');
 
   const study = Studies.findOne({ _id: this.studyId });
@@ -21,7 +21,7 @@ export default function preProcess(rawCsvData) {
   Datafiles.update({ _id: this._id }, { $set: { status: 'preprocessing' } });
 
   this.removeHeaders();
-  this.setFileFormat(rawCsvData);
+  this.setFileFormat(rawData);
 
   if (this.status === 'unrecognizedFileFormat') {
     throw new Error('unrecognizedFileFormat');

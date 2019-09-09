@@ -22,9 +22,9 @@
 
 //   it('gets video times for a real SMI file with multiple stimuli', async () => {
 //     const datafile = Factory.create('smiFullDatafile');
-//     const rawCsvData = await datafile.getRawCSV({ full: true });
+//     const rawData = await datafile.getRawData({ full: true });
 
-//     const videoIntakes = rawCsvData.filter(
+//     const videoIntakes = rawData.filter(
 //       row => row.Stimulus.includes('.avi')
 //         && row['Category Binocular'] === 'Visual Intake',
 //     );
@@ -51,9 +51,9 @@
 
 //   it('finds no match in the video rows', async () => {
 //     const datafile = Factory.create('smiFullDatafile');
-//     const rawCsvData = await datafile.getRawCSV({ full: true });
+//     const rawData = await datafile.getRawData({ full: true });
 
-//     const videoIntakes = rawCsvData.filter(
+//     const videoIntakes = rawData.filter(
 //       row => row.Stimulus.includes('.avi')
 //         && row['Category Binocular'] === 'Visual Intake',
 //     );

@@ -1,9 +1,9 @@
-export default function detectFileFormat(rawCsvData) {
-  if (!rawCsvData || !rawCsvData.length) {
-    throw Error('noRawCsvData');
+export default function detectFileFormat(rawData) {
+  if (!rawData || !rawData.length) {
+    throw Error('noRawData');
   }
 
-  const rows = [...rawCsvData];
+  const rows = [...rawData];
   let fileFormat;
 
   if (

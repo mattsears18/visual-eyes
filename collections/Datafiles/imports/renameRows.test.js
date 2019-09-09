@@ -3,7 +3,7 @@ import { Factory } from 'meteor/dburles:factory';
 require('../../factories.test');
 const { expect } = require('chai');
 
-describe.only('Datafiles.renameRows()', () => {
+describe('Datafiles.renameRows()', () => {
   it('supplies no rawData', () => {
     const datafile = Factory.create('imotionsDatafile');
     expect(() => {

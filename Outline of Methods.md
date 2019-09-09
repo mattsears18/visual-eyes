@@ -29,16 +29,16 @@
 # Datafiles
 
 - [x] .process() (async)
-  - [x] .getRawCSV() (async)
-  - [x] .preProcess(rawCsvData)
+  - [x] .getRawData() (async)
+  - [x] .preProcess(rawData)
     - [x] .removeHeaders()
       - Works but still need tests
-    - [x] .setFileFormat(rawCsvData)
-      - [x] .detectFileFormat(rawCsvData)
+    - [x] .setFileFormat(rawData)
+      - [x] .detectFileFormat(rawData)
     - [x] .getName()
-  - [x] .makeEyeevents(rawCsvData) (async) (bulk insert is async)
-    - [x] .getAssignedRows(rawCsvData)
-      - [x] .renameRows(rawCsvData)
+  - [x] .renameRows(rawData)
+  - [x] .makeEyeevents(rawData) (async) (bulk insert is async)
+    - [x] .getAssignedRows(rawData)
       - [x] .getStimuliOnly(renamedRows)
       - [x] .getValidCoordinatesOnly(renamedRows)
       - [x] .filterSortFloat(field, data)

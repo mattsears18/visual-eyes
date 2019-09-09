@@ -1,30 +1,30 @@
 import { Factory } from 'meteor/dburles:factory';
 
-require('./../../factories.test');
+require('../../factories.test');
 const { expect } = require('chai');
 
 if (Meteor.isServer) {
-  describe('Datafiles.getRawCSV()', () => {
+  describe('Datafiles.getRawData()', () => {
     it('has 12,271 rows of raw data', async () => {
       const imotionsDatafile = Factory.create('imotionsDatafile');
-      expect((await imotionsDatafile.getRawCSV()).length).to.equal(12271);
+      expect((await imotionsDatafile.getRawData()).length).to.equal(12271);
     }).timeout(10000);
 
     it('has 12,742 rows of raw data', async () => {
       const smiDatafile = Factory.create('smiDatafile');
-      expect((await smiDatafile.getRawCSV()).length).to.equal(12742);
+      expect((await smiDatafile.getRawData()).length).to.equal(12742);
     }).timeout(10000);
 
     it('has 146,558 rows of raw data', async () => {
       const smiMultiDatafile = Factory.create('smiMultiDatafile');
-      expect((await smiMultiDatafile.getRawCSV()).length).to.equal(146558);
+      expect((await smiMultiDatafile.getRawData()).length).to.equal(146558);
     }).timeout(10000);
 
     it('only gets the basic columns for an imotions file', async () => {
       const datafile = Factory.create('imotionsDatafile');
-      const rawCsvData = await datafile.getRawCSV();
+      const rawData = await datafile.getRawData();
 
-      expect(Object.keys(rawCsvData[0])).to.eql([
+      expect(Object.keys(rawData[0])).to.eql([
         'Timestamp',
         'FixationSeq',
         'GazeX',
@@ -39,9 +39,9 @@ if (Meteor.isServer) {
 
     it('only gets the basic columns for an smi file', async () => {
       const datafile = Factory.create('smiDatafile');
-      const rawCsvData = await datafile.getRawCSV();
+      const rawData = await datafile.getRawData();
 
-      expect(Object.keys(rawCsvData[0])).to.eql([
+      expect(Object.keys(rawData[0])).to.eql([
         'RecordingTime [ms]',
         'Video Time [h:m:s:ms]',
         'Time of Day [h:m:s:ms]',
@@ -56,9 +56,9 @@ if (Meteor.isServer) {
 
     it('gets the full set of columns for an smi file', async () => {
       const datafile = Factory.create('smiDatafile');
-      const rawCsvData = await datafile.getRawCSV({ full: true });
+      const rawData = await datafile.getRawData({ full: true });
 
-      expect(Object.keys(rawCsvData[0])).to.eql([
+      expect(Object.keys(rawData[0])).to.eql([
         'RecordingTime [ms]',
         'Video Time [h:m:s:ms]',
         'Time of Day [h:m:s:ms]',

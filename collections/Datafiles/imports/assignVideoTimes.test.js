@@ -3,21 +3,21 @@ import { Factory } from 'meteor/dburles:factory';
 const { expect } = require('chai');
 
 describe('Datafiles.assignVideoTimes()', () => {
-  it("doesn't provide the rawCsvData", async () => {
+  it("doesn't provide the rawData", async () => {
     const datafile = Factory.create('imotionsDatafile');
 
     expect(() => {
       datafile.assignVideoTimes();
-    }).to.throw('noRawCsvData');
+    }).to.throw('noRawData');
   });
 
   it('gets the video times when all indices match', async () => {
     const datafile = Factory.create('smiDatafile');
-    const rawCsvData = await datafile.getRawCSV();
-    datafile.preProcess(rawCsvData);
+    const rawData = await datafile.getRawData();
+    datafile.preProcess(rawData);
 
     const hrstart = process.hrtime();
-    const rawCsvDataWithVideoTimes = datafile.assignVideoTimes(rawCsvData);
+    const rawDataWithVideoTimes = datafile.assignVideoTimes(rawData);
     const hrend = process.hrtime(hrstart);
 
     console.info(

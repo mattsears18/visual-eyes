@@ -4,16 +4,16 @@ import Eyeevents from '../../Eyeevents/Eyeevents';
 const csv = require('csvtojson');
 
 export default async function process() {
-  const rawCsvData = await this.getRawCSV();
+  const rawData = await this.getRawData();
 
-  this.preProcess(rawCsvData);
+  this.preProcess(rawData);
 
   let statuses;
   if (this.fileFormat === 'smi') {
-    const timedData = this.assignVideoTimes(rawCsvData);
+    const timedData = this.assignVideoTimes(rawData);
     statuses = this.makeEyeevents(timedData);
   } else {
-    statuses = this.makeEyeevents(rawCsvData);
+    statuses = this.makeEyeevents(rawData);
   }
 
   const eyeeventsStatus = await statuses.eyeeventsStatus;

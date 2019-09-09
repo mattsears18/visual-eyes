@@ -1,14 +1,14 @@
 // THIS IS ONLY NECESSARY FOR SMI FILES!!
 const _ = require('lodash');
 
-export default function assignVideoTimes(rawCsvData) {
+export default function assignVideoTimes(rawData) {
   if (!Meteor.isTest) console.log('Datafile.assignVideoTimes()');
 
-  if (!rawCsvData || !rawCsvData.length) {
-    throw Error('noRawCsvData');
+  if (!rawData || !rawData.length) {
+    throw Error('noRawData');
   }
 
-  const allRows = [...rawCsvData];
+  const allRows = [...rawData];
 
   const stimulusIntakes = allRows.filter(
     row => !row.Stimulus.includes('.avi')

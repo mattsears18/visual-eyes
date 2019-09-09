@@ -8,7 +8,7 @@ import generateSMIEyeevents from './imports/generateSMIEyeevents';
 import getAssignedRows from './imports/getAssignedRows';
 import getName from './imports/getName';
 import getValidCoordinatesOnly from './imports/getValidCoordinatesOnly';
-import getRawCSV from './imports/getRawCSV';
+import getRawData from './imports/getRawData';
 import renameRows from './imports/renameRows';
 import getStimuliOnly from './imports/getStimuliOnly';
 import groupRowsByAoi from './imports/groupRowsByAoi';
@@ -31,7 +31,7 @@ Datafiles.collection.helpers({
   getAssignedRows,
   getName,
   getValidCoordinatesOnly,
-  getRawCSV,
+  getRawData,
   renameRows,
   getStimuliOnly,
   groupRowsByAoi,

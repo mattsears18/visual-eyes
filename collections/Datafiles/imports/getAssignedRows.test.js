@@ -4,24 +4,24 @@ require('../../factories.test');
 const { expect } = require('chai');
 
 describe('Datafiles.getAssignedRows()', () => {
-  it("doesn't pass any rawCsvData", () => {
+  it("doesn't pass any rawData", () => {
     const datafile = Factory.create('imotionsDatafile');
     expect(() => {
       datafile.getAssignedRows();
-    }).to.throw('noRawCsvData');
+    }).to.throw('noRawData');
   });
 
   it('assigns stimuli and aois to each row in a real imotions file', async () => {
     const datafile = Factory.create('imotionsDatafile');
     datafile.fileFormat = 'imotions';
-    const rawCsvData = await datafile.getRawCSV();
+    const rawData = await datafile.getRawData();
 
-    expect(rawCsvData[0].stimulusId).to.be.undefined;
-    expect(rawCsvData[0].aoiId).to.be.undefined;
-    expect(rawCsvData[rawCsvData.length - 1].stimulusId).to.be.undefined;
-    expect(rawCsvData[rawCsvData.length - 1].aoiId).to.be.undefined;
+    expect(rawData[0].stimulusId).to.be.undefined;
+    expect(rawData[0].aoiId).to.be.undefined;
+    expect(rawData[rawData.length - 1].stimulusId).to.be.undefined;
+    expect(rawData[rawData.length - 1].aoiId).to.be.undefined;
 
-    const assignedRows = datafile.getAssignedRows(rawCsvData);
+    const assignedRows = datafile.getAssignedRows(rawData);
 
     expect(assignedRows.length).to.equal(3218); // verified in excel
 
@@ -40,14 +40,14 @@ describe('Datafiles.getAssignedRows()', () => {
   it('assigns stimuli and aois to each row in a real smi file', async () => {
     const datafile = Factory.create('smiDatafile');
     datafile.fileFormat = 'smi';
-    const rawCsvData = await datafile.getRawCSV();
+    const rawData = await datafile.getRawData();
 
-    expect(rawCsvData[0].stimulusId).to.be.undefined;
-    expect(rawCsvData[0].aoiId).to.be.undefined;
-    expect(rawCsvData[rawCsvData.length - 1].stimulusId).to.be.undefined;
-    expect(rawCsvData[rawCsvData.length - 1].aoiId).to.be.undefined;
+    expect(rawData[0].stimulusId).to.be.undefined;
+    expect(rawData[0].aoiId).to.be.undefined;
+    expect(rawData[rawData.length - 1].stimulusId).to.be.undefined;
+    expect(rawData[rawData.length - 1].aoiId).to.be.undefined;
 
-    const assignedRows = datafile.getAssignedRows(rawCsvData);
+    const assignedRows = datafile.getAssignedRows(rawData);
 
     expect(assignedRows.length).to.equal(4326); // verified in excel
 
@@ -67,14 +67,14 @@ describe('Datafiles.getAssignedRows()', () => {
   it('assigns stimuli and aois to each row in a real smi file with multiple stimuli', async () => {
     const datafile = Factory.create('smiMultiDatafile');
     datafile.fileFormat = 'smi';
-    const rawCsvData = await datafile.getRawCSV();
+    const rawData = await datafile.getRawData();
 
-    expect(rawCsvData[0].stimulusId).to.be.undefined;
-    expect(rawCsvData[0].aoiId).to.be.undefined;
-    expect(rawCsvData[rawCsvData.length - 1].stimulusId).to.be.undefined;
-    expect(rawCsvData[rawCsvData.length - 1].aoiId).to.be.undefined;
+    expect(rawData[0].stimulusId).to.be.undefined;
+    expect(rawData[0].aoiId).to.be.undefined;
+    expect(rawData[rawData.length - 1].stimulusId).to.be.undefined;
+    expect(rawData[rawData.length - 1].aoiId).to.be.undefined;
 
-    const assignedRows = datafile.getAssignedRows(rawCsvData);
+    const assignedRows = datafile.getAssignedRows(rawData);
 
     expect(assignedRows.length).to.equal(41897); // verified in excel
 

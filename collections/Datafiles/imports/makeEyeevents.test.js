@@ -13,8 +13,8 @@ if (Meteor.isServer) {
         participantId: participant._id,
       });
       datafile.fileFormat = 'imotions';
-      const rawCsvData = await datafile.getRawCSV();
-      const statuses = datafile.makeEyeevents(rawCsvData);
+      const rawData = await datafile.getRawData();
+      const statuses = datafile.makeEyeevents(rawData);
       const eyeeventsStatus = await statuses.eyeeventsStatus;
       const gazepointsStatus = await statuses.gazepointsStatus;
 
@@ -42,8 +42,8 @@ if (Meteor.isServer) {
         participantId: participant._id,
       });
       datafile.fileFormat = 'smi';
-      const rawCsvData = await datafile.getRawCSV();
-      const statuses = datafile.makeEyeevents(rawCsvData);
+      const rawData = await datafile.getRawData();
+      const statuses = datafile.makeEyeevents(rawData);
       const eyeeventsStatus = await statuses.eyeeventsStatus;
       const gazepointsStatus = await statuses.gazepointsStatus;
 
@@ -71,8 +71,8 @@ if (Meteor.isServer) {
         participantId: participant._id,
       });
       datafile.fileFormat = 'smi';
-      const rawCsvData = await datafile.getRawCSV();
-      const statuses = datafile.makeEyeevents(rawCsvData);
+      const rawData = await datafile.getRawData();
+      const statuses = datafile.makeEyeevents(rawData);
       const eyeeventsStatus = await statuses.eyeeventsStatus;
       const gazepointsStatus = await statuses.gazepointsStatus;
 

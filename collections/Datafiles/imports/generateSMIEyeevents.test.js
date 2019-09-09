@@ -14,7 +14,7 @@ describe('Datafiles.generateSMIEyeevents', () => {
   it('generates eyeevents for a real smi file', async () => {
     const datafile = Factory.create('smiDatafile');
     datafile.fileFormat = 'smi';
-    const rawCsvData = await datafile.getRawCSV();
+    const rawData = await datafile.getRawData();
 
     const stimulus = Factory.create('stimulus', {
       name: 'ImageA',
@@ -28,7 +28,7 @@ describe('Datafiles.generateSMIEyeevents', () => {
       stimulusId: stimulus._id,
     });
 
-    const assignedRows = datafile.getAssignedRows(rawCsvData);
+    const assignedRows = datafile.getAssignedRows(rawData);
 
     // grouping by stimuli not necessary because there's only one stimulus in this file
 
@@ -55,7 +55,7 @@ describe('Datafiles.generateSMIEyeevents', () => {
   it('generates eyeevents for a real smi file with multiple stimuli', async () => {
     const datafile = Factory.create('smiMultiDatafile');
     datafile.fileFormat = 'smi';
-    const rawCsvData = await datafile.getRawCSV();
+    const rawData = await datafile.getRawData();
 
     const stimulus = Factory.create('stimulus', {
       name: 'Spool 4',
@@ -69,7 +69,7 @@ describe('Datafiles.generateSMIEyeevents', () => {
       stimulusId: stimulus._id,
     });
 
-    const assignedRows = datafile.getAssignedRows(rawCsvData);
+    const assignedRows = datafile.getAssignedRows(rawData);
     const groupedRows = datafile.groupRowsByStimulus(assignedRows);
 
     const {

@@ -14,7 +14,7 @@ describe('Datafiles.generateImotionsEyeevents', () => {
   it('generates eyeevents for a real imotions file', async () => {
     const datafile = Factory.create('imotionsDatafile');
     datafile.fileFormat = 'imotions';
-    const rawCsvData = await datafile.getRawCSV();
+    const rawData = await datafile.getRawData();
 
     const stimulus = Factory.create('stimulus', {
       name: 'Mapping 1',
@@ -28,7 +28,7 @@ describe('Datafiles.generateImotionsEyeevents', () => {
       stimulusId: stimulus._id,
     });
 
-    const assignedRows = datafile.getAssignedRows(rawCsvData);
+    const assignedRows = datafile.getAssignedRows(rawData);
 
     const {
       saccades,

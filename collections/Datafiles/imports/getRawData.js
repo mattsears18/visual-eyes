@@ -1,7 +1,7 @@
 const csv = require('csvtojson');
 const _ = require('lodash/core');
 
-async function getRawCSV(opts) {
+async function getRawData(opts) {
   const { full } = opts || {};
 
   const rawData = await csv({ delimiter: 'auto' }).fromFile(
@@ -61,4 +61,4 @@ async function getRawCSV(opts) {
   return rawData.map(row => _.pick(row, basicColumns));
 }
 
-export default getRawCSV;
+export default getRawData;

@@ -9,25 +9,25 @@ if (Meteor.isServer) {
       const datafile = Factory.create('imotionsDatafile');
       expect(() => {
         datafile.detectFileFormat();
-      }).to.throw('noRawCsvData');
+      }).to.throw('noRawData');
     });
 
     it('detects the imotions file format', async () => {
       const datafile = Factory.create('imotionsDatafile');
-      const rawCsvData = await datafile.getRawCSV();
-      expect(datafile.detectFileFormat(rawCsvData)).to.equal('imotions');
+      const rawData = await datafile.getRawData();
+      expect(datafile.detectFileFormat(rawData)).to.equal('imotions');
     });
 
     it('detects the smi file format', async () => {
       const datafile = Factory.create('smiDatafile');
-      const rawCsvData = await datafile.getRawCSV();
-      expect(datafile.detectFileFormat(rawCsvData)).to.equal('smi');
+      const rawData = await datafile.getRawData();
+      expect(datafile.detectFileFormat(rawData)).to.equal('smi');
     });
 
     it('does not detect a fileFormat', async () => {
       const datafile = Factory.create('unrecognizedDatafile');
-      const rawCsvData = await datafile.getRawCSV();
-      expect(datafile.detectFileFormat(rawCsvData)).to.be.an('undefined');
+      const rawData = await datafile.getRawData();
+      expect(datafile.detectFileFormat(rawData)).to.be.an('undefined');
     });
   });
 }

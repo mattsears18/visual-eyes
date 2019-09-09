@@ -2,10 +2,10 @@ import { Random } from 'meteor/random';
 import Eyeevents from '../../Eyeevents/Eyeevents';
 import Gazepoints from '../../Gazepoints/Gazepoints';
 
-export default function makeEyeevents(rawCsvData) {
+export default function makeEyeevents(rawData) {
   if (!Meteor.isTest) console.log('Datafile.makeEyeevents()');
 
-  const assignedRows = this.getAssignedRows(rawCsvData);
+  const assignedRows = this.getAssignedRows(rawData);
   const groupedRows = this.groupRowsByStimulus(assignedRows);
 
   const bulkEvents = Eyeevents.rawCollection().initializeUnorderedBulkOp();

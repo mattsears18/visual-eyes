@@ -1,7 +1,7 @@
 import helpers from '../../../lib/helpers';
 
-export default function getAssignedRows(rawCsvData) {
-  let renamedRows = this.renameRows(rawCsvData);
+export default function getAssignedRows(rawData) {
+  let renamedRows = this.renameRows(rawData);
 
   this.rawRowCount = renamedRows.length;
 

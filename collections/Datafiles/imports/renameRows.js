@@ -1,10 +1,10 @@
-export default function renameRows(rawCsvData) {
+export default function renameRows(rawData) {
   // assume this.fileFormat is already set
-  if (!rawCsvData || !rawCsvData.length) {
-    throw Error('noRawCsvData');
+  if (!rawData || !rawData.length) {
+    throw Error('noRawData');
   }
 
-  const rows = [...rawCsvData];
+  const rows = [...rawData];
 
   if (!this.fileFormat) {
     throw new Error('noFileFormat');

@@ -3,12 +3,12 @@ import { Factory } from 'meteor/dburles:factory';
 require('../../factories.test');
 const { expect } = require('chai');
 
-describe('Datafiles.renameRows()', () => {
-  it('supplies no rawCsvData', () => {
+describe.only('Datafiles.renameRows()', () => {
+  it('supplies no rawData', () => {
     const datafile = Factory.create('imotionsDatafile');
     expect(() => {
       datafile.renameRows();
-    }).to.throw('noRawCsvData');
+    }).to.throw('noRawData');
   });
   it('has no fileFormat', () => {
     const datafile = Factory.create('imotionsDatafile');

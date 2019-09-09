@@ -8,7 +8,7 @@ describe('Datafiles.getAssignedRows()', () => {
     const datafile = Factory.create('imotionsDatafile');
     expect(() => {
       datafile.getAssignedRows();
-    }).to.throw('noRawCSVData');
+    }).to.throw('noRawCsvData');
   });
 
   it('assigns stimuli and aois to each row in a real imotions file', async () => {

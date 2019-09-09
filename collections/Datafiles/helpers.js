@@ -1,5 +1,6 @@
 import assignAois from './imports/assignAois';
 import assignStimuli from './imports/assignStimuli';
+import assignVideoTimes from './imports/assignVideoTimes';
 import detectFileFormat from './imports/detectFileFormat';
 import filterSortFloat from './imports/filterSortFloat';
 import generateImotionsEyeevents from './imports/generateImotionsEyeevents';
@@ -22,6 +23,7 @@ import setFileFormat from './imports/setFileFormat';
 Datafiles.collection.helpers({
   assignAois,
   assignStimuli,
+  assignVideoTimes,
   detectFileFormat,
   filterSortFloat,
   generateImotionsEyeevents,

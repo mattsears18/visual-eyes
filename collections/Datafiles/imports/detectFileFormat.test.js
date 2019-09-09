@@ -9,7 +9,7 @@ if (Meteor.isServer) {
       const datafile = Factory.create('imotionsDatafile');
       expect(() => {
         datafile.detectFileFormat();
-      }).to.throw('noRawCSVData');
+      }).to.throw('noRawCsvData');
     });
 
     it('detects the imotions file format', async () => {

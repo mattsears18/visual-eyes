@@ -127,6 +127,21 @@ const smiMultiFields = {
   _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/',
 };
 
+const smiFullFields = {
+  path:
+    '/Users/matthewsears/code/visual-eyes/testFiles/realFile/smiFullParticipant03.csv',
+  versions: {
+    original: {
+      path:
+        '/Users/matthewsears/code/visual-eyes/testFiles/realFile/smiFullParticipant03.csv',
+      size: 11369165,
+      type: 'text/plain',
+      extension: 'txt',
+    },
+  },
+  _storagePath: '/Users/matthewsears/code/visual-eyes/testFiles/realFile/',
+};
+
 const unrecognizedFields = {
   path:
     '/Users/matthewsears/code/visual-eyes/testFiles/realFile/unrecognizedWael.txt',
@@ -166,6 +181,10 @@ Factory.define('smiDatafileWithHeaders', Datafiles.collection, {
 Factory.define('smiMultiDatafile', Datafiles.collection, {
   ...baseDatafile,
   ...smiMultiFields,
+});
+Factory.define('smiFullDatafile', Datafiles.collection, {
+  ...baseDatafile,
+  ...smiFullFields,
 });
 Factory.define('unrecognizedDatafile', Datafiles.collection, {
   ...baseDatafile,

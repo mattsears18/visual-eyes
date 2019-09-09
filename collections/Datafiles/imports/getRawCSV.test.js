@@ -19,5 +19,74 @@ if (Meteor.isServer) {
       const smiMultiDatafile = Factory.create('smiMultiDatafile');
       expect((await smiMultiDatafile.getRawCSV()).length).to.equal(146558);
     }).timeout(10000);
+
+    it('only gets the basic columns for an imotions file', async () => {
+      const datafile = Factory.create('imotionsDatafile');
+      const rawCsvData = await datafile.getRawCSV();
+
+      expect(Object.keys(rawCsvData[0])).to.eql([
+        'Timestamp',
+        'FixationSeq',
+        'GazeX',
+        'GazeY',
+        'FixationX',
+        'FixationY',
+        'FixationDuration',
+        'StimulusName',
+        'GazeAOI',
+      ]);
+    });
+
+    it('only gets the basic columns for an smi file', async () => {
+      const datafile = Factory.create('smiDatafile');
+      const rawCsvData = await datafile.getRawCSV();
+
+      expect(Object.keys(rawCsvData[0])).to.eql([
+        'RecordingTime [ms]',
+        'Video Time [h:m:s:ms]',
+        'Time of Day [h:m:s:ms]',
+        'Category Binocular',
+        'Index Binocular',
+        'Point of Regard Binocular X [px]',
+        'Point of Regard Binocular Y [px]',
+        'Stimulus',
+        'AOI Name Binocular',
+      ]);
+    });
+
+    it('gets the full set of columns for an smi file', async () => {
+      const datafile = Factory.create('smiDatafile');
+      const rawCsvData = await datafile.getRawCSV({ full: true });
+
+      expect(Object.keys(rawCsvData[0])).to.eql([
+        'RecordingTime [ms]',
+        'Video Time [h:m:s:ms]',
+        'Time of Day [h:m:s:ms]',
+        'Category Binocular',
+        'Index Binocular',
+        'Point of Regard Binocular X [px]',
+        'Point of Regard Binocular Y [px]',
+        'Stimulus',
+        'AOI Name Binocular',
+        'Pupil Size Right X [px]',
+        'Pupil Size Right Y [px]',
+        'Pupil Diameter Right [mm]',
+        'Pupil Size Left X [px]',
+        'Pupil Size Left Y [px]',
+        'Pupil Diameter Left [mm]',
+        'Gaze Vector Right X',
+        'Gaze Vector Right Y',
+        'Gaze Vector Right Z',
+        'Gaze Vector Left X',
+        'Gaze Vector Left Y',
+        'Gaze Vector Left Z',
+        'Eye Position Right X [mm]',
+        'Eye Position Right Y [mm]',
+        'Eye Position Right Z [mm]',
+        'Eye Position Left X [mm]',
+        'Eye Position Left Y [mm]',
+        'Eye Position Left Z [mm]',
+      ]);
+    });
   });
 }

@@ -1,7 +1,7 @@
 export default function getRenamedRows(rawCsvData) {
   // assume this.fileFormat is already set
   if (!rawCsvData || !rawCsvData.length) {
-    throw Error('noRawCSVData');
+    throw Error('noRawCsvData');
   }
 
   const rows = [...rawCsvData];
@@ -14,7 +14,7 @@ export default function getRenamedRows(rawCsvData) {
 
   if (this.fileFormat === 'smi') {
     headers = [
-      { original: 'RecordingTime [ms]', new: 'timestamp' },
+      { original: 'RecordingTime [ms]', new: 'timestamp' }, // TODO use video time!
       { original: 'Time of Day [h:m:s:ms]', new: 'timeOfDay' },
       { original: 'Category Binocular', new: 'category' },
       { original: 'Index Binocular', new: 'eventIndex' },

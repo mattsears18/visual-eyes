@@ -8,7 +8,14 @@ export default async function process() {
 
   this.preProcess(rawCsvData);
 
-  const statuses = this.makeEyeevents(rawCsvData);
+  let statuses;
+  if (this.fileFormat === 'smi') {
+    const timedData = this.assignVideoTimes(rawCsvData);
+    statuses = this.makeEyeevents(timedData);
+  } else {
+    statuses = this.makeEyeevents(rawCsvData);
+  }
+
   const eyeeventsStatus = await statuses.eyeeventsStatus;
   const gazepointsStatus = await statuses.gazepointsStatus;
 

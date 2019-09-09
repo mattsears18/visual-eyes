@@ -1,6 +1,6 @@
 export default function detectFileFormat(rawCsvData) {
   if (!rawCsvData || !rawCsvData.length) {
-    throw Error('noRawCSVData');
+    throw Error('noRawCsvData');
   }
 
   const rows = [...rawCsvData];

@@ -19,7 +19,7 @@ describe('Datafiles.preProcess()', () => {
     // error thrown from Datafile.detectFileFormat()
     expect(() => {
       datafile.preProcess();
-    }).to.throw('noRawCSVData');
+    }).to.throw('noRawCsvData');
   });
 
   it('preProcesses a file', async () => {

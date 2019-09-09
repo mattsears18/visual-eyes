@@ -36,7 +36,7 @@ if (Meteor.isServer) {
       const datafile = Factory.create('imotionsDatafile');
       expect(() => {
         datafile.setFileFormat();
-      }).to.throw('noRawCSVData');
+      }).to.throw('noRawCsvData');
     });
   });
 }

@@ -8,7 +8,7 @@ describe('Datafiles.getRenamedRows()', () => {
     const datafile = Factory.create('imotionsDatafile');
     expect(() => {
       datafile.getRenamedRows();
-    }).to.throw('noRawCSVData');
+    }).to.throw('noRawCsvData');
   });
   it('has no fileFormat', () => {
     const datafile = Factory.create('imotionsDatafile');

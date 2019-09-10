@@ -1,5 +1,6 @@
 export default function setFileFormat(rawData) {
-  if (!Meteor.isTest) console.log('Datafile.setFileFormat()');
+  if (Meteor.isServer) console.log('Datafile.setFileFormat()');
+
   if (!this.isText) {
     this.status = 'unrecognizedFileFormat';
     Datafiles.update(
@@ -13,6 +14,8 @@ export default function setFileFormat(rawData) {
       { $set: { fileFormat: this.fileFormat } },
     );
   }
+
+  if (Meteor.isServer) console.log(`file format: ${this.fileFormat}`);
 
   return this.fileFormat;
 }

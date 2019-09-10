@@ -1,6 +1,8 @@
 import helpers from '../../../lib/helpers';
 
 export default function getAssignedRows(renamedRows) {
+  if (Meteor.isServer) console.log('Datafiles.getAssignedRows()');
+
   if (!renamedRows || !renamedRows.length) {
     throw new Error('noData');
   }

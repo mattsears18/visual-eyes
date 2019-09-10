@@ -2,7 +2,7 @@ import helpers from '../../../lib/helpers';
 import Eyeevents from '../../Eyeevents/Eyeevents';
 
 export default function preProcess() {
-  if (!Meteor.isTest) console.log('Datafile.preProcess()');
+  if (Meteor.isServer) console.log('Datafile.preProcess()');
 
   const study = Studies.findOne({ _id: this.studyId });
   if (!study) {
@@ -21,9 +21,9 @@ export default function preProcess() {
 
   this.removeHeaders();
 
-  if (this.status === 'unrecognizedFileFormat') {
-    throw new Error('unrecognizedFileFormat');
-  }
+  // if (this.status === 'unrecognizedFileFormat') {
+  //   throw new Error('unrecognizedFileFormat');
+  // }
 
   // console.log('remove any old gazepoints');
   Gazepoints.remove({ datafileId: this._id });

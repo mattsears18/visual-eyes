@@ -2,6 +2,8 @@ const csv = require('csvtojson');
 const _ = require('lodash/core');
 
 async function getRawData(opts) {
+  if (Meteor.isServer) console.log('Datafiles.getRawData()');
+
   const { full } = opts || {};
 
   const rawData = await csv({ delimiter: 'auto', checkType: true }).fromFile(
@@ -12,10 +14,19 @@ async function getRawData(opts) {
     this.setFileFormat(rawData);
   }
 
+  this.rawRowCount = rawData.length;
+
+  if (Meteor.isServer) console.log(`raw row count: ${this.rawRowCount}`);
+
+  Datafiles.update(
+    { _id: this._id },
+    { $set: { rawRowCount: this.rawRowCount } },
+  );
+
   const basicColumns = [
     'RecordingTime [ms]', // smi
     'Video Time [h:m:s:ms]', // smi
-    'Time of Day [h:m:s:ms]', // smi
+    // 'Time of Day [h:m:s:ms]', // smi
     'Category Binocular', // smi
     'Index Binocular', // smi
     'Point of Regard Binocular X [px]', // smi

@@ -1,4 +1,6 @@
 export default function renameRows(rawData) {
+  if (Meteor.isServer) console.log('Datafiles.renameRows()');
+
   // assume this.fileFormat is already set
   if (!rawData || !rawData.length) {
     throw Error('noRawData');
@@ -64,13 +66,6 @@ export default function renameRows(rawData) {
 
     renamedRows.push(renamedRow);
   }
-
-  this.rawRowCount = renamedRows.length;
-
-  Datafiles.update(
-    { _id: this._id },
-    { $set: { rawRowCount: this.rawRowCount } },
-  );
 
   return renamedRows;
 }

@@ -1,6 +1,8 @@
 import helpers from '../../../lib/helpers';
 
 export default function filterSortFloat(field, data) {
+  if (Meteor.isServer) console.log('Datafiles.filterSortFloat()');
+
   let rows = [...data];
 
   rows = rows.filter(row => helpers.isFloaty(row[field]));

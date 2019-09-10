@@ -1,4 +1,6 @@
 export default function generateImotionsEyeevents(assignedRows) {
+  if (Meteor.isServer) console.log('Datafiles.generateImotionsEyeevents()');
+
   // assume rows have already been sorted by timestamp
   // assume all rows belong to same stimulus
 

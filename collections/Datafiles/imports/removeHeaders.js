@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 export default function removeHeaders() {
-  if (!Meteor.isTest) console.log('Datafile.removeHeaders()');
+  if (Meteor.isServer) console.log('Datafile.removeHeaders()');
 
   const data = fs.readFileSync(this.getPathFilename(), 'utf-8');
   const lines = data.toString().split('\n');
@@ -34,8 +34,14 @@ export default function removeHeaders() {
       { $set: { headersRemoved: true, fileFormat: 'smi' } },
     );
   } else {
-    // console.log('Does not have iMotions header or BeGaze header. Assume it has no header at all...');
+    // console.log(
+    //   'Does not have iMotions header or BeGaze header. Assume it has no header at all...',
+    // );
     this.headersRemoved = true;
     Datafiles.update({ _id: this._id }, { $set: { headersRemoved: true } });
+  }
+
+  if (this.fileFormat) {
+    console.log(`file format: ${this.fileFormat}`);
   }
 }

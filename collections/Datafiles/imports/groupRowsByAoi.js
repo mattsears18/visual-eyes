@@ -1,5 +1,5 @@
 export default function groupRowsByAoi(assignedRows) {
-  if (!Meteor.isTest) console.log('Datafile.groupRowsByAoi()');
+  if (Meteor.isServer) console.log('Datafile.groupRowsByAoi()');
 
   if (!assignedRows || !assignedRows.length) {
     throw Error('noAssignedRows');
@@ -20,7 +20,11 @@ export default function groupRowsByAoi(assignedRows) {
     const { stimulusName } = aoiRows[0];
 
     const group = {
-      aoiId, aoiName, stimulusName, stimulusId, rows: aoiRows,
+      aoiId,
+      aoiName,
+      stimulusName,
+      stimulusId,
+      rows: aoiRows,
     };
     groups.push(group);
   });

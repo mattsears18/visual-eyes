@@ -2,7 +2,7 @@
 const _ = require('lodash');
 
 export default function assignVideoTimes(rawData) {
-  if (!Meteor.isTest) console.log('Datafile.assignVideoTimes()');
+  if (Meteor.isServer) console.log('Datafile.assignVideoTimes()');
 
   if (!rawData || !rawData.length) {
     throw Error('noRawData');
@@ -46,16 +46,22 @@ export default function assignVideoTimes(rawData) {
 
   let duplicateIndexCount = 0;
 
-  binocularIndices.forEach((index) => {
+  binocularIndices.forEach((binocularIndex, ind) => {
+    // console.log(
+    //   `binocular index: ${binocularIndex} [${ind + 1} of ${
+    //     binocularIndices.length
+    //   }]`,
+    // );
+
     const stimulusRows = orderedStimulusIntakes.filter(
-      row => row['Index Binocular'] * 1 === index,
+      row => row['Index Binocular'] * 1 === binocularIndex,
     );
 
     const videoRows = orderedVideoIntakes.filter(
-      row => row['Index Binocular'] * 1 === index,
+      row => row['Index Binocular'] * 1 === binocularIndex,
     );
 
-    if (stimulusRows.length !== videoRows.length) {
+    while (stimulusRows.length !== videoRows.length) {
       if (stimulusRows.length - videoRows.length === 1) {
         if (
           stimulusRows[0]['RecordingTime [ms]']
@@ -70,53 +76,52 @@ export default function assignVideoTimes(rawData) {
           console.log(
             `intake mismatch! datafile name: ${
               this.name
-            } binocular index: ${index} diff: ${stimulusRows.length
+            } binocularIndex: ${binocularIndex} diff: ${stimulusRows.length
               - videoRows.length} video row count: ${
               videoRows.length
             } stimulus row count: ${stimulusRows.length}`,
           );
+          break;
         }
-      }
-    }
-
-    if (stimulusRows.length !== videoRows.length) {
-      if (videoRows.length * 2 === stimulusRows.length) {
-        // console.log('duplicate index!');
+      } else if (videoRows.length * 2 === stimulusRows.length) {
+        console.log('duplicate binocularIndex!');
         duplicateIndexCount += 1;
         // TODO pick back up here!!! 2019-09-09 figure out what to do with the duplicates!
+        break;
       } else {
         console.log(
           `intake mismatch! datafile name: ${
             this.name
-          } binocular index: ${index} diff: ${stimulusRows.length
+          } binocularIndex: ${binocularIndex} diff: ${stimulusRows.length
             - videoRows.length} video row count: ${
             videoRows.length
           } stimulus row count: ${stimulusRows.length}`,
         );
+        break;
       }
-    } else {
-      // console.log('');
-      // console.log(`binocular index:    ${index}`);
-      // console.log(`video row count:    ${videoRows.length}`);
-      // console.log(`stimulus row count: ${videoRows.length}`);
+    }
 
-      for (let i = 0; i < stimulusRows.length; i += 1) {
-        // console.log(stimulusRows[i]);
-        // console.log(
-        //   `original video time: ${
-        //     allRows[stimulusRows[i].rawDataIndex]['Video Time [h:m:s:ms]']
-        //   }`,
-        // );
-        // console.log(`new video time: ${videoRows[i]['Video Time [h:m:s:ms]']}`);
-        // TODO video time are fucking shit! Don't use them!
-        // TODO get the first row video time to use as a reference
-        // TODO convert the video time to [ms]
-        // TODO subtract the first row recordingTime from each of the recordingTimes (delta)
-        // TODO add the new recordingTime (delta) to the first row video time and save to allRows[i].timestamp
-        // TODO note that "timestamp" is a new variable. Modify Datafiles.renameRows() accordingly
-        // OLD don't use this below
-        // allRows[stimulusRows[i].rawDataIndex]['Video Time [h:m:s:ms]'] = videoRows[i]['Video Time [h:m:s:ms]'];
-      }
+    // console.log('');
+    // console.log(`inocularIndex:    ${binocularIndex}`);
+    // console.log(`video row count:    ${videoRows.length}`);
+    // console.log(`stimulus row count: ${videoRows.length}`);
+
+    for (let i = 0; i < stimulusRows.length; i += 1) {
+      // console.log(stimulusRows[i]);
+      // console.log(
+      //   `original video time: ${
+      //     allRows[stimulusRows[i].rawDataIndex]['Video Time [h:m:s:ms]']
+      //   }`,
+      // );
+      // console.log(`new video time: ${videoRows[i]['Video Time [h:m:s:ms]']}`);
+      // TODO video time are fucking shit! Don't use them!
+      // TODO get the first row video time to use as a reference
+      // TODO convert the video time to [ms]
+      // TODO subtract the first row recordingTime from each of the recordingTimes (delta)
+      // TODO add the new recordingTime (delta) to the first row video time and save to allRows[i].timestamp
+      // TODO note that "timestamp" is a new variable. Modify Datafiles.renameRows() accordingly
+      // OLD don't use this below
+      // allRows[stimulusRows[i].rawDataIndex]['Video Time [h:m:s:ms]'] = videoRows[i]['Video Time [h:m:s:ms]'];
     }
   });
 

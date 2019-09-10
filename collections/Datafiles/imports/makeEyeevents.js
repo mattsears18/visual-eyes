@@ -3,7 +3,7 @@ import Eyeevents from '../../Eyeevents/Eyeevents';
 import Gazepoints from '../../Gazepoints/Gazepoints';
 
 export default function makeEyeevents(renamedRows) {
-  if (!Meteor.isTest) console.log('Datafile.makeEyeevents()');
+  if (Meteor.isServer) console.log('Datafile.makeEyeevents()');
 
   const assignedRows = this.getAssignedRows(renamedRows);
   const groupedRows = this.groupRowsByStimulus(assignedRows);

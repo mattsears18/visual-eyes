@@ -2,11 +2,16 @@ import helpers from '../../../lib/helpers';
 import Eyeevents from '../../Eyeevents/Eyeevents';
 
 export default async function process() {
+  if (Meteor.isServer) console.log('Datafiles.process()');
+
   delete this.fileFormat;
 
+  this.preProcess();
   const rawData = await this.getRawData();
 
-  this.preProcess();
+  if (!this.fileFormat) {
+    this.setFileFormat(rawData);
+  }
 
   let timestampedData;
   if (this.fileFormat === 'smi') {

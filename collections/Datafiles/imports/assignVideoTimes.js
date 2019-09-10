@@ -1,8 +1,10 @@
 // THIS IS ONLY NECESSARY FOR SMI FILES!!
+import helpers from '../../../lib/helpers';
+
 const _ = require('lodash');
 
 export default function assignVideoTimes(rawData) {
-  if (Meteor.isServer) console.log('Datafile.assignVideoTimes()');
+  if (Meteor.isServer && !Meteor.isTest) console.log('Datafile.assignVideoTimes()');
 
   if (!rawData || !rawData.length) {
     throw Error('noRawData');
@@ -84,9 +86,17 @@ export default function assignVideoTimes(rawData) {
           break;
         }
       } else if (videoRows.length * 2 === stimulusRows.length) {
-        console.log('duplicate binocularIndex!');
         duplicateIndexCount += 1;
-        // TODO pick back up here!!! 2019-09-09 figure out what to do with the duplicates!
+
+        console.log(
+          `duplicate binocularIndex! datafile name: ${
+            this.name
+          } binocularIndex: ${binocularIndex} diff: ${stimulusRows.length
+            - videoRows.length} video row count: ${
+            videoRows.length
+          } stimulus row count: ${stimulusRows.length}`,
+        );
+
         break;
       } else {
         console.log(
@@ -102,26 +112,24 @@ export default function assignVideoTimes(rawData) {
     }
 
     // console.log('');
-    // console.log(`inocularIndex:    ${binocularIndex}`);
+    // console.log(`binocularIndex:    ${binocularIndex}`);
     // console.log(`video row count:    ${videoRows.length}`);
     // console.log(`stimulus row count: ${videoRows.length}`);
 
+    const initialVideoTimeHMS = videoRows[0]['Video Time [h:m:s:ms]'];
+    // TODO convert the video time to [ms]
+    const initialVideoTime = helpers.smiHMSToMS(initialVideoTimeHMS);
+
+    // console.log(`initial video time (HMS):     ${initialVideoTimeHMS}`);
+    // console.log(`initial video time (ms):      ${initialVideoTime}`);
+
+    const initialRecordingTime = stimulusRows[0]['RecordingTime [ms]'];
+    // console.log(`initial recording time (ms):  ${initialRecordingTime}`);
+
     for (let i = 0; i < stimulusRows.length; i += 1) {
-      // console.log(stimulusRows[i]);
-      // console.log(
-      //   `original video time: ${
-      //     allRows[stimulusRows[i].rawDataIndex]['Video Time [h:m:s:ms]']
-      //   }`,
-      // );
-      // console.log(`new video time: ${videoRows[i]['Video Time [h:m:s:ms]']}`);
-      // TODO video time are fucking shit! Don't use them!
-      // TODO get the first row video time to use as a reference
-      // TODO convert the video time to [ms]
-      // TODO subtract the first row recordingTime from each of the recordingTimes (delta)
-      // TODO add the new recordingTime (delta) to the first row video time and save to allRows[i].timestamp
-      // TODO note that "timestamp" is a new variable. Modify Datafiles.renameRows() accordingly
-      // OLD don't use this below
-      // allRows[stimulusRows[i].rawDataIndex]['Video Time [h:m:s:ms]'] = videoRows[i]['Video Time [h:m:s:ms]'];
+      allRows[stimulusRows[i].rawDataIndex].timestamp = initialVideoTime * 1
+        + stimulusRows[i]['RecordingTime [ms]'] * 1
+        - initialRecordingTime * 1;
     }
   });
 

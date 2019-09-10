@@ -2,9 +2,7 @@ import helpers from '../../../lib/helpers';
 import Eyeevents from '../../Eyeevents/Eyeevents';
 
 export default async function process() {
-  if (Meteor.isServer) console.log('Datafiles.process()');
-
-  delete this.fileFormat;
+  if (Meteor.isServer && !Meteor.isTest) console.log('Datafiles.process()');
 
   this.preProcess();
   const rawData = await this.getRawData();

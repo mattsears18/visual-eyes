@@ -2,7 +2,7 @@ const csv = require('csvtojson');
 const _ = require('lodash/core');
 
 async function getRawData(opts) {
-  if (Meteor.isServer) console.log('Datafiles.getRawData()');
+  if (Meteor.isServer && !Meteor.isTest) console.log('Datafiles.getRawData()');
 
   const { full } = opts || {};
 
@@ -16,7 +16,7 @@ async function getRawData(opts) {
 
   this.rawRowCount = rawData.length;
 
-  if (Meteor.isServer) console.log(`raw row count: ${this.rawRowCount}`);
+  if (Meteor.isServer && !Meteor.isTest) console.log(`raw row count: ${this.rawRowCount}`);
 
   Datafiles.update(
     { _id: this._id },

@@ -39,43 +39,43 @@ const fakeRawData = [
     Stimulus: 'wael-5-recording.avi',
   },
   {
-    'Video Time [h:m:s:ms]': '-', // #6
+    'Video Time [h:m:s:ms]': '-', // #6 61340 + 100ms
     'Category Binocular': 'Visual Intake',
     'Index Binocular': '1',
     'RecordingTime [ms]': '200',
     Stimulus: 'Spool 2',
   },
   {
-    'Video Time [h:m:s:ms]': '-', // #7
+    'Video Time [h:m:s:ms]': '-', // #7 (00:01:01:340 = 61340ms)
     'Category Binocular': 'Visual Intake',
     'Index Binocular': '1',
     'RecordingTime [ms]': '100',
     Stimulus: 'Spool 2',
   },
   {
-    'Video Time [h:m:s:ms]': '-', // #8
+    'Video Time [h:m:s:ms]': '-', // #8 61500 + 222ms
     'Category Binocular': 'Visual Intake',
     'Index Binocular': '2',
-    'RecordingTime [ms]': '300',
+    'RecordingTime [ms]': '333',
     Stimulus: 'Spool 2',
   },
   {
-    'Video Time [h:m:s:ms]': '-', // #9
+    'Video Time [h:m:s:ms]': '-', // #9 61500 + 111ms
     'Category Binocular': 'Visual Intake',
     'Index Binocular': '2',
-    'RecordingTime [ms]': '200',
+    'RecordingTime [ms]': '222',
     Stimulus: 'Spool 2',
   },
   {
-    'Video Time [h:m:s:ms]': '-', // #10
+    'Video Time [h:m:s:ms]': '-', // #10 (00:01:01:500 = 61500ms)
     'Category Binocular': 'Visual Intake',
     'Index Binocular': '2',
-    'RecordingTime [ms]': '100',
+    'RecordingTime [ms]': '111',
     Stimulus: 'Spool 2',
   },
 ];
 
-describe('Datafiles.assignVideoTimes()', () => {
+describe.only('Datafiles.assignVideoTimes()', () => {
   it("doesn't provide the raw data", async () => {
     const datafile = Factory.create('imotionsDatafile');
 
@@ -134,39 +134,44 @@ describe('Datafiles.assignVideoTimes()', () => {
         Stimulus: 'wael-5-recording.avi',
       },
       {
-        'Video Time [h:m:s:ms]': '00:01:01:430', // #6
+        'Video Time [h:m:s:ms]': '-', // #6
         'Category Binocular': 'Visual Intake',
         'Index Binocular': '1',
         'RecordingTime [ms]': '200',
         Stimulus: 'Spool 2',
+        timestamp: 61440,
       },
       {
-        'Video Time [h:m:s:ms]': '00:01:01:340', // #7
+        'Video Time [h:m:s:ms]': '-', // #7
         'Category Binocular': 'Visual Intake',
         'Index Binocular': '1',
         'RecordingTime [ms]': '100',
         Stimulus: 'Spool 2',
+        timestamp: 61340,
       },
       {
-        'Video Time [h:m:s:ms]': '01:00:02:500', // #8
+        'Video Time [h:m:s:ms]': '-', // #8
         'Category Binocular': 'Visual Intake',
         'Index Binocular': '2',
-        'RecordingTime [ms]': '300',
+        'RecordingTime [ms]': '333',
         Stimulus: 'Spool 2',
+        timestamp: 61722,
       },
       {
-        'Video Time [h:m:s:ms]': '00:01:02:500', // #9
+        'Video Time [h:m:s:ms]': '-', // #9
         'Category Binocular': 'Visual Intake',
         'Index Binocular': '2',
-        'RecordingTime [ms]': '200',
+        'RecordingTime [ms]': '222',
         Stimulus: 'Spool 2',
+        timestamp: 61611,
       },
       {
-        'Video Time [h:m:s:ms]': '00:01:01:500', // #10
+        'Video Time [h:m:s:ms]': '-', // #10
         'Category Binocular': 'Visual Intake',
         'Index Binocular': '2',
-        'RecordingTime [ms]': '100',
+        'RecordingTime [ms]': '111',
         Stimulus: 'Spool 2',
+        timestamp: 61500,
       },
     ];
 
@@ -186,5 +191,5 @@ describe('Datafiles.assignVideoTimes()', () => {
       hrend[0],
       hrend[1] / 1000000,
     );
-  });
+  }).timeout(20000);
 });

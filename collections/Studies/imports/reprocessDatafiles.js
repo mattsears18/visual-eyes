@@ -21,7 +21,6 @@ export default function reprocessDatafiles() {
           },
           $unset: {
             headersRemoved: 1,
-            fileFormat: 1,
             rawRowCount: 1,
             integerRowCount: 1,
             gazepointCount: 1,

@@ -1,7 +1,7 @@
 import helpers from '../../../lib/helpers';
 
 export default function filterSortFloat(field, data) {
-  if (Meteor.isServer) console.log('Datafiles.filterSortFloat()');
+  if (Meteor.isServer && !Meteor.isTest) console.log('Datafiles.filterSortFloat()');
 
   let rows = [...data];
 

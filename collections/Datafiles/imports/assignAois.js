@@ -1,7 +1,7 @@
 import helpers from '../../../lib/helpers';
 
 export default function assignAois(rowsWithStimuli) {
-  if (Meteor.isServer) console.log('Datafile.assignAois()');
+  if (Meteor.isServer && !Meteor.isTest) console.log('Datafile.assignAois()');
 
   const rows = [...rowsWithStimuli];
 

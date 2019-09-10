@@ -2,7 +2,7 @@ import helpers from '../../../lib/helpers';
 import Eyeevents from '../../Eyeevents/Eyeevents';
 
 export default function preProcess() {
-  if (Meteor.isServer) console.log('Datafile.preProcess()');
+  if (Meteor.isServer && !Meteor.isTest) console.log('Datafile.preProcess()');
 
   const study = Studies.findOne({ _id: this.studyId });
   if (!study) {

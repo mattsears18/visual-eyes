@@ -7,7 +7,7 @@ require('./../../factories.test');
 const { expect } = require('chai');
 
 describe('Datafiles.removeHeaders()', () => {
-  it('removes headers from an imotions datafile', () => {
+  it('removes headers from an imotions datafile', async () => {
     const datafile = Factory.create('imotionsDatafileWithHeaders');
     expect(datafile.headersRemoved).to.be.undefined;
 
@@ -24,6 +24,8 @@ describe('Datafiles.removeHeaders()', () => {
     datafile.removeHeaders();
     expect(datafile.headersRemoved).to.equal(true);
     expect(datafile.fileFormat).to.equal('imotions');
+
+    const rawData = await datafile.getRawData();
 
     if (Meteor.isDevelopment) {
       fs.unlinkSync(newPathFilename);

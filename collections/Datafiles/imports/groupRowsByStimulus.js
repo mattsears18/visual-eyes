@@ -1,5 +1,5 @@
 export default function groupRowsByStimulus(assignedRows) {
-  if (Meteor.isServer) console.log('Datafile.groupRowsByStimulus()');
+  if (Meteor.isServer && !Meteor.isTest) console.log('Datafile.groupRowsByStimulus()');
 
   if (!assignedRows || !assignedRows.length) {
     throw Error('noAssignedRows');

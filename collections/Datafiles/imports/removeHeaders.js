@@ -1,15 +1,16 @@
 const fs = require('fs');
 
 export default function removeHeaders() {
-  if (Meteor.isServer) console.log('Datafile.removeHeaders()');
+  if (Meteor.isServer && !Meteor.isTest) console.log('Datafile.removeHeaders()');
 
   const data = fs.readFileSync(this.getPathFilename(), 'utf-8');
-  const lines = data.toString().split('\n');
-  if (lines[0].substr(0, 6) === '#Study') {
+  const rows = data.toString().split('\n');
+
+  if (rows[0].substr(0, 6) === '#Study') {
     // console.log('Has iMotions header. Remove it.');
 
-    // Remove top 5 lines
-    const dataNoHeader = lines.slice(5).join('\n');
+    // Remove top 5 rows
+    const dataNoHeader = rows.slice(5).join('\n');
     fs.writeFileSync(this.getPathFilename(), dataNoHeader);
 
     this.headersRemoved = true;
@@ -19,11 +20,14 @@ export default function removeHeaders() {
       { _id: this._id },
       { $set: { headersRemoved: true, fileFormat: 'imotions' } },
     );
-  } else if (lines[0].substr(0, 11) === '## [BeGaze]') {
+  } else if (rows[0].substr(0, 11) === '## [BeGaze]') {
     // console.log('Has BeGaze header. Remove it.');
 
-    // Remove top 4 lines
-    const dataNoHeader = lines.slice(4).join('\n');
+    const firstRealRowIndex = getFirstRealRowIndex(rows);
+
+    // Remove header rows
+    const dataNoHeader = rows.slice(firstRealRowIndex).join('\n');
+
     fs.writeFileSync(this.getPathFilename(), dataNoHeader);
 
     this.headersRemoved = true;
@@ -44,4 +48,18 @@ export default function removeHeaders() {
   if (this.fileFormat) {
     console.log(`file format: ${this.fileFormat}`);
   }
+}
+
+function getFirstRealRowIndex(rows) {
+  let rowIndex = 0;
+
+  while (rowIndex < rows.length) {
+    // console.log(rows[rowIndex]);
+    if (rows[rowIndex].substr(0, 18) === 'RecordingTime [ms]') {
+      break;
+    }
+    rowIndex += 1;
+  }
+
+  return rowIndex;
 }

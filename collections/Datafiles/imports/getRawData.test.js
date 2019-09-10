@@ -44,7 +44,6 @@ if (Meteor.isServer) {
       expect(Object.keys(rawData[0])).to.eql([
         'RecordingTime [ms]',
         'Video Time [h:m:s:ms]',
-        'Time of Day [h:m:s:ms]',
         'Category Binocular',
         'Index Binocular',
         'Point of Regard Binocular X [px]',

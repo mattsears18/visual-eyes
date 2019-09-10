@@ -1,5 +1,5 @@
 export default function generateSMIEyeevents(assignedRows) {
-  if (Meteor.isServer) console.log('Datafiles.generateSMIEyeevents()');
+  if (Meteor.isServer && !Meteor.isTest) console.log('Datafiles.generateSMIEyeevents()');
 
   // assume rows have already been sorted by timestamp
   // assume all rows belong to same stimulus

@@ -1,5 +1,5 @@
 export default function renameRows(rawData) {
-  if (Meteor.isServer) console.log('Datafiles.renameRows()');
+  if (Meteor.isServer && !Meteor.isTest) console.log('Datafiles.renameRows()');
 
   // assume this.fileFormat is already set
   if (!rawData || !rawData.length) {

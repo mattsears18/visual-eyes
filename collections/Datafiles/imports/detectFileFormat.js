@@ -1,5 +1,5 @@
 export default function detectFileFormat(rawData) {
-  if (Meteor.isServer) console.log('Datafiles.detectFileFormat()');
+  if (Meteor.isServer && !Meteor.isTest) console.log('Datafiles.detectFileFormat()');
 
   if (!rawData || !rawData.length) {
     throw Error('noRawData');

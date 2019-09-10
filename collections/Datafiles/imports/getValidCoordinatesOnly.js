@@ -1,7 +1,7 @@
 import helpers from '../../../lib/helpers';
 
 export default function getValidCoordinatesOnly(data) {
-  if (Meteor.isServer) console.log('Datafiles.getValidCoordinatesOnly()');
+  if (Meteor.isServer && !Meteor.isTest) console.log('Datafiles.getValidCoordinatesOnly()');
 
   return data.filter(
     row => helpers.isFloaty(parseFloat(row.x))

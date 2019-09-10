@@ -1,5 +1,5 @@
 export default function groupRowsByAoi(assignedRows) {
-  if (Meteor.isServer) console.log('Datafile.groupRowsByAoi()');
+  if (Meteor.isServer && !Meteor.isTest) console.log('Datafile.groupRowsByAoi()');
 
   if (!assignedRows || !assignedRows.length) {
     throw Error('noAssignedRows');

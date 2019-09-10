@@ -80,7 +80,7 @@ Eyeevents.attachSchema(Schemas.Eyeevent);
 require('./helpers');
 // require('./hooks');
 
-if (Meteor.isServer) {
+if (Meteor.isServer && !Meteor.isTest) {
   Eyeevents.rawCollection().createIndex(
     {
       participantId: 1,

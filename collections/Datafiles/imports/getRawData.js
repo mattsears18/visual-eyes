@@ -4,7 +4,7 @@ const _ = require('lodash/core');
 async function getRawData(opts) {
   const { full } = opts || {};
 
-  const rawData = await csv({ delimiter: 'auto' }).fromFile(
+  const rawData = await csv({ delimiter: 'auto', checkType: true }).fromFile(
     this.getPathFilename(),
   );
 
@@ -22,7 +22,6 @@ async function getRawData(opts) {
     'Point of Regard Binocular Y [px]', // smi
     'Stimulus', // smi
     'AOI Name Binocular', // smi
-
     'Timestamp', // imotions
     'FixationSeq', // imotions
     'GazeX', // imotions

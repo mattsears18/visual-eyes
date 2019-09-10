@@ -93,7 +93,7 @@ Visits.attachSchema(Schemas.Visit);
 require('./helpers');
 require('./hooks');
 
-if (Meteor.isServer) {
+if (Meteor.isServer && !Meteor.isTest) {
   Visits.rawCollection().createIndex(
     { studyId: 1, participantId: 1, stimulusId: 1 },
     (err, result) => {

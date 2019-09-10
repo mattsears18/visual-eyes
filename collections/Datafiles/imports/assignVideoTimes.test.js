@@ -75,7 +75,7 @@ const fakeRawData = [
   },
 ];
 
-describe.only('Datafiles.assignVideoTimes()', () => {
+describe('Datafiles.assignVideoTimes()', () => {
   it("doesn't provide the raw data", async () => {
     const datafile = Factory.create('imotionsDatafile');
 
@@ -173,18 +173,18 @@ describe.only('Datafiles.assignVideoTimes()', () => {
     expect(datafile.assignVideoTimes(fakeRawData)).to.eql(expected);
   });
 
-  // it('gets the video times for a real smi file', async () => {
-  //   const datafile = Factory.create('smiFullDatafile');
-  //   const rawData = await datafile.getRawData();
+  it('gets the video times for a real smi file', async () => {
+    const datafile = Factory.create('smiFullDatafile');
+    const rawData = await datafile.getRawData();
 
-  //   const hrstart = process.hrtime();
-  //   const dataWithVideoTimes = datafile.assignVideoTimes(rawData);
-  //   const hrend = process.hrtime(hrstart);
+    const hrstart = process.hrtime();
+    const dataWithVideoTimes = datafile.assignVideoTimes(rawData);
+    const hrend = process.hrtime(hrstart);
 
-  //   console.info(
-  //     'Time to assign video times (hr): %ds %dms',
-  //     hrend[0],
-  //     hrend[1] / 1000000,
-  //   );
-  // });
+    console.info(
+      'Time to assign video times (hr): %ds %dms',
+      hrend[0],
+      hrend[1] / 1000000,
+    );
+  });
 });

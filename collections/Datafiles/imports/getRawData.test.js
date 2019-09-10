@@ -88,5 +88,17 @@ if (Meteor.isServer) {
         'Eye Position Left Z [mm]',
       ]);
     });
+
+    it('infers Number types in an iMotions file', async () => {
+      const datafile = Factory.create('imotionsDatafile');
+      const rawData = await datafile.getRawData();
+      expect(rawData[120].GazeX).to.eql(382);
+    });
+
+    it('infers Number types in an SMI file', async () => {
+      const datafile = Factory.create('smiDatafile');
+      const rawData = await datafile.getRawData();
+      expect(rawData[120]['RecordingTime [ms]']).to.eql(2555249.311);
+    });
   });
 }

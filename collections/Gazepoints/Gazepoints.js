@@ -73,7 +73,7 @@ Gazepoints.attachSchema(Schemas.Gazepoint);
 require('./helpers');
 require('./hooks');
 
-if (Meteor.isServer) {
+if (Meteor.isServer && !Meteor.isTest) {
   Gazepoints.rawCollection().createIndex(
     {
       datafileId: 1,

@@ -47,6 +47,7 @@ export default function assignVideoTimes(rawData) {
   ]);
 
   let duplicateIndexCount = 0;
+  let removedRowsCount = 0;
 
   binocularIndices.forEach((binocularIndex, ind) => {
     // console.log(
@@ -71,6 +72,7 @@ export default function assignVideoTimes(rawData) {
         ) {
           // Duplicate row - remove the first row
           stimulusRows.shift();
+          removedRowsCount += 1;
         } else {
           console.log('');
           console.log('PROBLEM!');
@@ -135,7 +137,7 @@ export default function assignVideoTimes(rawData) {
 
   if (duplicateIndexCount > 0) {
     console.log(
-      `datafile name: ${this.name} duplicate indices: ${duplicateIndexCount} of ${binocularIndices.length}`,
+      `datafile name: ${this.name}, ${removedRowsCount} rows removed, duplicate indices: ${duplicateIndexCount} of ${binocularIndices.length}`,
     );
   }
 

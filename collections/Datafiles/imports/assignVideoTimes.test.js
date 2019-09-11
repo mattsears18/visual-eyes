@@ -191,5 +191,9 @@ describe.only('Datafiles.assignVideoTimes()', () => {
       hrend[0],
       hrend[1] / 1000000,
     );
+
+    const timestampedRows = dataWithVideoTimes.filter(row => row.timestamp);
+
+    expect(timestampedRows.length).to.equal(32273); // 59 rows removed
   }).timeout(20000);
 });

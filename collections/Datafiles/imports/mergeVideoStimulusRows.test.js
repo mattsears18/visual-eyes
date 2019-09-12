@@ -206,22 +206,29 @@ describe.only('Datafiles.mergeVideoStimulusRows()', () => {
     expect(datafile.mergeVideoStimulusRows(fakeRawData)).to.eql(expected);
   });
 
-  // it('gets the video times for a real smi file', async () => {
-  //   const datafile = Factory.create('smiFullDatafile');
-  //   const rawData = await datafile.getRawData();
+  it('gets the video times for a real smi file', async () => {
+    const datafile = Factory.create('smiFullDatafile');
+    const rawData = await datafile.getRawData();
 
-  //   const hrstart = process.hrtime();
-  //   const dataWithVideoTimes = datafile.mergeVideoStimulusRows(rawData);
-  //   const hrend = process.hrtime(hrstart);
+    const hrstart = process.hrtime();
+    const mergedRows = datafile.mergeVideoStimulusRows(rawData);
+    const hrend = process.hrtime(hrstart);
 
-  //   console.info(
-  //     'Time to assign video times (hr): %ds %dms',
-  //     hrend[0],
-  //     hrend[1] / 1000000,
-  //   );
+    console.info(
+      'Time to assign video times (hr): %ds %dms',
+      hrend[0],
+      hrend[1] / 1000000,
+    );
 
-  //   const timestampedRows = dataWithVideoTimes.filter(row => row.timestamp);
+    // the number of rows recorded on the video (stimulus includes '.avi')
+    expect(mergedRows.length).to.equal(104429);
 
-  //   expect(timestampedRows.length).to.equal(32273); // 59 rows removed
-  // }).timeout(20000);
+    const visualIntakeRowsWithStimulus = mergedRows.filter(
+      row => row['Category Binocular'] === 'Visual Intake' && row.Stimulus !== '-',
+    );
+
+    // 59 duplicate recordingTime rows + 46 duplicate index rows = 105 bad rows
+    // 32332 visual intake rows, minus 105 bad rows = 32227 visual intake rows
+    expect(visualIntakeRowsWithStimulus.length).to.equal(32227);
+  }).timeout(60000);
 });

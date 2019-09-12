@@ -25,15 +25,15 @@ if (Meteor.isServer) {
       const rawData = await datafile.getRawData();
 
       expect(Object.keys(rawData[0])).to.eql([
+        'StimulusName',
         'Timestamp',
-        'FixationSeq',
         'GazeX',
         'GazeY',
+        'GazeAOI',
+        'FixationSeq',
         'FixationX',
         'FixationY',
         'FixationDuration',
-        'StimulusName',
-        'GazeAOI',
       ]);
     });
 
@@ -43,48 +43,47 @@ if (Meteor.isServer) {
 
       expect(Object.keys(rawData[0])).to.eql([
         'RecordingTime [ms]',
+        'Stimulus',
         'Category Binocular',
         'Index Binocular',
         'Point of Regard Binocular X [px]',
         'Point of Regard Binocular Y [px]',
-        'Stimulus',
         'AOI Name Binocular',
       ]);
     });
 
-    // it('gets the full set of columns for an smi file', async () => {
-    //   const datafile = Factory.create('smiDatafile');
-    //   const rawData = await datafile.getRawData({ full: true });
+    it('gets the full set of columns for an smi file', async () => {
+      const datafile = Factory.create('smiDatafile');
+      const rawData = await datafile.getRawData({ full: true });
 
-    //   expect(Object.keys(rawData[0])).to.eql([
-    //     'RecordingTime [ms]',
-    //     'Time of Day [h:m:s:ms]',
-    //     'Category Binocular',
-    //     'Index Binocular',
-    //     'Point of Regard Binocular X [px]',
-    //     'Point of Regard Binocular Y [px]',
-    //     'Stimulus',
-    //     'AOI Name Binocular',
-    //     'Pupil Size Right X [px]',
-    //     'Pupil Size Right Y [px]',
-    //     'Pupil Diameter Right [mm]',
-    //     'Pupil Size Left X [px]',
-    //     'Pupil Size Left Y [px]',
-    //     'Pupil Diameter Left [mm]',
-    //     'Gaze Vector Right X',
-    //     'Gaze Vector Right Y',
-    //     'Gaze Vector Right Z',
-    //     'Gaze Vector Left X',
-    //     'Gaze Vector Left Y',
-    //     'Gaze Vector Left Z',
-    //     'Eye Position Right X [mm]',
-    //     'Eye Position Right Y [mm]',
-    //     'Eye Position Right Z [mm]',
-    //     'Eye Position Left X [mm]',
-    //     'Eye Position Left Y [mm]',
-    //     'Eye Position Left Z [mm]',
-    //   ]);
-    // });
+      expect(Object.keys(rawData[0])).to.eql([
+        'RecordingTime [ms]',
+        'Stimulus',
+        'Category Binocular',
+        'Index Binocular',
+        'Pupil Size Right X [px]',
+        'Pupil Size Right Y [px]',
+        'Pupil Diameter Right [mm]',
+        'Pupil Size Left X [px]',
+        'Pupil Size Left Y [px]',
+        'Pupil Diameter Left [mm]',
+        'Point of Regard Binocular X [px]',
+        'Point of Regard Binocular Y [px]',
+        'AOI Name Binocular',
+        'Gaze Vector Right X',
+        'Gaze Vector Right Y',
+        'Gaze Vector Right Z',
+        'Gaze Vector Left X',
+        'Gaze Vector Left Y',
+        'Gaze Vector Left Z',
+        'Eye Position Right X [mm]',
+        'Eye Position Right Y [mm]',
+        'Eye Position Right Z [mm]',
+        'Eye Position Left X [mm]',
+        'Eye Position Left Y [mm]',
+        'Eye Position Left Z [mm]',
+      ]);
+    });
 
     it('infers Number types in an iMotions file', async () => {
       const datafile = Factory.create('imotionsDatafile');

@@ -19,10 +19,7 @@ export default async function process() {
   }
 
   const renamedRows = this.renameRows(timestampedData);
-
-  console.log(renamedRows);
   const statuses = this.makeEyeevents(renamedRows);
-
   const eyeeventsStatus = await statuses.eyeeventsStatus;
   const gazepointsStatus = await statuses.gazepointsStatus;
 

@@ -36,11 +36,13 @@ async function getRawData(opts) {
 
   const hrend = process.hrtime(hrstart);
 
-  console.info(
-    'Time to get raw data (hr): %ds %dms',
-    hrend[0],
-    hrend[1] / 1000000,
-  );
+  if (Meteor.isServer && !Meteor.isTest) {
+    console.info(
+      'Time to get raw data (hr): %ds %dms',
+      hrend[0],
+      hrend[1] / 1000000,
+    );
+  }
 
   return rawData;
 }

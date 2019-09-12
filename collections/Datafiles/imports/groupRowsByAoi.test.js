@@ -8,7 +8,8 @@ describe('Datafiles.groupRowsByAoi()', () => {
     const datafile = Factory.create('imotionsDatafile');
     datafile.fileFormat = 'imotions';
     const rawData = await datafile.getRawData();
-    const assignedRows = datafile.getAssignedRows(rawData);
+    const renamedRows = datafile.renameRows(rawData);
+    const assignedRows = datafile.getAssignedRows(renamedRows);
     const groupedByAoi = datafile.groupRowsByAoi(assignedRows);
 
     expect(groupedByAoi.length).to.equal(1);
@@ -20,7 +21,8 @@ describe('Datafiles.groupRowsByAoi()', () => {
     const datafile = Factory.create('smiMultiDatafile');
     datafile.fileFormat = 'smi';
     const rawData = await datafile.getRawData();
-    const assignedRows = datafile.getAssignedRows(rawData);
+    const renamedRows = datafile.renameRows(rawData);
+    const assignedRows = datafile.getAssignedRows(renamedRows);
     const groupedByAoi = datafile.groupRowsByAoi(assignedRows);
 
     // console.log(groupedByAoi);

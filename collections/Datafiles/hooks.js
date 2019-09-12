@@ -1,4 +1,6 @@
 import Jobs from '../Jobs/Jobs';
+import Eyeevents from '../Eyeevents/Eyeevents';
+import Gazepoints from '../Gazepoints/Gazepoints';
 
 Datafiles.collection.before.insert(function(userId, doc) {
   if (doc.meta && doc.meta.studyId) {
@@ -43,5 +45,9 @@ Datafiles.collection.after.remove(function(userId, datafile) {
     Participants.remove({ datafileIds: { $eq: [] } });
 
     Jobs.remove({ data: { datafileId: datafile._id } });
+
+    Gazepoints.remove({ datafileId: datafile._id });
+
+    Eyeevents.remove({ datafileId: datafile._id });
   }
 });

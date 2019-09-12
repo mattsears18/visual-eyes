@@ -1,4 +1,4 @@
-dfsdgsfe	sdfegrh	fseg	rf	egrh	fdgfhjt	hgdfs	dg	fhgjh	sc	c	scc	scs	cs	cs	cs	cs	cs	cs	cs	vg	hr	gfsge	hrjhf	gdfte	y4ergd	fsw	egrhtj	rgef	sdv	gfh	rgefw	rteyr	ht	fdgsf	dvb	Fngjhfgdsf	gdhf	ng	fbdg	fs	gdhfng	b	dvfw	egrhfng	fbdv	eqw	fegrh	gfsda
+dfsdgsfe	sdfegrh	Stimulus	rf	egrh	fdgfhjt	hgdfs	dg	fhgjh	sc	c	scc	scs	cs	cs	cs	cs	cs	cs	cs	vg	hr	gfsge	hrjhf	gdfte	y4ergd	fsw	egrhtj	rgef	sdv	gfh	rgefw	rteyr	ht	fdgsf	dvb	Fngjhfgdsf	gdhf	ng	fbdg	fs	gdhfng	b	dvfw	egrhfng	fbdv	eqw	fegrh	gfsda
 Clipped - Hazard Identification A	20190216	wael	0	MALE	smiGlasses	TestImage	ET	0	0	0	-1	-1	-1	-1	4	4	2	2	-1	-1	-1	-1	2	2	-1	-1		-1	-1		0																	
 Clipped - Hazard Identification A	20190216	wael	0	MALE	smiGlasses	TestImage	ET	16	16	16	-1	-1	-1	-1	5.2	4.4	2	2	-1	-1	-1	-1	2	2	-1	-1		-1	-1		0																	
 Clipped - Hazard Identification A	20190216	wael	0	MALE	smiGlasses	TestImage	ET	33	33	33	-1	-1	-1	-1	5.6	4.4	2	2	-1	-1	-1	-1	2	2	-1	-1		-1	-1		0																	

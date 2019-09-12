@@ -8,7 +8,8 @@ describe('Datafiles.groupRowsByStimulus()', () => {
     const datafile = Factory.create('imotionsDatafile');
     datafile.fileFormat = 'imotions';
     const rawData = await datafile.getRawData();
-    const assignedRows = datafile.getAssignedRows(rawData);
+    const renamedRows = datafile.renameRows(rawData);
+    const assignedRows = datafile.getAssignedRows(renamedRows);
     const groupedByStimulus = datafile.groupRowsByStimulus(assignedRows);
 
     expect(groupedByStimulus.length).to.equal(1);
@@ -20,7 +21,8 @@ describe('Datafiles.groupRowsByStimulus()', () => {
     const datafile = Factory.create('smiMultiDatafile');
     datafile.fileFormat = 'smi';
     const rawData = await datafile.getRawData();
-    const assignedRows = datafile.getAssignedRows(rawData);
+    const renamedRows = datafile.renameRows(rawData);
+    const assignedRows = datafile.getAssignedRows(renamedRows);
     const groupedByStimulus = datafile.groupRowsByStimulus(assignedRows);
 
     expect(groupedByStimulus.length).to.equal(10);

@@ -25,7 +25,7 @@ async function getRawData(opts) {
 
   const basicColumns = [
     'RecordingTime [ms]', // smi
-    'Video Time [h:m:s:ms]', // smi
+    // 'Video Time [h:m:s:ms]', // smi
     // 'Time of Day [h:m:s:ms]', // smi
     'Category Binocular', // smi
     'Index Binocular', // smi

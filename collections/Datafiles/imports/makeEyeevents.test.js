@@ -14,7 +14,8 @@ if (Meteor.isServer) {
       });
       datafile.fileFormat = 'imotions';
       const rawData = await datafile.getRawData();
-      const statuses = datafile.makeEyeevents(rawData);
+      const renamedRows = datafile.renameRows(rawData);
+      const statuses = datafile.makeEyeevents(renamedRows);
       const eyeeventsStatus = await statuses.eyeeventsStatus;
       const gazepointsStatus = await statuses.gazepointsStatus;
 
@@ -43,7 +44,8 @@ if (Meteor.isServer) {
       });
       datafile.fileFormat = 'smi';
       const rawData = await datafile.getRawData();
-      const statuses = datafile.makeEyeevents(rawData);
+      const renamedRows = datafile.renameRows(rawData);
+      const statuses = datafile.makeEyeevents(renamedRows);
       const eyeeventsStatus = await statuses.eyeeventsStatus;
       const gazepointsStatus = await statuses.gazepointsStatus;
 
@@ -72,7 +74,8 @@ if (Meteor.isServer) {
       });
       datafile.fileFormat = 'smi';
       const rawData = await datafile.getRawData();
-      const statuses = datafile.makeEyeevents(rawData);
+      const renamedRows = datafile.renameRows(rawData);
+      const statuses = datafile.makeEyeevents(renamedRows);
       const eyeeventsStatus = await statuses.eyeeventsStatus;
       const gazepointsStatus = await statuses.gazepointsStatus;
 

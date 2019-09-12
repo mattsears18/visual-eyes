@@ -48,7 +48,8 @@ describe('Datafiles.getAssignedRows()', () => {
     expect(rawData[rawData.length - 1].stimulusId).to.be.undefined;
     expect(rawData[rawData.length - 1].aoiId).to.be.undefined;
 
-    const assignedRows = datafile.getAssignedRows(rawData);
+    const renamedRows = datafile.renameRows(rawData);
+    const assignedRows = datafile.getAssignedRows(renamedRows);
 
     expect(assignedRows.length).to.equal(4326); // verified in excel
 
@@ -75,7 +76,8 @@ describe('Datafiles.getAssignedRows()', () => {
     expect(rawData[rawData.length - 1].stimulusId).to.be.undefined;
     expect(rawData[rawData.length - 1].aoiId).to.be.undefined;
 
-    const assignedRows = datafile.getAssignedRows(rawData);
+    const renamedRows = datafile.renameRows(rawData);
+    const assignedRows = datafile.getAssignedRows(renamedRows);
 
     expect(assignedRows.length).to.equal(41897); // verified in excel
 

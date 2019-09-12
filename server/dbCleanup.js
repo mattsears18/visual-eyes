@@ -10,6 +10,7 @@ import Eyeevents from '../collections/Eyeevents/Eyeevents';
 import Participants from '../collections/Participants/Participants';
 import Visits from '../collections/Visits/Visits';
 import Variables from '../collections/Variables/Variables';
+import Jobs from '../collections/Jobs/Jobs';
 
 export default function dbCleanup() {
   if (Meteor.isServer) {
@@ -224,6 +225,22 @@ export default function dbCleanup() {
         }
         if (num) {
           console.log(`${num} orphaned Visits removed.`);
+        }
+      });
+    }
+
+    // //////////////////////////////////////////////////////////////////////////////
+    query = {
+      'data.analysisId': { $nin: validAnalysisIds },
+    };
+    if (Jobs.find(query).count()) {
+      console.log('removing orphaned analysis Jobs...');
+      Jobs.remove(query, (err, num) => {
+        if (err && err.error !== 404) {
+          console.log(err);
+        }
+        if (num) {
+          console.log(`${num} orphaned analysis Jobs removed.`);
         }
       });
     }

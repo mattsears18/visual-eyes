@@ -2,7 +2,7 @@ import { Factory } from 'meteor/dburles:factory';
 
 const { expect } = require('chai');
 
-describe.only('Datafiles.mergeVideoStimulusRows()', () => {
+describe('Datafiles.mergeVideoStimulusRows()', () => {
   it("doesn't provide the raw data", async () => {
     const datafile = Factory.create('imotionsDatafile');
 

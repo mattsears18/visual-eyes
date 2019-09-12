@@ -15,6 +15,7 @@ describe('Datafiles.generateImotionsEyeevents', () => {
     const datafile = Factory.create('imotionsDatafile');
     datafile.fileFormat = 'imotions';
     const rawData = await datafile.getRawData();
+    const renamedRows = datafile.renameRows(rawData);
 
     const stimulus = Factory.create('stimulus', {
       name: 'Mapping 1',
@@ -28,7 +29,7 @@ describe('Datafiles.generateImotionsEyeevents', () => {
       stimulusId: stimulus._id,
     });
 
-    const assignedRows = datafile.getAssignedRows(rawData);
+    const assignedRows = datafile.getAssignedRows(renamedRows);
 
     const {
       saccades,

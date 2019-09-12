@@ -21,7 +21,10 @@ export default function mergeVideoStimulusRows(rawData) {
     'Index Binocular',
     'RecordingTime [ms]',
   ]);
-  console.log(`all stimulus intake count: ${orderedStimulusIntakes.length}`);
+
+  if (Meteor.isServer && !Meteor.isTest) {
+    console.log(`all stimulus intake count: ${orderedStimulusIntakes.length}`);
+  }
 
   const processedRows = [];
   let badStimulusRowCount = 0;
@@ -79,14 +82,16 @@ export default function mergeVideoStimulusRows(rawData) {
           } else if (videoRows.length * 2 === stimulusRows.length) {
             // these are transitions between stimuli (page turns) don't assign a stimulus to them
             badStimulusRowCount += stimulusRows.length;
-            console.log(
-              `duplicate binocularIndex! datafile name: ${
-                this.name
-              } binocularIndex: ${binocularIndex} diff: ${stimulusRows.length
-                - videoRows.length} video row count: ${
-                videoRows.length
-              } stimulus row count: ${stimulusRows.length}`,
-            );
+            if (Meteor.isServer && !Meteor.isTest) {
+              console.log(
+                `duplicate binocularIndex! datafile name: ${
+                  this.name
+                } binocularIndex: ${binocularIndex} diff: ${stimulusRows.length
+                  - videoRows.length} video row count: ${
+                  videoRows.length
+                } stimulus row count: ${stimulusRows.length}`,
+              );
+            }
             stimulusRows = [];
 
             break;
@@ -134,8 +139,10 @@ export default function mergeVideoStimulusRows(rawData) {
     }
   }
 
-  console.log(`processed rows: ${processedRows.length}`);
-  console.log(`bad stimulus row count: ${badStimulusRowCount}`);
+  if (Meteor.isServer && !Meteor.isTest) {
+    console.log(`processed rows: ${processedRows.length}`);
+    console.log(`bad stimulus row count: ${badStimulusRowCount}`);
+  }
 
   return processedRows;
 }
@@ -146,7 +153,6 @@ function zeroVideoRecordingTimes(rawData) {
     .sort((a, b) => a['RecordingTime [ms]'] * 1 - b['RecordingTime [ms]'] * 1);
 
   const initialRecordingTime = videoRows[0]['RecordingTime [ms]'];
-  // console.log(`initialRecordingTime: ${initialRecordingTime}`);
 
   for (let i = 0; i < videoRows.length; i += 1) {
     if (videoRows[i].Stimulus.includes('.avi')) {

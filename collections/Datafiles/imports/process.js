@@ -20,8 +20,8 @@ export default async function process() {
 
   const renamedRows = this.renameRows(timestampedData);
   const statuses = this.makeEyeevents(renamedRows);
-  const eyeeventsStatus = await statuses.eyeeventsStatus;
-  const gazepointsStatus = await statuses.gazepointsStatus;
+  // const eyeeventsStatus = await statuses.eyeeventsStatus;
+  // const gazepointsStatus = await statuses.gazepointsStatus;
 
   // if (eyeeventsStatus.ok && gazepointsStatus.ok) {
   //   const blinkCount = Eyeevents.find({

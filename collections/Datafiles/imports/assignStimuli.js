@@ -1,4 +1,3 @@
-import { ifError } from 'assert';
 import helpers from '../../../lib/helpers';
 import Stimuli from '../../Stimuli/Stimuli';
 

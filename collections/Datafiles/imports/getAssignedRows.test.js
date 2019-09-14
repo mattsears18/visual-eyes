@@ -4,45 +4,47 @@ require('../../factories.test');
 const { expect } = require('chai');
 
 describe('Datafiles.getAssignedRows()', () => {
-  // it("doesn't pass rawData", () => {
-  //   const datafile = Factory.create('imotionsDatafile');
-  //   expect(() => {
-  //     datafile.getAssignedRows();
-  //   }).to.throw('noData');
-  // });
+  it("doesn't pass rawData", () => {
+    const datafile = Factory.create('imotionsDatafile');
+    expect(() => {
+      datafile.getAssignedRows();
+    }).to.throw('noData');
+  });
 
-  // it('assigns stimuli and aois to each row in a real imotions file', async () => {
-  //   const datafile = Factory.create('imotionsDatafile');
-  //   datafile.fileFormat = 'imotions';
-  //   const rawData = await datafile.getRawData();
+  it('assigns stimuli and aois to each row in a real imotions file', async () => {
+    const datafile = Factory.create('imotionsDatafile');
+    datafile.fileFormat = 'imotions';
+    const rawData = await datafile.getRawData();
 
-  //   expect(rawData[0].stimulusId).to.be.undefined;
-  //   expect(rawData[0].aoiId).to.be.undefined;
-  //   expect(rawData[rawData.length - 1].stimulusId).to.be.undefined;
-  //   expect(rawData[rawData.length - 1].aoiId).to.be.undefined;
+    expect(rawData[0].stimulusId).to.be.undefined;
+    expect(rawData[0].aoiId).to.be.undefined;
+    expect(rawData[rawData.length - 1].stimulusId).to.be.undefined;
+    expect(rawData[rawData.length - 1].aoiId).to.be.undefined;
 
-  //   const renamedRows = datafile.renameRows(rawData);
-  //   const assignedRows = datafile.getAssignedRows(renamedRows);
+    const renamedRows = datafile.renameRows(rawData);
+    const assignedRows = datafile.getAssignedRows(renamedRows);
 
-  //   expect(assignedRows.length).to.equal(12271); // verified in excel (all rows)
+    expect(assignedRows.length).to.equal(12271); // verified in excel (all rows)
 
-  //   const stimuli = Stimuli.find(
-  //     { studyId: datafile.studyId },
-  //     { sort: { name: 1 } },
-  //   ).fetch();
+    const stimuli = Stimuli.find(
+      { studyId: datafile.studyId },
+      { sort: { name: 1 } },
+    ).fetch();
 
-  //   expect(stimuli.length).to.equal(2); // 'Mapping 1' and 'smiGlasses'
-  //   expect(stimuli[0].name).to.equal('Mapping 1');
-  //   expect(stimuli[1].name).to.equal('smiGlasses');
+    expect(stimuli.length).to.equal(3); // 'Mapping 1', '-' and 'smiGlasses'
 
-  //   const aois = Aois.find({ studyId: datafile.studyId });
-  //   expect(aois.count()).to.equal(2);
+    expect(stimuli[0].name).to.equal('-');
+    expect(stimuli[1].name).to.equal('Mapping 1');
+    expect(stimuli[2].name).to.equal('smiGlasses');
 
-  //   expect(assignedRows[0].stimulusId).to.exist;
-  //   expect(assignedRows[0].aoiId).to.exist;
-  //   expect(assignedRows[assignedRows.length - 1].stimulusId).to.exist;
-  //   expect(assignedRows[assignedRows.length - 1].aoiId).to.exist;
-  // }).timeout(10000);
+    const aois = Aois.find({ studyId: datafile.studyId }).fetch();
+    expect(aois.length).to.equal(3);
+
+    expect(assignedRows[0].stimulusId).to.exist;
+    expect(assignedRows[0].aoiId).to.exist;
+    expect(assignedRows[assignedRows.length - 1].stimulusId).to.exist;
+    expect(assignedRows[assignedRows.length - 1].aoiId).to.exist;
+  }).timeout(20000);
 
   it('assigns stimuli and aois to each row in a real smi file', async () => {
     const datafile = Factory.create('smiDatafile');
@@ -96,32 +98,51 @@ describe('Datafiles.getAssignedRows()', () => {
     expect(assignedRows[assignedRows.length - 1].aoiId).to.exist;
   }).timeout(60000);
 
-  // it('assigns stimuli and aois to each row in a real smi file with multiple stimuli', async () => {
-  //   const datafile = Factory.create('smiMultiDatafile');
-  //   datafile.fileFormat = 'smi';
-  //   const rawData = await datafile.getRawData();
+  it('assigns stimuli and aois to each row in a real smi file with multiple stimuli', async () => {
+    const datafile = Factory.create('smiMultiDatafile');
+    datafile.fileFormat = 'smi';
+    const rawData = await datafile.getRawData();
 
-  //   expect(rawData[0].stimulusId).to.be.undefined;
-  //   expect(rawData[0].aoiId).to.be.undefined;
-  //   expect(rawData[rawData.length - 1].stimulusId).to.be.undefined;
-  //   expect(rawData[rawData.length - 1].aoiId).to.be.undefined;
+    expect(rawData[0].stimulusId).to.be.undefined;
+    expect(rawData[0].aoiId).to.be.undefined;
+    expect(rawData[rawData.length - 1].stimulusId).to.be.undefined;
+    expect(rawData[rawData.length - 1].aoiId).to.be.undefined;
 
-  //   const timestampedData = datafile.mergeVideoStimulusRows(rawData);
-  //   const renamedRows = datafile.renameRows(timestampedData);
-  //   const assignedRows = datafile.getAssignedRows(renamedRows);
+    const timestampedData = datafile.mergeVideoStimulusRows(rawData);
+    const renamedRows = datafile.renameRows(timestampedData);
+    const assignedRows = datafile.getAssignedRows(renamedRows);
 
-  //   expect(assignedRows.length).to.equal(104429); // verified in Excel (all of the '.avi' rows)
+    expect(assignedRows.length).to.equal(104429); // verified in Excel (all of the '.avi' rows)
 
-  //   const stimuli = Stimuli.find({ studyId: datafile.studyId });
-  //   expect(stimuli.count()).to.equal(11); // "Spool 1" through "Spool 10" and "-"
+    const stimuli = Stimuli.find({ studyId: datafile.studyId }).fetch();
+    expect(stimuli.length).to.equal(11); // "Spool 1" through "Spool 10" and "-"
 
-  //   const aois = Aois.find({ studyId: datafile.studyId });
+    const aois = Aois.find(
+      { studyId: datafile.studyId },
+      { sort: { name: 1 } },
+    ).fetch();
+    expect(aois.length).to.equal(12); // verified in Excel - "Spool 1" through "Spool 10", "-", and "White Space" on "Spool 7" (index 3986)
 
-  //   expect(aois.count()).to.equal(28); // verified in excel
+    // NOTE Spool 8 has a "white space" at index 3574 and  but they get removed because they are recordingTime duplicates
 
-  //   expect(assignedRows[0].stimulusId).to.exist;
-  //   expect(assignedRows[0].aoiId).to.exist;
-  //   expect(assignedRows[assignedRows.length - 1].stimulusId).to.exist;
-  //   expect(assignedRows[assignedRows.length - 1].aoiId).to.exist;
-  // }).timeout(10000);
+    expect(aois.map(aoi => aoi.name)).to.eql([
+      '-',
+      'Spool 1',
+      'Spool 10',
+      'Spool 2',
+      'Spool 3',
+      'Spool 4',
+      'Spool 5',
+      'Spool 6',
+      'Spool 7',
+      'Spool 8',
+      'Spool 9',
+      'White Space',
+    ]);
+
+    expect(assignedRows[0].stimulusId).to.exist;
+    expect(assignedRows[0].aoiId).to.exist;
+    expect(assignedRows[assignedRows.length - 1].stimulusId).to.exist;
+    expect(assignedRows[assignedRows.length - 1].aoiId).to.exist;
+  }).timeout(60000);
 });

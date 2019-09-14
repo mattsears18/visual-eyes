@@ -8,8 +8,8 @@ export default function makeEyeevents(renamedRows) {
   const assignedRows = this.getAssignedRows(renamedRows);
   // const groupedRows = this.groupRowsByStimulus(assignedRows);
 
-  const bulkEvents = Eyeevents.rawCollection().initializeUnorderedBulkOp();
-  const bulkGazepoints = Gazepoints.rawCollection().initializeUnorderedBulkOp();
+  // const bulkEvents = Eyeevents.rawCollection().initializeUnorderedBulkOp();
+  // const bulkGazepoints = Gazepoints.rawCollection().initializeUnorderedBulkOp();
 
   // groupedRows.forEach((group) => {
   //   const {

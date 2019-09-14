@@ -11,7 +11,7 @@ if (Meteor.isServer) {
       const rows = [
         { aoiName: 'some name' },
         { aoiName: 'Spool 1' },
-        { aoiName: 'Spool 10' },
+        { aoiName: 'White Space' },
         { aoiName: 'Hazard Scene A' },
         { aoiName: 'foo' },
         { aoiName: 'bar' },
@@ -31,7 +31,7 @@ if (Meteor.isServer) {
       const existingAoiNames = [
         'some name',
         'Spool 1',
-        'Spool 10',
+        'White Space',
         'Hazard Scene A',
         'foo',
         'bar',
@@ -54,7 +54,7 @@ if (Meteor.isServer) {
       const rows = [
         { stimulusId: stimulus._id, aoiName: 'some name' },
         { stimulusId: stimulus._id, aoiName: 'Spool 1' },
-        { stimulusId: stimulus._id, aoiName: 'Spool 10' },
+        { stimulusId: stimulus._id, aoiName: 'White Space' },
         { stimulusId: stimulus._id, aoiName: 'Hazard Scene A' },
         { stimulusId: stimulus._id, aoiName: 'foo' },
         { stimulusId: stimulus._id, aoiName: 'bar' },
@@ -126,7 +126,7 @@ if (Meteor.isServer) {
       const rows = [
         { stimulusId: stimulus1._id, aoiName: 'aoiname1' },
         { stimulusId: stimulus1._id, aoiName: 'aoiname2' },
-        { stimulusId: stimulus1._id, aoiName: 'aoiname3' },
+        { stimulusId: stimulus1._id, aoiName: 'White Space' },
         { stimulusId: stimulus2._id, aoiName: 'foo' },
         { stimulusId: stimulus2._id, aoiName: 'bar' },
         { stimulusId: stimulus2._id, aoiName: 'missing' },
@@ -232,6 +232,97 @@ if (Meteor.isServer) {
 
       const finalAoi = Aois.findOne({ _id: aoi._id });
       expect(finalAoi.datafileIds).to.eql([datafile._id]);
+    });
+
+    it('has several aois with the same name assigned to different stimuli', () => {
+      const datafile = Factory.create('smiDatafile');
+      const stimulus1 = Factory.create('stimulus', {
+        studyId: datafile.studyId,
+        datafileIds: [datafile._id],
+        name: 'Spool 1',
+      });
+      const stimulus2 = Factory.create('stimulus', {
+        studyId: datafile.studyId,
+        datafileIds: [datafile._id],
+        name: 'Spool 2',
+      });
+      const stimulusBlank = Factory.create('stimulus', {
+        studyId: datafile.studyId,
+        datafileIds: [datafile._id],
+        name: '-',
+      });
+
+      const rows = [
+        {
+          stimulusId: stimulus1._id,
+          aoiName: 'some name',
+          x: 0,
+          y: 0,
+        },
+        {
+          stimulusId: stimulus1._id,
+          x: 0,
+          y: 0,
+          aoiName: 'White Space',
+        },
+        {
+          stimulusId: stimulus1._id,
+          x: 0,
+          y: 0,
+          aoiName: '-',
+        },
+        {
+          stimulusId: stimulus2._id,
+          aoiName: 'some name',
+          x: 0,
+          y: 0,
+        },
+        {
+          stimulusId: stimulus2._id,
+          x: 0,
+          y: 0,
+          aoiName: 'White Space',
+        },
+        {
+          stimulusId: stimulus2._id,
+          x: 0,
+          y: 0,
+          aoiName: '-',
+        },
+        {
+          stimulusId: stimulusBlank._id,
+          aoiName: 'some name',
+          x: 0,
+          y: 0,
+        },
+        {
+          stimulusId: stimulusBlank._id,
+          x: 0,
+          y: 0,
+          aoiName: 'White Space',
+        },
+        {
+          stimulusId: stimulusBlank._id,
+          x: 0,
+          y: 0,
+          aoiName: '-',
+        },
+      ];
+
+      datafile.assignAois(rows);
+
+      const stimuli = Stimuli.find(
+        { studyId: datafile.studyId },
+        { sort: { name: 1 } },
+      ).fetch();
+
+      const aois = Aois.find(
+        { studyId: datafile.studyId },
+        { sort: { name: 1 } },
+      ).fetch();
+
+      expect(stimuli.length).to.equal(3);
+      expect(aois.length).to.equal(9);
     });
   });
 }

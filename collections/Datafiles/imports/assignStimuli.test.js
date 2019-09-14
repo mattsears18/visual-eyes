@@ -11,7 +11,7 @@ if (Meteor.isServer) {
       const existingStimulusNames = [
         'some name',
         'Spool 1',
-        'Spool 10',
+        '-',
         'Hazard Scene A',
         'foo',
         'bar',
@@ -31,12 +31,42 @@ if (Meteor.isServer) {
       expect(initialStimulusCount).to.equal(6);
 
       const rows = [
-        { stimulusName: 'some name' },
-        { stimulusName: 'Spool 1' },
-        { stimulusName: 'Spool 10' },
-        { stimulusName: 'Hazard Scene A' },
-        { stimulusName: 'foo' },
-        { stimulusName: 'bar' },
+        {
+          stimulusName: 'some name',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'Spool 1',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: '-',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'Hazard Scene A',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'bar',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
       ];
 
       const assignedRows = datafile.assignStimuli(rows);
@@ -57,7 +87,7 @@ if (Meteor.isServer) {
     it('finds 3 existing stimuli and creates 3 new stimuli', () => {
       const datafile = Factory.create('imotionsDatafile');
 
-      const existingStimulusNames = ['some name', 'Spool 1', 'Spool 10'];
+      const existingStimulusNames = ['some name', 'Spool 1', '-'];
 
       existingStimulusNames.forEach((name, i) => {
         Factory.create('stimulus', {
@@ -73,12 +103,42 @@ if (Meteor.isServer) {
       expect(initialStimulusCount).to.equal(3);
 
       const rows = [
-        { stimulusName: 'some name' },
-        { stimulusName: 'Spool 1' },
-        { stimulusName: 'Spool 10' },
-        { stimulusName: 'Hazard Scene A' },
-        { stimulusName: 'foo' },
-        { stimulusName: 'bar' },
+        {
+          stimulusName: 'some name',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'Spool 1',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: '-',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'Hazard Scene A',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'bar',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
       ];
 
       const assignedRows = datafile.assignStimuli(rows);
@@ -106,20 +166,69 @@ if (Meteor.isServer) {
       expect(initialStimulusCount).to.equal(0);
 
       const rows = [
-        { stimulusName: 'Spool 1' },
-        { stimulusName: 'Spool 1' },
-        { stimulusName: 'Spool 1' },
-        { stimulusName: 'Spool 1' },
-        { stimulusName: 'Spool 1' },
-        { stimulusName: 'Spool 1' },
-        { stimulusName: 'Spool 1' },
-        { stimulusName: 'Spool 1' },
-        { stimulusName: 'Spool 1' },
-        { stimulusName: 'Spool 1' },
+        {
+          stimulusName: 'Spool 1',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'Spool 1',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'Spool 1',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'Spool 1',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'Spool 1',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'Spool 1',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'Spool 1',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'Spool 1',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'Spool 1',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'Spool 1',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
       ];
 
       const assignedRows = datafile.assignStimuli(rows);
-
       const newStimulus = Stimuli.findOne({ studyId: datafile.studyId });
 
       // each row is assigned the same stimulus (stimulusId)
@@ -143,12 +252,42 @@ if (Meteor.isServer) {
       });
 
       const rows = [
-        { stimulusName: 'foo' },
-        { stimulusName: 'foo' },
-        { stimulusName: 'foo' },
-        { stimulusName: 'foo' },
-        { stimulusName: 'foo' },
-        { stimulusName: 'foo' },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
       ];
 
       datafile.assignStimuli(rows);
@@ -166,12 +305,42 @@ if (Meteor.isServer) {
       });
 
       const rows = [
-        { stimulusName: 'foo' },
-        { stimulusName: 'foo' },
-        { stimulusName: 'foo' },
-        { stimulusName: 'foo' },
-        { stimulusName: 'foo' },
-        { stimulusName: 'foo' },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
       ];
 
       datafile.assignStimuli(rows);
@@ -193,18 +362,162 @@ if (Meteor.isServer) {
       });
 
       const rows = [
-        { stimulusName: 'foo' },
-        { stimulusName: 'foo' },
-        { stimulusName: 'foo' },
-        { stimulusName: 'foo' },
-        { stimulusName: 'foo' },
-        { stimulusName: 'foo' },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
       ];
 
       datafile.assignStimuli(rows);
 
       const finalStimulus = Stimuli.findOne({ _id: stimulus._id });
       expect(finalStimulus.datafileIds).to.eql([datafile._id]);
+    });
+
+    it('assigns rows with an aoiName === "-" to the blank stimulus, regardless of their stimulusName', () => {
+      const datafile = Factory.create('smiDatafile');
+      datafile.fileFormat = 'smi';
+
+      const rows = [
+        {
+          stimulusName: 'foo',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: '-',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          aoiName: '',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: 'foo',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: '-',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: '-',
+          aoiName: '-',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: '-',
+          aoiName: '',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: '-',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: '',
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: '',
+          aoiName: '-',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: '',
+          aoiName: '',
+          x: 1,
+          y: 1,
+        },
+        {
+          stimulusName: '',
+          x: 1,
+          y: 1,
+        },
+        {
+          aoiName: 'some aoi name',
+          x: 1,
+          y: 1,
+        },
+        {
+          aoiName: '-',
+          x: 1,
+          y: 1,
+        },
+        {
+          aoiName: '',
+          x: 1,
+          y: 1,
+        },
+        {
+          x: 1,
+          y: 1,
+        },
+      ];
+
+      const assignedRows = datafile.assignStimuli(rows);
+      expect(assignedRows.length).to.equal(16);
+
+      const stimuli = Stimuli.find(
+        { studyId: datafile.studyId },
+        { sort: { name: 1 } },
+      ).fetch();
+      expect(stimuli.length).to.equal(2);
+
+      expect(stimuli[0].name).to.equal('-');
+      expect(stimuli[1].name).to.equal('foo');
+
+      expect(assignedRows[0].stimulusId).to.equal(stimuli[1]._id);
+
+      for (let i = 1; i < 16; i += 1) {
+        expect(assignedRows[i].stimulusId).to.equal(stimuli[0]._id);
+      }
     });
   });
 }

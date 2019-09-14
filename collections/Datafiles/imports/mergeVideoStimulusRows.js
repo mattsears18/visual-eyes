@@ -53,7 +53,6 @@ export default function mergeVideoStimulusRows(rawData) {
 
       if (stimulusRows.length) {
         // video rows have matching stimulus rows
-        // console.log('matching stimulus rows!');
         while (
           stimulusRows.length
           && stimulusRows.length !== videoRows.length
@@ -66,7 +65,7 @@ export default function mergeVideoStimulusRows(rawData) {
               // Duplicate row - remove the first row
               stimulusRows.shift();
               badStimulusRowCount += 1;
-            } else {
+            } else if (Meteor.isServer && !Meteor.isTest) {
               console.log('');
               console.log('PROBLEM!');
               console.log(this.name);
@@ -93,17 +92,19 @@ export default function mergeVideoStimulusRows(rawData) {
               );
             }
             stimulusRows = [];
-
             break;
           } else {
-            console.log(
-              `intake mismatch! datafile name: ${
-                this.name
-              } binocularIndex: ${binocularIndex} diff: ${stimulusRows.length
-                - videoRows.length} video row count: ${
-                videoRows.length
-              } stimulus row count: ${stimulusRows.length}`,
-            );
+            if (Meteor.isServer && !Meteor.isTest) {
+              console.log(
+                `intake mismatch! datafile name: ${
+                  this.name
+                } binocularIndex: ${binocularIndex} diff: ${stimulusRows.length
+                  - videoRows.length} video row count: ${
+                  videoRows.length
+                } stimulus row count: ${stimulusRows.length}`,
+              );
+            }
+            stimulusRows = [];
             break;
           }
         }
@@ -111,9 +112,11 @@ export default function mergeVideoStimulusRows(rawData) {
 
       if (stimulusRows.length) {
         if (stimulusRows.length !== videoRows.length) {
-          console.log('issue!');
-          console.log(`stimulusRows: ${stimulusRows.length}`);
-          console.log(`videoRows:    ${videoRows.length}`);
+          if (Meteor.isServer && !Meteor.isTest) {
+            console.log('issue!');
+            console.log(`stimulusRows: ${stimulusRows.length}`);
+            console.log(`videoRows:    ${videoRows.length}`);
+          }
         } else {
           // get the recording time from the video rows and save everything else from the stimulus rows
           for (let i = 0; i < stimulusRows.length; i += 1) {
@@ -123,19 +126,17 @@ export default function mergeVideoStimulusRows(rawData) {
         }
       } else {
         // No visual intake on a stimulus for this index
-        // console.log('no matching stimulus rows!');
         for (let i = 0; i < videoRows.length; i += 1) {
-          // console.log('save stimulus name as "-"');
           videoRows[i].Stimulus = '-';
         }
         processedRows.push(...videoRows);
       }
-
-      // console.log(`save ${videoRows.length} rows`);
     } else {
       // row is not a visual intake
       // TODO eventually do saccades and blinks maybe
-      processedRows.push(allVideoRows.shift());
+      const row = allVideoRows.shift();
+      row.Stimulus = '-';
+      processedRows.push(row);
     }
   }
 

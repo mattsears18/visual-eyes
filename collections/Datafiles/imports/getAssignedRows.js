@@ -7,14 +7,7 @@ export default function getAssignedRows(renamedRows) {
     throw new Error('noData');
   }
 
-  const rows = this.getStimuliOnly(renamedRows);
-
-  const validCoordinateRows = this.getValidCoordinatesOnly(rows);
-
-  // sort renamedRows by timestamp
-  const sortedRows = this.filterSortFloat('timestamp', validCoordinateRows);
-
-  const rowsWithStimuli = this.assignStimuli(sortedRows);
+  const rowsWithStimuli = this.assignStimuli([...renamedRows]);
   const rowsWithAois = this.assignAois(rowsWithStimuli);
 
   return rowsWithAois;

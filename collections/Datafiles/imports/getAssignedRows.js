@@ -1,5 +1,3 @@
-import helpers from '../../../lib/helpers';
-
 export default function getAssignedRows(renamedRows) {
   if (Meteor.isServer && !Meteor.isTest) console.log('Datafiles.getAssignedRows()');
 

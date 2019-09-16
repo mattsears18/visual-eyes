@@ -58,7 +58,12 @@ Schemas.Eyeevent = new SimpleSchema(
     },
     eventIndex: {
       type: String,
-      label: 'Index',
+      label: 'Event Index',
+      optional: true,
+    },
+    combinedEventIndex: {
+      type: String,
+      label: 'Combined Event Index',
       optional: true,
     },
     x: {

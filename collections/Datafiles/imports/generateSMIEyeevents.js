@@ -1,197 +1,79 @@
-export default function generateSMIEyeevents(assignedRows) {
+import { jStat } from 'jStat';
+
+export default function generateSMIEyeevents(sortedRows) {
   if (Meteor.isServer && !Meteor.isTest) console.log('Datafiles.generateSMIEyeevents()');
 
-  // assume rows have already been sorted by timestamp
-  // assume all rows belong to same stimulus
-
-  if (!assignedRows || !assignedRows.length) {
-    throw Error('noAssignedRows');
+  if (!sortedRows || !sortedRows.length) {
+    throw Error('noData');
   }
 
-  const rows = [...assignedRows];
+  const eventTypes = ['Visual Intake', 'Saccade', 'Blink'];
 
-  const saccades = [];
-  const blinks = [];
-  const gazepoints = [];
-  const fixations = [];
+  const rows = sortedRows.filter(
+    row => row.eventIndex >= 0 && eventTypes.includes(row.category),
+  );
 
   const events = [];
-  let lastEvent;
-
-  const lastAoiId = '';
-
-  let currentFixation;
-  let currentSaccade;
-  let currentBlink;
-
-  function terminateLastEvent(nextEventIndex) {
-    const i = nextEventIndex;
-
-    // console.log('     ');
-
-    if (lastEvent === 'fixation') {
-      if (rows[i] && currentFixation) {
-        // console.log(`${rows[i].timestamp} end fixation`);
-
-        currentFixation.timestampEnd = rows[i].timestamp;
-        fixations.push(currentFixation);
-
-        currentFixation = null;
-      }
-    } else if (lastEvent === 'saccade') {
-      if (rows[i - 1] && currentSaccade) {
-        // console.log(`${rows[i - 1].timestamp} end saccade`);
-
-        currentSaccade.timestampEnd = rows[i - 1].timestamp;
-        saccades.push(currentSaccade);
-
-        // TODO need to save fromAoiId and toAoiId
-
-        currentSaccade = null;
-      }
-    } else if (lastEvent === 'blink') {
-      if (rows[i] && currentBlink) {
-        // console.log(`${rows[i].timestamp} end blink`);
-
-        currentBlink.timestampEnd = rows[i].timestamp;
-        blinks.push(currentBlink);
-
-        currentBlink = null;
-      }
-    }
-  }
+  let currentEvent;
 
   for (let i = 0; i < rows.length; i += 1) {
-    switch (rows[i].category) {
-      case 'Visual Intake':
-        if (lastEvent && lastEvent !== 'fixation') {
-          terminateLastEvent(i);
-        }
+    if (
+      !currentEvent
+      || rows[i].category !== currentEvent.category
+      // || rows[i].stimulusId !== currentEvent.stimulusId
+      // || rows[i].aoiId !== currentEvent.aoiId
+      || rows[i].eventIndex !== currentEvent.eventIndex
+    ) {
+      // Category change
+      if (currentEvent) {
+        const event = terminateEvent(currentEvent, rows[i - 1]);
+        events.push(event);
+      }
 
-        gazepoints.push({
-          timestamp: rows[i].timestamp,
-          fixationIndex: rows[i].eventIndex,
-          x: rows[i].x,
-          y: rows[i].y,
-          aoiId: rows[i].aoiId,
-        });
-
-        if (rows[i].eventIndex) {
-          if (
-            !currentFixation
-            || currentFixation.eventIndex !== rows[i].eventIndex
-          ) {
-            // new fixation!
-            if (currentFixation) {
-              terminateLastEvent(i);
-            }
-
-            // SMI
-            // Fixation begins on the timestamp of the previous row if previous event was saccade
-            // Fixation begins on the timestamp of its first row if previous event was blink
-
-            currentFixation = {
-              timestamp:
-                lastEvent === 'saccade'
-                  ? rows[i - 1].timestamp
-                  : rows[i].timestamp,
-              eventIndex: rows[i].eventIndex,
-              x: rows[i].x,
-              y: rows[i].y,
-              aoiId: rows[i].aoiId,
-            };
-
-            // console.log(`${currentFixation.timestamp} begin fixation`);
-          }
-        }
-
-        if (lastEvent !== 'fixation') {
-          lastEvent = 'fixation';
-          events.push(lastEvent);
-        }
-
-        break;
-      case 'Saccade':
-        if (lastEvent && lastEvent !== 'saccade') {
-          terminateLastEvent(i);
-        }
-
-        if (rows[i].eventIndex) {
-          if (
-            !currentSaccade
-            || currentSaccade.eventIndex !== rows[i].eventIndex
-          ) {
-            // new saccade!
-            if (currentSaccade) {
-              terminateLastEvent(i);
-            }
-
-            currentSaccade = {
-              timestamp: rows[i].timestamp,
-              eventIndex: rows[i].eventIndex,
-              x: rows[i].x,
-              y: rows[i].y,
-              // fromAoiId: 'todo',
-              // toAoiId: 'todo',
-              // TODO
-            };
-
-            // console.log(`${currentSaccade.timestamp} begin saccade`);
-          }
-        }
-
-        lastEvent = 'saccade';
-        events.push(lastEvent);
-        break;
-      case 'Blink':
-        if (lastEvent && lastEvent !== 'blink') {
-          terminateLastEvent(i);
-        }
-
-        if (rows[i].eventIndex) {
-          if (!currentBlink || currentBlink.eventIndex !== rows[i].eventIndex) {
-            // new saccade!
-            if (currentBlink) {
-              terminateLastEvent(i);
-            }
-
-            currentBlink = {
-              timestamp: rows[i].timestamp,
-              eventIndex: rows[i].eventIndex,
-              x: rows[i].x,
-              y: rows[i].y,
-              aoiId: rows[i].aoiId,
-            };
-
-            // console.log(`${currentBlink.timestamp} begin blink`);
-          }
-        }
-
-        lastEvent = 'blink';
-        events.push(lastEvent);
-        break;
-      case 'User Event':
-        lastEvent = 'userEvent';
-        events.push(lastEvent);
-        break;
-      case '-':
-        // if (lastEvent === 'fixation' && currentFixation) {
-        //   terminateLastEvent(i);
-        // }
-        break;
-
-      default:
-        console.log('invalid recorded row category');
-        console.log(rows[i]);
+      currentEvent = startEvent(rows[i], events);
+    } else {
+      currentEvent.xs.push(rows[i].x);
+      currentEvent.ys.push(rows[i].y);
     }
   }
 
-  terminateLastEvent(rows.length - 1);
+  if (currentEvent) {
+    const event = terminateEvent(currentEvent, rows[rows.length - 1]);
+    events.push(event);
+  }
 
-  return {
-    saccades,
-    blinks,
-    gazepoints,
-    fixations,
+  return events;
+}
+
+function startEvent(row, events) {
+  const newEvent = {
+    timestamp: row.timestamp,
+    combinedEventIndex: events.length + 1,
+    category: row.category,
+    eventIndex: row.eventIndex,
+    xs: [row.x],
+    ys: [row.y],
+    stimulusId: row.stimulusId,
+    aoiId: row.aoiId,
   };
+  return newEvent;
+}
+
+function terminateEvent(event, row) {
+  let type = event.category;
+  if (type === 'Visual Intake') {
+    type = 'Fixation';
+  }
+
+  const terminatedEvent = {
+    ...event,
+    type,
+    xMean: parseInt(jStat.mean(event.xs), 10),
+    yMean: parseInt(jStat.mean(event.ys), 10),
+    duration: row.timestamp - event.timestamp,
+  };
+
+  delete terminatedEvent.category;
+
+  return terminatedEvent;
 }

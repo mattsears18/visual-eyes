@@ -4,110 +4,120 @@ require('../../factories.test');
 const { expect } = require('chai');
 
 describe('Datafiles.generateSMIEyeevents', () => {
-  it("doesn't pass any data", () => {
-    const datafile = Factory.create('smiDatafile');
-    expect(() => {
-      datafile.generateSMIEyeevents();
-    }).to.throw('noAssignedRows');
-  });
+  // it("doesn't pass any data", () => {
+  //   const datafile = Factory.create('smiDatafile');
+  //   expect(() => {
+  //     datafile.generateSMIEyeevents();
+  //   }).to.throw('noData');
+  // });
 
-  it('generates eyeevents for a real smi file', async () => {
-    const datafile = Factory.create('smiDatafile');
-    datafile.fileFormat = 'smi';
-    const rawData = await datafile.getRawData();
-    const renamedRows = datafile.renameRows(rawData);
+  // it('generates eyeevents for a real smi file', async () => {
+  //   const datafile = Factory.create('smiDatafile');
+  //   datafile.fileFormat = 'smi';
+  //   const rawData = await datafile.getRawData();
+  //   const timestampedData = datafile.mergeVideoStimulusRows(rawData);
+  //   const renamedRows = datafile.renameRows(timestampedData);
 
-    const stimulus = Factory.create('stimulus', {
-      name: 'ImageA',
-      studyId: datafile.studyId,
-      datafileIds: [datafile._id],
-    });
-    const aoi = Factory.create('aoi', {
-      name: 'Image A',
-      studyId: datafile.studyId,
-      datafileIds: [datafile._id],
-      stimulusId: stimulus._id,
-    });
+  //   const stimulus = Factory.create('stimulus', {
+  //     name: 'ImageA',
+  //     studyId: datafile.studyId,
+  //     datafileIds: [datafile._id],
+  //   });
+  //   const aoi = Factory.create('aoi', {
+  //     name: 'Image A',
+  //     studyId: datafile.studyId,
+  //     datafileIds: [datafile._id],
+  //     stimulusId: stimulus._id,
+  //   });
 
-    const assignedRows = datafile.getAssignedRows(renamedRows);
+  //   const assignedRows = datafile.getAssignedRows(renamedRows);
+  //   const sortedRows = assignedRows.sort((a, b) => a.timestamp - b.timestamp);
 
-    // grouping by stimuli not necessary because there's only one stimulus in this file
+  //   const events = datafile.generateSMIEyeevents(sortedRows);
+  //   expect(events.length).to.equal(686); // (sum of the events below)
 
-    const {
-      saccades,
-      blinks,
-      gazepoints,
-      fixations,
-    } = datafile.generateSMIEyeevents(assignedRows);
+  //   const blinks = events.filter(event => event.type === 'Blink');
+  //   const saccades = events.filter(event => event.type === 'Saccade');
+  //   const fixations = events.filter(event => event.type === 'Fixation');
 
-    expect(saccades.length).to.equal(190); // verified in excel
-    expect(blinks.length).to.equal(13); // verified in excel
-    expect(gazepoints.length).to.equal(2948); // verified in excel
-    expect(fixations.length).to.equal(205); // verified in excel
+  //   expect(saccades.length).to.equal(316); // verified in excel
+  //   expect(blinks.length).to.equal(24); // verified in excel
+  //   expect(fixations.length).to.equal(346); // verified in excel
 
-    expect(fixations[3].eventIndex).to.equal(15); // verified in excel
-    expect(fixations[3].timestamp).to.equal(1892); // verified in excel
-    expect(fixations[3].x).to.equal(228); // verified in excel
-    expect(fixations[3].y).to.equal(5); // verified in excel
-    expect(fixations[3].aoiId).to.equal(aoi._id); // verified in excel
-    expect(fixations[3].timestampEnd).to.equal(2672); // verified in excel
-  });
+  //   expect(fixations[33].eventIndex).to.equal(34); // verified in excel
+  //   expect(fixations[33].combinedEventIndex).to.equal(66); // verified in excel
+  //   expect(fixations[33].timestamp).to.equal(11500); // verified in excel
+  //   expect(fixations[33].xs).to.eql([
+  //     310,
+  //     310,
+  //     310,
+  //     310,
+  //     310,
+  //     310,
+  //     310,
+  //     310,
+  //     310,
+  //   ]); // verified in excel
+  //   expect(fixations[33].ys).to.eql([
+  //     -279,
+  //     -279,
+  //     -279,
+  //     -279,
+  //     -279,
+  //     -279,
+  //     -279,
+  //     -279,
+  //     -279,
+  //   ]); // verified in excel
+  //   expect(fixations[33].xMean).to.equal(310); // verified in excel
+  //   expect(fixations[33].yMean).to.equal(-279); // verified in excel
+  //   expect(fixations[33].duration).to.equal(133); // verified in excel
+  // }).timeout(60000);
 
   it('generates eyeevents for a real smi file with multiple stimuli', async () => {
     const datafile = Factory.create('smiMultiDatafile');
     datafile.fileFormat = 'smi';
     const rawData = await datafile.getRawData();
-    const renamedRows = datafile.renameRows(rawData);
+    const timestampedData = datafile.mergeVideoStimulusRows(rawData);
+    const renamedRows = datafile.renameRows(timestampedData);
+    const validCoordinateRows = datafile.getValidCoordinatesOnly(renamedRows);
+    const assignedRows = datafile.getAssignedRows(validCoordinateRows);
+    const sortedRows = assignedRows.sort((a, b) => a.timestamp - b.timestamp);
+    const events = datafile.generateSMIEyeevents(sortedRows);
+    // expect(events.length).to.equal(686); // (sum of the events below)
 
-    const stimulus = Factory.create('stimulus', {
-      name: 'Spool 4',
-      studyId: datafile.studyId,
-      datafileIds: [datafile._id],
-    });
-    const aoi = Factory.create('aoi', {
-      name: 'Spool 4',
-      studyId: datafile.studyId,
-      datafileIds: [datafile._id],
-      stimulusId: stimulus._id,
-    });
+    const blinks = events.filter(event => event.type === 'Blink');
+    const saccades = events.filter(event => event.type === 'Saccade');
+    const fixations = events.filter(event => event.type === 'Fixation');
 
-    const assignedRows = datafile.getAssignedRows(renamedRows);
-    const groupedRows = datafile.groupRowsByStimulus(assignedRows);
+    console.log(`saccades:   ${saccades.length}`);
+    console.log(`blinks:     ${blinks.length}`);
+    console.log(`fixations:  ${fixations.length}`);
 
-    const {
-      saccades,
-      blinks,
-      gazepoints,
-      fixations,
-    } = datafile.generateSMIEyeevents(groupedRows[4].rows); // Spool 4
+    expect(saccades.length).to.equal(4474); // verified in excel
+    expect(blinks.length).to.equal(152); // verified in excel
+    expect(fixations.length).to.equal(4638); // verified in excel
 
-    // console.log(fixations);
-
-    // console.log(`saccades:   ${saccades.length}`);
-    // console.log(`blinks:     ${blinks.length}`);
-    // console.log(`gazepoints: ${gazepoints.length}`);
-    // console.log(`fixations:  ${fixations.length}`);
-
-    expect(saccades.length).to.equal(172); // verified in excel
-    expect(blinks.length).to.equal(2); // verified in excel
-    expect(gazepoints.length).to.equal(3256); // verified in excel
-    expect(fixations.length).to.equal(198); // verified in excel
-
-    expect(saccades[150].eventIndex).to.equal(151); // verified in excel
-    expect(saccades[150].timestamp).to.equal(57220); // verified in excel
-    expect(saccades[150].x).to.equal(301); // verified in excel
-    expect(saccades[150].y).to.equal(442); // verified in excel
-    expect(saccades[150].timestampEnd).to.equal(57270);
+    expect(saccades[150].eventIndex).to.equal(178); // verified in excel
+    expect(saccades[150].combinedEventIndex).to.equal(358); // verified in excel
+    expect(saccades[150].timestamp).to.equal(75044); // verified in excel
+    expect(saccades[150].xs).to.eql([539, 508, 489]); // verified in excel
+    expect(saccades[150].ys).to.eql([466, 453, 443]); // verified in excel
+    expect(saccades[150].xMean).to.eql(512); // verified in excel
+    expect(saccades[150].yMean).to.eql(454); // verified in excel
+    expect(saccades[150].duration).to.equal(33);
     // expect(saccades[150].fromAoiId).to.equal(aoi._id); // verified in excel
     // expect(saccades[150].toAoiId).to.equal(aoi._id); // verified in excel
     // TODO save the "fromAoiId" and "toAoiId"
 
-    expect(blinks[1].eventIndex).to.equal(1936); // verified in excel
-    expect(blinks[1].timestamp).to.equal(39314); // verified in excel
-    expect(blinks[1].x).to.equal(444); // verified in excel
-    expect(blinks[1].y).to.equal(297); // verified in excel
-    expect(blinks[1].aoiId).to.equal(aoi._id); // verified in excel
-    expect(blinks[1].timestampEnd).to.equal(39479);
+    expect(blinks[1].eventIndex).to.equal(9); // verified in excel
+    expect(blinks[1].combinedEventIndex).to.equal(17); // verified in excel
+    expect(blinks[1].timestamp).to.equal(3070); // verified in excel
+    expect(blinks[1].xs).to.eql([616, 629, 606, 589]); // verified in excel
+    expect(blinks[1].ys).to.eql([466, 453, 443]); // verified in excel
+    expect(blinks[1].xMean).to.eql(512); // verified in excel
+    expect(blinks[1].yMean).to.eql(454); // verified in excel
+    expect(blinks[1].duration).to.equal(33);
 
     // fixation #3 within Spool 4
     expect(fixations[100].eventIndex).to.equal(1889); // verified in excel
@@ -117,10 +127,10 @@ describe('Datafiles.generateSMIEyeevents', () => {
     expect(fixations[100].aoiId).to.equal(aoi._id); // verified in excel
     expect(fixations[100].timestampEnd).to.equal(33638);
 
-    expect(gazepoints[1000].fixationIndex).to.equal(1532); // verified in excel
-    expect(gazepoints[1000].timestamp).to.equal(21093); // verified in excel
-    expect(gazepoints[1000].x).to.equal(464); // verified in excel
-    expect(gazepoints[1000].y).to.equal(352); // verified in excel
-    expect(gazepoints[1000].aoiId).to.equal(aoi._id); // verified in excel
-  }).timeout(10000);
+    // expect(gazepoints[1000].fixationIndex).to.equal(1532); // verified in excel
+    // expect(gazepoints[1000].timestamp).to.equal(21093); // verified in excel
+    // expect(gazepoints[1000].x).to.equal(464); // verified in excel
+    // expect(gazepoints[1000].y).to.equal(352); // verified in excel
+    // expect(gazepoints[1000].aoiId).to.equal(aoi._id); // verified in excel
+  }).timeout(60000);
 });

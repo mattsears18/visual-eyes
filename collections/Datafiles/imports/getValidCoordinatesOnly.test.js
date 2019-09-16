@@ -29,6 +29,11 @@ describe('Datafiles.getValidCoordinatesOnly()', () => {
       { x: '100', y: '500' },
       { x: '', y: '500' },
       { x: '100', y: '' },
+      { y: '100' },
+      { x: '100' },
+      {},
+      { x: null, y: 100 },
+      { x: undefined, y: 100 },
     ];
     const expectedRows = [{ x: '100', y: '500' }];
     expect(await datafile.getValidCoordinatesOnly(rows)).to.eql(expectedRows);

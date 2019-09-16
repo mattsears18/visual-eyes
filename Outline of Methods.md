@@ -38,13 +38,9 @@
     - [x] .getName()
   - [x] .renameRows(rawData)
   - [ ] .makeEyeevents(renamedRows) (async) (bulk insert is async)
-    - [x] .getAssignedRows(renamedRows)
-      <!-- - [x] .getStimuliOnly(renamedRows) -->
-      <!-- - [x] .getValidCoordinatesOnly(renamedRows) -->
-      <!-- - [x] .filterSortFloat(field, data) -->
+    - [x] .getValidCoordinatesOnly(renamedRows)
+    - [ ] .getAssignedRows(renamedRows)
       - [x] .assignStimuli(sortedRows)
       - [x] .assignAois(rowsWithStimuli)
-    - [x] .groupRowsByStimulus(assignedRows)
-    - [x] .groupRowsByAoi(assignedRows)
-    - [x] .generateImotionsEyeevents(groupedRows)
-    - [x] .generateSMIEyeevents(groupedRows)
+    - [ ] .generateImotionsEyeevents(groupedRows)
+    - [ ] .generateSMIEyeevents(groupedRows)

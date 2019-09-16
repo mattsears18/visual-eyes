@@ -3,7 +3,7 @@ import { Factory } from 'meteor/dburles:factory';
 require('../../factories.test');
 const { expect } = require('chai');
 
-describe('Datafiles.getAssignedRows()', () => {
+describe.only('Datafiles.getAssignedRows()', () => {
   it("doesn't pass rawData", () => {
     const datafile = Factory.create('imotionsDatafile');
     expect(() => {
@@ -22,7 +22,8 @@ describe('Datafiles.getAssignedRows()', () => {
     expect(rawData[rawData.length - 1].aoiId).to.be.undefined;
 
     const renamedRows = datafile.renameRows(rawData);
-    const assignedRows = datafile.getAssignedRows(renamedRows);
+    const validCoordinates = datafile.getValidCoordiantesOnly(renamedRows);
+    const assignedRows = datafile.getAssignedRows(validCoordinates);
 
     expect(assignedRows.length).to.equal(12271); // verified in excel (all rows)
 
@@ -44,7 +45,7 @@ describe('Datafiles.getAssignedRows()', () => {
     expect(assignedRows[0].aoiId).to.exist;
     expect(assignedRows[assignedRows.length - 1].stimulusId).to.exist;
     expect(assignedRows[assignedRows.length - 1].aoiId).to.exist;
-  }).timeout(20000);
+  }).timeout(60000);
 
   it('assigns stimuli and aois to each row in a real smi file', async () => {
     const datafile = Factory.create('smiDatafile');

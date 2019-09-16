@@ -32,7 +32,6 @@ export default function assignStimuli(sortedRows) {
     let stimulus;
 
     // Only assign stimuli rows with floaty >= 0 x and y coordinates
-
     if (
       helpers.isFloaty(rows[i].x)
       && helpers.isFloaty(rows[i].y)

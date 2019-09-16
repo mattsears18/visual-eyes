@@ -14,6 +14,7 @@ export default function mergeVideoStimulusRows(rawData) {
 
   const stimulusIntakes = [...rawData].filter(
     row => !row.Stimulus.includes('.avi')
+      && row['Index Binocular'] * 1 >= 1
       && row['Category Binocular'] === 'Visual Intake',
   );
 
@@ -42,7 +43,7 @@ export default function mergeVideoStimulusRows(rawData) {
       while (
         allVideoRows.length
         && allVideoRows[0]['Index Binocular'] * 1 === binocularIndex
-        && videoRows[0]['Category Binocular'] === 'Visual Intake'
+        && allVideoRows[0]['Category Binocular'] === 'Visual Intake'
       ) {
         videoRows.push(allVideoRows.shift());
       }
@@ -79,20 +80,32 @@ export default function mergeVideoStimulusRows(rawData) {
               );
             }
           } else if (videoRows.length * 2 === stimulusRows.length) {
-            // these are transitions between stimuli (page turns) don't assign a stimulus to them
-            badStimulusRowCount += stimulusRows.length;
-            if (Meteor.isServer && !Meteor.isTest) {
-              console.log(
-                `duplicate binocularIndex! datafile name: ${
-                  this.name
-                } binocularIndex: ${binocularIndex} diff: ${stimulusRows.length
-                  - videoRows.length} video row count: ${
-                  videoRows.length
-                } stimulus row count: ${stimulusRows.length}`,
-              );
+            // these are transitions between stimuli (page turns)
+            // see if only one of them has an AOI
+            const rowsWithAoi = stimulusRows.filter(
+              row => row['AOI Name Binocular'] !== '-',
+            );
+
+            if (videoRows.length === rowsWithAoi.length) {
+              const groups = _.groupBy(rowsWithAoi, 'Stimulus');
+              if (Object.keys(groups).length === 1) {
+                // rows all belong to the same stimulus. use these rows!
+                stimulusRows = [...rowsWithAoi];
+              }
+            } else {
+              // don't assign a stimulus to them
+              badStimulusRowCount += stimulusRows.length;
+              if (Meteor.isServer && !Meteor.isTest) {
+                console.log(
+                  `duplicate binocularIndex! binocularIndex: ${binocularIndex} diff: ${stimulusRows.length
+                    - videoRows.length} video row count: ${
+                    videoRows.length
+                  } stimulus row count: ${stimulusRows.length}`,
+                );
+              }
+
+              stimulusRows = [];
             }
-            stimulusRows = [];
-            break;
           } else {
             if (Meteor.isServer && !Meteor.isTest) {
               console.log(
@@ -105,7 +118,6 @@ export default function mergeVideoStimulusRows(rawData) {
               );
             }
             stimulusRows = [];
-            break;
           }
         }
       }
@@ -140,9 +152,13 @@ export default function mergeVideoStimulusRows(rawData) {
     }
   }
 
-  if (Meteor.isServer && !Meteor.isTest) {
+  if (Meteor.isServer) {
     console.log(`processed rows: ${processedRows.length}`);
-    console.log(`bad stimulus row count: ${badStimulusRowCount}`);
+    console.log(
+      `bad stimulus row count: ${badStimulusRowCount} (${helpers.formatNumber(
+        (badStimulusRowCount / processedRows.length) * 100,
+      )}%)`,
+    );
   }
 
   return processedRows;
@@ -150,15 +166,15 @@ export default function mergeVideoStimulusRows(rawData) {
 
 function zeroVideoRecordingTimes(rawData) {
   const videoRows = rawData
-    .filter(row => row.Stimulus.includes('.avi') && row['Index Binocular'] >= 1)
+    .filter(
+      row => row.Stimulus.includes('.avi') && row['Index Binocular'] * 1 >= 1,
+    )
     .sort((a, b) => a['RecordingTime [ms]'] * 1 - b['RecordingTime [ms]'] * 1);
 
   const initialRecordingTime = videoRows[0]['RecordingTime [ms]'];
 
   for (let i = 0; i < videoRows.length; i += 1) {
-    if (videoRows[i].Stimulus.includes('.avi')) {
-      videoRows[i]['RecordingTime [ms]'] -= initialRecordingTime;
-    }
+    videoRows[i]['RecordingTime [ms]'] -= initialRecordingTime;
   }
 
   return videoRows;

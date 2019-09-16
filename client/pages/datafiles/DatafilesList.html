@@ -24,7 +24,6 @@
       <tr>
         <th>Name</th>
         <th>File Format</th>
-        <th>Gaze Points</th>
         <th>Fixations</th>
         <th>Status</th>
         {{#if study.hasPermission 'update'}}
@@ -49,9 +48,6 @@
           {{#if equals datafile.fileFormat 'smi'}}
           <span class="label label-primary">SMI BeGaze</span>
           {{/if}}
-        </td>
-        <td class="p-l-10">
-          {{formatNumber datafile.gazepointCount}}
         </td>
         <td class="p-l-10">
           {{formatNumber datafile.fixationCount}}

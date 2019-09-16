@@ -1,4 +1,6 @@
-# VisitHullSeries
+# Outline of Methods
+
+## VisitHullSeries
 
 - [x] new VisitHullSeries()
   - [x] .getCentroidTrace()
@@ -13,20 +15,20 @@
   - [x] .getPolygonTrace()
   - [x] .getTraces()
 
-# Visits
+## Visits
 
 - [x] .getExportData()
 - [x] .getHullSeries()
 - [x] .getSampleData()
 
-# Analyses
+## Analyses
 
 - [x] .makeVisits()
   - [x] .getVisitEndIndex()
   - [x] .makeVisit()
 - [x] .getExportData()
 
-# Datafiles
+## Datafiles
 
 - [x] .process() (async) (not working for imotions yet - fine for now)
   - [x] .preProcess()

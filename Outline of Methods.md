@@ -28,19 +28,20 @@
 
 # Datafiles
 
-- [ ] .process() (async)
+- [x] .process() (async) (not working for imotions yet - fine for now)
+  - [x] .preProcess()
   - [x] .getRawData() (async)
-  - [x] .preProcess(rawData)
+  - [x] .mergeVideoStimulusRows(rawData)
     - [x] .removeHeaders()
       - Works but still need tests
     - [x] .setFileFormat(rawData)
       - [x] .detectFileFormat(rawData)
     - [x] .getName()
-  - [x] .renameRows(rawData)
-  - [ ] .makeEyeevents(renamedRows) (async) (bulk insert is async)
+  - [x] .renameRows(timestampedData)
+  - [x] .makeEyeevents(renamedRows) (async) (bulk insert is async)
     - [x] .getValidCoordinatesOnly(renamedRows)
-    - [/] .getAssignedRows(renamedRows) (not working for imotions yet - fine for now)
-      - [x] .assignStimuli(sortedRows)
+    - [x] .getAssignedRows(validCoordinateRows) (not working for imotions yet - fine for now)
+      - [x] .assignStimuli(validCoordinateRows)
       - [x] .assignAois(rowsWithStimuli)
-    - [ ] .generateImotionsEyeevents(assignedRows)
-    - [ ] .generateSMIEyeevents(assignedRows)
+    - [ ] .generateImotionsEyeevents(assignedRows) (not working for imotions yet - fine for now)
+    - [x] .generateSMIEyeevents(assignedRows)

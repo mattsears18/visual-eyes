@@ -1,3 +1,5 @@
+// these are integration tests
+
 // import { Factory } from 'meteor/dburles:factory';
 // import Eyeevents from '../../Eyeevents/Eyeevents';
 

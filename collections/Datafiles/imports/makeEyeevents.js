@@ -1,32 +1,24 @@
 import { Random } from 'meteor/random';
 import Eyeevents from '../../Eyeevents/Eyeevents';
-import Gazepoints from '../../Gazepoints/Gazepoints';
 
 export default function makeEyeevents(renamedRows) {
   if (Meteor.isServer && !Meteor.isTest) console.log('Datafile.makeEyeevents()');
 
-  const assignedRows = this.getAssignedRows(renamedRows);
-  const validCoordinateRows = this.getValidCoordinatesOnly(assignedRows);
-  const sortedRows = validCoordinateRows.sort(
-    (a, b) => a.timestamp - b.timestamp,
-  );
+  const validCoordinateRows = this.getValidCoordinatesOnly(renamedRows);
+  const assignedRows = this.getAssignedRows(validCoordinateRows);
+  const sortedRows = assignedRows.sort((a, b) => a.timestamp - b.timestamp);
 
   const bulkEvents = Eyeevents.rawCollection().initializeUnorderedBulkOp();
-  const bulkGazepoints = Gazepoints.rawCollection().initializeUnorderedBulkOp();
 
-  const {
-    saccades, blinks, gazepoints, fixations,
-  } = this.fileFormat === 'imotions'
+  const events = this.fileFormat === 'imotions'
     ? this.generateImotionsEyeevents(sortedRows)
     : this.generateSMIEyeevents(sortedRows);
 
-  if (saccades.length) {
-    saccades.forEach((event) => {
+  if (events.length) {
+    events.forEach((event) => {
       bulkEvents.insert({
         ...event,
         _id: Random.id(),
-        type: 'saccade',
-        stimulusId: group.stimulusId,
         datafileId: this._id,
         studyId: this.studyId,
         participantId: this.participantId,
@@ -34,50 +26,5 @@ export default function makeEyeevents(renamedRows) {
     });
   }
 
-  if (blinks.length) {
-    blinks.forEach((event) => {
-      bulkEvents.insert({
-        ...event,
-        _id: Random.id(),
-        type: 'blink',
-        stimulusId: group.stimulusId,
-        datafileId: this._id,
-        studyId: this.studyId,
-        participantId: this.participantId,
-      });
-    });
-  }
-
-  if (fixations.length) {
-    fixations.forEach((event) => {
-      bulkEvents.insert({
-        ...event,
-        _id: Random.id(),
-        type: 'fixation',
-        stimulusId: group.stimulusId,
-        datafileId: this._id,
-        studyId: this.studyId,
-        participantId: this.participantId,
-      });
-    });
-  }
-
-  if (gazepoints.length) {
-    gazepoints.forEach((gazepoint) => {
-      bulkGazepoints.insert({
-        ...gazepoint,
-        _id: Random.id(),
-        fileFormat: this.fileFormat,
-        stimulusId: group.stimulusId,
-        datafileId: this._id,
-        studyId: this.studyId,
-        participantId: this.participantId,
-      });
-    });
-  }
-
-  return {
-    eyeeventsStatus: bulkEvents.execute(),
-    gazepointsStatus: bulkGazepoints.execute(),
-  };
+  return bulkEvents.execute(); // promise
 }

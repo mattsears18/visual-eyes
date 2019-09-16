@@ -150,7 +150,7 @@ export default function mergeVideoStimulusRows(rawData) {
 
 function zeroVideoRecordingTimes(rawData) {
   const videoRows = rawData
-    .filter(row => row.Stimulus.includes('.avi'))
+    .filter(row => row.Stimulus.includes('.avi') && row['Index Binocular'] >= 1)
     .sort((a, b) => a['RecordingTime [ms]'] * 1 - b['RecordingTime [ms]'] * 1);
 
   const initialRecordingTime = videoRows[0]['RecordingTime [ms]'];

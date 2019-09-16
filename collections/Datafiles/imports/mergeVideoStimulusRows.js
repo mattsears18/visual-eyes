@@ -71,9 +71,7 @@ export default function mergeVideoStimulusRows(rawData) {
               console.log('PROBLEM!');
               console.log(this.name);
               console.log(
-                `intake mismatch! datafile name: ${
-                  this.name
-                } binocularIndex: ${binocularIndex} diff: ${stimulusRows.length
+                `intake mismatch! binocularIndex: ${binocularIndex} diff: ${stimulusRows.length
                   - videoRows.length} video row count: ${
                   videoRows.length
                 } stimulus row count: ${stimulusRows.length}`,
@@ -109,9 +107,7 @@ export default function mergeVideoStimulusRows(rawData) {
           } else {
             if (Meteor.isServer && !Meteor.isTest) {
               console.log(
-                `intake mismatch! datafile name: ${
-                  this.name
-                } binocularIndex: ${binocularIndex} diff: ${stimulusRows.length
+                `intake mismatch! binocularIndex: ${binocularIndex} diff: ${stimulusRows.length
                   - videoRows.length} video row count: ${
                   videoRows.length
                 } stimulus row count: ${stimulusRows.length}`,

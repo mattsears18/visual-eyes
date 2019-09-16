@@ -231,8 +231,12 @@ export default function dbCleanup() {
 
     // //////////////////////////////////////////////////////////////////////////////
     query = {
-      'data.analysisId': { $nin: validAnalysisIds },
+      $and: [
+        { 'data.analysisId': { $ne: null } },
+        { 'data.analysisId': { $nin: validAnalysisIds } },
+      ],
     };
+
     if (Jobs.find(query).count()) {
       console.log('removing orphaned analysis Jobs...');
       Jobs.remove(query, (err, num) => {

@@ -6,35 +6,35 @@
 
 // if (Meteor.isServer) {
 //   describe('Datafiles.makeEyeevents()', () => {
-//     it('makes gazepoints and fixations imotions datafiles', async () => {
-//       const participant = Factory.create('participant');
-//       const datafile = Factory.create('imotionsDatafile', {
-//         studyId: participant.studyId,
-//         participantId: participant._id,
-//       });
-//       datafile.fileFormat = 'imotions';
-//       const rawData = await datafile.getRawData();
-//       const renamedRows = datafile.renameRows(rawData);
-//       const statuses = datafile.makeEyeevents(renamedRows);
-//       const eyeeventsStatus = await statuses.eyeeventsStatus;
-//       const gazepointsStatus = await statuses.gazepointsStatus;
+//     // it('makes gazepoints and fixations imotions datafiles', async () => {
+//     //   const participant = Factory.create('participant');
+//     //   const datafile = Factory.create('imotionsDatafile', {
+//     //     studyId: participant.studyId,
+//     //     participantId: participant._id,
+//     //   });
+//     //   datafile.fileFormat = 'imotions';
+//     //   const rawData = await datafile.getRawData();
+//     //   const renamedRows = datafile.renameRows(rawData);
+//     //   const statuses = datafile.makeEyeevents(renamedRows);
+//     //   const eyeeventsStatus = await statuses.eyeeventsStatus;
+//     //   const gazepointsStatus = await statuses.gazepointsStatus;
 
-//       expect(eyeeventsStatus.nInserted).to.equal(155);
-//       expect(gazepointsStatus.nInserted).to.equal(3218);
+//     //   expect(eyeeventsStatus.nInserted).to.equal(155);
+//     //   expect(gazepointsStatus.nInserted).to.equal(3218);
 
-//       expect(
-//         Eyeevents.find({ datafileId: datafile._id, type: 'saccade' }).count(),
-//       ).to.equal(0); // imotions report saccades
-//       expect(
-//         Eyeevents.find({ datafileId: datafile._id, type: 'blink' }).count(),
-//       ).to.equal(0); // imotions doesn't report blinks
-//       expect(
-//         Eyeevents.find({ datafileId: datafile._id, type: 'fixation' }).count(),
-//       ).to.equal(155);
-//       expect(Gazepoints.find({ datafileId: datafile._id }).count()).to.equal(
-//         3218,
-//       );
-//     });
+//     //   expect(
+//     //     Eyeevents.find({ datafileId: datafile._id, type: 'saccade' }).count(),
+//     //   ).to.equal(0); // imotions report saccades
+//     //   expect(
+//     //     Eyeevents.find({ datafileId: datafile._id, type: 'blink' }).count(),
+//     //   ).to.equal(0); // imotions doesn't report blinks
+//     //   expect(
+//     //     Eyeevents.find({ datafileId: datafile._id, type: 'fixation' }).count(),
+//     //   ).to.equal(155);
+//     //   expect(Gazepoints.find({ datafileId: datafile._id }).count()).to.equal(
+//     //     3218,
+//     //   );
+//     // });
 
 //     it('makes eyeevents for a real smi datafile', async () => {
 //       const participant = Factory.create('participant');
@@ -64,7 +64,7 @@
 //       expect(Gazepoints.find({ datafileId: datafile._id }).count()).to.equal(
 //         2948,
 //       );
-//     });
+//     }).timeout(60000);
 
 //     it('makes eyeevents for a real smi datafile with multiple stimuli', async () => {
 //       const participant = Factory.create('participant');

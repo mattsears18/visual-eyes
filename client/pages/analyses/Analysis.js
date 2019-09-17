@@ -1,11 +1,13 @@
 import { jStat } from 'jStat';
 import Jobs from '../../../collections/Jobs/Jobs';
 import helpers from '../../../lib/helpers';
+import Eyeevents from '../../../collections/Eyeevents/Eyeevents';
 
 let participantSub;
 let stimuliSub;
 
 Template.Analysis.onCreated(function() {
+  const studyId = FlowRouter.getParam('studyId');
   const analysisId = FlowRouter.getParam('analysisId');
   const self = this;
 
@@ -15,41 +17,39 @@ Template.Analysis.onCreated(function() {
   self.selector.set('stimulusIds', []);
   self.selector.set('selector', {});
 
+  self.subscribe('eyeevents.byStudyId', studyId);
+
+  self.subscribe('analyses.single', analysisId);
   self.subscribe('visits.byAnalysisId', analysisId);
+  self.subscribe('participants.byAnalysisId', analysisId);
+  self.subscribe('stimuli.byAnalysisId', analysisId);
 
   self.autorun(function() {
-    const studyId = FlowRouter.getParam('studyId');
-    self.subscribe('studies.single', studyId);
-    self.subscribe('aois.byStudyId', studyId);
-    self.subscribe('variables.byStudyId', studyId);
-    self.subscribe('datafiles.byStudyId', studyId);
-
-    self.subscribe('analyses.single', analysisId);
-
-    participantSub = self.subscribe('participants.byAnalysisId', analysisId);
-    stimuliSub = self.subscribe('stimuli.byAnalysisId', analysisId);
-
-    const analysis = Analyses.findOne({});
-    if (analysis && analysis.status === 'processing') {
-      self.subscribe('jobs.byAnalysisId', analysisId);
-    }
-
-    if (self.subscriptionsReady()) {
-      updateSelectors(self);
-    }
+    // self.subscribe('studies.single', studyId);
+    // self.subscribe('aois.byStudyId', studyId);
+    // self.subscribe('variables.byStudyId', studyId);
+    // self.subscribe('datafiles.byStudyId', studyId);
+    // const analysis = Analyses.findOne({});
+    // if (analysis && analysis.status === 'processing') {
+    //   self.subscribe('jobs.byAnalysisId', analysisId);
+    // }
+    // if (self.subscriptionsReady()) {
+    //   updateSelectors(self);
+    // }
   });
 });
 
-Template.UpdateAnalysis.destroyed = function() {
-  participantSub.stop();
-  stimuliSub.stop();
-};
+// Template.UpdateAnalysis.destroyed = function() {
+//   participantSub.stop();
+//   stimuliSub.stop();
+// };
 
 Template.BreadCrumbs.helpers({
   analysis: () => Analyses.findOne(),
 });
 
 Template.Analysis.helpers({
+  eyeevents: () => Eyeevents.find(),
   analysis: () => Analyses.findOne(),
   visits: () => {
     template = Template.instance();

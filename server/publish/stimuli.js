@@ -13,6 +13,11 @@ Meteor.publish('stimuli.byStudyId', (studyId) => {
   return Stimuli.find({ studyId, name: { $ne: '-' } }, { sort: { name: 1 } });
 });
 
+Meteor.publish('stimuli.byStudyIdWithBlank', (studyId) => {
+  check(studyId, String);
+  return Stimuli.find({ studyId }, { sort: { name: 1 } });
+});
+
 Meteor.publish('stimuli.byAoiId', function(aoiId) {
   check(aoiId, String);
   aoi = Aois.findOne({ _id: aoiId });

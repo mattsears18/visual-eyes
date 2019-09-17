@@ -45,7 +45,7 @@ export default function removeHeaders() {
     Datafiles.update({ _id: this._id }, { $set: { headersRemoved: true } });
   }
 
-  if (this.fileFormat) {
+  if (this.fileFormat && Meteor.isServer && !Meteor.isTest) {
     console.log(`file format: ${this.fileFormat}`);
   }
 }

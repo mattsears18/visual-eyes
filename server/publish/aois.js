@@ -15,6 +15,11 @@ Meteor.publish('aois.byStudyId', (studyId) => {
   return Aois.find({ studyId }, { sort: { name: 1 } });
 });
 
+Meteor.publish('aois.byStudyIdWithBlank', (studyId) => {
+  check(studyId, String);
+  return Aois.find({ studyId }, { sort: { name: 1 } });
+});
+
 Meteor.publish('aois.byVisitId', function(visitId) {
   check(visitId, String);
   visit = Visits.findOne({ _id: visitId });

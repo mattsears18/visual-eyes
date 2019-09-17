@@ -148,7 +148,7 @@ export default function mergeVideoStimulusRows(rawData) {
     }
   }
 
-  if (Meteor.isServer) {
+  if (Meteor.isServer && !Meteor.isTest) {
     console.log(`processed rows: ${processedRows.length}`);
     console.log(
       `bad stimulus row count: ${badStimulusRowCount} (${helpers.formatNumber(

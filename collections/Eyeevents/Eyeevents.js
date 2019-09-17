@@ -52,28 +52,40 @@ Schemas.Eyeevent = new SimpleSchema(
       type: Number,
       label: 'Timestamp',
     },
-    timestampEnd: {
+    duration: {
       type: Number,
-      label: 'Timestamp End',
+      label: 'Duration',
     },
     eventIndex: {
-      type: String,
+      type: Number,
       label: 'Event Index',
       optional: true,
     },
     combinedEventIndex: {
-      type: String,
+      type: Number,
       label: 'Combined Event Index',
       optional: true,
     },
-    x: {
-      type: Number,
-      label: 'X',
+    xs: {
+      type: Array,
+      label: 'X Coordinates',
       optional: true,
     },
-    y: {
+    'xs.$': Number,
+    ys: {
+      type: Array,
+      label: 'Y Coordinates',
+      optional: true,
+    },
+    'ys.$': Number,
+    xMean: {
       type: Number,
-      label: 'Y',
+      label: 'Mean X Coordinate',
+      optional: true,
+    },
+    yMean: {
+      type: Number,
+      label: 'Mean Y Coordinate',
       optional: true,
     },
   },
@@ -88,67 +100,23 @@ require('./helpers');
 if (Meteor.isServer && !Meteor.isTest) {
   Eyeevents.rawCollection().createIndex(
     {
+      studyId: 1,
+      participantId: 1,
+      timestamp: 1,
+    },
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(`Eyeevents indexed: ${result} `);
+    },
+  );
+  Eyeevents.rawCollection().createIndex(
+    {
+      studyId: 1,
       participantId: 1,
       stimulusId: 1,
-      type: 1,
-      eventIndex: 1,
-    },
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      }
-      console.log(`Eyeevents indexed: ${result} `);
-    },
-  );
-
-  Eyeevents.rawCollection().createIndex(
-    {
-      participantId: 1,
-      stimulusId: 1,
-      eventIndex: 1,
-    },
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      }
-      console.log(`Eyeevents indexed: ${result} `);
-    },
-  );
-  Eyeevents.rawCollection().createIndex(
-    {
-      datafileId: 1,
-      stimulusId: 1,
-      type: 1,
-      eventIndex: 1,
-    },
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      }
-      console.log(`Eyeevents indexed: ${result} `);
-    },
-  );
-
-  Eyeevents.rawCollection().createIndex(
-    {
-      type: 1,
-      datafileId: 1,
-      stimulusId: 1,
-      eventIndex: 1,
-    },
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      }
-      console.log(`Eyeevents indexed: ${result} `);
-    },
-  );
-
-  Eyeevents.rawCollection().createIndex(
-    {
-      datafileId: 1,
-      stimulusId: 1,
-      eventIndex: 1,
+      timestamp: 1,
     },
     (err, result) => {
       if (err) {

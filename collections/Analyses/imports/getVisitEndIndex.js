@@ -7,11 +7,11 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
 
   const badFixations = _fixations.filter(
     fixation => typeof fixation.timestamp === 'undefined'
-      || typeof fixation.timestampEnd === 'undefined',
+      || typeof fixation.duration === 'undefined',
   );
 
   if (badFixations.length) {
-    throw new Error('missingTimestampOrTimestampEnd');
+    throw new Error('missingTimestampOrDuration');
   }
 
   const initialAoiId = _fixations[startIndex].aoiId;
@@ -45,10 +45,7 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
       // Check matching aoi
       if (_fixations[i].aoiId === initialAoiId) {
         // Check MVGD
-        if (
-          _fixations[i].timestamp - _fixations[potentialEndIndex].timestampEnd
-          > this.maxVisitGapDuration
-        ) {
+        if (_fixations[i].duration > this.maxVisitGapDuration) {
           // console.log('MVGD exceeded!');
           break;
         }
@@ -71,7 +68,8 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
   } else {
     // Check min visit duration
     if (
-      _fixations[potentialEndIndex].timestampEnd
+      _fixations[potentialEndIndex].timestamp
+        + _fixations[potentialEndIndex].duration
         - _fixations[startIndex].timestamp
       > this.minVisitDuration
     ) {

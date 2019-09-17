@@ -1,4 +1,5 @@
 import { Factory } from 'meteor/dburles:factory';
+import { jStat } from 'jStat';
 import faker from 'faker';
 import StubCollections from 'meteor/hwillson:stub-collections';
 import Datafiles from './Datafiles/Datafiles';
@@ -304,11 +305,24 @@ Factory.define('visit', Visits, {
   fileFormat: 'imotions',
 });
 
-const time1 = faker.random.number();
+const xs = [
+  faker.random.number(1000),
+  faker.random.number(1000),
+  faker.random.number(1000),
+  faker.random.number(1000),
+  faker.random.number(1000),
+];
+const ys = [
+  faker.random.number(1000),
+  faker.random.number(1000),
+  faker.random.number(1000),
+  faker.random.number(1000),
+  faker.random.number(1000),
+];
 
 Factory.define('fixation', Eyeevents, {
   studyId: (study = Factory.create('study'))._id,
-  type: 'fixation',
+  type: 'Fixation',
   participantId: (participant = Factory.create('participant', {
     studyId: study._id,
   }))._id,
@@ -318,9 +332,12 @@ Factory.define('fixation', Eyeevents, {
   }))._id,
   stimulusId: (stimulus = Factory.create('stimulus', { studyId: study._id }))
     ._id,
-  timestamp: time1,
-  timestampEnd: () => time1 + faker.random.number(),
-  eventIndex: faker.random.number,
-  x: faker.random.number,
-  y: faker.random.number,
+  timestamp: faker.random.number(10000),
+  duration: faker.random.number(1000),
+  eventIndex: faker.random.number(100),
+  combinedEventIndex: faker.random.number(100),
+  xs,
+  ys,
+  xMean: parseInt(jStat.mean(xs), 10),
+  yMean: parseInt(jStat.mean(ys), 10),
 });

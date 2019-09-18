@@ -1,11 +1,14 @@
+import { start } from 'repl';
 import Participants from '../../Participants/Participants';
 
 export default function makeVisits(opts) {
-  const { participantId } = opts || {};
-  const { fixations } = opts || {};
+  if (Meteor.isServer) console.log('Analyses.makeVisits()');
 
-  if (!fixations || !fixations.length) {
-    throw new Error('noFixations');
+  const { participantId } = opts || {};
+  const { eyeevents } = opts || {};
+
+  if (!eyeevents || !eyeevents.length) {
+    throw new Error('noEyeevents');
   }
 
   if (!participantId) {
@@ -18,84 +21,81 @@ export default function makeVisits(opts) {
   }
 
   // Filter the fixations by minimum duration
+  // TODO FUTURE - handle blinks and saccades
   const allFixations = this.filterFixationsByDuration(
-    fixations,
+    eyeevents,
     this.minFixationDuration,
   );
 
   const visitIds = [];
 
-  this.stimulusIds.forEach((stimulusId) => {
-    // console.log(stimulusId);
+  let startIndex = 0;
+  let number = 0;
 
-    const stimulusFixations = allFixations.filter(
-      fixation => fixation.stimulusId === stimulusId,
-    );
+  console.log(`startIndex: ${startIndex}`);
 
-    // console.log(`fixation count: ${stimulusFixations.length}`);
+  do {
+    let endIndex = null;
+    console.log(`endIndex: ${endIndex}`);
+    try {
+      console.log('try to get endIndex');
+      endIndex = this.getVisitEndIndex({
+        allFixations,
+        startIndex,
+      });
 
-    let startIndex = 0;
-    let number = 0;
+      console.log(`endIndex: ${endIndex}`);
 
-    // console.log(`startIndex: ${startIndex}`);
+      if (endIndex && allFixations[endIndex]) {
+        try {
+          number += 1;
 
-    do {
-      let endIndex = null;
-      // console.log(`endIndex: ${endIndex}`);
-      try {
-        // console.log('try to get endIndex');
-        endIndex = this.getVisitEndIndex({
-          fixations: stimulusFixations,
-          startIndex,
-        });
+          console.log('make a visit!');
+          console.log(`number: ${number}, [${startIndex}:${endIndex}]`);
 
-        // console.log(`endIndex: ${endIndex}`);
+          const { timestamp } = allFixations[startIndex];
+          const duration = allFixations[endIndex].timestamp
+            + allFixations[endIndex].duration
+            - allFixations[startIndex].timestamp;
 
-        if (endIndex && stimulusFixations[endIndex]) {
-          try {
-            number += 1;
+          const visitId = Visits.insert({
+            studyId: this.studyId,
+            analysisId: this._id,
+            participantId,
+            aoiId: allFixations[startIndex].aoiId,
+            stimulusId: allFixations[startIndex].stimulusId,
+            number,
+            timestamp,
+            duration,
+          });
 
-            // console.log('make a visit!');
-            // console.log(`number: ${number}, [${startIndex}:${endIndex}]`);
-
-            const visitId = this.makeVisit({
-              fixations: stimulusFixations,
-              startIndex,
-              endIndex,
-              number,
-            });
-
-            visitIds.push(visitId);
-            // console.log(`visit number: ${number} created!`);
-
-            // console.log(
-            //   `endIndex: ${endIndex} nextStartIndex: ${startIndex}`,
-            // );
-          } catch (err) {
-            console.log(err);
-          }
-        }
-
-        startIndex = endIndex + 1;
-      } catch (err) {
-        // console.log('no visit generated');
-        if (
-          err.error === 'minVisitDurationNotMet'
-          || err.error === 'endIndexNotFound'
-        ) {
-          // console.log(err.details);
-          startIndex = err.details.nextIndex;
-          // console.log(`endIndex: ${endIndex} nextStartIndex: ${startIndex}`);
-        } else if (err.error === 'noStimulusFound') {
-          console.log(
-            'stimulus not found - need to delete all eyeevents and gazepoints with this stimulusId',
-          );
-        } else {
+          visitIds.push(visitId);
+          console.log(`visit number: ${number} created!`);
+          console.log(`endIndex: ${endIndex} nextStartIndex: ${startIndex}`);
+        } catch (err) {
           console.log(err);
         }
       }
-    } while (startIndex < stimulusFixations.length - 1);
-  });
+
+      startIndex = endIndex + 1;
+    } catch (err) {
+      console.log('no visit generated');
+      if (
+        err.error === 'minVisitDurationNotMet'
+        || err.error === 'endIndexNotFound'
+      ) {
+        console.log(err.details);
+        startIndex = err.details.nextIndex;
+        console.log(`endIndex: ${endIndex} nextStartIndex: ${startIndex}`);
+      } else if (err.error === 'noStimulusFound') {
+        console.log(
+          'stimulus not found - need to delete all eyeevents and gazepoints with this stimulusId',
+        );
+      } else {
+        console.log(err);
+      }
+    }
+  } while (startIndex < eyeevents.length - 1);
 
   return visitIds;
 }

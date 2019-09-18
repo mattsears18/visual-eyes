@@ -2,7 +2,7 @@ import Jobs from '../../../collections/Jobs/Jobs';
 import Analyses from '../../../collections/Analyses/Analyses';
 import Eyeevents from '../../../collections/Eyeevents/Eyeevents';
 
-const fixationCache = {};
+const eyeeventCache = {};
 
 const queueAnalysesMakeVisits = Jobs.processJobs(
   'analyses.makeVisits',
@@ -18,26 +18,22 @@ const queueAnalysesMakeVisits = Jobs.processJobs(
       Jobs.remove({ 'data.analysisId': job.data.analysisId });
     } else {
       try {
-        if (!(job.data.participantId in fixationCache)) {
+        if (!(job.data.participantId in eyeeventCache)) {
           console.log('participant fixations not cached. get em');
 
-          fixationCache[job.data.participantId] = Eyeevents.find(
-            { participantId: job.data.participantId, type: 'fixation' },
+          // TODO FUTURE - handle blinks and saccades
+          eyeeventCache[job.data.participantId] = Eyeevents.find(
+            { participantId: job.data.participantId, type: 'Fixation' },
             {
               fields: {
                 _id: 1,
+                participantId: 1,
                 timestamp: 1,
-                timestampEnd: 1,
-                datafileId: 1,
+                duration: 1,
                 stimulusId: 1,
                 aoiId: 1,
-                x: 0,
-                y: 0,
-                eventIndex: 1,
-                duration: 1,
-                participantId: 1,
               },
-              sort: { datafileId: 1, stimulusId: 1, eventIndex: 1 },
+              sort: { participantId: 1, timestamp: 1 },
             },
           ).fetch();
         }
@@ -45,7 +41,7 @@ const queueAnalysesMakeVisits = Jobs.processJobs(
         try {
           analysis.makeVisits({
             participantId: job.data.participantId,
-            fixations: fixationCache[job.data.participantId],
+            eyeevents: eyeeventCache[job.data.participantId],
           });
 
           job.done();

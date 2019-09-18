@@ -1,94 +1,103 @@
-import Participants from '../../Participants/Participants';
-import Aois from '../../Aois/Aois';
-import Visits from '../../Visits/Visits';
+// import Participants from '../../Participants/Participants';
+// import Aois from '../../Aois/Aois';
+// import Visits from '../../Visits/Visits';
 
-export default function makeVisit(opts) {
-  const {
-    fixations, startIndex, endIndex, number,
-  } = opts || {};
+// export default function makeVisit(opts) {
+//   if (Meteor.isServer) console.log('Analyses.makeVisit()');
 
-  if (!fixations || !fixations.length) {
-    throw new Error('noFixations');
-  }
+//   const {
+//     fixations, startIndex, endIndex, number,
+//   } = opts || {};
 
-  if (fixations.length < 2) {
-    throw new Error('tooFewFixations');
-  }
+//   // TODO FUTURE - handle blinks and saccades
+//   if (!fixations || !fixations.length) {
+//     throw new Error('noFixations');
+//   }
 
-  const allFixations = [...fixations];
+//   if (fixations.length < 2) {
+//     throw new Error('tooFewFixations');
+//   }
 
-  if (!(startIndex > -1) || !allFixations[startIndex]) {
-    throw new Error('invalidStartIndex');
-  }
+//   const allFixations = [...fixations];
 
-  if (startIndex > allFixations.length - 2) {
-    throw new Error('startIndexTooHigh');
-  }
+//   if (!(startIndex > -1) || !allFixations[startIndex]) {
+//     throw new Error('invalidStartIndex');
+//   }
 
-  if (!endIndex || !allFixations[endIndex] || !(endIndex > startIndex)) {
-    throw new Error('invalidEndIndex');
-  }
+//   if (startIndex > allFixations.length - 2) {
+//     throw new Error('startIndexTooHigh');
+//   }
 
-  const { participantId } = allFixations[startIndex];
-  if (!participantId) {
-    throw new Error('noParticipantId');
-  }
+//   if (!endIndex || !allFixations[endIndex] || !(endIndex > startIndex)) {
+//     throw new Error('invalidEndIndex');
+//   }
 
-  const participant = Participants.findOne({ _id: participantId });
-  if (!participant) {
-    throw new Error('noParticipantFound');
-  }
+//   const { participantId } = allFixations[startIndex];
+//   if (!participantId) {
+//     throw new Error('noParticipantId');
+//   }
 
-  const { aoiId } = allFixations[startIndex];
-  if (!aoiId) {
-    throw new Error('noAoiId');
-  }
+//   const participant = Participants.findOne({ _id: participantId });
+//   if (!participant) {
+//     throw new Error('noParticipantFound');
+//   }
 
-  const aoi = Aois.findOne({ _id: aoiId });
-  if (!aoi) {
-    throw new Error('noAoiFound');
-  }
+//   const { aoiId } = allFixations[startIndex];
+//   if (!aoiId) {
+//     throw new Error('noAoiId');
+//   }
 
-  const { stimulusId } = allFixations[startIndex];
-  if (!stimulusId) {
-    throw new Error('noStimulusId');
-  }
+//   const aoi = Aois.findOne({ _id: aoiId });
+//   if (!aoi) {
+//     throw new Error('noAoiFound');
+//   }
 
-  const { timestamp } = allFixations[startIndex];
-  const { timestampEnd } = allFixations[endIndex];
-  const duration = timestampEnd - timestamp;
+//   const { stimulusId } = allFixations[startIndex];
+//   if (!stimulusId) {
+//     throw new Error('noStimulusId');
+//   }
 
-  let fixationsToSave = fixations
-    .slice(startIndex, endIndex + 1)
-    .filter(fixation => fixation.aoiId === aoiId);
+//   const stimulus = Stimuli.findOne({ _id: stimulusId });
+//   if (!stimulus) {
+//     throw new Error('noStimulusFound');
+//   }
 
-  fixationsToSave = fixationsToSave.map(fixation => ({
-    timestamp: fixation.timestamp,
-    timestampEnd: fixation.timestampEnd,
-    x: fixation.x,
-    y: fixation.y,
-  }));
+//   const { timestamp } = allFixations[startIndex];
+//   const duration = allFixations[endIndex].timestamp
+//     + allFixations[endIndex].duration
+//     - timestamp;
 
-  const fixationCount = fixationsToSave.length;
+//   // let fixationsToSave = fixations
+//   //   .slice(startIndex, endIndex + 1)
+//   //   .filter(fixation => fixation.aoiId === aoiId);
 
-  let fixationFrequency = 0;
+//   // fixationsToSave = fixationsToSave.map(fixation => ({
+//   //   timestamp: fixation.timestamp,
+//   //   timestampEnd: fixation.timestampEnd,
+//   //   x: fixation.x,
+//   //   y: fixation.y,
+//   // }));
 
-  if (duration > 0) {
-    fixationFrequency = (fixationCount / duration) * 1000;
-  }
+//   const fixationCount = fixationsToSave.length;
 
-  return Visits.insert({
-    studyId: this.studyId,
-    analysisId: this._id,
-    participantId,
-    aoiId,
-    stimulusId,
-    number,
-    timestamp,
-    timestampEnd,
-    duration,
-    fixations: fixationsToSave,
-    fixationCount,
-    fixationFrequency,
-  });
-}
+//   let fixationFrequency = 0;
+
+//   if (duration > 0) {
+//     fixationFrequency = (fixationCount / duration) * 1000;
+//   }
+
+//   return Visits.insert({
+//     studyId: this.studyId,
+//     analysisId: this._id,
+//     participantId,
+//     aoiId,
+//     stimulusId,
+//     number,
+//     timestamp,
+//     timestampEnd,
+//     duration,
+//     fixations: fixationsToSave,
+//     fixationCount,
+//     fixationFrequency,
+//   });
+// }

@@ -27,10 +27,10 @@ Schemas.Visit = new SimpleSchema(
     participantId: {
       type: String,
     },
-    aoiId: {
+    stimulusId: {
       type: String,
     },
-    stimulusId: {
+    aoiId: {
       type: String,
     },
     number: {
@@ -40,15 +40,6 @@ Schemas.Visit = new SimpleSchema(
     timestamp: {
       type: Number,
       label: 'First Fixation Timestamp',
-      optional: true,
-      autoform: {
-        type: 'hidden',
-      },
-    },
-    timestampEnd: {
-      type: Number,
-      label: 'Last Fixation Timestamp End',
-      optional: true,
       autoform: {
         type: 'hidden',
       },
@@ -56,33 +47,16 @@ Schemas.Visit = new SimpleSchema(
     duration: {
       type: Number,
       label: 'Duration',
-      optional: true,
       autoform: {
         type: 'hidden',
       },
     },
-    fixations: {
-      type: Array,
-    },
-    'fixations.$': Object,
-    'fixations.$.timestamp': Number,
-    'fixations.$.timestampEnd': Number,
-    'fixations.$.x': Number,
-    'fixations.$.y': Number,
     averageSlideHullCoverage: {
       type: Number,
       optional: true,
       autoform: {
         type: 'hidden',
       },
-    },
-    fixationCount: {
-      type: Number,
-      optional: true,
-    },
-    fixationFrequency: {
-      type: Number,
-      optional: true,
     },
   },
   { tracker: Tracker },

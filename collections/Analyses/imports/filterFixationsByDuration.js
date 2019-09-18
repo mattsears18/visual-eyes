@@ -1,9 +1,11 @@
-export default function filterFixationsByDuration(fixations, duration) {
-  if (!fixations || !fixations.length) {
+export default function filterFixationsByDuration(eyeevents, duration) {
+  if (!eyeevents || !eyeevents.length) {
     throw new Error('noFixations');
   }
 
-  if (!duration) return fixations;
+  if (!duration) return eyeevents;
 
-  return fixations.filter(fixation => fixation.duration >= duration);
+  return eyeevents.filter(
+    eyeevent => eyeevent.type === 'Fixation' && eyeevent.duration >= duration,
+  );
 }

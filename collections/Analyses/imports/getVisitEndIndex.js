@@ -14,14 +14,22 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
     throw new Error('missingTimestampOrDuration');
   }
 
-  const initialAoiId = _fixations[startIndex].aoiId;
+  const initialStimulusId = _fixations[startIndex].stimulusId;
+  if (initialStimulusId == null) {
+    throw new Error('noStimulusId');
+  }
 
+  const initialStimulus = Stimuli.findOne({ _id: initialStimulusId });
+  if (!initialStimulus) {
+    throw new Error('noStimulusFound');
+  }
+
+  const initialAoiId = _fixations[startIndex].aoiId;
   if (initialAoiId == null) {
     throw new Error('noAoiId');
   }
 
   const initialAoi = Aois.findOne({ _id: initialAoiId });
-
   if (!initialAoi) {
     throw new Error('noAoiFound');
   }

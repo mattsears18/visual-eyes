@@ -169,19 +169,70 @@ describe.only('Analyses.getVisitEndIndex()', () => {
         maxVisitGapDuration: 5000,
       });
 
-      const aoi = Factory.create('aoi');
+      const stimulus = Factory.create('stimulus');
+      const aoi = Factory.create('aoi', { stimulusId: stimulus._id });
 
       const fixations = [
-        { timestamp: 0, duration: 500, aoiId: aoi._id },
-        { timestamp: 1000, duration: 500, aoiId: aoi._id },
-        { timestamp: 2000, duration: 500, aoiId: aoi._id },
-        { timestamp: 3000, duration: 500, aoiId: aoi._id },
-        { timestamp: 4000, duration: 500, aoiId: aoi._id },
-        { timestamp: 5000, duration: 500, aoiId: aoi._id },
-        { timestamp: 6000, duration: 500, aoiId: aoi._id },
-        { timestamp: 7000, duration: 500, aoiId: aoi._id },
-        { timestamp: 8000, duration: 500, aoiId: aoi._id },
-        { timestamp: 9000, duration: 500, aoiId: aoi._id },
+        {
+          timestamp: 0,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 1000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 2000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 3000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 4000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 5000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 6000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 7000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 8000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 9000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
       ];
       expect(analysis.getVisitEndIndex({ fixations })).to.equal(9);
     });
@@ -192,16 +243,52 @@ describe.only('Analyses.getVisitEndIndex()', () => {
         maxVisitGapDuration: 5000,
       });
 
-      const aoi = Factory.create('aoi');
+      const stimulus = Factory.create('stimulus');
+      const aoi = Factory.create('aoi', { stimulusId: stimulus._id });
 
       const fixations = [
-        { timestamp: 0, timestampEnd: 500, aoiId: aoi._id },
-        { timestamp: 1000, timestampEnd: 1500, aoiId: aoi._id },
-        { timestamp: 2000, timestampEnd: 2500, aoiId: aoi._id },
-        { timestamp: 3000, timestampEnd: 3500, aoiId: aoi._id },
-        { timestamp: 4000, timestampEnd: 4500, aoiId: aoi._id },
-        { timestamp: 15000, timestampEnd: 5500, aoiId: aoi._id }, // 10500 ms gap!
-        { timestamp: 16000, timestampEnd: 6500, aoiId: aoi._id },
+        {
+          timestamp: 0,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 1000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 2000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 3000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 4000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 15000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        }, // 10500 ms gap!
+        {
+          timestamp: 16000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
       ];
       expect(analysis.getVisitEndIndex({ fixations })).to.equal(4);
     });
@@ -340,19 +427,70 @@ describe.only('Analyses.getVisitEndIndex()', () => {
         minVisitDuration: 10000,
       });
 
-      const aoi = Factory.create('aoi');
+      const stimulus = Factory.create('stimulus');
+      const aoi = Factory.create('aoi', { stimulusId: stimulus._id });
 
       const fixations = [
-        { timestamp: 0, timestampEnd: 500, aoiId: aoi._id },
-        { timestamp: 1000, timestampEnd: 1500, aoiId: aoi._id },
-        { timestamp: 2000, timestampEnd: 2500, aoiId: aoi._id },
-        { timestamp: 3000, timestampEnd: 3500, aoiId: aoi._id },
-        { timestamp: 4000, timestampEnd: 4500, aoiId: aoi._id },
-        { timestamp: 15000, timestampEnd: 15500, aoiId: aoi._id }, // 10,500ms gap - OK
-        { timestamp: 16000, timestampEnd: 16500, aoiId: aoi._id },
-        { timestamp: 17000, timestampEnd: 17500, aoiId: aoi._id },
-        { timestamp: 18000, timestampEnd: 18500, aoiId: aoi._id },
-        { timestamp: 19000, timestampEnd: 19500, aoiId: aoi._id },
+        {
+          timestamp: 0,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 1000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 2000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 3000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 4000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 15000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        }, // 10,500ms gap - OK
+        {
+          timestamp: 16000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 17000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 18000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
+        {
+          timestamp: 19000,
+          duration: 500,
+          stimulusId: stimulus._id,
+          aoiId: aoi._id,
+        },
       ];
 
       expect(analysis.getVisitEndIndex({ fixations })).to.equal(9);

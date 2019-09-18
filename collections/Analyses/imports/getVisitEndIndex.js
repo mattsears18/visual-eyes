@@ -39,8 +39,11 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
 
   if (this.type === 'iso15007') {
     for (let i = parseInt(startIndex, 10) + 1; i < _fixations.length; i += 1) {
-      // Check matching aoi
-      if (_fixations[i].aoiId !== initialAoiId) {
+      // Proceed until stimulus or aoi changes
+      if (
+        _fixations[i].stimulusId !== initialStimulusId
+        || _fixations[i].aoiId !== initialAoiId
+      ) {
         nextIndex = i;
         break;
       }
@@ -67,7 +70,7 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
     }
   }
 
-  // console.log(`potentialEndIndex: ${potentialEndIndex}`);
+  console.log(`potentialEndIndex: ${potentialEndIndex}`);
 
   if (potentialEndIndex === startIndex) {
     throw new Meteor.Error('endIndexNotFound', null, {

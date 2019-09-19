@@ -2,7 +2,7 @@ import { start } from 'repl';
 import Participants from '../../Participants/Participants';
 
 export default function makeVisits(opts) {
-  if (Meteor.isServer) console.log('Analyses.makeVisits()');
+  if (Meteor.isServer && !Meteor.isTest) console.log('Analyses.makeVisits()');
 
   const { participantId } = opts || {};
   const { eyeevents } = opts || {};
@@ -32,26 +32,28 @@ export default function makeVisits(opts) {
   let startIndex = 0;
   let number = 0;
 
-  console.log(`startIndex: ${startIndex}`);
-
   do {
     let endIndex = null;
-    console.log(`endIndex: ${endIndex}`);
+
     try {
-      console.log('try to get endIndex');
+      // console.log('try to get endIndex');
+      // console.log(`startIndex: ${startIndex}`);
       endIndex = this.getVisitEndIndex({
-        allFixations,
+        fixations: allFixations,
         startIndex,
       });
 
-      console.log(`endIndex: ${endIndex}`);
+      // console.log(`endIndex: ${endIndex}`);
 
       if (endIndex && allFixations[endIndex]) {
         try {
           number += 1;
 
-          console.log('make a visit!');
-          console.log(`number: ${number}, [${startIndex}:${endIndex}]`);
+          if (Meteor.isServer && !Meteor.isTest) {
+            console.log(
+              `\nmake a visit! number: ${number}, [${startIndex}:${endIndex}]\n`,
+            );
+          }
 
           const { timestamp } = allFixations[startIndex];
           const duration = allFixations[endIndex].timestamp
@@ -70,32 +72,31 @@ export default function makeVisits(opts) {
           });
 
           visitIds.push(visitId);
-          console.log(`visit number: ${number} created!`);
-          console.log(`endIndex: ${endIndex} nextStartIndex: ${startIndex}`);
+          startIndex = endIndex + 1;
+
+          // console.log(`endIndex: ${endIndex} nextStartIndex: ${startIndex}`);
         } catch (err) {
-          console.log(err);
+          if (Meteor.isServer && !Meteor.isTest) console.log(err);
         }
       }
 
       startIndex = endIndex + 1;
     } catch (err) {
-      console.log('no visit generated');
+      // console.log('no visit generated');
+
       if (
-        err.error === 'minVisitDurationNotMet'
-        || err.error === 'endIndexNotFound'
+        err.message === 'minVisitDurationNotMet'
+        || err.message === 'endIndexNotFound'
+        || err.message === 'blankInitialStimulus'
       ) {
-        console.log(err.details);
-        startIndex = err.details.nextIndex;
-        console.log(`endIndex: ${endIndex} nextStartIndex: ${startIndex}`);
-      } else if (err.error === 'noStimulusFound') {
-        console.log(
-          'stimulus not found - need to delete all eyeevents and gazepoints with this stimulusId',
-        );
+        startIndex += 1;
+      } else if (err.message === 'noStimulusFound') {
+        if (Meteor.isServer && !Meteor.isTest) console.log('stimulus not found!');
       } else {
         console.log(err);
       }
     }
-  } while (startIndex < eyeevents.length - 1);
+  } while (startIndex < allFixations.length - 1);
 
   return visitIds;
 }

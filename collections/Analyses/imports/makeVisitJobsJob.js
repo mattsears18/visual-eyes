@@ -2,7 +2,7 @@ import Jobs from '../../Jobs/Jobs';
 
 export default function() {
   if (Meteor.isServer) {
-    console.log('Analyses.makeVisitJobsJob()');
+    if (!Meteor.isTest) console.log('Analyses.makeVisitJobsJob()');
 
     Jobs.remove({
       'data.analysisId': this._id,

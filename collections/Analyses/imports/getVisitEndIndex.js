@@ -24,6 +24,11 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
     throw new Error('noStimulusFound');
   }
 
+  if (initialStimulus.name === '-') {
+    // check if first gaze point is on a "blank" stimulus
+    throw new Error('blankInitialStimulus');
+  }
+
   const initialAoiId = _fixations[startIndex].aoiId;
   if (initialAoiId == null) {
     throw new Error('noAoiId');
@@ -35,47 +40,44 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
   }
 
   let potentialEndIndex = startIndex;
-  let nextIndex;
+  // let nextIndex;
 
-  if (this.type === 'iso15007') {
-    for (let i = parseInt(startIndex, 10) + 1; i < _fixations.length; i += 1) {
-      // Proceed until stimulus or aoi changes
-      if (
-        _fixations[i].stimulusId !== initialStimulusId
-        || _fixations[i].aoiId !== initialAoiId
-      ) {
-        nextIndex = i;
+  for (let i = parseInt(startIndex, 10) + 1; i < _fixations.length; i += 1) {
+    if (this.type !== 'iso15007') {
+      // check minimum visit gap duration
+      const gap = _fixations[i].timestamp
+        + _fixations[i].duration
+        - (_fixations[potentialEndIndex].timestamp
+          + _fixations[potentialEndIndex].duration);
+
+      // console.log(`gap: ${gap}`);
+
+      if (gap > this.maxVisitGapDuration) {
+        // console.log('visit gap duration exceeded!');
+        // nextIndex = i;
         break;
       }
-
-      potentialEndIndex = i;
     }
-  } else {
-    for (let i = parseInt(startIndex, 10) + 1; i < _fixations.length; i += 1) {
-      // console.log(`'${i} of ${_fixations.length}`);
-      // Check matching aoi
-      if (_fixations[i].aoiId === initialAoiId) {
-        // Check MVGD
-        if (_fixations[i].duration > this.maxVisitGapDuration) {
-          // console.log('MVGD exceeded!');
-          break;
-        }
 
-        potentialEndIndex = i;
-      } else {
-        // Aoi doesn't match
-        nextIndex = nextIndex || i;
-        // console.log('nextIndex: ${nextIndex}');
+    if (
+      _fixations[i].stimulusId === initialStimulusId
+      && _fixations[i].aoiId === initialAoiId
+    ) {
+      potentialEndIndex = i;
+    } else {
+      // Stimulus or AOI change!
+      // console.log('stimulus or AOI change');
+      if (this.type === 'iso15007') {
+        // nextIndex = i;
+        break;
       }
     }
   }
 
-  console.log(`potentialEndIndex: ${potentialEndIndex}`);
+  if (Meteor.isServer && !Meteor.isTest) console.log(`potentialEndIndex: ${potentialEndIndex}`);
 
   if (potentialEndIndex === startIndex) {
-    throw new Meteor.Error('endIndexNotFound', null, {
-      nextIndex: nextIndex || startIndex + 1,
-    });
+    throw new Error('endIndexNotFound');
   } else {
     // Check min visit duration
     if (
@@ -87,8 +89,6 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
       return potentialEndIndex;
     }
 
-    throw new Meteor.Error('minVisitDurationNotMet', null, {
-      nextIndex: nextIndex || potentialEndIndex + 1,
-    });
+    throw new Error('minVisitDurationNotMet');
   }
 }

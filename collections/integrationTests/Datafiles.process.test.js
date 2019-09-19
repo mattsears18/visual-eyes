@@ -1,12 +1,11 @@
 import { Factory } from 'meteor/dburles:factory';
-import Gazepoints from '../../Gazepoints/Gazepoints';
 
-require('../../factories.test');
+require('../factories.test');
 const { expect } = require('chai');
 
 if (Meteor.isServer) {
-  describe('Datafiles.process()', () => {
-    it('processes an SMI datafile with multiple stimuli', async () => {
+  describe('INTEGRATION Datafiles.process()', () => {
+    it('INTEGRATION processes an SMI datafile with multiple stimuli', async () => {
       const study = Factory.create('study');
       let datafile = Factory.create('smiMultiDatafile', {
         studyId: study._id,

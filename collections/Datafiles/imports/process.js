@@ -60,7 +60,5 @@ export default async function process() {
     Datafiles.update({ _id: this._id }, { $set: { status: 'failed' } });
   }
 
-  // TODO need to check the status in the job runner to determine whether to call job.done() or retry it
-
   return Datafiles.findOne({ _id: this._id });
 }

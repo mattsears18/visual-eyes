@@ -95,9 +95,9 @@
       {{> PlotHistogramVisitCounts visits=visits}}
     </div>
   </div>
+
   {{/if}}
 
-  {{#if visits.count}}
   <h4>
     Visits ({{ visits.count }})
 
@@ -109,10 +109,7 @@
     ></span>
     {{/unless}}
   </h4>
-
   {{> tabular table=TabularTables.VisitsByAnalysisId selector=selector class="table table-striped table-bordered"}}
-  {{/if}}
-  {{/if}}
 
-  <h4>Eye events ({{ eyeevents.count }})</h4>
+  {{/if}}
 </template>

@@ -1,5 +1,6 @@
 import Tabular from 'meteor/aldeed:tabular';
 import Visits from '../Visits';
+import helpers from '../../../lib/helpers';
 
 const table = new Tabular.Table({
   name: 'VisitsByAnalysisId',
@@ -27,6 +28,17 @@ const table = new Tabular.Table({
       },
     },
     {
+      data: 'number',
+      type: 'num',
+      title: 'Visit Number',
+      render(data, type, row, meta) {
+        if (data) {
+          return `<a href="/studies/${row.studyId}/analyses/${row.analysisId}/${row.participantId}/${row.stimulusId}/${row.number}">${data}</a>`;
+        }
+      },
+    },
+
+    {
       data: {
         _: 'stimulusName()',
       },
@@ -34,15 +46,6 @@ const table = new Tabular.Table({
       render(data, type, row, meta) {
         if (data) {
           return `<a href="/studies/${row.studyId}/stimuli/${row.stimulusId}">${data}</a>`;
-        }
-      },
-    },
-    {
-      data: 'number',
-      title: 'Visit Number',
-      render(data, type, row, meta) {
-        if (data) {
-          return `<a href="/studies/${row.studyId}/analyses/${row.analysisId}/${row.participantId}/${row.stimulusId}/${row.number}">${data}</a>`;
         }
       },
     },
@@ -57,32 +60,58 @@ const table = new Tabular.Table({
         }
       },
     },
-    // {
-    //   data: 'aois()',
-    //   title: 'Areas of Interest',
-    //   render(data, type, row, meta) {
-    //     if (data) {
-    //       resp = '';
-    //       data.fetch().forEach(function(aoi) {
-    //         resp += `<div><a href="/studies/${row.studyId}/aois/${aoi._id}">${aoi.name}</div>`;
-    //       });
-    //       return resp;
-    //     }
-    //   },
-    // },
+    {
+      data: 'timestamp',
+      type: 'num',
+      title: 'Timestamp [ms]',
+      render(data, type, row, meta) {
+        return `<a href="/studies/${row.studyId}/analyses/${
+          row.analysisId
+        }/participants/${row.participantId}/visits/${
+          row.number
+        }">${helpers.formatNumber(data)}</a>`;
+      },
+    },
+    {
+      data: 'timestamp',
+      type: 'num',
+      title: 'Video Time',
+      render(data, type, row, meta) {
+        return `<a href="/studies/${row.studyId}/analyses/${
+          row.analysisId
+        }/participants/${row.participantId}/visits/${
+          row.number
+        }">${helpers.millisecondsToHMSMS(data)}</a>`;
+      },
+    },
+    {
+      data: 'duration',
+      type: 'num',
+      title: 'Duration [ms]',
+      render(data, type, row, meta) {
+        if (data) {
+          return `<a href="/studies/${row.studyId}/analyses/${
+            row.analysisId
+          }/participants/${row.participantId}/visits/${
+            row.number
+          }">${helpers.formatNumber(data)}</a>`;
+        }
+      },
+    },
     {
       data: 'duration',
       title: 'Duration',
       render(data, type, row, meta) {
         if (data) {
-          return `<a href="/studies/${row.studyId}/analyses/${row.analysisId}/${
-            row.participantId
-          }/${row.stimulusId}/${row.number}">${helpers.millisecondsToHMSMS(
-            data,
-          )}</a>`;
+          return `<a href="/studies/${row.studyId}/analyses/${
+            row.analysisId
+          }/participants/${row.participantId}/visits/${
+            row.number
+          }">${helpers.millisecondsToHMSMS(data)}</a>`;
         }
       },
     },
+
     // {
     //   data: 'status',
     //   title: 'Status',

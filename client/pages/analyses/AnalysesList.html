@@ -93,9 +93,7 @@
           {{ analysis.stimuli.count }}
         </td>
         <td>
-          {{#if analysis.visitCount}}
           {{ formatNumber analysis.visitCount }}
-          {{/if}}
         </td>
         <td>
           {{#if equals analysis.status "needsReprocessing"}}

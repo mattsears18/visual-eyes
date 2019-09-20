@@ -15,7 +15,7 @@ Template.Analysis.onCreated(function() {
 
   self.selector.set('participantIds', []);
   self.selector.set('stimulusIds', []);
-  self.selector.set('selector', {});
+  self.selector.set('selector', {});  
   self.subscribe('eyeevents.byStudyId', studyId);
   self.subscribe('analyses.single', analysisId);
 

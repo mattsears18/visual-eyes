@@ -3,7 +3,6 @@ import filterFixationsByDuration from './imports/filterFixationsByDuration';
 import getVisitEndIndex from './imports/getVisitEndIndex';
 import getVisitFixationCount from './imports/getVisitFixationCount';
 import getVisitAoiIds from './imports/getVisitAoiIds';
-import makeVisit from './imports/makeVisit';
 import makeVisits from './imports/makeVisits';
 import makeVisitJobsJob from './imports/makeVisitJobsJob';
 import updateStatus from './imports/updateStatus';
@@ -18,7 +17,6 @@ Analyses.helpers({
   getVisitEndIndex,
   getVisitFixationCount,
   getVisitAoiIds,
-  makeVisit,
   makeVisits,
   makeVisitJobsJob,
   updateStatus,

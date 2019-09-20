@@ -61,8 +61,7 @@ Schemas.Analysis = new SimpleSchema(
     minVisitDuration: {
       type: Number,
       label: 'Minimum Visit Duration (ms)',
-      optional: true,
-      defaultValue: 120,
+      defaultValue: 0,
     },
     maxVisitGapDuration: {
       type: Number,

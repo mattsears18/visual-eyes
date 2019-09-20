@@ -60,7 +60,7 @@ Studies.helpers({
     );
   },
   stimuli() {
-    return Stimuli.find({ studyId: this._id });
+    return Stimuli.find({ studyId: this._id, name: { $ne: '-' } });
   },
   participants() {
     return Participants.find({ studyId: this._id });

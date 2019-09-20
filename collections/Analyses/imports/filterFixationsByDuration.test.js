@@ -1,106 +1,118 @@
-// import '../../factories.test';
-// import { Factory } from 'meteor/dburles:factory';
-// import { expect } from 'chai';
+import '../../factories.test';
+import { Factory } from 'meteor/dburles:factory';
+import { expect } from 'chai';
 
-// describe('Analyses.filterFixationsByDuration()', () => {
-//   const testFixations = [
-//     {
-//       timestamp: 0,
-//       timestampEnd: 16,
-//     },
-//     {
-//       timestamp: 1000,
-//       timestampEnd: 1030,
-//     },
-//     {
-//       timestamp: 2000,
-//       timestampEnd: 2060,
-//     },
-//     {
-//       timestamp: 3000,
-//       timestampEnd: 3080,
-//     },
-//     {
-//       timestamp: 4000,
-//       timestampEnd: 4100,
-//     },
-//     {
-//       timestamp: 5000,
-//       timestampEnd: 5120,
-//     },
-//     {
-//       timestamp: 6000,
-//       timestampEnd: 6121,
-//     },
-//     {
-//       timestamp: 7000,
-//       timestampEnd: 7200,
-//     },
-//     {
-//       timestamp: 8000,
-//       timestampEnd: 9000,
-//     },
-//   ];
+describe('Analyses.filterFixationsByDuration()', () => {
+  const testFixations = [
+    {
+      type: 'Fixation',
+      timestamp: 0,
+      duration: 16,
+    },
+    {
+      type: 'Fixation',
+      timestamp: 1000,
+      duration: 30,
+    },
+    {
+      type: 'Fixation',
+      timestamp: 2000,
+      duration: 60,
+    },
+    {
+      type: 'Fixation',
+      timestamp: 3000,
+      duration: 80,
+    },
+    {
+      type: 'Fixation',
+      timestamp: 4000,
+      duration: 100,
+    },
+    {
+      type: 'Fixation',
+      timestamp: 5000,
+      duration: 120,
+    },
+    {
+      type: 'Fixation',
+      timestamp: 6000,
+      duration: 121,
+    },
+    {
+      type: 'Fixation',
+      timestamp: 7000,
+      duration: 200,
+    },
+    {
+      type: 'Fixation',
+      timestamp: 8000,
+      duration: 1000,
+    },
+  ];
 
-//   it('provides no fixations', () => {
-//     const analysis = Factory.create('analysis');
-//     expect(analysis.filterFixationsByDuration).to.throw('noFixations');
-//     expect(() => {
-//       analysis.filterFixationsByDuration([]);
-//     }).to.throw('noFixations');
-//   });
+  it('provides no fixations', () => {
+    const analysis = Factory.create('analysis');
+    expect(analysis.filterFixationsByDuration).to.throw('noFixations');
+    expect(() => {
+      analysis.filterFixationsByDuration([]);
+    }).to.throw('noFixations');
+  });
 
-//   it('has an undefined minimum fixation duration', () => {
-//     const analysis = Factory.create('analysis', {
-//       type: 'iso15007',
-//     });
+  it('has an undefined minimum fixation duration', () => {
+    const analysis = Factory.create('analysis', {
+      type: 'iso15007',
+    });
 
-//     delete analysis.minFixationDuration;
-//     expect(
-//       analysis.filterFixationsByDuration(
-//         testFixations,
-//         analysis.minFixationDuration,
-//       ),
-//     ).to.eql(testFixations);
-//   });
+    delete analysis.minFixationDuration;
+    expect(
+      analysis.filterFixationsByDuration(
+        testFixations,
+        analysis.minFixationDuration,
+      ),
+    ).to.eql(testFixations);
+  });
 
-//   it('has a null minimum fixation duration', () => {
-//     const analysis = Factory.create('analysis', {
-//       type: 'iso15007',
-//       minFixationDuration: null,
-//     });
+  it('has a null minimum fixation duration', () => {
+    const analysis = Factory.create('analysis', {
+      type: 'iso15007',
+      minFixationDuration: null,
+    });
 
-//     expect(
-//       analysis.filterFixationsByDuration(
-//         testFixations,
-//         analysis.minFixationDuration,
-//       ),
-//     ).to.eql(testFixations);
-//   });
+    expect(
+      analysis.filterFixationsByDuration(
+        testFixations,
+        analysis.minFixationDuration,
+      ),
+    ).to.eql(testFixations);
+  });
 
-//   it('filters by duration', () => {
-//     const analysis = Factory.create('analysis', {
-//       minFixationDuration: 121,
-//     });
+  it('filters by duration', () => {
+    const analysis = Factory.create('analysis', {
+      minFixationDuration: 121,
+    });
 
-//     expect(
-//       analysis.filterFixationsByDuration(
-//         testFixations,
-//         analysis.minFixationDuration,
-//       ),
-//     ).to.eql([
-//       {
-//         timestamp: 6000,
-//         timestampEnd: 6121,
-//       },
-//       {
-//         timestamp: 7000,
-//         timestampEnd: 7200,
-//       },
-//       {
-//         timestamp: 8000,
-//         timestampEnd: 9000,
-//       },
-//     ]);
-//   });
-// });
+    expect(
+      analysis.filterFixationsByDuration(
+        testFixations,
+        analysis.minFixationDuration,
+      ),
+    ).to.eql([
+      {
+        type: 'Fixation',
+        timestamp: 6000,
+        duration: 121,
+      },
+      {
+        type: 'Fixation',
+        timestamp: 7000,
+        duration: 200,
+      },
+      {
+        type: 'Fixation',
+        timestamp: 8000,
+        duration: 1000,
+      },
+    ]);
+  });
+});

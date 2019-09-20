@@ -49,29 +49,17 @@ const table = new Tabular.Table({
         }
       },
     },
-    {
-      data: {
-        _: 'aoiName()',
-      },
-      title: 'Area of Interest',
-      render(data, type, row, meta) {
-        if (data) {
-          return `<a href="/studies/${row.studyId}/stimuli/${row.stimulusId}">${data}</a>`;
-        }
-      },
-    },
-    {
-      data: 'timestamp',
-      type: 'num',
-      title: 'Timestamp [ms]',
-      render(data, type, row, meta) {
-        return `<a href="/studies/${row.studyId}/analyses/${
-          row.analysisId
-        }/participants/${row.participantId}/visits/${
-          row.number
-        }">${helpers.formatNumber(data)}</a>`;
-      },
-    },
+    // {
+    //   data: {
+    //     _: 'aoiName()',
+    //   },
+    //   title: 'Area of Interest',
+    //   render(data, type, row, meta) {
+    //     if (data) {
+    //       return `<a href="/studies/${row.studyId}/stimuli/${row.stimulusId}">${data}</a>`;
+    //     }
+    //   },
+    // },
     {
       data: 'timestamp',
       type: 'num',
@@ -81,7 +69,21 @@ const table = new Tabular.Table({
           row.analysisId
         }/participants/${row.participantId}/visits/${
           row.number
-        }">${helpers.millisecondsToHMSMS(data)}</a>`;
+        }">${helpers.millisecondsToMSMS(data)} - ${helpers.millisecondsToMSMS(
+          data + row.duration,
+        )}</a>`;
+      },
+    },
+    {
+      data: 'timestamp',
+      type: 'num',
+      title: 'Timestamp (ms)',
+      render(data, type, row, meta) {
+        return `<a href="/studies/${row.studyId}/analyses/${
+          row.analysisId
+        }/participants/${row.participantId}/visits/${
+          row.number
+        }">${helpers.formatNumber(data)}</a>`;
       },
     },
     {
@@ -94,23 +96,25 @@ const table = new Tabular.Table({
             row.analysisId
           }/participants/${row.participantId}/visits/${
             row.number
-          }">${helpers.formatNumber(data)}</a>`;
+          }">${helpers.millisecondsToMSMS(data)} [${helpers.formatNumber(
+            data,
+          )}]</a>`;
         }
       },
     },
-    {
-      data: 'duration',
-      title: 'Duration',
-      render(data, type, row, meta) {
-        if (data) {
-          return `<a href="/studies/${row.studyId}/analyses/${
-            row.analysisId
-          }/participants/${row.participantId}/visits/${
-            row.number
-          }">${helpers.millisecondsToHMSMS(data)}</a>`;
-        }
-      },
-    },
+    // {
+    //   data: 'duration',
+    //   title: 'Duration',
+    //   render(data, type, row, meta) {
+    //     if (data) {
+    //       return `<a href="/studies/${row.studyId}/analyses/${
+    //         row.analysisId
+    //       }/participants/${row.participantId}/visits/${
+    //         row.number
+    //       }">${helpers.millisecondsToMSMS(data)}</a>`;
+    //     }
+    //   },
+    // },
 
     // {
     //   data: 'status',

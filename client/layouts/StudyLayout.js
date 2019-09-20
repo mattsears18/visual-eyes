@@ -21,7 +21,7 @@ Template.StudyLayout.helpers({
   study: () => Studies.findOne(),
   datafiles: () => Datafiles.find(),
   participants: () => Participants.find(),
-  stimuli: () => Stimuli.find(),
+  stimuli: () => Stimuli.find({ name: { $ne: '-' } }),
   stimulusfiles: () => Stimulusfiles.find(),
   variables: () => Variables.find(),
   analyses: () => Analyses.find(),

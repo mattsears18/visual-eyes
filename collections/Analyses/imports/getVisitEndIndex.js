@@ -64,31 +64,24 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
       && _fixations[i].aoiId === initialAoiId
     ) {
       potentialEndIndex = i;
-    } else {
-      // Stimulus or AOI change!
-      // console.log('stimulus or AOI change');
-      if (this.type === 'iso15007') {
-        // nextIndex = i;
-        break;
-      }
+    } else if (this.type === 'iso15007') {
+      break;
     }
   }
 
-  if (Meteor.isServer && !Meteor.isTest) console.log(`potentialEndIndex: ${potentialEndIndex}`);
-
   if (potentialEndIndex === startIndex) {
     throw new Error('endIndexNotFound');
-  } else {
+  } else if (this.type !== 'iso15007') {
     // Check min visit duration
     if (
       _fixations[potentialEndIndex].timestamp
         + _fixations[potentialEndIndex].duration
         - _fixations[startIndex].timestamp
-      > this.minVisitDuration
+      < this.minVisitDuration
     ) {
-      return potentialEndIndex;
+      throw new Error('minVisitDurationNotMet');
     }
-
-    throw new Error('minVisitDurationNotMet');
   }
+
+  return potentialEndIndex;
 }

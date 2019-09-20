@@ -203,7 +203,18 @@ Factory.define('analysis', Analyses, {
   type: 'custom',
   maxVisitGapDuration: 5000,
   minVisitDuration: 10000,
-  ignoreOutsideImage: faker.random.boolean,
+  ignoreOutsideImage: true,
+  participantIds: [],
+  stimulusIds: [],
+});
+
+Factory.define('analysisIso', Analyses, {
+  studyId: () => Factory.create('study')._id,
+  name: () => faker.lorem.words(),
+  desc: () => faker.lorem.paragraph(),
+  type: 'iso15007',
+  minFixationDuration: 120,
+  ignoreOutsideImage: true,
   participantIds: [],
   stimulusIds: [],
 });
@@ -285,19 +296,19 @@ Factory.define('visit', Visits, {
   fixations: [
     {
       timestamp: 0,
-      timestampEnd: 100,
+      duration: 100,
       x: 0,
       y: 0,
     },
     {
       timestamp: 200,
-      timestampEnd: 300,
+      duration: 100,
       x: 0,
       y: 0,
     },
     {
       timestamp: 400,
-      timestampEnd: 500,
+      duration: 100,
       x: 0,
       y: 0,
     },

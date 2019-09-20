@@ -2,7 +2,11 @@ export default function makeDefaultAnalysesThatDontExist() {
   if (Meteor.isServer) {
     console.log('Study.makeDefaultAnalysesThatDontExist()');
   }
-  const minVisitDurations = [
+
+  // CUSTOM
+  let minFixationDurations = [];
+
+  let minVisitDurations = [
     60,
     80,
     100,
@@ -63,6 +67,82 @@ export default function makeDefaultAnalysesThatDontExist() {
           minVisitDuration,
           maxVisitGapDuration,
           type: 'custom',
+          ignoreOutsideImage: true,
+          participantIds: this.participants().map(
+            participant => participant._id,
+          ),
+          stimulusIds: this.stimuli().map(stimulus => stimulus._id),
+        });
+      }
+    });
+  });
+
+  // ISO 15007
+  minFixationDurations = [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100,
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200,
+  ];
+
+  minVisitDurations = [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100,
+    110,
+    120,
+    200,
+    250,
+    500,
+    1000,
+    // 2000,
+    // 3000,
+    // 4000,
+    // 5000,
+    // 10000,
+    // 20000,
+    // 30000,
+  ];
+
+  minFixationDurations.forEach((minFixationDuration) => {
+    minVisitDurations.forEach((minVisitDuration) => {
+      const matches = existingAnalyses.find(
+        analysis => analysis.minFixationDuration === minFixationDuration
+          && analysis.minVisitDuration === minVisitDuration,
+      );
+
+      if (typeof matches === 'undefined') {
+        Analyses.insert({
+          studyId: this._id,
+          name: 'Analysis',
+          minFixationDuration,
+          minVisitDuration,
+          type: 'iso15007',
           ignoreOutsideImage: true,
           participantIds: this.participants().map(
             participant => participant._id,

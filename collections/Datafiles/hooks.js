@@ -38,9 +38,6 @@ Datafiles.collection.after.remove(function(userId, datafile) {
   );
 
   if (Meteor.isServer) {
-    // Delete any Stimuli that no longer have datafileIds
-    Stimuli.remove({ datafileIds: { $eq: [] } });
-
     // Delete any Participants that no longer have datafileIds
     Participants.remove({ datafileIds: { $eq: [] } });
 

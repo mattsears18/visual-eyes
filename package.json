@@ -2,7 +2,7 @@
   "name": "visual-eyes",
   "version": "0.0.1",
   "description": "A visualization and statistical analysis web application for eye tracking data",
-  "license": "MIT",
+  "license": "GPL-3.0-only",
   "repository": "mattsears18/visual-eyes",
   "scripts": {
     "start": "meteor --settings settings.json",

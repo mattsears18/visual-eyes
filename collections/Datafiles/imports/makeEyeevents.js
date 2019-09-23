@@ -22,6 +22,10 @@ export default function makeEyeevents(renamedRows) {
         datafileId: this._id,
         studyId: this.studyId,
         participantId: this.participantId,
+        timestampEnd:
+          event.timestamp >= 0 && event.duration >= 0
+            ? event.timestamp + event.duration
+            : null,
       });
     });
   }

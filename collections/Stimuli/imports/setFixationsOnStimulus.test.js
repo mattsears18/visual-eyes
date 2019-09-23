@@ -75,5 +75,5 @@ describe('Stimuli.setFixationsOnStimulus()', () => {
 
     expect(fixations[3].onStimulus).to.equal(true);
     expect(fixations[3].stimulusId).to.equal(stimulus._id);
-  });
+  }).timeout(10000);
 });

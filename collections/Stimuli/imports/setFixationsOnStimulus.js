@@ -48,6 +48,4 @@ export default function setFixationsOnStimulus() {
       { multi: true },
     );
   }
-
-  return Eyeevents.find({ stimulusId: this._id }).fetch();
 }

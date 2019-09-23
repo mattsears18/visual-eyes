@@ -56,6 +56,10 @@ Schemas.Eyeevent = new SimpleSchema(
       type: Number,
       label: 'Duration',
     },
+    timestampEnd: {
+      type: Number,
+      label: 'Timestamp End',
+    },
     eventIndex: {
       type: Number,
       label: 'Event Index',

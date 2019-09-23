@@ -343,8 +343,13 @@ Factory.define('fixation', Eyeevents, {
   }))._id,
   stimulusId: (stimulus = Factory.create('stimulus', { studyId: study._id }))
     ._id,
+  aoiId: (aoi = Factory.create('aoi', {
+    studyId: study._id,
+    stimulusId: stimulus._id,
+  }))._id,
   timestamp: faker.random.number(10000),
   duration: faker.random.number(1000),
+  timestampEnd: faker.random.number(1000),
   eventIndex: faker.random.number(100),
   combinedEventIndex: faker.random.number(100),
   xs,

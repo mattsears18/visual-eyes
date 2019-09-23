@@ -1,14 +1,18 @@
 import Jobs from '../Jobs/Jobs';
 import getHullseries from './imports/getHullseries';
 import getExportData from './imports/getExportData';
-import saveCSV from './imports/saveCSV';
+import getFixations from './imports/getFixations';
+import getLeadingSaccade from './imports/getLeadingSaccade';
 import getSampledData from './imports/getSampledData';
+import saveCSV from './imports/saveCSV';
 import Stimuli from '../Stimuli/Stimuli';
 // import getFixationProportion from './imports/getFixationProportion';
 
 Visits.helpers({
   getHullseries,
   getExportData,
+  getFixations,
+  getLeadingSaccade,
   saveCSV,
   getSampledData,
   // getFixationProportion,

@@ -10,11 +10,11 @@ export default function getPointTrailTrace(opt) {
   if (initial) {
     let name;
 
-    if (this.visit.study().fixationsOnly) {
-      name = `Last ${data.x.length} Fixations`;
-    } else {
-      name = `Last ${data.x.length} Gaze Points`;
-    }
+    // if (this.visit.study().fixationsOnly) {
+    name = `Last ${data.x.length} Fixations`;
+    // } else {
+    // name = `Last ${data.x.length} Gaze Points`;
+    // }
 
     data.name = name;
     data.mode = 'lines';

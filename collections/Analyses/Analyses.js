@@ -43,15 +43,15 @@ Schemas.Analysis = new SimpleSchema(
         defaultValue: 'iso15007',
       },
     },
-    fixationsOnly: {
-      type: Boolean,
-      label:
-        'Use Fixations Instead of Gaze Points (Faster, ISO 15007 Compliant)',
-      defaultValue: false,
-      autoform: {
-        type: 'boolean-checkbox',
-      },
-    },
+    // fixationsOnly: {
+    //   type: Boolean,
+    //   label:
+    //     'Use Fixations Instead of Gaze Points (Faster, ISO 15007 Compliant)',
+    //   defaultValue: false,
+    //   autoform: {
+    //     type: 'boolean-checkbox',
+    //   },
+    // },
     minFixationDuration: {
       type: Number,
       label: 'Minimum Fixation Duration (ms)',

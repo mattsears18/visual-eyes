@@ -30,38 +30,38 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>
+        <th class="center">
           Name
         </th>
-        <th>
+        <th class="center">
           Type
         </th>
-        <th>
-          Minimum Fixation Duration (ms)
+        <th class="center">
+          Min Fixation (ms)
         </th>
-        <th>
-          Minimum Visit Duration (ms)
+        <th class="center">
+          Min Visit (ms)
         </th>
-        <th>
-          Maximum Visit Gap Duration (ms)
+        <th class="center">
+          Max Visit Gap (ms)
         </th>
-        <th>
+        <th class="center">
           Participants
         </th>
-        <th>
+        <th class="center">
           Stimuli
         </th>
-        <th>
+        <th class="center">
           Visits
         </th>
-        <th>
+        <th class="center">
           Status
-          {{#if study.analysesProcessingComplete}}
+          <!-- {{#if study.analysesProcessingComplete}}
           <span class="label label-success">All Processed</span>
-          {{/if}}
+          {{/if}} -->
         </th>
         {{#if analysis.hasPermission 'update'}}
-        <th>Delete</th>
+        <th class="center">Delete</th>
         {{/if}}
         <th></th>
       </tr>
@@ -74,28 +74,28 @@
             analysis.name
           }}</a>
         </td>
-        <td>
+        <td class="center">
           {{ analysis.typeText }}
         </td>
-        <td>
+        <td class="center">
           {{ analysis.minFixationDuration }}
         </td>
-        <td>
+        <td class="center">
           {{ analysis.minVisitDuration }}
         </td>
-        <td>
+        <td class="center">
           {{ analysis.maxVisitGapDuration }}
         </td>
-        <td>
+        <td class="center">
           {{ analysis.participants.count }}
         </td>
-        <td>
+        <td class="center">
           {{ analysis.stimuli.count }}
         </td>
-        <td>
+        <td class="center">
           {{ formatNumber analysis.visitCount }}
         </td>
-        <td>
+        <td class="center">
           {{#if equals analysis.status "needsProcessing"}}
           <span class="label label-danger">Needs Processing</span>
           {{/if}}

@@ -5,7 +5,21 @@ const { expect } = require('chai');
 
 describe('Stimuli.setFixationsOnStimulus()', () => {
   it('sets whether the fixations are on the stimulus', () => {
-    const stimulus = Factory.create('stimulus', { width: 1000, height: 1000 });
+    const study = Factory.create('study');
+    const stimulus = Factory.create('stimulus', {
+      studyId: study._id,
+      width: 1000,
+      height: 1000,
+    });
+    const blankStimulus = Factory.create('stimulus', {
+      name: '-',
+      studyId: study._id,
+    });
+    const blankAoi = Factory.create('aoi', {
+      name: '-',
+      studyId: study._id,
+      stimulusId: blankStimulus._id,
+    });
 
     const rows = [
       {
@@ -32,6 +46,7 @@ describe('Stimuli.setFixationsOnStimulus()', () => {
 
     for (let i = 0; i < rows.length; i += 1) {
       Factory.create('fixation', {
+        studyId: stimulus.studyId,
         stimulusId: stimulus._id,
         ...rows[i],
       });
@@ -42,16 +57,23 @@ describe('Stimuli.setFixationsOnStimulus()', () => {
     const fixations = Eyeevents.find(
       {
         type: 'Fixation',
-        stimulusId: stimulus._id,
+        studyId: study._id,
       },
       { sort: { timestamp: 1 } },
     ).fetch();
 
-    console.log(fixations);
-
     expect(fixations[0].onStimulus).to.equal(true);
+    expect(fixations[0].stimulusId).to.equal(stimulus._id);
+
     expect(fixations[1].onStimulus).to.equal(false);
+    expect(fixations[1].stimulusId).to.equal(blankStimulus._id);
+    expect(fixations[1].aoiId).to.equal(blankAoi._id);
+
     expect(fixations[2].onStimulus).to.equal(false);
+    expect(fixations[2].stimulusId).to.equal(blankStimulus._id);
+    expect(fixations[2].aoiId).to.equal(blankAoi._id);
+
     expect(fixations[3].onStimulus).to.equal(true);
+    expect(fixations[3].stimulusId).to.equal(stimulus._id);
   });
 });

@@ -22,6 +22,28 @@ const queueAnalysesMakeVisits = Jobs.processJobs(
         { $set: { status: 'processing' } },
       );
 
+      const allUnsetFixationsCount = Eyeevents.find({
+        stimulusId: { $in: analysis.stimulusIds },
+        type: 'Fixation',
+        onStimulus: null,
+      }).count();
+
+      // make sure fixations.onStimulus is set for all fixations
+      if (allUnsetFixationsCount) {
+        for (let i = 0; i < analysis.stimulusIds.length; i += 1) {
+          const unsetFixationsCount = Eyeevents.find({
+            stimulusId: analysis.stimulusIds[i],
+            type: 'Fixation',
+            onStimulus: null,
+          }).count();
+
+          if (unsetFixationsCount) {
+            const stimulus = Stimuli.findOne({ _id: analysis.stimulusIds[i] });
+            stimulus.setFixationsOnStimulus();
+          }
+        }
+      }
+
       try {
         if (!(job.data.participantId in eyeeventCache)) {
           console.log('participant fixations not cached. get em');
@@ -38,6 +60,7 @@ const queueAnalysesMakeVisits = Jobs.processJobs(
                 duration: 1,
                 stimulusId: 1,
                 aoiId: 1,
+                onStimulus: 1,
               },
               sort: { participantId: 1, timestamp: 1 },
             },

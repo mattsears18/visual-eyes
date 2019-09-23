@@ -58,6 +58,7 @@ const queueAnalysesMakeVisits = Jobs.processJobs(
                 participantId: 1,
                 timestamp: 1,
                 duration: 1,
+                timestampEnd: 1,
                 stimulusId: 1,
                 aoiId: 1,
                 onStimulus: 1,
@@ -76,6 +77,7 @@ const queueAnalysesMakeVisits = Jobs.processJobs(
           job.done();
           analysis.updateStatus();
         } catch (err) {
+          console.log('balls');
           console.log(err);
         }
       } catch (err) {

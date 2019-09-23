@@ -293,27 +293,9 @@ Factory.define('visit', Visits, {
   aoiId: () => Factory.create('aoi')._id,
   stimulusId: () => Factory.create('stimulus')._id,
   number: () => faker.random.number({ min: 1, max: 10 }),
-  fixations: [
-    {
-      timestamp: 0,
-      duration: 100,
-      x: 0,
-      y: 0,
-    },
-    {
-      timestamp: 200,
-      duration: 100,
-      x: 0,
-      y: 0,
-    },
-    {
-      timestamp: 400,
-      duration: 100,
-      x: 0,
-      y: 0,
-    },
-  ],
-  fileFormat: 'imotions',
+  timestamp: (timestamp = faker.random.number(10000)),
+  duration: (duration = faker.random.number(1000)),
+  timestampEnd: timestamp + duration,
 });
 
 const xs = [

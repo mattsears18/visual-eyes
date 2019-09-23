@@ -70,6 +70,7 @@ export default function makeVisits(opts) {
               number,
               timestamp,
               duration,
+              timestampEnd: timestamp + duration,
             });
 
             visitIds.push(visitId);
@@ -96,7 +97,7 @@ export default function makeVisits(opts) {
       } else if (err.message === 'noStimulusFound') {
         if (Meteor.isServer && !Meteor.isTest) console.log('stimulus not found!');
       } else {
-        console.log(err);
+        // console.log(err);
       }
     }
   } while (startIndex < allFixations.length - 1);

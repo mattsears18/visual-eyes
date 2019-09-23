@@ -44,6 +44,13 @@ Schemas.Visit = new SimpleSchema(
         type: 'hidden',
       },
     },
+    timestampEnd: {
+      type: Number,
+      label: 'Last Fixation Timestamp End',
+      autoform: {
+        type: 'hidden',
+      },
+    },
     duration: {
       type: Number,
       label: 'Duration',

@@ -1,20 +1,12 @@
 import Stimulusfiles from './Stimulusfiles/Stimulusfiles';
+import setFixationsOnStimulus from './imports/setFixationsOnStimulus';
 
 Stimuli.helpers({
+  setFixationsOnStimulus,
+
   hasPermission(action) {
     check(action, String);
-
     return true;
-
-    study = Studies.findOne(this.studyId);
-
-    if (study && study.userPermissions) {
-      userIds = study.userPermissions[action];
-      if (userIds) {
-        return userIds.includes(Meteor.userId());
-      }
-    }
-    return false;
   },
   stimulusfile() {
     return this.stimulusfileId

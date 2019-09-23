@@ -88,6 +88,10 @@ Schemas.Eyeevent = new SimpleSchema(
       label: 'Mean Y Coordinate',
       optional: true,
     },
+    onStimulus: {
+      type: Boolean,
+      optional: true,
+    },
   },
   { tracker: Tracker },
 );

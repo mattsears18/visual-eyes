@@ -18,6 +18,10 @@ Stimuli.after.remove(function(userId, stimulus) {
 });
 
 Stimuli.after.update(function(userId, stimulus, fieldNames, modifier, options) {
+  if (stimulus.width && stimulus.height) {
+    Stimuli.findOne({ _id: stimulus._id }).setFixationsOnStimulus();
+  }
+
   if (
     this.previous.width != stimulus.width
     || this.previous.height != stimulus.height

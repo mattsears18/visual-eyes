@@ -17,6 +17,11 @@ const queueAnalysesMakeVisits = Jobs.processJobs(
 
       Jobs.remove({ 'data.analysisId': job.data.analysisId });
     } else {
+      Analyses.update(
+        { _id: analysis._id },
+        { $set: { status: 'processing' } },
+      );
+
       try {
         if (!(job.data.participantId in eyeeventCache)) {
           console.log('participant fixations not cached. get em');

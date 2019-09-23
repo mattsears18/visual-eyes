@@ -16,11 +16,11 @@ export default function reprocessAnalyses() {
         { _id: analysis._id },
         {
           $unset: {
-            status: 1,
             visitCount: 1,
             visitDurationMean: 1,
             visitDurationMedian: 1,
           },
+          $set: { status: 'needsProcessing' },
         },
       );
       Meteor.call('analyses.makeVisitJobsJob', {

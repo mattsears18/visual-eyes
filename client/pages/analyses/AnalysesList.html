@@ -96,8 +96,8 @@
           {{ formatNumber analysis.visitCount }}
         </td>
         <td>
-          {{#if equals analysis.status "needsReprocessing"}}
-          <span class="label label-danger">Needs Reprocessing</span>
+          {{#if equals analysis.status "needsProcessing"}}
+          <span class="label label-danger">Needs Processing</span>
           {{/if}}
           {{#if equals analysis.status "processing"}}
           <span class="label label-default"

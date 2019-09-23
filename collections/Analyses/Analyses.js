@@ -104,10 +104,7 @@ Schemas.Analysis = new SimpleSchema(
     },
     status: {
       type: String,
-      autoform: {
-        type: 'hidden',
-      },
-      optional: true,
+      defaultValue: 'needsProcessing',
     },
     visitCount: {
       type: Number,

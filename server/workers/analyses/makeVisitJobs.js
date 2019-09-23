@@ -25,10 +25,10 @@ export default queueAnalysesMakeVisitJobs = Jobs.processJobs(
           {
             $unset: {
               visitCount: 1,
-              status: 1,
               visitDurationMean: 1,
               visitDurationMedian: 1,
             },
+            $set: { status: 'needsProcessing' },
           },
         );
 

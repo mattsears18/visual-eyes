@@ -120,6 +120,18 @@ if (Meteor.isServer && !Meteor.isTest) {
   );
   Eyeevents.rawCollection().createIndex(
     {
+      participantId: 1,
+      combinedEventIndex: 1,
+    },
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(`Eyeevents indexed: ${result} `);
+    },
+  );
+  Eyeevents.rawCollection().createIndex(
+    {
       studyId: 1,
       participantId: 1,
       timestamp: 1,

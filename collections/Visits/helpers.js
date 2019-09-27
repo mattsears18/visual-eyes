@@ -2,7 +2,7 @@ import Jobs from '../Jobs/Jobs';
 import getHullseries from './imports/getHullseries';
 import getExportData from './imports/getExportData';
 import getFixations from './imports/getFixations';
-import getLeadingSaccade from './imports/getLeadingSaccade';
+import getGlanceSaccade from './imports/getGlanceSaccade';
 import getSampledData from './imports/getSampledData';
 import saveCSV from './imports/saveCSV';
 import Stimuli from '../Stimuli/Stimuli';
@@ -12,7 +12,7 @@ Visits.helpers({
   getHullseries,
   getExportData,
   getFixations,
-  getLeadingSaccade,
+  getGlanceSaccade,
   saveCSV,
   getSampledData,
   // getFixationProportion,

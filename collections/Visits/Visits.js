@@ -58,6 +58,12 @@ Schemas.Visit = new SimpleSchema(
         type: 'hidden',
       },
     },
+    combinedEventIndexStart: {
+      type: Number,
+    },
+    combinedEventIndexEnd: {
+      type: Number,
+    },
     averageSlideHullCoverage: {
       type: Number,
       optional: true,

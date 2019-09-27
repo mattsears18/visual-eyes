@@ -75,13 +75,14 @@ describe.only('Analyses.makeVisits()', () => {
       { timestamp: 23000, duration: 100 }, // end visit 2
     ];
 
-    rows.forEach((row) => {
+    rows.forEach((row, ri) => {
       Factory.create('fixation', {
         studyId: study._id,
         datafileId: datafile._id,
         participantId: participant._id,
         stimulusId: stimulus._id,
         aoiId: aoi._id,
+        combinedEventIndex: ri + 1,
         ...row,
       });
     });
@@ -111,9 +112,13 @@ describe.only('Analyses.makeVisits()', () => {
     expect(visits[0].timestamp).to.equal(0);
     expect(visits[0].duration).to.equal(5100);
     expect(visits[0].number).to.equal(1);
+    expect(visits[0].combinedEventIndexStart).to.equal(1);
+    expect(visits[0].combinedEventIndexEnd).to.equal(5);
 
     expect(visits[1].timestamp).to.equal(14000);
     expect(visits[1].duration).to.equal(9100);
     expect(visits[1].number).to.equal(2);
+    expect(visits[1].combinedEventIndexStart).to.equal(8);
+    expect(visits[1].combinedEventIndexEnd).to.equal(17);
   });
 });

@@ -76,7 +76,7 @@ describe('Analyses.makeVisits()', () => {
     ];
 
     rows.forEach((row, ri) => {
-      Factory.create('fixation', {
+      Factory.create('eyeevent', {
         studyId: study._id,
         datafileId: datafile._id,
         participantId: participant._id,

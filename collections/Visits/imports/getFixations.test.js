@@ -46,7 +46,7 @@ describe('Visit.getFixations()', () => {
     ];
 
     rows.forEach((row) => {
-      Factory.create('fixation', {
+      Factory.create('eyeevent', {
         ...row,
         type: 'Fixation',
         studyId: study._id,

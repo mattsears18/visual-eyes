@@ -296,6 +296,8 @@ Factory.define('visit', Visits, {
   timestamp: (timestamp = faker.random.number(10000)),
   duration: (duration = faker.random.number(1000)),
   timestampEnd: timestamp + duration,
+  combinedEventIndexStart: faker.random.number(100),
+  combinedEventIndexEnd: faker.random.number(100),
 });
 
 const xs = [
@@ -313,7 +315,7 @@ const ys = [
   faker.random.number(1000),
 ];
 
-Factory.define('fixation', Eyeevents, {
+Factory.define('eyeevent', Eyeevents, {
   studyId: (study = Factory.create('study'))._id,
   type: 'Fixation',
   participantId: (participant = Factory.create('participant', {

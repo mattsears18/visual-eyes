@@ -45,7 +45,7 @@ describe('Stimuli.setFixationsOnStimulus()', () => {
     ];
 
     for (let i = 0; i < rows.length; i += 1) {
-      Factory.create('fixation', {
+      Factory.create('eyeevent', {
         studyId: stimulus.studyId,
         stimulusId: stimulus._id,
         ...rows[i],

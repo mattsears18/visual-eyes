@@ -73,7 +73,7 @@ Template.Exports.events({
         analysis.saveCSVParticipants();
       } else if (templateInstance.exportType.get() === 'allVisitsSingle') {
         console.log('analysis.saveCSVParticipants()');
-        analysis.saveCSVVisits();
+        analysis.saveCsvVisits();
       } else if (templateInstance.exportType.get() === 'allVisitsIndividual') {
         console.log('analysis.saveCSVParticipants({ individual: true })');
       }

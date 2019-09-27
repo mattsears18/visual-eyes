@@ -15,7 +15,7 @@ Template.Analysis.onCreated(function() {
 
   self.selector.set('participantIds', []);
   self.selector.set('stimulusIds', []);
-  self.selector.set('selector', {});  
+  self.selector.set('selector', {});
   self.subscribe('eyeevents.byStudyId', studyId);
   self.subscribe('analyses.single', analysisId);
 
@@ -89,9 +89,10 @@ Template.Analysis.events({
       individual: 'false',
     });
   },
-  'click .download-visits-as-csv'(e, template) {
+  'click .save-csv-visits'(e, template) {
     const analysis = Analyses.findOne();
-    analysis.saveCSVVisits();
+    console.log('balls');
+    analysis.saveCSV({ type: 'summary', groupBy: 'visit' });
   },
   'click .reprocess-analysis'() {
     Meteor.call('analyses.makeVisitJobsJob', {

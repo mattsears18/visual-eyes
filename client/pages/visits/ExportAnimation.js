@@ -58,9 +58,9 @@ Template.ExportAnimation.events({
 
       templateInstance.downloadButtonDisabled.set(false);
     } else if (templateInstance.exportType.get() === 'visitsAllSingle') {
-      // console.log(
-      //   `analysis.saveCSVVisits({samplingStep: ${templateInstance.samplingStep.get()}})`,
-      // );
+      console.log(
+        `analysis.saveCsvVisits({samplingStep: ${templateInstance.samplingStep.get()}})`,
+      );
     } else if (templateInstance.exportType.get() === 'visitsIndividualZip') {
       templateInstance.subscribe(
         'visits.byAnalysisIdWithGazepoints',

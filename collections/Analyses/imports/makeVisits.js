@@ -61,6 +61,8 @@ export default function makeVisits(opts) {
               );
             }
 
+            console.log('balls');
+
             const visitId = Visits.insert({
               studyId: this.studyId,
               analysisId: this._id,

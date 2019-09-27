@@ -3,7 +3,7 @@ import { Factory } from 'meteor/dburles:factory';
 import { expect } from 'chai';
 import Eyeevents from '../../Eyeevents/Eyeevents';
 
-describe('Analyses.makeVisits()', () => {
+describe.only('Analyses.makeVisits()', () => {
   it('provides no fixations', () => {
     const analysis = Factory.create('analysis');
     expect(() => {

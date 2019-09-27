@@ -290,6 +290,7 @@ Factory.define('visit', Visits, {
   analysisId: () => Factory.create('analysis')._id,
   studyId: () => Factory.create('study')._id,
   participantId: () => Factory.create('participant')._id,
+  participantName: () => faker.name.findName(),
   aoiId: () => Factory.create('aoi')._id,
   stimulusId: () => Factory.create('stimulus')._id,
   number: () => faker.random.number({ min: 1, max: 10 }),
@@ -298,6 +299,8 @@ Factory.define('visit', Visits, {
   timestampEnd: timestamp + duration,
   combinedEventIndexStart: faker.random.number(100),
   combinedEventIndexEnd: faker.random.number(100),
+  fixationCount: faker.random.number(100),
+  fixationFrequency: faker.random.number(100),
 });
 
 const xs = [

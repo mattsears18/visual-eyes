@@ -27,6 +27,9 @@ Schemas.Visit = new SimpleSchema(
     participantId: {
       type: String,
     },
+    participantName: {
+      type: String,
+    },
     stimulusId: {
       type: String,
     },
@@ -64,6 +67,12 @@ Schemas.Visit = new SimpleSchema(
     combinedEventIndexEnd: {
       type: Number,
     },
+    fixationCount: {
+      type: Number,
+    },
+    fixationFrequency: {
+      type: Number,
+    },
     averageSlideHullCoverage: {
       type: Number,
       optional: true,
@@ -82,6 +91,60 @@ require('./hooks');
 
 if (Meteor.isServer && !Meteor.isTest) {
   Visits.rawCollection().createIndex(
+    { studyId: 1, participantName: 1, number: 1 },
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(`Visits indexed: ${result}`);
+    },
+  );
+  Visits.rawCollection().createIndex(
+    {
+      studyId: 1,
+      analysisId: 1,
+      participantName: 1,
+      number: 1,
+    },
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(`Visits indexed: ${result}`);
+    },
+  );
+
+  Visits.rawCollection().createIndex(
+    { participantName: 1, number: 1 },
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(`Visits indexed: ${result}`);
+    },
+  );
+
+  Visits.rawCollection().createIndex(
+    { participantId: 1, stimulusId: 1, number: 1 },
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(`Visits indexed: ${result}`);
+    },
+  );
+
+  Visits.rawCollection().createIndex(
+    { participantId: 1, number: 1 },
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(`Visits indexed: ${result}`);
+    },
+  );
+
+  Visits.rawCollection().createIndex(
     { studyId: 1, participantId: 1, stimulusId: 1 },
     (err, result) => {
       if (err) {
@@ -98,16 +161,6 @@ if (Meteor.isServer && !Meteor.isTest) {
       stimulusId: 1,
       duration: 1,
     },
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      }
-      console.log(`Visits indexed: ${result}`);
-    },
-  );
-
-  Visits.rawCollection().createIndex(
-    { participantId: 1, stimulusId: 1, number: 1 },
     (err, result) => {
       if (err) {
         console.log(err);

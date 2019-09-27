@@ -29,18 +29,18 @@ export default function getExportData(opt) {
   }
 
   fields.participant = this.participant().name;
-  fields.stimulus = this.stimulus().name;
   fields.visitNumber = this.number;
-  fields.visitDuration = this.duration;
+  fields.stimulus = this.stimulus().name;
   fields.stimulusWidth = this.stimulus().width;
   fields.stimulusHeight = this.stimulus().height;
   fields.stimulusArea = this.stimulus().area();
-  fields.visitStartTime = this.startTime;
-  fields.visitEndTime = this.endTime;
+  fields.aoi = this.aoi().name;
+  fields.visitDuration = this.duration;
+  fields.visitTimestamp = this.timestamp;
+  fields.visitTimestampEnd = this.timestampEnd;
   fields.visitDuration = this.duration;
   fields.fixationCount = this.fixationCount;
   fields.fixationFrequency = this.fixationFrequency;
-  // fields.fixationProportion = this.getFixationProportion();
 
   if (typeof period === 'undefined') {
     // just return basic stats about the visit
@@ -52,9 +52,9 @@ export default function getExportData(opt) {
         data[variable.name] = variable.value;
       });
   } else {
+    // TODO
     const hullseries = this.getHullseries(opt);
     const hulls = hullseries.getHulls();
-
     hulls.forEach((hull, hi) => {
       const hullData = {
         ...fields,
@@ -103,7 +103,6 @@ export default function getExportData(opt) {
           which: 'y',
         }),
       };
-
       if (hi > 0) {
         hullData.centroidDistanceX = hulls[hi].getCentroid().x - hulls[hi - 1].getCentroid().x;
         hullData.centroidDistanceY = hulls[hi].getCentroid().y - hulls[hi - 1].getCentroid().y;
@@ -117,11 +116,11 @@ export default function getExportData(opt) {
           );
         }
       }
-
       data.push(hullData);
     });
   }
 
+  // TODO
   if (samplingStep > 0) {
     data = this.getSampledData(data, samplingStep);
   }

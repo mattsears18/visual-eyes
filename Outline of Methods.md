@@ -2,24 +2,26 @@
 
 ## VisitHullSeries
 
-- [x] new VisitHullSeries()
-  - [x] .getCentroidTrace()
-  - [x] .getCentroidTrailTrace()
-  - [x] .getFrameData()
-  - [x] .getLastPointTrace()
-  - [x] .getLayout()
-  - [x] .getPointsTimeText()
-  - [x] .getPointsTrace()
-  - [x] .getPointTrail()
-  - [x] .getPointTrailTrace()
-  - [x] .getPolygonTrace()
-  - [x] .getTraces()
+- [ ] new VisitHullSeries()
+  - [ ] .getCentroidTrace()
+  - [ ] .getCentroidTrailTrace()
+  - [ ] .getFrameData()
+  - [ ] .getLastPointTrace()
+  - [ ] .getLayout()
+  - [ ] .getPointsTimeText()
+  - [ ] .getPointsTrace()
+  - [ ] .getPointTrail()
+  - [ ] .getPointTrailTrace()
+  - [ ] .getPolygonTrace()
+  - [ ] .getTraces()
 
 ## Visits
 
-- [x] .getExportData()
-- [x] .getHullSeries()
-- [x] .getSampleData()
+- [ ] .getExportData()
+  - [ ] .getHullSeries()
+  - [ ] .getSampleData()
+- [ ] .getFixations()
+- [ ] .getGlanceSaccade()
 
 ## Analyses
 

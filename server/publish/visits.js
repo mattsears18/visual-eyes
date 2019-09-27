@@ -39,6 +39,29 @@ Meteor.publish('visits.byAnalysisId', (analysisId) => {
         number: 1,
         duration: 1,
       },
+      sort: { participantName: 1, number: 1 },
+    },
+  );
+});
+
+Meteor.publish('visits.byAnalysisIdForExport', (analysisId) => {
+  check(analysisId, String);
+  return Visits.find(
+    { analysisId },
+    {
+      fields: {
+        _id: 1,
+        analysisId: 1,
+        participantId: 1,
+        aoiId: 1,
+        stimulusId: 1,
+        number: 1,
+        duration: 1,
+        studyId: 1,
+        timestamp: 1,
+        timestampEnd: 1,
+      },
+      sort: { participantName: 1, number: 1 },
     },
   );
 });

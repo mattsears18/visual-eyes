@@ -65,6 +65,7 @@ export default function makeVisits(opts) {
               studyId: this.studyId,
               analysisId: this._id,
               participantId,
+              participantName: participant.name,
               aoiId: allFixations[startIndex].aoiId,
               stimulusId: allFixations[startIndex].stimulusId,
               number,
@@ -74,6 +75,8 @@ export default function makeVisits(opts) {
               combinedEventIndexStart:
                 allFixations[startIndex].combinedEventIndex,
               combinedEventIndexEnd: allFixations[endIndex].combinedEventIndex,
+              fixationCount: endIndex - startIndex + 1,
+              fixationFrequency: (endIndex - startIndex + 1) / duration,
             });
 
             visitIds.push(visitId);

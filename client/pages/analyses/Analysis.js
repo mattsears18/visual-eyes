@@ -20,7 +20,7 @@ Template.Analysis.onCreated(function() {
   self.subscribe('analyses.single', analysisId);
 
   // BAD!!!
-  self.subscribe('visits.byAnalysisId', analysisId);
+  self.subscribe('visits.byAnalysisIdForExport', analysisId);
 
   self.subscribe('participants.byAnalysisId', analysisId);
   self.subscribe('stimuli.byAnalysisId', analysisId);
@@ -91,7 +91,6 @@ Template.Analysis.events({
   },
   'click .save-csv-visits'(e, template) {
     const analysis = Analyses.findOne();
-    console.log('balls');
     analysis.saveCSV({ type: 'summary', groupBy: 'visit' });
   },
   'click .reprocess-analysis'() {

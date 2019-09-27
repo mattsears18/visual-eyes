@@ -6,8 +6,8 @@ export default function getFixations() {
       studyId: this.studyId,
       type: 'Fixation',
       $and: [
-        { timestamp: { $gte: this.timestamp } },
-        { timestampEnd: { $lte: this.timestampEnd } },
+        { combinedEventIndex: { $gte: this.combinedEventIndexStart } },
+        { combinedEventIndex: { $lte: this.combinedEventIndexEnd } },
       ],
     },
     { sort: { timestamp: 1 } },

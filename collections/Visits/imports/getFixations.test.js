@@ -8,17 +8,41 @@ describe('Visit.getFixations()', () => {
     const study = Factory.create('study');
     const visit = Factory.create('visit', {
       studyId: study._id,
-      timestamp: 3100,
-      duration: 1900,
-      timestampEnd: 5000,
+      combinedEventIndexStart: 2,
+      combinedEventIndexEnd: 4,
     });
 
     const rows = [
-      { timestamp: 3000, timestampEnd: 3200, duration: 200 }, // timestamp too early
-      { timestamp: 3100, timestampEnd: 3300, duration: 200 }, // included
-      { timestamp: 4000, timestampEnd: 4200, duration: 200 }, // included
-      { timestamp: 4800, timestampEnd: 5000, duration: 200 }, // included
-      { timestamp: 4801, timestampEnd: 5001, duration: 200 }, // timestampEnd too late (5001)
+      {
+        timestamp: 3000,
+        timestampEnd: 3200,
+        duration: 200,
+        combinedEventIndex: 1,
+      }, // timestamp too early
+      {
+        timestamp: 3100,
+        timestampEnd: 3300,
+        duration: 200,
+        combinedEventIndex: 2,
+      }, // included
+      {
+        timestamp: 4000,
+        timestampEnd: 4200,
+        duration: 200,
+        combinedEventIndex: 3,
+      }, // included
+      {
+        timestamp: 4800,
+        timestampEnd: 5000,
+        duration: 200,
+        combinedEventIndex: 4,
+      }, // included
+      {
+        timestamp: 4801,
+        timestampEnd: 5001,
+        duration: 200,
+        combinedEventIndex: 5,
+      }, // timestampEnd too late (5001)
     ];
 
     rows.forEach((row) => {

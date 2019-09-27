@@ -61,7 +61,7 @@ const queueAnalysesMakeVisits = Jobs.processJobs(
                 timestampEnd: 1,
                 stimulusId: 1,
                 aoiId: 1,
-                onStimulus: 1,
+                combinedEventIndex: 1,
               },
               sort: { participantId: 1, timestamp: 1 },
             },

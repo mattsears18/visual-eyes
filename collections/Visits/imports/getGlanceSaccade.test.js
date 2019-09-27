@@ -3,7 +3,7 @@ import '../../factories.test';
 import { Factory } from 'meteor/dburles:factory';
 import { expect } from 'chai';
 
-describe.only('Visits.getGlanceSaccade()', () => {
+describe('Visits.getGlanceSaccade()', () => {
   it('has undefined combinedEventIndices', () => {
     const visit = Factory.create('visit');
     delete visit.combinedEventIndexStart;

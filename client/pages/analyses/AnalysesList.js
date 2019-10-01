@@ -20,9 +20,10 @@ Template.AnalysesList.events({
       studyId: FlowRouter.getParam('studyId'),
     });
   },
-  'click .download-as-csv'() {
+  'click .export-summary'() {
     const study = Studies.findOne();
     study.saveCSV({
+      type: 'summary',
       groupBy: 'analysis',
     });
   },

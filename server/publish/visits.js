@@ -60,6 +60,8 @@ Meteor.publish('visits.byAnalysisIdForExport', (analysisId) => {
         studyId: 1,
         timestamp: 1,
         timestampEnd: 1,
+        fixationCount: 1,
+        fixationFrequency: 1,
       },
       sort: { participantName: 1, number: 1 },
     },

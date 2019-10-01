@@ -67,6 +67,12 @@ Schemas.Visit = new SimpleSchema(
     'fixationIndices.$': {
       type: Number,
     },
+    fixationCount: {
+      type: Number,
+    },
+    fixationFrequency: {
+      type: Number,
+    },
     averageSlideHullCoverage: {
       type: Number,
       optional: true,

@@ -81,8 +81,8 @@ export default function makeVisits(opts) {
               // combinedEventIndexStart:
               //   allFixations[startIndex].combinedEventIndex,
               // combinedEventIndexEnd: allFixations[endIndex].combinedEventIndex,
-              // fixationCount: visitFixations.length,
-              // fixationFrequency: visitFixations.length / duration,
+              fixationCount: visitFixations.length,
+              fixationFrequency: (visitFixations.length / duration) * 1000,
             });
 
             visitIds.push(visitId);

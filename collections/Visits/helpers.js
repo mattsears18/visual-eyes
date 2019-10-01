@@ -39,9 +39,6 @@ Visits.helpers({
       ? Participants.findOne(this.participantId)
       : undefined;
   },
-  participantName() {
-    return this.participant() ? this.participant().name : undefined;
-  },
   aoi() {
     return this.aoiId ? Aois.findOne(this.aoiId) : undefined;
   },
@@ -79,12 +76,12 @@ Visits.helpers({
   allJobsCompleted() {
     return this.jobs().count() === this.jobsCompleted().count();
   },
-  fixationCount() {
-    return this.fixationIndices ? this.fixationIndices.length : 0;
-  },
-  fixationFrequency() {
-    return this.fixationCount() / this.duration;
-  },
+  // fixationCount() {
+  //   return this.fixationIndices ? this.fixationIndices.length : 0;
+  // },
+  // fixationFrequency() {
+  //   return this.fixationCount() / this.duration;
+  // },
   firstFixationIndex() {
     return this.fixationIndices[0];
   },

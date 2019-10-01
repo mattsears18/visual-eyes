@@ -82,16 +82,13 @@ Template.Analysis.helpers({
 });
 
 Template.Analysis.events({
-  'click .download-as-csv'(event, templateInstance) {
-    const analysis = Analyses.findOne();
-    analysis.saveCSV({
-      groupBy: 'participant',
-      individual: 'false',
-    });
-  },
-  'click .save-csv-visits'(e, template) {
+  'click .export-visits-summary'(e, template) {
     const analysis = Analyses.findOne();
     analysis.saveCSV({ type: 'summary', groupBy: 'visit' });
+  },
+  'click .export-participants-summary'(e, template) {
+    const analysis = Analyses.findOne();
+    analysis.saveCSV({ type: 'summary', groupBy: 'participant' });
   },
   'click .reprocess-analysis'() {
     Meteor.call('analyses.makeVisitJobsJob', {

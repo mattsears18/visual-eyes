@@ -17,9 +17,8 @@ const table = new Tabular.Table({
   ],
   columns: [
     {
-      data: {
-        _: 'participantName()',
-      },
+      data: 'participantName',
+      type: 'html',
       title: 'Participant',
       render(data, type, row, meta) {
         if (data) {
@@ -137,7 +136,7 @@ const table = new Tabular.Table({
     //   },
     // },
   ],
-  order: [[0, 'asc'], [1, 'asc'], [2, 'asc']],
+  order: [[0, 'asc'], [1, 'asc']],
 });
 
 export default table;

@@ -11,8 +11,10 @@ export default function saveCSV(opt) {
 
   let exportData;
 
-  if (type === 'allAnalysesSingle') {
-    exportData = this.analyses().fetch();
+  if (type === 'summary') {
+    if (groupBy === 'analysis') {
+      exportData = this.analyses().fetch();
+    }
   }
 
   if (exportData) {

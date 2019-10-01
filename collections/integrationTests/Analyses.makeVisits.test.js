@@ -12,7 +12,7 @@
 //     const participants = Participants.find({ studyId: study._id }).fetch();
 //     const participant = participants[0];
 //     const stimuli = Stimuli.find({ studyId: study._id }).fetch();
-//     const analysis = Factory.create('analysisIso', {
+//     const analysis = Factory.create('analysis', {
 //       studyId: study._id,
 //       participantIds: participants.map(_ => _._id),
 //       stimulusIds: stimuli.map(_ => _._id),

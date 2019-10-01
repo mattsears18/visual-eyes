@@ -200,21 +200,9 @@ Factory.define('analysis', Analyses, {
   studyId: () => Factory.create('study')._id,
   name: () => faker.lorem.words(),
   desc: () => faker.lorem.paragraph(),
-  type: 'custom',
-  maxVisitGapDuration: 5000,
-  minVisitDuration: 10000,
-  ignoreOutsideImage: true,
-  participantIds: [],
-  stimulusIds: [],
-});
-
-Factory.define('analysisIso', Analyses, {
-  studyId: () => Factory.create('study')._id,
-  name: () => faker.lorem.words(),
-  desc: () => faker.lorem.paragraph(),
-  type: 'iso15007',
   minFixationDuration: 120,
-  ignoreOutsideImage: true,
+  minVisitDuration: 120,
+  maxFixationGap: 0,
   participantIds: [],
   stimulusIds: [],
 });
@@ -297,10 +285,13 @@ Factory.define('visit', Visits, {
   timestamp: (timestamp = faker.random.number(10000)),
   duration: (duration = faker.random.number(1000)),
   timestampEnd: timestamp + duration,
-  combinedEventIndexStart: faker.random.number(100),
-  combinedEventIndexEnd: faker.random.number(100),
-  fixationCount: faker.random.number(100),
-  fixationFrequency: faker.random.number(100),
+  fixationIndices: [
+    faker.random.number(100),
+    faker.random.number(100),
+    faker.random.number(100),
+    faker.random.number(100),
+    faker.random.number(100),
+  ],
 });
 
 const xs = [

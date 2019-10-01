@@ -18,7 +18,7 @@ export default function getExportData(opt) {
     }`,
     study: this.study().name,
     analysis: this.analysis().name,
-    maxVisitGapDuration: this.analysis().maxVisitGapDuration,
+    maxFixationGap: this.analysis().maxFixationGap,
     minVisitDuration: this.analysis().minVisitDuration,
   };
 

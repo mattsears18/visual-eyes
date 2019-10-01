@@ -21,7 +21,6 @@
   - [ ] .getHullSeries()
   - [ ] .getSampleData()
 - [ ] .getFixations()
-- [ ] .getGlanceSaccade()
 
 ## Analyses
 

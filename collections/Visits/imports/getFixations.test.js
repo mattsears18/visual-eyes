@@ -5,11 +5,10 @@ import { expect } from 'chai';
 
 describe('Visit.getFixations()', () => {
   it('gets the fixations', () => {
-    const study = Factory.create('study');
+    const participant = Factory.create('participant');
     const visit = Factory.create('visit', {
-      studyId: study._id,
-      combinedEventIndexStart: 2,
-      combinedEventIndexEnd: 4,
+      participantId: participant._id,
+      fixationIndices: [2, 3, 4],
     });
 
     const rows = [
@@ -49,7 +48,7 @@ describe('Visit.getFixations()', () => {
       Factory.create('eyeevent', {
         ...row,
         type: 'Fixation',
-        studyId: study._id,
+        participantId: participant._id,
       });
     });
 

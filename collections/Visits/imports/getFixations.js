@@ -3,13 +3,10 @@ import Eyeevents from '../../Eyeevents/Eyeevents';
 export default function getFixations() {
   return Eyeevents.find(
     {
-      studyId: this.studyId,
+      participantId: this.participantId,
       type: 'Fixation',
-      $and: [
-        { combinedEventIndex: { $gte: this.combinedEventIndexStart } },
-        { combinedEventIndex: { $lte: this.combinedEventIndexEnd } },
-      ],
+      combinedEventIndex: { $in: this.fixationIndices },
     },
-    { sort: { timestamp: 1 } },
+    { sort: { combinedEventIndex: 1 } },
   );
 }

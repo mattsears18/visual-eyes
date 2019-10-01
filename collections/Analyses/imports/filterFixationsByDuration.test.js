@@ -60,9 +60,7 @@ describe('Analyses.filterFixationsByDuration()', () => {
   });
 
   it('has an undefined minimum fixation duration', () => {
-    const analysis = Factory.create('analysis', {
-      type: 'iso15007',
-    });
+    const analysis = Factory.create('analysis');
 
     delete analysis.minFixationDuration;
     expect(
@@ -75,7 +73,6 @@ describe('Analyses.filterFixationsByDuration()', () => {
 
   it('has a null minimum fixation duration', () => {
     const analysis = Factory.create('analysis', {
-      type: 'iso15007',
       minFixationDuration: null,
     });
 

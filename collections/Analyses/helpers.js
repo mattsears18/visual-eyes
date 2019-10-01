@@ -1,30 +1,29 @@
 import Jobs from '../Jobs/Jobs';
+
+import allVisitsCreated from './imports/allVisitsCreated';
+import allVisitsProcessed from './imports/allVisitsProcessed';
 import filterFixationsByDuration from './imports/filterFixationsByDuration';
+import getExportData from './imports/getExportData';
 import getVisitEndIndex from './imports/getVisitEndIndex';
 import getVisitFixationCount from './imports/getVisitFixationCount';
 import getVisitAoiIds from './imports/getVisitAoiIds';
-import makeVisits from './imports/makeVisits';
 import makeVisitJobsJob from './imports/makeVisitJobsJob';
-import updateStatus from './imports/updateStatus';
-import getExportData from './imports/getExportData';
-import getType from './imports/getType';
+import makeVisits from './imports/makeVisits';
 import saveCSV from './imports/saveCSV';
-import allVisitsCreated from './imports/allVisitsCreated';
-import allVisitsProcessed from './imports/allVisitsProcessed';
+import updateStatus from './imports/updateStatus';
 
 Analyses.helpers({
+  allVisitsCreated,
+  allVisitsProcessed,
   filterFixationsByDuration,
+  getExportData,
   getVisitEndIndex,
   getVisitFixationCount,
   getVisitAoiIds,
-  makeVisits,
   makeVisitJobsJob,
-  updateStatus,
-  getExportData,
+  makeVisits,
   saveCSV,
-  allVisitsCreated,
-  allVisitsProcessed,
-  getType,
+  updateStatus,
 
   hasPermission(action) {
     check(action, String);
@@ -74,13 +73,5 @@ Analyses.helpers({
   },
   allJobsCompleted() {
     return this.jobsCount() === this.jobsCompletedCount();
-  },
-  typeText() {
-    if (this.type) {
-      if (this.type === 'iso15007') {
-        return 'ISO 15007';
-      }
-      return 'Custom';
-    }
   },
 });

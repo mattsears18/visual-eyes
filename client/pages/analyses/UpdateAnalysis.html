@@ -12,19 +12,15 @@
       {{> afQuickField name="desc"}}
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-4">
-          {{> afQuickField name="type" class="typeSelector"}}
+          {{> afQuickField name="minFixationDuration"}}
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4">
           {{> afQuickField name="minVisitDuration"}}
         </div>
-        {{#if showMGGDField}}
-          <div class="col-xs-12 col-sm-6 col-md-4">
-            {{> afQuickField name="maxVisitGapDuration"}}
-          </div>
-        {{/if}}
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          {{> afQuickField name="maxFixationGap"}}
+        </div>
       </div>
-      <!-- {{> afQuickField name="ignoreAoiNoName"}} -->
-      {{> afQuickField name="ignoreOutsideImage"}}
       {{> afQuickField name="studyId"}}
       {{> afQuickField name="participantIds" options=participantOptions value=analysis.participantIds}}
       {{> afQuickField name="stimulusIds" options=stimulusOptions value=analysis.stimulusIds}}

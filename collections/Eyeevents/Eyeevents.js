@@ -46,7 +46,6 @@ Schemas.Eyeevent = new SimpleSchema(
     },
     aoiId: {
       type: String,
-      optional: true,
     },
     timestamp: {
       type: Number,

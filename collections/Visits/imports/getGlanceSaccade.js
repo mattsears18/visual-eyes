@@ -1,24 +1,27 @@
-export default function getGlanceSaccade() {
-  if (!this.combinedEventIndexStart || !this.combinedEventIndexEnd) {
-    // (event indices must be >= 1 so valid indices are always truthy)
-    throw new Error('invalidCombinedEventIndex');
-  }
+// export default function getGlanceSaccade() {
+//   if (!this.fixationIndices || !this.fixationIndices.length) {
+//     throw new Error('noFixationIndices');
+//   }
 
-  const leadingSaccade = Eyeevents.findOne({
-    type: 'Saccade',
-    participantId: this.participantId,
-    combinedEventIndex: this.combinedEventIndexStart - 1,
-  });
+//   if (this.firstFixationIndex()) {
+//     const leadingSaccade = Eyeevents.findOne({
+//       type: 'Saccade',
+//       participantId: this.participantId,
+//       combinedEventIndex: this.firstFixationIndex() - 1,
+//     });
 
-  if (leadingSaccade) return leadingSaccade;
+//     if (leadingSaccade) return leadingSaccade;
+//   }
 
-  const trailingSaccade = Eyeevents.findOne({
-    type: 'Saccade',
-    participantId: this.participantId,
-    combinedEventIndex: this.combinedEventIndexEnd + 1,
-  });
+//   if (this.lastFixationIndex()) {
+//     const trailingSaccade = Eyeevents.findOne({
+//       type: 'Saccade',
+//       participantId: this.participantId,
+//       combinedEventIndex: this.lastFixationIndex() + 1,
+//     });
 
-  if (trailingSaccade) return trailingSaccade;
+//     if (trailingSaccade) return trailingSaccade;
+//   }
 
-  return undefined;
-}
+//   return undefined;
+// }

@@ -25,7 +25,7 @@ export default function makeDefaultAnalysesThatDontExist() {
   //   // 20000,
   //   // 30000,
   // ];
-  // const maxVisitGapDurationDurations = [
+  // const maxFixationGaps = [
   //   // 8.33333,
   //   // 16.66667, // no good in our experiment
   //   20,
@@ -54,10 +54,10 @@ export default function makeDefaultAnalysesThatDontExist() {
   // ];
 
   // minVisitDurations.forEach((minVisitDuration) => {
-  //   maxVisitGapDurationDurations.forEach((maxVisitGapDuration) => {
+  //   maxFixationGaps.forEach((maxFixationGap) => {
   //     const matches = existingAnalyses.find(
   //       analysis => analysis.minVisitDuration === minVisitDuration
-  //         && analysis.maxVisitGapDuration === maxVisitGapDuration,
+  //         && analysis.maxFixationGap === maxFixationGap,
   //     );
 
   //     if (typeof matches === 'undefined') {
@@ -65,9 +65,7 @@ export default function makeDefaultAnalysesThatDontExist() {
   //         studyId: this._id,
   //         name: 'Analysis',
   //         minVisitDuration,
-  //         maxVisitGapDuration,
-  //         type: 'custom',
-  //         ignoreOutsideImage: true,
+  //         maxFixationGap,
   //         participantIds: this.participants().map(
   //           participant => participant._id,
   //         ),
@@ -142,8 +140,6 @@ export default function makeDefaultAnalysesThatDontExist() {
           name: 'Analysis',
           minFixationDuration,
           minVisitDuration,
-          type: 'iso15007',
-          ignoreOutsideImage: true,
           participantIds: this.participants().map(
             participant => participant._id,
           ),

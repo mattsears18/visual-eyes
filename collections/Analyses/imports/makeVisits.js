@@ -47,8 +47,7 @@ export default function makeVisits(opts) {
 
       if (endIndex && allFixations[endIndex]) {
         const { timestamp } = allFixations[startIndex];
-        const duration = allFixations[endIndex].timestamp
-          + allFixations[endIndex].duration
+        const duration = allFixations[endIndex].timestampEnd
           - allFixations[startIndex].timestamp;
 
         if (duration >= this.minVisitDuration) {
@@ -61,6 +60,12 @@ export default function makeVisits(opts) {
               );
             }
 
+            const visitFixations = allFixations
+              .slice(startIndex, endIndex + 1)
+              .filter(
+                fixation => fixation.aoiId === allFixations[startIndex].aoiId,
+              );
+
             const visitId = Visits.insert({
               studyId: this.studyId,
               analysisId: this._id,
@@ -72,11 +77,12 @@ export default function makeVisits(opts) {
               timestamp,
               duration,
               timestampEnd: timestamp + duration,
-              combinedEventIndexStart:
-                allFixations[startIndex].combinedEventIndex,
-              combinedEventIndexEnd: allFixations[endIndex].combinedEventIndex,
-              fixationCount: endIndex - startIndex + 1,
-              fixationFrequency: (endIndex - startIndex + 1) / duration,
+              fixationIndices: visitFixations.map(_ => _.combinedEventIndex),
+              // combinedEventIndexStart:
+              //   allFixations[startIndex].combinedEventIndex,
+              // combinedEventIndexEnd: allFixations[endIndex].combinedEventIndex,
+              // fixationCount: visitFixations.length,
+              // fixationFrequency: visitFixations.length / duration,
             });
 
             visitIds.push(visitId);

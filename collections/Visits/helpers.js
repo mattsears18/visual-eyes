@@ -2,7 +2,7 @@ import Jobs from '../Jobs/Jobs';
 import getHullseries from './imports/getHullseries';
 import getExportData from './imports/getExportData';
 import getFixations from './imports/getFixations';
-import getGlanceSaccade from './imports/getGlanceSaccade';
+// import getGlanceSaccade from './imports/getGlanceSaccade';
 import getSampledData from './imports/getSampledData';
 import saveCSV from './imports/saveCSV';
 import Stimuli from '../Stimuli/Stimuli';
@@ -12,7 +12,7 @@ Visits.helpers({
   getHullseries,
   getExportData,
   getFixations,
-  getGlanceSaccade,
+  // getGlanceSaccade,
   saveCSV,
   getSampledData,
   // getFixationProportion,
@@ -78,5 +78,17 @@ Visits.helpers({
   },
   allJobsCompleted() {
     return this.jobs().count() === this.jobsCompleted().count();
+  },
+  fixationCount() {
+    return this.fixationIndices ? this.fixationIndices.length : 0;
+  },
+  fixationFrequency() {
+    return this.fixationCount() / this.duration;
+  },
+  firstFixationIndex() {
+    return this.fixationIndices[0];
+  },
+  lastFixationIndex() {
+    return this.fixationIndices[this.fixationIndices.length - 1];
   },
 });

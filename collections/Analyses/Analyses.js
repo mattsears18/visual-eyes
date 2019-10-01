@@ -32,26 +32,6 @@ Schemas.Analysis = new SimpleSchema(
       },
       optional: true,
     },
-    type: {
-      type: String,
-      label: 'Type of Analysis',
-      autoform: {
-        options: [
-          { label: 'ISO 15007 Standard', value: 'iso15007' },
-          { label: 'Custom', value: 'custom' },
-        ],
-        defaultValue: 'iso15007',
-      },
-    },
-    // fixationsOnly: {
-    //   type: Boolean,
-    //   label:
-    //     'Use Fixations Instead of Gaze Points (Faster, ISO 15007 Compliant)',
-    //   defaultValue: false,
-    //   autoform: {
-    //     type: 'boolean-checkbox',
-    //   },
-    // },
     minFixationDuration: {
       type: Number,
       label: 'Minimum Fixation Duration (ms)',
@@ -61,20 +41,12 @@ Schemas.Analysis = new SimpleSchema(
     minVisitDuration: {
       type: Number,
       label: 'Minimum Visit Duration (ms)',
-      defaultValue: 0,
+      defaultValue: 120,
     },
-    maxVisitGapDuration: {
+    maxFixationGap: {
       type: Number,
-      label: 'Maximum Visit Gap Duration (ms)',
-      optional: true,
-    },
-    includeOutsideImage: {
-      type: Boolean,
-      label: 'Include Fixations Outside of Stimulus Areas',
-      defaultValue: false,
-      autoform: {
-        type: 'boolean-checkbox',
-      },
+      label: 'Maximum Fixation Gap (Sequential Off Target)',
+      defaultValue: 0,
     },
     participantIds: {
       type: Array,

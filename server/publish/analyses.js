@@ -19,7 +19,7 @@ Meteor.publish('analyses.byStudyId', (studyId) => {
         type: -1,
         minFixationDuration: 1,
         minVisitDuration: 1,
-        maxVisitGapDuration: 1,
+        maxFixationGap: 1,
         name: 1,
       },
     },

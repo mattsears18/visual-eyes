@@ -61,16 +61,10 @@ Schemas.Visit = new SimpleSchema(
         type: 'hidden',
       },
     },
-    combinedEventIndexStart: {
-      type: Number,
+    fixationIndices: {
+      type: Array,
     },
-    combinedEventIndexEnd: {
-      type: Number,
-    },
-    fixationCount: {
-      type: Number,
-    },
-    fixationFrequency: {
+    'fixationIndices.$': {
       type: Number,
     },
     averageSlideHullCoverage: {

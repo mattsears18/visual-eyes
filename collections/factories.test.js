@@ -25,6 +25,14 @@ StubCollections.stub([
   Visits,
 ]);
 
+let study;
+let participant;
+let datafile;
+let stimulus;
+let aoi;
+let duration;
+let timestamp;
+
 console.log('stubbed');
 
 Factory.define('study', Studies, {
@@ -292,6 +300,8 @@ Factory.define('visit', Visits, {
     faker.random.number(100),
     faker.random.number(100),
   ],
+  fixationCount: 5,
+  fixationFrequency: (5 / duration) * 1000,
 });
 
 const xs = [
@@ -326,7 +336,7 @@ Factory.define('eyeevent', Eyeevents, {
     stimulusId: stimulus._id,
   }))._id,
   timestamp: faker.random.number(10000),
-  duration: faker.random.number(1000),
+  duration: (duration = faker.random.number(1000)),
   timestampEnd: faker.random.number(1000),
   eventIndex: faker.random.number(100),
   combinedEventIndex: faker.random.number(100),

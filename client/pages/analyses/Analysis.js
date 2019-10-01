@@ -51,7 +51,7 @@ Template.BreadCrumbs.helpers({
 
 Template.Analysis.helpers({
   eyeevents: () => Eyeevents.find(),
-  analysis: () => Analyses.findOne(),
+  analysis: () => Analyses.findOne({ _id: FlowRouter.getParam('analysisId') }),
   visits: () => {
     template = Template.instance();
     participantIds = template.selector.get('participantIds');

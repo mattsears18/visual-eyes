@@ -115,15 +115,15 @@ describe('Analyses.makeVisits()', () => {
     expect(visits[0].timestampEnd).to.equal(5100);
     expect(visits[0].number).to.equal(1);
     expect(visits[0].fixationIndices).to.eql([1, 2, 3, 4, 5]);
-    expect(visits[0].fixationCount()).to.equal(5);
-    expect(visits[0].fixationFrequency()).to.equal(5 / 5100);
+    expect(visits[0].fixationCount).to.equal(5);
+    expect(visits[0].fixationFrequency).to.equal(5 / 5100);
 
     expect(visits[1].timestamp).to.equal(14000);
     expect(visits[1].duration).to.equal(9100);
     expect(visits[1].timestampEnd).to.equal(23100);
     expect(visits[1].number).to.equal(2);
     expect(visits[1].fixationIndices).to.eql([8, 9, 10, 12, 13, 14, 16, 17]);
-    expect(visits[1].fixationCount()).to.equal(8);
-    expect(visits[1].fixationFrequency()).to.equal(8 / 9100);
+    expect(visits[1].fixationCount).to.equal(8);
+    expect(visits[1].fixationFrequency).to.equal(8 / 9100);
   });
 });

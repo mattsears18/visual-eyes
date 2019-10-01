@@ -5,78 +5,7 @@ export default function makeDefaultAnalysesThatDontExist() {
 
   const existingAnalyses = Analyses.find({ studyId: this._id }).fetch();
 
-  // // CUSTOM
-  // let minFixationDurations = [];
-
-  // let minVisitDurations = [
-  //   60,
-  //   80,
-  //   100,
-  //   120,
-  //   200,
-  //   250,
-  //   500,
-  //   1000,
-  //   // 2000,
-  //   // 3000,
-  //   // 4000,
-  //   // 5000,
-  //   // 10000,
-  //   // 20000,
-  //   // 30000,
-  // ];
-  // const maxFixationGaps = [
-  //   // 8.33333,
-  //   // 16.66667, // no good in our experiment
-  //   20,
-  //   30,
-  //   40,
-  //   45,
-  //   50,
-  //   60,
-  //   65,
-  //   70,
-  //   // 75,
-  //   80,
-  //   85,
-  //   90,
-  //   95,
-  //   100,
-  //   110,
-  //   120,
-  //   250,
-  //   // 500,
-  //   // 1000,
-  //   // 2000,
-  //   // 3000,
-  //   // 4000,
-  //   // 5000,
-  // ];
-
-  // minVisitDurations.forEach((minVisitDuration) => {
-  //   maxFixationGaps.forEach((maxFixationGap) => {
-  //     const matches = existingAnalyses.find(
-  //       analysis => analysis.minVisitDuration === minVisitDuration
-  //         && analysis.maxFixationGap === maxFixationGap,
-  //     );
-
-  //     if (typeof matches === 'undefined') {
-  //       Analyses.insert({
-  //         studyId: this._id,
-  //         name: 'Analysis',
-  //         minVisitDuration,
-  //         maxFixationGap,
-  //         participantIds: this.participants().map(
-  //           participant => participant._id,
-  //         ),
-  //         stimulusIds: this.stimuli().map(stimulus => stimulus._id),
-  //       });
-  //     }
-  //   });
-  // });
-
-  // ISO 15007
-  minFixationDurations = [
+  const minFixationDurations = [
     0,
     10,
     20,
@@ -100,7 +29,7 @@ export default function makeDefaultAnalysesThatDontExist() {
     200,
   ];
 
-  minVisitDurations = [
+  const minVisitDurations = [
     0,
     // 10,
     // 20,
@@ -127,25 +56,31 @@ export default function makeDefaultAnalysesThatDontExist() {
     // 30000,
   ];
 
+  const maxFixationGaps = [0, 1, 2, 3, 4, 5];
+
   minFixationDurations.forEach((minFixationDuration) => {
     minVisitDurations.forEach((minVisitDuration) => {
-      const matches = existingAnalyses.find(
-        analysis => analysis.minFixationDuration === minFixationDuration
-          && analysis.minVisitDuration === minVisitDuration,
-      );
+      maxFixationGaps.forEach((maxFixationGap) => {
+        const matches = existingAnalyses.find(
+          analysis => analysis.minFixationDuration === minFixationDuration
+            && analysis.minVisitDuration === minVisitDuration
+            && analysis.maxFixationGap === maxFixationGap,
+        );
 
-      if (typeof matches === 'undefined') {
-        Analyses.insert({
-          studyId: this._id,
-          name: 'Analysis',
-          minFixationDuration,
-          minVisitDuration,
-          participantIds: this.participants().map(
-            participant => participant._id,
-          ),
-          stimulusIds: this.stimuli().map(stimulus => stimulus._id),
-        });
-      }
+        if (typeof matches === 'undefined') {
+          Analyses.insert({
+            studyId: this._id,
+            name: 'Analysis',
+            minFixationDuration,
+            minVisitDuration,
+            maxFixationGap,
+            participantIds: this.participants().map(
+              participant => participant._id,
+            ),
+            stimulusIds: this.stimuli().map(stimulus => stimulus._id),
+          });
+        }
+      });
     });
   });
 }

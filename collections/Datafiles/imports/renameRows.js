@@ -19,7 +19,7 @@ export default function renameRows(rawData) {
       { original: 'RecordingTime [ms]', new: 'timestamp' }, // TODO use video time!
       { original: 'Time of Day [h:m:s:ms]', new: 'timeOfDay' },
       { original: 'Category Binocular', new: 'category' },
-      { original: 'Index Binocular', new: 'eventIndex' },
+      { original: 'Index Binocular', new: 'originalEventIndex' },
       { original: 'Point of Regard Binocular X [px]', new: 'x' },
       { original: 'Point of Regard Binocular Y [px]', new: 'y' },
       { original: 'Stimulus', new: 'stimulusName' },
@@ -28,7 +28,7 @@ export default function renameRows(rawData) {
   } else if (this.fileFormat === 'imotions') {
     headers = [
       { original: 'Timestamp', new: 'timestamp' },
-      { original: 'FixationSeq', new: 'eventIndex' },
+      { original: 'FixationSeq', new: 'originalEventIndex' },
       { original: 'GazeX', new: 'x' },
       { original: 'GazeY', new: 'y' },
       { original: 'FixationX', new: 'fixationX' },
@@ -44,7 +44,7 @@ export default function renameRows(rawData) {
   const renamedRows = [];
   const numberHeaders = [
     'timestamp',
-    'eventIndex',
+    'originalEventIndex',
     'x',
     'y',
     'fixationX',

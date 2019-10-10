@@ -47,5 +47,21 @@ export default function setFixationsOnStimulus() {
       },
       { multi: true },
     );
+
+    Eyeevents.update(
+      {
+        stimulusId: blankStimulusId,
+        type: 'Fixation',
+        onStimulus: null,
+      },
+      {
+        $set: {
+          onStimulus: false,
+          stimulusId: blankStimulusId,
+          aoiId: blankAoiId,
+        },
+      },
+      { multi: true },
+    );
   }
 }

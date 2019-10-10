@@ -77,10 +77,10 @@ export default function makeVisits(opts) {
               timestamp,
               duration,
               timestampEnd: timestamp + duration,
-              fixationIndices: visitFixations.map(_ => _.combinedEventIndex),
-              // combinedEventIndexStart:
-              //   allFixations[startIndex].combinedEventIndex,
-              // combinedEventIndexEnd: allFixations[endIndex].combinedEventIndex,
+              fixationIndices: visitFixations.map(_ => _.index),
+              // indexStart:
+              //   allFixations[startIndex].index,
+              // indexEnd: allFixations[endIndex].index,
               fixationCount: visitFixations.length,
               fixationFrequency: (visitFixations.length / duration) * 1000,
             });

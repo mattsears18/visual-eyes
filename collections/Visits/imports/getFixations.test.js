@@ -16,31 +16,31 @@ describe('Visit.getFixations()', () => {
         timestamp: 3000,
         timestampEnd: 3200,
         duration: 200,
-        combinedEventIndex: 1,
+        index: 1,
       }, // timestamp too early
       {
         timestamp: 3100,
         timestampEnd: 3300,
         duration: 200,
-        combinedEventIndex: 2,
+        index: 2,
       }, // included
       {
         timestamp: 4000,
         timestampEnd: 4200,
         duration: 200,
-        combinedEventIndex: 3,
+        index: 3,
       }, // included
       {
         timestamp: 4800,
         timestampEnd: 5000,
         duration: 200,
-        combinedEventIndex: 4,
+        index: 4,
       }, // included
       {
         timestamp: 4801,
         timestampEnd: 5001,
         duration: 200,
-        combinedEventIndex: 5,
+        index: 5,
       }, // timestampEnd too late (5001)
     ];
 

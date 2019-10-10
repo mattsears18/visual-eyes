@@ -20,11 +20,11 @@ export default function generateImotionsEyeevents(assignedRows) {
   for (let i = 0; i < rows.length; i += 1) {
     gazepoints.push(rows[i]);
 
-    if (rows[i].eventIndex) {
-      if (!lastFixation || lastFixation.eventIndex !== rows[i].eventIndex) {
+    if (rows[i].originalEventIndex) {
+      if (!lastFixation || lastFixation.originalEventIndex !== rows[i].originalEventIndex) {
         lastFixation = {
           timestamp: rows[i].timestamp,
-          eventIndex: rows[i].eventIndex,
+          originalEventIndex: rows[i].originalEventIndex,
           x: rows[i].fixationX,
           y: rows[i].fixationY,
           aoiId: rows[i].aoiId,

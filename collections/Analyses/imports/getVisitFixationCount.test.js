@@ -20,8 +20,8 @@
 //     const analysis = Factory.create('analysis');
 //     const points = [
 //       { timestamp: 0 },
-//       { timestamp: 1000, eventIndex: 1 },
-//       { timestamp: 2000, eventIndex: 1 },
+//       { timestamp: 1000, originalEventIndex: 1 },
+//       { timestamp: 2000, originalEventIndex: 1 },
 //       { timestamp: 3000 },
 //       { timestamp: 4000 },
 //     ];
@@ -33,9 +33,9 @@
 //     const analysis = Factory.create('analysis');
 //     const points = [
 //       { timestamp: 0 },
-//       { timestamp: 1000, eventIndex: 1 },
-//       { timestamp: 2000, eventIndex: 2 },
-//       { timestamp: 3000, eventIndex: 3 },
+//       { timestamp: 1000, originalEventIndex: 1 },
+//       { timestamp: 2000, originalEventIndex: 2 },
+//       { timestamp: 3000, originalEventIndex: 3 },
 //       { timestamp: 4000 },
 //     ];
 

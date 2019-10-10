@@ -25,32 +25,32 @@
 //     const rows = [
 //       {
 //         type: 'Fixation',
-//         combinedEventIndex: 1,
+//         index: 1,
 //         timestamp: 100,
 //       },
 //       {
 //         type: 'Saccade',
-//         combinedEventIndex: 2,
+//         index: 2,
 //         timestamp: 200,
 //       },
 //       {
 //         type: 'Fixation',
-//         combinedEventIndex: 3,
+//         index: 3,
 //         timestamp: 300,
 //       },
 //       {
 //         type: 'Saccade',
-//         combinedEventIndex: 4,
+//         index: 4,
 //         timestamp: 400,
 //       },
 //       {
 //         type: 'Fixation',
-//         combinedEventIndex: 5,
+//         index: 5,
 //         timestamp: 500,
 //       },
 //       {
 //         type: 'Saccade',
-//         combinedEventIndex: 6,
+//         index: 6,
 //         timestamp: 600,
 //       },
 //     ];
@@ -68,7 +68,7 @@
 //     });
 
 //     const glanceSaccade = visit.getGlanceSaccade();
-//     expect(glanceSaccade.combinedEventIndex).to.equal(2);
+//     expect(glanceSaccade.index).to.equal(2);
 //     expect(glanceSaccade.timestamp).to.equal(200);
 //   });
 //   // it('only has a trailing saccade', () => {
@@ -77,32 +77,32 @@
 //   //   const rows = [
 //   //     {
 //   //       type: 'Fixation',
-//   //       combinedEventIndex: 1,
+//   //       index: 1,
 //   //       timestamp: 100,
 //   //     },
 //   //     {
 //   //       type: 'Saccade',
-//   //       combinedEventIndex: 2,
+//   //       index: 2,
 //   //       timestamp: 200,
 //   //     },
 //   //     {
 //   //       type: 'Fixation',
-//   //       combinedEventIndex: 3,
+//   //       index: 3,
 //   //       timestamp: 300,
 //   //     },
 //   //     {
 //   //       type: 'Saccade',
-//   //       combinedEventIndex: 4,
+//   //       index: 4,
 //   //       timestamp: 400,
 //   //     },
 //   //     {
 //   //       type: 'Fixation',
-//   //       combinedEventIndex: 5,
+//   //       index: 5,
 //   //       timestamp: 500,
 //   //     },
 //   //     {
 //   //       type: 'Saccade',
-//   //       combinedEventIndex: 6,
+//   //       index: 6,
 //   //       timestamp: 600,
 //   //     },
 //   //   ];
@@ -116,12 +116,12 @@
 
 //   //   const visit = Factory.create('visit', {
 //   //     participantId: participant._id,
-//   //     combinedEventIndexStart: 1,
-//   //     combinedEventIndexEnd: 5,
+//   //     indexStart: 1,
+//   //     indexEnd: 5,
 //   //   });
 
 //   //   const glanceSaccade = visit.getGlanceSaccade();
-//   //   expect(glanceSaccade.combinedEventIndex).to.equal(6);
+//   //   expect(glanceSaccade.index).to.equal(6);
 //   //   expect(glanceSaccade.timestamp).to.equal(600);
 //   // });
 // });

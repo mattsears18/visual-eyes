@@ -1,6 +1,6 @@
 import Jobs from '../../../collections/Jobs/Jobs';
 
-export default (queueDatafilesProcess = Jobs.processJobs(
+export default queueDatafilesProcess = Jobs.processJobs(
   'datafiles.process',
   { concurrency: 1 },
   async (job, callback) => {
@@ -46,9 +46,14 @@ export default (queueDatafilesProcess = Jobs.processJobs(
 
     if (totalJobCount > 0 && completedJobCount === totalJobCount) {
       console.log('finished processing datafiles. reprocess analyses.');
+      const stimuli = Stimuli.find({ studyId: this.studyId }).fetch();
+      stimuli.forEach((stimulus) => {
+        stimulus.setFixationsOnStimulus();
+      });
+
       study.reprocessAnalyses();
     }
 
     callback();
   },
-));
+);

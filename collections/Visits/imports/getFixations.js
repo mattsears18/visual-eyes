@@ -5,8 +5,8 @@ export default function getFixations() {
     {
       participantId: this.participantId,
       type: 'Fixation',
-      combinedEventIndex: { $in: this.fixationIndices },
+      index: { $in: this.fixationIndices },
     },
-    { sort: { combinedEventIndex: 1 } },
+    { sort: { index: 1 } },
   );
 }

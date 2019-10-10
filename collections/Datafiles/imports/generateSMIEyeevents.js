@@ -10,7 +10,7 @@ export default function generateSMIEyeevents(sortedRows) {
   const eventTypes = ['Visual Intake', 'Saccade', 'Blink'];
 
   const rows = sortedRows.filter(
-    row => row.eventIndex >= 0 && eventTypes.includes(row.category),
+    row => row.originalEventIndex >= 0 && eventTypes.includes(row.category),
   );
 
   const events = [];
@@ -22,7 +22,7 @@ export default function generateSMIEyeevents(sortedRows) {
       || rows[i].category !== currentEvent.category
       // || rows[i].stimulusId !== currentEvent.stimulusId
       // || rows[i].aoiId !== currentEvent.aoiId
-      || rows[i].eventIndex !== currentEvent.eventIndex
+      || rows[i].originalEventIndex !== currentEvent.originalEventIndex
     ) {
       // Category change
       if (currentEvent) {
@@ -48,9 +48,9 @@ export default function generateSMIEyeevents(sortedRows) {
 function startEvent(row, events) {
   const newEvent = {
     timestamp: row.timestamp,
-    combinedEventIndex: events.length + 1,
+    index: events.length + 1,
     category: row.category,
-    eventIndex: row.eventIndex,
+    originalEventIndex: row.originalEventIndex,
     xs: [row.x],
     ys: [row.y],
     stimulusId: row.stimulusId,

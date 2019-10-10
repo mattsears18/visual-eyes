@@ -62,7 +62,7 @@ describe('Datafiles.renameRows()', () => {
         timestamp: 2554851,
         timeOfDay: '03:55:34:894',
         category: 'Saccade',
-        eventIndex: 5,
+        originalEventIndex: 5,
         x: 593,
         y: -217,
         stimulusName: 'Spool 1',
@@ -72,7 +72,7 @@ describe('Datafiles.renameRows()', () => {
         timestamp: 2554867,
         timeOfDay: '03:55:34:910',
         category: 'Saccade',
-        eventIndex: 5,
+        originalEventIndex: 5,
         x: 589,
         y: -214,
         stimulusName: 'Spool 1',
@@ -82,7 +82,7 @@ describe('Datafiles.renameRows()', () => {
         timestamp: 2554884,
         timeOfDay: '03:55:34:927',
         category: 'Visual Intake',
-        eventIndex: 6,
+        originalEventIndex: 6,
         x: 590,
         y: -213,
         stimulusName: 'Spool 1',
@@ -146,7 +146,7 @@ describe('Datafiles.renameRows()', () => {
     const expectedRows = [
       {
         timestamp: 597,
-        eventIndex: 1,
+        originalEventIndex: 1,
         x: 506,
         y: 94,
         stimulusName: 'Spool 3',
@@ -157,7 +157,7 @@ describe('Datafiles.renameRows()', () => {
       },
       {
         timestamp: 614,
-        eventIndex: 1,
+        originalEventIndex: 1,
         x: 509,
         y: 93,
         stimulusName: 'Spool 3',
@@ -168,7 +168,7 @@ describe('Datafiles.renameRows()', () => {
       },
       {
         timestamp: 630,
-        eventIndex: 1,
+        originalEventIndex: 1,
         x: 508,
         y: 95,
         stimulusName: 'Spool 3',

@@ -83,7 +83,7 @@ describe('Analyses.makeVisits()', () => {
         datafileId: datafile._id,
         participantId: participant._id,
         stimulusId: stimulus._id,
-        combinedEventIndex: ri + 1,
+        index: ri + 1,
         ...row,
       });
     });

@@ -59,14 +59,14 @@ Schemas.Eyeevent = new SimpleSchema(
       type: Number,
       label: 'Timestamp End',
     },
-    eventIndex: {
+    index: {
       type: Number,
-      label: 'Event Index',
+      label: 'Index',
       optional: true,
     },
-    combinedEventIndex: {
+    originalEventIndex: {
       type: Number,
-      label: 'Combined Event Index',
+      label: 'Original Event Index',
       optional: true,
     },
     xs: {
@@ -120,7 +120,7 @@ if (Meteor.isServer && !Meteor.isTest) {
   Eyeevents.rawCollection().createIndex(
     {
       participantId: 1,
-      combinedEventIndex: 1,
+      index: 1,
     },
     (err, result) => {
       if (err) {

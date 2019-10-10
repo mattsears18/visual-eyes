@@ -43,13 +43,13 @@ describe('Datafiles.generateImotionsEyeevents', () => {
   //   expect(gazepoints.length).to.equal(3218); // verified in excel
   //   expect(fixations.length).to.equal(155); // verified in excel
 
-  //   expect(fixations[3].eventIndex).to.equal(4); // verified in excel
+  //   expect(fixations[3].originalEventIndex).to.equal(4); // verified in excel
   //   expect(fixations[3].timestamp).to.equal(10538); // verified in excel
   //   expect(fixations[3].x).to.equal(202); // verified in excel
   //   expect(fixations[3].y).to.equal(188); // verified in excel
   //   expect(fixations[3].aoiId).to.equal(aoi._id); // verified in excel
 
-  //   expect(fixations[100].eventIndex).to.equal(101); // verified in excel
+  //   expect(fixations[100].originalEventIndex).to.equal(101); // verified in excel
   //   expect(fixations[100].timestamp).to.equal(62282); // verified in excel
   //   expect(fixations[100].x).to.equal(162); // verified in excel
   //   expect(fixations[100].y).to.equal(320); // verified in excel

@@ -30,7 +30,7 @@ describe('Datafiles.generateSMIEyeevents', () => {
     const sortedRows = [
       { category: '-' },
       { category: 'User Event' },
-      { eventIndex: '-' },
+      { originalEventIndex: '-' },
       // Begin first fixation
       {
         timestamp: 0,
@@ -39,7 +39,7 @@ describe('Datafiles.generateSMIEyeevents', () => {
         stimulusId: stimulus._id,
         aoiId: aoi._id,
         category: 'Visual Intake',
-        eventIndex: 1,
+        originalEventIndex: 1,
       },
       {
         timestamp: 10,
@@ -48,7 +48,7 @@ describe('Datafiles.generateSMIEyeevents', () => {
         stimulusId: stimulus._id,
         aoiId: aoi._id,
         category: 'Visual Intake',
-        eventIndex: 1,
+        originalEventIndex: 1,
       },
       {
         timestamp: 20,
@@ -57,7 +57,7 @@ describe('Datafiles.generateSMIEyeevents', () => {
         stimulusId: stimulus._id,
         aoiId: aoi._id,
         category: 'Visual Intake',
-        eventIndex: 1,
+        originalEventIndex: 1,
       },
       // End first fixation
       // Begin first saccade
@@ -68,7 +68,7 @@ describe('Datafiles.generateSMIEyeevents', () => {
         stimulusId: stimulus._id,
         aoiId: aoi._id,
         category: 'Saccade',
-        eventIndex: 1,
+        originalEventIndex: 1,
       },
       {
         timestamp: 40,
@@ -77,7 +77,7 @@ describe('Datafiles.generateSMIEyeevents', () => {
         stimulusId: stimulus._id,
         aoiId: aoi._id,
         category: 'Saccade',
-        eventIndex: 1,
+        originalEventIndex: 1,
       },
       // End saccade
       // Fixation 2
@@ -88,7 +88,7 @@ describe('Datafiles.generateSMIEyeevents', () => {
         stimulusId: stimulus._id,
         aoiId: aoi._id,
         category: 'Visual Intake',
-        eventIndex: 2,
+        originalEventIndex: 2,
       },
       // End fixation
       // Blink 1
@@ -99,7 +99,7 @@ describe('Datafiles.generateSMIEyeevents', () => {
         stimulusId: stimulus._id,
         aoiId: aoi._id,
         category: 'Blink',
-        eventIndex: 2,
+        originalEventIndex: 2,
       },
       {
         timestamp: 70,
@@ -108,15 +108,15 @@ describe('Datafiles.generateSMIEyeevents', () => {
         stimulusId: stimulus._id,
         aoiId: aoi._id,
         category: 'Blink',
-        eventIndex: 2,
+        originalEventIndex: 2,
       },
     ];
 
     expect(datafile.generateSMIEyeevents(sortedRows)).to.eql([
       {
         timestamp: 0,
-        combinedEventIndex: 1,
-        eventIndex: 1,
+        index: 1,
+        originalEventIndex: 1,
         xs: [100, 200, 300],
         ys: [100, 200, 300],
         stimulusId: stimulus._id,
@@ -128,8 +128,8 @@ describe('Datafiles.generateSMIEyeevents', () => {
       },
       {
         timestamp: 30,
-        combinedEventIndex: 2,
-        eventIndex: 1,
+        index: 2,
+        originalEventIndex: 1,
         xs: [300, 100],
         ys: [300, 100],
         stimulusId: stimulus._id,
@@ -141,8 +141,8 @@ describe('Datafiles.generateSMIEyeevents', () => {
       },
       {
         timestamp: 50,
-        combinedEventIndex: 3,
-        eventIndex: 2,
+        index: 3,
+        originalEventIndex: 2,
         xs: [300],
         ys: [300],
         stimulusId: stimulus._id,
@@ -154,8 +154,8 @@ describe('Datafiles.generateSMIEyeevents', () => {
       },
       {
         timestamp: 60,
-        combinedEventIndex: 4,
-        eventIndex: 2,
+        index: 4,
+        originalEventIndex: 2,
         xs: [300, 200],
         ys: [300, 200],
         stimulusId: stimulus._id,

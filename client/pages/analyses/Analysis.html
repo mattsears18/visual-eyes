@@ -26,19 +26,20 @@
 
   <p>{{ analysis.desc }}</p>
 
-  {{#if analysis.minVisitDuration}}
+  <div>
+    <strong>Minimum Fixation Duration:</strong>
+    {{formatNumber analysis.minFixationDuration}}
+  </div>
+
   <div>
     <strong>Minimum Visit Duration (ms):</strong>
     {{formatNumber analysis.minVisitDuration}}
   </div>
-  {{/if}}
 
-  {{#if analysis.maxFixationGap}}
   <div>
-    <strong>Maximum Fixation Gap:</strong>
+    <strong>Maximum Off-Target Fixations:</strong>
     {{formatNumber analysis.maxFixationGap}}
   </div>
-  {{/if}}
 
   <div class="selector-set">
     <h4>

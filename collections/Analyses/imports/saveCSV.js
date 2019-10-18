@@ -54,6 +54,8 @@ export default function saveCSV(opt) {
       filename += ' - participantSummary';
     }
 
+    filename += '.csv';
+
     try {
       csvContent = json2csv(exportData);
     } catch (err) {

@@ -1,15 +1,18 @@
 import VisitHullSeries from './VisitHullSeries/VisitHullSeries';
 
 export default function getHullseries(opt) {
-  opt = opt || {};
+  const { period } = opt || {};
+  const { timestep } = opt || {};
+  const { includeIncomplete } = opt || {};
+  const { pointTrailLength } = opt || {};
 
   return new VisitHullSeries({
     visit: this,
     points: this.gazepoints,
-    period: opt.period,
-    timestep: opt.timestep,
-    includeIncomplete: opt.includeIncomplete,
-    pointTrailLength: opt.pointTrailLength,
+    period,
+    timestep,
+    includeIncomplete,
+    pointTrailLength,
     width: this.stimulus().width,
     height: this.stimulus().height,
   });

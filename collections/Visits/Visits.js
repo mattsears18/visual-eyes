@@ -73,6 +73,22 @@ Schemas.Visit = new SimpleSchema(
     fixationFrequency: {
       type: Number,
     },
+    leadingEventType: {
+      type: String,
+      optional: true,
+    },
+    leadingEventDuration: {
+      type: Number,
+      optional: true,
+    },
+    trailingEventType: {
+      type: String,
+      optional: true,
+    },
+    trailingEventDuration: {
+      type: Number,
+      optional: true,
+    },
     averageSlideHullCoverage: {
       type: Number,
       optional: true,

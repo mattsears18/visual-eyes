@@ -50,7 +50,7 @@ const queueAnalysesMakeVisits = Jobs.processJobs(
 
           // TODO FUTURE - handle blinks and saccades
           eyeeventCache[job.data.participantId] = Eyeevents.find(
-            { participantId: job.data.participantId, type: 'Fixation' },
+            { participantId: job.data.participantId },
             {
               fields: {
                 _id: 1,

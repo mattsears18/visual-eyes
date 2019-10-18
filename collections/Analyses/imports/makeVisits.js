@@ -43,8 +43,6 @@ export default function makeVisits(opts) {
         startIndex,
       });
 
-      // console.log(`endIndex: ${endIndex}`);
-
       if (endIndex && allFixations[endIndex]) {
         const { timestamp } = allFixations[startIndex];
         const duration = allFixations[endIndex].timestampEnd
@@ -66,6 +64,14 @@ export default function makeVisits(opts) {
                 fixation => fixation.aoiId === allFixations[startIndex].aoiId,
               );
 
+            const leadingEvent = eyeevents.find(
+              eyeevent => eyeevent.index === allFixations[startIndex].index - 1,
+            );
+
+            const trailingEvent = eyeevents.find(
+              eyeevent => eyeevent.index === allFixations[endIndex].index + 1,
+            );
+
             const visitId = Visits.insert({
               studyId: this.studyId,
               analysisId: this._id,
@@ -78,11 +84,14 @@ export default function makeVisits(opts) {
               duration,
               timestampEnd: timestamp + duration,
               fixationIndices: visitFixations.map(_ => _.index),
-              // indexStart:
-              //   allFixations[startIndex].index,
-              // indexEnd: allFixations[endIndex].index,
               fixationCount: visitFixations.length,
               fixationFrequency: (visitFixations.length / duration) * 1000,
+              leadingEventType: leadingEvent ? leadingEvent.type : null,
+              leadingEventDuration: leadingEvent ? leadingEvent.duration : null,
+              trailingEventType: trailingEvent ? trailingEvent.type : null,
+              trailingEventDuration: trailingEvent
+                ? trailingEvent.duration
+                : null,
             });
 
             visitIds.push(visitId);

@@ -16,7 +16,6 @@ Meteor.publish('analyses.byStudyId', (studyId) => {
     { studyId },
     {
       sort: {
-        type: -1,
         minFixationDuration: 1,
         minVisitDuration: 1,
         maxFixationGap: 1,

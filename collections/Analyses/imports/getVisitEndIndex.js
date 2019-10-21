@@ -48,7 +48,7 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
       potentialEndIndex = i;
     } else {
       offTargetCount += 1;
-      if (offTargetCount > this.maxFixationGap) break;
+      if (offTargetCount > this.maxOffTargetFixations) break;
     }
   }
 

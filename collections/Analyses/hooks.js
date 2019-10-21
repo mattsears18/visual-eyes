@@ -33,7 +33,7 @@ Analyses.after.update(function(
   if (Meteor.isServer) {
     if (
       this.previous.minVisitDuration != analysis.minVisitDuration
-      || this.previous.maxFixationGap != analysis.maxFixationGap
+      || this.previous.maxOffTargetFixations != analysis.maxOffTargetFixations
       || !helpers.arraysEqual(this.previous.stimulusIds, analysis.stimulusIds)
       || !helpers.arraysEqual(
         this.previous.participantIds,

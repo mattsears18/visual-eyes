@@ -57,15 +57,15 @@ export default function makeDefaultAnalysesThatDontExist() {
     // 30000,
   ];
 
-  const maxFixationGaps = [0, 1, 2, 3, 4, 5];
+  const maxOffTargetFixationsOptions = [0, 1, 2, 3, 4, 5];
 
   minFixationDurations.forEach((minFixationDuration) => {
     minVisitDurations.forEach((minVisitDuration) => {
-      maxFixationGaps.forEach((maxFixationGap) => {
+      maxOffTargetFixationsOptions.forEach((maxOffTargetFixations) => {
         const matches = existingAnalyses.find(
           analysis => analysis.minFixationDuration === minFixationDuration
             && analysis.minVisitDuration === minVisitDuration
-            && analysis.maxFixationGap === maxFixationGap,
+            && analysis.maxOffTargetFixations === maxOffTargetFixations,
         );
 
         if (typeof matches === 'undefined') {
@@ -74,7 +74,7 @@ export default function makeDefaultAnalysesThatDontExist() {
             name: 'Analysis',
             minFixationDuration,
             minVisitDuration,
-            maxFixationGap,
+            maxOffTargetFixations,
             participantIds: this.participants().map(
               participant => participant._id,
             ),

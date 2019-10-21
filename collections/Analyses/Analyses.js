@@ -43,9 +43,9 @@ Schemas.Analysis = new SimpleSchema(
       label: 'Minimum Visit Duration (ms)',
       defaultValue: 120,
     },
-    maxFixationGap: {
+    maxOffTargetFixations: {
       type: Number,
-      label: 'Maximum Fixation Gap (Sequential Off Target)',
+      label: 'Maximum Off-Target Fixations (Sequential)',
       defaultValue: 0,
     },
     participantIds: {

@@ -7,7 +7,7 @@ describe('Analyses.getVisitEndIndex()', () => {
     const analysis = Factory.create('analysis', {
       minFixationDuration: 120,
       minVisitDuration: 10000,
-      maxFixationGap: 5000,
+      maxOffTargetFixations: 5000,
     });
 
     const fixations = [
@@ -26,7 +26,7 @@ describe('Analyses.getVisitEndIndex()', () => {
     const analysis = Factory.create('analysis', {
       minFixationDuration: 120,
       minVisitDuration: 10000,
-      maxFixationGap: 500,
+      maxOffTargetFixations: 500,
     });
 
     const fixations = [
@@ -56,7 +56,7 @@ describe('Analyses.getVisitEndIndex()', () => {
     const analysis = Factory.create('analysis', {
       minFixationDuration: 120,
       minVisitDuration: 5000,
-      maxFixationGap: 5000,
+      maxOffTargetFixations: 5000,
     });
     const fixations = [
       { timestamp: 0, timestampEnd: 500 },
@@ -75,7 +75,7 @@ describe('Analyses.getVisitEndIndex()', () => {
     const analysis = Factory.create('analysis', {
       minFixationDuration: 120,
       minVisitDuration: 5000,
-      maxFixationGap: 5000,
+      maxOffTargetFixations: 5000,
     });
 
     const fixations = [
@@ -96,7 +96,7 @@ describe('Analyses.getVisitEndIndex()', () => {
     const analysis = Factory.create('analysis', {
       minFixationDuration: 120,
       minVisitDuration: 5000,
-      maxFixationGap: 5000,
+      maxOffTargetFixations: 5000,
     });
 
     const stimulus = Factory.create('stimulus');
@@ -119,7 +119,7 @@ describe('Analyses.getVisitEndIndex()', () => {
     const analysis = Factory.create('analysis', {
       minFixationDuration: 120,
       minVisitDuration: 5000,
-      maxFixationGap: 5000,
+      maxOffTargetFixations: 5000,
     });
 
     const stimulus = Factory.create('stimulus');
@@ -172,7 +172,7 @@ describe('Analyses.getVisitEndIndex()', () => {
     const analysis = Factory.create('analysis', {
       minFixationDuration: 120,
       minVisitDuration: 1000,
-      maxFixationGap: 0,
+      maxOffTargetFixations: 0,
     });
 
     const blankStimulus = Factory.create('stimulus', { name: '-' });
@@ -211,7 +211,7 @@ describe('Analyses.getVisitEndIndex()', () => {
     const analysis = Factory.create('analysis', {
       minFixationDuration: 120,
       minVisitDuration: 1000,
-      maxFixationGap: 0,
+      maxOffTargetFixations: 0,
     });
 
     const stimulus = Factory.create('stimulus');
@@ -288,7 +288,7 @@ describe('Analyses.getVisitEndIndex()', () => {
     const analysis = Factory.create('analysis', {
       minFixationDuration: 120,
       minVisitDuration: 10000,
-      maxFixationGap: 2,
+      maxOffTargetFixations: 2,
     });
 
     const stimulus = Factory.create('stimulus');
@@ -367,7 +367,7 @@ describe('Analyses.getVisitEndIndex()', () => {
     const analysis = Factory.create('analysis', {
       minFixationDuration: 120,
       minVisitDuration: 5000,
-      maxFixationGap: 2,
+      maxOffTargetFixations: 2,
     });
 
     const stimulus = Factory.create('stimulus');
@@ -443,7 +443,7 @@ describe('Analyses.getVisitEndIndex()', () => {
     const analysis = Factory.create('analysis', {
       minFixationDuration: 120,
       minVisitDuration: 4000,
-      maxFixationGap: 1,
+      maxOffTargetFixations: 1,
     });
 
     const stimulus = Factory.create('stimulus');

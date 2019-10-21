@@ -90,7 +90,6 @@ Template.Analysis.events({
     const analysis = Analyses.findOne({
       _id: FlowRouter.getParam('analysisId'),
     });
-    // console.log(analysis);
     analysis.saveCSV({ type: 'summary', groupBy: 'participant' });
   },
   'click .reprocess-analysis'() {

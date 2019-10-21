@@ -41,7 +41,9 @@ export default function saveCSV(opt) {
   } else if (type === 'summary') {
     const exportData = this.getExportData(opt);
 
-    let filename = `${this.study().name} - ${this.name}`;
+    let filename = `${this.study().name} - ${this.name} MFD${
+      this.minFixationDuration
+    }-MOTF${this.maxFixationGap}-MVD${this.minVisitDuration}`;
     let csvContent;
 
     if (period) {

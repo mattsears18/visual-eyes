@@ -63,11 +63,11 @@ export default function getExportData(opt) {
 
     Object.keys(groups).forEach((participantName) => {
       const pVisits = groups[participantName];
+
       let singleParticipantData = {
         ..._.pick(pVisits[0], [
           'link',
           'study',
-          // 'pointsType',
           'analysis',
           'maxFixationGap',
           'minVisitDuration',

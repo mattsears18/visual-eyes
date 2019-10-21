@@ -51,6 +51,8 @@ export default function getExportData(opt) {
       .forEach(function(variable) {
         data[variable.name] = variable.value;
       });
+
+    console.log(data);
   } else {
     // TODO
     const hullseries = this.getHullseries(opt);

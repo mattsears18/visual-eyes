@@ -87,7 +87,10 @@ Template.Analysis.events({
     analysis.saveCSV({ type: 'summary', groupBy: 'visit' });
   },
   'click .export-participants-summary'(e, template) {
-    const analysis = Analyses.findOne();
+    const analysis = Analyses.findOne({
+      _id: FlowRouter.getParam('analysisId'),
+    });
+    // console.log(analysis);
     analysis.saveCSV({ type: 'summary', groupBy: 'participant' });
   },
   'click .reprocess-analysis'() {

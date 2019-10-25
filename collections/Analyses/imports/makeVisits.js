@@ -1,4 +1,3 @@
-import { start } from 'repl';
 import Participants from '../../Participants/Participants';
 
 export default function makeVisits(opts) {
@@ -54,7 +53,7 @@ export default function makeVisits(opts) {
 
             if (Meteor.isServer && !Meteor.isTest) {
               console.log(
-                `make a visit! number: ${number}, [${startIndex}:${endIndex}]`,
+                `make a visit! number: ${number}, [${allFixations[startIndex].index}:${allFixations[endIndex].index}]`,
               );
             }
 

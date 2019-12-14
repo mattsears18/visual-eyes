@@ -25,7 +25,7 @@
     "area-polygon": "^1.0.1",
     "aws-sdk": "^2.442.0",
     "babel-plugin-idx": "^2.4.0",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^3.0.7",
     "csvtojson": "^2.0.8",
     "datatables-buttons": "^1.0.3",
     "datatables.net": "^1.10.19",

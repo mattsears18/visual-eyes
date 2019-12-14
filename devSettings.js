@@ -1,5 +1,5 @@
 if (Meteor.isDevelopment) {
-  Meteor.settings.public.uploads = '/Users/matthewsears/data/meteor/uploads';
+  Meteor.settings.public.uploads = '/Users/mattsears/data/meteor/uploads';
   Meteor.settings.public.ga = { account: 'UA-123347068-1' };
 
   if (Meteor.isServer) {

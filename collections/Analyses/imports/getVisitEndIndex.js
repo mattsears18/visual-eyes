@@ -6,8 +6,9 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
   }
 
   const badFixations = _fixations.filter(
-    fixation => typeof fixation.timestamp === 'undefined'
-      || typeof fixation.timestampEnd === 'undefined',
+    fixation =>
+      typeof fixation.timestamp === 'undefined' ||
+      typeof fixation.timestampEnd === 'undefined',
   );
 
   if (badFixations.length) {
@@ -40,15 +41,15 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
   }
 
   let potentialEndIndex = startIndex;
-  let offTargetCount = 0;
+  let offStimulusCount = 0;
 
   for (let i = parseInt(startIndex, 10) + 1; i < _fixations.length; i += 1) {
     if (_fixations[i].aoiId === initialAoiId) {
-      offTargetCount = 0;
+      offStimulusCount = 0;
       potentialEndIndex = i;
     } else {
-      offTargetCount += 1;
-      if (offTargetCount > this.maxOffTargetFixations) break;
+      offStimulusCount += 1;
+      if (offStimulusCount > this.maxOffStimulusFixations) break;
     }
   }
 
@@ -58,9 +59,9 @@ export default function getVisitEndIndex({ fixations, startIndex = 0 }) {
 
   // Check min visit duration
   if (
-    _fixations[potentialEndIndex].timestampEnd
-      - _fixations[startIndex].timestamp
-    < this.minVisitDuration
+    _fixations[potentialEndIndex].timestampEnd -
+      _fixations[startIndex].timestamp <
+    this.minVisitDuration
   ) {
     throw new Error('minVisitDurationNotMet');
   }

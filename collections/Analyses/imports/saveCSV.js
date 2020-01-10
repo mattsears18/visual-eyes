@@ -43,7 +43,7 @@ export default function saveCSV(opt) {
 
     let filename = `${this.study().name} - ${this.name} MFD${
       this.minFixationDuration
-    }-MOTF${this.maxOffTargetFixations}-MVD${this.minVisitDuration}`;
+    }-MOTF${this.maxOffStimulusFixations}-MVD${this.minVisitDuration}`;
     let csvContent;
 
     if (period) {

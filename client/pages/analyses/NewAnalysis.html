@@ -7,9 +7,8 @@
     </div>
     <div class="panel-body">
       {{#autoForm collection="Analyses" id="insertAnalysisForm" type="insert"
-        class="insert-analysis-form"}}
-      {{> afQuickField name="name"}}
-      {{> afQuickField name="desc"}}
+      class="insert-analysis-form"}} {{> afQuickField name="name"}} {{>
+      afQuickField name="desc"}}
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-4">
           {{> afQuickField name="minFixationDuration"}}
@@ -18,12 +17,12 @@
           {{> afQuickField name="minVisitDuration"}}
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4">
-          {{> afQuickField name="maxOffTargetFixations"}}
+          {{> afQuickField name="maxOffStimulusFixations"}}
         </div>
       </div>
-      {{> afQuickField name="studyId"}}
-      {{> afQuickField name="participantIds" options=participantOptions value=participantIds}}
-      {{> afQuickField name="stimulusIds" options=stimulusOptions value=stimulusIds}}
+      {{> afQuickField name="studyId"}} {{> afQuickField name="participantIds"
+      options=participantOptions value=participantIds}} {{> afQuickField
+      name="stimulusIds" options=stimulusOptions value=stimulusIds}}
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>

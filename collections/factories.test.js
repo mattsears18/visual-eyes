@@ -208,7 +208,7 @@ Factory.define('analysis', Analyses, {
   desc: () => faker.lorem.paragraph(),
   minFixationDuration: 120,
   minVisitDuration: 120,
-  maxOffTargetFixations: 0,
+  maxOffStimulusFixations: 0,
   participantIds: [],
   stimulusIds: [],
 });

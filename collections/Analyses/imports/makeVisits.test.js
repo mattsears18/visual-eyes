@@ -53,7 +53,7 @@ describe('Analyses.makeVisits()', () => {
       stimulusIds: [stimulus._id],
       minFixationDuration: 120,
       minVisitDuration: 5000,
-      maxOffTargetFixations: 1,
+      maxOffStimulusFixations: 1,
     });
 
     const rows = [

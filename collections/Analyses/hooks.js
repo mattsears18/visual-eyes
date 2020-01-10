@@ -32,10 +32,11 @@ Analyses.after.update(function(
 ) {
   if (Meteor.isServer) {
     if (
-      this.previous.minVisitDuration != analysis.minVisitDuration
-      || this.previous.maxOffTargetFixations != analysis.maxOffTargetFixations
-      || !helpers.arraysEqual(this.previous.stimulusIds, analysis.stimulusIds)
-      || !helpers.arraysEqual(
+      this.previous.minVisitDuration != analysis.minVisitDuration ||
+      this.previous.maxOffStimulusFixations !=
+        analysis.maxOffStimulusFixations ||
+      !helpers.arraysEqual(this.previous.stimulusIds, analysis.stimulusIds) ||
+      !helpers.arraysEqual(
         this.previous.participantIds,
         analysis.participantIds,
       )

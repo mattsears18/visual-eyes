@@ -18,7 +18,7 @@ export default function getExportData(opt) {
     }`,
     study: this.study().name,
     analysis: this.analysis().name,
-    maxOffTargetFixations: this.analysis().maxOffTargetFixations,
+    maxOffStimulusFixations: this.analysis().maxOffStimulusFixations,
     minVisitDuration: this.analysis().minVisitDuration,
   };
 
@@ -52,7 +52,7 @@ export default function getExportData(opt) {
         data[variable.name] = variable.value;
       });
 
-    console.log(data);
+    // console.log(data);
   } else {
     // TODO
     const hullseries = this.getHullseries(opt);
@@ -106,15 +106,17 @@ export default function getExportData(opt) {
         }),
       };
       if (hi > 0) {
-        hullData.centroidDistanceX = hulls[hi].getCentroid().x - hulls[hi - 1].getCentroid().x;
-        hullData.centroidDistanceY = hulls[hi].getCentroid().y - hulls[hi - 1].getCentroid().y;
+        hullData.centroidDistanceX =
+          hulls[hi].getCentroid().x - hulls[hi - 1].getCentroid().x;
+        hullData.centroidDistanceY =
+          hulls[hi].getCentroid().y - hulls[hi - 1].getCentroid().y;
         if (
-          hullData.centroidDistanceX !== 0
-          || hullData.centroidDistanceY !== 0
+          hullData.centroidDistanceX !== 0 ||
+          hullData.centroidDistanceY !== 0
         ) {
           hullData.centroidDistance = Math.sqrt(
-            hullData.centroidDistanceX * hullData.centroidDistanceX
-              + hullData.centroidDistanceY * hullData.centroidDistanceY,
+            hullData.centroidDistanceX * hullData.centroidDistanceX +
+              hullData.centroidDistanceY * hullData.centroidDistanceY,
           );
         }
       }

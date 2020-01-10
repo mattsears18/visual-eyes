@@ -1,7 +1,7 @@
 <template name="AnalysesList">
   <h4>
-    {{#if study.hasPermission 'createAnalyses'}}
-    {{#unless $.Session.get 'newAnalysis'}}
+    {{#if study.hasPermission 'createAnalyses'}} {{#unless $.Session.get
+    'newAnalysis'}}
     <a class="new-analysis btn btn-success pull-left">
       <i class="fa fa-plus"></i>&nbsp;&nbsp;New Analysis
     </a>
@@ -9,24 +9,17 @@
       <i class="fa fa-plus"></i>&nbsp;&nbsp;Make Default Analyses
     </a>
 
-    {{#if analyses.count}}
-    {{#if study.datafilesProcessingComplete}}
+    {{#if analyses.count}} {{#if study.datafilesProcessingComplete}}
     <span class="btn btn-danger pull-right reprocess-analyses m-l-10"
       ><i class="fa fa-refresh"></i>&nbsp;&nbsp;Reprocess Analyses</span
     >
     <span class="pull-right btn btn-success export-summary"
       ><i class="fa fa-share-square-o"></i>&nbsp;Export Analyses Summary</span
     >
-    {{/if}}
-    {{/if}}
-    {{/unless}}
-    {{/if}}
+    {{/if}} {{/if}} {{/unless}} {{/if}}
   </h4>
-  {{#if $.Session.get 'newAnalysis'}}
-  {{> NewAnalysis}}
-  {{/if}}
-
-  {{#if analyses.count}}
+  {{#if $.Session.get 'newAnalysis'}} {{> NewAnalysis}} {{/if}} {{#if
+  analyses.count}}
   <table class="table table-striped">
     <thead>
       <tr>
@@ -37,7 +30,7 @@
           Min Fixation Duration(ms)
         </th>
         <th class="center">
-          Max Off-Target Fixations
+          Max Off-Stimulus Fixations
         </th>
         <th class="center">
           Min Visit Duration (ms)
@@ -67,15 +60,15 @@
       {{#each analysis in analyses}}
       <tr>
         <td>
-          <a href="/studies/{{ study._id }}/analyses/{{ analysis._id }}">{{
-            analysis.name
-          }}</a>
+          <a href="/studies/{{ study._id }}/analyses/{{ analysis._id }}"
+            >{{ analysis.name }}</a
+          >
         </td>
         <td class="center">
           {{ analysis.minFixationDuration }}
         </td>
         <td class="center">
-          {{ analysis.maxOffTargetFixations }}
+          {{ analysis.maxOffStimulusFixations }}
         </td>
         <td class="center">
           {{ analysis.minVisitDuration }}
@@ -92,13 +85,11 @@
         <td class="center">
           {{#if equals analysis.status "needsProcessing"}}
           <span class="label label-danger">Needs Processing</span>
-          {{/if}}
-          {{#if equals analysis.status "processing"}}
+          {{/if}} {{#if equals analysis.status "processing"}}
           <span class="label label-default"
             >Processing<i class="fa fa-spinner fa-pulse fa-fw m-l-3"></i
           ></span>
-          {{/if}}
-          {{#if equals analysis.status "processed"}}
+          {{/if}} {{#if equals analysis.status "processed"}}
           <span class="label label-success">Processed</span>
           {{/if}}
         </td>

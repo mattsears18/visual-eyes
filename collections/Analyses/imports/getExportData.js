@@ -10,7 +10,7 @@ export default function getExportData(opt) {
     .fetch()
     .map(variable => variable.name);
 
-  this.visits().forEach((visit) => {
+  this.visits().forEach(visit => {
     const exportData = visit.getExportData(opt);
 
     const singleVisitData = {
@@ -61,7 +61,7 @@ export default function getExportData(opt) {
 
     const participantData = [];
 
-    Object.keys(groups).forEach((participantName) => {
+    Object.keys(groups).forEach(participantName => {
       const pVisits = groups[participantName];
 
       let singleParticipantData = {
@@ -85,7 +85,7 @@ export default function getExportData(opt) {
       const visitDurationsPerStimulus = [];
       const visitCountsPerStimulus = [];
 
-      Object.keys(sVisitGroups).forEach((stimulusName) => {
+      Object.keys(sVisitGroups).forEach(stimulusName => {
         visitDurationsPerStimulus.push(
           jStat.sum(sVisitGroups[stimulusName].map(v => v.visitDuration)),
         );
@@ -136,8 +136,8 @@ export default function getExportData(opt) {
         //   jStat.sum(pVisits.map(v => v.fixationCount))
         //   / jStat.sum(pVisits.map(v => v.gazepointCount)),
         averageCoverage:
-          jStat.sum(pVisits.map(v => v.visitDuration * v.averageCoverage))
-          / jStat.sum(durations),
+          jStat.sum(pVisits.map(v => v.visitDuration * v.averageCoverage)) /
+          jStat.sum(durations),
         finalCoverages: JSON.stringify(finalCoverages)
           .substr(1)
           .substr(0, JSON.stringify(finalCoverages).length - 2),
@@ -146,14 +146,14 @@ export default function getExportData(opt) {
         finalCoveragesMean: jStat.mean(finalCoverages),
         finalCoveragesMedian: jStat.median(finalCoverages),
         averageVelocity:
-          jStat.sum(pVisits.map(v => v.visitDuration * v.averageVelocity))
-          / jStat.sum(durations),
+          jStat.sum(pVisits.map(v => v.visitDuration * v.averageVelocity)) /
+          jStat.sum(durations),
         averageVelocityX:
-          jStat.sum(pVisits.map(v => v.visitDuration * v.averageVelocityX))
-          / jStat.sum(durations),
+          jStat.sum(pVisits.map(v => v.visitDuration * v.averageVelocityX)) /
+          jStat.sum(durations),
         averageVelocityY:
-          jStat.sum(pVisits.map(v => v.visitDuration * v.averageVelocityY))
-          / jStat.sum(durations),
+          jStat.sum(pVisits.map(v => v.visitDuration * v.averageVelocityY)) /
+          jStat.sum(durations),
         averageCentroidVelocity:
           jStat.sum(
             pVisits.map(v => v.visitDuration * v.averageCentroidVelocity),

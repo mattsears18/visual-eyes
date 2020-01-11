@@ -82,6 +82,7 @@ export default function getExportData(opt) {
         };
 
         const durations = pVisits.map(v => v.visitDuration / 1000);
+        const timestamps = pVisits.map(v => v.visitTimestamp / 1000);
         const finalCoverages = pVisits.map(v => v.finalCoverage);
 
         const sVisitGroups = _.groupBy(pVisits, 'stimulus');
@@ -109,28 +110,33 @@ export default function getExportData(opt) {
           visitDurationsSum: jStat.sum(durations),
           visitDurationsMean: jStat.mean(durations),
           visitDurationsMedian: jStat.median(durations),
+          visitDurationsVariance: jStat.variance(durations),
+          visitDurationsStandardDeviation: jStat.stdev(durations),
+          visitDurationsSkewness: jStat.skewness(durations),
+          visitDurationsKurtosis: jStat.kurtosis(durations),
+          visitTimestamps: timestamps,
           visitDurationsPerStimulus: JSON.stringify(visitDurationsPerStimulus)
             .substr(1)
             .substr(0, JSON.stringify(visitDurationsPerStimulus).length - 2),
-          visitDurationsPerStimulusMin:
-            visitDurationsPerStimulus.length < 10
-              ? 0
-              : jStat.min(visitDurationsPerStimulus),
-          visitDurationsPerStimulusMax: jStat.max(visitDurationsPerStimulus),
-          visitDurationsPerStimulusMean: jStat.mean(visitDurationsPerStimulus),
-          visitDurationsPerStimulusMedian: jStat.median(
-            visitDurationsPerStimulus,
-          ),
+          // visitDurationsPerStimulusMin:
+          //   visitDurationsPerStimulus.length < 10
+          //     ? 0
+          //     : jStat.min(visitDurationsPerStimulus),
+          // visitDurationsPerStimulusMax: jStat.max(visitDurationsPerStimulus),
+          // visitDurationsPerStimulusMean: jStat.mean(visitDurationsPerStimulus),
+          // visitDurationsPerStimulusMedian: jStat.median(
+          //   visitDurationsPerStimulus,
+          // ),
           visitCountsPerStimulus: JSON.stringify(visitCountsPerStimulus)
             .substr(1)
             .substr(0, JSON.stringify(visitCountsPerStimulus).length - 2),
-          visitCountsPerStimulusMin:
-            visitCountsPerStimulus.length < 10
-              ? 0
-              : jStat.min(visitCountsPerStimulus),
-          visitCountsPerStimulusMax: jStat.max(visitCountsPerStimulus),
-          visitCountsPerStimulusMean: jStat.mean(visitCountsPerStimulus),
-          visitCountsPerStimulusMedian: jStat.median(visitCountsPerStimulus),
+          // visitCountsPerStimulusMin:
+          //   visitCountsPerStimulus.length < 10
+          //     ? 0
+          //     : jStat.min(visitCountsPerStimulus),
+          // visitCountsPerStimulusMax: jStat.max(visitCountsPerStimulus),
+          // visitCountsPerStimulusMean: jStat.mean(visitCountsPerStimulus),
+          // visitCountsPerStimulusMedian: jStat.median(visitCountsPerStimulus),
           // gazepointCount: jStat.sum(pVisits.map(v => v.gazepointCount)),
           // gazepointFrequency:
           //   jStat.sum(pVisits.map(v => v.gazepointCount)) / jStat.sum(durations),
@@ -140,37 +146,37 @@ export default function getExportData(opt) {
           // fixationProportion:
           //   jStat.sum(pVisits.map(v => v.fixationCount))
           //   / jStat.sum(pVisits.map(v => v.gazepointCount)),
-          averageCoverage:
-            jStat.sum(pVisits.map(v => v.visitDuration * v.averageCoverage)) /
-            jStat.sum(durations),
-          finalCoverages: JSON.stringify(finalCoverages)
-            .substr(1)
-            .substr(0, JSON.stringify(finalCoverages).length - 2),
-          finalCoveragesMin: jStat.min(finalCoverages),
-          finalCoveragesMax: jStat.max(finalCoverages),
-          finalCoveragesMean: jStat.mean(finalCoverages),
-          finalCoveragesMedian: jStat.median(finalCoverages),
-          averageVelocity:
-            jStat.sum(pVisits.map(v => v.visitDuration * v.averageVelocity)) /
-            jStat.sum(durations),
-          averageVelocityX:
-            jStat.sum(pVisits.map(v => v.visitDuration * v.averageVelocityX)) /
-            jStat.sum(durations),
-          averageVelocityY:
-            jStat.sum(pVisits.map(v => v.visitDuration * v.averageVelocityY)) /
-            jStat.sum(durations),
-          averageCentroidVelocity:
-            jStat.sum(
-              pVisits.map(v => v.visitDuration * v.averageCentroidVelocity),
-            ) / jStat.sum(durations),
-          averageCentroidVelocityX:
-            jStat.sum(
-              pVisits.map(v => v.visitDuration * v.averageCentroidVelocityX),
-            ) / jStat.sum(durations),
-          averageCentroidVelocityY:
-            jStat.sum(
-              pVisits.map(v => v.visitDuration * v.averageCentroidVelocityY),
-            ) / jStat.sum(durations),
+          // averageCoverage:
+          //   jStat.sum(pVisits.map(v => v.visitDuration * v.averageCoverage)) /
+          //   jStat.sum(durations),
+          // finalCoverages: JSON.stringify(finalCoverages)
+          //   .substr(1)
+          //   .substr(0, JSON.stringify(finalCoverages).length - 2),
+          // finalCoveragesMin: jStat.min(finalCoverages),
+          // finalCoveragesMax: jStat.max(finalCoverages),
+          // finalCoveragesMean: jStat.mean(finalCoverages),
+          // finalCoveragesMedian: jStat.median(finalCoverages),
+          // averageVelocity:
+          //   jStat.sum(pVisits.map(v => v.visitDuration * v.averageVelocity)) /
+          //   jStat.sum(durations),
+          // averageVelocityX:
+          //   jStat.sum(pVisits.map(v => v.visitDuration * v.averageVelocityX)) /
+          //   jStat.sum(durations),
+          // averageVelocityY:
+          //   jStat.sum(pVisits.map(v => v.visitDuration * v.averageVelocityY)) /
+          //   jStat.sum(durations),
+          // averageCentroidVelocity:
+          //   jStat.sum(
+          //     pVisits.map(v => v.visitDuration * v.averageCentroidVelocity),
+          //   ) / jStat.sum(durations),
+          // averageCentroidVelocityX:
+          //   jStat.sum(
+          //     pVisits.map(v => v.visitDuration * v.averageCentroidVelocityX),
+          //   ) / jStat.sum(durations),
+          // averageCentroidVelocityY:
+          //   jStat.sum(
+          //     pVisits.map(v => v.visitDuration * v.averageCentroidVelocityY),
+          //   ) / jStat.sum(durations),
         };
 
         singleParticipantData = {
@@ -185,8 +191,7 @@ export default function getExportData(opt) {
       break;
 
     case 'visit':
-      console.log('double balls');
-      requestedData = ['meh'];
+      requestedData = visitData.slice();
       break;
 
     default:
@@ -194,6 +199,5 @@ export default function getExportData(opt) {
       break;
   }
 
-  console.log(requestedData);
   return requestedData;
 }

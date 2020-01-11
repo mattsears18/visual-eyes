@@ -30,7 +30,7 @@ export default function saveCSV(opt) {
       zip.file(nameFile, csvContent);
     });
 
-    zip.generateAsync({ type: 'blob' }).then((blob) => {
+    zip.generateAsync({ type: 'blob' }).then(blob => {
       // 1) generate the zip file
       const zipName = `${this.study().name} - ${this.name} - p${opt.period}ts${
         opt.timestep
@@ -43,7 +43,7 @@ export default function saveCSV(opt) {
 
     let filename = `${this.study().name} - ${this.name} MFD${
       this.minFixationDuration
-    }-MOTF${this.maxOffStimulusFixations}-MVD${this.minVisitDuration}`;
+    }-MOSF${this.maxOffStimulusFixations}-MVD${this.minVisitDuration}`;
     let csvContent;
 
     if (period) {

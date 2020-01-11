@@ -30,7 +30,10 @@ Template.Analysis.onCreated(function() {
     self.subscribe('aois.byStudyId', studyId);
     // self.subscribe('variables.byStudyId', studyId);
     // self.subscribe('datafiles.byStudyId', studyId);
-    const analysis = Analyses.findOne({});
+    const analysis = Analyses.findOne({
+      _id: FlowRouter.getParam('analysisId'),
+    });
+
     if (analysis && analysis.status === 'processing') {
       self.subscribe('jobs.byAnalysisId', analysisId);
     }
@@ -40,13 +43,8 @@ Template.Analysis.onCreated(function() {
   });
 });
 
-// Template.UpdateAnalysis.destroyed = function() {
-//   participantSub.stop();
-//   stimuliSub.stop();
-// };
-
 Template.BreadCrumbs.helpers({
-  analysis: () => Analyses.findOne(),
+  analysis: () => Analyses.findOne({ _id: FlowRouter.getParam('analysisId') }),
 });
 
 Template.Analysis.helpers({
@@ -83,7 +81,10 @@ Template.Analysis.helpers({
 
 Template.Analysis.events({
   'click .export-visits-summary'(e, template) {
-    const analysis = Analyses.findOne();
+    const analysis = Analyses.findOne({
+      _id: FlowRouter.getParam('analysisId'),
+    });
+
     analysis.saveCSV({ type: 'summary', groupBy: 'visit' });
   },
   'click .export-participants-summary'(e, template) {

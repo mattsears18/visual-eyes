@@ -12,10 +12,9 @@ export default function makeDefaultAnalysesThatDontExist() {
     // 20,
     // 30,
     // 40,
-    // 50,
+    50,
     60,
     // 70,
-    80,
     // 90,
     100,
     // 110,
@@ -47,8 +46,8 @@ export default function makeDefaultAnalysesThatDontExist() {
     // 200,
     // 250,
     // 500,
-    1000,
-    2000,
+    // 1000,
+    // 2000,
     // 3000,
     // 4000,
     // 5000,
@@ -59,13 +58,14 @@ export default function makeDefaultAnalysesThatDontExist() {
 
   const maxOffStimulusFixationsOptions = [0, 1, 2, 3, 4, 5];
 
-  minFixationDurations.forEach((minFixationDuration) => {
-    minVisitDurations.forEach((minVisitDuration) => {
-      maxOffStimulusFixationsOptions.forEach((maxOffStimulusFixations) => {
+  minFixationDurations.forEach(minFixationDuration => {
+    minVisitDurations.forEach(minVisitDuration => {
+      maxOffStimulusFixationsOptions.forEach(maxOffStimulusFixations => {
         const matches = existingAnalyses.find(
-          analysis => analysis.minFixationDuration === minFixationDuration
-            && analysis.minVisitDuration === minVisitDuration
-            && analysis.maxOffStimulusFixations === maxOffStimulusFixations,
+          analysis =>
+            analysis.minFixationDuration === minFixationDuration &&
+            analysis.minVisitDuration === minVisitDuration &&
+            analysis.maxOffStimulusFixations === maxOffStimulusFixations,
         );
 
         if (typeof matches === 'undefined') {

@@ -6,7 +6,11 @@
     "mocha": true
   },
   "plugins": ["meteor"],
-  "extends": ["plugin:meteor/recommended", "@meteorjs/eslint-config-meteor"],
+  "extends": [
+    "prettier",
+    "plugin:meteor/recommended",
+    "@meteorjs/eslint-config-meteor"
+  ],
   "globals": {
     "Analyses": true,
     "Aois": true,
@@ -25,7 +29,8 @@
     "Schemas": true
   },
   "rules": {
-    "no-underscore-dangle": 0,
-    "no-use-before-define": "off"
+    // "no-underscore-dangle": 0,
+    // "no-use-before-define": "off"
+    // "arrow-parens": 0
   }
 }

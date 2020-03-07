@@ -4,7 +4,7 @@ import { Factory } from 'meteor/dburles:factory';
 import { expect } from 'chai';
 import defaultTestFixations from '../../defaultTestFixations';
 
-describe('Visit.getExportData()', () => {
+describe.only('Visit.getExportData()', () => {
   it('has no period', () => {
     const visit = Factory.create('visit');
     const expectedFields = [

@@ -17,14 +17,14 @@ export default class VisitHullSeries extends TimeHullSeries {
     if (typeof opts.points === 'undefined') {
       if (typeof opts.visit !== 'undefined') {
         opts.points = opts.visit.getFixations().fetch();
-        opts.width = opts.width || opts.visit.stimulus() ? opts.visit.stimulus().width : 0;
-        opts.height = opts.height || opts.visit.stimulus()
-          ? opts.visit.stimulus().height
-          : 0;
+        opts.width =
+          opts.width || opts.visit.stimulus() ? opts.visit.stimulus().width : 0;
+        opts.height =
+          opts.height || opts.visit.stimulus()
+            ? opts.visit.stimulus().height
+            : 0;
       }
     }
-
-    // console.log(opts);
 
     super(opts);
 
@@ -34,9 +34,10 @@ export default class VisitHullSeries extends TimeHullSeries {
       throw new Error('noVisit');
     }
 
-    this.pointTrailLength = typeof opts.pointTrailLength === 'number' && opts.pointTrailLength > 0
-      ? parseInt(opts.pointTrailLength, 10)
-      : 10;
+    this.pointTrailLength =
+      typeof opts.pointTrailLength === 'number' && opts.pointTrailLength > 0
+        ? parseInt(opts.pointTrailLength, 10)
+        : 10;
   }
 
   getLayout = getLayout;

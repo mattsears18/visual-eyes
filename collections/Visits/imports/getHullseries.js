@@ -6,7 +6,7 @@ export default function getHullseries(opt) {
   const { includeIncomplete } = opt || {};
   const { pointTrailLength } = opt || {};
 
-  return new VisitHullSeries({
+  const series = new VisitHullSeries({
     visit: this,
     points: this.gazepoints,
     period,
@@ -16,4 +16,6 @@ export default function getHullseries(opt) {
     width: this.stimulus().width,
     height: this.stimulus().height,
   });
+
+  return series;
 }

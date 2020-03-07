@@ -5,7 +5,7 @@ export default function getExportData(opt) {
   const { groupBy } = opt || {};
 
   const visitData = [];
-  let requestedData = null;
+  let requestedData = [];
 
   const variableNames = this.study()
     .variables()
@@ -149,13 +149,13 @@ export default function getExportData(opt) {
           // averageCoverage:
           //   jStat.sum(pVisits.map(v => v.visitDuration * v.averageCoverage)) /
           //   jStat.sum(durations),
-          // finalCoverages: JSON.stringify(finalCoverages)
-          //   .substr(1)
-          //   .substr(0, JSON.stringify(finalCoverages).length - 2),
-          // finalCoveragesMin: jStat.min(finalCoverages),
-          // finalCoveragesMax: jStat.max(finalCoverages),
-          // finalCoveragesMean: jStat.mean(finalCoverages),
-          // finalCoveragesMedian: jStat.median(finalCoverages),
+          finalCoverages: JSON.stringify(finalCoverages)
+            .substr(1)
+            .substr(0, JSON.stringify(finalCoverages).length - 2),
+          finalCoveragesMin: jStat.min(finalCoverages),
+          finalCoveragesMax: jStat.max(finalCoverages),
+          finalCoveragesMean: jStat.mean(finalCoverages),
+          finalCoveragesMedian: jStat.median(finalCoverages),
           // averageVelocity:
           //   jStat.sum(pVisits.map(v => v.visitDuration * v.averageVelocity)) /
           //   jStat.sum(durations),
@@ -195,7 +195,6 @@ export default function getExportData(opt) {
       break;
 
     default:
-      console.log('default');
       break;
   }
 

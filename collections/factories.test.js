@@ -280,28 +280,6 @@ Factory.define('gazepoint', Gazepoints, {
   y: () => Math.random() * 1000,
 });
 
-Factory.define('visit', Visits, {
-  analysisId: () => Factory.create('analysis')._id,
-  studyId: () => Factory.create('study')._id,
-  participantId: () => Factory.create('participant')._id,
-  participantName: () => faker.name.findName(),
-  aoiId: () => Factory.create('aoi')._id,
-  stimulusId: () => Factory.create('stimulus')._id,
-  number: () => faker.random.number({ min: 1, max: 10 }),
-  timestamp: (timestamp = faker.random.number(10000)),
-  duration: (duration = faker.random.number(1000)),
-  timestampEnd: timestamp + duration,
-  fixationIndices: [
-    faker.random.number(100),
-    faker.random.number(100),
-    faker.random.number(100),
-    faker.random.number(100),
-    faker.random.number(100),
-  ],
-  fixationCount: 5,
-  fixationFrequency: (5 / duration) * 1000,
-});
-
 const xs = [
   faker.random.number(1000),
   faker.random.number(1000),
@@ -342,4 +320,28 @@ Factory.define('eyeevent', Eyeevents, {
   ys,
   xMean: parseInt(jStat.mean(xs), 10),
   yMean: parseInt(jStat.mean(ys), 10),
+});
+
+const p = Factory.create('participant');
+
+Factory.define('visit', Visits, {
+  analysisId: () => Factory.create('analysis')._id,
+  studyId: () => Factory.create('study')._id,
+  participantId: () => p._id,
+  participantName: () => faker.name.findName(),
+  aoiId: () => Factory.create('aoi')._id,
+  stimulusId: () => Factory.create('stimulus')._id,
+  number: () => faker.random.number({ min: 1, max: 10 }),
+  timestamp: (timestamp = faker.random.number(10000)),
+  duration: (duration = faker.random.number(1000)),
+  timestampEnd: timestamp + duration,
+  fixationIndices: [
+    Factory.create('eyeevent', { participantId: p._id }).index,
+    Factory.create('eyeevent', { participantId: p._id }).index,
+    Factory.create('eyeevent', { participantId: p._id }).index,
+    Factory.create('eyeevent', { participantId: p._id }).index,
+    Factory.create('eyeevent', { participantId: p._id }).index,
+  ],
+  fixationCount: 5,
+  fixationFrequency: (5 / duration) * 1000,
 });

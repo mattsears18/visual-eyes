@@ -96,6 +96,13 @@ Schemas.Visit = new SimpleSchema(
         type: 'hidden',
       },
     },
+    finalCoverage: {
+      type: Number,
+      optional: true,
+      autoform: {
+        type: 'hidden',
+      },
+    },
   },
   { tracker: Tracker },
 );

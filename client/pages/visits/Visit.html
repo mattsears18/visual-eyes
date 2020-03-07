@@ -1,10 +1,10 @@
 <template name="Visit">
   {{#if visit}}
-  {{> VisitAnimation visit=visit hullParams=hullParams}}
+  <!-- {{> VisitAnimation visit=visit hullParams=hullParams}}
   <div class="m-t-20">
     {{> ExportAnimation visit=visit hullParams=hullParams}}
-  </div>
-  {{else}}
+  </div> -->
+  Final Coverage: {{visit.finalCoverage}} {{else}}
   <div class="m-t-100">
     {{> Spinner}}
   </div>

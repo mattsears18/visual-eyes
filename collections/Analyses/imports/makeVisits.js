@@ -94,12 +94,6 @@ export default function makeVisits(opts) {
                 : null,
             });
 
-            //Save the coverage for the full visit
-            const visit = Visits.findOne({ _id: visitId });
-            const coverage = visit.getCoverage();
-            // console.log(coverage);
-            Visits.update({ _id: visit._id }, { $set: { coverage } });
-
             visitIds.push(visitId);
             startIndex = endIndex + 1;
 

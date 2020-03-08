@@ -41,6 +41,7 @@ export default function getExportData(opt) {
   fields.visitDuration = this.duration;
   fields.fixationCount = this.fixationCount;
   fields.fixationFrequency = this.fixationFrequency;
+  fields.coverage = this.coverage;
 
   if (typeof period === 'undefined') {
     // just return basic stats about the visit

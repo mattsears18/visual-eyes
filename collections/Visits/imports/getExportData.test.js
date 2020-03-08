@@ -25,6 +25,7 @@ describe('Visit.getExportData()', () => {
       'visitTimestampEnd',
       'fixationCount',
       'fixationFrequency',
+      'coverage',
     ];
 
     expect(Object.keys(visit.getExportData())).to.eql(expectedFields);

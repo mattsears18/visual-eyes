@@ -39,6 +39,7 @@ export default function getExportData(opt) {
         'fixationFrequency',
         'averageCoverage',
         'finalCoverage',
+        'coverage',
         'averageVelocity',
         'averageVelocityX',
         'averageVelocityY',

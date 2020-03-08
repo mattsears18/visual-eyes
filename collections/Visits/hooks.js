@@ -11,7 +11,13 @@ Visits.after.remove(function(userId, visit) {
   }
 });
 
-// Visits.after.insert(function(userId, doc) {
-//   const visit = Visits.findOne({ _id: doc._id });
-//   console.log(visit.getFixations().fetch());
-// });
+Visits.after.insert(function(userId, doc) {
+  const visit = Visits.findOne({ _id: doc._id });
+
+  if (visit && visit.getFixations().count()) {
+    Visits.update(
+      { _id: visit._id },
+      { $set: { coverage: visit.getCoverage() } },
+    );
+  }
+});

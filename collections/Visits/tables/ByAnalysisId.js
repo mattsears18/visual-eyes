@@ -102,13 +102,15 @@ const table = new Tabular.Table({
       },
     },
     {
-      data: 'finalCoverage',
+      data: 'coverage',
       type: 'num',
       title: 'Convex Hull Coverage',
       render(data, type, row, meta) {
-        if (data) {
-          return `<a href="/studies/${row.studyId}/analyses/${row.analysisId}/participants/${row.participantId}/visits/${row.number}">${data}</a>`;
-        }
+        return `<a href="/studies/${row.studyId}/analyses/${
+          row.analysisId
+        }/participants/${row.participantId}/visits/${row.number}">${(
+          data * 100
+        ).toFixed(2)}%</a>`;
       },
     },
     // {

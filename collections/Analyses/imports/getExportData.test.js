@@ -4,7 +4,7 @@
 // import defaultTestFixations from '../../defaultTestFixations';
 // import idx from '../../../node_modules/idx/lib/idx';
 
-// describe.only('Analyses.getExportData()', () => {
+// describe('Analyses.getExportData()', () => {
 //   it('has no participants', () => {
 //     const analysis = Factory.create('analysis');
 //     expect(analysis.getExportData()).to.eql([]);

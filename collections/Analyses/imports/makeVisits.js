@@ -44,8 +44,9 @@ export default function makeVisits(opts) {
 
       if (endIndex && allFixations[endIndex]) {
         const { timestamp } = allFixations[startIndex];
-        const duration = allFixations[endIndex].timestampEnd
-          - allFixations[startIndex].timestamp;
+        const duration =
+          allFixations[endIndex].timestampEnd -
+          allFixations[startIndex].timestamp;
 
         if (duration >= this.minVisitDuration) {
           try {
@@ -93,6 +94,12 @@ export default function makeVisits(opts) {
                 : null,
             });
 
+            //Save the coverage for the full visit
+            const visit = Visits.findOne({ _id: visitId });
+            const coverage = visit.getCoverage();
+            // console.log(coverage);
+            Visits.update({ _id: visit._id }, { $set: { coverage } });
+
             visitIds.push(visitId);
             startIndex = endIndex + 1;
 
@@ -109,13 +116,14 @@ export default function makeVisits(opts) {
       // console.log(err.message);
 
       if (
-        err.message === 'minVisitDurationNotMet'
-        || err.message === 'endIndexNotFound'
-        || err.message === 'blankInitialStimulus'
+        err.message === 'minVisitDurationNotMet' ||
+        err.message === 'endIndexNotFound' ||
+        err.message === 'blankInitialStimulus'
       ) {
         startIndex += 1;
       } else if (err.message === 'noStimulusFound') {
-        if (Meteor.isServer && !Meteor.isTest) console.log('stimulus not found!');
+        if (Meteor.isServer && !Meteor.isTest)
+          console.log('stimulus not found!');
       } else {
         // console.log(err);
       }

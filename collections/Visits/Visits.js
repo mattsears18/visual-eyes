@@ -96,7 +96,19 @@ Schemas.Visit = new SimpleSchema(
         type: 'hidden',
       },
     },
-    finalCoverage: {
+    fixationXs: {
+      type: Array,
+      label: 'X Coordinates',
+      optional: true,
+    },
+    'fixationXs.$': Number,
+    fixationYs: {
+      type: Array,
+      label: 'Y Coordinates',
+      optional: true,
+    },
+    'fixationYs.$': Number,
+    coverage: {
       type: Number,
       optional: true,
       autoform: {

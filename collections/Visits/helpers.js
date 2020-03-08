@@ -1,4 +1,5 @@
 import Jobs from '../Jobs/Jobs';
+import getCoverage from './imports/getCoverage';
 import getHullseries from './imports/getHullseries';
 import getExportData from './imports/getExportData';
 import getFixations from './imports/getFixations';
@@ -9,6 +10,7 @@ import Stimuli from '../Stimuli/Stimuli';
 // import getFixationProportion from './imports/getFixationProportion';
 
 Visits.helpers({
+  getCoverage,
   getHullseries,
   getExportData,
   getFixations,

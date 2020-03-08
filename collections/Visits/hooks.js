@@ -10,3 +10,8 @@ Visits.after.remove(function(userId, visit) {
     Jobs.remove({ 'data.visitId': visit._id });
   }
 });
+
+// Visits.after.insert(function(userId, doc) {
+//   const visit = Visits.findOne({ _id: doc._id });
+//   console.log(visit.getFixations().fetch());
+// });

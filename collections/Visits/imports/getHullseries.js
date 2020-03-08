@@ -6,9 +6,14 @@ export default function getHullseries(opt) {
   const { includeIncomplete } = opt || {};
   const { pointTrailLength } = opt || {};
 
+  const fixations = this.getFixations().fetch();
+  const points = fixations.map(f => {
+    return { timestamp: f.timestamp, x: f.xMean, y: f.yMean };
+  });
+
   const series = new VisitHullSeries({
     visit: this,
-    points: this.gazepoints,
+    points,
     period,
     timestep,
     includeIncomplete,

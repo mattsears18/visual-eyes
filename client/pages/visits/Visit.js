@@ -43,6 +43,11 @@ Template.Visit.onCreated(function() {
       participantId,
       number,
     );
+
+    // if (self.subscriptionsReady()) {
+    //   const visit = Visits.findOne();
+    //   self.subscribe('fixations.byVisitId', visit._id);
+    // }
   });
 });
 

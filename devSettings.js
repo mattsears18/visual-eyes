@@ -1,5 +1,5 @@
 if (Meteor.isDevelopment) {
-  Meteor.settings.public.uploads = '/Users/mattsears/data/meteor/uploads';
+  Meteor.settings.public.uploads = '/Users/msears/data/meteor/uploads';
   Meteor.settings.public.ga = { account: 'UA-123347068-1' };
 
   if (Meteor.isServer) {
@@ -8,7 +8,7 @@ if (Meteor.isDevelopment) {
       key: 'AKIAJEDESCDXUZ7SAJ3Q',
       secret: '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',
       bucket: 'eyetracking2',
-      region: 'us-west-1'
+      region: 'us-west-1',
     };
   }
 }

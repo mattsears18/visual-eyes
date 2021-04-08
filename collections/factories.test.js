@@ -63,105 +63,105 @@ const baseDatafile = {
 };
 
 const imotionsFields = {
-  path: '/Users/mattsears/code/visual-eyes/testFiles/realFile/imotionsWael.txt',
+  path: '/Users/msears/code/visual-eyes/testFiles/realFile/imotionsWael.txt',
   versions: {
     original: {
       path:
-        '/Users/mattsears/code/visual-eyes/testFiles/realFile/imotionsWael.txt',
+        '/Users/msears/code/visual-eyes/testFiles/realFile/imotionsWael.txt',
       size: 2452899,
       type: 'text/plain',
       extension: 'txt',
     },
   },
-  _storagePath: '/Users/mattsears/code/visual-eyes/testFiles/realFile/',
+  _storagePath: '/Users/msears/code/visual-eyes/testFiles/realFile/',
 };
 
 const imotionsWithHeadersFields = {
   path:
-    '/Users/mattsears/code/visual-eyes/testFiles/realFile/imotionsWaelWithHeaders.txt',
+    '/Users/msears/code/visual-eyes/testFiles/realFile/imotionsWaelWithHeaders.txt',
   versions: {
     original: {
       path:
-        '/Users/mattsears/code/visual-eyes/testFiles/realFile/imotionsWaelWithHeaders.txt',
+        '/Users/msears/code/visual-eyes/testFiles/realFile/imotionsWaelWithHeaders.txt',
       size: 2452899,
       type: 'text/plain',
       extension: 'txt',
     },
   },
-  _storagePath: '/Users/mattsears/code/visual-eyes/testFiles/realFile/',
+  _storagePath: '/Users/msears/code/visual-eyes/testFiles/realFile/',
 };
 
 const smiFields = {
-  path: '/Users/mattsears/code/visual-eyes/testFiles/realFile/smiWael.txt',
+  path: '/Users/msears/code/visual-eyes/testFiles/realFile/smiWael.txt',
   versions: {
     original: {
-      path: '/Users/mattsears/code/visual-eyes/testFiles/realFile/smiWael.txt',
+      path: '/Users/msears/code/visual-eyes/testFiles/realFile/smiWael.txt',
       size: 4519224,
       type: 'text/plain',
       extension: 'txt',
     },
   },
-  _storagePath: '/Users/mattsears/code/visual-eyes/testFiles/realFile/',
+  _storagePath: '/Users/msears/code/visual-eyes/testFiles/realFile/',
 };
 
 const smiWithHeadersFields = {
   path:
-    '/Users/mattsears/code/visual-eyes/testFiles/realFile/smiWaelWithHeaders.txt',
+    '/Users/msears/code/visual-eyes/testFiles/realFile/smiWaelWithHeaders.txt',
   versions: {
     original: {
       path:
-        '/Users/mattsears/code/visual-eyes/testFiles/realFile/smiWaelWithHeaders.txt',
+        '/Users/msears/code/visual-eyes/testFiles/realFile/smiWaelWithHeaders.txt',
       size: 4519224,
       type: 'text/plain',
       extension: 'txt',
     },
   },
-  _storagePath: '/Users/mattsears/code/visual-eyes/testFiles/realFile/',
+  _storagePath: '/Users/msears/code/visual-eyes/testFiles/realFile/',
 };
 
 const smiMultiFields = {
   path:
-    '/Users/mattsears/code/visual-eyes/testFiles/realFile/smiMultiParticipant03.csv',
+    '/Users/msears/code/visual-eyes/testFiles/realFile/smiMultiParticipant03.csv',
   versions: {
     original: {
       path:
-        '/Users/mattsears/code/visual-eyes/testFiles/realFile/smiMultiParticipant03.csv',
+        '/Users/msears/code/visual-eyes/testFiles/realFile/smiMultiParticipant03.csv',
       size: 11369165,
       type: 'text/plain',
       extension: 'txt',
     },
   },
-  _storagePath: '/Users/mattsears/code/visual-eyes/testFiles/realFile/',
+  _storagePath: '/Users/msears/code/visual-eyes/testFiles/realFile/',
 };
 
 const smiFullFields = {
   path:
-    '/Users/mattsears/code/visual-eyes/testFiles/realFile/smiFullParticipant03.csv',
+    '/Users/msears/code/visual-eyes/testFiles/realFile/smiFullParticipant03.csv',
   versions: {
     original: {
       path:
-        '/Users/mattsears/code/visual-eyes/testFiles/realFile/smiFullParticipant03.csv',
+        '/Users/msears/code/visual-eyes/testFiles/realFile/smiFullParticipant03.csv',
       size: 11369165,
       type: 'text/plain',
       extension: 'txt',
     },
   },
-  _storagePath: '/Users/mattsears/code/visual-eyes/testFiles/realFile/',
+  _storagePath: '/Users/msears/code/visual-eyes/testFiles/realFile/',
 };
 
 const unrecognizedFields = {
   path:
-    '/Users/mattsears/code/visual-eyes/testFiles/realFile/unrecognizedWael.txt',
+    '/Users/msears/code/visual-eyes/testFiles/realFile/unrecognizedWael.txt',
   versions: {
     original: {
       path:
-        '/Users/mattsears/code/visual-eyes/testFiles/realFile/unrecognizedWael.txt',
+        '/Users/msears/code/visual-eyes/testFiles/realFile/unrecognizedWael.txt',
       size: 4519224,
       type: 'text/plain',
       extension: 'txt',
     },
   },
-  _storagePath: '/Users/mattsears/code/visual-eyes/testFiles/realFile/',
+  _storagePath: '/Users/msears/code/visual-eyes/testFiles/realFile/',
 };
 
 const blankFields = {
@@ -241,17 +241,16 @@ Factory.define('stimulusfile', Stimulusfiles.collection, {
   stimulusId: () => Factory.create('stimulus')._id,
   fileWidth: () => 1222, // faker.random.number({min: 100, max: 3000}),
   fileHeight: () => 855, // faker.random.number({min: 100, max: 3000}),
-  path: '/Users/mattsears/code/visual-eyes/testFiles/stimulusfiles/DWG01.png',
+  path: '/Users/msears/code/visual-eyes/testFiles/stimulusfiles/DWG01.png',
   versions: {
     original: {
-      path:
-        '/Users/mattsears/code/visual-eyes/testFiles/stimulusfiles/DWG01.png',
+      path: '/Users/msears/code/visual-eyes/testFiles/stimulusfiles/DWG01.png',
       size: 185427,
       type: 'image/png',
       extension: 'png',
     },
   },
-  _storagePath: '/Users/mattsears/code/visual-eyes/testFiles/stimulusfiles/',
+  _storagePath: '/Users/msears/code/visual-eyes/testFiles/stimulusfiles/',
 });
 
 Factory.define('stimulus', Stimuli, {

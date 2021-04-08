@@ -28,7 +28,7 @@
     "bcrypt": "^3.0.8",
     "csvtojson": "^2.0.8",
     "datatables-buttons": "^1.0.3",
-    "datatables.net": "^1.10.19",
+    "datatables.net": "^1.10.22",
     "datatables.net-bs": "^1.10.19",
     "datatables.net-bs4": "^1.10.19",
     "datatables.net-buttons": "^1.5.6",

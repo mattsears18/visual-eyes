@@ -69,7 +69,7 @@
     "simpl-schema": "1.4.3",
     "stringify-object": "^3.3.0",
     "time-hulls": "^0.0.110",
-    "underscore": "^1.9.1"
+    "underscore": "^1.12.1"
   },
   "devDependencies": {
     "@babel/cli": "7.4.3",

@@ -46,7 +46,7 @@
     "hyperterm-tabs": "^1.4.0",
     "idx": "^2.5.6",
     "image-size": "^0.6.3",
-    "jStat": "^1.8.5",
+    "jStat": "1.7.1",
     "jquery": "^3.4.1",
     "js-call-r": "0.0.4",
     "json2csv": "^4.5.0",
@@ -68,7 +68,7 @@
     "select2-bootstrap-theme": "0.1.0-beta.10",
     "simpl-schema": "1.4.3",
     "stringify-object": "^3.3.0",
-    "time-hulls": "^0.0.110",
+    "time-hulls": "^0.0.114",
     "underscore": "^1.9.1"
   },
   "devDependencies": {

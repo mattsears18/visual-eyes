@@ -1,5 +1,5 @@
 {
   "public": {
-    "uploads": "/app/uploads"
+    "uploads": "./uploads"
   }
 }

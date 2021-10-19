@@ -20,8 +20,8 @@
     "eye tracking"
   ],
   "dependencies": {
-    "@babel/polyfill": "7.4.3",
-    "@babel/runtime": "^7.4.3",
+    "@babel/polyfill": "7.12.1",
+    "@babel/runtime": "^7.15.4",
     "area-polygon": "^1.0.1",
     "aws-sdk": "^2.442.0",
     "babel-plugin-idx": "^2.4.0",

@@ -70,7 +70,7 @@ if (Meteor.isServer) {
 }
 
 function saveSettings(settingsFilepath, settings) {
-  fs.writeFile(settingsFilepath, JSON.stringify(settings, null, 2), (err) => {
+  fs.writeFile(settingsFilepath, JSON.stringify(settings, null, 2), err => {
     if (err) {
       console.log(err);
     } else {

@@ -1,7 +1,8 @@
 import { jStat } from 'jStat';
 
 export default function generateSMIEyeevents(sortedRows) {
-  if (Meteor.isServer && !Meteor.isTest) console.log('Datafiles.generateSMIEyeevents()');
+  if (Meteor.isServer && !Meteor.isTest)
+    console.log('Datafiles.generateSMIEyeevents()');
 
   if (!sortedRows || !sortedRows.length) {
     throw Error('noData');
@@ -18,11 +19,11 @@ export default function generateSMIEyeevents(sortedRows) {
 
   for (let i = 0; i < rows.length; i += 1) {
     if (
-      !currentEvent
-      || rows[i].category !== currentEvent.category
+      !currentEvent ||
+      rows[i].category !== currentEvent.category ||
       // || rows[i].stimulusId !== currentEvent.stimulusId
       // || rows[i].aoiId !== currentEvent.aoiId
-      || rows[i].originalEventIndex !== currentEvent.originalEventIndex
+      rows[i].originalEventIndex !== currentEvent.originalEventIndex
     ) {
       // Category change
       if (currentEvent) {
